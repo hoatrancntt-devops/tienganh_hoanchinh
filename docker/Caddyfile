@@ -1,0 +1,19 @@
+# Caddy reverse proxy — HTTPS cho hệ thống nội bộ chỉ có IP.
+# Self-signed cert (Let's Encrypt không cấp cho IP). Trình duyệt cảnh báo 1 lần,
+# chấp nhận xong thì HTTPS = secure context -> micro (getUserMedia) hoạt động.
+{
+	auto_https off        # không thử Let's Encrypt (không có domain)
+	admin off
+}
+
+# HTTP -> chuyển hướng sang HTTPS
+:80 {
+	redir https://{host}{uri} permanent
+}
+
+# HTTPS: TLS self-signed, proxy về app trong mạng nội bộ Docker
+:443 {
+	tls /certs/cert.pem /certs/key.pem
+	encode gzip
+	reverse_proxy app:9999
+}

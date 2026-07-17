@@ -1,0 +1,31 @@
+# Lớp HTTPS tuỳ chọn — Caddy reverse proxy với self-signed cert.
+# Dùng cho hệ thống nội bộ chỉ có IP (không domain -> không Let's Encrypt được).
+#
+# Bật kèm base bằng cách đặt trong .env:
+#   COMPOSE_FILE=docker-compose.yml:docker-compose.https.yml
+# rồi các lệnh `docker compose ...` bình thường sẽ gồm cả Caddy.
+#
+# Cần: ./certs/cert.pem và ./certs/key.pem (tạo bằng openssl, SAN=IP máy chủ).
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./certs:/certs:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    networks: [efw]
+
+volumes:
+  caddy_data:
+  caddy_config:
