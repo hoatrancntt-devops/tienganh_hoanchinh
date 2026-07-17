@@ -1,0 +1,30 @@
+form: B
+est_minutes: 14
+items:
+  - {id: S1, section: self, kind: likert, prompt_vi: "Tôi hiểu khi đồng nghiệp nói tiếng Anh với tôi", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
+  - {id: S2, section: self, kind: likert, prompt_vi: "Tôi dám nói dù sai", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
+  - {id: S3, section: self, kind: likert, prompt_vi: "Tôi đọc được email tiếng Anh trong công việc", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
+
+  - {id: V1, section: vocab, kind: mcq, difficulty: 1, prompt_vi: "“Colleague” nghĩa là gì?", choices: ["Đồng nghiệp","Khách hàng","Cấp trên"], answer: 0}
+  - {id: V2, section: vocab, kind: mcq, difficulty: 2, prompt_vi: "Đồng nghiệp nói “Let's grab lunch.” Nghĩa là?", choices: ["Đi ăn trưa nào","Đóng gói bữa trưa","Bỏ bữa trưa"], answer: 0}
+  - {id: V3, section: vocab, kind: mcq, difficulty: 3, prompt_vi: "“Follow up” trong email nghĩa là?", choices: ["Theo dõi và nhắc lại việc đang dở","Đi theo ai đó","Kết thúc dự án"], answer: 0}
+  - {id: V4, section: vocab, kind: mcq, difficulty: 4, prompt_vi: "IT: “Please restart your machine.” Nghĩa là?", choices: ["Khởi động lại máy","Đổi máy mới","Tắt máy hẳn"], answer: 0}
+  - {id: V5, section: vocab, kind: mcq, difficulty: 5, prompt_vi: "IT: “We need to scale up the cluster.” Nghĩa là?", choices: ["Tăng năng lực xử lý của cụm máy","Đo kích thước cụm máy","Tắt bớt máy trong cụm"], answer: 0}
+
+  - {id: G1, section: grammar, kind: mcq, difficulty: 1, prompt_vi: "Chọn câu đúng", choices: ["They is in the meeting.","They are in the meeting.","They be in the meeting."], answer: 1}
+  - {id: G2, section: grammar, kind: mcq, difficulty: 2, prompt_vi: "Chọn câu đúng", choices: ["I don't understand.","I no understand.","I not understand."], answer: 0}
+  - {id: G3, section: grammar, kind: mcq, difficulty: 3, prompt_vi: "Chọn câu đúng", choices: ["What time the meeting start?","What time does the meeting start?","What time is the meeting starts?"], answer: 1}
+  - {id: G4, section: grammar, kind: mcq, difficulty: 4, prompt_vi: "Chọn câu đúng", choices: ["The server has been down since this morning.","The server is down since this morning.","The server was down since this morning."], answer: 0}
+
+  - {id: L1, section: listening, kind: mcq, difficulty: 1, transcript_en: "Nice to meet you. I'm Nam.", prompt_vi: "Người nói đang làm gì?", choices: ["Tự giới thiệu","Tạm biệt","Xin lỗi"], answer: 0}
+  - {id: L2, section: listening, kind: mcq, difficulty: 2, transcript_en: "I'll be back at two fifteen.", prompt_vi: "Người nói quay lại lúc mấy giờ?", choices: ["2:50","2:15","2:05"], answer: 1}
+  - {id: L3, section: listening, kind: mcq, difficulty: 2, transcript_en: "She works in the accounting team.", prompt_vi: "Cô ấy làm ở đâu?", choices: ["Phòng kế toán","Phòng IT","Phòng kinh doanh"], answer: 0}
+  - {id: L4, section: listening, kind: mcq, difficulty: 3, transcript_en: "I'm running late. Can we push it to four?", prompt_vi: "Người nói muốn gì?", choices: ["Dời sang 4 giờ vì đang muộn","Kết thúc lúc 4 giờ","Bắt đầu sớm hơn"], answer: 0}
+  - {id: L5, section: listening, kind: mcq, difficulty: 4, transcript_en: "Did you get a chance to look at my ticket?", prompt_vi: "Người nói hỏi gì?", choices: ["Bạn đã xem ticket của tôi chưa","Bạn có vé chưa","Bạn có thời gian không"], answer: 0}
+  - {id: L6, section: listening, kind: mcq, difficulty: 5, transcript_en: "The deployment failed, so we rolled back to the previous version.", prompt_vi: "Chuyện gì đã xảy ra?", choices: ["Triển khai lỗi nên quay về bản trước","Triển khai thành công","Đang chờ triển khai"], answer: 0}
+
+  - {id: P1, section: speaking, kind: read_aloud, expected_text: "She works in HR.", prompt_vi: "Đọc to câu này"}
+  - {id: P2, section: speaking, kind: read_aloud, expected_text: "I asked him about the network issue.", prompt_vi: "Đọc to câu này"}
+  - {id: P3, section: speaking, kind: repeat, expected_text: "The call is at three fifteen this afternoon.", prompt_vi: "Nghe rồi nhắc lại (không có chữ)"}
+  - {id: P4, section: speaking, kind: repeat, expected_text: "Sorry, I didn't catch that. Could you repeat it?", prompt_vi: "Nghe rồi nhắc lại (không có chữ)"}
+  - {id: P5, section: speaking, kind: short_answer, expected_text: null, prompt_en: "Tell me about your team.", prompt_vi: "Trả lời câu hỏi bằng 1-2 câu", accept_patterns: ["My team has {number} people", "I work with {number} colleagues", "We are a {size} team"]}

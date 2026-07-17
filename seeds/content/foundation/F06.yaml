@@ -1,0 +1,178 @@
+schema_version: 1
+id: F06
+slug: cau-loi-be-have-do
+unit: U-F3
+title_vi: "Ba động từ lõi: be, have, do"
+title_en: "Core verbs: be, have, do"
+phase: foundation
+topic: core
+cefr_target: a1
+order_index: 6
+est_minutes: 10
+
+objective_vi: "Dùng đúng am/is/are, have/has, do/does trong câu kể và câu hỏi ở công sở."
+objective_observable: "Trả lời đúng 4/5 câu quiz và đạt ≥75 điểm nói trên 3/4 drill."
+
+prerequisites:
+  - {lesson: F05, min_mastery: 78, kind: hard}
+
+vocabulary:
+  - term: "I'm"
+    ipa: "/aɪm/"
+    meaning_vi: "tôi là / tôi đang"
+    chunk: "I'm on the call."
+    tags: [core]
+  - term: "he's"
+    ipa: "/hiːz/"
+    meaning_vi: "anh ấy là / anh ấy đang"
+    chunk: "He's in a meeting."
+    tags: [core]
+  - term: have
+    ipa: "/hæv/"
+    meaning_vi: "có"
+    chunk: "I have a question."
+    tags: [core, verb]
+  - term: has
+    ipa: "/hæz/"
+    meaning_vi: "có (ngôi thứ ba)"
+    chunk: "She has two tickets."
+    tags: [core, verb]
+  - term: "don't"
+    ipa: "/doʊnt/"
+    meaning_vi: "không (phủ định)"
+    chunk: "I don't understand."
+    tags: [core]
+  - term: "doesn't"
+    ipa: "/ˈdʌzənt/"
+    meaning_vi: "không (ngôi thứ ba)"
+    chunk: "It doesn't work."
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "I'm {status}."
+    meaning_vi: "Tôi đang {status}."
+    slots:
+      status: ["on a call", "in a meeting", "almost done"]
+  - pattern: "Do you have {thing}?"
+    meaning_vi: "Bạn có {thing} không?"
+    slots:
+      thing: ["a minute", "the file", "access"]
+
+dialogue:
+  context_vi: "Đồng nghiệp nhắn bạn giữa giờ làm."
+  turns:
+    - {speaker: A, en: "Do you have a minute?", vi: "Bạn có rảnh một phút không?"}
+    - {speaker: B, en: "I'm on a call. Is it urgent?", vi: "Tôi đang họp gọi. Có gấp không?"}
+    - {speaker: A, en: "It doesn't work on my laptop. I don't know why.", vi: "Nó không chạy trên máy tôi. Tôi không biết vì sao."}
+    - {speaker: B, en: "He's the one who has access. Ask Minh.", vi: "Người có quyền truy cập là anh ấy. Hỏi Minh nhé."}
+
+listening_snippet:
+  id: LS-F06
+  speed: 0.85
+  voice: en_US_male
+  transcript_en: "I'm on a call right now. She has the file, but it doesn't work on my laptop."
+  transcript_vi: "Tôi đang họp gọi. Cô ấy có file, nhưng nó không chạy trên máy tôi."
+  questions:
+    - q_vi: "Người nói đang làm gì?"
+      choices: ["Đang họp gọi", "Đang ăn trưa", "Đang rảnh"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Ai có file?"
+      choices: ["Người nói", "Cô ấy", "Không ai"]
+      answer: 1
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I'm on a call."
+    prompt_vi: "Đọc to. I'm nói liền một hơi, không tách “I am”."
+    ipa: "/aɪm ɒn ə kɔːl/"
+    focus_phonemes: [m, l]
+  - kind: read_aloud
+    expected_text: "I don't understand."
+    prompt_vi: "Đọc to. Đây là câu bạn sẽ dùng nhiều nhất trong 3 tháng tới."
+    ipa: "/aɪ doʊnt ˌʌndərˈstænd/"
+    focus_phonemes: [t, d]
+  - kind: shadow
+    expected_text: "She has two tickets today."
+    prompt_vi: "Nghe rồi nhắc lại. has chứ không phải have."
+    ipa: "/ʃiː hæz tuː ˈtɪkɪts təˈdeɪ/"
+    focus_phonemes: [z, s]
+  - kind: shadow
+    expected_text: "It doesn't work on my laptop."
+    prompt_vi: "Nghe rồi nhắc lại."
+    ipa: "/ɪt ˈdʌzənt wɜːrk ɒn maɪ ˈlæptɒp/"
+    focus_phonemes: [z, t, k]
+  - kind: respond
+    prompt_en: "Do you have a minute?"
+    prompt_vi: "Bạn đang bận. Trả lời lịch sự."
+    accept_patterns:
+      - "I'm on a call"
+      - "I'm in a meeting"
+      - "Sorry I'm busy"
+      - "Not right now sorry"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt không chia động từ. "Tôi là", "anh ấy là", "họ là" — chỉ một chữ "là" cho tất cả.
+    Tiếng Anh bắt bạn chọn giữa am, is, are tuỳ chủ ngữ, và giữa do/does, have/has. Khó ở chỗ
+    phải chọn NGAY khi đang nói, không có thời gian nghĩ.
+  how_vi: >
+    Đừng học bảng chia. Học theo khối nguyên câu: "I'm on a call", "he's in a meeting",
+    "it doesn't work". Bạn không ghép từ khi nói tiếng Việt — bạn lôi cả cụm ra. Tiếng Anh cũng vậy.
+  contrast_vi: "I don't (tôi không) ↔ It doesn't (nó không). Chỉ ngôi thứ ba số ít mới dùng doesn't."
+
+common_mistakes:
+  - mistake: "“I am work in IT.” — thừa “am”"
+    why_vi: "Nhầm giữa “I am” (tôi là) và động từ thường. Trong tiếng Việt cả hai đều bắt đầu giống nhau nên bạn thêm “am” cho chắc."
+    fix_vi: "Có động từ thường rồi thì bỏ “am”: I work in IT. Chỉ dùng am/is/are khi KHÔNG có động từ khác."
+    detect: {}
+  - mistake: "“He don't know.” thay vì “He doesn't know.”"
+    why_vi: "don't dùng nhiều hơn nên nó thành phản xạ mặc định."
+    fix_vi: "Nhớ câu mốc: “It doesn't work” — bạn sẽ nói câu này nhiều lần mỗi tuần, dùng nó làm neo cho cả nhóm ngôi thứ ba."
+    detect: {}
+  - mistake: "Tách “I'm” thành “I am” trong hội thoại thường"
+    why_vi: "Sách giáo khoa dạy dạng đầy đủ trước, nên bạn tưởng đó là dạng chuẩn."
+    fix_vi: "Trong nói chuyện, người bản xứ gần như luôn dùng dạng rút gọn. “I am on a call” nghe hơi gượng."
+    detect: {}
+
+memory_trick_vi: >
+  Ngôi thứ ba số ít (he, she, it) là đứa hay đòi thêm chữ S: he workS, she haS, it doeSn't.
+  Nếu chủ ngữ là một người/vật đơn lẻ mà không phải bạn hay người đang nói chuyện với bạn — cho nó chữ S.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["I am work in IT.", "I work in IT.", "I working in IT."]
+    answer: 1
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["It don't work.", "It doesn't work.", "It not work."]
+    answer: 1
+    difficulty: 2
+  - kind: fill_chunk
+    prompt_vi: "She ___ two tickets today."
+    choices: [have, has, having]
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "I'm on a call."
+    choices: ["I'm on a call.", "I am a call."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đồng nghiệp hỏi “Do you have a minute?” khi bạn đang bận. Câu nào tự nhiên nhất?"
+    choices: ["No.", "I'm on a call. Is it urgent?", "I don't have."]
+    answer: 1
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.45, quiz: 0.35, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F07

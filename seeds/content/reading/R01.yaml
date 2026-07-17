@@ -1,0 +1,158 @@
+schema_version: 1
+id: R01
+slug: doc-email-noi-bo
+unit: U-R1
+title_vi: "Đọc email nội bộ — tìm việc bạn phải làm"
+title_en: "Reading internal email"
+phase: reading
+topic: office
+cefr_target: a2
+order_index: 1
+est_minutes: 10
+
+objective_vi: "Đọc một email công việc và xác định được: ai phải làm gì, trước khi nào."
+objective_observable: "Trả lời đúng 4/5 câu hỏi đọc hiểu về hành động và hạn chót."
+
+prerequisites:
+  - {lesson: CP-D, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "please note"
+    ipa: "/pliːz noʊt/"
+    meaning_vi: "xin lưu ý"
+    chunk: "Please note the new deadline."
+    tags: [office]
+  - term: "by EOD"
+    ipa: "/baɪ iː oʊ diː/"
+    meaning_vi: "trước cuối ngày (end of day)"
+    chunk: "Please send it by EOD Friday."
+    tags: [office]
+  - term: "action required"
+    ipa: "/ˈækʃən rɪˈkwaɪərd/"
+    meaning_vi: "cần bạn làm gì đó"
+    chunk: "Action required: review the doc."
+    tags: [office]
+  - term: "FYI"
+    ipa: "/ɛf waɪ aɪ/"
+    meaning_vi: "để bạn biết thôi (không cần làm gì)"
+    chunk: "FYI, the server was patched last night."
+    tags: [office]
+  - term: "let me know"
+    ipa: "/lɛt miː noʊ/"
+    meaning_vi: "báo lại cho tôi"
+    chunk: "Let me know if you have questions."
+    tags: [office]
+  - term: "as discussed"
+    ipa: "/æz dɪˈskʌst/"
+    meaning_vi: "như đã trao đổi"
+    chunk: "As discussed, we'll deploy on Friday."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "Please {action} by {deadline}."
+    meaning_vi: "Vui lòng {action} trước {deadline}."
+    slots:
+      action: ["review the doc", "send the report", "confirm your attendance"]
+      deadline: ["EOD Friday", "tomorrow morning", "the end of the week"]
+
+dialogue:
+  context_vi: "Một email nội bộ điển hình bạn nhận sáng thứ Tư."
+  turns:
+    - {speaker: A, en: "Subject: Action required — Q3 report review", vi: "Tiêu đề: Cần xử lý — rà soát báo cáo quý 3"}
+    - {speaker: A, en: "Hi team, as discussed on Monday, the Q3 report is now in the shared drive.", vi: "Chào cả nhóm, như đã trao đổi hôm thứ Hai, báo cáo quý 3 đã có trên ổ chia sẻ."}
+    - {speaker: A, en: "Please review your section and send comments by EOD Friday.", vi: "Vui lòng rà soát phần của mình và gửi góp ý trước cuối ngày thứ Sáu."}
+    - {speaker: A, en: "FYI, the server was patched last night, so the drive may be slow.", vi: "Để mọi người biết: máy chủ đã vá tối qua nên ổ chia sẻ có thể chậm."}
+    - {speaker: A, en: "Let me know if you have questions. Thanks, Lan", vi: "Có gì thắc mắc cứ báo tôi. Cảm ơn, Lan"}
+
+listening_snippet:
+  id: LS-R01
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Please review your section and send comments by EOD Friday. FYI, the server was patched last night."
+  transcript_vi: "Vui lòng rà soát phần của bạn và gửi góp ý trước cuối ngày thứ Sáu. Để bạn biết: máy chủ đã được vá tối qua."
+  questions:
+    - q_vi: "Bạn phải làm gì?"
+      choices: ["Rà soát phần của mình và gửi góp ý", "Vá máy chủ", "Không cần làm gì"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Hạn chót là khi nào?"
+      choices: ["Cuối ngày thứ Sáu", "Sáng thứ Sáu", "Không có hạn"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Email công việc tiếng Anh có một quy ước không ai dạy bạn: phần quan trọng nhất nằm ở tiêu đề
+    và câu có chữ "please". Phần còn lại thường là bối cảnh. Người Việt hay đọc từ đầu tới cuối và
+    cố hiểu từng chữ — mất 10 phút cho một email mà thông tin cần chỉ nằm ở một dòng.
+  how_vi: >
+    Quét theo ba mốc: (1) tiêu đề có "Action required" không, (2) tìm câu có "please" — đó là việc
+    bạn phải làm, (3) tìm ngày/giờ gần chữ "by" — đó là hạn chót. Đọc kỹ phần còn lại chỉ khi cần.
+  contrast_vi: "“FYI” = không cần làm gì ↔ “Action required” = có việc cho bạn. Nhầm hai cái này là nguồn gốc của phần lớn hiểu lầm trong email công việc."
+
+common_mistakes:
+  - mistake: "Đọc từng chữ từ đầu đến cuối và cố hiểu 100%"
+    why_vi: "Thói quen học tiếng Anh ở trường: mỗi từ đều quan trọng. Nhưng email công việc có phần thông tin và phần khách sáo, bạn chỉ cần phần đầu."
+    fix_vi: "Quét tìm “please”, “by”, và ngày tháng trước. Nếu ba thứ đó đủ để hành động, dừng lại."
+    detect: {}
+  - mistake: "Bỏ qua “FYI” và đi làm một việc không ai yêu cầu"
+    why_vi: "Không biết FYI là viết tắt của “for your information” — chỉ để bạn biết."
+    fix_vi: "FYI = đọc rồi bỏ qua. Nếu email chỉ có FYI mà không có “please”, bạn không cần làm gì cả."
+    detect: {}
+  - mistake: "Hiểu “by EOD Friday” là “trong ngày thứ Sáu bất cứ lúc nào cũng được”"
+    why_vi: "“by” trong tiếng Việt thường dịch là “vào”, nghe như không bắt buộc."
+    fix_vi: "“by X” nghĩa là “không muộn hơn X”. EOD Friday = trước khi hết ngày thứ Sáu."
+    detect: {}
+
+memory_trick_vi: >
+  Email công việc có ba cái móc: PLEASE (việc của bạn) — BY (hạn của bạn) — FYI (không phải việc
+  của bạn). Quét ba cái móc đó trước, đọc phần còn lại sau. Người bản xứ cũng đọc email theo cách này.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Email viết “Please review your section by EOD Friday.” Bạn phải làm gì?"
+    choices:
+      - "Rà soát phần của mình, xong trước hết ngày thứ Sáu"
+      - "Đọc email vào thứ Sáu"
+      - "Không cần làm gì"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Email viết “FYI, the server was patched last night.” Bạn phải làm gì?"
+    choices: ["Vá lại máy chủ", "Không cần làm gì, chỉ để biết", "Trả lời xác nhận"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“by EOD Friday” nghĩa là gì?"
+    choices:
+      - "Không muộn hơn hết ngày thứ Sáu"
+      - "Bắt đầu từ thứ Sáu"
+      - "Bất cứ lúc nào trong tuần"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Cách đọc email công việc hiệu quả nhất là gì?"
+    choices:
+      - "Đọc kỹ từng chữ từ đầu đến cuối"
+      - "Quét tìm “please”, “by”, và ngày tháng trước"
+      - "Đọc tiêu đề rồi bỏ qua"
+    answer: 1
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“As discussed on Monday…” cho bạn biết điều gì?"
+    choices:
+      - "Đây là phần bối cảnh, không phải việc mới"
+      - "Đây là việc gấp nhất"
+      - "Bạn phải họp lại vào thứ Hai"
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next: {}

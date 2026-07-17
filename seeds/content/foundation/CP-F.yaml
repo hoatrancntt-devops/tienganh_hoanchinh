@@ -1,0 +1,112 @@
+schema_version: 1
+id: CP-F
+slug: checkpoint-nen-tang
+unit: U-F4
+title_vi: "Checkpoint: Nền tảng âm và câu lõi"
+title_en: "Checkpoint: Foundation"
+phase: foundation
+topic: core
+cefr_target: a1
+order_index: 99
+est_minutes: 12
+is_checkpoint: true
+
+objective_vi: "Chứng minh bạn nghe ra và nói được các âm nền ở tốc độ thật, không tra cứu."
+objective_observable: "Đạt ≥75 điểm tổng hợp trên toàn bộ bài kiểm tra."
+
+prerequisites:
+  - {lesson: F01, min_mastery: 80, kind: hard}
+  - {lesson: F02, min_mastery: 80, kind: hard}
+  - {lesson: F03, min_mastery: 80, kind: hard}
+  - {lesson: F04, min_mastery: 78, kind: hard}
+  - {lesson: F05, min_mastery: 78, kind: hard}
+  - {lesson: F06, min_mastery: 78, kind: hard}
+  - {lesson: F07, min_mastery: 78, kind: hard}
+  - {lesson: F08, min_mastery: 78, kind: hard}
+
+listening_snippet:
+  id: LS-CPF
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "I finished the report yesterday. Minh works in IT and he asked about the deployment. The meeting is at ten thirty, not ten thirteen."
+  transcript_vi: "Hôm qua tôi đã xong báo cáo. Minh làm bên IT và anh ấy đã hỏi về việc triển khai. Cuộc họp lúc mười giờ ba mươi, không phải mười giờ mười ba."
+  questions:
+    - q_vi: "Báo cáo đã xong chưa?"
+      choices: ["Đã xong hôm qua", "Đang làm", "Chưa bắt đầu"]
+      answer: 0
+      difficulty: 4
+    - q_vi: "Cuộc họp lúc mấy giờ?"
+      choices: ["10:13", "10:30", "10:00"]
+      answer: 1
+      difficulty: 4
+    - q_vi: "Minh đã hỏi về việc gì?"
+      choices: ["Việc triển khai", "Báo cáo", "Cuộc họp"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I think he works in IT."
+    prompt_vi: "Đọc to. Bài này gom /θ/ và /s/ cuối vào một câu."
+    ipa: "/aɪ θɪŋk hiː wɜːrks ɪn aɪ tiː/"
+    focus_phonemes: [θ, s]
+  - kind: read_aloud
+    expected_text: "I finished the report and asked him about it."
+    prompt_vi: "Đọc to. Ba âm cuối quá khứ trong một câu."
+    ipa: "/aɪ ˈfɪnɪʃt ðə rɪˈpɔːrt ænd æskt hɪm əˈbaʊt ɪt/"
+    focus_phonemes: [t, k]
+  - kind: shadow
+    expected_text: "The deployment failed because the router is down."
+    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật. Chú ý trọng âm."
+    ipa: "/ðə dɪˈplɔɪmənt feɪld bɪˈkɒz ðə ˈraʊtər ɪz daʊn/"
+    focus_phonemes: [d, r]
+  - kind: shadow
+    expected_text: "Sorry, could you say that again more slowly?"
+    prompt_vi: "Nghe rồi nhắc lại."
+    ipa: "/ˈsɒri kʊd juː seɪ ðæt əˈɡɛn mɔːr ˈsloʊli/"
+    focus_phonemes: [s, d, l]
+  - kind: respond
+    prompt_en: "What did you do yesterday?"
+    prompt_vi: "Trả lời bằng 1-2 câu về việc bạn đã làm. Nhớ âm cuối quá khứ."
+    accept_patterns:
+      - "I finished the {thing}"
+      - "I worked on the {thing}"
+      - "I checked the {thing}"
+      - "I asked {person} about"
+  - kind: respond
+    prompt_en: "Where does Minh work and what does he do?"
+    prompt_vi: "Trả lời: Minh làm bên IT, xử lý ticket."
+    accept_patterns:
+      - "He works in IT"
+      - "He works in IT and handles tickets"
+      - "Minh works in IT"
+
+vietnamese_explanation:
+  why_vi: >
+    Checkpoint không phải để làm khó bạn. Nó là chỗ bạn tự biết mình đã sẵn sàng cho hội thoại
+    thật chưa. Tám bài Foundation dạy tám thứ riêng lẻ; bài này kiểm tra bạn có dùng được cả tám
+    cùng lúc trong một câu không — vì đó mới là điều xảy ra trong cuộc họp thật.
+  how_vi: >
+    Làm một lượt, không tra cứu, không xem lại bài. Nếu chưa đạt, hệ thống sẽ chỉ đúng bài bạn còn
+    yếu. Đừng làm lại ngay trong cùng một buổi.
+  contrast_vi: "Làm được từng bài riêng lẻ ↔ làm được cả tám cùng lúc. Chỉ cái thứ hai mới dùng được trong công việc."
+
+common_mistakes:
+  - mistake: "Trượt rồi làm lại liên tục trong cùng một buổi"
+    why_vi: "Tưởng làm nhiều lần sẽ nhớ. Nhưng lần thứ ba bạn chỉ đang đo trí nhớ ngắn hạn của 5 phút trước, không đo năng lực."
+    fix_vi: "Ôn bài yếu một buổi rồi quay lại vào hôm sau. Não củng cố âm trong lúc ngủ, không phải lúc thi."
+    detect: {}
+  - mistake: "Tăng tốc để nghe giống người bản xứ"
+    why_vi: "Nghĩ rằng nói nhanh nghĩa là giỏi."
+    fix_vi: "Rõ quan trọng hơn nhanh. Người bản xứ thà nghe bạn nói chậm mà đủ âm, còn hơn nhanh mà phải đoán."
+    detect: {}
+
+memory_trick_vi: >
+  Nếu bạn qua được bài này, bạn đã có đủ nền cho mọi hội thoại đời thường. Từ đây trở đi phần
+  lớn là học từ và tình huống — phần khó nhất, tức là dạy lại cơ bắp miệng, bạn đã làm xong.
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.6, listen: 0.4}
+  min_speaking_attempts: 6
+  challenge_threshold: 90

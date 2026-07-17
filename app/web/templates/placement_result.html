@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Kết quả xếp lớp{% endblock %}
+{% block main_class %}narrow{% endblock %}
+{% block body %}
+<div class="center" style="margin-bottom:1.5rem">
+  <div style="font-size:2.6rem">🎯</div>
+  <h1 style="margin-top:.6rem">{{ band_vi }}</h1>
+  {% if test.confidence == 'low' %}<span class="pill pill-warn" style="margin-top:.6rem">Kết quả chưa chắc chắn</span>{% endif %}
+</div>
+<div class="card">
+  <h2 style="font-size:.95rem;margin-bottom:.9rem">Ba trục điểm</h2>
+  {% set s = test.result_scores %}
+  {% for key, label in [('listening','Nghe'),('speaking','Nói'),('knowledge','Từ vựng & ngữ pháp')] %}
+  <div style="margin-bottom:.85rem">
+    <div class="between" style="margin-bottom:.3rem"><span style="font-size:.85rem">{{ label }}</span><span class="mut-3">{{ s.get(key, 0)|round|int }}/100</span></div>
+    <div class="bar {{ 'ok' if s.get(key,0) >= 60 }}"><i style="width:{{ s.get(key,0)|round|int }}%"></i></div>
+  </div>
+  {% endfor %}
+</div>
+<div class="card"><h2 style="font-size:.95rem;margin-bottom:.7rem">Nhận xét</h2><p class="mut" style="font-size:.9rem;line-height:1.7;margin:0">{{ test.explanation_vi }}</p></div>
+{% if test.can_challenge %}<div class="alert alert-warn">Kết quả này chưa chắc chắn. Nếu bạn thấy bài đầu quá dễ, dùng nút <b>Thi vượt</b> ở từng bài để bỏ qua — nhưng phải đạt 85%.</div>{% endif %}
+<a class="btn btn-lg btn-full" style="margin-top:1.2rem" href="/learn">Xem lộ trình của tôi</a>
+{% endblock %}

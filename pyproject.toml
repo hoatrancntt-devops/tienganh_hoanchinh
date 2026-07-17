@@ -1,0 +1,34 @@
+[project]
+name = "english-for-work"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi==0.115.6",
+  "uvicorn[standard]==0.34.0",
+  "sqlalchemy[asyncio]==2.0.36",
+  "alembic==1.14.0",
+  "asyncpg==0.30.0",
+  "aiosqlite==0.20.0",
+  "pydantic==2.10.4",
+  "pydantic-settings==2.7.0",
+  "argon2-cffi==23.1.0",
+  "cryptography==44.0.0",
+  "itsdangerous==2.2.0",
+  "httpx==0.28.1",
+  "jinja2==3.1.5",
+  "python-multipart==0.0.20",
+  "apscheduler==3.11.0",
+  "email-validator==2.2.0",
+  "greenlet==3.1.1",
+  "pyyaml==6.0.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.4", "pytest-asyncio==0.25.0", "ruff==0.8.4"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

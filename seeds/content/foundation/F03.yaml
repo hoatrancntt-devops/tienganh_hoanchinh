@@ -1,0 +1,178 @@
+schema_version: 1
+id: F03
+slug: am-cuoi-t-va-d
+unit: U-F2
+title_vi: "Âm cuối /t/ và /d/ — quá khứ biến mất"
+title_en: "Final T and D"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 3
+est_minutes: 10
+
+objective_vi: "Phát âm được âm cuối /t/ và /d/ để người nghe biết bạn đang nói về quá khứ."
+objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill ở thì quá khứ."
+
+prerequisites:
+  - {lesson: F02, min_mastery: 80, kind: hard}
+
+vocabulary:
+  - term: finished
+    ipa: "/ˈfɪnɪʃt/"
+    meaning_vi: "đã hoàn thành"
+    chunk: "I finished the report."
+    tags: [office, verb]
+  - term: asked
+    ipa: "/æskt/"
+    meaning_vi: "đã hỏi"
+    chunk: "I asked him about it."
+    tags: [office, verb]
+  - term: fixed
+    ipa: "/fɪkst/"
+    meaning_vi: "đã sửa xong"
+    chunk: "We fixed the issue."
+    tags: [it_english, verb]
+  - term: deployed
+    ipa: "/dɪˈplɔɪd/"
+    meaning_vi: "đã triển khai"
+    chunk: "We deployed it last night."
+    tags: [it_english, verb]
+  - term: checked
+    ipa: "/tʃɛkt/"
+    meaning_vi: "đã kiểm tra"
+    chunk: "I checked the logs."
+    tags: [it_english, verb]
+  - term: needed
+    ipa: "/ˈniːdɪd/"
+    meaning_vi: "đã cần"
+    chunk: "It needed a restart."
+    tags: [it_english, verb]
+
+sentence_patterns:
+  - pattern: "I {past_verb} the {thing} yesterday."
+    meaning_vi: "Hôm qua tôi đã {past_verb} {thing}."
+    slots:
+      past_verb: [finished, checked, fixed]
+      thing: [report, logs, issue]
+  - pattern: "We deployed it {time}."
+    meaning_vi: "Chúng tôi đã triển khai nó {time}."
+    slots:
+      time: ["last night", "this morning", "on Friday"]
+
+dialogue:
+  context_vi: "Standup buổi sáng, bạn báo việc đã làm hôm qua."
+  turns:
+    - {speaker: A, en: "What did you do yesterday?", vi: "Hôm qua bạn làm gì?"}
+    - {speaker: B, en: "I finished the report and checked the logs.", vi: "Tôi đã xong báo cáo và kiểm tra log."}
+    - {speaker: A, en: "Did you fix the network issue?", vi: "Bạn đã sửa lỗi mạng chưa?"}
+    - {speaker: B, en: "Yes, we fixed it and deployed it last night.", vi: "Rồi, chúng tôi đã sửa và triển khai tối qua."}
+
+listening_snippet:
+  id: LS-F03
+  speed: 0.85
+  voice: en_US_female
+  transcript_en: "I finished the report yesterday and I asked Minh about the network issue."
+  transcript_vi: "Hôm qua tôi đã xong báo cáo và tôi đã hỏi Minh về vấn đề mạng."
+  questions:
+    - q_vi: "Việc này đã xong hay chưa xong?"
+      choices: ["Đã xong hôm qua", "Đang làm", "Sẽ làm ngày mai"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói hỏi ai về vấn đề mạng?"
+      choices: ["Minh", "quản lý", "khách hàng"]
+      answer: 0
+      difficulty: 1
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I finished the report yesterday."
+    prompt_vi: "Đọc to. Âm cuối của finished là /t/, không phải /ɪd/."
+    ipa: "/aɪ ˈfɪnɪʃt ðə rɪˈpɔːrt ˈjɛstərdeɪ/"
+    focus_phonemes: [t]
+  - kind: read_aloud
+    expected_text: "I asked him about the issue."
+    prompt_vi: "Đọc to. Cụm /skt/ trong asked là cụm khó nhất bài này."
+    ipa: "/aɪ æskt hɪm əˈbaʊt ðə ˈɪʃuː/"
+    focus_phonemes: [t, k]
+  - kind: shadow
+    expected_text: "We deployed it last night."
+    prompt_vi: "Nghe rồi nhắc lại. Âm cuối deployed là /d/ — có rung."
+    ipa: "/wiː dɪˈplɔɪd ɪt læst naɪt/"
+    focus_phonemes: [d]
+  - kind: shadow
+    expected_text: "We fixed the issue and checked the logs."
+    prompt_vi: "Nghe rồi nhắc lại. Hai âm /t/ cuối trong một câu."
+    ipa: "/wiː fɪkst ðə ˈɪʃuː ænd tʃɛkt ðə lɔːɡz/"
+    focus_phonemes: [t]
+  - kind: respond
+    prompt_en: "What did you do yesterday?"
+    prompt_vi: "Trả lời bằng một việc bạn đã làm hôm qua. Nhớ âm cuối."
+    accept_patterns:
+      - "I finished the {thing}"
+      - "I checked the {thing}"
+      - "I fixed the {thing}"
+      - "I worked on the {thing}"
+
+vietnamese_explanation:
+  why_vi: >
+    Trong tiếng Anh nói, âm /t/ hoặc /d/ cuối từ là dấu hiệu DUY NHẤT của thì quá khứ. Không có
+    trợ từ như "đã" trong tiếng Việt để cứu. Nuốt mất nó, người nghe tưởng bạn đang nói chuyện
+    hiện tại — trong standup, đó là khác biệt giữa "tôi đã xong" và "tôi đang làm".
+  how_vi: >
+    Chặn hơi bằng lưỡi ở lợi trên rồi thả nhẹ. Không cần bật thành tiếng nổ, chỉ cần có. Sau âm
+    không rung thì đọc là /t/; còn lại là /d/. Riêng sau /t/ hoặc /d/ thì thêm cả âm tiết: needed.
+  contrast_vi: "work (làm) ↔ worked (đã làm). Mất /t/ là người nghe tưởng bạn nói hiện tại."
+
+common_mistakes:
+  - mistake: "“I finish the report yesterday.” thay vì “finished”"
+    why_vi: "Âm /t/ cuối bị nuốt. Vì có “yesterday” nên người nghe vẫn đoán được — nhưng khi không có từ chỉ thời gian, họ sẽ hiểu sai hẳn."
+    fix_vi: "Nói chậm và tách rõ khi tập: finish - t. Sau đó ghép lại tự nhiên."
+    detect:
+      phoneme_missing: [t]
+  - mistake: "“I aske him.” — nuốt cả cụm /skt/ trong asked"
+    why_vi: "Ba phụ âm liên tiếp ở cuối từ là thứ tiếng Việt không bao giờ có. Miệng bỏ cuộc và cắt bớt."
+    fix_vi: "Tách ba phần rồi ghép dần: ask - t → askt. Tập chậm 5 lần là được."
+    detect:
+      phoneme_missing: [t, k]
+  - mistake: "Đọc mọi đuôi -ed thành /ɪd/: “finish-ịt”, “fix-ịt”"
+    why_vi: "Nhìn chữ ed thì đoán là đọc “ét”. Nhưng chính tả tiếng Anh không phải phiên âm."
+    fix_vi: "Chỉ thêm âm tiết khi từ gốc kết thúc bằng /t/ hoặc /d/: needed, wanted. Còn lại chỉ thêm một âm /t/ hoặc /d/ gọn."
+    detect:
+      phoneme_inserted: [ɪ]
+
+memory_trick_vi: >
+  Âm /t/ /d/ cuối là một cái gõ nhẹ vào cửa, không phải một tiếng nổ. Nếu bạn thấy mình phải
+  lấy hơi để bật nó ra, là bạn đang làm quá. Nhẹ, nhanh, nhưng phải có.
+
+mini_quiz:
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "I finished the report."
+    choices: ["I finish the report.", "I finished the report."]
+    answer: 1
+    difficulty: 3
+    focus_phonemes: [t]
+  - kind: fill_chunk
+    prompt_vi: "Yesterday I ___ him about the issue."
+    choices: [ask, asked, asking]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đuôi -ed của “fixed” đọc thế nào?"
+    choices: ["/t/", "/d/", "/ɪd/"]
+    answer: 0
+    difficulty: 4
+  - kind: mcq
+    prompt_vi: "Từ nào phải thêm hẳn một âm tiết ở đuôi -ed?"
+    choices: [checked, needed, deployed]
+    answer: 1
+    difficulty: 4
+
+unlock_condition:
+  mastery_threshold: 80
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F04

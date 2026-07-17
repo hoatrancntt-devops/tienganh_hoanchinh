@@ -1,0 +1,93 @@
+schema_version: 1
+id: CP-D
+slug: checkpoint-giao-tiep-hang-ngay
+unit: U-D1
+title_vi: "Checkpoint: Giao tiếp hằng ngày"
+title_en: "Checkpoint: Daily Conversation"
+phase: daily
+topic: social
+cefr_target: a1
+order_index: 99
+est_minutes: 12
+is_checkpoint: true
+
+objective_vi: "Xử lý được tình huống đời thường: gặp người mới, small talk, và đáp lại tự nhiên."
+objective_observable: "Đạt ≥70 điểm giao tiếp trên toàn bộ bài."
+
+prerequisites:
+  - {lesson: D01, min_mastery: 75, kind: hard}
+
+listening_snippet:
+  id: LS-CPD
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Hi, I'm Lan, I'm new here. Busy week, but it's fine. How about you? Nice to meet you."
+  transcript_vi: "Chào, tôi là Lan, tôi mới vào. Tuần bận nhưng ổn. Còn bạn? Rất vui được gặp."
+  questions:
+    - q_vi: "Lan vào công ty lâu chưa?"
+      choices: ["Mới vào", "Đã lâu", "Không nói"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Tuần của Lan thế nào?"
+      choices: ["Bận nhưng ổn", "Rảnh", "Tệ"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Vì sao Lan hỏi “How about you?”"
+      choices: ["Để giữ hội thoại tiếp diễn", "Vì không hiểu", "Vì muốn kết thúc"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: respond
+    prompt_en: "Hi, I don't think we've met. I'm Lan."
+    prompt_vi: "Tự giới thiệu đầy đủ và hỏi ngược lại."
+    accept_patterns:
+      - "Nice to meet you I'm {name} I work in {department} And you"
+      - "Hi I'm {name} I work in {department} How about you"
+  - kind: respond
+    prompt_en: "How's it going? Busy week?"
+    prompt_vi: "Trả lời small talk ngắn rồi hỏi ngược."
+    accept_patterns:
+      - "Busy week but it's fine How about you"
+      - "Not bad And you"
+      - "Good thanks You"
+  - kind: shadow
+    expected_text: "Nice to meet you. I work in IT. And you?"
+    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật."
+    ipa: "/naɪs tuː miːt juː aɪ wɜːrk ɪn aɪ tiː ænd juː/"
+    focus_phonemes: [t, s]
+  - kind: shadow
+    expected_text: "Sorry, could you say that again? I didn't catch it."
+    prompt_vi: "Nghe rồi nhắc lại. Câu cứu mạng vẫn phải nhớ."
+    ipa: "/ˈsɒri kʊd juː seɪ ðæt əˈɡɛn aɪ ˈdɪdənt kætʃ ɪt/"
+    focus_phonemes: [s, d, tʃ]
+
+vietnamese_explanation:
+  why_vi: >
+    Các bài Daily dạy tình huống riêng. Trong đời thật chúng nối vào nhau: bạn gặp người mới ở
+    pantry, small talk hai câu, rồi trả lời tự nhiên. Bài này kiểm tra bạn chuyển giữa các tình
+    huống có mượt không.
+  how_vi: >
+    Làm một lượt. Đừng cố nói hay — cứ nói cho người kia hiểu, và nhớ hỏi ngược lại. Hai thứ đó
+    là toàn bộ tiêu chí ở phase này.
+  contrast_vi: "Học thuộc từng bài ↔ dùng được khi tình huống nhảy lung tung. Chỉ cái thứ hai đếm."
+
+common_mistakes:
+  - mistake: "Nói đúng câu nhưng quên hỏi ngược lại"
+    why_vi: "Khi bị áp lực đo điểm, phần “And you?” là thứ rơi rụng đầu tiên vì nó không phải nội dung chính."
+    fix_vi: "Coi “And you?” là một phần của câu trả lời, không phải phần thêm. Chưa hỏi ngược là chưa nói xong."
+    detect: {}
+  - mistake: "Trượt rồi làm lại ngay"
+    why_vi: "Muốn qua nhanh."
+    fix_vi: "Ôn bài yếu một buổi rồi quay lại hôm sau. Hệ thống sẽ chỉ đúng bài cần ôn."
+    detect: {}
+
+memory_trick_vi: >
+  Qua được bài này nghĩa là bạn sống sót được một ngày làm việc bình thường bằng tiếng Anh:
+  chào, tán gẫu, đáp lại. Phần còn lại của khoá là chuyên môn hoá.
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {speak: 0.6, listen: 0.4}
+  min_speaking_attempts: 4
+  challenge_threshold: 90

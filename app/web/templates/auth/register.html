@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Đăng ký{% endblock %}
+{% block main_class %}narrow{% endblock %}
+{% block body %}
+<div class="center" style="margin-bottom:1.8rem">
+  <a href="/" class="brand" style="justify-content:center;font-size:1.05rem"><span class="brand-dot"></span>English<b>@Work</b></a>
+  <h1 style="margin-top:1.2rem">Tạo tài khoản</h1>
+  <p class="mut" style="margin-top:.35rem;font-size:.9rem">Mất 30 giây. Không cần thẻ.</p>
+</div>
+<form class="card" onsubmit="return submitReg(event)">
+  <div id="msg"></div>
+  <div class="field"><label for="name">Tên của bạn</label><input id="name" autocomplete="name" placeholder="Trần Văn Nam"></div>
+  <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+  <div class="field"><label for="pw">Mật khẩu</label><input id="pw" type="password" autocomplete="new-password" minlength="8" required><p class="hint">Ít nhất 8 ký tự.</p></div>
+  <button class="btn btn-lg btn-full" type="submit" id="go">Tạo tài khoản</button>
+  <p class="hint center" style="margin-top:1rem">Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+async function submitReg(e){e.preventDefault();
+  const b=document.getElementById('go');b.disabled=true;b.innerHTML='<span class="spin"></span>';
+  const r=await api('/api/v1/auth/register',{email:document.getElementById('email').value,password:document.getElementById('pw').value,full_name:document.getElementById('name').value});
+  if(r.ok){location.href='/onboarding';return false;}
+  b.disabled=false;b.textContent='Tạo tài khoản';
+  document.getElementById('msg').innerHTML=`<div class="alert alert-err" style="margin-bottom:1rem">${r.data.detail||'Đăng ký thất bại.'}</div>`;
+  return false;}
+</script>
+{% endblock %}

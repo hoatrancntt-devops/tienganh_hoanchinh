@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Đăng nhập{% endblock %}
+{% block main_class %}narrow{% endblock %}
+{% block body %}
+<div class="center" style="margin-bottom:1.8rem">
+  <a href="/" class="brand" style="justify-content:center;font-size:1.05rem"><span class="brand-dot"></span>English<b>@Work</b></a>
+  <h1 style="margin-top:1.2rem">Đăng nhập</h1>
+  <p class="mut" style="margin-top:.35rem;font-size:.9rem">Tiếp tục lộ trình của bạn</p>
+</div>
+<form class="card" onsubmit="return submitLogin(event)">
+  <div id="msg"></div>
+  <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+  <div class="field"><label for="pw">Mật khẩu</label><input id="pw" type="password" autocomplete="current-password" required></div>
+  <button class="btn btn-lg btn-full" type="submit" id="go">Đăng nhập</button>
+  <p class="hint center" style="margin-top:1rem">Chưa có tài khoản? <a href="/register">Đăng ký</a></p>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+async function submitLogin(e){e.preventDefault();
+  const b=document.getElementById('go');b.disabled=true;b.innerHTML='<span class="spin"></span>';
+  const r=await api('/api/v1/auth/login',{email:document.getElementById('email').value,password:document.getElementById('pw').value});
+  if(r.ok){location.href='/';return false;}
+  b.disabled=false;b.textContent='Đăng nhập';
+  document.getElementById('msg').innerHTML=`<div class="alert alert-err" style="margin-bottom:1rem">${r.data.detail||'Đăng nhập thất bại.'}</div>`;
+  return false;}
+</script>
+{% endblock %}

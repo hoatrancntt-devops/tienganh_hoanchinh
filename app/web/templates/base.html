@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0f14">
+<title>{% block title %}Học tiếng Anh đi làm{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎧</text></svg>">
+</head>
+<body{% if lesson %} data-lesson-id="{{ lesson.id }}"{% endif %}>
+{% if user %}
+<header class="topbar">
+  <a href="/learn" class="brand"><span class="brand-dot"></span>English<b>@Work</b></a>
+  <nav class="topnav">
+    <a href="/learn" class="{{ 'active' if request.url.path == '/learn' }}">Lộ trình</a>
+    <a href="/learn/review" class="{{ 'active' if '/review' in request.url.path }}">Ôn tập</a>
+    {% if user.is_admin %}<a href="/admin">Quản trị</a>{% endif %}
+  </nav>
+  <div class="topbar-right">
+    {% if streak %}<span class="streak" title="Chuỗi ngày học liên tiếp">🔥 {{ streak }}</span>{% endif %}
+    <div class="notif-wrap" id="notifWrap">
+      <button class="icon-btn" id="notifBtn" aria-label="Thông báo" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        {% if unread %}<span class="badge" id="notifBadge">{{ unread if unread < 10 else '9+' }}</span>{% endif %}
+      </button>
+      <div class="dropdown" id="notifPanel" hidden></div>
+    </div>
+    <button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện sáng tối">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <details class="menu">
+      <summary class="avatar" title="{{ user.email }}">{{ (user.full_name or user.email)[0]|upper }}</summary>
+      <div class="menu-panel">
+        <div class="menu-head"><div class="menu-name">{{ user.full_name or 'Học viên' }}</div><div class="menu-mail">{{ user.email }}</div></div>
+        <a href="/settings">Cài đặt</a>
+        <a href="/placement/result">Kết quả xếp lớp</a>
+        <a href="#" onclick="logout();return false">Đăng xuất</a>
+      </div>
+    </details>
+  </div>
+</header>
+<nav class="tabbar">
+  <a href="/learn" class="{{ 'active' if request.url.path == '/learn' }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Lộ trình</a>
+  <a href="/learn/review" class="{{ 'active' if '/review' in request.url.path }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.5 9A9 9 0 0 0 5.6 5.6L1 10m22 4l-4.6 4.4A9 9 0 0 1 3.5 15"/></svg>Ôn tập</a>
+  <a href="/notifications" class="{{ 'active' if '/notifications' in request.url.path }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Thông báo</a>
+  <a href="/settings" class="{{ 'active' if '/settings' in request.url.path }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9M4.6 15a1.7 1.7 0 0 1-.3 1.9"/></svg>Cài đặt</a>
+</nav>
+{% endif %}
+<main class="{% block main_class %}wrap{% endblock %}">{% block body %}{% endblock %}</main>
+{% if user and ai_enabled %}{% include "partials/ai_panel.html" %}{% endif %}
+<script src="/static/js/app.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

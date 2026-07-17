@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Cấu hình Email{% endblock %}
+{% block body %}
+<h1>Cấu hình gửi email</h1>
+<p class="sub">Dùng cho nhắc học, cảnh báo streak và thông báo checkpoint.</p>
+<div id="msg" class="msg"></div>
+<form id="f" onsubmit="return save(event)">
+<div class="acard"><h2>Phương thức</h2>
+  <label>Nhà cung cấp</label>
+  <select id="provider" onchange="toggle()">
+    <option value="none" {{ 'selected' if s.provider=='none' }}>Tắt gửi email</option>
+    <option value="m365" {{ 'selected' if s.provider=='m365' }}>Microsoft 365 (OAuth 2.0)</option>
+    <option value="smtp" {{ 'selected' if s.provider=='smtp' }}>SMTP</option>
+  </select>
+  <label>Địa chỉ gửi</label><input id="sender" value="{{ s.sender }}" placeholder="noreply@congty.com">
+  <p class="hint">Với M365, đây phải là mailbox có thật trong tenant.</p>
+</div>
+<div class="acard" id="m365box"><h2>Microsoft 365 — client credentials</h2>
+  <div class="two-col"><div><label>Tenant ID</label><input id="tenant" value="{{ s.m365_tenant_id }}"></div><div><label>Client ID</label><input id="client_id" value="{{ s.m365_client_id }}"></div></div>
+  <label>Client Secret</label><input id="client_secret" type="password" placeholder="{{ s.m365_client_secret_masked or 'chưa đặt' }}">
+  <p class="hint">Để trống = giữ giá trị hiện tại. Secret được mã hoá trước khi lưu vào database.</p>
+  <p class="hint">Azure: App registration → API permissions → Microsoft Graph → <b>Application permission</b> <code>Mail.Send</code> → Grant admin consent. Chọn Application chứ không phải Delegated.</p>
+</div>
+<div class="acard" id="smtpbox"><h2>SMTP</h2>
+  <div class="two-col"><div><label>Host</label><input id="smtp_host" value="{{ s.smtp_host }}"></div><div><label>Port</label><input id="smtp_port" type="number" value="{{ s.smtp_port }}"></div></div>
+  <div class="two-col"><div><label>Username</label><input id="smtp_user" value="{{ s.smtp_username }}"></div><div><label>Password</label><input id="smtp_pass" type="password" placeholder="{{ s.smtp_password_masked or 'chưa đặt' }}"></div></div>
+  <label>Dùng TLS</label><select id="smtp_tls"><option value="true" {{ 'selected' if s.smtp_use_tls }}>Có (STARTTLS)</option><option value="false" {{ 'selected' if not s.smtp_use_tls }}>Không</option></select>
+</div>
+<div class="acard"><button type="submit">Lưu cấu hình</button> <button type="button" class="btn btn-ghost" onclick="test()">Gửi thư thử</button>
+  <label>Gửi thư thử tới</label><input id="test_to" value="{{ user.email }}"></div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+function toggle(){const p=document.getElementById('provider').value;
+  document.getElementById('m365box').style.display=p==='m365'?'':'none';
+  document.getElementById('smtpbox').style.display=p==='smtp'?'':'none';}
+toggle();
+function payload(){return{provider:document.getElementById('provider').value,sender:document.getElementById('sender').value||null,
+  m365_tenant_id:document.getElementById('tenant').value,m365_client_id:document.getElementById('client_id').value,m365_client_secret:document.getElementById('client_secret').value,
+  smtp_host:document.getElementById('smtp_host').value,smtp_port:parseInt(document.getElementById('smtp_port').value||'587'),
+  smtp_username:document.getElementById('smtp_user').value,smtp_password:document.getElementById('smtp_pass').value,smtp_use_tls:document.getElementById('smtp_tls').value==='true'};}
+async function save(e){e.preventDefault();const r=await postJSON('/api/v1/admin/settings/mail',payload());
+  flash('msg',r.ok,r.ok?'Đã lưu cấu hình email.':(r.data.detail||'Lưu thất bại.'));
+  if(r.ok){document.getElementById('client_secret').value='';document.getElementById('smtp_pass').value='';}return false;}
+async function test(){flash('msg',true,'Đang gửi…');const r=await postJSON('/api/v1/admin/settings/mail/test',{to_email:document.getElementById('test_to').value},'POST');
+  flash('msg',r.ok,r.ok?r.data.message_vi:(r.data.detail||'Gửi thất bại.'));}
+</script>
+{% endblock %}

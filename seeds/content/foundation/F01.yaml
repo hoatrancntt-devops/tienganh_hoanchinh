@@ -1,0 +1,177 @@
+schema_version: 1
+id: F01
+slug: am-th-think-va-this
+unit: U-F1
+title_vi: "Âm /θ/ và /ð/ — hai âm tiếng Việt không có"
+title_en: "The TH sounds"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 1
+est_minutes: 10
+
+objective_vi: "Phát âm được /θ/ trong think và /ð/ trong this, và phân biệt được chúng với /t/ và /d/ khi nghe."
+objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill có chứa /θ/ hoặc /ð/."
+
+prerequisites: []
+
+vocabulary:
+  - term: think
+    ipa: "/θɪŋk/"
+    meaning_vi: "nghĩ, cho rằng"
+    chunk: "I think so."
+    tags: [core, verb]
+  - term: thanks
+    ipa: "/θæŋks/"
+    meaning_vi: "cảm ơn"
+    chunk: "Thanks for your help."
+    tags: [social]
+  - term: this
+    ipa: "/ðɪs/"
+    meaning_vi: "cái này, người này"
+    chunk: "This is Minh."
+    tags: [core]
+  - term: that
+    ipa: "/ðæt/"
+    meaning_vi: "cái đó"
+    chunk: "That works for me."
+    tags: [core]
+  - term: three
+    ipa: "/θriː/"
+    meaning_vi: "số ba"
+    chunk: "The meeting is at three."
+    tags: [core, number]
+  - term: thirty
+    ipa: "/ˈθɜːrti/"
+    meaning_vi: "số ba mươi"
+    chunk: "Ten thirty, not ten thirteen."
+    tags: [core, number]
+
+sentence_patterns:
+  - pattern: "I think {opinion}."
+    meaning_vi: "Tôi nghĩ là {opinion}."
+    slots:
+      opinion: ["that's right", "we can do it", "it's too late"]
+  - pattern: "This is {person}."
+    meaning_vi: "Đây là {person}."
+    slots:
+      person: ["Minh", "my colleague", "our new teammate"]
+
+dialogue:
+  context_vi: "Ở pantry, bạn giới thiệu đồng nghiệp mới cho người khác."
+  turns:
+    - {speaker: A, en: "This is Minh. I think you two haven't met.", vi: "Đây là Minh. Tôi nghĩ hai bạn chưa gặp nhau."}
+    - {speaker: B, en: "Nice to meet you, Minh. Thanks for coming over.", vi: "Rất vui được gặp Minh. Cảm ơn bạn đã sang đây."}
+    - {speaker: A, en: "The meeting is at three thirty, right?", vi: "Cuộc họp lúc ba giờ rưỡi đúng không?"}
+    - {speaker: B, en: "That's right. See you there.", vi: "Đúng rồi. Gặp bạn ở đó nhé."}
+
+listening_snippet:
+  id: LS-F01
+  speed: 0.85
+  voice: en_US_female
+  transcript_en: "This is Minh. I think the meeting is at three thirty, not three thirteen."
+  transcript_vi: "Đây là Minh. Tôi nghĩ cuộc họp lúc ba giờ ba mươi, không phải ba giờ mười ba."
+  questions:
+    - q_vi: "Cuộc họp lúc mấy giờ?"
+      choices: ["3:13", "3:30", "3:00"]
+      answer: 1
+      difficulty: 3
+    - q_vi: "Người nói đang giới thiệu ai?"
+      choices: ["Minh", "chính mình", "quản lý"]
+      answer: 0
+      difficulty: 1
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I think so."
+    prompt_vi: "Đọc to câu này. Chú ý lưỡi chạm răng ở đầu từ think."
+    ipa: "/aɪ θɪŋk soʊ/"
+    focus_phonemes: [θ]
+  - kind: read_aloud
+    expected_text: "This is Minh."
+    prompt_vi: "Đọc to. Âm đầu của this có rung — sờ cổ họng sẽ thấy."
+    ipa: "/ðɪs ɪz mɪn/"
+    focus_phonemes: [ð]
+  - kind: shadow
+    expected_text: "Thanks for your help."
+    prompt_vi: "Nghe giọng mẫu rồi nhắc lại."
+    ipa: "/θæŋks fɔr jʊr hɛlp/"
+    focus_phonemes: [θ]
+  - kind: shadow
+    expected_text: "The meeting is at three thirty."
+    prompt_vi: "Nghe rồi nhắc lại. Câu này có ba âm TH."
+    ipa: "/ðə ˈmiːtɪŋ ɪz æt θriː ˈθɜːrti/"
+    focus_phonemes: [θ, ð]
+  - kind: respond
+    prompt_en: "Is the meeting at three thirty?"
+    prompt_vi: "Đồng nghiệp hỏi cuộc họp có phải 3:30 không. Trả lời xác nhận."
+    accept_patterns:
+      - "Yes that's right"
+      - "That's right"
+      - "Yes I think so"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt không có âm nào cần đặt lưỡi giữa hai hàm răng. Miệng bạn chưa từng làm động tác
+    đó, nên nó tự động thay bằng âm gần nhất mà nó biết: /t/ hoặc /d/. Đây không phải lỗi lười —
+    đây là cơ bắp chưa được dạy.
+  how_vi: >
+    Đặt đầu lưỡi chạm nhẹ mép răng trên rồi thổi hơi ra. Không cần thè lưỡi dài như trong phim.
+    /θ/ (think) không rung; /ð/ (this) có rung — đặt tay lên cổ họng, thấy rung là đúng.
+  contrast_vi: "think (nghĩ) ↔ sink (bồn rửa). Sai âm không phải là nói ngọng — là nói sang từ khác hẳn."
+
+common_mistakes:
+  - mistake: "Đổi /θ/ thành /t/: nói “tink” thay vì “think”"
+    why_vi: "Tiếng Việt có /t/ sẵn nên miệng chọn đường quen. Người nghe sẽ hiểu là “tink” — một từ không tồn tại."
+    fix_vi: "Cắn nhẹ đầu lưỡi rồi mới bắt đầu nói. Cường điệu lúc tập, thu về mức tự nhiên sau."
+    detect:
+      phoneme_missing: [θ]
+  - mistake: "Đổi /ð/ thành /d/: nói “dis” thay vì “this”"
+    why_vi: "Cùng lý do — /d/ là âm quen thuộc gần nhất mà miệng bạn biết."
+    fix_vi: "Lưỡi phải chạm răng, không chạm lợi. Lúc tập, sờ thử bằng ngón tay để biết lưỡi đang ở đâu."
+    detect:
+      phoneme_missing: [ð]
+  - mistake: "Nghe nhầm “thirty” (30) thành “thirteen” (13)"
+    why_vi: "Hai từ chỉ khác nhau ở trọng âm và âm cuối, mà cả hai đều là thứ tai người Việt chưa được luyện."
+    fix_vi: "THIR-ty nhấn đầu, thir-TEEN nhấn cuối. Trong công việc, hỏi lại luôn: “Three zero or one three?”"
+    detect:
+      phoneme_missing: [t]
+
+memory_trick_vi: >
+  Cả hai âm TH đều là "lưỡi ra chơi giữa hai hàm răng". Khác nhau chỉ ở chỗ có bật động cơ hay không:
+  think là xe đẩy (không rung), this là xe máy (rung). Sờ cổ họng khi nói để kiểm tra động cơ đã bật chưa.
+
+mini_quiz:
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy từ nào?"
+    audio_text: "think"
+    choices: ["think", "sink"]
+    answer: 0
+    difficulty: 3
+    focus_phonemes: [θ]
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy số mấy?"
+    audio_text: "The meeting is at ten thirty."
+    choices: ["10:13", "10:30"]
+    answer: 1
+    difficulty: 4
+    focus_phonemes: [θ]
+  - kind: fill_chunk
+    prompt_vi: "Giới thiệu đồng nghiệp: “___ is Minh.”"
+    choices: ["This", "Dis", "That"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Âm nào có rung thanh quản?"
+    choices: ["/θ/ trong think", "/ð/ trong this", "Cả hai đều không rung"]
+    answer: 1
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 80
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F02

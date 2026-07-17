@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Quản trị{% endblock %} — English@Work</title>
+<link rel="stylesheet" href="/static/css/app.css">
+<style>
+main{max-width:920px;margin:0 auto;padding:1.5rem 1.1rem 4rem}
+.sub{color:var(--fg-2);margin:.35rem 0 1.6rem;font-size:.9rem}
+.acard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.25rem;margin-bottom:1.1rem}
+.acard h2{font-size:1rem;margin-bottom:1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:.7rem}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:640px}
+td,th{padding:.6rem .5rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--fg-3);font-weight:500;font-size:.76rem;text-transform:uppercase;letter-spacing:.04em}
+code{font:.82em ui-monospace,monospace;background:var(--card-2);padding:.1em .35em;border-radius:4px}
+.msg{padding:.75rem .9rem;border-radius:var(--r-sm);margin:0 0 1rem;display:none;font-size:.87rem}
+.msg.ok{background:var(--ok-soft);color:var(--ok);display:block}
+.msg.err{background:var(--err-soft);color:var(--err);display:block}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a href="/admin" class="brand"><span class="brand-dot"></span>English<b>@Work</b></a>
+  <nav class="topnav">
+    <a href="/admin" class="{{ 'active' if page=='dashboard' }}">Tổng quan</a>
+    <a href="/admin/content" class="{{ 'active' if page=='content' }}">Nội dung</a>
+    <a href="/admin/settings/mail" class="{{ 'active' if page=='mail' }}">Email</a>
+    <a href="/admin/settings/ai" class="{{ 'active' if page=='ai' }}">AI</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="/learn" class="btn btn-quiet" style="font-size:.8rem;padding:.35rem .7rem">Xem như học viên</a>
+    <button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <details class="menu"><summary class="avatar">{{ (user.full_name or user.email)[0]|upper }}</summary>
+      <div class="menu-panel"><div class="menu-head"><div class="menu-mail">{{ user.email }}</div></div><a href="#" onclick="logout();return false">Đăng xuất</a></div></details>
+  </div>
+</header>
+<main>{% block body %}{% endblock %}</main>
+<script src="/static/js/app.js"></script>
+<script>
+async function postJSON(url,data,method='PUT'){const r=await api(url,data,method);return{ok:r.ok,data:r.data};}
+function flash(id,ok,text){const el=document.getElementById(id);el.className='msg '+(ok?'ok':'err');el.textContent=text;}
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

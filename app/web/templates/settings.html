@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Cài đặt{% endblock %}
+{% block body %}
+<div class="page-head"><h1>Cài đặt</h1><p>Nhắc học, mục tiêu, giao diện.</p></div>
+<div id="msg"></div>
+<div class="card" style="margin-bottom:1rem">
+  <h2 style="margin-bottom:1rem">Nhắc học</h2>
+  <div class="two-col">
+    <div class="field"><label for="hour">Giờ nhắc hằng ngày</label><select id="hour">
+      {% for h in range(6, 23) %}<option value="{{ h }}" {{ 'selected' if profile and profile.reminder_hour == h }}>{{ '%02d:00'|format(h) }}</option>{% endfor %}
+    </select><p class="hint">Theo giờ Việt Nam. Chỉ nhắc nếu hôm đó bạn chưa học.</p></div>
+    <div class="field"><label for="mail">Nhận email nhắc</label><select id="mail">
+      <option value="true" {{ 'selected' if profile and profile.email_opt_in }}>Có</option>
+      <option value="false" {{ 'selected' if profile and not profile.email_opt_in }}>Không</option>
+    </select><p class="hint">Tối đa 1 thư/ngày, 3 thư/tuần. Không gửi từ 22h đến 7h.</p></div>
+  </div>
+  <button class="btn" onclick="savePrefs()">Lưu</button>
+</div>
+<div class="card" style="margin-bottom:1rem">
+  <h2 style="margin-bottom:1rem">Mục tiêu</h2>
+  <div class="two-col">
+    <div class="field"><label for="goal">Bạn học để</label><select id="goal">
+      <option value="speaking" {{ 'selected' if profile and profile.goal == 'speaking' }}>Nói chuyện với đồng nghiệp</option>
+      <option value="reading" {{ 'selected' if profile and profile.goal == 'reading' }}>Đọc tài liệu công việc</option>
+    </select></div>
+    <div class="field"><label for="mins">Thời lượng mỗi ngày</label><select id="mins">
+      {% for m in [10, 20, 30] %}<option value="{{ m }}" {{ 'selected' if profile and profile.daily_goal_minutes == m }}>{{ m }} phút</option>{% endfor %}
+    </select></div>
+  </div>
+  <button class="btn" onclick="saveGoal()">Lưu</button>
+</div>
+<div class="card"><h2 style="margin-bottom:.6rem">Xếp lớp</h2>
+  <p class="mut-3" style="margin-bottom:1rem">Trình độ hiện tại: <b style="color:var(--fg)">{{ (profile.cefr_level_current or 'pre_a1')|upper|replace('_','-') }}</b>. Làm lại được sau 14 ngày.</p>
+  <div class="row"><a class="btn btn-ghost" href="/placement/result">Xem kết quả</a><a class="btn btn-quiet" href="/placement">Làm lại</a></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function ok(t){document.getElementById('msg').innerHTML=`<div class="alert alert-ok" style="margin-bottom:1rem">${t}</div>`;}
+async function savePrefs(){const h=document.getElementById('hour').value,m=document.getElementById('mail').value;
+  const r=await api(`/api/v1/notifications/preferences?reminder_hour=${h}&email_opt_in=${m}`,{},'PUT');ok(r.ok?'Đã lưu cài đặt nhắc học.':'Lưu thất bại.');}
+async function saveGoal(){const r=await api('/api/v1/onboarding',{goal:document.getElementById('goal').value,daily_goal_minutes:parseInt(document.getElementById('mins').value)},'PUT');ok(r.ok?'Đã lưu mục tiêu.':'Lưu thất bại.');}
+</script>
+{% endblock %}

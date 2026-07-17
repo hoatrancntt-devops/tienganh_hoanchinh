@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Bắt đầu{% endblock %}
+{% block main_class %}narrow{% endblock %}
+{% block body %}
+<div id="s1">
+  <h1>Bạn học để làm gì?</h1>
+  <p class="mut" style="margin:.4rem 0 1.5rem">Chọn cái gần nhất — đổi sau được.</p>
+  <div class="stack">
+    <button class="card" style="text-align:left;cursor:pointer;border-color:var(--acc)" onclick="pick('speaking')">
+      <div class="pill pill-acc" style="margin-bottom:.6rem">Phổ biến nhất</div>
+      <h3>Nói chuyện được với đồng nghiệp</h3>
+      <p class="mut-3" style="margin:.4rem 0 0">Standup, pantry, xin nghỉ phép, hỏi lại khi chưa hiểu. Mục tiêu 1–3 tháng.</p>
+    </button>
+    <button class="card" style="text-align:left;cursor:pointer" onclick="pick('reading')">
+      <h3>Đọc hiểu tài liệu công việc</h3>
+      <p class="mut-3" style="margin:.4rem 0 0">Email, ticket, tài liệu kỹ thuật, changelog. Mục tiêu 3–6 tháng.</p>
+    </button>
+  </div>
+</div>
+<div id="s2" hidden>
+  <h1>Mỗi ngày bạn học được bao lâu?</h1>
+  <p class="mut" style="margin:.4rem 0 1.5rem">Chọn ít thôi. Đều đặn hơn nhiều.</p>
+  <div class="stack">
+    <button class="card" style="text-align:left;cursor:pointer;border-color:var(--acc)" onclick="mins(10)"><h3>10 phút <span class="pill pill-acc">Khuyên dùng</span></h3><p class="mut-3" style="margin:.4rem 0 0">Đúng một bài. Vừa đủ để không bỏ.</p></button>
+    <button class="card" style="text-align:left;cursor:pointer" onclick="mins(20)"><h3>20 phút</h3><p class="mut-3" style="margin:.4rem 0 0">Hai bài, hoặc một bài cộng ôn tập.</p></button>
+    <button class="card" style="text-align:left;cursor:pointer" onclick="mins(30)"><h3>30 phút</h3><p class="mut-3" style="margin:.4rem 0 0">Nếu bạn thật sự có 30 phút mỗi ngày.</p></button>
+  </div>
+</div>
+<div id="s3" hidden>
+  <h1>Kiểm tra micro</h1>
+  <p class="mut" style="margin:.4rem 0 1.5rem">Phần nói là trọng tâm của khoá này, nên ta kiểm tra micro trước. Lỗi micro ở bài thật gây bực gấp mười.</p>
+  <div class="card center">
+    <div id="micState" class="mut" style="padding:1.5rem 0">Chưa kiểm tra</div>
+    <button class="btn btn-lg btn-full" onclick="checkMic()" id="micBtn">Cho phép dùng micro</button>
+    <button class="btn btn-quiet btn-full" style="margin-top:.6rem" onclick="goPlacement()">Bỏ qua, kiểm tra sau</button>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/recorder.js"></script>
+<script>
+let goal='speaking',minutes=10;
+function show(id){['s1','s2','s3'].forEach(s=>document.getElementById(s).hidden=s!==id);window.scrollTo(0,0);}
+function pick(g){goal=g;show('s2');}
+function mins(m){minutes=m;show('s3');}
+async function checkMic(){
+  const st=document.getElementById('micState'),b=document.getElementById('micBtn');
+  b.disabled=true;st.innerHTML='<span class="spin"></span>';
+  const r=await Recorder.check();b.disabled=false;
+  if(r.ok){st.innerHTML='<div style="font-size:2rem">🎙</div><div style="color:var(--ok);font-weight:600;margin-top:.4rem">Micro hoạt động tốt</div>';Recorder.release();b.textContent='Tiếp tục';b.onclick=goPlacement;}
+  else{st.innerHTML=`<div class="alert alert-err" style="text-align:left">${r.error}</div>`;b.textContent='Thử lại';}
+}
+async function goPlacement(){await api('/api/v1/onboarding',{goal,daily_goal_minutes:minutes},'PUT');location.href='/placement';}
+</script>
+{% endblock %}

@@ -1,0 +1,182 @@
+schema_version: 1
+id: F04
+slug: cum-phu-am-cuoi
+unit: U-F2
+title_vi: "Cụm phụ âm cuối — chỗ câu tiếng Anh hay gãy"
+title_en: "Final consonant clusters"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 4
+est_minutes: 10
+
+objective_vi: "Nói được các cụm phụ âm cuối như /sks/, /kts/, /ndz/ mà không cắt bớt âm nào."
+objective_observable: "Đạt ≥75 điểm phát âm trên 3/4 câu drill có cụm phụ âm cuối."
+
+prerequisites:
+  - {lesson: F03, min_mastery: 80, kind: hard}
+
+vocabulary:
+  - term: asks
+    ipa: "/æsks/"
+    meaning_vi: "hỏi (ngôi thứ ba)"
+    chunk: "He asks a lot of questions."
+    tags: [office, verb]
+  - term: projects
+    ipa: "/ˈprɒdʒɛkts/"
+    meaning_vi: "các dự án"
+    chunk: "I have two projects this month."
+    tags: [office, noun]
+  - term: sounds
+    ipa: "/saʊndz/"
+    meaning_vi: "nghe có vẻ"
+    chunk: "That sounds good."
+    tags: [social]
+  - term: months
+    ipa: "/mʌnθs/"
+    meaning_vi: "các tháng"
+    chunk: "I've been here six months."
+    tags: [core, noun]
+  - term: helps
+    ipa: "/hɛlps/"
+    meaning_vi: "giúp (ngôi thứ ba)"
+    chunk: "That helps a lot."
+    tags: [social, verb]
+  - term: works
+    ipa: "/wɜːrks/"
+    meaning_vi: "hoạt động được"
+    chunk: "That works for me."
+    tags: [office, verb]
+
+sentence_patterns:
+  - pattern: "That sounds {adj}."
+    meaning_vi: "Nghe có vẻ {adj}."
+    slots:
+      adj: [good, fine, difficult]
+  - pattern: "I have {number} projects this {period}."
+    meaning_vi: "Tôi có {number} dự án trong {period} này."
+    slots:
+      number: [two, three]
+      period: [month, quarter]
+
+dialogue:
+  context_vi: "Đồng nghiệp đề xuất lịch họp, bạn đồng ý."
+  turns:
+    - {speaker: A, en: "Can we meet at three? That works for me.", vi: "Ba giờ họp được không? Với tôi thì được."}
+    - {speaker: B, en: "That sounds good. Thanks, that helps.", vi: "Nghe ổn đấy. Cảm ơn, vậy đỡ cho tôi."}
+    - {speaker: A, en: "I have two projects this month, so mornings are better.", vi: "Tháng này tôi có hai dự án nên buổi sáng tiện hơn."}
+    - {speaker: B, en: "Understood. Mornings it is.", vi: "Hiểu rồi. Vậy chốt buổi sáng."}
+
+listening_snippet:
+  id: LS-F04
+  speed: 0.85
+  voice: en_US_male
+  transcript_en: "That works for me. I have two projects this month and it sounds difficult."
+  transcript_vi: "Với tôi thì được. Tháng này tôi có hai dự án và nghe có vẻ khó."
+  questions:
+    - q_vi: "Người nói có bao nhiêu dự án?"
+      choices: ["một", "hai", "ba"]
+      answer: 1
+      difficulty: 3
+    - q_vi: "Người nói cảm thấy thế nào?"
+      choices: ["Thấy dễ", "Thấy khó", "Không nói"]
+      answer: 1
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "That works for me."
+    prompt_vi: "Đọc to. Cụm /ks/ ở cuối works phải nghe thấy cả hai âm."
+    ipa: "/ðæt wɜːrks fɔr miː/"
+    focus_phonemes: [k, s]
+  - kind: read_aloud
+    expected_text: "That sounds good."
+    prompt_vi: "Đọc to. Cụm /ndz/ ở cuối sounds."
+    ipa: "/ðæt saʊndz ɡʊd/"
+    focus_phonemes: [d, z]
+  - kind: shadow
+    expected_text: "I have two projects this month."
+    prompt_vi: "Nghe rồi nhắc lại. Hai cụm khó: /kts/ và /nθs/."
+    ipa: "/aɪ hæv tuː ˈprɒdʒɛkts ðɪs mʌnθs/"
+    focus_phonemes: [k, t, s, θ]
+  - kind: shadow
+    expected_text: "Thanks, that helps a lot."
+    prompt_vi: "Nghe rồi nhắc lại. /ŋks/ và /lps/."
+    ipa: "/θæŋks ðæt hɛlps ə lɒt/"
+    focus_phonemes: [θ, k, s, p]
+  - kind: respond
+    prompt_en: "Can we meet at three?"
+    prompt_vi: "Đồng ý với đề xuất họp lúc 3 giờ."
+    accept_patterns:
+      - "That works for me"
+      - "That sounds good"
+      - "Yes that works"
+
+vietnamese_explanation:
+  why_vi: >
+    Một âm tiết tiếng Việt có tối đa một phụ âm cuối, và phụ âm đó không bật hơi. Tiếng Anh có
+    thể xếp ba, bốn phụ âm liền nhau ở cuối từ. Miệng bạn gặp cụm đó thì làm điều hợp lý nhất
+    mà nó biết: bỏ bớt. Đây là lý do "projects" thường ra thành "pro-dzét".
+  how_vi: >
+    Đừng cố nói cả cụm một lần. Tách ra, nói chậm từng âm, rồi ghép dần và tăng tốc:
+    pro-ject — t — s → projects. Miệng cần khoảng 10 lần lặp để nhớ đường đi, không phải 1 lần.
+  contrast_vi: "project (dự án) ↔ projects (các dự án). Mất /s/ là mất luôn thông tin số lượng."
+
+common_mistakes:
+  - mistake: "Cắt cụm còn một âm: “projec” thay vì “projects”"
+    why_vi: "Miệng chỉ giữ được phụ âm đầu tiên của cụm rồi buông. Đây là phản xạ, không phải lựa chọn."
+    fix_vi: "Tập ngược: nói phần đuôi trước (kts, kts, kts), rồi mới gắn vào đầu từ."
+    detect:
+      phoneme_missing: [t, s]
+  - mistake: "Chèn nguyên âm vào giữa cụm: “pro-jec-tờ-sờ”"
+    why_vi: "Thói quen tách âm tiết. Mỗi phụ âm bị gắn thêm một nguyên âm để thành một âm tiết hoàn chỉnh."
+    fix_vi: "Nói cả cụm trong một hơi, không mở miệng ra giữa chừng. Hàm dưới hạ xuống là bạn đang chèn nguyên âm."
+    detect:
+      phoneme_inserted: [ə]
+  - mistake: "Nói quá nhanh nên cả cụm biến thành tiếng ồn"
+    why_vi: "Cố bắt chước tốc độ người bản xứ trước khi cơ bắp làm được động tác."
+    fix_vi: "Chậm lại một nửa. Người bản xứ thà nghe bạn nói chậm mà rõ, còn hơn nhanh mà phải đoán."
+    detect: {}
+
+memory_trick_vi: >
+  Cụm phụ âm cuối giống như xuống cầu thang: bạn phải đặt chân lên từng bậc, không nhảy ba bậc
+  một lúc. projects = pro-ject + t + s, ba bậc riêng biệt, đi nhanh nhưng không bỏ bậc nào.
+
+mini_quiz:
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy từ nào?"
+    audio_text: "I have two projects this month."
+    choices: ["project", "projects"]
+    answer: 1
+    difficulty: 4
+    focus_phonemes: [s]
+  - kind: mcq
+    prompt_vi: "Cách tập cụm /kts/ hiệu quả nhất là gì?"
+    choices:
+      - "Đọc cả từ thật nhanh nhiều lần"
+      - "Tập riêng phần đuôi trước rồi mới ghép vào từ"
+      - "Bỏ bớt âm cho dễ nói"
+    answer: 1
+    difficulty: 2
+  - kind: fill_chunk
+    prompt_vi: "Đồng ý với lịch họp: “That ___ for me.”"
+    choices: [work, works, working]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Vì sao “months” khó với người Việt?"
+    choices:
+      - "Vì có /θ/ và cụm /nθs/ — cả hai đều không có trong tiếng Việt"
+      - "Vì từ quá dài"
+      - "Vì nó là số nhiều"
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F05

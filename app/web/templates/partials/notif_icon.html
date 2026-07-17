@@ -1,0 +1,6 @@
+{%- set ico = {
+  'daily_reminder':'⏰','streak_warning':'🔥','streak_lost':'💤',
+  'checkpoint_passed':'🏁','lesson_unlocked':'🔓','review_due':'🔄',
+  'retention_debt':'📉','weekly_report':'📊','placement_ready':'🎯'
+} -%}
+{{ ico.get(n.type, '🔔') }}

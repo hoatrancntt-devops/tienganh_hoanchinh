@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Cấu hình AI{% endblock %}
+{% block body %}
+<h1>Cấu hình AI</h1>
+<p class="sub">API key được mã hoá trước khi lưu và không bao giờ trả lại nguyên văn ra giao diện.</p>
+<div id="msg" class="msg"></div>
+<form id="f" onsubmit="return save(event)">
+<div class="acard"><h2>Chung</h2>
+  <label>Bật AI assistant</label>
+  <select id="enabled"><option value="true" {{ 'selected' if s.ai_enabled }}>Bật</option><option value="false" {{ 'selected' if not s.ai_enabled }}>Tắt</option></select>
+  <p class="hint">Tắt AI không làm hỏng việc học: giải thích, roleplay và chấm phát âm đều có bản không cần AI.</p>
+  <div class="two-col"><div><label>Hạn mức mỗi học viên / ngày (lượt gọi)</label><input id="daily" type="number" value="{{ s.user_daily_calls }}"></div>
+    <div><label>Trần chi phí toàn hệ thống / tháng (USD)</label><input id="cap" type="number" step="0.5" value="{{ s.global_monthly_usd }}"></div></div>
+  <p class="hint">Đã tiêu <b>${{ '%.4f'|format(s.spent_this_month_usd) }}</b> tháng này. Trên 70% trần: tự hạ model T2 xuống T1. Trên 90%: chỉ cache và rule-based.</p>
+</div>
+<div class="acard"><h2>Chuỗi ưu tiên (routing)</h2>
+  <label>Tier T1 — tác vụ thường xuyên, model rẻ</label><input id="t1" value="{{ s.route_t1 }}" placeholder="anthropic:claude-haiku-4-5,gemini:gemini-2.0-flash">
+  <label>Tier T2 — roleplay và soạn nội dung</label><input id="t2" value="{{ s.route_t2 }}" placeholder="anthropic:claude-sonnet-5">
+  <p class="hint">Cách nhau bằng dấu phẩy theo thứ tự ưu tiên. Provider đầu lỗi thì tự chuyển sang cái kế. Định dạng <code>provider:model</code>. Với Azure, <code>model</code> là tên deployment.</p>
+</div>
+<div class="acard"><h2>API key theo nhà cung cấp</h2>
+  {% for p in s.providers %}
+  <div style="border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px">
+    <label style="margin-top:0">{{ p.provider }} {% if p.has_key %}<span class="pill pill-ok">có key</span>{% else %}<span class="pill pill-err">chưa có</span>{% endif %}</label>
+    <div class="two-col">
+      <div><input data-key="{{ p.provider }}" type="password" placeholder="{{ p.api_key_masked or 'nhập API key' }}"></div>
+      <div><input data-url="{{ p.provider }}" value="{{ p.base_url }}" placeholder="{% if p.provider=='ollama' %}http://localhost:11434{% elif p.provider=='azure_openai' %}https://<resource>.openai.azure.com{% else %}base URL (để trống = mặc định){% endif %}"></div>
+    </div>
+  </div>
+  {% endfor %}
+  <p class="hint">Ollama chạy local nên không cần key — chỉ cần base URL. Máy 8GB đã dành RAM cho nhận dạng giọng nói, nên chỉ bật Ollama nếu máy lớn hơn.</p>
+</div>
+<div class="acard"><button type="submit">Lưu cấu hình</button> <button type="button" class="btn btn-ghost" onclick="health()">Kiểm tra kết nối</button><div id="health" class="hint"></div></div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+function payload(){const providers=[...document.querySelectorAll('[data-key]')].map(el=>({provider:el.dataset.key,api_key:el.value,base_url:document.querySelector(`[data-url="${el.dataset.key}"]`).value,enabled:true}));
+  return{ai_enabled:document.getElementById('enabled').value==='true',route_t1:document.getElementById('t1').value,route_t2:document.getElementById('t2').value,
+    user_daily_calls:parseInt(document.getElementById('daily').value||'20'),global_monthly_usd:parseFloat(document.getElementById('cap').value||'20'),providers};}
+async function save(e){e.preventDefault();const r=await postJSON('/api/v1/admin/settings/ai',payload());
+  flash('msg',r.ok,r.ok?'Đã lưu cấu hình AI.':(r.data.detail||'Lưu thất bại.'));if(r.ok)document.querySelectorAll('[data-key]').forEach(el=>el.value='');return false;}
+async function health(){const r=await fetch('/api/v1/admin/ai/health');const j=await r.json();
+  document.getElementById('health').innerHTML=j.providers.map(p=>`${p.provider}: ${p.healthy?'✓ sẵn sàng':'✗ chưa dùng được'}`+(p.circuit_open?' (đang tạm ngắt)':'')).join('<br>');}
+</script>
+{% endblock %}

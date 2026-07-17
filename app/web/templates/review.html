@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Ôn tập nhanh{% endblock %}
+{% block main_class %}player{% endblock %}
+{% block body %}
+<h1>Ôn tập nhanh</h1>
+<p class="mut" style="margin:.4rem 0 1.4rem;font-size:.9rem">
+  {% if items %}{{ items|length }} câu đến hạn. Khoảng 5 phút.{% else %}Không có gì đến hạn. Ghi nhớ của bạn đang khoẻ.{% endif %}</p>
+{% if items %}
+<div class="steps" id="steps"></div>
+<div class="between" style="margin-bottom:1rem"><span class="pill pill-acc">Ôn tập</span><span class="mut-3" id="counter">—</span></div>
+<div id="stage"></div>
+<div class="player-nav"><span class="mut-3">Giãn cách lặp lại</span><button class="btn" id="nextBtn" onclick="Rev.next()" disabled>Tiếp theo</button></div>
+{% else %}
+<div class="card center"><div style="font-size:2.2rem">🌱</div><p class="mut" style="margin:.9rem 0 1.2rem">Quay lại sau nhé — hệ thống sẽ nhắc khi có từ sắp trôi.</p><a class="btn btn-lg btn-full" href="/learn">Về lộ trình</a></div>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+{% if items %}
+<script id="revData" type="application/json">{{ items|tojson }}</script>
+<script>
+const Rev=(()=>{
+  const items=JSON.parse(document.getElementById('revData').textContent);let i=0;
+  function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function render(){const it=items[i];
+    document.getElementById('steps').innerHTML=items.map((_,k)=>`<i class="${k<i?'done':k===i?'now':''}"></i>`).join('');
+    document.getElementById('counter').textContent=`${i+1}/${items.length}`;
+    document.getElementById('stage').innerHTML=`<div class="card"><p style="font-size:1rem;margin-bottom:1rem">${esc(it.prompt_vi)}</p>${it.choices.map((c,k)=>`<button class="choice" onclick="Rev.answer(${k})">${esc(c)}</button>`).join('')}<div id="fb" style="margin-top:.9rem"></div></div>`;
+    document.getElementById('nextBtn').disabled=true;document.getElementById('nextBtn').textContent=i===items.length-1?'Xong':'Tiếp theo';}
+  async function answer(k){document.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+    const r=await api('/api/v1/learn/attempt',{item_id:items[i].id,choice_index:k});if(!r.ok){toast('Lỗi khi chấm.','err');return}
+    document.querySelectorAll('.choice')[k].classList.add(r.data.is_correct?'ok':'no');
+    document.getElementById('fb').innerHTML=`<div class="alert alert-${r.data.is_correct?'ok':'warn'}">${esc(r.data.feedback_vi)}</div>`;
+    document.getElementById('nextBtn').disabled=false;}
+  function next(){if(i<items.length-1){i++;render();window.scrollTo(0,0)}else{
+    document.getElementById('stage').innerHTML=`<div class="card center"><div style="font-size:2.2rem">✅</div><h2 style="margin:.6rem 0">Ôn xong</h2><p class="mut" style="margin-bottom:1.2rem">Những từ này sẽ quay lại xa hơn một chút.</p><a class="btn btn-lg btn-full" href="/learn">Về lộ trình</a></div>`;
+    document.querySelector('.player-nav').style.display='none';}}
+  render();return{answer,next};})();
+</script>
+{% endif %}
+{% endblock %}

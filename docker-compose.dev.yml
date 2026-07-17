@@ -1,0 +1,27 @@
+# Dev: hot reload, Postgres lộ ra ngoài, dùng chung Dockerfile.
+# Chạy: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+services:
+  db:
+    ports:
+      - "5433:5432"   # 5433 để không đụng Postgres cài sẵn trên máy
+
+  app:
+    environment:
+      APP_ENV: dev
+      DEBUG: "true"
+      SCHEDULER_ENABLED: "false"
+    volumes:
+      - ./app:/app/app
+      - ./scripts:/app/scripts
+      - ./seeds:/app/seeds
+      - ./config:/app/config
+      - ./media:/app/media
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "9999", "--reload"]
+
+  speech:
+    environment:
+      WHISPER_MODEL: base
+      SPEECH_IDLE_UNLOAD_S: "120"
+    volumes:
+      - ./speech_service:/srv/speech_service
+    command: ["uvicorn", "speech_service.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]

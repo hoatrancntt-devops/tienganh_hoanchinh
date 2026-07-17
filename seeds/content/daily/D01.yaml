@@ -1,0 +1,190 @@
+schema_version: 1
+id: D01
+slug: chao-va-gioi-thieu
+unit: U-D1
+title_vi: "Chào và giới thiệu đồng nghiệp"
+title_en: "Greetings and introductions"
+phase: daily
+topic: social
+cefr_target: a1
+order_index: 1
+est_minutes: 10
+
+objective_vi: "Giới thiệu bản thân và một đồng nghiệp, giữ hội thoại sống bằng câu hỏi ngược lại."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill, có dùng câu hỏi ngược."
+
+prerequisites:
+  - {lesson: CP-F, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Nice to meet you"
+    ipa: "/naɪs tuː miːt juː/"
+    meaning_vi: "Rất vui được gặp bạn"
+    chunk: "Nice to meet you, Minh."
+    tags: [social]
+  - term: "And you?"
+    ipa: "/ænd juː/"
+    meaning_vi: "Còn bạn thì sao?"
+    chunk: "I work in IT. And you?"
+    tags: [social]
+  - term: "How about you?"
+    ipa: "/haʊ əˈbaʊt juː/"
+    meaning_vi: "Còn bạn thì sao? (dài hơn, thân hơn)"
+    chunk: "I've been here two years. How about you?"
+    tags: [social]
+  - term: "I'm new here"
+    ipa: "/aɪm nuː hɪr/"
+    meaning_vi: "Tôi mới vào"
+    chunk: "I'm new here, I started last week."
+    tags: [social]
+  - term: "colleague"
+    ipa: "/ˈkɒliːɡ/"
+    meaning_vi: "đồng nghiệp"
+    chunk: "This is my colleague, Minh."
+    tags: [office, noun]
+  - term: "team"
+    ipa: "/tiːm/"
+    meaning_vi: "nhóm, đội"
+    chunk: "We're on the same team."
+    tags: [office, noun]
+
+sentence_patterns:
+  - pattern: "This is {person}. {pronoun} works in {department}."
+    meaning_vi: "Đây là {person}. {pronoun} làm ở {department}."
+    slots:
+      person: [Minh, Lan, "my colleague"]
+      pronoun: [He, She]
+      department: [IT, HR, Sales]
+  - pattern: "I work in {department}. And you?"
+    meaning_vi: "Tôi làm ở {department}. Còn bạn?"
+    slots:
+      department: [IT, HR, Accounting]
+
+dialogue:
+  context_vi: "Ở pantry, bạn gặp một đồng nghiệp mới và giới thiệu người thứ ba."
+  turns:
+    - {speaker: A, en: "Hi, I'm Nam. I don't think we've met.", vi: "Chào, tôi là Nam. Hình như ta chưa gặp nhau."}
+    - {speaker: B, en: "Nice to meet you, Nam. I'm Lan, I'm new here.", vi: "Rất vui được gặp Nam. Tôi là Lan, tôi mới vào."}
+    - {speaker: A, en: "Welcome. I work in IT. And you?", vi: "Chào mừng. Tôi làm bên IT. Còn bạn?"}
+    - {speaker: B, en: "Accounting. I started last week.", vi: "Kế toán. Tôi bắt đầu từ tuần trước."}
+    - {speaker: A, en: "This is Minh, by the way. He works in IT too.", vi: "À, đây là Minh. Anh ấy cũng làm bên IT."}
+    - {speaker: B, en: "Nice to meet you both.", vi: "Rất vui được gặp cả hai."}
+
+listening_snippet:
+  id: LS-D01
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Hi, I'm Lan. I'm new here, I started last week. I work in accounting. How about you?"
+  transcript_vi: "Chào, tôi là Lan. Tôi mới vào, bắt đầu tuần trước. Tôi làm bên kế toán. Còn bạn?"
+  questions:
+    - q_vi: "Lan làm ở bộ phận nào?"
+      choices: ["Kế toán", "IT", "Nhân sự"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Lan vào công ty khi nào?"
+      choices: ["Tuần trước", "Năm ngoái", "Hôm nay"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Vì sao Lan hỏi “How about you?”"
+      choices: ["Để giữ hội thoại tiếp diễn", "Vì cô ấy không hiểu", "Vì cô ấy muốn kết thúc"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "This is Minh. He works in IT."
+    prompt_vi: "Đọc to. Nhớ âm /s/ ở works."
+    ipa: "/ðɪs ɪz mɪn hiː wɜːrks ɪn aɪ tiː/"
+    focus_phonemes: [ð, s]
+  - kind: shadow
+    expected_text: "Nice to meet you. I work in IT. And you?"
+    prompt_vi: "Nghe rồi nhắc lại. Hai từ cuối là thứ giữ hội thoại sống."
+    ipa: "/naɪs tuː miːt juː aɪ wɜːrk ɪn aɪ tiː ænd juː/"
+    focus_phonemes: [t, s]
+  - kind: shadow
+    expected_text: "I'm new here. I started last week."
+    prompt_vi: "Nghe rồi nhắc lại. started có thêm âm tiết."
+    ipa: "/aɪm nuː hɪr aɪ ˈstɑːrtɪd læst wiːk/"
+    focus_phonemes: [t, d]
+  - kind: respond
+    prompt_en: "Hi, I'm Lan. I don't think we've met."
+    prompt_vi: "Tự giới thiệu: tên bạn, bộ phận bạn làm, rồi hỏi ngược lại."
+    accept_patterns:
+      - "I'm {name} I work in {department} And you"
+      - "Nice to meet you I'm {name}"
+      - "Hi I'm {name} I work in {department}"
+  - kind: respond
+    prompt_en: "What do you do here?"
+    prompt_vi: "Trả lời và nhớ hỏi ngược lại."
+    accept_patterns:
+      - "I work in {department} And you"
+      - "I'm a {job} How about you"
+      - "I work in {department} How about you"
+
+vietnamese_explanation:
+  why_vi: >
+    Đây là cuộc hội thoại bạn gặp nhiều nhất và cũng là cuộc bạn né nhiều nhất. Không phải vì
+    khó — ba câu là đủ — mà vì nỗi sợ khoảng lặng sau câu thứ ba. Người Việt thường trả lời xong
+    rồi im, và khoảng lặng đó bị hiểu là "người này không muốn nói chuyện".
+  how_vi: >
+    Công thức ba phần: tên → bộ phận → câu hỏi ngược lại. Câu hỏi ngược lại là phần quan trọng
+    nhất, vì nó chuyển gánh nặng sang người kia và cho bạn 20 giây để thở. Chỉ cần hai từ: "And you?"
+  contrast_vi: "“I'm Minh.” rồi dừng ↔ “I'm Minh. I work in IT. And you?” — câu sau mở ra cuộc trò chuyện."
+
+common_mistakes:
+  - mistake: "Trả lời xong rồi im lặng"
+    why_vi: "Tiếng Việt cho phép khoảng lặng thoải mái hơn trong xã giao. Ở công sở nói tiếng Anh, im lặng sau khi được hỏi bị hiểu là bạn không muốn tiếp chuyện."
+    fix_vi: "Luôn thêm “And you?” hoặc “How about you?”. Tập đến khi nó tự bật ra ngay sau khi bạn nói xong."
+    detect: {}
+  - mistake: "“I am work in IT.” — thừa “am”"
+    why_vi: "Nhầm giữa “I am” và động từ thường — lỗi này quay lại từ bài F06."
+    fix_vi: "Có “work” rồi thì bỏ “am”: I work in IT."
+    detect: {}
+  - mistake: "“Nice to meet you” dùng lại với người đã gặp rồi"
+    why_vi: "Học được một câu an toàn nên dùng cho mọi lần gặp."
+    fix_vi: "Lần đầu: “Nice to meet you.” Những lần sau: “Good to see you” hoặc “Hi, how's it going?”."
+    detect: {}
+
+memory_trick_vi: >
+  Ba nhịp: TÊN — VIỆC — HỎI NGƯỢC. Nghĩ như một cú đánh cầu lông: bạn không giữ cầu, bạn đánh
+  trả. "And you?" chính là cú đánh trả. Không có nó, cầu rơi xuống đất và cả hai đứng nhìn nhau.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["I am work in IT.", "I work in IT.", "I working in IT."]
+    answer: 1
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Giới thiệu đồng nghiệp Minh bên IT:"
+    choices:
+      - "This is Minh. He work in IT."
+      - "This is Minh. He works in IT."
+      - "This is Minh. He is work in IT."
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bạn vừa nói “I work in IT.” Nên nói gì tiếp?"
+    choices: ["(im lặng)", "And you?", "That's all."]
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy người này vào công ty khi nào?"
+    audio_text: "I'm new here. I started last week."
+    choices: ["Tuần trước", "Năm ngoái", "Hôm nay"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Gặp lại người bạn đã quen. Câu nào tự nhiên nhất?"
+    choices: ["Nice to meet you.", "Good to see you.", "Who are you?"]
+    answer: 1
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: D02

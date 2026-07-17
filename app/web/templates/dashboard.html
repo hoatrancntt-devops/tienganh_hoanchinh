@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Lộ trình của tôi{% endblock %}
+{% block body %}
+<div class="hero" style="margin-bottom:1.6rem">
+  <div class="hero-tag">
+    {% if next_up.kind == 'review' %}Ôn tập trước{% elif next_up.kind == 'continue' %}Đang học dở
+    {% elif next_up.kind == 'checkpoint' %}Checkpoint{% elif next_up.kind == 'branch' %}Bạn đang học lệch
+    {% elif next_up.kind == 'done' %}Đã xong{% else %}Học tiếp{% endif %}
+  </div>
+  <h2>{{ next_up.title_vi or 'Chưa có bài nào' }}</h2>
+  <p class="why">{{ next_up.reason_vi }}</p>
+  {% if next_up.code %}
+  <a class="btn btn-lg" href="/learn/lesson/{{ next_up.code }}">Học {{ profile.daily_goal_minutes if profile else 10 }} phút
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  {% elif next_up.kind == 'review' %}<a class="btn btn-lg" href="/learn/review">Ôn 5 phút</a>{% endif %}
+</div>
+<div class="stats" style="margin-bottom:1.8rem">
+  <div class="stat"><div class="n">{{ done }}<span class="mut-3" style="font-size:.9rem">/{{ total }}</span></div><div class="l">Bài đã nắm</div></div>
+  <div class="stat"><div class="n">{{ streak }}</div><div class="l">Ngày liên tiếp</div></div>
+  <div class="stat"><div class="n">{{ retention }}%</div><div class="l">Sức khoẻ ghi nhớ</div></div>
+  <div class="stat"><div class="n">{{ (profile.cefr_level_current or 'pre_a1')|upper|replace('_','-') }}</div><div class="l">Trình độ hiện tại</div></div>
+</div>
+{% if retention < 70 %}<div class="alert alert-warn" style="margin-bottom:1.5rem"><b>Sức khoẻ ghi nhớ {{ retention }}%.</b> Một số bài bạn từng nắm đang trôi. <a href="/learn/review">Ôn ngay</a></div>{% endif %}
+{% for p in phases %}
+<section class="phase">
+  <div class="phase-head"><h2>{{ p.title }}</h2><span class="sub">{{ p.sub }}</span><span class="cnt">{{ p.mastered }}/{{ p.total }}</span></div>
+  <div class="bar {{ 'ok' if p.pct == 100 }}" style="margin-bottom:.9rem"><i style="width:{{ p.pct }}%"></i></div>
+  <div class="grid-auto">
+    {% for c in p.cards %}
+    {% set locked = c.state == 'locked' %}
+    <a class="lcard {{ 'locked' if locked }} {{ 'mastered' if c.state == 'mastered' }} {{ 'next' if next_up.code == c.code }}" href="/learn/lesson/{{ c.code }}">
+      <div class="lcard-top"><span class="lcard-code">{{ c.code }}</span>
+        {% if c.state == 'mastered' %}<span class="pill pill-ok">✓ Đã nắm</span>
+        {% elif c.state == 'in_progress' %}<span class="pill pill-acc">Đang học</span>
+        {% elif c.state == 'previewable' %}<span class="pill pill-warn">Xem trước</span>
+        {% elif c.state == 'needs_review' %}<span class="pill pill-warn">Cần ôn</span>
+        {% elif locked %}<span class="pill pill-mut">🔒 Khoá</span>{% endif %}
+        <span class="mut-3" style="margin-left:auto">{{ c.est_minutes }}′</span></div>
+      <h3>{{ c.title_vi }}</h3>
+      {% if c.mastery_raw > 0 %}
+      <div class="bar {{ 'ok' if c.state == 'mastered' }}"><i style="width:{{ c.mastery_raw|round|int }}%"></i></div>
+      <div class="lcard-foot"><span class="mut-3">{{ c.mastery_raw|round|int }}% / {{ c.threshold }}%</span></div>{% endif %}
+      {% if c.warning_vi %}<div class="lcard-warn {{ c.warning_level }}">{{ c.warning_vi }}</div>{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% else %}
+<div class="empty">Chưa có nội dung nào được publish. Nếu bạn là quản trị viên, chạy <code>make seed</code>.</div>
+{% endfor %}
+{% endblock %}

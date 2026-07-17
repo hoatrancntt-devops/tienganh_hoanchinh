@@ -1,0 +1,190 @@
+schema_version: 1
+id: I01
+slug: bao-su-co-he-thong
+unit: U-I1
+title_vi: "Báo sự cố hệ thống — nói cho người ta hành động được"
+title_en: "Reporting a system issue"
+phase: it_english
+topic: it_english
+cefr_target: a2
+order_index: 1
+est_minutes: 10
+
+objective_vi: "Mô tả một sự cố theo bốn phần: cái gì hỏng, từ khi nào, ảnh hưởng ai, đã thử gì."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và nêu đủ bốn phần."
+
+prerequisites:
+  - {lesson: O01, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "is down"
+    ipa: "/ɪz daʊn/"
+    meaning_vi: "đang không hoạt động"
+    chunk: "The server is down."
+    tags: [it_english]
+  - term: "since"
+    ipa: "/sɪns/"
+    meaning_vi: "từ lúc (mốc thời gian)"
+    chunk: "It's been down since nine this morning."
+    tags: [it_english, core]
+  - term: "affected"
+    ipa: "/əˈfɛktɪd/"
+    meaning_vi: "bị ảnh hưởng"
+    chunk: "About twenty users are affected."
+    tags: [it_english]
+  - term: "I've tried"
+    ipa: "/aɪv traɪd/"
+    meaning_vi: "tôi đã thử"
+    chunk: "I've tried restarting it."
+    tags: [it_english]
+  - term: "the logs show"
+    ipa: "/ðə lɒɡz ʃoʊ/"
+    meaning_vi: "log cho thấy"
+    chunk: "The logs show a timeout error."
+    tags: [it_english]
+  - term: "escalate"
+    ipa: "/ˈɛskəleɪt/"
+    meaning_vi: "chuyển lên cấp cao hơn"
+    chunk: "I'll escalate this to the network team."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "The {system} is down since {time}."
+    meaning_vi: "{system} hỏng từ {time}."
+    slots:
+      system: [server, VPN, database]
+      time: ["nine this morning", "last night", "about an hour ago"]
+  - pattern: "I've tried {action}, but it didn't help."
+    meaning_vi: "Tôi đã thử {action} nhưng không được."
+    slots:
+      action: ["restarting it", "clearing the cache", "checking the logs"]
+
+dialogue:
+  context_vi: "Bạn báo sự cố cho đồng nghiệp bên network."
+  turns:
+    - {speaker: A, en: "The VPN is down since nine this morning.", vi: "VPN hỏng từ chín giờ sáng nay."}
+    - {speaker: B, en: "How many people are affected?", vi: "Bao nhiêu người bị ảnh hưởng?"}
+    - {speaker: A, en: "About twenty. The whole support team can't reach the internal wiki.", vi: "Khoảng hai mươi. Cả đội hỗ trợ không vào được wiki nội bộ."}
+    - {speaker: B, en: "What have you tried?", vi: "Bạn đã thử gì rồi?"}
+    - {speaker: A, en: "I've tried restarting the client. The logs show a timeout error.", vi: "Tôi đã thử khởi động lại client. Log cho thấy lỗi timeout."}
+    - {speaker: B, en: "OK. I'll escalate this to the network team.", vi: "Được. Tôi sẽ chuyển việc này lên đội mạng."}
+
+listening_snippet:
+  id: LS-I01
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "The VPN has been down since nine this morning. About twenty users are affected. I've tried restarting it, but the logs show a timeout error."
+  transcript_vi: "VPN hỏng từ chín giờ sáng nay. Khoảng hai mươi người dùng bị ảnh hưởng. Tôi đã thử khởi động lại nhưng log cho thấy lỗi timeout."
+  questions:
+    - q_vi: "Sự cố bắt đầu từ khi nào?"
+      choices: ["Chín giờ sáng nay", "Tối qua", "Một tiếng trước"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Bao nhiêu người bị ảnh hưởng?"
+      choices: ["Khoảng 20", "Khoảng 200", "Không rõ"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Log cho thấy lỗi gì?"
+      choices: ["Timeout", "Sai mật khẩu", "Hết dung lượng"]
+      answer: 0
+      difficulty: 4
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The VPN is down since nine this morning."
+    prompt_vi: "Đọc to. VPN đọc từng chữ cái."
+    ipa: "/ðə viː piː ɛn ɪz daʊn sɪns naɪn ðɪs ˈmɔːrnɪŋ/"
+    focus_phonemes: [ð, s, n]
+  - kind: read_aloud
+    expected_text: "About twenty users are affected."
+    prompt_vi: "Đọc to. a-FFEC-ted nhấn âm giữa, có thêm âm tiết ở đuôi -ed."
+    ipa: "/əˈbaʊt ˈtwɛnti ˈjuːzərz ɑr əˈfɛktɪd/"
+    focus_phonemes: [z, t, d]
+  - kind: shadow
+    expected_text: "I've tried restarting it, but it didn't help."
+    prompt_vi: "Nghe rồi nhắc lại. tried có âm cuối /d/."
+    ipa: "/aɪv traɪd riːˈstɑːrtɪŋ ɪt bʌt ɪt ˈdɪdənt hɛlp/"
+    focus_phonemes: [d, t]
+  - kind: shadow
+    expected_text: "The logs show a timeout error."
+    prompt_vi: "Nghe rồi nhắc lại. logs có âm cuối /z/."
+    ipa: "/ðə lɒɡz ʃoʊ ə ˈtaɪmaʊt ˈɛrər/"
+    focus_phonemes: [z, ʃ, r]
+  - kind: respond
+    prompt_en: "What's the problem?"
+    prompt_vi: "Báo sự cố VPN đủ bốn phần: cái gì, từ khi nào, ảnh hưởng ai, đã thử gì."
+    accept_patterns:
+      - "The VPN is down since {time} about {number} users are affected I've tried {action}"
+      - "The {system} is down since {time} I've tried {action}"
+      - "The VPN has been down since {time} and {number} users are affected"
+
+vietnamese_explanation:
+  why_vi: >
+    Đây là bài mà dân IT hay chủ quan nhất: bạn ĐỌC được hết những từ này rồi. Nhưng đọc được và
+    nói được là hai chuyện khác nhau — và cái bẫy thật là bạn biết từ nhưng không biết cấu trúc
+    báo cáo, nên kể lể theo trình tự bạn phát hiện vấn đề, chứ không theo trình tự người nghe cần.
+  how_vi: >
+    Bốn phần, đúng thứ tự: CÁI GÌ hỏng → TỪ KHI NÀO → ẢNH HƯỞNG AI → ĐÃ THỬ GÌ. Người nhận tin
+    dùng phần 3 để xếp ưu tiên và phần 4 để không lặp lại việc bạn đã làm.
+  contrast_vi: "“The VPN has a problem” (vô dụng) ↔ “VPN down since 9am, 20 users affected, restart didn't help” (họ hành động được ngay)."
+
+common_mistakes:
+  - mistake: "Phát âm sai từ chuyên môn: “deploy” thành “đề-ploi”, “router” thành “rao-tơ”"
+    why_vi: "Dân IT đọc những từ này hàng ngày trên màn hình nhưng chưa từng nghe ai đọc lên. Đọc nhiều mà nghe ít tạo ra cách phát âm tự chế."
+    fix_vi: "Nghe giọng mẫu cho từng từ chuyên môn, đừng đoán từ chính tả. deploy nhấn sau, router nhấn trước."
+    detect: {}
+  - mistake: "“The VPN is problem.” hoặc “The VPN has problem.”"
+    why_vi: "Dịch thẳng “VPN bị vấn đề”. Thiếu mạo từ và dùng sai cấu trúc."
+    fix_vi: "Nói cụ thể luôn: “The VPN is down” hoặc “The VPN isn't working”. Cụ thể tốt hơn chung chung và cũng dễ nói hơn."
+    detect: {}
+  - mistake: "Bỏ qua phần “đã thử gì”"
+    why_vi: "Sợ bị đánh giá là chưa thử đủ."
+    fix_vi: "Ngược lại: nói ra những gì đã thử chứng minh bạn làm việc có phương pháp, và tiết kiệm cho người kia 10 phút."
+    detect: {}
+
+memory_trick_vi: >
+  Nhớ theo bốn chữ W: WHAT hỏng — WHEN bắt đầu — WHO bị ảnh hưởng — What did you TRY.
+  Người nhận tin cần đúng bốn thứ đó để quyết định gọi ai và gấp đến mức nào.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Báo sự cố cần bốn phần nào?"
+    choices:
+      - "Cái gì hỏng, từ khi nào, ảnh hưởng ai, đã thử gì"
+      - "Cái gì hỏng, lỗi của ai, sửa bao lâu, tốn bao nhiêu"
+      - "Cái gì hỏng, chi tiết kỹ thuật, log đầy đủ, code liên quan"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Từ “deploy” nhấn âm nào?"
+    choices: ["DE-ploy", "de-PLOY", "Nhấn đều"]
+    answer: 1
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Chọn câu tự nhiên nhất"
+    choices: ["The VPN has problem.", "The VPN is down.", "The VPN is problem."]
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Sự cố bắt đầu từ khi nào?"
+    audio_text: "The VPN has been down since nine this morning."
+    choices: ["Chín giờ sáng nay", "Chín giờ tối qua", "Không nói"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao nên nói ra những gì mình đã thử?"
+    choices:
+      - "Để người kia không lặp lại và biết bạn làm có phương pháp"
+      - "Để chứng minh mình đã cố gắng"
+      - "Để kéo dài cuộc gọi"
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: R01

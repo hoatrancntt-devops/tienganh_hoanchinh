@@ -1,0 +1,180 @@
+schema_version: 1
+id: F02
+slug: am-cuoi-s-va-z
+unit: U-F2
+title_vi: "Âm cuối /s/ và /z/ — thứ người Việt hay nuốt mất"
+title_en: "Final S and Z"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 2
+est_minutes: 10
+
+objective_vi: "Phát âm được âm cuối /s/ và /z/ trong 6 từ thường dùng, và nghe ra khác nhau giữa work và works."
+objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill có âm cuối /s/ hoặc /z/."
+
+prerequisites:
+  - {lesson: F01, min_mastery: 80, kind: hard}
+
+vocabulary:
+  - term: works
+    ipa: "/wɜːrks/"
+    meaning_vi: "làm việc (chia ngôi thứ ba)"
+    chunk: "He works in IT."
+    tags: [office, verb]
+  - term: uses
+    ipa: "/ˈjuːzɪz/"
+    meaning_vi: "sử dụng (ngôi thứ ba)"
+    chunk: "She uses the VPN every day."
+    tags: [it_english, verb]
+  - term: tickets
+    ipa: "/ˈtɪkɪts/"
+    meaning_vi: "các phiếu yêu cầu hỗ trợ"
+    chunk: "I have three tickets today."
+    tags: [it_english, noun]
+  - term: needs
+    ipa: "/niːdz/"
+    meaning_vi: "cần (ngôi thứ ba)"
+    chunk: "The server needs a restart."
+    tags: [it_english, verb]
+  - term: thanks
+    ipa: "/θæŋks/"
+    meaning_vi: "cảm ơn"
+    chunk: "Thanks, that helps."
+    tags: [social]
+  - term: colleagues
+    ipa: "/ˈkɒliːɡz/"
+    meaning_vi: "các đồng nghiệp"
+    chunk: "My colleagues are in the meeting."
+    tags: [office, noun]
+
+sentence_patterns:
+  - pattern: "He/She works in {department}."
+    meaning_vi: "Anh/cô ấy làm ở bộ phận {department}."
+    slots:
+      department: [IT, HR, Sales, Accounting]
+  - pattern: "The {thing} needs {action}."
+    meaning_vi: "{thing} cần được {action}."
+    slots:
+      thing: [server, laptop, router]
+      action: ["a restart", "an update", "a check"]
+
+dialogue:
+  context_vi: "Bạn giới thiệu đồng nghiệp và nói về công việc của họ."
+  turns:
+    - {speaker: A, en: "This is Minh. He works in IT.", vi: "Đây là Minh. Anh ấy làm bên IT."}
+    - {speaker: B, en: "Nice to meet you. What do you work on?", vi: "Rất vui được gặp. Bạn làm mảng gì?"}
+    - {speaker: A, en: "He handles tickets and network issues.", vi: "Anh ấy xử lý ticket và các vấn đề mạng."}
+    - {speaker: B, en: "Thanks. I might need your help this week.", vi: "Cảm ơn. Tuần này có khi tôi cần bạn giúp."}
+
+listening_snippet:
+  id: LS-F02
+  speed: 0.85
+  voice: en_US_male
+  transcript_en: "Minh works in IT. He handles tickets and the server needs a restart today."
+  transcript_vi: "Minh làm bên IT. Anh ấy xử lý ticket và hôm nay máy chủ cần khởi động lại."
+  questions:
+    - q_vi: "Minh làm ở bộ phận nào?"
+      choices: ["IT", "HR", "Sales"]
+      answer: 0
+      difficulty: 1
+    - q_vi: "Hôm nay cần làm gì với máy chủ?"
+      choices: ["Khởi động lại", "Thay mới", "Tắt hẳn"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "He works in IT."
+    prompt_vi: "Đọc to. Giữ âm /s/ ở cuối works — đừng để nó rơi mất."
+    ipa: "/hiː wɜːrks ɪn aɪ tiː/"
+    focus_phonemes: [s]
+  - kind: read_aloud
+    expected_text: "She uses the VPN."
+    prompt_vi: "Đọc to. Âm cuối ở đây là /z/ — có rung."
+    ipa: "/ʃiː ˈjuːzɪz ðə viː piː ɛn/"
+    focus_phonemes: [z]
+  - kind: shadow
+    expected_text: "The server needs a restart."
+    prompt_vi: "Nghe rồi nhắc lại."
+    ipa: "/ðə ˈsɜːrvər niːdz ə ˈriːstɑːrt/"
+    focus_phonemes: [z]
+  - kind: shadow
+    expected_text: "I have three tickets today."
+    prompt_vi: "Nghe rồi nhắc lại. Cụm /ts/ cuối tickets rất dễ rơi."
+    ipa: "/aɪ hæv θriː ˈtɪkɪts təˈdeɪ/"
+    focus_phonemes: [s, t]
+  - kind: respond
+    prompt_en: "Where does Minh work?"
+    prompt_vi: "Trả lời: Minh làm bên IT. Nhớ âm /s/ ở works."
+    accept_patterns:
+      - "He works in IT"
+      - "Minh works in IT"
+      - "He works in the IT department"
+
+vietnamese_explanation:
+  why_vi: >
+    Âm tiết tiếng Việt luôn kết thúc bằng nguyên âm hoặc một phụ âm không bật hơi. Nên khi gặp
+    /s/ hay /z/ ở cuối từ, miệng bạn tự động bỏ nó đi — không phải vì bạn không biết, mà vì
+    cơ bắp chưa từng phải giữ hơi lâu đến thế. Hậu quả: người nghe mất luôn thông tin về ngôi
+    và số nhiều.
+  how_vi: >
+    Nói xong nguyên âm thì giữ nguyên vị trí lưỡi và xì hơi thêm nửa nhịp. Đừng thêm nguyên âm
+    phía sau — "works" không phải "work-sờ". /s/ không rung, /z/ có rung.
+  contrast_vi: "work (làm) ↔ works (anh ấy làm). Mất /s/ là người nghe mất luôn chủ ngữ của câu."
+
+common_mistakes:
+  - mistake: "Nuốt mất âm cuối: “He work in IT.”"
+    why_vi: "Thói quen âm tiết tiếng Việt. Câu vẫn hiểu được nhưng nghe như trẻ con nói, và trong môi trường công việc điều đó ảnh hưởng tới cách người ta đánh giá bạn."
+    fix_vi: "Kéo dài /s/ ra thật rõ khi mới tập: work-sss. Cường điệu trước, thu về mức tự nhiên sau."
+    detect:
+      phoneme_missing: [s, z]
+  - mistake: "Thêm nguyên âm: “work-sờ in IT.”"
+    why_vi: "Tiếng Việt tách âm tiết rất rõ, nên miệng tự thêm một nguyên âm để hoàn thiện âm tiết."
+    fix_vi: "Dừng hơi ngay sau /s/, đừng mở miệng thêm. Thử nói work rồi giữ nguyên khẩu hình, chỉ xì hơi."
+    detect:
+      phoneme_inserted: [ə]
+  - mistake: "Dùng /s/ cho mọi trường hợp, kể cả khi phải là /z/"
+    why_vi: "Cả hai đều lạ nên bạn chọn một cái rồi dùng mãi."
+    fix_vi: "Sau âm không rung (p, t, k, f) thì /s/; còn lại hầu hết là /z/. needs là /z/, works là /s/."
+    detect:
+      phoneme_missing: [z]
+
+memory_trick_vi: >
+  Nghĩ đến tiếng rắn xì: work-sss. Ai cũng bắt chước được tiếng rắn — miệng bạn đã biết làm /s/
+  từ lâu rồi, chỉ là chưa quen đặt nó ở cuối từ. Còn /z/ là con ong: bzzz, có rung.
+
+mini_quiz:
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "He works in IT."
+    choices: ["He work in IT.", "He works in IT."]
+    answer: 1
+    difficulty: 3
+    focus_phonemes: [s]
+  - kind: fill_chunk
+    prompt_vi: "She ___ in HR."
+    choices: [work, works, working]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Âm cuối của “needs” là gì?"
+    choices: ["/s/ không rung", "/z/ có rung", "Không có âm cuối"]
+    answer: 1
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy mấy cái ticket?"
+    audio_text: "I have three tickets today."
+    choices: ["một", "ba", "không rõ"]
+    answer: 1
+    difficulty: 3
+    focus_phonemes: [s]
+
+unlock_condition:
+  mastery_threshold: 80
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F03

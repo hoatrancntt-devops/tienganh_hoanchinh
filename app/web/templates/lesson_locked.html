@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title_vi }} — đang khoá{% endblock %}
+{% block main_class %}narrow{% endblock %}
+{% block body %}
+<div class="card center">
+  <div style="font-size:2.4rem">🔒</div>
+  <div class="lcard-code" style="margin-top:.8rem">{{ lesson.code }}</div>
+  <h1 style="font-size:1.15rem;margin:.3rem 0 1rem">{{ lesson.title_vi }}</h1>
+  <div class="alert alert-warn" style="text-align:left">{{ reason_vi }}</div>
+  {% if blocker %}<a class="btn btn-lg btn-full" style="margin-top:1.2rem" href="/learn/lesson/{{ blocker.code }}">Đi tới “{{ blocker.title_vi }}”</a>{% endif %}
+  <details class="acc" style="margin-top:1.2rem;text-align:left"><summary>Tôi đã biết bài này rồi</summary><div class="acc-body">
+    <p>Được — nhưng phải chứng minh. Bài thi vượt gồm 10 câu, cần đạt <b>{{ lesson.challenge_threshold }}%</b>, cao hơn đường học thường vì đây là đặc quyền.</p>
+    <p class="mut-3" style="margin:0">Nếu thi trượt, đừng nản: nghĩa là bạn <i>nhận ra</i> bài này chứ chưa <i>làm được</i> nó.</p>
+    <button class="btn btn-ghost btn-full" style="margin-top:.8rem" onclick="challenge()">Làm bài thi vượt</button></div></details>
+  <a class="btn btn-quiet btn-full" style="margin-top:.6rem" href="/learn">Về lộ trình</a>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+async function challenge(){const r=await api('/api/v1/learn/challenge/{{ lesson.code }}?score=0',{},'POST');
+  toast(r.data.message_vi||'Chưa qua.',r.data.passed?'ok':'warn');if(r.data.passed)setTimeout(()=>location.reload(),1200);}
+</script>
+{% endblock %}

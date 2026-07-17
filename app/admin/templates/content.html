@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Nội dung{% endblock %}
+{% block body %}
+<h1>Nội dung</h1>
+<p class="sub">{{ rows|length }} bài và DAG tiên quyết. Sửa nội dung ở file YAML rồi chạy <code>make seed</code>.</p>
+<div class="acard"><div class="scroll">
+<table>
+  <tr><th>Mã</th><th>Bài</th><th>Phase</th><th>Ngưỡng</th><th>Cần trước</th><th>Trạng thái</th></tr>
+  {% for r in rows %}
+  <tr><td><code>{{ r.l.code }}</code></td>
+    <td>{{ r.l.title_vi }}{% if r.l.is_checkpoint %} <span class="pill pill-ok">checkpoint</span>{% endif %}</td>
+    <td>{{ r.l.phase }}</td><td>{{ r.l.mastery_threshold }}%</td>
+    <td>{{ r.prereqs|join(', ') or '—' }}</td>
+    <td>{% if r.l.status == 'published' %}<span class="pill pill-ok">published</span>{% else %}<span class="pill pill-err">draft</span>{% endif %}</td></tr>
+  {% endfor %}
+</table></div>
+<p class="hint">CRUD nội dung trên web chưa có ở bản này — nguồn sự thật là <code>seeds/content/*.yaml</code>, đi qua cổng chất lượng <code>validate_content.py</code>. Bảng này để kiểm tra DAG sau khi seed.</p>
+</div>
+{% endblock %}

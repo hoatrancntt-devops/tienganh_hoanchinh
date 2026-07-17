@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Tổng quan{% endblock %}
+{% block body %}
+<h1>Tổng quan</h1>
+<p class="sub">Trạng thái hệ thống và chi phí AI 30 ngày gần nhất.</p>
+<div class="acard"><div class="grid">
+  <div class="stat"><div class="n">{{ users }}</div><div class="l">Học viên</div></div>
+  <div class="stat"><div class="n">{{ lessons }}</div><div class="l">Bài đã publish</div></div>
+  <div class="stat"><div class="n">{{ pending_emails }}</div><div class="l">Email chờ gửi</div></div>
+  <div class="stat"><div class="n">${{ '%.2f'|format(cost.by_task|sum(attribute='cost_usd')) }}</div><div class="l">Chi phí AI 30 ngày</div></div>
+</div></div>
+<div class="acard"><h2>Tích hợp</h2>
+  <p>Gửi email: {% if mail_configured %}<span class="pill pill-ok">đã cấu hình</span>{% else %}<span class="pill pill-err">chưa cấu hình</span> — <a href="/admin/settings/mail">cấu hình ngay</a>{% endif %}</p>
+  <p>AI assistant: {% if ai_enabled %}<span class="pill pill-ok">đang bật</span>{% else %}<span class="pill pill-err">chưa bật</span> — <a href="/admin/settings/ai">thêm API key</a>{% endif %}</p>
+  <p class="hint">Chưa cấu hình hai mục này app vẫn dạy được đầy đủ: giải thích và roleplay dùng bản kịch bản sẵn, chấm phát âm chạy local.</p>
+</div>
+<div class="acard"><h2>Chi phí AI theo tác vụ</h2>
+  {% if cost.total_calls %}
+  <div class="scroll"><table><tr><th>Tác vụ</th><th>Lượt gọi</th><th>Chi phí</th></tr>
+    {% for r in cost.by_task %}<tr><td>{{ r.task }}</td><td>{{ r.calls }}</td><td>${{ '%.4f'|format(r.cost_usd) }}</td></tr>{% endfor %}</table></div>
+  <p class="hint">Cache hit {{ '%.0f'|format(cost.cache_hit_rate * 100) }}%, tiết kiệm {{ '{:,}'.format(cost.tokens_saved) }} token.</p>
+  {% else %}<p class="hint">Chưa có lượt gọi AI nào.</p>{% endif %}
+</div>
+{% endblock %}

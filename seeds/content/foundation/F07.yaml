@@ -1,0 +1,180 @@
+schema_version: 1
+id: F07
+slug: cau-hoi-wh
+unit: U-F3
+title_vi: "Câu hỏi Wh- — hỏi mà không bị hiểu là ra lệnh"
+title_en: "Wh- questions"
+phase: foundation
+topic: core
+cefr_target: a1
+order_index: 7
+est_minutes: 10
+
+objective_vi: "Đặt được câu hỏi với what, where, when, who, why đúng trật tự từ, và hỏi lịch sự bằng could you."
+objective_observable: "Trả lời đúng 4/5 câu quiz trật tự từ và đạt ≥75 điểm nói trên 3/4 drill."
+
+prerequisites:
+  - {lesson: F06, min_mastery: 78, kind: hard}
+
+vocabulary:
+  - term: "what time"
+    ipa: "/wʌt taɪm/"
+    meaning_vi: "mấy giờ"
+    chunk: "What time does the meeting start?"
+    tags: [office]
+  - term: "where"
+    ipa: "/wɛr/"
+    meaning_vi: "ở đâu"
+    chunk: "Where is the file?"
+    tags: [core]
+  - term: "why"
+    ipa: "/waɪ/"
+    meaning_vi: "vì sao"
+    chunk: "Why did it fail?"
+    tags: [core]
+  - term: "who"
+    ipa: "/huː/"
+    meaning_vi: "ai"
+    chunk: "Who is handling this?"
+    tags: [core]
+  - term: "could you"
+    ipa: "/kʊd juː/"
+    meaning_vi: "bạn có thể… được không (lịch sự)"
+    chunk: "Could you send me the link?"
+    tags: [office]
+  - term: "how long"
+    ipa: "/haʊ lɔːŋ/"
+    meaning_vi: "bao lâu"
+    chunk: "How long will it take?"
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "What time does the {event} start?"
+    meaning_vi: "{event} bắt đầu lúc mấy giờ?"
+    slots:
+      event: [meeting, call, standup]
+  - pattern: "Could you {request}?"
+    meaning_vi: "Bạn {request} giúp được không?"
+    slots:
+      request: ["send me the link", "check the logs", "say that again"]
+
+dialogue:
+  context_vi: "Bạn cần thông tin về cuộc họp và một ticket."
+  turns:
+    - {speaker: A, en: "What time does the meeting start?", vi: "Cuộc họp bắt đầu lúc mấy giờ?"}
+    - {speaker: B, en: "Ten thirty. Where are you now?", vi: "Mười giờ rưỡi. Bạn đang ở đâu?"}
+    - {speaker: A, en: "Still at my desk. Who is handling ticket 402?", vi: "Vẫn ở bàn. Ai đang phụ trách ticket 402?"}
+    - {speaker: B, en: "Minh is. Could you send him the logs?", vi: "Minh. Bạn gửi log cho anh ấy được không?"}
+
+listening_snippet:
+  id: LS-F07
+  speed: 0.9
+  voice: en_US_female
+  transcript_en: "What time does the standup start? And who is handling the network issue today?"
+  transcript_vi: "Standup bắt đầu lúc mấy giờ? Và hôm nay ai phụ trách vấn đề mạng?"
+  questions:
+    - q_vi: "Người nói hỏi mấy điều?"
+      choices: ["Một", "Hai", "Ba"]
+      answer: 1
+      difficulty: 3
+    - q_vi: "Câu hỏi thứ hai là về gì?"
+      choices: ["Ai phụ trách vấn đề mạng", "Standup ở đâu", "Vì sao mạng hỏng"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "What time does the meeting start?"
+    prompt_vi: "Đọc to. Chú ý “does” nằm trước chủ ngữ."
+    ipa: "/wʌt taɪm dʌz ðə ˈmiːtɪŋ stɑːrt/"
+    focus_phonemes: [t, z]
+  - kind: read_aloud
+    expected_text: "Could you send me the link?"
+    prompt_vi: "Đọc to. Giọng đi lên ở cuối câu."
+    ipa: "/kʊd juː sɛnd miː ðə lɪŋk/"
+    focus_phonemes: [d, k]
+  - kind: shadow
+    expected_text: "Who is handling this ticket?"
+    prompt_vi: "Nghe rồi nhắc lại."
+    ipa: "/huː ɪz ˈhændlɪŋ ðɪs ˈtɪkɪt/"
+    focus_phonemes: [h, ŋ]
+  - kind: shadow
+    expected_text: "Why did the deployment fail?"
+    prompt_vi: "Nghe rồi nhắc lại. did đứng trước chủ ngữ, deployment giữ nguyên."
+    ipa: "/waɪ dɪd ðə dɪˈplɔɪmənt feɪl/"
+    focus_phonemes: [d, ð]
+  - kind: respond
+    prompt_en: "The meeting is at ten thirty."
+    prompt_vi: "Bạn không rõ địa điểm. Hỏi lại."
+    accept_patterns:
+      - "Where is the meeting"
+      - "Where is it"
+      - "Which room"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt hỏi bằng cách thêm từ hỏi vào cuối hoặc đầu câu, trật tự còn lại giữ nguyên.
+    Tiếng Anh bắt bạn ĐẢO trật tự và chèn thêm do/does/did vào giữa. Đó là hai thao tác cùng lúc,
+    nên câu hỏi thường là chỗ người mất gốc gãy đầu tiên.
+  how_vi: >
+    Công thức cố định: [Từ hỏi] + [do/does/did] + [chủ ngữ] + [động từ nguyên mẫu].
+    Động từ chính lùi về dạng nguyên mẫu, does gánh phần thì. Học thuộc 5 câu hỏi hay dùng nhất rồi thay ruột.
+  contrast_vi: "“Where you go?” (sai, nghe cộc) ↔ “Where did you go?” (đúng). Thiếu did nghe như ra lệnh."
+
+common_mistakes:
+  - mistake: "“Where you go yesterday?” — thiếu did"
+    why_vi: "Dịch thẳng từ tiếng Việt “Hôm qua bạn đi đâu?”, vốn không cần trợ động từ."
+    fix_vi: "Luôn có do/does/did trong câu hỏi Wh-. Tập câu “Where did you go?” đến khi bật ra không cần nghĩ."
+    detect: {}
+  - mistake: "Giữ nguyên thì ở động từ chính: “What time does the meeting starts?”"
+    why_vi: "Biết ngôi thứ ba cần S nên thêm S cả hai chỗ cho chắc."
+    fix_vi: "Chỉ MỘT chỗ mang thì. does đã gánh rồi thì start để nguyên. Một câu chỉ có một người trả tiền."
+    detect: {}
+  - mistake: "“Send me the link.” khi định hỏi lịch sự"
+    why_vi: "Tiếng Việt dùng ngữ điệu và từ đệm để làm mềm câu. Tiếng Anh dùng cấu trúc."
+    fix_vi: "Thêm “Could you…?” là đủ. Hai từ đó đổi hẳn sắc thái từ ra lệnh sang nhờ vả."
+    detect: {}
+
+memory_trick_vi: >
+  Câu hỏi tiếng Anh giống thủ tục hành chính: phải có người ký (do/does/did) đứng trước chủ ngữ,
+  không ký thì hồ sơ không hợp lệ. Còn động từ chính chỉ là nội dung, để trần, không cần dấu má gì.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["Where you go yesterday?", "Where did you go yesterday?", "Where you went yesterday?"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices:
+      - "What time the meeting start?"
+      - "What time does the meeting start?"
+      - "What time does the meeting starts?"
+    answer: 1
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Bạn cần đồng nghiệp gửi link. Câu nào nghe lịch sự nhất?"
+    choices: ["Send me the link.", "Could you send me the link?", "You send link."]
+    answer: 1
+    difficulty: 2
+  - kind: fill_chunk
+    prompt_vi: "___ is handling this ticket?"
+    choices: [Who, Whose, Whom]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu hỏi nào?"
+    audio_text: "Why did the deployment fail?"
+    choices: ["Vì sao triển khai thất bại?", "Khi nào triển khai?", "Ai triển khai?"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.45, quiz: 0.35, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F08

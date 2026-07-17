@@ -1,0 +1,183 @@
+schema_version: 1
+id: F08
+slug: hoi-lai-khi-chua-hieu
+unit: U-F4
+title_vi: "Hỏi lại khi chưa hiểu — câu cứu mạng"
+title_en: "Asking for repetition"
+phase: foundation
+topic: core
+cefr_target: a1
+order_index: 8
+est_minutes: 10
+
+objective_vi: "Nói được 3 cách hỏi lại khi chưa nghe kịp, thay vì gật đầu cho qua."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và trả lời đúng 4/5 câu quiz tình huống."
+
+prerequisites:
+  - {lesson: F07, min_mastery: 78, kind: hard}
+  - {lesson: F02, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "Sorry?"
+    ipa: "/ˈsɒri/"
+    meaning_vi: "Xin lỗi? (nhờ nhắc lại, ngắn nhất)"
+    chunk: "Sorry? I didn't catch that."
+    tags: [social]
+  - term: "say that again"
+    ipa: "/seɪ ðæt əˈɡɛn/"
+    meaning_vi: "nhắc lại điều đó"
+    chunk: "Could you say that again?"
+    tags: [social]
+  - term: "more slowly"
+    ipa: "/mɔːr ˈsloʊli/"
+    meaning_vi: "chậm hơn"
+    chunk: "Could you say that more slowly?"
+    tags: [social]
+  - term: "didn't catch"
+    ipa: "/ˈdɪdənt kætʃ/"
+    meaning_vi: "nghe không kịp"
+    chunk: "I didn't catch the last part."
+    tags: [social]
+  - term: "you mean"
+    ipa: "/juː miːn/"
+    meaning_vi: "ý bạn là"
+    chunk: "So you mean we deploy tonight?"
+    tags: [office]
+  - term: "spell that"
+    ipa: "/spɛl ðæt/"
+    meaning_vi: "đánh vần cái đó"
+    chunk: "Could you spell that for me?"
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "Could you say that {how}?"
+    meaning_vi: "Bạn nói lại {how} được không?"
+    slots:
+      how: [again, "more slowly", "one more time"]
+  - pattern: "So you mean {understanding}?"
+    meaning_vi: "Vậy ý bạn là {understanding}?"
+    slots:
+      understanding: ["we deploy tonight", "the router is down", "I should ask Minh"]
+
+dialogue:
+  context_vi: "Trong cuộc họp, đồng nghiệp nói nhanh và bạn không bắt kịp."
+  turns:
+    - {speaker: A, en: "We'll roll back the deployment and re-run the migration tonight.", vi: "Chúng ta sẽ quay lại bản trước và chạy lại migration tối nay."}
+    - {speaker: B, en: "Sorry, could you say that more slowly?", vi: "Xin lỗi, bạn nói chậm lại được không?"}
+    - {speaker: A, en: "Sure. We roll back, then re-run the migration. Tonight.", vi: "Được. Ta quay lại bản trước, rồi chạy lại migration. Tối nay."}
+    - {speaker: B, en: "Got it. So you mean we deploy again tomorrow?", vi: "Hiểu rồi. Vậy ý bạn là mai ta triển khai lại?"}
+
+listening_snippet:
+  id: LS-F08
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Sorry, I didn't catch the last part. Could you say that more slowly, please?"
+  transcript_vi: "Xin lỗi, tôi không bắt kịp đoạn cuối. Bạn nói chậm lại giúp được không?"
+  questions:
+    - q_vi: "Người nói đang làm gì?"
+      choices: ["Nhờ nói chậm lại", "Từ chối tham gia", "Xin lỗi vì đến muộn"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Người nói không nghe kịp phần nào?"
+      choices: ["Đoạn cuối", "Toàn bộ", "Tên người"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Sorry, could you say that again?"
+    prompt_vi: "Đọc to. Đây là câu quan trọng nhất bạn học trong tháng đầu."
+    ipa: "/ˈsɒri kʊd juː seɪ ðæt əˈɡɛn/"
+    focus_phonemes: [s, d]
+  - kind: read_aloud
+    expected_text: "Could you say that more slowly, please?"
+    prompt_vi: "Đọc to. Dùng khi họ nói quá nhanh chứ không phải quá nhỏ."
+    ipa: "/kʊd juː seɪ ðæt mɔːr ˈsloʊli pliːz/"
+    focus_phonemes: [d, s, l]
+  - kind: shadow
+    expected_text: "I didn't catch the last part."
+    prompt_vi: "Nghe rồi nhắc lại. Câu này cụ thể hơn “Sorry?” và giúp người kia biết nhắc lại phần nào."
+    ipa: "/aɪ ˈdɪdənt kætʃ ðə læst pɑːrt/"
+    focus_phonemes: [t, tʃ]
+  - kind: shadow
+    expected_text: "So you mean we deploy tonight?"
+    prompt_vi: "Nghe rồi nhắc lại. Đây là cách xác nhận lại thay vì gật đầu."
+    ipa: "/soʊ juː miːn wiː dɪˈplɔɪ təˈnaɪt/"
+    focus_phonemes: [m, d]
+  - kind: respond
+    prompt_en: "We'll roll back and re-run the migration tonight."
+    prompt_vi: "Bạn không nghe kịp. Nhờ họ nhắc lại."
+    accept_patterns:
+      - "Sorry could you say that again"
+      - "Could you say that more slowly"
+      - "Sorry I didn't catch that"
+      - "Sorry could you repeat that"
+
+vietnamese_explanation:
+  why_vi: >
+    Đây là kỹ năng sinh tồn quan trọng hơn mọi điểm ngữ pháp trong khoá này. Người Việt thường
+    gật đầu và nói "yes yes" khi chưa hiểu — vì sợ làm phiền, sợ bị đánh giá là kém. Nhưng hiểu
+    sai rồi làm sai tốn kém hơn nhiều. Người bản xứ hỏi lại nhau mỗi ngày và không coi đó là yếu kém.
+  how_vi: >
+    Học thuộc ba câu, nói ngay không cần nghĩ. Ba mức: "Sorry?" khi bỏ lỡ một chút —
+    "Could you say that again?" khi lịch sự cần nhắc cả câu — "Could you say that more slowly?"
+    khi họ nói quá nhanh. Thêm câu thứ tư để xác nhận: "So you mean…?"
+  contrast_vi: "Gật đầu im lặng ↔ hỏi lại một câu. Cái sau khiến bạn trông chuyên nghiệp hơn, không phải kém hơn."
+
+common_mistakes:
+  - mistake: "Gật đầu và nói “yes yes” khi chưa hiểu gì"
+    why_vi: "Văn hoá ngại làm phiền, cộng nỗi sợ bị đánh giá. Nhưng hậu quả của việc làm sai vì hiểu sai luôn lớn hơn cái giá của một câu hỏi."
+    fix_vi: "Dùng “Sorry, could you say that again?” — người bản xứ nói câu này với nhau mỗi ngày. Hỏi lại chứng tỏ bạn đang thật sự lắng nghe."
+    detect: {}
+  - mistake: "“Repeat again please” — nghe như ra lệnh"
+    why_vi: "Dịch thẳng từ “Nhắc lại lần nữa đi”. Câu này đúng ngữ pháp nhưng cụt và hơi trịch thượng."
+    fix_vi: "Dùng “Could you…?”. Và “repeat again” thừa chữ — repeat đã có nghĩa “lại” rồi."
+    detect: {}
+  - mistake: "Chỉ nói “What?” khi chưa nghe rõ"
+    why_vi: "Đây là từ ngắn nhất nên nó bật ra trước. Nhưng “What?” trống không nghe rất cộc ở công sở."
+    fix_vi: "Thay bằng “Sorry?” — cùng độ ngắn, nhưng lịch sự. Tập đổi phản xạ này trước vì nó xảy ra khi bạn không kịp nghĩ."
+    detect: {}
+
+memory_trick_vi: >
+  Ba câu, ba mức, nhớ theo thang: Sorry? → Could you say that again? → Could you say that more slowly?
+  Bạn càng cần nhiều thì câu càng dài. Và câu thứ tư “So you mean…?” là để đóng cửa: xác nhận xong mới gật đầu.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Đồng nghiệp nói quá nhanh. Bạn nói gì?"
+    choices: ["Repeat again please.", "Could you say that more slowly?", "I don't know."]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bạn nghe không rõ một từ. Câu ngắn nhất mà vẫn lịch sự là?"
+    choices: ["Sorry?", "What?", "Say again!"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Bạn nghĩ mình đã hiểu nhưng muốn chắc chắn. Nói gì?"
+    choices: ["Yes yes.", "So you mean we deploy tonight?", "OK OK."]
+    answer: 1
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "I didn't catch the last part."
+    choices: ["Tôi không bắt kịp đoạn cuối.", "Tôi bắt được đoạn cuối.", "Tôi đến muộn."]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao hỏi lại lại tốt hơn gật đầu?"
+    choices:
+      - "Vì hiểu sai rồi làm sai tốn kém hơn nhiều"
+      - "Vì nó kéo dài cuộc họp"
+      - "Vì người bản xứ thích được hỏi"
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: CP-F

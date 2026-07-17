@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Thông báo{% endblock %}
+{% block body %}
+<div class="page-head between"><div><h1>Thông báo</h1><p>Nhắc học, cảnh báo streak, bài mới mở.</p></div>
+  {% if unread %}<button class="btn btn-ghost" onclick="markAllRead()">Đánh dấu đã đọc tất cả</button>{% endif %}</div>
+<div class="card" style="padding:0;overflow:hidden">
+  {% for n in items %}
+  <a class="notif {{ 'unread' if not n.read_at }}" href="{{ n.link or '/learn' }}" onclick="mark('{{ n.id }}')">
+    <div class="notif-ico">{% include "partials/notif_icon.html" %}</div>
+    <div class="notif-b"><div class="notif-t">{{ n.title_vi }}</div>{% if n.body_vi %}<div class="notif-d">{{ n.body_vi }}</div>{% endif %}<div class="notif-ts" data-ts="{{ n.created_at.isoformat() }}"></div></div>
+  </a>
+  {% else %}<div class="empty">Chưa có thông báo nào.</div>{% endfor %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>document.querySelectorAll('[data-ts]').forEach(e=>e.textContent=timeAgo(e.dataset.ts));
+function mark(id){api('/api/v1/notifications/'+id+'/read',{});}</script>
+{% endblock %}

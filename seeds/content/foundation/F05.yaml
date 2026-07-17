@@ -1,0 +1,177 @@
+schema_version: 1
+id: F05
+slug: trong-am-tu
+unit: U-F3
+title_vi: "Trọng âm từ — nói đúng âm nhưng vẫn không ai hiểu"
+title_en: "Word stress"
+phase: foundation
+topic: core
+cefr_target: a1
+order_index: 5
+est_minutes: 10
+
+objective_vi: "Đặt đúng trọng âm cho 8 từ công việc thường dùng, và nghe ra trọng âm khi người khác nói."
+objective_observable: "Đạt ≥75 điểm phát âm trên 3/4 câu drill và trả lời đúng 3/4 câu quiz trọng âm."
+
+prerequisites:
+  - {lesson: F04, min_mastery: 78, kind: hard}
+  - {lesson: F01, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: deploy
+    ipa: "/dɪˈplɔɪ/"
+    meaning_vi: "triển khai (nhấn âm sau)"
+    chunk: "We deploy on Fridays."
+    tags: [it_english, verb]
+  - term: deployment
+    ipa: "/dɪˈplɔɪmənt/"
+    meaning_vi: "việc triển khai (nhấn âm giữa)"
+    chunk: "The deployment failed."
+    tags: [it_english, noun]
+  - term: router
+    ipa: "/ˈraʊtər/"
+    meaning_vi: "bộ định tuyến (nhấn âm đầu)"
+    chunk: "The router is down."
+    tags: [it_english, noun]
+  - term: report
+    ipa: "/rɪˈpɔːrt/"
+    meaning_vi: "báo cáo (nhấn âm sau)"
+    chunk: "I sent the report."
+    tags: [office, noun]
+  - term: manager
+    ipa: "/ˈmænɪdʒər/"
+    meaning_vi: "quản lý (nhấn âm đầu)"
+    chunk: "I asked my manager."
+    tags: [office, noun]
+  - term: engineer
+    ipa: "/ˌɛndʒɪˈnɪr/"
+    meaning_vi: "kỹ sư (nhấn âm cuối)"
+    chunk: "She's a network engineer."
+    tags: [it_english, noun]
+
+sentence_patterns:
+  - pattern: "The {thing} is {state}."
+    meaning_vi: "{thing} đang {state}."
+    slots:
+      thing: [router, server, deployment]
+      state: [down, ready, running]
+  - pattern: "Are you available {time}?"
+    meaning_vi: "Bạn có rảnh {time} không?"
+    slots:
+      time: ["at three", "tomorrow morning", "this afternoon"]
+
+dialogue:
+  context_vi: "Bạn báo với quản lý về việc triển khai."
+  turns:
+    - {speaker: A, en: "Are you available at three?", vi: "Ba giờ bạn rảnh không?"}
+    - {speaker: B, en: "Yes. Is it about the deployment?", vi: "Rảnh. Có phải về việc triển khai không?"}
+    - {speaker: A, en: "Right. We deploy tonight and the router is still down.", vi: "Đúng. Tối nay triển khai mà router vẫn đang hỏng."}
+    - {speaker: B, en: "I'll ask the network engineer.", vi: "Tôi sẽ hỏi kỹ sư mạng."}
+
+listening_snippet:
+  id: LS-F05
+  speed: 0.85
+  voice: en_US_female
+  transcript_en: "The deployment failed because the router is down. I told my manager already."
+  transcript_vi: "Việc triển khai thất bại vì router đang hỏng. Tôi đã báo quản lý rồi."
+  questions:
+    - q_vi: "Vì sao triển khai thất bại?"
+      choices: ["Router hỏng", "Server hỏng", "Không đủ người"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói đã báo cho ai?"
+      choices: ["Quản lý", "Khách hàng", "Chưa báo ai"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The router is down."
+    prompt_vi: "Đọc to. ROU-ter nhấn âm đầu — sai chỗ này người nghe không nhận ra từ."
+    ipa: "/ðə ˈraʊtər ɪz daʊn/"
+    focus_phonemes: [r]
+  - kind: read_aloud
+    expected_text: "The deployment failed."
+    prompt_vi: "Đọc to. de-PLOY-ment nhấn âm giữa."
+    ipa: "/ðə dɪˈplɔɪmənt feɪld/"
+    focus_phonemes: [d]
+  - kind: shadow
+    expected_text: "I sent the report to my manager."
+    prompt_vi: "Nghe rồi nhắc lại. MA-na-ger nhấn âm đầu."
+    ipa: "/aɪ sɛnt ðə rɪˈpɔːrt tuː maɪ ˈmænɪdʒər/"
+    focus_phonemes: [t, dʒ]
+  - kind: shadow
+    expected_text: "She is a network engineer."
+    prompt_vi: "Nghe rồi nhắc lại. NET-work nhấn đầu, en-gi-NEER nhấn cuối."
+    ipa: "/ʃiː ɪz ə ˈnɛtwɜːrk ˌɛndʒɪˈnɪr/"
+    focus_phonemes: [n, r]
+  - kind: respond
+    prompt_en: "Why did the deployment fail?"
+    prompt_vi: "Giải thích: vì router đang hỏng."
+    accept_patterns:
+      - "Because the router is down"
+      - "The router is down"
+      - "Because the router failed"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt là ngôn ngữ thanh điệu: mỗi âm tiết có dấu riêng và mọi âm tiết đều nặng như nhau.
+    Tiếng Anh thì ngược lại — một âm tiết được nhấn mạnh, còn lại bị nuốt gần hết. Người bản xứ
+    nhận diện từ CHỦ YẾU qua trọng âm. Nói đúng hết các âm nhưng nhấn sai chỗ, họ vẫn không hiểu.
+  how_vi: >
+    Âm được nhấn thì to hơn, dài hơn, và cao hơn — cả ba cùng lúc. Âm không nhấn thì gọn lại,
+    nguyên âm thường biến thành /ə/ mờ nhạt. Khi tra từ điển, nhìn dấu ˈ đứng trước âm tiết được nhấn.
+  contrast_vi: "ˈROU-ter — nếu bạn nhấn thành rou-TER, người nghe không nhận ra từ."
+
+common_mistakes:
+  - mistake: "Nhấn đều mọi âm tiết: “ROU-TER”, “DE-PLOY-MENT”"
+    why_vi: "Thói quen tiếng Việt: mỗi âm tiết là một đơn vị đầy đủ, có dấu riêng, không có âm nào bị nuốt."
+    fix_vi: "Cố tình nói NHỎ các âm không nhấn, gần như lướt qua. Cảm giác sẽ rất sai với tai người Việt — đó là dấu hiệu bạn đang làm đúng."
+    detect: {}
+  - mistake: "Nhấn sai chỗ ở từ IT: “de-PLOY-ment” thành “DE-ploy-ment”"
+    why_vi: "Đọc quá nhiều mà nghe quá ít. Dân IT thấy chữ này hàng ngày nhưng chưa từng nghe ai đọc nó."
+    fix_vi: "Nghe giọng mẫu trước khi đoán. Với từ chuyên môn, đây là lỗi phổ biến nhất."
+    detect: {}
+  - mistake: "Nhấn sai giữa danh từ và động từ cùng gốc"
+    why_vi: "Tiếng Anh đổi trọng âm để đổi từ loại, tiếng Việt không có cơ chế đó."
+    fix_vi: "Nhớ một cặp làm mốc: “I recORD” (động từ) ↔ “a RECord” (danh từ)."
+    detect: {}
+
+memory_trick_vi: >
+  Nghĩ trọng âm như nhịp trống: mỗi từ có đúng một cú đánh mạnh, còn lại là gõ nhẹ. Vỗ tay theo
+  khi tập — vỗ mạnh ở âm nhấn. Vỗ tay ép miệng bạn làm đúng nhanh hơn là cố nhớ bằng đầu.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Từ “router” nhấn âm nào?"
+    choices: ["ROU-ter (âm đầu)", "rou-TER (âm sau)", "Nhấn đều"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Từ “deployment” nhấn âm nào?"
+    choices: ["DE-ploy-ment", "de-PLOY-ment", "de-ploy-MENT"]
+    answer: 1
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Nghe câu và cho biết từ nào được nhấn mạnh nhất?"
+    audio_text: "The router is down."
+    choices: ["router", "is", "down"]
+    answer: 0
+    difficulty: 4
+  - kind: mcq
+    prompt_vi: "Vì sao nhấn sai trọng âm nghiêm trọng hơn phát âm sai một âm?"
+    choices:
+      - "Vì người bản xứ nhận diện từ chủ yếu qua trọng âm"
+      - "Vì trọng âm quyết định nghĩa của câu"
+      - "Vì nó làm câu dài hơn"
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.45, quiz: 0.35, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F06

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Kiểm tra xếp lớp{% endblock %}
+{% block main_class %}narrow{% endblock %}
+{% block body %}
+{% if not can_take %}
+<div class="card center">
+  <h1>Bạn đã làm bài này rồi</h1>
+  <p class="mut" style="margin:.6rem 0 1.4rem">{{ block_reason }}</p>
+  <a class="btn btn-lg btn-full" href="/placement/result">Xem kết quả</a>
+  <a class="btn btn-quiet btn-full" style="margin-top:.5rem" href="/learn">Về lộ trình</a>
+</div>
+{% else %}
+<div id="intro">
+  <h1>Kiểm tra xếp lớp</h1>
+  <p class="mut" style="margin:.5rem 0 1.4rem">20 câu, khoảng 13 phút. Không có điểm đỗ trượt — mục đích là tìm đúng chỗ bắt đầu cho bạn.</p>
+  <div class="card">
+    <div class="stack" style="gap:.85rem">
+      <div class="row" style="gap:.7rem;flex-wrap:nowrap"><span style="font-size:1.2rem">📝</span><div><b style="font-size:.9rem">Từ vựng và ngữ pháp</b><div class="mut-3">9 câu trắc nghiệm</div></div></div>
+      <div class="row" style="gap:.7rem;flex-wrap:nowrap"><span style="font-size:1.2rem">🎧</span><div><b style="font-size:.9rem">Nghe câu ngắn</b><div class="mut-3">6 câu, nghe lại tối đa 2 lần</div></div></div>
+      <div class="row" style="gap:.7rem;flex-wrap:nowrap"><span style="font-size:1.2rem">🎙</span><div><b style="font-size:.9rem">Nói</b><div class="mut-3">5 lượt: đọc to, nhắc lại, trả lời ngắn</div></div></div>
+      <div class="row" style="gap:.7rem;flex-wrap:nowrap"><span style="font-size:1.2rem">💭</span><div><b style="font-size:.9rem">Tự đánh giá</b><div class="mut-3">3 câu, không tính điểm</div></div></div>
+    </div>
+    <div class="alert alert-info" style="margin-top:1.2rem">Cứ trả lời thật. Xếp cao hơn thực lực thì bạn sẽ kẹt ở tuần thứ ba.</div>
+    <button class="btn btn-lg btn-full" style="margin-top:1.2rem" onclick="Placement.start()">Bắt đầu</button>
+  </div>
+</div>
+<div id="test" hidden>
+  <div class="steps" id="pSteps" style="margin-bottom:1rem"></div>
+  <div class="between" style="margin-bottom:.9rem"><span class="pill pill-mut" id="pSection">—</span><span class="mut-3" id="pCount">0/0</span></div>
+  <div id="pStage"></div>
+</div>
+<div id="grading" hidden class="card center" style="padding:3rem 1rem"><span class="spin" style="width:26px;height:26px"></span><p class="mut" style="margin-top:1rem">Đang chấm bài…</p></div>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/recorder.js"></script>
+<script src="/static/js/placement.js"></script>
+{% endblock %}

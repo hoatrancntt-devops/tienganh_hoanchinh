@@ -1,0 +1,190 @@
+schema_version: 1
+id: O01
+slug: standup-hai-phut
+unit: U-O1
+title_vi: "Standup 2 phút — nói xong không ai phải hỏi lại"
+title_en: "The daily standup"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 1
+est_minutes: 10
+
+objective_vi: "Báo cáo standup theo ba phần: hôm qua, hôm nay, vướng mắc — trong 30 giây."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đủ ba phần."
+
+prerequisites:
+  - {lesson: CP-D, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "yesterday I"
+    ipa: "/ˈjɛstərdeɪ aɪ/"
+    meaning_vi: "hôm qua tôi (mở đầu phần 1)"
+    chunk: "Yesterday I finished the report."
+    tags: [office]
+  - term: "today I'll"
+    ipa: "/təˈdeɪ aɪl/"
+    meaning_vi: "hôm nay tôi sẽ (mở đầu phần 2)"
+    chunk: "Today I'll start the migration."
+    tags: [office]
+  - term: "blocked by"
+    ipa: "/blɒkt baɪ/"
+    meaning_vi: "bị chặn bởi"
+    chunk: "I'm blocked by the VPN issue."
+    tags: [office, it_english]
+  - term: "no blockers"
+    ipa: "/noʊ ˈblɒkərz/"
+    meaning_vi: "không có vướng mắc"
+    chunk: "No blockers on my side."
+    tags: [office]
+  - term: "on track"
+    ipa: "/ɒn træk/"
+    meaning_vi: "đúng tiến độ"
+    chunk: "We're on track for Friday."
+    tags: [office]
+  - term: "I'll follow up"
+    ipa: "/aɪl ˈfɒloʊ ʌp/"
+    meaning_vi: "tôi sẽ theo dõi tiếp"
+    chunk: "I'll follow up with Minh after this."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "Yesterday I {past_action}."
+    meaning_vi: "Hôm qua tôi đã {past_action}."
+    slots:
+      past_action: ["finished the report", "fixed the login bug", "reviewed the pull request"]
+  - pattern: "Today I'll {plan}."
+    meaning_vi: "Hôm nay tôi sẽ {plan}."
+    slots:
+      plan: ["start the migration", "test the fix", "write the docs"]
+
+dialogue:
+  context_vi: "Standup buổi sáng, mỗi người nói 30 giây."
+  turns:
+    - {speaker: A, en: "Nam, your turn.", vi: "Nam, đến lượt bạn."}
+    - {speaker: B, en: "Yesterday I finished the report and fixed the login bug.", vi: "Hôm qua tôi đã xong báo cáo và sửa lỗi đăng nhập."}
+    - {speaker: B, en: "Today I'll start the migration. No blockers on my side.", vi: "Hôm nay tôi sẽ bắt đầu migration. Bên tôi không có vướng mắc gì."}
+    - {speaker: A, en: "Great. Are we on track for Friday?", vi: "Tốt. Ta có kịp thứ Sáu không?"}
+    - {speaker: B, en: "Yes, on track. I'll follow up with Minh after this.", vi: "Có, đúng tiến độ. Sau đây tôi sẽ trao đổi tiếp với Minh."}
+
+listening_snippet:
+  id: LS-O01
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Yesterday I fixed the login bug. Today I'll start the migration. I'm blocked by the VPN issue, so I need help from IT."
+  transcript_vi: "Hôm qua tôi sửa lỗi đăng nhập. Hôm nay tôi sẽ bắt đầu migration. Tôi đang vướng vấn đề VPN nên cần IT giúp."
+  questions:
+    - q_vi: "Hôm qua người nói làm gì?"
+      choices: ["Sửa lỗi đăng nhập", "Bắt đầu migration", "Viết tài liệu"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói đang vướng gì?"
+      choices: ["Vấn đề VPN", "Không có gì", "Thiếu người"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói cần gì?"
+      choices: ["IT giúp", "Thêm thời gian", "Đổi task"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Yesterday I finished the report."
+    prompt_vi: "Đọc to. Âm /t/ cuối finished là thứ cho người nghe biết việc đã xong."
+    ipa: "/ˈjɛstərdeɪ aɪ ˈfɪnɪʃt ðə rɪˈpɔːrt/"
+    focus_phonemes: [t]
+  - kind: read_aloud
+    expected_text: "Today I'll start the migration."
+    prompt_vi: "Đọc to. “I'll” nói liền, không tách “I will”."
+    ipa: "/təˈdeɪ aɪl stɑːrt ðə maɪˈɡreɪʃən/"
+    focus_phonemes: [l, t, ʃ]
+  - kind: shadow
+    expected_text: "I'm blocked by the VPN issue."
+    prompt_vi: "Nghe rồi nhắc lại. blocked có âm cuối /t/."
+    ipa: "/aɪm blɒkt baɪ ðə viː piː ɛn ˈɪʃuː/"
+    focus_phonemes: [k, t]
+  - kind: shadow
+    expected_text: "No blockers on my side. We're on track for Friday."
+    prompt_vi: "Nghe rồi nhắc lại."
+    ipa: "/noʊ ˈblɒkərz ɒn maɪ saɪd wɪr ɒn træk fɔr ˈfraɪdeɪ/"
+    focus_phonemes: [z, k]
+  - kind: respond
+    prompt_en: "Nam, your turn. What's your update?"
+    prompt_vi: "Báo standup đủ ba phần: hôm qua, hôm nay, vướng mắc."
+    accept_patterns:
+      - "Yesterday I {action} Today I'll {plan} No blockers"
+      - "Yesterday I {action} Today I'll {plan} I'm blocked by {problem}"
+      - "Yesterday I finished Today I'll start No blockers on my side"
+
+vietnamese_explanation:
+  why_vi: >
+    Standup có cấu trúc cố định vì nó phải nhanh. Người Việt hay mất điểm không phải vì tiếng Anh
+    kém, mà vì kể quá nhiều chi tiết kỹ thuật rồi quên phần quan trọng nhất — vướng mắc. Quản lý
+    không cần biết bạn đã gõ những dòng nào; họ cần biết có gì đang chặn bạn.
+  how_vi: >
+    Ba câu, đúng ba câu: "Yesterday I…" / "Today I'll…" / "No blockers" hoặc "I'm blocked by…".
+    Chấm hết. Nếu ai muốn biết chi tiết, họ sẽ hỏi sau standup.
+  contrast_vi: "Kể 2 phút về chi tiết kỹ thuật ↔ 30 giây đủ ba phần. Cái thứ hai được đánh giá cao hơn."
+
+common_mistakes:
+  - mistake: "Kể chi tiết kỹ thuật dài rồi bỏ qua phần blocker"
+    why_vi: "Nghĩ rằng nói nhiều chứng minh mình làm nhiều. Nhưng standup là buổi ĐỒNG BỘ, và phần duy nhất người khác cần là chỗ bạn đang kẹt."
+    fix_vi: "Luôn kết bằng “No blockers” hoặc “I'm blocked by…”. Kể cả khi không vướng gì, nói câu đó để người nghe biết bạn đã cân nhắc."
+    detect: {}
+  - mistake: "“Yesterday I finish the report.” — thiếu âm /t/"
+    why_vi: "Lỗi từ bài F03 quay lại. Trong standup, mất /t/ nghĩa là người nghe tưởng bạn đang làm dở."
+    fix_vi: "finished, fixed, reviewed — nói rõ âm cuối. Đây là chỗ âm cuối quá khứ có hậu quả thật."
+    detect:
+      phoneme_missing: [t, d]
+  - mistake: "Im lặng khi bị hỏi mà chưa hiểu"
+    why_vi: "Áp lực nhóm đang chờ, sợ làm chậm cuộc họp."
+    fix_vi: "“Sorry, could you say that again?” mất 2 giây. Hiểu sai rồi làm sai mất cả ngày."
+    detect: {}
+
+memory_trick_vi: >
+  Standup là ba ngăn kéo: HÔM QUA (đã đóng) — HÔM NAY (đang mở) — VƯỚNG (cần ai đó giúp mở).
+  Mở đúng ba ngăn, đóng lại, ngồi xuống. Ngăn thứ ba là ngăn duy nhất người khác quan tâm.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Standup gồm ba phần nào?"
+    choices:
+      - "Hôm qua, hôm nay, vướng mắc"
+      - "Hôm qua, tuần này, tháng này"
+      - "Việc dễ, việc khó, việc chưa làm"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bạn không vướng gì cả. Nên nói gì?"
+    choices: ["(không nói gì)", "No blockers on my side.", "Everything is fine."]
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "Yesterday I finished the report."
+    choices: ["Yesterday I finish the report.", "Yesterday I finished the report."]
+    answer: 1
+    difficulty: 4
+    focus_phonemes: [t]
+  - kind: fill_chunk
+    prompt_vi: "Bạn đang bị chặn bởi vấn đề VPN: “I'm ___ by the VPN issue.”"
+    choices: [block, blocked, blocking]
+    answer: 1
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao phần blocker quan trọng nhất trong standup?"
+    choices:
+      - "Vì đó là phần người khác có thể giúp bạn"
+      - "Vì nó chứng minh bạn làm việc chăm chỉ"
+      - "Vì quản lý thích nghe vấn đề"
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I01

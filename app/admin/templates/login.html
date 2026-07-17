@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="vi" data-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Đăng nhập quản trị</title><link rel="stylesheet" href="/static/css/app.css"></head>
+<body>
+<main class="narrow">
+  <div class="center" style="margin-bottom:1.8rem"><h1>Quản trị</h1><p class="mut" style="margin-top:.35rem;font-size:.9rem">Chỉ dành cho quản trị viên</p></div>
+  <form class="card" onsubmit="return go(event)">
+    <div id="msg"></div>
+    <div class="field"><label for="e">Email</label><input id="e" type="email" required></div>
+    <div class="field"><label for="p">Mật khẩu</label><input id="p" type="password" required></div>
+    <button class="btn btn-lg btn-full" id="b" type="submit">Đăng nhập</button>
+  </form>
+</main>
+<script src="/static/js/app.js"></script>
+<script>
+async function go(e){e.preventDefault();const b=document.getElementById('b');b.disabled=true;b.innerHTML='<span class="spin"></span>';
+  const r=await api('/api/v1/auth/login',{email:document.getElementById('e').value,password:document.getElementById('p').value});
+  if(r.ok){location.href='/admin';return false;}
+  b.disabled=false;b.textContent='Đăng nhập';
+  document.getElementById('msg').innerHTML=`<div class="alert alert-err" style="margin-bottom:1rem">${r.data.detail||'Đăng nhập thất bại.'}</div>`;return false;}
+</script>
+</body></html>

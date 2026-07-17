@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title_vi }}{% endblock %}
+{% block main_class %}player{% endblock %}
+{% block body %}
+<div class="between" style="margin-bottom:.9rem">
+  <a class="btn btn-quiet" href="/learn" style="padding:.4rem .6rem"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Lộ trình</a>
+  <span class="mut-3" id="counter">—</span>
+</div>
+<div class="steps" id="steps"></div>
+<div class="between" style="margin:0 0 1.2rem">
+  <div style="min-width:0"><div class="lcard-code">{{ lesson.code }}</div><h1 style="font-size:1.1rem;margin-top:.2rem">{{ lesson.title_vi }}</h1></div>
+  {% if not is_preview %}<div style="text-align:right;flex:0 0 auto"><div class="mut-3">Mức nắm bài</div><div style="font-weight:650" id="mval">—</div></div>{% endif %}
+</div>
+{% if not is_preview %}<div class="bar" style="margin-bottom:1.2rem"><i id="mbar" style="width:0%"></i></div>{% endif %}
+{% if is_preview %}
+<div class="alert alert-warn" style="margin-bottom:1.2rem"><b>Đây là bản xem trước.</b> Điểm không được tính. Mở khoá bằng cách hoàn thành <b>{{ blocking }}</b>, hoặc thi vượt.
+  <div style="margin-top:.7rem"><button class="btn btn-ghost" style="padding:.4rem .8rem;font-size:.8rem" onclick="challenge()">Thi vượt bài này</button></div></div>
+{% endif %}
+<div id="stage"></div>
+<div class="stack" style="margin-top:1.4rem">
+  <details class="acc"><summary>💡 Vì sao khó với người Việt</summary><div class="acc-body">
+    {% set e = lesson.vietnamese_explanation or {} %}
+    {% if e.why_vi %}<p><b>Vì sao:</b> {{ e.why_vi }}</p>{% endif %}
+    {% if e.how_vi %}<p><b>Cách làm:</b> {{ e.how_vi }}</p>{% endif %}
+    {% if e.contrast_vi %}<p><b>Đối chiếu:</b> {{ e.contrast_vi }}</p>{% endif %}</div></details>
+  {% if lesson.common_mistakes %}<details class="acc"><summary>⚠️ Lỗi người Việt hay mắc</summary><div class="acc-body">
+    {% for m in lesson.common_mistakes %}<p style="margin-bottom:.9rem"><b>{{ m.mistake }}</b><br>{{ m.why_vi }}<br><span style="color:var(--ok)">Cách sửa: {{ m.fix_vi }}</span></p>{% endfor %}</div></details>{% endif %}
+  {% if lesson.memory_trick_vi %}<details class="acc"><summary>🧠 Mẹo nhớ</summary><div class="acc-body">{{ lesson.memory_trick_vi }}</div></details>{% endif %}
+</div>
+<div class="player-nav"><span class="mut-3">{{ lesson.est_minutes }} phút · ngưỡng {{ lesson.mastery_threshold }}%</span><button class="btn" id="nextBtn" onclick="Player.next()" disabled>Tiếp theo</button></div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/recorder.js"></script>
+<script src="/static/js/player.js"></script>
+<script id="lessonData" type="application/json">{{ {"activities": activities, "is_preview": is_preview}|tojson }}</script>
+<script>
+Player.init(JSON.parse(document.getElementById('lessonData').textContent));
+async function challenge(){if(!confirm('Thi vượt cần đạt {{ lesson.challenge_threshold }}%. Bạn chắc chứ?'))return;
+  const r=await api('/api/v1/learn/challenge/{{ lesson.code }}?score=0',{},'POST');
+  toast(r.data.message_vi||'Chưa làm được bài thi vượt.',r.data.passed?'ok':'warn');}
+</script>
+{% endblock %}
