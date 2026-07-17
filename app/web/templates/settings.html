@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Cài đặt{% endblock %}
 {% block body %}
-<div class="page-head"><h1>Cài đặt</h1><p>Nhắc học, mục tiêu, giao diện.</p></div>
+<div class="page-head"><h1>Cài đặt</h1><p>Giao diện, nhắc học, mục tiêu.</p></div>
 <div id="msg"></div>
+
+<div class="card" style="margin-bottom:1rem">
+  <h2 style="margin-bottom:1rem">Giao diện</h2>
+  <div class="field">
+    <label>Chế độ sáng / tối</label>
+    <div class="row" id="themeChoice">
+      <button type="button" class="btn btn-ghost" data-tmode="light">☀️ Sáng</button>
+      <button type="button" class="btn btn-ghost" data-tmode="dark">🌙 Tối</button>
+      <button type="button" class="btn btn-ghost" data-tmode="auto">💻 Theo hệ thống</button>
+    </div>
+    <p class="hint">Cũng có thể bấm nhanh biểu tượng mặt trăng ở góc trên bên phải. Lựa chọn được lưu trên trình duyệt này.</p>
+  </div>
+</div>
 <div class="card" style="margin-bottom:1rem">
   <h2 style="margin-bottom:1rem">Nhắc học</h2>
   <div class="two-col">
@@ -36,6 +49,15 @@
 {% endblock %}
 {% block scripts %}
 <script>
+// Chọn giao diện sáng/tối/tự động
+(function(){
+  const wrap=document.getElementById('themeChoice'); if(!wrap) return;
+  function mark(){const m=window.currentThemeMode();
+    wrap.querySelectorAll('[data-tmode]').forEach(b=>{const on=b.dataset.tmode===m;
+      b.style.borderColor=on?'var(--acc)':''; b.style.color=on?'var(--acc)':'';});}
+  wrap.querySelectorAll('[data-tmode]').forEach(b=>b.onclick=()=>{window.applyTheme(b.dataset.tmode);mark();});
+  mark();
+})();
 function ok(t){document.getElementById('msg').innerHTML=`<div class="alert alert-ok" style="margin-bottom:1rem">${t}</div>`;}
 async function savePrefs(){const h=document.getElementById('hour').value,m=document.getElementById('mail').value;
   const r=await api(`/api/v1/notifications/preferences?reminder_hour=${h}&email_opt_in=${m}`,{},'PUT');ok(r.ok?'Đã lưu cài đặt nhắc học.':'Lưu thất bại.');}

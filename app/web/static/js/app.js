@@ -1,16 +1,25 @@
 /* Tiện ích dùng chung: theme, fetch JSON, thông báo, đăng xuất. */
 (function () {
   const KEY = 'efw-theme';
-  const saved = localStorage.getItem(KEY);
-  if (saved) document.documentElement.dataset.theme = saved;
-  else if (window.matchMedia('(prefers-color-scheme: light)').matches)
-    document.documentElement.dataset.theme = 'light';
-  const tb = document.getElementById('themeBtn');
-  if (tb) tb.onclick = () => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem(KEY, next);
+  // Áp dụng chế độ: 'light' | 'dark' | 'auto' (theo hệ thống)
+  window.applyTheme = function (mode) {
+    if (!mode || mode === 'auto') {
+      localStorage.removeItem(KEY);
+      document.documentElement.dataset.theme =
+        window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    } else {
+      localStorage.setItem(KEY, mode);
+      document.documentElement.dataset.theme = mode;
+    }
   };
+  window.currentThemeMode = function () { return localStorage.getItem(KEY) || 'auto'; };
+  const saved = localStorage.getItem(KEY);
+  document.documentElement.dataset.theme =
+    saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  // Nút nhanh trên header: bấm để đảo sáng/tối.
+  const tb = document.getElementById('themeBtn');
+  if (tb) tb.onclick = () =>
+    window.applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
 })();
 
 async function api(url, data, method) {
