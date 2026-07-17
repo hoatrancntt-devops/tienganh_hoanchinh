@@ -16,8 +16,12 @@ from app.services import notification_service as notif
 from app.services import placement_service, prerequisite_service
 from app.services.ai import router as ai_router
 
+from app import __version__
+
 router = APIRouter(tags=["web"])
 templates = Jinja2Templates(directory="app/web/templates")
+# Cache-busting cho file tĩnh: đổi version -> URL đổi -> Cloudflare/edge lấy bản mới.
+templates.env.globals["sv"] = __version__
 
 PHASE_META = {
     Phase.ORIENTATION: ("Khởi động", "Làm quen hệ thống"),

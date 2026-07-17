@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{% block title %}Quản trị{% endblock %} — English@Work</title>
-<link rel="stylesheet" href="/static/css/app.css">
+<link rel="stylesheet" href="/static/css/app.css?v={{ sv }}">
 <style>
 main{max-width:920px;margin:0 auto;padding:1.5rem 1.1rem 4rem}
 .sub{color:var(--fg-2);margin:.35rem 0 1.6rem;font-size:.9rem}
@@ -37,7 +37,7 @@ code{font:.82em ui-monospace,monospace;background:var(--card-2);padding:.1em .35
   </div>
 </header>
 <main>{% block body %}{% endblock %}</main>
-<script src="/static/js/app.js"></script>
+<script src="/static/js/app.js?v={{ sv }}"></script>
 <script>
 async function postJSON(url,data,method='PUT'){const r=await api(url,data,method);return{ok:r.ok,data:r.data};}
 function flash(id,ok,text){const el=document.getElementById(id);el.className='msg '+(ok?'ok':'err');el.textContent=text;}

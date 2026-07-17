@@ -16,9 +16,12 @@ from app.schemas.admin import AISettingsIn, AISettingsOut, MailSettingsIn, MailS
 from app.services import mail_service
 from app.services.ai import router as ai_router
 
+from app import __version__
+
 router = APIRouter(prefix="/admin", tags=["admin"])
 api = APIRouter(prefix="/api/v1/admin", tags=["admin-api"])
 templates = Jinja2Templates(directory="app/admin/templates")
+templates.env.globals["sv"] = __version__
 
 
 # ---------- JSON API ----------

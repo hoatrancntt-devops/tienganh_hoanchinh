@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0d0f14">
 <title>{% block title %}Học tiếng Anh đi làm{% endblock %}</title>
-<link rel="stylesheet" href="/static/css/app.css">
+<link rel="stylesheet" href="/static/css/app.css?v={{ sv }}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎧</text></svg>">
 </head>
 <body{% if lesson %} data-lesson-id="{{ lesson.id }}"{% endif %}>
@@ -49,7 +49,7 @@
 {% endif %}
 <main class="{% block main_class %}wrap{% endblock %}">{% block body %}{% endblock %}</main>
 {% if user and ai_enabled %}{% include "partials/ai_panel.html" %}{% endif %}
-<script src="/static/js/app.js"></script>
+<script src="/static/js/app.js?v={{ sv }}"></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

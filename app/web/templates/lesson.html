@@ -30,8 +30,8 @@
 <div class="player-nav"><span class="mut-3">{{ lesson.est_minutes }} phút · ngưỡng {{ lesson.mastery_threshold }}%</span><button class="btn" id="nextBtn" onclick="Player.next()" disabled>Tiếp theo</button></div>
 {% endblock %}
 {% block scripts %}
-<script src="/static/js/recorder.js"></script>
-<script src="/static/js/player.js"></script>
+<script src="/static/js/recorder.js?v={{ sv }}"></script>
+<script src="/static/js/player.js?v={{ sv }}"></script>
 <script id="lessonData" type="application/json">{{ {"activities": activities, "is_preview": is_preview}|tojson }}</script>
 <script>
 Player.init(JSON.parse(document.getElementById('lessonData').textContent));
