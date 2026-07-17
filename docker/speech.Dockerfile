@@ -6,9 +6,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         curl ca-certificates tar espeak-ng ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
+# requests: faster-whisper cần để tải model từ HuggingFace (không tự kéo về ở bản 1.1.0).
 RUN pip install --no-cache-dir \
         "fastapi==0.115.6" "uvicorn[standard]==0.34.0" \
-        "faster-whisper==1.1.0" "python-multipart==0.0.20" "pydantic==2.10.4"
+        "faster-whisper==1.1.0" "python-multipart==0.0.20" "pydantic==2.10.4" \
+        "requests==2.32.3"
 
 # Piper binary + 2 giọng. ~70MB tổng — chấp nhận được để có TTS offline miễn phí.
 ARG PIPER_VER=2023.11.14-2
