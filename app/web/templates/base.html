@@ -48,6 +48,7 @@
 </nav>
 {% endif %}
 <main class="{% block main_class %}wrap{% endblock %}">{% block body %}{% endblock %}</main>
+{% if user %}{% include "partials/help_widget.html" %}{% endif %}
 {% if user and ai_enabled %}{% include "partials/ai_panel.html" %}{% endif %}
 <script src="/static/js/app.js?v={{ sv }}"></script>
 {% block scripts %}{% endblock %}

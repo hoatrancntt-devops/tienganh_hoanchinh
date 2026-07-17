@@ -1,0 +1,66 @@
+<button class="help-fab" id="helpFab" aria-label="Hướng dẫn sử dụng" title="Hướng dẫn sử dụng">?</button>
+<div class="help-panel" id="helpPanel">
+  <div class="help-head">
+    <span style="font-size:1.1rem">📘</span><b>Hướng dẫn sử dụng</b>
+    <button class="icon-btn" style="margin-left:auto;width:28px;height:28px"
+            onclick="document.getElementById('helpPanel').classList.remove('open')" aria-label="Đóng">✕</button>
+  </div>
+  <div class="help-body">
+    <details open>
+      <summary>🧭 Học một bài thế nào?</summary>
+      <div class="hb">Mỗi bài chỉ khoảng 10 phút, đi theo vòng:
+        <ol>
+          <li><b>Nghe</b> câu mẫu (bấm nút “Nghe giọng mẫu”).</li>
+          <li><b>Nhắc lại / Nói</b> vào micro.</li>
+          <li><b>Quiz</b> nhanh để củng cố.</li>
+        </ol>
+        Mỗi màn hình một hoạt động — làm xong bấm <b>“Tiếp theo”</b>. Không cần cuộn dài.</div>
+    </details>
+    <details>
+      <summary>🎙 Nói vào micro</summary>
+      <div class="hb">
+        <ol>
+          <li>Bấm <b>nút tròn micro</b> để bắt đầu ghi âm, bấm <b>lần nữa</b> để dừng.</li>
+          <li>Lần đầu trình duyệt hỏi quyền → chọn <b>“Cho phép / Allow”</b>.</li>
+          <li>Nói <b>to, rõ, gần micro</b>, trong phòng yên tĩnh.</li>
+        </ol>
+        Sau khi dừng, bạn thấy điểm 3 phần: <b>Phát âm · Trôi chảy · Giao tiếp</b>
+        (mức Tốt / Khá / Cần luyện). Từ nào chưa chuẩn sẽ được tô màu.
+        Hãy <b>nghe lại giọng mẫu và tự so sánh</b> — đó là cách luyện tốt nhất.</div>
+    </details>
+    <details>
+      <summary>🔒 Vì sao bài bị khoá?</summary>
+      <div class="hb">Bài sau chỉ mở khi bạn <b>đạt đủ điểm</b> ở bài trước — để không bị hổng nền.
+        Bấm vào bài khoá sẽ thấy <b>cần bao nhiêu %</b> và <b>đi tới bài nào</b>.
+        Nếu bạn <b>đã biết rồi</b>, dùng nút <b>“Thi vượt”</b> để bỏ qua (cần đạt 85%).</div>
+    </details>
+    <details>
+      <summary>🔥 Streak &amp; ôn tập</summary>
+      <div class="hb">Học <b>mỗi ngày ≥ 5 phút</b> để giữ chuỗi 🔥. Bận một hôm vẫn được tha 1 lần/tuần.
+        Hệ thống tự nhắc <b>ôn lại từ sắp quên</b> — 5 phút ôn tiết kiệm 20 phút học lại.</div>
+    </details>
+    <details>
+      <summary>🌗 Đổi giao diện sáng / tối</summary>
+      <div class="hb">Bấm biểu tượng <b>mặt trăng</b> ở góc trên bên phải để đổi nhanh,
+        hoặc vào <b>Cài đặt → Giao diện</b> chọn Sáng / Tối / Theo hệ thống.</div>
+    </details>
+    <details>
+      <summary>❓ Micro không ăn / chấm nói lỗi?</summary>
+      <div class="hb">Thử lần lượt:
+        <ol>
+          <li>Kiểm tra đã <b>cho phép quyền micro</b> (biểu tượng ổ khoá trên thanh địa chỉ).</li>
+          <li>Dùng <b>Chrome</b> hoặc <b>Safari</b> bản mới.</li>
+          <li>Nói <b>to hơn</b>, dừng đúng lúc, thử ghi lại.</li>
+          <li>Kiểm tra thiết bị micro trong cài đặt hệ điều hành.</li>
+        </ol>
+        Nếu vẫn lỗi, báo quản trị viên kèm tên trình duyệt bạn dùng.</div>
+    </details>
+  </div>
+</div>
+<script>
+(function(){
+  const f=document.getElementById('helpFab'),p=document.getElementById('helpPanel');
+  if(!f||!p)return;
+  f.onclick=()=>p.classList.toggle('open');
+})();
+</script>
