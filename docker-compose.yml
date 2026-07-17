@@ -12,7 +12,8 @@ services:
       postgres -c shared_buffers=256MB -c max_connections=40
                -c effective_cache_size=768MB -c work_mem=8MB
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      # Bind mount ra host: dữ liệu nằm NGOÀI docker, không mất khi reboot/shutdown/down.
+      - ./data/pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-efw} -d ${POSTGRES_DB:-efw}"]
       interval: 10s
@@ -38,7 +39,8 @@ services:
       SPEECH_MAX_CONCURRENT: ${SPEECH_MAX_CONCURRENT:-2}
       SPEECH_IDLE_UNLOAD_S: ${SPEECH_IDLE_UNLOAD_S:-600}
     volumes:
-      - whisper_models:/srv/models
+      # Bind mount ra host: model tải một lần, nằm ngoài docker.
+      - ./models:/srv/models
     deploy:
       resources:
         limits:
@@ -82,9 +84,9 @@ services:
           memory: 700M
     networks: [efw]
 
-volumes:
-  pgdata:          # dữ liệu học viên — KHÔNG bao giờ `docker compose down -v` ở prod
-  whisper_models:  # cache model, tránh tải 500MB mỗi lần restart
+# Không còn named volume: dữ liệu Postgres (./data/pgdata), model (./models),
+# media (./media), backup (./backups) đều là bind mount trên host -> ngoài docker,
+# bền vững qua reboot/shutdown, dễ backup và nhìn thấy trực tiếp.
 
 networks:
   efw:
