@@ -1,0 +1,23 @@
+# Lớp public qua Cloudflare Tunnel — cert thật cho domain, không cần mở port ra ngoài.
+#
+# Cloudflare terminate TLS ở edge -> origin chạy HTTP nội bộ (app:9999).
+# Cookie Secure vẫn đúng vì trình duyệt nói HTTPS với Cloudflare.
+#
+# Bật kèm base bằng cách đặt trong .env:
+#   COMPOSE_FILE=docker-compose.yml:docker-compose.cloudflare.yml
+#   CLOUDFLARE_TUNNEL_TOKEN=eyJ...        (token lấy từ dashboard Cloudflare)
+#
+# Public Hostname trong dashboard trỏ tới Service: HTTP -> app:9999
+# (cloudflared nằm trong mạng efw nên phân giải được tên container "app").
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - app
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    networks: [efw]
