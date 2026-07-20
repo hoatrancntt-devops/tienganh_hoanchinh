@@ -1,0 +1,178 @@
+schema_version: 1
+id: I02
+slug: nhan-ticket-helpdesk
+unit: U-I1
+title_vi: "Nhận và xác nhận yêu cầu người dùng (ticket)"
+title_en: "Handling a helpdesk ticket"
+phase: it_english
+topic: it_english
+cefr_target: a2
+order_index: 2
+est_minutes: 10
+
+objective_vi: "Tiếp nhận yêu cầu hỗ trợ: chào, xác nhận vấn đề, hứa xử lý và đặt kỳ vọng thời gian."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và có bước xác nhận lại vấn đề."
+
+prerequisites:
+  - {lesson: I01, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "How can I help"
+    ipa: "/haʊ kæn aɪ hɛlp/"
+    meaning_vi: "Tôi có thể giúp gì"
+    chunk: "Hi, how can I help you today?"
+    tags: [it_english]
+  - term: "Let me confirm"
+    ipa: "/lɛt miː kənˈfɜːrm/"
+    meaning_vi: "Để tôi xác nhận lại"
+    chunk: "Let me confirm: you can't log in, right?"
+    tags: [it_english]
+  - term: "I'll look into it"
+    ipa: "/aɪl lʊk ˈɪntuː ɪt/"
+    meaning_vi: "Tôi sẽ xem xét việc này"
+    chunk: "I'll look into it right away."
+    tags: [it_english]
+  - term: "ticket"
+    ipa: "/ˈtɪkɪt/"
+    meaning_vi: "phiếu yêu cầu hỗ trợ"
+    chunk: "I've created a ticket for you."
+    tags: [it_english]
+  - term: "get back to you"
+    ipa: "/ɡɛt bæk tuː juː/"
+    meaning_vi: "phản hồi lại cho bạn"
+    chunk: "I'll get back to you within an hour."
+    tags: [it_english]
+  - term: "in the meantime"
+    ipa: "/ɪn ðə ˈmiːntaɪm/"
+    meaning_vi: "trong lúc chờ"
+    chunk: "In the meantime, please restart your laptop."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Let me confirm: {problem}, right?"
+    meaning_vi: "Để tôi xác nhận: {problem}, đúng không?"
+    slots:
+      problem: ["you can't log in", "the printer is offline", "email won't send"]
+  - pattern: "I'll look into it and get back to you {time}."
+    meaning_vi: "Tôi sẽ xem và phản hồi lại cho bạn {time}."
+    slots:
+      time: ["within an hour", "by end of day", "this afternoon"]
+
+dialogue:
+  context_vi: "Bạn trực helpdesk, một người dùng gọi tới báo không đăng nhập được."
+  turns:
+    - {speaker: A, en: "Hi, how can I help you today?", vi: "Chào anh, tôi có thể giúp gì hôm nay?"}
+    - {speaker: B, en: "I can't log into my email. It says my password is wrong.", vi: "Tôi không đăng nhập được email. Nó báo sai mật khẩu."}
+    - {speaker: A, en: "Let me confirm: you can't log into email, and it says wrong password, right?", vi: "Để tôi xác nhận: anh không vào được email, và nó báo sai mật khẩu, đúng không?"}
+    - {speaker: B, en: "Yes, exactly.", vi: "Đúng vậy."}
+    - {speaker: A, en: "Okay, I've created a ticket. I'll look into it and get back to you within an hour. In the meantime, please don't try again — it may lock the account.", vi: "Được, tôi đã tạo ticket. Tôi sẽ xem và phản hồi trong một giờ. Trong lúc chờ, anh đừng thử lại — có thể bị khoá tài khoản."}
+
+listening_snippet:
+  id: LS-I02
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Let me confirm: you can't log into email, and it says wrong password. I've created a ticket and I'll get back to you within an hour."
+  transcript_vi: "Để tôi xác nhận: anh không vào được email và nó báo sai mật khẩu. Tôi đã tạo ticket và sẽ phản hồi trong một giờ."
+  questions:
+    - q_vi: "Người trực đang làm gì trước tiên?"
+      choices: ["Xác nhận lại vấn đề", "Đổ lỗi cho người dùng", "Từ chối hỗ trợ"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Bao lâu sẽ phản hồi?"
+      choices: ["Trong một giờ", "Trong một ngày", "Không nói"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Hi, how can I help you today?"
+    prompt_vi: "Đọc to. Câu mở đầu chuẩn của helpdesk — ấm và sẵn sàng."
+    ipa: "/haɪ haʊ kæn aɪ hɛlp juː təˈdeɪ/"
+    focus_phonemes: [h, k]
+  - kind: read_aloud
+    expected_text: "Let me confirm: you can't log in, right?"
+    prompt_vi: "Đọc to. Xác nhận lại tránh hiểu sai vấn đề."
+    ipa: "/lɛt miː kənˈfɜːrm juː kænt lɒɡ ɪn raɪt/"
+    focus_phonemes: [k, f, r]
+  - kind: shadow
+    expected_text: "I'll look into it and get back to you within an hour."
+    prompt_vi: "Nghe rồi nhắc lại. Đặt kỳ vọng thời gian rõ ràng."
+    ipa: "/aɪl lʊk ˈɪntuː ɪt ænd ɡɛt bæk tuː juː wɪˈðɪn ən ˈaʊər/"
+    focus_phonemes: [l, ð, r]
+  - kind: respond
+    prompt_en: "Hi, my Wi-Fi keeps disconnecting."
+    prompt_vi: "Tiếp nhận: xác nhận lại vấn đề rồi hứa xử lý kèm thời gian."
+    accept_patterns:
+      - "Let me confirm your Wi-Fi keeps disconnecting I'll look into it and get back to you within {time}"
+      - "So your Wi-Fi keeps dropping I've created a ticket I'll get back to you {time}"
+      - "Got it your Wi-Fi keeps disconnecting I'll look into it"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếp nhận yêu cầu tốt quyết định 80% ấn tượng của người dùng, dù bạn chưa sửa được gì. Người
+    Việt làm IT hay nhảy thẳng vào kỹ thuật, quên bước XÁC NHẬN LẠI và ĐẶT KỲ VỌNG thời gian — nên
+    người dùng lo lắng, gọi lại liên tục.
+  how_vi: >
+    Bốn bước: chào ("How can I help?") → xác nhận lại vấn đề ("Let me confirm: …, right?") → hứa
+    xử lý ("I'll look into it") → đặt kỳ vọng ("get back to you within an hour") và nếu được, cho
+    một việc tạm ("In the meantime…").
+  contrast_vi: "“Ok I check” (người dùng mù mờ, lo lắng) ↔ “Let me confirm…, I'll get back to you within an hour” (yên tâm chờ)."
+
+common_mistakes:
+  - mistake: "Nhảy thẳng vào sửa, bỏ bước xác nhận lại"
+    why_vi: "Thấy vấn đề quen nên tưởng đã hiểu, nhưng người dùng mô tả thường thiếu hoặc sai."
+    fix_vi: "Luôn nhắc lại một câu: “Let me confirm: …, right?”. Bắt sai từ đầu đỡ tốn cả buổi."
+    detect: {}
+  - mistake: "Không đặt kỳ vọng thời gian"
+    why_vi: "Nghĩ nói thời gian rồi lỡ thì mất uy tín, nên tránh."
+    fix_vi: "Cho một mốc an toàn: “within an hour”, “by end of day”. Người dùng cần biết khi nào để yên tâm."
+    detect: {}
+  - mistake: "Dùng “Ok I check” cụt lủn"
+    why_vi: "Dịch thẳng từ tiếng Việt “để tôi kiểm tra”."
+    fix_vi: "Nói đủ câu: “I'll look into it and get back to you.” Nghe chuyên nghiệp và trấn an hơn."
+    detect: {}
+
+memory_trick_vi: >
+  Nhận ticket như bác sĩ nhận bệnh nhân: NGHE → NHẮC LẠI cho chắc (“vậy là anh bị…”) → HẸN GIỜ trả
+  kết quả. Chưa hẹn giờ là bệnh nhân còn thấp thỏm.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Sau khi nghe người dùng mô tả, bước tiếp theo nên là gì?"
+    choices:
+      - "Xác nhận lại: “Let me confirm: …, right?”"
+      - "Sửa ngay không cần hỏi"
+      - "Bảo họ tự tìm trên Google"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Cách đặt kỳ vọng thời gian tốt nhất?"
+    choices:
+      - "I'll get back to you within an hour."
+      - "Maybe later."
+      - "I don't know when."
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“In the meantime” dùng để làm gì?"
+    choices:
+      - "Cho người dùng một việc tạm trong lúc chờ"
+      - "Kết thúc cuộc gọi"
+      - "Đổ lỗi"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bao lâu sẽ phản hồi?"
+    audio_text: "I'll get back to you within an hour."
+    choices: ["Trong một giờ", "Trong một tuần", "Không nói"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I03

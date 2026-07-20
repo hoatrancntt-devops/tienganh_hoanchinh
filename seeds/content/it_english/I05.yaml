@@ -1,0 +1,182 @@
+schema_version: 1
+id: I05
+slug: giai-thich-cho-nguoi-khong-ranh
+unit: U-I1
+title_vi: "Giải thích vấn đề kỹ thuật cho người không rành"
+title_en: "Explaining tech to non-technical people"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 5
+est_minutes: 11
+
+objective_vi: "Giải thích nguyên nhân và cách khắc phục bằng ngôn ngữ đời thường, không thuật ngữ, có so sánh dễ hiểu."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill, tránh thuật ngữ hoặc có giải nghĩa kèm."
+
+prerequisites:
+  - {lesson: I04, min_mastery: 75, kind: hard}
+  - {lesson: O04, min_mastery: 60, kind: soft}
+
+vocabulary:
+  - term: "Basically"
+    ipa: "/ˈbeɪsɪkli/"
+    meaning_vi: "Nói đơn giản thì"
+    chunk: "Basically, the system was overloaded."
+    tags: [it_english]
+  - term: "think of it as"
+    ipa: "/θɪŋk ɒv ɪt æz/"
+    meaning_vi: "cứ hình dung nó như"
+    chunk: "Think of it as a traffic jam for data."
+    tags: [it_english]
+  - term: "in other words"
+    ipa: "/ɪn ˈʌðər wɜːrdz/"
+    meaning_vi: "nói cách khác"
+    chunk: "In other words, it just needs a restart."
+    tags: [it_english]
+  - term: "the good news is"
+    ipa: "/ðə ɡʊd njuːz ɪz/"
+    meaning_vi: "tin tốt là"
+    chunk: "The good news is, no data was lost."
+    tags: [it_english]
+  - term: "to prevent this"
+    ipa: "/tuː prɪˈvɛnt ðɪs/"
+    meaning_vi: "để tránh lặp lại"
+    chunk: "To prevent this, save your work often."
+    tags: [it_english]
+  - term: "does that make sense"
+    ipa: "/dʌz ðæt meɪk sɛns/"
+    meaning_vi: "vậy có dễ hiểu không"
+    chunk: "Does that make sense so far?"
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Basically, {plain_cause}. Think of it as {analogy}."
+    meaning_vi: "Nói đơn giản, {plain_cause}. Cứ hình dung như {analogy}."
+    slots:
+      plain_cause: ["the system was overloaded", "the file got corrupted"]
+      analogy: ["a traffic jam", "a torn page in a book"]
+  - pattern: "The good news is, {reassurance}. To prevent this, {advice}."
+    meaning_vi: "Tin tốt là, {reassurance}. Để tránh lặp lại, {advice}."
+    slots:
+      reassurance: ["no data was lost", "it's an easy fix"]
+      advice: ["save your work often", "restart once a week"]
+
+dialogue:
+  context_vi: "Một quản lý không rành kỹ thuật hỏi vì sao hệ thống sập sáng nay."
+  turns:
+    - {speaker: A, en: "So why did the system go down this morning?", vi: "Vậy tại sao sáng nay hệ thống sập?"}
+    - {speaker: B, en: "Basically, too many requests came in at once and the server got overloaded.", vi: "Nói đơn giản, quá nhiều yêu cầu ập tới cùng lúc và máy chủ bị quá tải."}
+    - {speaker: A, en: "Overloaded?", vi: "Quá tải là sao?"}
+    - {speaker: B, en: "Think of it as a traffic jam — too many cars, one road. The good news is, no data was lost.", vi: "Cứ hình dung như kẹt xe — quá nhiều xe, một con đường. Tin tốt là không mất dữ liệu."}
+    - {speaker: A, en: "Okay. Can we prevent it next time?", vi: "Được. Lần sau tránh được không?"}
+    - {speaker: B, en: "Yes. To prevent this, we'll add a second server to share the load. Does that make sense?", vi: "Có. Để tránh, tụi em sẽ thêm máy chủ thứ hai chia tải. Vậy có dễ hiểu không?"}
+
+listening_snippet:
+  id: LS-I05
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Basically, the server got overloaded. Think of it as a traffic jam. The good news is, no data was lost, and we'll add a second server to prevent it."
+  transcript_vi: "Nói đơn giản, máy chủ bị quá tải. Cứ hình dung như kẹt xe. Tin tốt là không mất dữ liệu, và tụi em sẽ thêm máy chủ thứ hai để tránh."
+  questions:
+    - q_vi: "Người nói so sánh sự cố với gì?"
+      choices: ["Kẹt xe", "Cháy nhà", "Mưa bão"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "“Tin tốt” là gì?"
+      choices: ["Không mất dữ liệu", "Được nghỉ làm", "Miễn phí"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Basically, the server got overloaded. Think of it as a traffic jam."
+    prompt_vi: "Đọc to. Mở đầu bằng “Basically” báo hiệu bản rút gọn dễ hiểu."
+    ipa: "/ˈbeɪsɪkli ðə ˈsɜːrvər ɡɒt ˈoʊvərloʊdɪd θɪŋk ɒv ɪt æz ə ˈtræfɪk dʒæm/"
+    focus_phonemes: [b, θ, dʒ]
+  - kind: read_aloud
+    expected_text: "The good news is, no data was lost."
+    prompt_vi: "Đọc to. Trấn an trước, giải thích sau — người nghe bớt lo."
+    ipa: "/ðə ɡʊd njuːz ɪz noʊ ˈdeɪtə wɒz lɒst/"
+    focus_phonemes: [ɡ, n, z]
+  - kind: shadow
+    expected_text: "Does that make sense so far?"
+    prompt_vi: "Nghe rồi nhắc lại. Kiểm tra người nghe có theo kịp không."
+    ipa: "/dʌz ðæt meɪk sɛns soʊ fɑr/"
+    focus_phonemes: [ð, s, f]
+  - kind: respond
+    prompt_en: "Why is the website so slow today?"
+    prompt_vi: "Giải thích đơn giản, có so sánh, và trấn an — không dùng thuật ngữ."
+    accept_patterns:
+      - "Basically too many people are using it at once Think of it as a traffic jam The good news is it's temporary"
+      - "Basically the server is overloaded think of it as {analogy}"
+      - "It's basically overloaded the good news is we're fixing it"
+
+vietnamese_explanation:
+  why_vi: >
+    Kỹ năng khó nhất của dân IT: nói cho người KHÔNG rành hiểu. Càng giỏi kỹ thuật càng dễ quên rằng
+    người nghe không biết “server”, “cache”, “timeout”. Người Việt làm IT hay xổ một tràng thuật ngữ
+    tiếng Anh, khiến sếp/khách gật cho qua nhưng không hiểu và mất niềm tin.
+  how_vi: >
+    Ba chiêu: (1) mở bằng "Basically…" rồi nói nguyên nhân bằng từ đời thường; (2) dùng so sánh
+    "Think of it as…" (kẹt xe, trang sách rách); (3) trấn an "The good news is…" và chốt bằng
+    "Does that make sense?". Bỏ hết thuật ngữ, hoặc nếu phải dùng thì giải nghĩa ngay.
+  contrast_vi: "“The DNS resolver timed out” (khách đơ) ↔ “Basically the address book couldn't be reached — like a wrong phone number” (khách hiểu, tin tưởng)."
+
+common_mistakes:
+  - mistake: "Xổ thuật ngữ: server, cache, DNS, timeout"
+    why_vi: "Với mình là từ hàng ngày nên quên người nghe không biết."
+    fix_vi: "Thay bằng từ đời thường hoặc so sánh. “Think of it as…” là cây cầu tốt nhất."
+    detect: {}
+  - mistake: "Giải thích quá dài, đi vào chi tiết kỹ thuật"
+    why_vi: "Nghĩ nói kỹ mới là chuyên nghiệp."
+    fix_vi: "Người không rành cần BỨC TRANH LỚN, không cần chi tiết. Một câu nguyên nhân + một so sánh là đủ."
+    detect: {}
+  - mistake: "Quên trấn an, chỉ nói cái hỏng"
+    why_vi: "Tập trung vào vấn đề kỹ thuật."
+    fix_vi: "Luôn có “The good news is…” và hướng khắc phục. Người nghe cần biết sẽ ổn, không chỉ biết đã hỏng."
+    detect: {}
+
+memory_trick_vi: >
+  Giải thích cho người không rành theo công thức B-A-G: BASICALLY (nguyên nhân đời thường) — ANALOGY
+  (“think of it as…” một hình ảnh quen) — GOOD NEWS (trấn an + cách tránh). Bỏ túi ba chữ này là xong.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Sếp không rành hỏi vì sao web chậm. Mở đầu tốt nhất?"
+    choices:
+      - "Basically, too many people are using it at once."
+      - "The load balancer's connection pool is exhausted."
+      - "It's a backend concurrency issue."
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Think of it as a traffic jam” dùng để làm gì?"
+    choices:
+      - "Đưa ra so sánh dễ hiểu"
+      - "Khoe kiến thức"
+      - "Đổ lỗi giao thông"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Vì sao nên thêm “The good news is…”?"
+    choices:
+      - "Để trấn an người nghe, không chỉ báo cái hỏng"
+      - "Để câu chuyện dài hơn"
+      - "Không cần thiết"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói so sánh sự cố với gì?"
+    audio_text: "Think of it as a traffic jam."
+    choices: ["Kẹt xe", "Trận bóng", "Bữa tiệc"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I06

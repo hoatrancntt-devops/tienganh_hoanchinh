@@ -187,4 +187,4 @@ unlock_condition:
   challenge_threshold: 85
 
 recommended_next:
-  default: R01
+  default: I02

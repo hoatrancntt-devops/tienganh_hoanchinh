@@ -1,0 +1,178 @@
+schema_version: 1
+id: I04
+slug: hoi-chan-doan
+unit: U-I1
+title_vi: "Hỏi thông tin để chẩn đoán sự cố"
+title_en: "Asking diagnostic questions"
+phase: it_english
+topic: it_english
+cefr_target: a2
+order_index: 4
+est_minutes: 10
+
+objective_vi: "Hỏi đúng câu để khoanh vùng lỗi: khi nào bắt đầu, có báo lỗi gì, có gì thay đổi gần đây."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và hỏi ít nhất ba câu chẩn đoán."
+
+prerequisites:
+  - {lesson: I03, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "When did it start"
+    ipa: "/wɛn dɪd ɪt stɑːrt/"
+    meaning_vi: "Bắt đầu từ khi nào"
+    chunk: "When did it start happening?"
+    tags: [it_english]
+  - term: "any error message"
+    ipa: "/ˈɛni ˈɛrər ˈmɛsɪdʒ/"
+    meaning_vi: "có báo lỗi nào không"
+    chunk: "Do you see any error message?"
+    tags: [it_english]
+  - term: "What does it say"
+    ipa: "/wɒt dʌz ɪt seɪ/"
+    meaning_vi: "Nó ghi gì"
+    chunk: "What exactly does it say?"
+    tags: [it_english]
+  - term: "did anything change"
+    ipa: "/dɪd ˈɛniθɪŋ tʃeɪndʒ/"
+    meaning_vi: "có gì thay đổi không"
+    chunk: "Did anything change recently?"
+    tags: [it_english]
+  - term: "every time or sometimes"
+    ipa: "/ˈɛvri taɪm ɔr ˈsʌmtaɪmz/"
+    meaning_vi: "lần nào cũng vậy hay thỉnh thoảng"
+    chunk: "Does it happen every time or sometimes?"
+    tags: [it_english]
+  - term: "on your end"
+    ipa: "/ɒn jʊr ɛnd/"
+    meaning_vi: "ở phía bạn"
+    chunk: "Is it slow on your end too?"
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "When did it start? And do you see any error message?"
+    meaning_vi: "Bắt đầu từ khi nào? Và có báo lỗi nào không?"
+    slots: {}
+  - pattern: "Does it happen every time, or {alt}?"
+    meaning_vi: "Lần nào cũng bị, hay {alt}?"
+    slots:
+      alt: ["just sometimes", "only on Wi-Fi", "only in the office"]
+
+dialogue:
+  context_vi: "Người dùng báo máy chậm. Bạn hỏi để khoanh vùng nguyên nhân."
+  turns:
+    - {speaker: A, en: "My computer is really slow today.", vi: "Máy tôi hôm nay chậm kinh khủng."}
+    - {speaker: B, en: "Okay, let's narrow it down. When did it start?", vi: "Được, mình khoanh vùng nhé. Bắt đầu từ khi nào?"}
+    - {speaker: A, en: "This morning, after an update.", vi: "Sáng nay, sau một bản cập nhật."}
+    - {speaker: B, en: "Got it. Does it happen every time, or just with certain apps?", vi: "Rõ. Lần nào cũng chậm, hay chỉ vài ứng dụng?"}
+    - {speaker: A, en: "Mostly when I open the browser.", vi: "Chủ yếu khi tôi mở trình duyệt."}
+    - {speaker: B, en: "Do you see any error message when that happens?", vi: "Khi đó có báo lỗi nào không?"}
+
+listening_snippet:
+  id: LS-I04
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Let's narrow it down. When did it start? Does it happen every time or just sometimes? And do you see any error message?"
+  transcript_vi: "Mình khoanh vùng nhé. Bắt đầu từ khi nào? Lần nào cũng bị hay thỉnh thoảng? Và có báo lỗi nào không?"
+  questions:
+    - q_vi: "Người hỗ trợ đang làm gì?"
+      choices: ["Hỏi để khoanh vùng lỗi", "Sửa ngay", "Đổ lỗi người dùng"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Người hỗ trợ hỏi mấy câu chẩn đoán?"
+      choices: ["Ba", "Một", "Không câu nào"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "When did it start? And do you see any error message?"
+    prompt_vi: "Đọc to. Hai câu chẩn đoán quan trọng nhất."
+    ipa: "/wɛn dɪd ɪt stɑːrt ænd duː juː siː ˈɛni ˈɛrər ˈmɛsɪdʒ/"
+    focus_phonemes: [w, d, dʒ]
+  - kind: read_aloud
+    expected_text: "Does it happen every time, or just sometimes?"
+    prompt_vi: "Đọc to. Hỏi tần suất để phân biệt lỗi cứng hay chập chờn."
+    ipa: "/dʌz ɪt ˈhæpən ˈɛvri taɪm ɔr dʒʌst ˈsʌmtaɪmz/"
+    focus_phonemes: [z, h, t]
+  - kind: shadow
+    expected_text: "Did anything change recently?"
+    prompt_vi: "Nghe rồi nhắc lại. Câu vàng — đa số lỗi đến từ một thay đổi gần đây."
+    ipa: "/dɪd ˈɛniθɪŋ tʃeɪndʒ ˈriːsəntli/"
+    focus_phonemes: [θ, tʃ, dʒ]
+  - kind: respond
+    prompt_en: "The app keeps crashing."
+    prompt_vi: "Hỏi ít nhất hai câu chẩn đoán để khoanh vùng."
+    accept_patterns:
+      - "When did it start Does it happen every time or sometimes"
+      - "Do you see any error message And did anything change recently"
+      - "When did it start And what does the error say"
+
+vietnamese_explanation:
+  why_vi: >
+    Một nửa việc sửa lỗi là HỎI ĐÚNG CÂU. Người dùng chỉ nói triệu chứng mơ hồ (“nó chậm”, “không
+    chạy”); công việc của bạn là khoanh vùng bằng vài câu hỏi. Người Việt làm IT thường giỏi kỹ thuật
+    nhưng lúng túng khi phải hỏi bằng tiếng Anh, nên đoán mò và sửa sai chỗ.
+  how_vi: >
+    Bốn câu chẩn đoán vàng: "When did it start?" (mốc thời gian) → "Any error message? What does it
+    say?" (bằng chứng) → "Every time or sometimes?" (tần suất) → "Did anything change recently?"
+    (nguyên nhân). Bốn câu này khoanh vùng gần hết mọi lỗi.
+  contrast_vi: "Đoán mò rồi thử lung tung ↔ hỏi bốn câu, khoanh đúng vùng, sửa một lần trúng."
+
+common_mistakes:
+  - mistake: "Không hỏi “Did anything change recently?”"
+    why_vi: "Quên rằng đa số lỗi bắt nguồn từ một thay đổi (update, cài phần mềm, đổi cấu hình)."
+    fix_vi: "Luôn hỏi câu này. “Sau khi cập nhật/cài gì đó” là manh mối lớn nhất."
+    detect: {}
+  - mistake: "Bỏ qua nội dung báo lỗi cụ thể"
+    why_vi: "Người dùng nói “nó lỗi” và mình gật, không hỏi tiếp."
+    fix_vi: "Hỏi “What exactly does it say?” — con chữ trong báo lỗi thường chỉ thẳng nguyên nhân."
+    detect: {}
+  - mistake: "Hỏi câu quá kỹ thuật khiến người dùng bối rối"
+    why_vi: "Quen ngôn ngữ IT."
+    fix_vi: "Hỏi bằng câu đời thường: “When did it start?”, “Does it happen every time?”. Đơn giản mà đắt giá."
+    detect: {}
+
+memory_trick_vi: >
+  Chẩn đoán như hỏi thám tử bốn câu: KHI NÀO bắt đầu — NÓ GHI GÌ (báo lỗi) — LẦN NÀO CŨNG hay thỉnh
+  thoảng — GẦN ĐÂY CÓ GÌ THAY ĐỔI. Bốn câu này vây gần hết mọi “thủ phạm”.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Câu chẩn đoán nào hay bị quên nhưng cực giá trị?"
+    choices:
+      - "Did anything change recently?"
+      - "What's your name?"
+      - "Do you like the app?"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Người dùng nói “nó lỗi”. Nên hỏi tiếp gì?"
+    choices:
+      - "What exactly does it say?"
+      - "OK, tôi sửa đây."
+      - "Chắc do máy anh cũ."
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Hỏi tần suất để làm gì?"
+    choices:
+      - "Phân biệt lỗi cứng hay chập chờn"
+      - "Kéo dài cuộc gọi"
+      - "Không để làm gì"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người hỗ trợ hỏi câu nào về thay đổi?"
+    audio_text: "Did anything change recently?"
+    choices: ["Gần đây có gì thay đổi không", "Anh tên gì", "Máy anh bao nhiêu tiền"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I05
