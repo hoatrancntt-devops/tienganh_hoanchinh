@@ -253,10 +253,10 @@ async def grant_challenge_pass(
         )
     ).scalar_one_or_none()
     if prog is None:
-        prog = LessonProgress(user_id=user_id, lesson_id=lesson.id)
+        prog = LessonProgress(user_id=user_id, lesson_id=lesson.id, mastery_raw=0.0)
         db.add(prog)
     prog.state = LessonState.MASTERED
-    prog.mastery_raw = max(prog.mastery_raw, score)
+    prog.mastery_raw = max(prog.mastery_raw or 0.0, score)
     prog.unlocked_by = "challenge"
     prog.last_activity_at = utcnow()
     prog.mastered_at = utcnow()

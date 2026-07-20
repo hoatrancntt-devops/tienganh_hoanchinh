@@ -16,6 +16,9 @@ objective_observable: "Đạt ≥70 điểm giao tiếp trên toàn bộ bài."
 
 prerequisites:
   - {lesson: D01, min_mastery: 75, kind: hard}
+  - {lesson: D02, min_mastery: 75, kind: hard}
+  - {lesson: D03, min_mastery: 75, kind: hard}
+  - {lesson: D04, min_mastery: 75, kind: hard}
 
 listening_snippet:
   id: LS-CPD

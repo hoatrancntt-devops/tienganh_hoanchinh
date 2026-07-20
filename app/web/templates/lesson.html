@@ -14,7 +14,7 @@
 {% if not is_preview %}<div class="bar" style="margin-bottom:1.2rem"><i id="mbar" style="width:0%"></i></div>{% endif %}
 {% if is_preview %}
 <div class="alert alert-warn" style="margin-bottom:1.2rem"><b>Đây là bản xem trước.</b> Điểm không được tính. Mở khoá bằng cách hoàn thành <b>{{ blocking }}</b>, hoặc thi vượt.
-  <div style="margin-top:.7rem"><button class="btn btn-ghost" style="padding:.4rem .8rem;font-size:.8rem" onclick="challenge()">Thi vượt bài này</button></div></div>
+  <div style="margin-top:.7rem"><a class="btn btn-ghost" style="padding:.4rem .8rem;font-size:.8rem" href="/learn/challenge/{{ lesson.code }}">Thi vượt bài này</a></div></div>
 {% endif %}
 <div id="stage"></div>
 <div class="stack" style="margin-top:1.4rem">
@@ -35,8 +35,5 @@
 <script id="lessonData" type="application/json">{{ {"activities": activities, "is_preview": is_preview, "study": study}|tojson }}</script>
 <script>
 Player.init(JSON.parse(document.getElementById('lessonData').textContent));
-async function challenge(){if(!confirm('Thi vượt cần đạt {{ lesson.challenge_threshold }}%. Bạn chắc chứ?'))return;
-  const r=await api('/api/v1/learn/challenge/{{ lesson.code }}?score=0',{},'POST');
-  toast(r.data.message_vi||'Chưa làm được bài thi vượt.',r.data.passed?'ok':'warn');}
 </script>
 {% endblock %}

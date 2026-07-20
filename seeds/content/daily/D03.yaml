@@ -1,0 +1,189 @@
+schema_version: 1
+id: D03
+slug: goi-mon-an-trua
+unit: U-D2
+title_vi: "Gọi món và rủ đi ăn trưa"
+title_en: "Ordering lunch"
+phase: daily
+topic: food
+cefr_target: a1
+order_index: 3
+est_minutes: 10
+
+objective_vi: "Gọi món, hỏi giá, nói về dị ứng, và rủ đồng nghiệp đi ăn."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill tình huống quán ăn."
+
+prerequisites:
+  - {lesson: CP-F, min_mastery: 75, kind: hard}
+  - {lesson: D01, min_mastery: 60, kind: soft}
+
+vocabulary:
+  - term: "I'll have"
+    ipa: "/aɪl hæv/"
+    meaning_vi: "Cho tôi (gọi món)"
+    chunk: "I'll have the chicken rice, please."
+    tags: [food]
+  - term: "to go"
+    ipa: "/tuː ɡoʊ/"
+    meaning_vi: "mang đi"
+    chunk: "To go, please."
+    tags: [food]
+  - term: "for here"
+    ipa: "/fɔr hɪr/"
+    meaning_vi: "ăn tại chỗ"
+    chunk: "For here, thanks."
+    tags: [food]
+  - term: "allergic to"
+    ipa: "/əˈlɜːrdʒɪk tuː/"
+    meaning_vi: "dị ứng với"
+    chunk: "I'm allergic to peanuts."
+    tags: [food]
+  - term: "the bill"
+    ipa: "/ðə bɪl/"
+    meaning_vi: "hoá đơn"
+    chunk: "Could we have the bill, please?"
+    tags: [food]
+  - term: "grab lunch"
+    ipa: "/ɡræb lʌntʃ/"
+    meaning_vi: "đi ăn trưa"
+    chunk: "Want to grab lunch?"
+    tags: [food, social]
+
+sentence_patterns:
+  - pattern: "I'll have the {dish}, please."
+    meaning_vi: "Cho tôi {dish} nhé."
+    slots:
+      dish: ["chicken rice", "beef noodles", "vegetarian option"]
+  - pattern: "I'm allergic to {food}."
+    meaning_vi: "Tôi bị dị ứng {food}."
+    slots:
+      food: [peanuts, seafood, dairy]
+
+dialogue:
+  context_vi: "Bạn rủ đồng nghiệp đi ăn trưa rồi gọi món ở quán."
+  turns:
+    - {speaker: A, en: "Want to grab lunch? I'm starving.", vi: "Đi ăn trưa không? Tôi đói lắm rồi."}
+    - {speaker: B, en: "Sure. Give me five minutes.", vi: "Được. Cho tôi năm phút."}
+    - {speaker: A, en: "I'll have the chicken rice, please. No spicy.", vi: "Cho tôi cơm gà nhé. Không cay."}
+    - {speaker: B, en: "Same for me, but I'm allergic to peanuts.", vi: "Tôi cũng vậy, nhưng tôi dị ứng đậu phộng."}
+    - {speaker: A, en: "For here or to go?", vi: "Ăn tại chỗ hay mang đi?"}
+    - {speaker: B, en: "For here, thanks. Could we have the bill together?", vi: "Ăn tại chỗ nhé. Tính chung một hoá đơn được không?"}
+
+listening_snippet:
+  id: LS-D03
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "I'll have the chicken rice, no spicy please. And I'm allergic to peanuts, so please check."
+  transcript_vi: "Cho tôi cơm gà, không cay nhé. Và tôi dị ứng đậu phộng nên nhờ kiểm tra giúp."
+  questions:
+    - q_vi: "Người nói gọi món gì?"
+      choices: ["Cơm gà", "Phở bò", "Món chay"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Người nói dị ứng với gì?"
+      choices: ["Đậu phộng", "Hải sản", "Sữa"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I'll have the chicken rice, please."
+    prompt_vi: "Đọc to. “I'll have” là cách gọi món chuẩn, không phải “I want”."
+    ipa: "/aɪl hæv ðə ˈtʃɪkɪn raɪs pliːz/"
+    focus_phonemes: [l, s]
+  - kind: read_aloud
+    expected_text: "I'm allergic to peanuts."
+    prompt_vi: "Đọc to. a-LLER-gic nhấn âm giữa."
+    ipa: "/aɪm əˈlɜːrdʒɪk tuː ˈpiːnʌts/"
+    focus_phonemes: [dʒ, s, t]
+  - kind: shadow
+    expected_text: "Could we have the bill, please?"
+    prompt_vi: "Nghe rồi nhắc lại."
+    ipa: "/kʊd wiː hæv ðə bɪl pliːz/"
+    focus_phonemes: [d, l]
+  - kind: respond
+    prompt_en: "Want to grab lunch?"
+    prompt_vi: "Đồng ý và xin ít phút chuẩn bị."
+    accept_patterns:
+      - "Sure give me five minutes"
+      - "Yes sounds good"
+      - "Sure I'm starving"
+  - kind: respond
+    prompt_en: "For here or to go?"
+    prompt_vi: "Trả lời: ăn tại chỗ."
+    accept_patterns:
+      - "For here thanks"
+      - "For here please"
+      - "To go please"
+
+vietnamese_explanation:
+  why_vi: >
+    Gọi món là tình huống dễ vì kịch bản rất hẹp — chỉ vài câu lặp đi lặp lại. Nhưng nó là chỗ
+    người mất gốc hay né nhất, vì có áp lực thời gian: người phục vụ đứng chờ, đồng nghiệp đứng
+    sau. Cái khó không phải ngôn ngữ, mà là phải nói NGAY.
+  how_vi: >
+    Học thuộc đúng bốn câu và bạn xử lý được 90% tình huống: "I'll have the ___, please" /
+    "For here" hoặc "To go" / "I'm allergic to ___" / "Could we have the bill, please?".
+    Bốn câu này không đổi trong suốt sự nghiệp của bạn.
+  contrast_vi: "“I want chicken rice” (đúng nghĩa nhưng cộc) ↔ “I'll have the chicken rice, please” (cách người ta thật sự nói)."
+
+common_mistakes:
+  - mistake: "“I want the chicken rice.”"
+    why_vi: "Dịch thẳng từ “Tôi muốn cơm gà”. Đúng ngữ pháp, nhưng “I want” nghe như trẻ con đòi đồ."
+    fix_vi: "Dùng “I'll have…” hoặc “Could I get…”. Cùng độ dài, nhưng đúng nghi thức."
+    detect: {}
+  - mistake: "Bỏ “please” ở cuối câu"
+    why_vi: "Tiếng Việt dùng ngữ điệu và từ đệm để làm mềm, nên bạn quên rằng tiếng Anh cần một từ cụ thể."
+    fix_vi: "“Please” ở cuối là bắt buộc trong mọi yêu cầu. Thiếu nó, câu nghe như ra lệnh."
+    detect: {}
+  - mistake: "Không dám nói về dị ứng vì sợ phiền"
+    why_vi: "Ngại làm phức tạp tình huống."
+    fix_vi: "Đây là chuyện an toàn, không phải chuyện lịch sự. “I'm allergic to peanuts” là hoàn toàn bình thường."
+    detect: {}
+
+memory_trick_vi: >
+  Bốn câu, một bữa ăn: gọi (I'll have) → chọn chỗ (for here / to go) → cảnh báo (allergic) →
+  trả tiền (the bill). Đúng theo trình tự bạn đi qua quán ăn.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Gọi món ở quán. Câu nào tự nhiên nhất?"
+    choices:
+      - "I want chicken rice."
+      - "I'll have the chicken rice, please."
+      - "Give me chicken rice."
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Nhân viên hỏi “For here or to go?”. Bạn muốn mang về. Nói gì?"
+    choices: ["To go, please.", "For here, please.", "Yes."]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Bạn dị ứng hải sản. Nói gì?"
+    choices:
+      - "I don't like seafood."
+      - "I'm allergic to seafood."
+      - "No seafood."
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói dị ứng với gì?"
+    audio_text: "I'm allergic to peanuts."
+    choices: ["Đậu phộng", "Hải sản", "Trứng"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Xin hoá đơn. Câu nào lịch sự nhất?"
+    choices: ["Bill!", "Could we have the bill, please?", "I want pay."]
+    answer: 1
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: D04

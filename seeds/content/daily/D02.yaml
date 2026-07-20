@@ -1,0 +1,185 @@
+schema_version: 1
+id: D02
+slug: small-talk-cong-so
+unit: U-D1
+title_vi: "Small talk — 60 giây ở pantry"
+title_en: "Small talk at work"
+phase: daily
+topic: social
+cefr_target: a1
+order_index: 2
+est_minutes: 10
+
+objective_vi: "Duy trì 4 lượt small talk về cuối tuần, thời tiết, cà phê mà không bị bí."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill hội thoại mở."
+
+prerequisites:
+  - {lesson: D01, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "How's it going?"
+    ipa: "/haʊz ɪt ˈɡoʊɪŋ/"
+    meaning_vi: "Dạo này thế nào? (chào hỏi, không phải câu hỏi thật)"
+    chunk: "Hey, how's it going?"
+    tags: [social]
+  - term: "Busy week"
+    ipa: "/ˈbɪzi wiːk/"
+    meaning_vi: "Tuần bận rộn"
+    chunk: "Busy week, but it's fine."
+    tags: [social]
+  - term: "Any plans?"
+    ipa: "/ˈɛni plænz/"
+    meaning_vi: "Có kế hoạch gì không?"
+    chunk: "Any plans for the weekend?"
+    tags: [social]
+  - term: "Nothing much"
+    ipa: "/ˈnʌθɪŋ mʌtʃ/"
+    meaning_vi: "Cũng không có gì"
+    chunk: "Nothing much, just resting."
+    tags: [social]
+  - term: "Same here"
+    ipa: "/seɪm hɪr/"
+    meaning_vi: "Tôi cũng vậy"
+    chunk: "Same here, I need a break."
+    tags: [social]
+  - term: "grab a coffee"
+    ipa: "/ɡræb ə ˈkɒfi/"
+    meaning_vi: "làm một ly cà phê"
+    chunk: "Want to grab a coffee?"
+    tags: [social, food]
+
+sentence_patterns:
+  - pattern: "Any plans for {time}?"
+    meaning_vi: "{time} có kế hoạch gì không?"
+    slots:
+      time: ["the weekend", "tonight", "the holiday"]
+  - pattern: "{answer}, {reason}."
+    meaning_vi: "{answer}, {reason}."
+    slots:
+      answer: ["Nothing much", "Not really", "Busy week"]
+      reason: ["just resting", "I have a deadline", "I need a break"]
+
+dialogue:
+  context_vi: "Bạn gặp đồng nghiệp ở máy pha cà phê chiều thứ Sáu."
+  turns:
+    - {speaker: A, en: "Hey, how's it going?", vi: "Này, dạo này sao rồi?"}
+    - {speaker: B, en: "Busy week, but it's fine. How about you?", vi: "Tuần bận, nhưng ổn. Còn bạn?"}
+    - {speaker: A, en: "Same here. Any plans for the weekend?", vi: "Tôi cũng vậy. Cuối tuần có kế hoạch gì không?"}
+    - {speaker: B, en: "Nothing much, just resting. You?", vi: "Cũng không có gì, chỉ nghỉ ngơi thôi. Bạn thì sao?"}
+    - {speaker: A, en: "Same. Want to grab a coffee later?", vi: "Tôi cũng vậy. Lát nữa làm ly cà phê không?"}
+
+listening_snippet:
+  id: LS-D02
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Busy week, but it's fine. Any plans for the weekend? I'm just going to rest."
+  transcript_vi: "Tuần bận, nhưng ổn. Cuối tuần có kế hoạch gì không? Tôi chắc chỉ nghỉ ngơi thôi."
+  questions:
+    - q_vi: "Tuần của người nói thế nào?"
+      choices: ["Bận nhưng ổn", "Rất tệ", "Rảnh rỗi"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Cuối tuần người nói định làm gì?"
+      choices: ["Nghỉ ngơi", "Đi làm", "Đi du lịch"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: shadow
+    expected_text: "Busy week, but it's fine."
+    prompt_vi: "Nghe rồi nhắc lại. Câu trả lời an toàn cho mọi tình huống."
+    ipa: "/ˈbɪzi wiːk bʌt ɪts faɪn/"
+    focus_phonemes: [z, k, t]
+  - kind: shadow
+    expected_text: "Any plans for the weekend?"
+    prompt_vi: "Nghe rồi nhắc lại. Giọng đi lên ở cuối."
+    ipa: "/ˈɛni plænz fɔr ðə ˈwiːkɛnd/"
+    focus_phonemes: [z, d]
+  - kind: respond
+    prompt_en: "Hey, how's it going?"
+    prompt_vi: "Trả lời ngắn rồi hỏi ngược. Đây không phải câu hỏi thật về sức khoẻ."
+    accept_patterns:
+      - "Busy week but it's fine How about you"
+      - "Good thanks And you"
+      - "Not bad How about you"
+  - kind: respond
+    prompt_en: "Any plans for the weekend?"
+    prompt_vi: "Trả lời rồi hỏi ngược."
+    accept_patterns:
+      - "Nothing much just resting You"
+      - "Not really How about you"
+      - "Nothing much And you"
+  - kind: respond
+    prompt_en: "Want to grab a coffee later?"
+    prompt_vi: "Đồng ý hoặc từ chối lịch sự."
+    accept_patterns:
+      - "Sure sounds good"
+      - "Yes that works"
+      - "Sorry I have a call"
+      - "Maybe later I'm busy"
+
+vietnamese_explanation:
+  why_vi: >
+    Small talk không phải để trao đổi thông tin. Nó là nghi thức xã hội — cách người ta báo hiệu
+    "tôi thấy bạn, tôi ổn với bạn". Người Việt hay mắc kẹt vì cố trả lời THẬT câu "How's it going?"
+    và kể một câu chuyện dài, trong khi người hỏi chỉ chờ hai từ.
+  how_vi: >
+    Trả lời ngắn (3-5 từ), thêm một chi tiết nhỏ, rồi hỏi ngược. Đó là toàn bộ công thức. Nội dung
+    không quan trọng — nhịp mới quan trọng. Bạn có thể nói cùng một câu mỗi ngày và không ai để ý.
+  contrast_vi: "“How's it going?” là “Chào” chứ không phải “Bạn khoẻ không?”. Trả lời như đọc sách nghe rất máy móc."
+
+common_mistakes:
+  - mistake: "Trả lời “How's it going?” bằng một câu chuyện dài"
+    why_vi: "Hiểu nó là câu hỏi thật. Nhưng người hỏi đang đi ngang qua và chờ hai giây."
+    fix_vi: "Ba đến năm từ là đủ: “Busy week, but it's fine.” Nếu họ muốn nghe thêm, họ sẽ hỏi tiếp."
+    detect: {}
+  - mistake: "“I'm fine, thank you. And you?” — đúng nhưng nghe như đọc sách"
+    why_vi: "Đây là câu duy nhất được dạy ở trường, nên nó là câu duy nhất bật ra."
+    fix_vi: "Đổi sang “Good, thanks. You?” hoặc “Not bad. How about you?”. Ngắn hơn, tự nhiên hơn, ai cũng nói vậy."
+    detect: {}
+  - mistake: "Im lặng vì không nghĩ ra chuyện gì thú vị để kể"
+    why_vi: "Nghĩ rằng small talk cần nội dung hay."
+    fix_vi: "Không cần. “Nothing much, just resting” là câu trả lời hoàn hảo và người ta nói nó mỗi tuần."
+    detect: {}
+
+memory_trick_vi: >
+  Small talk giống bắt tay: ngắn, có nhịp, và không ai nhớ nội dung. Bạn chỉ cần ba câu trả lời
+  thủ sẵn cho cả năm: "Busy week, but it's fine" / "Nothing much, just resting" / "Same here".
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Đồng nghiệp đi ngang và nói “How's it going?”. Câu nào tự nhiên nhất?"
+    choices:
+      - "I am fine, thank you. And you?"
+      - "Busy week, but it's fine. You?"
+      - "Actually, let me tell you about my week…"
+    answer: 1
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Any plans for the weekend?” — bạn không có kế hoạch gì. Nói gì?"
+    choices: ["No.", "Nothing much, just resting. You?", "I don't have plan."]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Mục đích thật của small talk là gì?"
+    choices:
+      - "Trao đổi thông tin quan trọng"
+      - "Báo hiệu sự thân thiện, giữ quan hệ"
+      - "Luyện ngữ pháp"
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Tuần của người nói thế nào?"
+    audio_text: "Busy week, but it's fine."
+    choices: ["Bận nhưng ổn", "Rảnh", "Rất tệ"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: D03

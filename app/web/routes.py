@@ -225,6 +225,23 @@ async def lesson_player(
     return templates.TemplateResponse(request, "lesson.html", ctx)
 
 
+@router.get("/learn/challenge/{code}", response_class=HTMLResponse)
+async def challenge_page(
+    code: str,
+    request: Request,
+    user: User | None = Depends(current_user_optional),
+    db: AsyncSession = Depends(get_session),
+):
+    if user is None:
+        return _redirect("/login")
+    lesson = (await db.execute(select(Lesson).where(Lesson.code == code))).scalar_one_or_none()
+    if lesson is None:
+        return _redirect("/learn")
+    ctx = await _shell(request, db, user)
+    ctx["lesson"] = lesson
+    return templates.TemplateResponse(request, "challenge.html", ctx)
+
+
 @router.get("/learn/review", response_class=HTMLResponse)
 async def review_page(
     request: Request,

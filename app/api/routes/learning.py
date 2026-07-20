@@ -162,22 +162,70 @@ def _wrong_answer_hint(lesson: Lesson, item: Item) -> str:
     return exp.get("contrast_vi") or exp.get("how_vi") or "Chưa đúng. Nghe lại câu mẫu nhé."
 
 
-@router.post("/challenge/{code}")
-async def challenge(
-    code: str, score: float,
-    user: User = Depends(current_user), db: AsyncSession = Depends(get_session),
+async def _challenge_quiz_items(db: AsyncSession, lesson: Lesson) -> list[Item]:
+    """Câu trắc nghiệm dùng cho bài thi vượt = mini_quiz của bài (kind mcq*)."""
+    from app.models.content import Activity
+
+    acts = (
+        await db.execute(select(Activity).where(Activity.lesson_id == lesson.id))
+    ).scalars().all()
+    items: list[Item] = []
+    for act in acts:
+        rows = (
+            await db.execute(select(Item).where(Item.activity_id == act.id))
+        ).scalars().all()
+        items += [i for i in rows if i.answer_index is not None]
+    items.sort(key=lambda i: i.difficulty, reverse=True)  # khó trước: thi vượt phải chặt
+    return items
+
+
+@router.get("/challenge/{code}/questions")
+async def challenge_questions(
+    code: str, user: User = Depends(current_user), db: AsyncSession = Depends(get_session)
 ):
-    """Lối thoát duy nhất cho người đã biết — nhưng vẫn kiểm chứng năng lực."""
+    """Trả câu hỏi bài thi vượt (đã lột đáp án — đáp án không rời server)."""
     lesson = (await db.execute(select(Lesson).where(Lesson.code == code))).scalar_one_or_none()
     if lesson is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Không tìm thấy bài học.")
+    items = await _challenge_quiz_items(db, lesson)
+    if not items:
+        raise HTTPException(status.HTTP_409_CONFLICT,
+                            "Bài này chưa có câu trắc nghiệm để thi vượt.")
+    return {
+        "code": lesson.code, "title_vi": lesson.title_vi,
+        "threshold": lesson.challenge_threshold,
+        "questions": [
+            {"id": str(i.id), "prompt_vi": i.prompt_vi or i.prompt_en, "choices": i.choices}
+            for i in items
+        ],
+    }
+
+
+@router.post("/challenge/{code}")
+async def challenge(
+    code: str, payload: dict,
+    user: User = Depends(current_user), db: AsyncSession = Depends(get_session),
+):
+    """Chấm bài thi vượt SERVER-SIDE. Lối thoát cho người đã biết — vẫn kiểm chứng năng lực."""
+    lesson = (await db.execute(select(Lesson).where(Lesson.code == code))).scalar_one_or_none()
+    if lesson is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Không tìm thấy bài học.")
+
+    answers = {str(a.get("item_id")): a.get("choice_index") for a in payload.get("answers", [])}
+    items = await _challenge_quiz_items(db, lesson)
+    if not items:
+        raise HTTPException(status.HTTP_409_CONFLICT, "Bài này chưa có câu để thi vượt.")
+
+    correct = sum(1 for i in items if answers.get(str(i.id)) == i.answer_index)
+    score = round(100.0 * correct / len(items), 1)
     passed = await prereq.grant_challenge_pass(db, user.id, lesson, score)
     return {
         "passed": passed, "threshold": lesson.challenge_threshold, "score": score,
+        "correct": correct, "total": len(items),
         "message_vi": (
-            "Bạn đã chứng minh mình nắm được bài này. Đã mở khoá."
+            f"Bạn đúng {correct}/{len(items)} câu ({score:.0f}%). Đã chứng minh nắm được bài — mở khoá!"
             if passed else
-            f"Cần {lesson.challenge_threshold}% để thi vượt, bạn được {score:.0f}%. "
+            f"Bạn đúng {correct}/{len(items)} câu ({score:.0f}%), cần {lesson.challenge_threshold}%. "
             "Học bài này sẽ nhanh thôi vì bạn đã gần đạt."
         ),
     }

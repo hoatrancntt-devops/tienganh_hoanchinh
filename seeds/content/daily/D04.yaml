@@ -1,0 +1,179 @@
+schema_version: 1
+id: D04
+slug: di-lai-grab-va-chi-duong
+unit: U-D3
+title_vi: "Đi lại: Grab, taxi, và chỉ đường"
+title_en: "Getting around"
+phase: daily
+topic: transport
+cefr_target: a1
+order_index: 4
+est_minutes: 10
+
+objective_vi: "Nói địa chỉ với tài xế, hỏi đường tới toà nhà, và báo mình đang tới muộn."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill tình huống đi lại."
+
+prerequisites:
+  - {lesson: CP-F, min_mastery: 75, kind: hard}
+  - {lesson: D01, min_mastery: 60, kind: soft}
+
+vocabulary:
+  - term: "running late"
+    ipa: "/ˈrʌnɪŋ leɪt/"
+    meaning_vi: "đang bị muộn"
+    chunk: "Sorry, I'm running late."
+    tags: [transport, office]
+  - term: "on my way"
+    ipa: "/ɒn maɪ weɪ/"
+    meaning_vi: "đang trên đường"
+    chunk: "I'm on my way, ten minutes."
+    tags: [transport]
+  - term: "drop me off"
+    ipa: "/drɒp miː ɒf/"
+    meaning_vi: "cho tôi xuống"
+    chunk: "Could you drop me off at the corner?"
+    tags: [transport]
+  - term: "which floor"
+    ipa: "/wɪtʃ flɔːr/"
+    meaning_vi: "tầng mấy"
+    chunk: "Which floor is the meeting on?"
+    tags: [transport, office]
+  - term: "the reception"
+    ipa: "/ðə rɪˈsɛpʃən/"
+    meaning_vi: "quầy lễ tân"
+    chunk: "I'm at the reception."
+    tags: [transport, office]
+  - term: "traffic"
+    ipa: "/ˈtræfɪk/"
+    meaning_vi: "giao thông, kẹt xe"
+    chunk: "The traffic is bad today."
+    tags: [transport]
+
+sentence_patterns:
+  - pattern: "Sorry, I'm running late. I'll be there in {minutes} minutes."
+    meaning_vi: "Xin lỗi, tôi đang bị muộn. {minutes} phút nữa tôi tới."
+    slots:
+      minutes: [five, ten, fifteen]
+  - pattern: "Which floor is {thing} on?"
+    meaning_vi: "{thing} ở tầng mấy?"
+    slots:
+      thing: ["the meeting", "the IT department", "your office"]
+
+dialogue:
+  context_vi: "Bạn đang kẹt xe trên đường tới cuộc họp ở văn phòng khách hàng."
+  turns:
+    - {speaker: A, en: "Sorry, I'm running late. The traffic is bad.", vi: "Xin lỗi, tôi đang muộn. Kẹt xe quá."}
+    - {speaker: B, en: "No problem. How long?", vi: "Không sao. Bao lâu nữa?"}
+    - {speaker: A, en: "I'm on my way, ten minutes. Which floor is the meeting on?", vi: "Tôi đang trên đường, mười phút. Cuộc họp ở tầng mấy?"}
+    - {speaker: B, en: "Fifth floor. Just check in at the reception.", vi: "Tầng năm. Cứ khai báo ở quầy lễ tân là được."}
+
+listening_snippet:
+  id: LS-D04
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Sorry, I'm running late, the traffic is bad. I'm on my way, about ten minutes. Which floor?"
+  transcript_vi: "Xin lỗi, tôi đang muộn, kẹt xe quá. Tôi đang trên đường, khoảng mười phút. Tầng mấy vậy?"
+  questions:
+    - q_vi: "Vì sao người nói bị muộn?"
+      choices: ["Kẹt xe", "Ngủ quên", "Nhầm địa chỉ"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Bao lâu nữa người nói tới?"
+      choices: ["Khoảng 10 phút", "Khoảng 1 tiếng", "Không nói"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Sorry, I'm running late."
+    prompt_vi: "Đọc to. Câu này bạn sẽ dùng nhiều hơn bạn nghĩ."
+    ipa: "/ˈsɒri aɪm ˈrʌnɪŋ leɪt/"
+    focus_phonemes: [r, ŋ, t]
+  - kind: read_aloud
+    expected_text: "The traffic is bad today."
+    prompt_vi: "Đọc to. TRA-ffic nhấn âm đầu."
+    ipa: "/ðə ˈtræfɪk ɪz bæd təˈdeɪ/"
+    focus_phonemes: [ð, k, d]
+  - kind: shadow
+    expected_text: "I'm on my way, about ten minutes."
+    prompt_vi: "Nghe rồi nhắc lại. Luôn kèm con số — “soon” không đủ thông tin cho người đang chờ."
+    ipa: "/aɪm ɒn maɪ weɪ əˈbaʊt tɛn ˈmɪnɪts/"
+    focus_phonemes: [m, t, s]
+  - kind: shadow
+    expected_text: "Which floor is the meeting on?"
+    prompt_vi: "Nghe rồi nhắc lại."
+    ipa: "/wɪtʃ flɔːr ɪz ðə ˈmiːtɪŋ ɒn/"
+    focus_phonemes: [tʃ, l, ŋ]
+  - kind: respond
+    prompt_en: "How long until you get here?"
+    prompt_vi: "Bạn còn khoảng 10 phút nữa. Trả lời."
+    accept_patterns:
+      - "I'm on my way about ten minutes"
+      - "About ten minutes"
+      - "Ten minutes I'm running late"
+
+vietnamese_explanation:
+  why_vi: >
+    Tình huống đi lại có một đặc điểm khác mọi tình huống khác: người kia đang CHỜ bạn. Họ không
+    cần lời xin lỗi dài, họ cần một con số. Người Việt hay nói "sắp tới rồi" vì ngại cam kết một
+    con số cụ thể — nhưng trong môi trường công việc, "sắp tới" là thông tin vô dụng.
+  how_vi: >
+    Ba phần, đúng thứ tự: xin lỗi ngắn → lý do một câu → CON SỐ. "Sorry, I'm running late. Traffic.
+    Ten minutes." Vậy là xong. Đừng giải thích dài về việc con đường nào tắc.
+  contrast_vi: "“I'm coming soon” (vô dụng) ↔ “I'm on my way, ten minutes” (người kia biết phải làm gì với 10 phút đó)."
+
+common_mistakes:
+  - mistake: "“I will come soon.” — không có con số"
+    why_vi: "Ngại cam kết vì sợ sai. Nhưng người đang chờ cần biết nên bắt đầu họp hay đợi."
+    fix_vi: "Luôn kèm số, kể cả khi bạn không chắc: “about ten minutes”. Từ “about” đã cho bạn biên độ rồi."
+    detect: {}
+  - mistake: "“I am late.” khi vẫn đang trên đường"
+    why_vi: "Dịch thẳng “Tôi muộn rồi”."
+    fix_vi: "“I'm running late” nghĩa là đang bị muộn nhưng đang tới. “I'm late” nghe như bạn đã tới muộn."
+    detect: {}
+  - mistake: "Xin lỗi quá dài, giải thích quá chi tiết"
+    why_vi: "Văn hoá Việt coi lời xin lỗi dài là thể hiện sự tôn trọng."
+    fix_vi: "Trong công việc quốc tế thì ngược lại: xin lỗi ngắn + con số cụ thể mới là tôn trọng."
+    detect: {}
+
+memory_trick_vi: >
+  Ba từ, đúng thứ tự: SORRY — WHY — WHEN. "Sorry, traffic, ten minutes." Người kia chỉ thật sự
+  cần từ thứ ba, hai từ đầu là phép lịch sự. Đừng đảo thứ tự và đừng bỏ từ cuối.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Bạn đang kẹt xe, còn 10 phút nữa tới. Nhắn gì?"
+    choices:
+      - "I will come soon."
+      - "Sorry, I'm running late. On my way, about ten minutes."
+      - "I am late."
+    answer: 1
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Khác nhau giữa “I'm late” và “I'm running late”?"
+    choices:
+      - "Không khác gì"
+      - "“running late” nghĩa là đang bị muộn nhưng đang tới"
+      - "“I'm late” lịch sự hơn"
+    answer: 1
+    difficulty: 3
+  - kind: fill_chunk
+    prompt_vi: "___ floor is the meeting on?"
+    choices: [What, Which, Where]
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói còn bao lâu nữa tới?"
+    audio_text: "I'm on my way, about ten minutes."
+    choices: ["Khoảng 10 phút", "Khoảng 1 tiếng", "Đã tới rồi"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: CP-D

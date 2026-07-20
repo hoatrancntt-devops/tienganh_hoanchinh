@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Thi vượt: {{ lesson.title_vi }}{% endblock %}
+{% block main_class %}player{% endblock %}
+{% block body %}
+<div class="between" style="margin-bottom:.9rem">
+  <a class="btn btn-quiet" href="/learn/lesson/{{ lesson.code }}" style="padding:.4rem .6rem">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Quay lại</a>
+  <span class="mut-3" id="counter">—</span>
+</div>
+<div class="steps" id="steps"></div>
+<div class="between" style="margin:0 0 1rem">
+  <div><div class="lcard-code">{{ lesson.code }}</div><h1 style="font-size:1.1rem;margin-top:.2rem">Thi vượt</h1></div>
+  <span class="pill pill-warn">Cần {{ lesson.challenge_threshold }}%</span>
+</div>
+<div class="alert alert-warn" style="margin-bottom:1.1rem" id="intro">
+  Bài thi vượt gồm các câu trắc nghiệm khó của bài này. Đạt <b>{{ lesson.challenge_threshold }}%</b>
+  là mở khoá luôn, không phải học lại. Làm một lượt, không xem gợi ý.
+  <div style="margin-top:.8rem"><button class="btn" onclick="Chal.start()">Bắt đầu thi</button></div>
+</div>
+<div id="stage"></div>
+<div class="player-nav" id="nav" style="display:none">
+  <span class="mut-3">Thi vượt · {{ lesson.code }}</span>
+  <button class="btn" id="nextBtn" onclick="Chal.next()" disabled>Tiếp theo</button>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+const Chal = (() => {
+  const CODE = '{{ lesson.code }}', THRESH = {{ lesson.challenge_threshold }};
+  let qs = [], idx = 0, answers = [];
+  function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  async function start(){
+    const r = await api(`/api/v1/learn/challenge/${CODE}/questions`);
+    if(!r.ok){ toast(r.data.detail || 'Không tải được đề thi vượt.', 'err'); return; }
+    qs = r.data.questions; idx = 0; answers = [];
+    document.getElementById('intro').style.display='none';
+    document.getElementById('nav').style.display='';
+    render();
+  }
+  function render(){
+    const q = qs[idx];
+    document.getElementById('steps').innerHTML = qs.map((_,k)=>`<i class="${k<idx?'done':k===idx?'now':''}"></i>`).join('');
+    document.getElementById('counter').textContent = `${idx+1}/${qs.length}`;
+    document.getElementById('stage').innerHTML = `<div class="card">
+      <p style="font-size:1rem;margin-bottom:1rem">${esc(q.prompt_vi)}</p>
+      ${q.choices.map((c,k)=>`<button class="choice" data-k="${k}" onclick="Chal.pick(${k})">${esc(c)}</button>`).join('')}</div>`;
+    const nb=document.getElementById('nextBtn'); nb.disabled=true;
+    nb.textContent = idx===qs.length-1 ? 'Nộp bài' : 'Tiếp theo';
+  }
+  function pick(k){
+    document.querySelectorAll('.choice').forEach(b=>b.style.borderColor='');
+    document.querySelectorAll('.choice')[k].style.borderColor='var(--acc)';
+    answers[idx] = {item_id: qs[idx].id, choice_index: k};
+    document.getElementById('nextBtn').disabled=false;
+  }
+  function next(){ if(idx<qs.length-1){ idx++; render(); window.scrollTo(0,0);} else submit(); }
+  async function submit(){
+    document.getElementById('nav').style.display='none';
+    document.getElementById('stage').innerHTML='<div class="card center"><span class="spin"></span><p class="mut" style="margin-top:1rem">Đang chấm…</p></div>';
+    const r = await api(`/api/v1/learn/challenge/${CODE}`, {answers: answers.filter(Boolean)});
+    const d = r.data || {};
+    document.getElementById('steps').innerHTML = qs.map(()=>'<i class="done"></i>').join('');
+    document.getElementById('stage').innerHTML = `<div class="card center">
+      <div style="font-size:2.6rem">${d.passed?'🏆':'📚'}</div>
+      <h2 style="margin:.5rem 0">${d.passed?'Vượt thành công':'Chưa đạt'}</h2>
+      <div class="pill ${d.passed?'pill-ok':'pill-warn'}" style="margin-bottom:1rem">${d.score||0}% (cần ${THRESH}%)</div>
+      <p class="mut" style="margin-bottom:1.3rem">${esc(d.message_vi||'')}</p>
+      ${d.passed
+        ? `<a class="btn btn-lg btn-full" href="/learn">Về lộ trình (đã mở khoá)</a>`
+        : `<a class="btn btn-lg btn-full" href="/learn/lesson/${CODE}">Học bài này</a>
+           <a class="btn btn-quiet btn-full" style="margin-top:.5rem" href="/learn">Về lộ trình</a>`}</div>`;
+  }
+  return { start, pick, next };
+})();
+</script>
+{% endblock %}
