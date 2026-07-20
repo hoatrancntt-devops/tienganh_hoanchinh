@@ -60,53 +60,57 @@ sentence_patterns:
       time: ["last night", "this morning", "on Friday"]
 
 dialogue:
-  context_vi: "Standup buổi sáng, bạn báo việc đã làm hôm qua."
+  context_vi: "Sáng ngày thứ hai đi làm — standup đầu tiên của bạn. Linh đi một vòng hỏi từng người, và sắp tới lượt bạn."
   turns:
-    - {speaker: A, en: "What did you do yesterday?", vi: "Hôm qua bạn làm gì?"}
-    - {speaker: B, en: "I finished the report and checked the logs.", vi: "Tôi đã xong báo cáo và kiểm tra log."}
-    - {speaker: A, en: "Did you fix the network issue?", vi: "Bạn đã sửa lỗi mạng chưa?"}
-    - {speaker: B, en: "Yes, we fixed it and deployed it last night.", vi: "Rồi, chúng tôi đã sửa và triển khai tối qua."}
+    - {speaker: Linh, en: "What did you do yesterday?", vi: "Hôm qua bạn làm gì?"}
+    - {speaker: You, en: "I finished the report and checked the logs.", vi: "Em đã xong báo cáo và kiểm tra log."}
+    - {speaker: Linh, en: "Did you fix the network issue?", vi: "Bạn sửa xong lỗi mạng chưa?"}
+    - {speaker: You, en: "Yes, we fixed it and deployed it last night.", vi: "Rồi ạ, tụi em đã sửa và triển khai tối qua."}
 
 listening_snippet:
   id: LS-F03
   speed: 0.85
   voice: en_US_female
-  transcript_en: "I finished the report yesterday and I asked Minh about the network issue."
-  transcript_vi: "Hôm qua tôi đã xong báo cáo và tôi đã hỏi Minh về vấn đề mạng."
+  context_vi: >
+    Bạn nói xong, Linh gật đầu rồi nhắc lại cho cả team nghe. Đây là lúc bạn biết mình có bị
+    hiểu nhầm hay không: "finish" hay "finished", "ask" hay "asked". Một âm /t/ quyết định
+    việc đó đã xong hay còn đang dở.
+  transcript_en: "OK, so the report is done — you finished it yesterday. And you asked Minh about the network issue, right? Good, then we can close it."
+  transcript_vi: "Được, vậy báo cáo xong rồi — bạn hoàn thành hôm qua. Và bạn đã hỏi Minh về vấn đề mạng, đúng không? Tốt, vậy là đóng được."
   questions:
-    - q_vi: "Việc này đã xong hay chưa xong?"
-      choices: ["Đã xong hôm qua", "Đang làm", "Sẽ làm ngày mai"]
+    - q_vi: "Báo cáo đã xong hay còn dở?"
+      choices: ["Đã xong hôm qua", "Đang làm dở", "Sẽ làm hôm nay"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói hỏi ai về vấn đề mạng?"
-      choices: ["Minh", "quản lý", "khách hàng"]
+    - q_vi: "Bạn đã hỏi ai về vấn đề mạng?"
+      choices: ["Minh", "Quản lý", "Khách hàng"]
       answer: 0
       difficulty: 1
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "I finished the report yesterday."
-    prompt_vi: "Đọc to. Âm cuối của finished là /t/, không phải /ɪd/."
+    prompt_vi: "Đến lượt bạn báo cáo ở standup. Đọc to — âm cuối của finished là /t/, không phải /ɪd/. Mất nó là Linh tưởng bạn còn đang làm dở."
     ipa: "/aɪ ˈfɪnɪʃt ðə rɪˈpɔːrt ˈjɛstərdeɪ/"
     focus_phonemes: [t]
   - kind: read_aloud
     expected_text: "I asked him about the issue."
-    prompt_vi: "Đọc to. Cụm /skt/ trong asked là cụm khó nhất bài này."
+    prompt_vi: "Linh hỏi bạn đã trao đổi với Minh chưa. Đọc to — cụm /skt/ trong asked là cụm khó nhất bài này."
     ipa: "/aɪ æskt hɪm əˈbaʊt ðə ˈɪʃuː/"
     focus_phonemes: [t, k]
   - kind: shadow
     expected_text: "We deployed it last night."
-    prompt_vi: "Nghe rồi nhắc lại. Âm cuối deployed là /d/ — có rung."
+    prompt_vi: "Bạn kể phần Minh và bạn làm tối qua. Nghe rồi nhắc lại — âm cuối deployed là /d/, có rung."
     ipa: "/wiː dɪˈplɔɪd ɪt læst naɪt/"
     focus_phonemes: [d]
   - kind: shadow
     expected_text: "We fixed the issue and checked the logs."
-    prompt_vi: "Nghe rồi nhắc lại. Hai âm /t/ cuối trong một câu."
+    prompt_vi: "Gói cả hai việc vào một câu cho Linh. Nghe rồi nhắc lại — hai âm /t/ cuối trong một câu."
     ipa: "/wiː fɪkst ðə ˈɪʃuː ænd tʃɛkt ðə lɔːɡz/"
     focus_phonemes: [t]
   - kind: respond
     prompt_en: "What did you do yesterday?"
-    prompt_vi: "Trả lời bằng một việc bạn đã làm hôm qua. Nhớ âm cuối."
+    prompt_vi: "Linh hỏi bạn ở standup. Trả lời bằng một việc bạn đã làm hôm qua — nhớ âm cuối, đó là thứ duy nhất báo rằng việc đã xong."
     accept_patterns:
       - "I finished the {thing}"
       - "I checked the {thing}"
@@ -153,7 +157,7 @@ mini_quiz:
     difficulty: 3
     focus_phonemes: [t]
   - kind: fill_chunk
-    prompt_vi: "Yesterday I ___ him about the issue."
+    prompt_vi: "Bạn báo với Linh: “Yesterday I ___ Minh about the issue.”"
     choices: [ask, asked, asking]
     answer: 1
     difficulty: 2

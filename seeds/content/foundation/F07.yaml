@@ -59,25 +59,30 @@ sentence_patterns:
       request: ["send me the link", "check the logs", "say that again"]
 
 dialogue:
-  context_vi: "Bạn cần thông tin về cuộc họp và một ticket."
+  context_vi: >
+    Sáng thứ Năm. Bạn cần mấy thông tin để bắt đầu ngày làm việc — nhưng hôm qua Linh đã nhắc
+    bạn một câu: hỏi mà thiếu do/does thì nghe như ra lệnh chứ không phải nhờ.
   turns:
-    - {speaker: A, en: "What time does the meeting start?", vi: "Cuộc họp bắt đầu lúc mấy giờ?"}
-    - {speaker: B, en: "Ten thirty. Where are you now?", vi: "Mười giờ rưỡi. Bạn đang ở đâu?"}
-    - {speaker: A, en: "Still at my desk. Who is handling ticket 402?", vi: "Vẫn ở bàn. Ai đang phụ trách ticket 402?"}
-    - {speaker: B, en: "Minh is. Could you send him the logs?", vi: "Minh. Bạn gửi log cho anh ấy được không?"}
+    - {speaker: You, en: "What time does the meeting start?", vi: "Cuộc họp bắt đầu lúc mấy giờ ạ?"}
+    - {speaker: Linh, en: "Ten thirty. Where are you now?", vi: "Mười giờ rưỡi. Bạn đang ở đâu?"}
+    - {speaker: You, en: "Still at my desk. Who is handling ticket 402?", vi: "Em vẫn ở bàn ạ. Ai đang phụ trách ticket 402?"}
+    - {speaker: Linh, en: "Minh is. Could you send him the logs?", vi: "Minh. Bạn gửi log cho anh ấy được không?"}
 
 listening_snippet:
   id: LS-F07
   speed: 0.9
   voice: en_US_female
-  transcript_en: "What time does the standup start? And who is handling the network issue today?"
-  transcript_vi: "Standup bắt đầu lúc mấy giờ? Và hôm nay ai phụ trách vấn đề mạng?"
+  context_vi: >
+    Linh chưa đi hẳn, quay lại hỏi bạn thêm. Nghe kỹ vị trí của "does" — nó đứng trước chủ ngữ,
+    và đó là dấu hiệu duy nhất cho biết đây là câu hỏi chứ không phải câu kể.
+  transcript_en: "One more thing. What time does the standup start tomorrow? And who is handling the network issue today?"
+  transcript_vi: "Một điều nữa. Mai standup bắt đầu lúc mấy giờ? Và hôm nay ai phụ trách vấn đề mạng?"
   questions:
-    - q_vi: "Người nói hỏi mấy điều?"
+    - q_vi: "Linh hỏi bạn mấy điều?"
       choices: ["Một", "Hai", "Ba"]
       answer: 1
       difficulty: 3
-    - q_vi: "Câu hỏi thứ hai là về gì?"
+    - q_vi: "Câu hỏi thứ hai của Linh là về gì?"
       choices: ["Ai phụ trách vấn đề mạng", "Standup ở đâu", "Vì sao mạng hỏng"]
       answer: 0
       difficulty: 2
@@ -85,27 +90,27 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "What time does the meeting start?"
-    prompt_vi: "Đọc to. Chú ý “does” nằm trước chủ ngữ."
+    prompt_vi: "Bạn hỏi Linh giờ họp. Đọc to — chú ý “does” nằm trước chủ ngữ; thiếu nó là câu nghe cộc."
     ipa: "/wʌt taɪm dʌz ðə ˈmiːtɪŋ stɑːrt/"
     focus_phonemes: [t, z]
   - kind: read_aloud
     expected_text: "Could you send me the link?"
-    prompt_vi: "Đọc to. Giọng đi lên ở cuối câu."
+    prompt_vi: "Bạn cần Linh gửi link phòng họp. Đọc to — giọng đi lên ở cuối câu, và “Could you” là hai từ đổi câu từ ra lệnh sang nhờ vả."
     ipa: "/kʊd juː sɛnd miː ðə lɪŋk/"
     focus_phonemes: [d, k]
   - kind: shadow
     expected_text: "Who is handling this ticket?"
-    prompt_vi: "Nghe rồi nhắc lại."
+    prompt_vi: "Bạn hỏi ai đang cầm ticket 402. Nghe rồi nhắc lại."
     ipa: "/huː ɪz ˈhændlɪŋ ðɪs ˈtɪkɪt/"
     focus_phonemes: [h, ŋ]
   - kind: shadow
     expected_text: "Why did the deployment fail?"
-    prompt_vi: "Nghe rồi nhắc lại. did đứng trước chủ ngữ, deployment giữ nguyên."
+    prompt_vi: "Vụ triển khai hôm thứ Tư vẫn chưa ai giải thích. Nghe rồi nhắc lại — did đứng trước chủ ngữ, deployment giữ nguyên."
     ipa: "/waɪ dɪd ðə dɪˈplɔɪmənt feɪl/"
     focus_phonemes: [d, ð]
   - kind: respond
     prompt_en: "The meeting is at ten thirty."
-    prompt_vi: "Bạn không rõ địa điểm. Hỏi lại."
+    prompt_vi: "Linh báo giờ nhưng chưa nói phòng nào. Hỏi lại cho rõ — nhớ đủ trật tự từ."
     accept_patterns:
       - "Where is the meeting"
       - "Where is it"
@@ -154,12 +159,12 @@ mini_quiz:
     answer: 1
     difficulty: 3
   - kind: mcq
-    prompt_vi: "Bạn cần đồng nghiệp gửi link. Câu nào nghe lịch sự nhất?"
+    prompt_vi: "Bạn cần Linh gửi link phòng họp. Câu nào nghe lịch sự nhất?"
     choices: ["Send me the link.", "Could you send me the link?", "You send link."]
     answer: 1
     difficulty: 2
   - kind: fill_chunk
-    prompt_vi: "___ is handling this ticket?"
+    prompt_vi: "Bạn hỏi Linh về ticket 402: “___ is handling this ticket?”"
     choices: [Who, Whose, Whom]
     answer: 0
     difficulty: 2

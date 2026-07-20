@@ -61,26 +61,34 @@ sentence_patterns:
       action: ["restart the service", "check the logs", "ping me"]
 
 dialogue:
-  context_vi: "Cuối ca, bạn bàn giao cho đồng nghiệp ca sau."
+  context_vi: >
+    06:00 sáng thứ Sáu. Bạn đã thức ba tiếng và vẫn chưa tìm ra nguyên nhân. Priya Nair ở Singapore
+    vừa vào ca. Ba phút bàn giao này quyết định Priya bắt đầu từ đâu — nói thiếu một thứ là chị ấy
+    mất một tiếng đi lại đường bạn đã đi.
   turns:
-    - {speaker: A, en: "Okay, I'm handing over to you now. Two things.", vi: "Rồi, mình bàn giao cho bạn đây. Có hai việc."}
-    - {speaker: B, en: "Go ahead.", vi: "Nói đi."}
-    - {speaker: A, en: "First, the backup job is still open — keep an eye on the disk space. Second, the login issue is resolved, notes are in the ticket.", vi: "Một, job sao lưu vẫn đang chạy — theo dõi dung lượng ổ đĩa. Hai, lỗi đăng nhập đã xong, ghi chú trong ticket."}
-    - {speaker: B, en: "Got it. Anything I should watch for?", vi: "Rõ. Có gì tôi cần để ý không?"}
-    - {speaker: A, en: "If the timeout happens again, just restart the service. That fixed it today.", vi: "Nếu lỗi timeout tái diễn, cứ khởi động lại dịch vụ. Hôm nay làm vậy là ổn."}
+    - {speaker: You, en: "Priya, I'm handing over to you now. Two things.", vi: "Priya, mình bàn giao cho bạn đây. Có hai việc."}
+    - {speaker: Priya, en: "Go ahead. I have the incident channel open in front of me.", vi: "Bạn nói đi. Mình đang mở kênh sự cố trước mặt đây."}
+    - {speaker: You, en: "First, INC-2291 is still open — portal login down since two, about twenty users. I've ruled out the users' browsers.", vi: "Một, INC-2291 vẫn đang mở — đăng nhập cổng hỏng từ hai giờ, khoảng hai mươi người. Mình đã loại trừ trình duyệt người dùng."}
+    - {speaker: Priya, en: "Understood. So the next places to look are the network and last night's deploy.", vi: "Mình hiểu rồi. Vậy chỗ cần xem tiếp là mạng và bản deploy tối qua."}
+    - {speaker: You, en: "Exactly. Second, the backup job is still open — keep an eye on the disk space. It looked odd when I was reading the logs.", vi: "Đúng vậy. Hai, job sao lưu vẫn đang mở — để mắt tới dung lượng ổ đĩa. Lúc đọc log mình thấy nó hơi lạ."}
+    - {speaker: Priya, en: "Noted. And David expects an update every thirty minutes, is that correct?", vi: "Mình ghi lại. Và David cần cập nhật mỗi ba mươi phút, đúng không?"}
+    - {speaker: You, en: "Correct. Next one is due at six thirty. The notes are in the ticket.", vi: "Đúng. Lần tới là sáu giờ rưỡi. Ghi chú nằm trong ticket."}
 
 listening_snippet:
   id: LS-I07
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Handing over to you. The backup job is still open, keep an eye on the disk space. The login issue is resolved. If the timeout happens again, restart the service."
-  transcript_vi: "Bàn giao cho bạn. Job sao lưu vẫn mở, theo dõi dung lượng ổ đĩa. Lỗi đăng nhập đã xong. Nếu timeout tái diễn, khởi động lại dịch vụ."
+  context_vi: >
+    Priya đọc lại bản bàn giao bằng lời của chị ấy trước khi bạn đi ngủ. Cách nói của Priya là câu
+    đầy đủ, chính xác — nghe kỹ xem chị ấy nhắc lại đúng mấy việc.
+  transcript_en: "Let me repeat it back so we are aligned. INC-2291 is still open, login down since two, browsers already ruled out. The backup job is still open and I will keep an eye on the disk space. If the timeout happens again, I will restart the service. Get some sleep."
+  transcript_vi: "Để mình nhắc lại cho khớp. INC-2291 vẫn đang mở, đăng nhập hỏng từ hai giờ, trình duyệt đã loại trừ. Job sao lưu vẫn đang mở và mình sẽ theo dõi dung lượng ổ đĩa. Nếu timeout tái diễn, mình sẽ khởi động lại dịch vụ. Bạn đi ngủ đi."
   questions:
-    - q_vi: "Việc gì vẫn đang mở?"
+    - q_vi: "Ngoài INC-2291, việc gì vẫn đang mở?"
       choices: ["Job sao lưu", "Lỗi đăng nhập", "Không có gì"]
       answer: 0
       difficulty: 3
-    - q_vi: "Nếu timeout tái diễn thì làm gì?"
+    - q_vi: "Priya sẽ làm gì nếu timeout tái diễn?"
       choices: ["Khởi động lại dịch vụ", "Tắt máy chủ", "Gọi khách hàng"]
       answer: 0
       difficulty: 3
@@ -88,22 +96,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "I'm handing over to you now. Two things."
-    prompt_vi: "Đọc to. Mở đầu bàn giao và báo số lượng việc để người nghe chuẩn bị."
+    prompt_vi: "06:00, Priya vừa vào ca. Đọc to — báo trước số việc để chị ấy biết cần ghi mấy dòng."
     ipa: "/aɪm ˈhændɪŋ ˈoʊvər tuː juː naʊ tuː θɪŋz/"
     focus_phonemes: [h, ŋ, θ]
   - kind: read_aloud
     expected_text: "The backup job is still open. Keep an eye on the disk space."
-    prompt_vi: "Đọc to. Việc đang mở + điều cần theo dõi đi cùng nhau."
+    prompt_vi: "Việc thứ hai bạn giao cho Priya — cái bạn thấy lạ trong log lúc 5 giờ. Đọc to."
     ipa: "/ðə ˈbækʌp dʒɒb ɪz stɪl ˈoʊpən kiːp ən aɪ ɒn ðə dɪsk speɪs/"
     focus_phonemes: [dʒ, p, k]
   - kind: shadow
     expected_text: "If it happens again, just restart the service."
-    prompt_vi: "Nghe rồi nhắc lại. Cho người ca sau một chỉ dẫn hành động rõ."
+    prompt_vi: "Cho Priya một chỉ dẫn để chị ấy không phải gọi bạn dậy. Nghe rồi nhắc lại."
     ipa: "/ɪf ɪt ˈhæpənz əˈɡɛn dʒʌst ˈriːstɑːrt ðə ˈsɜːrvɪs/"
     focus_phonemes: [f, dʒ, s]
   - kind: respond
-    prompt_en: "Anything I need to know before you leave?"
-    prompt_vi: "Bàn giao: một việc đang mở cần theo dõi + một việc đã xong."
+    prompt_en: "Before you sign off — anything else I need to know?"
+    prompt_vi: "Priya hỏi trước khi bạn tắt máy. Bàn giao: một việc đang mở cần theo dõi + một việc đã loại trừ."
     accept_patterns:
       - "The backup job is still open keep an eye on {thing} the login issue is resolved"
       - "One ticket is still open watch the {thing} everything else is resolved"

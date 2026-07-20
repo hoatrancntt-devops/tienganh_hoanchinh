@@ -20,17 +20,17 @@ vocabulary:
   - term: "Steps to reproduce"
     ipa: "/stɛps tuː ˌriːprəˈdjuːs/"
     meaning_vi: "các bước tái hiện lỗi"
-    chunk: "Steps to reproduce: 1. Open the app…"
+    chunk: "Steps to reproduce: 1. Open the Portal…"
     tags: [it_english]
   - term: "Expected"
     ipa: "/ɪkˈspɛktɪd/"
     meaning_vi: "kết quả mong đợi"
-    chunk: "Expected: the file saves."
+    chunk: "Expected: I see my invoices."
     tags: [it_english]
   - term: "Actual"
     ipa: "/ˈæktʃuəl/"
     meaning_vi: "kết quả thực tế"
-    chunk: "Actual: it shows an error."
+    chunk: "Actual: sign-in failed."
     tags: [it_english]
   - term: "Priority"
     ipa: "/praɪˈɒrɪti/"
@@ -45,7 +45,7 @@ vocabulary:
   - term: "assigned to"
     ipa: "/əˈsaɪnd tuː/"
     meaning_vi: "được giao cho"
-    chunk: "Assigned to: the backend team."
+    chunk: "Assigned to: Vertex IT support."
     tags: [it_english]
 
 sentence_patterns:
@@ -56,25 +56,33 @@ sentence_patterns:
       actual: ["it shows an error", "the page is blank"]
 
 dialogue:
-  context_vi: "Một bug report điển hình trong hệ thống quản lý ticket (đọc theo trường)."
+  context_vi: >
+    Ticket #4417 — nguyên văn tiếng Anh Emma tự gõ lúc 2 giờ sáng, trước khi cô ấy gọi điện.
+    Emma là kế toán, không phải dân kỹ thuật, nhưng cô ấy viết đủ ba trường vàng. Đây là cái
+    bạn đã đọc lúc 3 giờ sáng, khi ca của bạn bắt đầu.
   turns:
-    - {speaker: A, en: "Title: Save button does nothing on the profile page", vi: "Tiêu đề: Nút Lưu không hoạt động ở trang hồ sơ"}
-    - {speaker: A, en: "Steps to reproduce: 1. Open profile. 2. Edit name. 3. Click Save.", vi: "Các bước tái hiện: 1. Mở hồ sơ. 2. Sửa tên. 3. Bấm Lưu."}
-    - {speaker: A, en: "Expected: the name is saved. Actual: nothing happens, no error.", vi: "Mong đợi: tên được lưu. Thực tế: không có gì xảy ra, không báo lỗi."}
-    - {speaker: A, en: "Priority: high. Reproducible: every time. Assigned to: frontend team.", vi: "Ưu tiên: cao. Tái hiện: lần nào cũng bị. Giao cho: đội frontend."}
+    - {speaker: "", en: "Ticket #4417 — I can't log in to the Portal", vi: "Ticket #4417 — Tôi không đăng nhập được vào Portal"}
+    - {speaker: "", en: "Reported by: Emma Brooks (Northwind, Accounting) — Friday 02:00", vi: "Người báo: Emma Brooks (Northwind, phòng Kế toán) — 02:00 thứ Sáu"}
+    - {speaker: "", en: "Steps to reproduce: 1. Open the Portal. 2. Enter my email and password. 3. Click Sign in.", vi: "Các bước tái hiện: 1. Mở Portal. 2. Nhập email và mật khẩu của tôi. 3. Bấm Sign in."}
+    - {speaker: "", en: "Expected: I see my invoices. Actual: a red box says sign-in failed.", vi: "Mong đợi: tôi thấy danh sách hoá đơn. Thực tế: một ô đỏ báo đăng nhập thất bại."}
+    - {speaker: "", en: "Priority: high. Reproducible: every time, on two computers. Assigned to: Vertex IT support.", vi: "Ưu tiên: cao. Tái hiện: lần nào cũng bị, trên hai máy khác nhau. Giao cho: IT support của Vertex."}
+    - {speaker: "", en: "Note from reporter: I did not change my password. Three colleagues have the same problem.", vi: "Ghi chú của người báo: Tôi không hề đổi mật khẩu. Ba đồng nghiệp của tôi cũng bị y hệt."}
 
 listening_snippet:
   id: LS-R05
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Steps to reproduce: open profile, edit name, click Save. Expected: the name is saved. Actual: nothing happens. Priority is high and it's reproducible every time."
-  transcript_vi: "Các bước tái hiện: mở hồ sơ, sửa tên, bấm Lưu. Mong đợi: tên được lưu. Thực tế: không có gì xảy ra. Ưu tiên cao và lần nào cũng bị."
+  context_vi: >
+    Hệ thống ticket đọc lại nội dung Emma vừa gửi để bạn nghe khi nhận ca lúc 3 giờ sáng.
+    Nghe một lần và nắm được ba trường vàng là đủ để bắt đầu chẩn đoán.
+  transcript_en: "Steps to reproduce: open the Portal, enter email and password, click Sign in. Expected: I see my invoices. Actual: a red box says sign-in failed. Priority is high and it's reproducible every time."
+  transcript_vi: "Các bước tái hiện: mở Portal, nhập email và mật khẩu, bấm Sign in. Mong đợi: tôi thấy hoá đơn của mình. Thực tế: một ô đỏ báo đăng nhập thất bại. Ưu tiên cao và lần nào cũng bị."
   questions:
-    - q_vi: "Kết quả thực tế khi bấm Lưu là gì?"
-      choices: ["Không có gì xảy ra", "Tên được lưu", "Máy treo"]
+    - q_vi: "Kết quả thực tế khi Emma bấm Sign in là gì?"
+      choices: ["Hiện ô đỏ báo đăng nhập thất bại", "Cô ấy vào được trang hoá đơn", "Máy treo"]
       answer: 0
       difficulty: 3
-    - q_vi: "Mức ưu tiên là gì?"
+    - q_vi: "Mức ưu tiên của ticket là gì?"
       choices: ["Cao", "Thấp", "Không ghi"]
       answer: 0
       difficulty: 2
@@ -113,7 +121,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Trường nào giúp bạn tự thấy lỗi?"
+    prompt_vi: "Trong ticket #4417, trường nào giúp bạn tự tái hiện lỗi của Emma?"
     choices: ["Steps to reproduce", "Priority", "Assigned to"]
     answer: 0
     difficulty: 2
@@ -126,17 +134,17 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“Reproducible: every time” nghĩa là?"
+    prompt_vi: "Emma ghi “Reproducible: every time, on two computers”. Nghĩa là?"
     choices: ["Lần nào cũng tái hiện được lỗi", "Chỉ bị một lần", "Không thể tái hiện"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Có hai bug: một “Priority: high”, một “low”. Xử lý cái nào trước?"
+    prompt_vi: "Hàng đợi có hai ticket: #4417 “Priority: high”, một cái khác “low”. Xử lý cái nào trước?"
     choices: ["High", "Low", "Cái nào cũng được"]
     answer: 0
     difficulty: 2
   - kind: mcq_listen
-    prompt_vi: "Kết quả thực tế khi bấm Lưu?"
+    prompt_vi: "Một ticket khác trong hàng đợi. Nghe: kết quả thực tế là gì?"
     audio_text: "Actual: nothing happens."
     choices: ["Không có gì xảy ra", "Lưu thành công", "Báo lỗi đỏ"]
     answer: 0

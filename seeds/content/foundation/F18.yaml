@@ -58,47 +58,53 @@ sentence_patterns:
       chunk3: ["and users can't log in"]
 
 dialogue:
-  context_vi: "Dấu / là chỗ ngắt nhẹ. Nói từng cụm, lấy hơi ở dấu /."
+  context_vi: >
+    Trưa thứ Sáu. Linh nghe bạn tập phần báo cáo và dừng bạn lại: câu đúng, từ đúng, nhưng bạn nói
+    hết trong một hơi nên không ai kịp hiểu. Dấu / là chỗ ngắt nhẹ để lấy hơi.
   turns:
-    - {speaker: A, en: "The server is down / since this morning / and users can't log in.", vi: "Server sập / từ sáng nay / và người dùng không đăng nhập được."}
-    - {speaker: B, en: "Okay / I'll check the logs / and get back to you.", vi: "Được / tôi sẽ xem log / rồi báo lại bạn."}
-    - {speaker: A, en: "Thanks / take your time / it's not urgent.", vi: "Cảm ơn / cứ từ từ / không gấp đâu."}
+    - {speaker: Linh, en: "Say it again — in three chunks, not one breath.", vi: "Nói lại đi — chia ba cụm, đừng nói một hơi."}
+    - {speaker: You, en: "The server is down / since this morning / and users can't log in.", vi: "Server sập / từ sáng nay / và người dùng không đăng nhập được."}
+    - {speaker: Linh, en: "That's it. David needs those gaps to follow you.", vi: "Đúng rồi. David cần đúng mấy khoảng nghỉ đó để theo kịp bạn."}
+    - {speaker: You, en: "Okay / I'll check the logs / and get back to you.", vi: "Vâng / em sẽ xem log / rồi báo lại chị."}
 
 listening_snippet:
   id: LS-F18
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Linh đọc lại cả hai câu ở tốc độ thật, lần này không đánh dấu chỗ ngắt. Bẫy: chỗ ngắt không nằm
+    ở dấu chấm mà nằm giữa các cụm ý. Nghe xem Linh lấy hơi ở đâu.
   transcript_en: "The server is down since this morning, and users can't log in. I'll check the logs and get back to you."
   transcript_vi: "Server sập từ sáng nay, và người dùng không đăng nhập được. Tôi sẽ xem log rồi báo lại."
   questions:
-    - q_vi: "Cách nói câu dài dễ nghe nhất là gì?"
-      choices: ["Chia thành cụm, ngắt nhẹ giữa các cụm", "Nói liền một hơi", "Nói thật nhanh"]
+    - q_vi: "Linh nói câu dài theo cách nào?"
+      choices: ["Chia thành cụm ý, ngắt nhẹ giữa các cụm", "Nói liền một hơi", "Nói thật nhanh"]
       answer: 0
       difficulty: 3
-    - q_vi: "Nên lấy hơi ở đâu?"
-      choices: ["Ở chỗ ngắt giữa các cụm ý", "Giữa mỗi từ", "Không cần lấy hơi"]
+    - q_vi: "Linh lấy hơi ở đâu?"
+      choices: ["Ở chỗ ngắt giữa các cụm ý", "Giữa mỗi từ", "Không lấy hơi lần nào"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "The server is down since this morning, and users can't log in."
-    prompt_vi: "Đọc to theo ba cụm: “The server is down / since this morning / and users can't log in.” Ngắt nhẹ ở dấu phẩy."
+    prompt_vi: "Câu Linh vừa bắt bạn nói lại. Đọc to theo ba cụm: “The server is down / since this morning / and users can't log in.” Ngắt nhẹ ở dấu phẩy."
     ipa: "/ðə ˈsɜːrvər ɪz daʊn sɪns ðɪs ˈmɔːrnɪŋ ænd ˈjuːzərz kænt lɒɡ ɪn/"
     focus_phonemes: [s, d, n]
   - kind: read_aloud
     expected_text: "I'll check the logs and get back to you."
-    prompt_vi: "Đọc to theo hai cụm: “I'll check the logs / and get back to you.” Nhấn “check” và “back”."
+    prompt_vi: "Câu bạn nhận việc trước Linh. Đọc to theo hai cụm: “I'll check the logs / and get back to you.” Nhấn “check” và “back”."
     ipa: "/aɪl tʃɛk ðə lɒɡz ænd ɡɛt bæk tuː juː/"
     focus_phonemes: [tʃ, ɡ, b]
   - kind: shadow
     expected_text: "Take your time, it's not urgent."
-    prompt_vi: "Nghe rồi nhắc lại. Ngắt nhẹ ở dấu phẩy, giọng thả lỏng."
+    prompt_vi: "Linh trấn an bạn trước buổi chiều. Nghe rồi nhắc lại — ngắt nhẹ ở dấu phẩy, giọng thả lỏng."
     ipa: "/teɪk jʊr taɪm ɪts nɒt ˈɜːrdʒənt/"
     focus_phonemes: [t, dʒ]
   - kind: respond
     prompt_en: "Can you explain what happened?"
-    prompt_vi: "Nói một câu dài theo cụm, ngắt nhẹ ở giữa các ý."
+    prompt_vi: "Linh hỏi bạn kể lại chuyện đã xảy ra. Nói một câu dài theo cụm, ngắt nhẹ giữa các ý."
     accept_patterns:
       - "The server is down since this morning and users can't log in"
       - "I checked the logs and found the error"

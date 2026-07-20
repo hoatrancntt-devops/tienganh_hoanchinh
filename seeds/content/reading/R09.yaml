@@ -20,7 +20,7 @@ vocabulary:
   - term: "vulnerability"
     ipa: "/ˌvʌlnərəˈbɪlɪti/"
     meaning_vi: "lỗ hổng bảo mật"
-    chunk: "A vulnerability was found."
+    chunk: "An authentication bypass vulnerability was found."
     tags: [it_english]
   - term: "severity"
     ipa: "/sɪˈvɛrɪti/"
@@ -30,22 +30,22 @@ vocabulary:
   - term: "affected versions"
     ipa: "/əˈfɛktɪd ˈvɜːrʒənz/"
     meaning_vi: "các phiên bản bị ảnh hưởng"
-    chunk: "Affected versions: 2.0 to 2.4."
+    chunk: "Affected versions: 5.0.0 to 5.1.1."
     tags: [it_english]
   - term: "patch"
     ipa: "/pætʃ/"
     meaning_vi: "bản vá"
-    chunk: "A patch is available."
+    chunk: "A patch is available in 5.1.2."
     tags: [it_english]
   - term: "as soon as possible"
     ipa: "/æz suːn æz ˈpɒsəbəl/"
     meaning_vi: "càng sớm càng tốt"
-    chunk: "Update as soon as possible."
+    chunk: "Upgrade as soon as possible."
     tags: [it_english]
   - term: "mitigation"
     ipa: "/ˌmɪtɪˈɡeɪʃən/"
     meaning_vi: "cách giảm thiểu (tạm thời)"
-    chunk: "Mitigation: disable the feature."
+    chunk: "Mitigation: block the login endpoint."
     tags: [it_english]
 
 sentence_patterns:
@@ -57,27 +57,34 @@ sentence_patterns:
       fix: ["version 2.5", "version 3.1"]
 
 dialogue:
-  context_vi: "Một cảnh báo bảo mật cho một thư viện phần mềm (đọc theo trường)."
+  context_vi: >
+    Advisory này về hộp thư của team chiều thứ Năm. Đọc xong, Linh quyết định deploy ngay trong đêm
+    thay vì chờ tới thứ Hai. Quyết định đó đúng. Đây là mắt xích đầu tiên của cả sự cố — và bạn đọc
+    lại để hiểu vì sao không ai làm sai mà mọi thứ vẫn hỏng.
   turns:
-    - {speaker: A, en: "Security Advisory: Remote code execution in LibX.", vi: "Cảnh báo bảo mật: Thực thi mã từ xa trong LibX."}
-    - {speaker: A, en: "Severity: Critical.", vi: "Mức nghiêm trọng: Nghiêm trọng (critical)."}
-    - {speaker: A, en: "Affected versions: 2.0 to 2.4.", vi: "Phiên bản ảnh hưởng: 2.0 đến 2.4."}
-    - {speaker: A, en: "Action: Update to version 2.5 as soon as possible.", vi: "Hành động: Nâng cấp lên 2.5 càng sớm càng tốt."}
-    - {speaker: A, en: "Mitigation: If you can't update now, disable the import feature.", vi: "Giảm thiểu: Nếu chưa nâng cấp được, tắt tính năng import."}
+    - {speaker: "", en: "Security Advisory CVE-2026-4471 — authentication bypass in AuthKit.", vi: "Cảnh báo bảo mật CVE-2026-4471 — vượt qua xác thực trong AuthKit."}
+    - {speaker: "", en: "Severity: Critical. An attacker can sign in as any user without a password.", vi: "Mức nghiêm trọng: Critical. Kẻ tấn công có thể đăng nhập vào bất kỳ tài khoản nào mà không cần mật khẩu."}
+    - {speaker: "", en: "Affected versions: 5.0.0 to 5.1.1.", vi: "Phiên bản bị ảnh hưởng: 5.0.0 đến 5.1.1."}
+    - {speaker: "", en: "A patch is available in 5.1.2.", vi: "Đã có bản vá ở phiên bản 5.1.2."}
+    - {speaker: "", en: "Action: Upgrade to 5.1.2 as soon as possible.", vi: "Hành động: Nâng lên 5.1.2 càng sớm càng tốt."}
+    - {speaker: "", en: "Mitigation: If you cannot upgrade tonight, block external access to the login endpoint.", vi: "Giảm thiểu: Nếu chưa nâng cấp được trong đêm nay, chặn truy cập từ ngoài vào endpoint đăng nhập."}
 
 listening_snippet:
   id: LS-R09
   speed: 1.0
   voice: en_US_female
-  transcript_en: "This is a critical vulnerability affecting versions 2.0 to 2.4. Update to version 2.5 as soon as possible. If you can't, disable the import feature as a temporary mitigation."
-  transcript_vi: "Đây là lỗ hổng nghiêm trọng ảnh hưởng bản 2.0 đến 2.4. Nâng cấp lên 2.5 càng sớm càng tốt. Nếu chưa được, tắt tính năng import để giảm thiểu tạm thời."
+  context_vi: >
+    Linh đọc to advisory này trong cuộc gọi ngắn chiều thứ Năm, trước khi cả team đồng ý deploy
+    trong đêm. Nghe kỹ hai thứ: mức độ và phương án tạm nếu chưa vá kịp.
+  transcript_en: "This is a critical vulnerability affecting AuthKit 5.0.0 through 5.1.1. Upgrade to 5.1.2 as soon as possible. If you cannot upgrade tonight, block external access to the login endpoint."
+  transcript_vi: "Đây là lỗ hổng nghiêm trọng ảnh hưởng AuthKit từ 5.0.0 đến 5.1.1. Nâng lên 5.1.2 càng sớm càng tốt. Nếu chưa nâng cấp được đêm nay, chặn truy cập từ ngoài vào endpoint đăng nhập."
   questions:
-    - q_vi: "Mức nghiêm trọng là gì?"
+    - q_vi: "Mức nghiêm trọng của CVE-2026-4471 là gì?"
       choices: ["Nghiêm trọng (critical)", "Thấp", "Không ghi"]
       answer: 0
       difficulty: 2
-    - q_vi: "Nếu chưa nâng cấp được thì làm gì?"
-      choices: ["Tắt tính năng import", "Không làm gì", "Xoá phần mềm"]
+    - q_vi: "Nếu chưa nâng cấp kịp trong đêm thì làm gì?"
+      choices: ["Chặn truy cập từ ngoài vào endpoint đăng nhập", "Không làm gì", "Gỡ hẳn AuthKit"]
       answer: 0
       difficulty: 3
 
@@ -115,12 +122,12 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Trường nào cho biết mình có bị ảnh hưởng không?"
+    prompt_vi: "Trong advisory CVE-2026-4471, trường nào cho biết hệ thống của bạn có dính hay không?"
     choices: ["Affected versions", "Severity", "Title"]
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“Severity: Critical” nên làm gì?"
+    prompt_vi: "Advisory ghi “Severity: Critical”. Team nên làm gì?"
     choices:
       - "Nâng cấp/xử lý ngay"
       - "Để tuần sau"
@@ -128,17 +135,17 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Chưa nâng cấp kịp. Trường nào cho cách tạm?"
+    prompt_vi: "Giả sử đêm đó chưa deploy kịp. Trường nào trong advisory cho bạn cách chống tạm?"
     choices: ["Mitigation", "Severity", "Affected versions"]
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "Bạn dùng bản 2.3. Advisory nói “Affected: 2.0 to 2.4”. Bạn có bị ảnh hưởng?"
+    prompt_vi: "Một thư viện khác: bạn dùng bản 2.3, advisory ghi “Affected: 2.0 to 2.4”. Bạn có bị ảnh hưởng?"
     choices: ["Có, 2.3 nằm trong khoảng", "Không", "Không thể biết"]
     answer: 0
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "Nếu chưa nâng cấp được thì làm gì?"
+    prompt_vi: "Một advisory khác trong hộp thư. Nghe: nếu chưa nâng cấp được thì làm gì?"
     audio_text: "Disable the import feature as a temporary mitigation."
     choices: ["Tắt tính năng import", "Khởi động lại máy", "Đổi mật khẩu"]
     answer: 0

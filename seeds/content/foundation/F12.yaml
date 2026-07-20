@@ -56,24 +56,30 @@ sentence_patterns:
       noun: [logs, report, config]
 
 dialogue:
-  context_vi: "Các từ in nghiêng đọc NHẸ, lướt qua — đừng nhấn."
+  context_vi: >
+    Vẫn chiều thứ Tư, vẫn bản ghi đó. Minh tua tới đoạn David nói về việc phải làm. Lần này vấn đề
+    không còn là nối âm — mà là những từ David gần như không đọc ra tiếng.
   turns:
-    - {speaker: A, en: "I need to check the logs. (need-tuh, thuh)", vi: "Tôi cần kiểm tra log. (“to/the” đọc nhẹ)"}
-    - {speaker: B, en: "There's a lot of them. (lotta)", vi: "Nhiều lắm. (“of” đọc nhẹ thành “lotta”)"}
-    - {speaker: A, en: "I'll look for the error and fix it. (fer, en)", vi: "Tôi sẽ tìm lỗi và sửa. (“for/and” đọc nhẹ)"}
+    - {speaker: David, en: "I need to check the logs and fix the error.", vi: "Tôi cần xem log và sửa lỗi."}
+    - {speaker: You, en: "I only heard “check logs fix error”. The small words are gone.", vi: "Em chỉ nghe được “check logs fix error”. Mấy từ nhỏ biến mất."}
+    - {speaker: Minh, en: "They're not gone. He says them weak: “need-tuh”, “thuh”, “en”.", vi: "Không mất đâu. Anh ấy đọc nhẹ chúng: “need-tuh”, “thuh”, “en”."}
+    - {speaker: Minh, en: "There's a lot of work here — “lotta”. Stop waiting for the small words.", vi: "Ở đây nhiều việc lắm — “lotta”. Đừng ngồi chờ nghe rõ mấy từ nhỏ nữa."}
 
 listening_snippet:
   id: LS-F12
   speed: 1.0
   voice: en_US_male
-  transcript_en: "I need to check the logs and fix the error. There's a lot of work to do."
-  transcript_vi: "Tôi cần kiểm tra log và sửa lỗi. Có nhiều việc phải làm."
+  context_vi: >
+    Đoạn cuối bản ghi — câu dài nhất David nói trong cả cuộc gọi. Bẫy: mọi từ chức năng đều bị đọc
+    nhẹ thành /ə/ (to, the, and, of, a). Đừng cố nghe rõ chúng; bám vào từ mang nghĩa.
+  transcript_en: "I need to check the logs and fix the error. There's a lot of work to do before Friday."
+  transcript_vi: "Tôi cần kiểm tra log và sửa lỗi. Có nhiều việc phải làm trước thứ Sáu."
   questions:
-    - q_vi: "Trong “a lot of work”, từ “of” được đọc thế nào?"
+    - q_vi: "Trong “a lot of work”, David đọc “of” thế nào?"
       choices: ["Nhẹ, lướt (“lotta”)", "To và rõ", "Bỏ hẳn"]
       answer: 0
       difficulty: 4
-    - q_vi: "Các từ nào được đọc nhẹ?"
+    - q_vi: "Những từ nào David đọc nhẹ, gần như nuốt?"
       choices: ["to, the, and, of", "check, fix, logs", "work, error"]
       answer: 0
       difficulty: 3
@@ -81,22 +87,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "I need to check the logs."
-    prompt_vi: "Đọc to. “to” và “the” đọc nhẹ, lướt: “need-tuh check-thuh logs”."
+    prompt_vi: "Nói lại câu của David theo đúng nhịp của anh ấy. Đọc to — “to” và “the” lướt nhẹ: “need-tuh check-thuh logs”."
     ipa: "/aɪ niːd tə tʃɛk ðə lɒɡz/"
     focus_phonemes: [t, ð]
   - kind: read_aloud
     expected_text: "There's a lot of work to do."
-    prompt_vi: "Đọc to. “of” thành /əv/ gần như “lotta”. Nhấn “lot” và “work”."
+    prompt_vi: "Câu Minh vừa dùng để tả khối lượng việc trước thứ Sáu. Đọc to — “of” thành /əv/ gần như “lotta”. Nhấn “lot” và “work”."
     ipa: "/ðɛrz ə lɒt əv wɜːrk tə duː/"
     focus_phonemes: [v, t]
   - kind: shadow
     expected_text: "I'll look for the error and fix it."
-    prompt_vi: "Nghe rồi nhắc lại. “for/and/the” đọc nhẹ; nhấn “look, error, fix”."
+    prompt_vi: "Bạn nhận việc từ Minh. Nghe rồi nhắc lại — “for/and/the” đọc nhẹ; nhấn “look, error, fix”."
     ipa: "/aɪl lʊk fər ðiː ˈɛrər ən fɪks ɪt/"
     focus_phonemes: [f, ð, n]
   - kind: respond
     prompt_en: "What do you need to do?"
-    prompt_vi: "Trả lời một câu, đọc nhẹ to/the/and, nhấn động từ và danh từ chính."
+    prompt_vi: "Minh hỏi chiều nay bạn định làm gì. Trả lời một câu — đọc nhẹ to/the/and, nhấn động từ và danh từ chính."
     accept_patterns:
       - "I need to check the logs and fix the error"
       - "I have to send the report"

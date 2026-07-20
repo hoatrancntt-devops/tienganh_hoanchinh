@@ -25,7 +25,7 @@ vocabulary:
   - term: "backup"
     ipa: "/ˈbækʌp/"
     meaning_vi: "bản sao lưu"
-    chunk: "We have a backup from last night."
+    chunk: "We have a backup from Monday night."
     tags: [it_english]
   - term: "restore"
     ipa: "/rɪˈstɔːr/"
@@ -60,51 +60,58 @@ sentence_patterns:
       time: ["last night", "this morning", "an hour ago"]
 
 dialogue:
-  context_vi: "Có sự cố dữ liệu, quản lý lo lắng hỏi bạn."
+  context_vi: >
+    09:30 sáng thứ Sáu. Hệ thống đã chạy lại được mười lăm phút. Trong lúc lần lại log để dựng dòng
+    thời gian, bạn thấy một thứ không ai đi tìm: job sao lưu đã fail âm thầm từ thứ Ba, và không có
+    một cảnh báo nào. Linh hỏi ngay câu mà mọi sếp đều hỏi.
   turns:
-    - {speaker: A, en: "I heard the database crashed. Did we lose anything?", vi: "Nghe nói database sập. Mình có mất gì không?"}
-    - {speaker: B, en: "Don't worry. We have a backup from last night, and it's up to date.", vi: "Đừng lo. Bọn em có bản sao lưu từ tối qua, và nó mới nhất."}
-    - {speaker: A, en: "So no data loss?", vi: "Vậy không mất dữ liệu?"}
-    - {speaker: B, en: "Almost none. We can restore from the backup — about ten minutes of work.", vi: "Gần như không. Bọn em khôi phục từ backup — khoảng mười phút."}
-    - {speaker: A, en: "Great, please go ahead.", vi: "Tốt, cứ tiến hành."}
+    - {speaker: You, en: "Linh, I found something else in the logs. The backup job has been failing since Tuesday.", vi: "Chị Linh, em thấy thêm một thứ trong log. Job sao lưu đã fail từ thứ Ba."}
+    - {speaker: Linh, en: "Since Tuesday? Did we lose anything?", vi: "Từ thứ Ba? Mình có mất gì không?"}
+    - {speaker: You, en: "No. There was no data loss — the database itself was fine all night, it just couldn't be reached.", vi: "Không ạ. Không mất dữ liệu — bản thân database vẫn ổn suốt đêm, chỉ là không truy cập tới được."}
+    - {speaker: Linh, en: "So the newest backup we actually have is from Monday night.", vi: "Vậy bản sao lưu mới nhất mình thật sự có là từ tối thứ Hai."}
+    - {speaker: You, en: "Yes. We have a backup from Monday night, and we can restore from it. But it is three days old.", vi: "Vâng. Mình có bản sao lưu từ tối thứ Hai, và khôi phục được từ đó. Nhưng nó cũ ba ngày rồi."}
+    - {speaker: Linh, en: "Nobody was told. That goes in the postmortem too.", vi: "Không ai được báo cả. Cái đó cũng phải vào postmortem."}
 
 listening_snippet:
   id: LS-I13
   speed: 1.0
   voice: en_US_female
-  transcript_en: "The database crashed, but we have a backup from last night. It's up to date, so there was no data loss. We can restore in about ten minutes."
-  transcript_vi: "Database sập, nhưng bọn em có bản sao lưu từ tối qua. Nó mới nhất nên không mất dữ liệu. Khôi phục khoảng mười phút."
+  context_vi: >
+    Linh viết ngay ghi chú cho bản postmortem thứ Hai tuần sau. Nghe cách trấn an trước, rồi mới
+    tới mức thiệt hại và thời gian khôi phục.
+  transcript_en: "For the postmortem: there was no data loss from the outage. The backup job has been failing silently since Tuesday, so our newest backup is from Monday night. It is not up to date, but we can restore from it in about ten minutes if we ever need to."
+  transcript_vi: "Ghi cho postmortem: sự cố không gây mất dữ liệu. Job sao lưu đã fail âm thầm từ thứ Ba, nên bản sao lưu mới nhất là từ tối thứ Hai. Nó không phải mới nhất, nhưng nếu cần thì khôi phục được trong khoảng mười phút."
   questions:
-    - q_vi: "Có mất dữ liệu không?"
+    - q_vi: "Sự cố có gây mất dữ liệu không?"
       choices: ["Không", "Mất hết", "Mất một nửa"]
       answer: 0
       difficulty: 3
-    - q_vi: "Bản sao lưu từ khi nào?"
-      choices: ["Tối qua", "Tuần trước", "Năm ngoái"]
+    - q_vi: "Bản sao lưu mới nhất thật sự có là từ khi nào?"
+      choices: ["Tối thứ Hai", "Tối qua", "Năm ngoái"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
-    expected_text: "We have a backup from last night."
-    prompt_vi: "Đọc to. backup nhấn âm đầu (BACK-up)."
-    ipa: "/wiː hæv ə ˈbækʌp frɒm læst naɪt/"
+    expected_text: "We have a backup from Monday night."
+    prompt_vi: "Bản sao lưu mới nhất bạn thật sự có. Đọc to — backup nhấn âm đầu (BACK-up)."
+    ipa: "/wiː hæv ə ˈbækʌp frɒm ˈmʌndeɪ naɪt/"
     focus_phonemes: [b, k, t]
   - kind: read_aloud
     expected_text: "We can restore from the backup."
-    prompt_vi: "Đọc to. restore nhấn âm sau (re-STORE)."
+    prompt_vi: "Linh cần biết còn đường lùi hay không. Đọc to — restore nhấn âm sau (re-STORE)."
     ipa: "/wiː kæn rɪˈstɔːr frɒm ðə ˈbækʌp/"
     focus_phonemes: [r, s, k]
   - kind: shadow
     expected_text: "There was no data loss."
-    prompt_vi: "Nghe rồi nhắc lại. Câu trấn an quan trọng nhất khi có sự cố dữ liệu."
+    prompt_vi: "Câu Linh cần nghe trước mọi thứ khác — và may mắn là nó đúng. Nghe rồi nhắc lại."
     ipa: "/ðɛr wɒz noʊ ˈdeɪtə lɒs/"
     focus_phonemes: [ð, t, s]
   - kind: respond
-    prompt_en: "The database went down — did we lose data?"
-    prompt_vi: "Trấn an: có backup, không mất dữ liệu, khôi phục bao lâu."
+    prompt_en: "The backup job has been failing since Tuesday? Did we lose data?"
+    prompt_vi: "Linh vừa nghe tin xấu thứ hai trong ngày. Trấn an: không mất dữ liệu, có backup nào, khôi phục bao lâu."
     accept_patterns:
-      - "Don't worry we have a backup from last night there was no data loss"
+      - "Don't worry we have a backup from Monday night there was no data loss"
       - "We have a backup it's up to date we can restore in {time}"
       - "No data loss we can restore from the backup"
 
@@ -139,7 +146,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Database sập, sếp hỏi có mất dữ liệu không. Câu đầu tiên nên là?"
+    prompt_vi: "Linh hỏi có mất dữ liệu không. Câu đầu tiên của bạn nên là?"
     choices:
       - "Don't worry, we have a backup from last night."
       - "The InnoDB engine had a page corruption."
@@ -152,7 +159,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Bản sao lưu “up to date” nghĩa là?"
+    prompt_vi: "Bản sao lưu từ tối thứ Hai KHÔNG “up to date”. Vậy “up to date” nghĩa là gì?"
     choices: ["Mới nhất, không thiếu dữ liệu gần đây", "Đã cũ", "Bị lỗi"]
     answer: 0
     difficulty: 2

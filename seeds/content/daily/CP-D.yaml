@@ -24,44 +24,48 @@ listening_snippet:
   id: LS-CPD
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Hi, I'm Lan, I'm new here. Busy week, but it's fine. How about you? Nice to meet you."
-  transcript_vi: "Chào, tôi là Lan, tôi mới vào. Tuần bận nhưng ổn. Còn bạn? Rất vui được gặp."
+  context_vi: >
+    Thứ Bảy, sân bay Tân Sơn Nhất. Bạn tiễn Priya ở cửa vào khu làm thủ tục. Cô ấy nói một lượt
+    dài trước khi đi — cảm ơn, một lời thú nhận, giờ bay, và một lời mời. Cái khó là giữ được cả
+    bốn thứ trong đầu khi không có ai nhắc lại.
+  transcript_en: "Thank you for everything this week. Honestly, on Monday I was a little nervous — I didn't know anyone here. Now I have people to have lunch with. My flight is at seven, so I should go in. Come to Singapore next time, all right?"
+  transcript_vi: "Cảm ơn bạn về mọi thứ tuần này. Thật ra hôm thứ Hai tôi hơi lo — tôi chẳng quen ai ở đây cả. Giờ thì tôi đã có người để đi ăn trưa cùng. Chuyến bay của tôi lúc bảy giờ, tôi phải vào trong rồi. Lần sau sang Singapore chơi nhé?"
   questions:
-    - q_vi: "Lan vào công ty lâu chưa?"
-      choices: ["Mới vào", "Đã lâu", "Không nói"]
+    - q_vi: "Hôm thứ Hai Priya cảm thấy thế nào?"
+      choices: ["Hơi lo lắng", "Rất vui", "Bực mình"]
       answer: 0
       difficulty: 2
-    - q_vi: "Tuần của Lan thế nào?"
-      choices: ["Bận nhưng ổn", "Rảnh", "Tệ"]
+    - q_vi: "Chuyến bay của Priya lúc mấy giờ?"
+      choices: ["7 giờ", "11 giờ", "5 giờ"]
       answer: 0
       difficulty: 2
-    - q_vi: "Vì sao Lan hỏi “How about you?”"
-      choices: ["Để giữ hội thoại tiếp diễn", "Vì không hiểu", "Vì muốn kết thúc"]
+    - q_vi: "Priya mời bạn điều gì?"
+      choices: ["Sang Singapore chơi", "Ở lại sân bay", "Đổi vé giúp cô ấy"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: respond
-    prompt_en: "Hi, I don't think we've met. I'm Lan."
-    prompt_vi: "Tự giới thiệu đầy đủ và hỏi ngược lại."
+    prompt_en: "Hi, I don't think we've met. I'm Priya."
+    prompt_vi: "Ở quán cà phê sân bay, Priya bảo bạn tập trước: “Sang Singapore là team tôi sẽ hỏi bạn là ai đấy. Coi như mình chưa từng gặp nhau.” Tự giới thiệu đầy đủ và hỏi ngược lại."
     accept_patterns:
       - "Nice to meet you I'm {name} I work in {department} And you"
       - "Hi I'm {name} I work in {department} How about you"
   - kind: respond
     prompt_en: "How's it going? Busy week?"
-    prompt_vi: "Trả lời small talk ngắn rồi hỏi ngược."
+    prompt_vi: "Còn bốn mươi phút mới tới giờ Priya vào trong. Trả lời small talk ngắn rồi hỏi ngược."
     accept_patterns:
       - "Busy week but it's fine How about you"
       - "Not bad And you"
       - "Good thanks You"
   - kind: shadow
     expected_text: "Nice to meet you. I work in IT. And you?"
-    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật."
+    prompt_vi: "Priya giới thiệu bạn qua video call với một đồng nghiệp ở Singapore. Nghe rồi nhắc lại ở tốc độ thật."
     ipa: "/naɪs tuː miːt juː aɪ wɜːrk ɪn aɪ tiː ænd juː/"
     focus_phonemes: [t, s]
   - kind: shadow
     expected_text: "Sorry, could you say that again? I didn't catch it."
-    prompt_vi: "Nghe rồi nhắc lại. Câu cứu mạng vẫn phải nhớ."
+    prompt_vi: "Loa sân bay át mất câu cuối của Priya. Nghe rồi nhắc lại — câu cứu mạng vẫn phải nhớ."
     ipa: "/ˈsɒri kʊd juː seɪ ðæt əˈɡɛn aɪ ˈdɪdənt kætʃ ɪt/"
     focus_phonemes: [s, d, tʃ]
 

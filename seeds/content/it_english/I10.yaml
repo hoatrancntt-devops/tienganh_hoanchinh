@@ -60,49 +60,56 @@ sentence_patterns:
       layer: [DNS, firewall, VPN, routing]
 
 dialogue:
-  context_vi: "Bạn và đồng nghiệp network chẩn đoán vì sao không vào được một trang nội bộ."
+  context_vi: >
+    07:50 sáng thứ Sáu. Trước khi đào vào cloud, phải loại trừ thứ rẻ nhất: mạng. Nếu là mạng thì
+    xong trong mười phút; nếu không phải, bạn vừa cắt được một giả thuyết và biết chắc phải đi
+    hướng khác. Minh mở laptop ngồi cạnh bạn.
   turns:
-    - {speaker: A, en: "I can't reach the internal wiki. The connection just times out.", vi: "Tôi không vào được wiki nội bộ. Kết nối cứ timeout."}
-    - {speaker: B, en: "Can you ping the server?", vi: "Bạn ping thử máy chủ được không?"}
-    - {speaker: A, en: "Ping works, but the browser can't open the page.", vi: "Ping được, nhưng trình duyệt không mở được trang."}
-    - {speaker: B, en: "Then it's probably not the network — it looks like a DNS issue. Try flushing your DNS cache.", vi: "Vậy chắc không phải mạng — có vẻ là vấn đề DNS. Thử xoá cache DNS xem."}
-    - {speaker: A, en: "That fixed it. Thanks!", vi: "Được rồi. Cảm ơn!"}
+    - {speaker: You, en: "Minh, before we go further — could this be the network? The portal just times out.", vi: "Minh này, trước khi đi tiếp — có thể là mạng không? Cổng cứ timeout."}
+    - {speaker: Minh, en: "Let's check. Can you ping the auth server?", vi: "Kiểm tra thử. Ông ping máy chủ xác thực được không?"}
+    - {speaker: You, en: "Ping works. Every packet comes back.", vi: "Ping được. Gói nào cũng về."}
+    - {speaker: Minh, en: "And DNS? Does the name resolve to the right address?", vi: "Còn DNS? Tên miền phân giải ra đúng địa chỉ chứ?"}
+    - {speaker: You, en: "It resolves fine. And the firewall isn't blocking port four four three — I can open the login page, it just never signs anyone in.", vi: "Phân giải bình thường. Và tường lửa không chặn cổng bốn bốn ba — mình mở được trang đăng nhập, chỉ là không ai vào được."}
+    - {speaker: Minh, en: "Then it's not the network. The page loads, so the problem is behind it.", vi: "Vậy không phải mạng. Trang tải được, nghĩa là vấn đề nằm phía sau nó."}
 
 listening_snippet:
   id: LS-I10
   speed: 1.0
   voice: en_US_male
-  transcript_en: "I can't reach the internal wiki, the connection times out. Ping works but the page won't open. It looks like a DNS issue."
-  transcript_vi: "Tôi không vào được wiki nội bộ, kết nối timeout. Ping được nhưng trang không mở. Có vẻ là vấn đề DNS."
+  context_vi: >
+    Minh tóm lại kết quả kiểm tra để ghi vào ticket. Nghe cách anh ấy nói theo TẦNG — cái nào đã
+    loại, cái nào còn lại.
+  transcript_en: "Writing this into the ticket. Ping works, DNS resolves, and the firewall is not blocking port four four three. The page loads for everyone. So we can rule out the network completely — whatever is broken is behind the login page."
+  transcript_vi: "Ghi vào ticket đây. Ping được, DNS phân giải được, và tường lửa không chặn cổng bốn bốn ba. Trang tải được với mọi người. Vậy loại hẳn được tầng mạng — cái hỏng nằm phía sau trang đăng nhập."
   questions:
     - q_vi: "Ping có hoạt động không?"
       choices: ["Có", "Không", "Không thử"]
       answer: 0
       difficulty: 3
-    - q_vi: "Nghi ngờ vấn đề ở đâu?"
-      choices: ["DNS", "Nguồn điện", "Màn hình"]
+    - q_vi: "Kết luận sau khi kiểm tra là gì?"
+      choices: ["Loại được tầng mạng", "Chắc chắn do DNS", "Do đứt cáp"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "I can't reach the server. The connection keeps dropping."
-    prompt_vi: "Đọc to. “reach” có âm /iː/ dài; “connection” nhấn âm giữa."
+    prompt_vi: "Giả thuyết đầu tiên bạn nêu với Minh. Đọc to — “reach” có âm /iː/ dài, “connection” nhấn âm giữa."
     ipa: "/aɪ kænt riːtʃ ðə ˈsɜːrvər ðə kəˈnɛkʃən kiːps ˈdrɒpɪŋ/"
     focus_phonemes: [tʃ, k, ʃ]
   - kind: read_aloud
     expected_text: "It looks like a DNS issue."
-    prompt_vi: "Đọc to. DNS đọc từng chữ: dee-en-ess."
+    prompt_vi: "Giả thuyết thứ hai — vài phút nữa nó cũng bị loại. Đọc to: DNS đọc từng chữ, dee-en-ess."
     ipa: "/ɪt lʊks laɪk ə diː ɛn ɛs ˈɪʃuː/"
     focus_phonemes: [k, s, ʃ]
   - kind: shadow
     expected_text: "The firewall is blocking port 443."
-    prompt_vi: "Nghe rồi nhắc lại. “firewall” nhấn âm đầu; số đọc four-four-three."
+    prompt_vi: "Giả thuyết cuối cùng của tầng mạng. Nghe rồi nhắc lại — “firewall” nhấn âm đầu, số đọc four-four-three."
     ipa: "/ðə ˈfaɪərwɔːl ɪz ˈblɒkɪŋ pɔːrt fɔːr fɔːr θriː/"
     focus_phonemes: [f, w, θ]
   - kind: respond
-    prompt_en: "The website won't load for me. Any idea?"
-    prompt_vi: "Chẩn đoán bằng từ vựng mạng: nêu triệu chứng và đoán tầng nào."
+    prompt_en: "Could this be the network? What do you want me to check?"
+    prompt_vi: "Minh hỏi kiểm tra gì trước. Nói theo TẦNG: nêu triệu chứng và chỉ ra tầng cần loại trừ."
     accept_patterns:
       - "Can you ping the server if ping works it might be a DNS issue"
       - "The connection times out it looks like a firewall issue"

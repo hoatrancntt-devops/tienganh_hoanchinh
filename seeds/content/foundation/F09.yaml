@@ -56,48 +56,54 @@ sentence_patterns:
       word: [development, configuration, report]
 
 dialogue:
-  context_vi: "Hai đồng nghiệp nói về tiến độ, chú ý trọng âm các từ dài."
+  context_vi: >
+    Ngay sau cuộc gọi với David. Linh kéo ghế lại hỏi bạn tóm tắt tình hình — và bây giờ bạn
+    phải nói ra miệng mấy từ dài mà lâu nay bạn chỉ đọc bằng mắt trên Jira.
   turns:
-    - {speaker: A, en: "Is the development on track?", vi: "Phần phát triển có đúng tiến độ không?"}
-    - {speaker: B, en: "Yes, but the configuration has a problem.", vi: "Có, nhưng cấu hình đang có vấn đề."}
-    - {speaker: A, en: "Who's responsible for it?", vi: "Ai chịu trách nhiệm việc đó?"}
-    - {speaker: B, en: "Minh. He made a temporary fix; a full one is available tomorrow.", vi: "Minh. Anh ấy vá tạm; bản đầy đủ có vào ngày mai."}
+    - {speaker: Linh, en: "Is the development on track?", vi: "Phần phát triển có đúng tiến độ không?"}
+    - {speaker: You, en: "Yes, but the configuration has a problem.", vi: "Có ạ, nhưng cấu hình đang có vấn đề."}
+    - {speaker: Linh, en: "Who's responsible for it?", vi: "Ai chịu trách nhiệm việc đó?"}
+    - {speaker: You, en: "Minh. He made a temporary fix; a full one is available tomorrow.", vi: "Minh ạ. Anh ấy vá tạm; bản đầy đủ có vào ngày mai."}
 
 listening_snippet:
   id: LS-F09
   speed: 1.0
   voice: en_US_female
-  transcript_en: "The development is on track, but the configuration has a problem. It's a temporary fix and a full one is available tomorrow."
-  transcript_vi: "Phần phát triển đúng tiến độ, nhưng cấu hình có vấn đề. Đây là bản vá tạm và bản đầy đủ có vào mai."
+  context_vi: >
+    Linh đọc lại nguyên văn phần tóm tắt của bạn trước khi gửi cho David. Nghe kỹ đỉnh nhấn của
+    từng từ dài — deVELopment, configuRAtion, TEMporary, aVAILable. Nếu bạn nhấn khác Linh, đó
+    chính là chỗ David sẽ không hiểu.
+  transcript_en: "So: the development is on track, but the configuration has a problem. It's a temporary fix for now, and a full one is available tomorrow. I'll send that to David."
+  transcript_vi: "Vậy nhé: phần phát triển đúng tiến độ, nhưng cấu hình có vấn đề. Hiện tại là bản vá tạm, và bản đầy đủ có vào ngày mai. Tôi sẽ gửi cho David."
   questions:
-    - q_vi: "Cái gì đang có vấn đề?"
-      choices: ["Cấu hình (configuration)", "Phát triển", "Báo cáo"]
+    - q_vi: "Trong bản tóm tắt Linh gửi David, cái gì đang có vấn đề?"
+      choices: ["Cấu hình (configuration)", "Phát triển (development)", "Báo cáo"]
       answer: 0
       difficulty: 3
-    - q_vi: "Bản vá hiện tại là gì?"
-      choices: ["Tạm thời", "Đầy đủ", "Không có"]
+    - q_vi: "Bản vá hiện tại là loại nào?"
+      choices: ["Tạm thời", "Đầy đủ", "Chưa có bản nào"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "The development is on track."
-    prompt_vi: "Đọc to. deVELopment — nhấn âm thứ hai, không nhấn âm đầu."
+    prompt_vi: "Linh hỏi tiến độ, bạn trả lời. Đọc to — deVELopment nhấn âm thứ hai, không nhấn âm đầu."
     ipa: "/ðə dɪˈvɛləpmənt ɪz ɒn træk/"
     focus_phonemes: [d, v, t]
   - kind: read_aloud
     expected_text: "Check the configuration."
-    prompt_vi: "Đọc to. configuRAtion — trọng âm rơi vào “RA” gần cuối."
+    prompt_vi: "Bạn chỉ cho Linh chỗ đang hỏng. Đọc to — configuRAtion, trọng âm rơi vào “RA” gần cuối."
     ipa: "/tʃɛk ðə kənˌfɪɡjəˈreɪʃən/"
     focus_phonemes: [k, ʃ, r]
   - kind: shadow
     expected_text: "Who is responsible for this?"
-    prompt_vi: "Nghe rồi nhắc lại. reSPONsible — nhấn âm hai."
+    prompt_vi: "Linh hỏi ai đang lo phần cấu hình. Nghe rồi nhắc lại — reSPONsible nhấn âm hai."
     ipa: "/huː ɪz rɪˈspɒnsəbəl fɔr ðɪs/"
     focus_phonemes: [r, s, b]
   - kind: respond
     prompt_en: "What's the status of the project?"
-    prompt_vi: "Trả lời có dùng “development”, “configuration” — đặt trọng âm đúng."
+    prompt_vi: "Linh cần một câu tóm tắt để gửi cho David. Trả lời có “development” và “configuration” — đặt trọng âm đúng, vì David sẽ nghe câu này chứ không đọc."
     accept_patterns:
       - "The development is on track but the configuration has a problem"
       - "Development is fine configuration needs work"
@@ -157,7 +163,7 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "Cái gì có vấn đề?"
+    prompt_vi: "Trong câu Linh gửi David, cái gì có vấn đề?"
     audio_text: "The configuration has a problem."
     choices: ["Cấu hình", "Phát triển", "Mạng"]
     answer: 0

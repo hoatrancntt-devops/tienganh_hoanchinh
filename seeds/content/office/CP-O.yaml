@@ -28,10 +28,15 @@ listening_snippet:
   id: LS-CPO
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Thứ Hai, 7 giờ 58. Linh nghỉ phép cả tuần, và ghế chủ trì standup là của bạn. David đã vào
+    call, Priya đã vào call, Minh ngồi cạnh bạn. Bạn gọi tên Minh trước — và đây là những gì anh
+    ấy nói, một hơi, không nghỉ. Cái khó: trong bốn câu này có một câu hỏi, một tin tốt, một tin
+    xấu và một lời đề nghị. Bạn là người phải bắt hết và chuyển tiếp cho David.
   transcript_en: "Just to be clear, do you mean the whole report? The first half is almost done, on track for end of day. Just a heads up, I'm running a bit behind on the second half. Are you free at four to go over it?"
   transcript_vi: "Cho rõ nhé, ý anh là cả báo cáo? Nửa đầu gần xong, đúng tiến độ cuối ngày. Báo trước để anh biết, nửa sau tôi đang hơi trễ. Bốn giờ anh rảnh để rà soát không?"
   questions:
-    - q_vi: "Người nói đang làm gì ở câu đầu?"
+    - q_vi: "Minh làm gì ở câu đầu?"
       choices: ["Hỏi làm rõ yêu cầu", "Từ chối việc", "Xin nghỉ"]
       answer: 0
       difficulty: 2
@@ -39,7 +44,7 @@ listening_snippet:
       choices: ["Nửa sau báo cáo", "Cả báo cáo", "Cuộc họp"]
       answer: 0
       difficulty: 3
-    - q_vi: "Vì sao người nói nói “Just a heads up”?"
+    - q_vi: "Vì sao Minh nói “Just a heads up”?"
       choices: ["Để báo trễ sớm cho người kia chủ động", "Để xin lỗi", "Để kết thúc"]
       answer: 0
       difficulty: 3
@@ -47,28 +52,28 @@ listening_snippet:
 speaking_drills:
   - kind: respond
     prompt_en: "Can you update the report and send it out?"
-    prompt_vi: "Chưa rõ phạm vi và hạn. Hỏi làm rõ trước khi làm."
+    prompt_vi: "David ném việc vào giữa standup của bạn, cụt như mọi khi. Chưa rõ phạm vi và hạn — hỏi làm rõ ngay trước khi anh ta rời call."
     accept_patterns:
       - "Just to be clear do you mean the whole report or just section two By when do you need it"
       - "Do you mean the whole report And by when"
       - "Sure just to be clear which part and by when do you need it"
   - kind: respond
     prompt_en: "How's the migration coming along?"
-    prompt_vi: "Báo tiến độ trung thực: đang ở đâu, đúng/trễ, khi nào xong."
+    prompt_vi: "Đến phần của chính bạn, và migration vẫn chưa xong. Báo tiến độ trung thực: đang ở đâu, đúng hay trễ, khi nào xong."
     accept_patterns:
       - "About halfway on track for end of day"
       - "Almost done I'll have it by {time}"
       - "Just a heads up I'm running a bit behind I'll need until {time}"
   - kind: respond
     prompt_en: "Two doesn't work for me. Can we find another time?"
-    prompt_vi: "Đề xuất giờ khác và chốt bằng lời mời họp."
+    prompt_vi: "Priya cần một buổi rà soát nhưng giờ Minh đề xuất thì cô ấy bận. Bạn đang chủ trì — đề xuất giờ khác và chốt bằng lời mời họp."
     accept_patterns:
       - "Are you free at four Does that work I'll send an invite"
       - "Can we push it back to {time} I'll send an invite"
       - "How about {time} works for me I'll send an invite"
   - kind: shadow
     expected_text: "Do you have a minute? I'm stuck on the deploy step. I've already tried restarting."
-    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật. Xin giúp đúng cách: nêu vấn đề gọn, nói đã thử gì."
+    prompt_vi: "Standup tan, và lần này bạn không đợi đến thứ Năm mới nói. Nghe rồi nhắc lại ở tốc độ thật — nêu vấn đề gọn, nói đã thử gì."
     ipa: "/duː juː hæv ə ˈmɪnɪt aɪm stʌk ɒn ðə dɪˈplɔɪ stɛp aɪv ɔːlˈrɛdi traɪd riːˈstɑːrtɪŋ/"
     focus_phonemes: [t, k, d]
 

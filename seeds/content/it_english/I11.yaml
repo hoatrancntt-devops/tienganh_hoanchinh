@@ -61,53 +61,60 @@ sentence_patterns:
       version: ["the previous version", "the last stable build"]
 
 dialogue:
-  context_vi: "Bạn báo kế hoạch deploy cho quản lý."
+  context_vi: >
+    08:05 sáng thứ Sáu. Mạng đã bị loại. Còn đúng một thay đổi trong hai mươi tư giờ qua: bản vá
+    bảo mật deploy lúc 23:40 tối thứ Năm. Bạn và Priya lần lại từng bước của lần deploy đó — và
+    câu hỏi lớn trên bàn là có nên roll back ngay hay không.
   turns:
-    - {speaker: A, en: "Is the new release ready?", vi: "Bản mới sẵn sàng chưa?"}
-    - {speaker: B, en: "Yes, it's been tested on staging. We'll deploy to production tonight at ten.", vi: "Rồi, đã test trên staging. Bọn em sẽ deploy lên production tối nay lúc mười giờ."}
-    - {speaker: A, en: "Any downtime?", vi: "Có ngừng dịch vụ không?"}
-    - {speaker: B, en: "About five minutes. And if something breaks, we'll roll back to the previous version.", vi: "Khoảng năm phút. Và nếu có gì hỏng, bọn em quay lại bản trước."}
-    - {speaker: A, en: "Sounds safe. Go ahead.", vi: "Nghe an toàn. Cứ làm."}
+    - {speaker: You, en: "Priya, what exactly went out at eleven forty last night?", vi: "Priya, chính xác thì tối qua lúc 23:40 mình đẩy cái gì lên?"}
+    - {speaker: Priya, en: "A security patch for the authentication library. It closes CVE-2026-4471.", vi: "Một bản vá bảo mật cho thư viện xác thực. Nó vá CVE-2026-4471."}
+    - {speaker: You, en: "Was it tested on staging first?", vi: "Có test trên staging trước không?"}
+    - {speaker: Priya, en: "It worked on staging, and we only expected five minutes of downtime. Production is the first place it failed.", vi: "Nó chạy tốt trên staging, và tụi mình chỉ dự kiến ngừng năm phút. Production là nơi đầu tiên nó hỏng."}
+    - {speaker: You, en: "Then something is different between staging and production. Should we roll back to the previous version?", vi: "Vậy có gì đó khác nhau giữa staging và production. Mình có nên quay lại bản trước không?"}
+    - {speaker: Priya, en: "Not yet. Rolling back would reopen the security hole. Let me compare the two environments first.", vi: "Chưa nên. Quay lại sẽ mở lại lỗ hổng bảo mật. Để mình so sánh hai môi trường trước đã."}
 
 listening_snippet:
   id: LS-I11
   speed: 1.0
   voice: en_US_female
-  transcript_en: "It's been tested on staging. We'll deploy to production tonight, about five minutes of downtime. If something breaks, we'll roll back to the previous version."
-  transcript_vi: "Đã test trên staging. Bọn em sẽ deploy lên production tối nay, ngừng khoảng năm phút. Nếu hỏng thì quay lại bản trước."
+  context_vi: >
+    Priya bắt đầu so sánh staging với production và đọc to những gì chị ấy thấy. Đây là mười phút
+    trước khi mọi thứ vỡ ra.
+  transcript_en: "Here is what I have so far. The same patch is on both environments, so the code is not the difference. The build did not fail. Staging and production run different roles, and I am reading the production one now."
+  transcript_vi: "Đây là những gì mình có tới lúc này. Cùng một bản vá trên cả hai môi trường, nên khác biệt không nằm ở code. Bản build không lỗi. Staging và production chạy hai role khác nhau, và mình đang đọc cái của production."
   questions:
-    - q_vi: "Deploy lên môi trường nào?"
-      choices: ["Production", "Staging", "Máy cá nhân"]
+    - q_vi: "Khác biệt giữa staging và production nằm ở đâu?"
+      choices: ["Hai môi trường chạy role khác nhau", "Code khác nhau", "Bản build bị lỗi"]
       answer: 0
       difficulty: 3
-    - q_vi: "Nếu hỏng thì làm gì?"
-      choices: ["Quay lại bản trước (roll back)", "Tắt hệ thống", "Bỏ luôn"]
+    - q_vi: "Vì sao chưa roll back?"
+      choices: ["Sẽ mở lại lỗ hổng bảo mật", "Không ai biết cách", "Không cần thiết"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
-    expected_text: "We'll deploy to production tonight."
-    prompt_vi: "Đọc to. deploy nhấn SAU (de-PLOY); production nhấn giữa (pro-DUC-tion)."
-    ipa: "/wɪl dɪˈplɔɪ tuː prəˈdʌkʃən təˈnaɪt/"
+    expected_text: "We deployed to production at eleven forty."
+    prompt_vi: "Mốc thời gian bạn phải nói ra hàng chục lần hôm nay. Đọc to — de-PLOY nhấn sau, pro-DUC-tion nhấn giữa."
+    ipa: "/wiː dɪˈplɔɪd tuː prəˈdʌkʃən æt ɪˈlɛvən ˈfɔːrti/"
     focus_phonemes: [dʒ, k, ʃ]
   - kind: read_aloud
-    expected_text: "It works on staging. Expect five minutes of downtime."
-    prompt_vi: "Đọc to. staging có /eɪ/; downtime nhấn âm đầu."
-    ipa: "/ɪt wɜːrks ɒn ˈsteɪdʒɪŋ ɪkˈspɛkt faɪv ˈmɪnɪts ɒv ˈdaʊntaɪm/"
+    expected_text: "It worked on staging. We expected five minutes of downtime."
+    prompt_vi: "Câu của Priya — và là chỗ nghịch lý: chạy tốt ở sân tập, hỏng ở sân đấu. Đọc to."
+    ipa: "/ɪt wɜːrkt ɒn ˈsteɪdʒɪŋ wiː ɪkˈspɛktɪd faɪv ˈmɪnɪts ɒv ˈdaʊntaɪm/"
     focus_phonemes: [dʒ, t, d]
   - kind: shadow
     expected_text: "If something breaks, we'll roll back to the previous version."
-    prompt_vi: "Nghe rồi nhắc lại. Có kế hoạch roll back khiến người nghe yên tâm."
+    prompt_vi: "Câu hỏi lớn trên bàn lúc 8 giờ sáng. Nghe rồi nhắc lại — roll back là phương án, không phải phản xạ."
     ipa: "/ɪf ˈsʌmθɪŋ breɪks wɪl roʊl bæk tuː ðə ˈpriːviəs ˈvɜːrʒən/"
     focus_phonemes: [θ, r, ʒ]
   - kind: respond
-    prompt_en: "Are we ready to release the new version?"
-    prompt_vi: "Báo kế hoạch deploy: đã test ở đâu, downtime bao lâu, kế hoạch roll back."
+    prompt_en: "Walk me through last night's deploy. What went out, and what did we expect?"
+    prompt_vi: "Priya hỏi lại toàn bộ lần deploy. Kể đủ: đẩy gì, test ở đâu, downtime dự kiến, phương án lùi."
     accept_patterns:
-      - "Yes it's tested on staging we'll deploy to production tonight about {downtime} of downtime"
-      - "It works on staging we'll deploy tonight and roll back if something breaks"
-      - "We'll deploy to production expect {downtime} of downtime"
+      - "We deployed a security patch to production at {time} it worked on staging about {downtime} of downtime"
+      - "It worked on staging we deployed to production last night and we can roll back if we have to"
+      - "We deployed to production at {time} we expected {downtime} of downtime"
 
 vietnamese_explanation:
   why_vi: >

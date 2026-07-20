@@ -57,21 +57,26 @@ sentence_patterns:
       word_short: [ship, live]
 
 dialogue:
-  context_vi: "Luyện phân biệt hai âm qua các cặp từ (nghe kỹ độ dài)."
+  context_vi: >
+    Sáng thứ Năm. Bạn quay sang báo Minh là không vào được server. Câu tiếng Anh đúng, ngữ pháp
+    đúng — nhưng Minh nghe ra một từ khác hẳn và phải hỏi lại.
   turns:
-    - {speaker: A, en: "Did you say leave or live?", vi: "Bạn nói “leave” (rời) hay “live” (sống)?"}
-    - {speaker: B, en: "Leave — with a long ee. I'll leave at five.", vi: "“Leave” — âm “i” dài. Tôi sẽ rời lúc năm giờ."}
-    - {speaker: A, en: "Got it. And can you reach the server?", vi: "Rõ. Với bạn liên hệ tới server được không?"}
-    - {speaker: B, en: "No, I can't reach it — long ee, reach.", vi: "Không, tôi không tới được — âm “i” dài, “reach”."}
+    - {speaker: Minh, en: "Wait — did you say reach or rich?", vi: "Khoan — bạn nói “reach” (tới được) hay “rich” (giàu)?"}
+    - {speaker: You, en: "Reach. I can't reach the server.", vi: "“Reach”. Em không kết nối tới server được."}
+    - {speaker: Minh, en: "Then keep the ee long. Short, and it's a different word.", vi: "Vậy thì giữ âm “i” DÀI. Ngắn là thành từ khác."}
+    - {speaker: Minh, en: "Same with leave and live. Tell David you'll leave at five — long ee.", vi: "“leave” với “live” cũng thế. Nói với David là bạn về lúc năm giờ — âm “i” dài."}
 
 listening_snippet:
   id: LS-F14
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Minh thu ba câu ngắn để kiểm tai bạn. Mỗi câu có một từ thuộc cặp dài/ngắn. Bẫy: phụ âm giống
+    hệt nhau, chỉ độ dài nguyên âm khác — và chính độ dài đó đổi nghĩa cả câu.
   transcript_en: "I'll leave at five. I can't reach the server. It's a ship, not a sheep."
-  transcript_vi: "Tôi sẽ rời lúc năm giờ. Tôi không liên hệ tới server được. Là con tàu, không phải con cừu."
+  transcript_vi: "Tôi sẽ về lúc năm giờ. Tôi không kết nối tới server được. Là con tàu, không phải con cừu."
   questions:
-    - q_vi: "Từ “leave” (rời đi) có âm gì?"
+    - q_vi: "Từ “leave” (rời đi) Minh đọc bằng âm gì?"
       choices: ["/iː/ dài", "/ɪ/ ngắn", "Không có nguyên âm"]
       answer: 0
       difficulty: 3
@@ -83,22 +88,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "It's a ship, not a sheep."
-    prompt_vi: "Đọc to. “ship” ngắn gọn /ɪ/; “sheep” kéo dài /iː/. Cảm nhận độ dài khác nhau."
+    prompt_vi: "Minh đưa cặp từ kinh điển ra cho bạn tập. Đọc to — “ship” ngắn gọn /ɪ/; “sheep” kéo dài /iː/. Cảm nhận độ dài khác nhau."
     ipa: "/ɪts ə ʃɪp nɒt ə ʃiːp/"
     focus_phonemes: [ʃ, ɪ, iː]
   - kind: read_aloud
     expected_text: "I'll leave at five."
-    prompt_vi: "Đọc to. “leave” âm /iː/ dài — kéo dài môi cười."
+    prompt_vi: "Câu bạn sẽ phải nói với David chiều nay. Đọc to — “leave” âm /iː/ dài, kéo môi ngang như đang cười."
     ipa: "/aɪl liːv æt faɪv/"
     focus_phonemes: [l, iː, v]
   - kind: shadow
     expected_text: "I can't reach the server."
-    prompt_vi: "Nghe rồi nhắc lại. “reach” /iː/ dài, khác “rich” /ɪ/ ngắn."
+    prompt_vi: "Nói lại câu vừa khiến Minh hiểu nhầm. Nghe rồi nhắc lại — “reach” /iː/ dài, khác hẳn “rich” /ɪ/ ngắn."
     ipa: "/aɪ kænt riːtʃ ðə ˈsɜːrvər/"
     focus_phonemes: [r, iː, tʃ]
   - kind: respond
     prompt_en: "When will you leave?"
-    prompt_vi: "Trả lời có dùng “leave” — giữ âm /iː/ dài, đừng rút thành “live”."
+    prompt_vi: "Minh hỏi chiều nay bạn về lúc mấy giờ. Trả lời có dùng “leave” — giữ âm /iː/ dài, đừng rút thành “live”."
     accept_patterns:
       - "I'll leave at {time}"
       - "I leave at {time}"

@@ -59,26 +59,33 @@ sentence_patterns:
       time: ["within an hour", "by end of day", "this afternoon"]
 
 dialogue:
-  context_vi: "Bạn trực helpdesk, một người dùng gọi tới báo không đăng nhập được."
+  context_vi: >
+    03:05 sáng thứ Sáu, ngay sau khi báo Linh. Bạn gọi lại cho Emma Brooks — kế toán ở Northwind,
+    người mở ticket #4417 lúc 2 giờ. Emma không rành kỹ thuật và cũng đang bực. Việc của bạn lúc
+    này chưa phải là sửa, mà là làm cho Emma yên tâm chờ.
   turns:
-    - {speaker: A, en: "Hi, how can I help you today?", vi: "Chào anh, tôi có thể giúp gì hôm nay?"}
-    - {speaker: B, en: "I can't log into my email. It says my password is wrong.", vi: "Tôi không đăng nhập được email. Nó báo sai mật khẩu."}
-    - {speaker: A, en: "Let me confirm: you can't log into email, and it says wrong password, right?", vi: "Để tôi xác nhận: anh không vào được email, và nó báo sai mật khẩu, đúng không?"}
-    - {speaker: B, en: "Yes, exactly.", vi: "Đúng vậy."}
-    - {speaker: A, en: "Okay, I've created a ticket. I'll look into it and get back to you within an hour. In the meantime, please don't try again — it may lock the account.", vi: "Được, tôi đã tạo ticket. Tôi sẽ xem và phản hồi trong một giờ. Trong lúc chờ, anh đừng thử lại — có thể bị khoá tài khoản."}
+    - {speaker: You, en: "Hi Emma, this is Vertex support. I'm calling about ticket four four one seven. How can I help?", vi: "Chào chị Emma, đây là bộ phận hỗ trợ Vertex. Tôi gọi về ticket bốn bốn một bảy. Tôi có thể giúp gì ạ?"}
+    - {speaker: Emma, en: "Oh, thank you for calling back. I'm sorry, I don't really know how to explain it. I type my password like always, and then it just spins.", vi: "Ồ, cảm ơn đã gọi lại. Xin lỗi, tôi không biết diễn đạt thế nào. Tôi nhập mật khẩu như mọi khi, rồi nó cứ quay quay mãi."}
+    - {speaker: You, en: "Let me confirm: you type your password, the page keeps loading, and it never lets you in, right?", vi: "Để tôi xác nhận: chị nhập mật khẩu, trang cứ tải mãi, và không vào được, đúng không ạ?"}
+    - {speaker: Emma, en: "Yes, exactly. And after a while the page went white.", vi: "Đúng vậy. Và một lúc sau thì trang trắng xoá."}
+    - {speaker: You, en: "Thank you, that helps. I've added that to your ticket. I'll look into it and get back to you within an hour. In the meantime, please don't keep trying — it may lock your account.", vi: "Cảm ơn chị, thông tin đó rất hữu ích. Tôi đã ghi vào ticket. Tôi sẽ xem và phản hồi trong một giờ. Trong lúc chờ, chị đừng thử lại nữa — có thể bị khoá tài khoản."}
+    - {speaker: Emma, en: "All right. I'll just wait then.", vi: "Được rồi. Vậy tôi chờ."}
 
 listening_snippet:
   id: LS-I02
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Let me confirm: you can't log into email, and it says wrong password. I've created a ticket and I'll get back to you within an hour."
-  transcript_vi: "Để tôi xác nhận: anh không vào được email và nó báo sai mật khẩu. Tôi đã tạo ticket và sẽ phản hồi trong một giờ."
+  context_vi: >
+    Trước khi cúp máy, bạn đọc lại một lần nữa cho Emma nghe. Đây là đoạn mà người dùng quyết định
+    có tin bạn hay không — nghe xem nó gồm những phần nào.
+  transcript_en: "So let me confirm: you type your password, the page keeps spinning, and it never lets you in. I've added that to ticket four four one seven. I'll look into it and get back to you within an hour."
+  transcript_vi: "Vậy để tôi xác nhận: chị nhập mật khẩu, trang cứ quay, và không vào được. Tôi đã ghi vào ticket bốn bốn một bảy. Tôi sẽ xem và phản hồi trong một giờ."
   questions:
-    - q_vi: "Người trực đang làm gì trước tiên?"
+    - q_vi: "Bạn làm gì trước tiên với Emma?"
       choices: ["Xác nhận lại vấn đề", "Đổ lỗi cho người dùng", "Từ chối hỗ trợ"]
       answer: 0
       difficulty: 2
-    - q_vi: "Bao lâu sẽ phản hồi?"
+    - q_vi: "Bao lâu nữa bạn sẽ phản hồi cho Emma?"
       choices: ["Trong một giờ", "Trong một ngày", "Không nói"]
       answer: 0
       difficulty: 3
@@ -86,26 +93,26 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "Hi, how can I help you today?"
-    prompt_vi: "Đọc to. Câu mở đầu chuẩn của helpdesk — ấm và sẵn sàng."
+    prompt_vi: "Emma vừa nhấc máy lúc 3 giờ sáng. Đọc to — ấm và sẵn sàng, dù bạn đang mệt."
     ipa: "/haɪ haʊ kæn aɪ hɛlp juː təˈdeɪ/"
     focus_phonemes: [h, k]
   - kind: read_aloud
     expected_text: "Let me confirm: you can't log in, right?"
-    prompt_vi: "Đọc to. Xác nhận lại tránh hiểu sai vấn đề."
+    prompt_vi: "Emma vừa mô tả vòng vo. Đọc to — nhắc lại bằng lời của bạn để chắc mình hiểu đúng."
     ipa: "/lɛt miː kənˈfɜːrm juː kænt lɒɡ ɪn raɪt/"
     focus_phonemes: [k, f, r]
   - kind: shadow
     expected_text: "I'll look into it and get back to you within an hour."
-    prompt_vi: "Nghe rồi nhắc lại. Đặt kỳ vọng thời gian rõ ràng."
+    prompt_vi: "Emma cần biết khi nào có tin. Nghe rồi nhắc lại — đặt kỳ vọng thời gian rõ ràng."
     ipa: "/aɪl lʊk ˈɪntuː ɪt ænd ɡɛt bæk tuː juː wɪˈðɪn ən ˈaʊər/"
     focus_phonemes: [l, ð, r]
   - kind: respond
-    prompt_en: "Hi, my Wi-Fi keeps disconnecting."
-    prompt_vi: "Tiếp nhận: xác nhận lại vấn đề rồi hứa xử lý kèm thời gian."
+    prompt_en: "I'm sorry, I don't know the words for it — I put my password in and it just spins."
+    prompt_vi: "Emma vừa nói xong. Tiếp nhận: xác nhận lại bằng lời của bạn rồi hứa xử lý kèm mốc thời gian."
     accept_patterns:
-      - "Let me confirm your Wi-Fi keeps disconnecting I'll look into it and get back to you within {time}"
-      - "So your Wi-Fi keeps dropping I've created a ticket I'll get back to you {time}"
-      - "Got it your Wi-Fi keeps disconnecting I'll look into it"
+      - "Let me confirm you type your password and the page keeps loading I'll look into it and get back to you within {time}"
+      - "So the page keeps spinning and you can't log in I've added that to your ticket I'll get back to you {time}"
+      - "Got it the page never lets you in I'll look into it"
 
 vietnamese_explanation:
   why_vi: >
@@ -138,7 +145,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Sau khi nghe người dùng mô tả, bước tiếp theo nên là gì?"
+    prompt_vi: "Emma vừa mô tả xong bằng lời thường. Bước tiếp theo của bạn nên là gì?"
     choices:
       - "Xác nhận lại: “Let me confirm: …, right?”"
       - "Sửa ngay không cần hỏi"

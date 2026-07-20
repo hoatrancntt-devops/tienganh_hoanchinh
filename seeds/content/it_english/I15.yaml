@@ -30,12 +30,12 @@ vocabulary:
   - term: "will be unavailable"
     ipa: "/wɪl biː ˌʌnəˈveɪləbəl/"
     meaning_vi: "sẽ không dùng được"
-    chunk: "The portal will be unavailable from 10 PM."
+    chunk: "The portal was unavailable from 2 AM."
     tags: [it_english]
   - term: "What you need to do"
     ipa: "/wɒt juː niːd tuː duː/"
     meaning_vi: "Việc bạn cần làm"
-    chunk: "What you need to do: save your work before 10."
+    chunk: "What you need to do: reset your password today."
     tags: [it_english]
   - term: "no action needed"
     ipa: "/noʊ ˈækʃən ˈniːdɪd/"
@@ -61,52 +61,59 @@ sentence_patterns:
       condition: ["you have questions", "you see any errors"]
 
 dialogue:
-  context_vi: "Một email thông báo bảo trì gửi cho toàn công ty (đọc như hội thoại một chiều)."
+  context_vi: >
+    14:00 chiều thứ Sáu. Bạn viết email thông báo chính thức gửi toàn bộ người dùng Northwind —
+    những người đã ngồi chờ bảy tiếng sáng nay, trong đó có Emma. David sẽ đọc nó. Postmortem còn
+    ở tuần sau; hôm nay họ chỉ cần biết chuyện gì đã xảy ra và phải làm gì.
   turns:
-    - {speaker: A, en: "Subject: Heads up — maintenance tonight, 10 to 11 PM.", vi: "Tiêu đề: Thông báo — bảo trì tối nay, 10 đến 11 giờ."}
-    - {speaker: A, en: "The internal portal will be unavailable from 10 to 11 PM tonight.", vi: "Cổng nội bộ sẽ không dùng được từ 10 đến 11 giờ tối nay."}
-    - {speaker: A, en: "What you need to do: save your work before 10 PM.", vi: "Việc bạn cần làm: lưu công việc trước 10 giờ."}
-    - {speaker: A, en: "No action needed after that. Reach out to IT if you have questions.", vi: "Sau đó không cần làm gì. Liên hệ IT nếu có thắc mắc."}
+    - {speaker: You, en: "Subject: Northwind Portal login outage — resolved, 02:00 to 09:15 today.", vi: "Tiêu đề: Sự cố đăng nhập Northwind Portal — đã khắc phục, 02:00 đến 09:15 hôm nay."}
+    - {speaker: You, en: "The portal was unavailable from two to nine fifteen this morning. It is working normally now.", vi: "Cổng không dùng được từ hai giờ đến chín giờ mười lăm sáng nay. Hiện đã hoạt động bình thường."}
+    - {speaker: You, en: "The cause was a permission error in a security update we deployed last night. No data was lost, and no account was compromised.", vi: "Nguyên nhân là lỗi phân quyền trong bản cập nhật bảo mật chúng tôi triển khai tối qua. Không mất dữ liệu và không tài khoản nào bị xâm nhập."}
+    - {speaker: You, en: "What you need to do: save your work and reset your password. If you received an email asking you to verify your login, do not click it — it did not come from us.", vi: "Việc bạn cần làm: lưu công việc và đặt lại mật khẩu. Nếu bạn nhận được email yêu cầu xác minh đăng nhập, đừng bấm vào — nó không phải của chúng tôi."}
+    - {speaker: You, en: "A full report will follow on Monday. Reach out to IT if you have questions.", vi: "Báo cáo đầy đủ sẽ gửi vào thứ Hai. Liên hệ IT nếu bạn có thắc mắc."}
 
 listening_snippet:
   id: LS-I15
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Heads up: the portal will be unavailable tonight from 10 to 11 PM. What you need to do: save your work before 10. Reach out to IT if you have questions."
-  transcript_vi: "Thông báo: cổng sẽ không dùng được tối nay từ 10 đến 11 giờ. Việc bạn cần làm: lưu công việc trước 10 giờ. Liên hệ IT nếu có thắc mắc."
+  context_vi: >
+    Linh đọc lại bản nháp của bạn trước khi gửi và tóm lại nó thành bốn câu. Nghe xem một email
+    kỹ thuật tốt đặt cái gì lên trước.
+  transcript_en: "Heads up: the Northwind Portal login was down this morning from two to nine fifteen. It's fixed. No data was lost. What you need to do: reset your password today, and do not click any email asking you to verify your login. Reach out to IT if you have questions."
+  transcript_vi: "Thông báo: phần đăng nhập Northwind Portal hỏng sáng nay từ hai giờ đến chín giờ mười lăm. Đã sửa xong. Không mất dữ liệu. Việc bạn cần làm: đặt lại mật khẩu hôm nay, và đừng bấm vào email nào yêu cầu xác minh đăng nhập. Liên hệ IT nếu có thắc mắc."
   questions:
     - q_vi: "Người dùng cần làm gì?"
-      choices: ["Lưu công việc trước 10 giờ", "Tắt máy cả đêm", "Đổi mật khẩu"]
+      choices: ["Đặt lại mật khẩu hôm nay", "Tắt máy cả đêm", "Không làm gì cả"]
       answer: 0
       difficulty: 3
-    - q_vi: "Cổng không dùng được lúc nào?"
-      choices: ["10–11 giờ tối", "Cả ngày mai", "Sáng nay"]
+    - q_vi: "Cổng không dùng được trong khoảng nào?"
+      choices: ["02:00 đến 09:15 sáng nay", "10–11 giờ tối", "Cả ngày mai"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
-    expected_text: "The portal will be unavailable from 10 to 11 PM tonight."
-    prompt_vi: "Đọc to. Câu đầu email là KẾT LUẬN, không phải mở bài dài."
-    ipa: "/ðə ˈpɔːrtl wɪl biː ˌʌnəˈveɪləbəl frɒm tɛn tuː ɪˈlɛvən piː ɛm təˈnaɪt/"
+    expected_text: "The portal was unavailable from two to nine fifteen this morning."
+    prompt_vi: "Dòng đầu email gửi khách. Đọc to — đây là KẾT LUẬN, không phải mở bài dài."
+    ipa: "/ðə ˈpɔːrtl wɒz ˌʌnəˈveɪləbəl frɒm tuː tuː naɪn fɪfˈtiːn ðɪs ˈmɔːrnɪŋ/"
     focus_phonemes: [p, v, l]
   - kind: read_aloud
-    expected_text: "What you need to do: save your work before 10 PM."
-    prompt_vi: "Đọc to. Việc cần làm nêu rõ, đặt nổi bật."
-    ipa: "/wɒt juː niːd tuː duː seɪv jʊr wɜːrk bɪˈfɔːr tɛn piː ɛm/"
+    expected_text: "What you need to do: save your work and reset your password."
+    prompt_vi: "Hai mươi người sẽ đọc dòng này và làm theo. Đọc to — tách riêng, dễ thấy."
+    ipa: "/wɒt juː niːd tuː duː seɪv jʊr wɜːrk ænd rɪˈsɛt jʊr ˈpæswɜːrd/"
     focus_phonemes: [w, d, v]
   - kind: shadow
     expected_text: "Reach out to IT if you have questions."
-    prompt_vi: "Nghe rồi nhắc lại. Câu chốt mời liên hệ."
+    prompt_vi: "Câu chốt email — Emma sẽ dùng đúng câu này nếu chị ấy còn thắc mắc. Nghe rồi nhắc lại."
     ipa: "/riːtʃ aʊt tuː aɪ tiː ɪf juː hæv ˈkwɛstʃənz/"
     focus_phonemes: [tʃ, t, k]
   - kind: respond
-    prompt_en: "Draft a short notice: the email server restarts tonight at 11."
-    prompt_vi: "Nói bản nháp: kết luận trước, việc cần làm, lời mời liên hệ."
+    prompt_en: "Draft the notice for the Northwind users. Keep it short."
+    prompt_vi: "Linh bảo bạn đọc bản nháp lên. Kết luận trước, việc cần làm, lời mời liên hệ."
     accept_patterns:
-      - "Heads up the email server will restart tonight at 11 what you need to do save your work reach out if you have questions"
-      - "The email will be down tonight at 11 save your work before then no action needed after"
-      - "Subject maintenance tonight the server restarts at 11 reach out if you have questions"
+      - "Heads up the portal login was down this morning it's fixed what you need to do reset your password reach out if you have questions"
+      - "The portal was down from two to nine fifteen no data was lost reset your password today"
+      - "Subject login outage resolved the portal is working now reach out if you have questions"
 
 vietnamese_explanation:
   why_vi: >
@@ -139,7 +146,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Câu đầu tiên của email thông báo nên là gì?"
+    prompt_vi: "David sẽ đọc email này. Câu đầu tiên nên là gì?"
     choices:
       - "Kết luận: “The portal will be down 10-11 PM.”"
       - "“Kính gửi anh chị, như anh chị đã biết…”"

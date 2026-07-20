@@ -55,47 +55,54 @@ sentence_patterns:
     slots: {}
 
 dialogue:
-  context_vi: "Các âm /l/ /n/ /r/ dày đặc trong câu lệnh IT."
+  context_vi: >
+    Chiều thứ Năm. Minh bắt bạn đọc to ba bước xử lý sự cố mà bạn vẫn quen gõ ra chat — vì ngày mai
+    bạn sẽ phải NÓI mấy câu này qua call, không có chữ để người ta đọc.
   turns:
-    - {speaker: A, en: "The router is offline. Please reload the page.", vi: "Router mất kết nối. Tải lại trang giúp. (/r/, /l/, /n/)"}
-    - {speaker: B, en: "I'll run the script and call you.", vi: "Tôi sẽ chạy script rồi gọi bạn. (/r/, /n/, /l/)"}
-    - {speaker: A, en: "It's online now. Send an email to confirm.", vi: "Giờ online rồi. Gửi email xác nhận. (/n/, /l/)"}
+    - {speaker: Minh, en: "Read it out loud. Just the three steps.", vi: "Đọc to lên. Chỉ ba bước thôi."}
+    - {speaker: You, en: "The router is offline. Please reload the page.", vi: "Router mất kết nối. Anh tải lại trang giúp em."}
+    - {speaker: You, en: "I'll run the script and call you.", vi: "Em sẽ chạy script rồi gọi lại cho anh."}
+    - {speaker: Minh, en: "Stop at “call”. You dropped the L — it came out “co”.", vi: "Dừng ở chữ “call”. Bạn nuốt mất âm /l/ — nghe thành “co”."}
+    - {speaker: Minh, en: "Tongue behind the top teeth, hold one beat. Again: call.", vi: "Lưỡi chạm sau răng trên, giữ một nhịp. Lại nào: call."}
 
 listening_snippet:
   id: LS-F16
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Minh đọc lại đúng ba câu đó, giữ đủ âm cuối. Bẫy nằm ở đuôi từ: “offline”, “reload”, “call”,
+    “run”, “online” — chỗ tai bạn hay bỏ qua và miệng bạn hay nuốt.
   transcript_en: "The router is offline. Please reload the page. I'll run the script and call you. It's online now."
-  transcript_vi: "Router mất kết nối. Tải lại trang giúp. Tôi sẽ chạy script rồi gọi bạn. Giờ online rồi."
+  transcript_vi: "Router mất kết nối. Tải lại trang giúp. Tôi sẽ chạy script rồi gọi bạn. Giờ online lại rồi."
   questions:
-    - q_vi: "Từ “call” kết thúc bằng âm gì?"
+    - q_vi: "Từ “call” Minh đọc kết thúc bằng âm gì?"
       choices: ["/l/ (lưỡi chạm sau răng trên)", "/n/", "Không có âm cuối"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói bảo làm gì với trang?"
-      choices: ["Tải lại (reload)", "Xoá", "In ra"]
+    - q_vi: "Bước đầu Minh bảo làm gì với trang?"
+      choices: ["Tải lại (reload)", "Đóng lại", "In ra"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Please reload the page."
-    prompt_vi: "Đọc to. /l/ ở “reload”: đầu lưỡi chạm sau răng trên. Đừng bỏ âm cuối /d/."
+    prompt_vi: "Bước một trong ba bước Minh bắt bạn đọc. Đọc to — /l/ ở “reload”: đầu lưỡi chạm sau răng trên. Đừng bỏ âm cuối /d/."
     ipa: "/pliːz riːˈloʊd ðə peɪdʒ/"
     focus_phonemes: [l, r, d]
   - kind: read_aloud
     expected_text: "Join the call."
-    prompt_vi: "Đọc to. Âm cuối /l/ ở “call” — người Việt hay bỏ. Giữ lưỡi chạm răng trên."
+    prompt_vi: "Đúng chữ Minh vừa bắt bạn dừng lại. Đọc to — âm cuối /l/ ở “call” là chỗ người Việt hay bỏ. Giữ lưỡi chạm răng trên một nhịp."
     ipa: "/dʒɔɪn ðə kɔːl/"
     focus_phonemes: [dʒ, l]
   - kind: shadow
     expected_text: "Restart the router and run it again."
-    prompt_vi: "Nghe rồi nhắc lại. /r/ (router, run): cong lưỡi, không rung như tiếng Việt “r”."
+    prompt_vi: "Minh đọc mẫu bước cuối. Nghe rồi nhắc lại — /r/ (router, run): cong lưỡi, không rung như “r” tiếng Việt."
     ipa: "/riːˈstɑːrt ðə ˈraʊtər ænd rʌn ɪt əˈɡɛn/"
     focus_phonemes: [r, t, n]
   - kind: respond
     prompt_en: "The page won't load. What do I do?"
-    prompt_vi: "Bảo họ tải lại và chạy lại — giữ rõ /l/, /r/, /n/."
+    prompt_vi: "Minh đóng vai người dùng gọi tới. Bảo họ tải lại và chạy lại — giữ rõ /l/, /r/, /n/ ở cuối từ."
     accept_patterns:
       - "Please reload the page and run it again"
       - "Reload the page and call me if it fails"

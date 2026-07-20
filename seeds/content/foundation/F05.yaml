@@ -61,25 +61,32 @@ sentence_patterns:
       time: ["at three", "tomorrow morning", "this afternoon"]
 
 dialogue:
-  context_vi: "Bạn báo với quản lý về việc triển khai."
+  context_vi: >
+    Thứ Tư. Router phòng họp hỏng từ sáng, mà tối nay có đợt triển khai. Linh gọi bạn lại hỏi
+    tình hình — và đây là lần đầu mấy từ chuyên môn này ra khỏi miệng bạn, chứ không phải chỉ
+    nằm trên màn hình.
   turns:
-    - {speaker: A, en: "Are you available at three?", vi: "Ba giờ bạn rảnh không?"}
-    - {speaker: B, en: "Yes. Is it about the deployment?", vi: "Rảnh. Có phải về việc triển khai không?"}
-    - {speaker: A, en: "Right. We deploy tonight and the router is still down.", vi: "Đúng. Tối nay triển khai mà router vẫn đang hỏng."}
-    - {speaker: B, en: "I'll ask the network engineer.", vi: "Tôi sẽ hỏi kỹ sư mạng."}
+    - {speaker: Linh, en: "Are you available at three?", vi: "Ba giờ bạn rảnh không?"}
+    - {speaker: You, en: "Yes. Is it about the deployment?", vi: "Dạ rảnh. Có phải về đợt triển khai không ạ?"}
+    - {speaker: Linh, en: "Right. We deploy tonight and the router is still down.", vi: "Đúng. Tối nay triển khai mà router vẫn đang hỏng."}
+    - {speaker: You, en: "I'll ask the network engineer.", vi: "Em sẽ hỏi kỹ sư mạng."}
 
 listening_snippet:
   id: LS-F05
   speed: 0.85
   voice: en_US_female
-  transcript_en: "The deployment failed because the router is down. I told my manager already."
-  transcript_vi: "Việc triển khai thất bại vì router đang hỏng. Tôi đã báo quản lý rồi."
+  context_vi: >
+    Ba giờ chiều, Linh cập nhật cho bạn. Bốn từ trong đoạn này chỉ khác nhau ở chỗ nhấn:
+    ROU-ter, de-PLOY-ment, MA-na-ger, en-gi-NEER. Nghe xem trọng âm rơi ở đâu — đó là thứ
+    giúp bạn nhận ra từ trước cả khi nghe hết từ.
+  transcript_en: "The deployment failed because the router is down. I told my manager already, and the network engineer is on his way."
+  transcript_vi: "Đợt triển khai thất bại vì router đang hỏng. Tôi đã báo quản lý rồi, và kỹ sư mạng đang trên đường tới."
   questions:
-    - q_vi: "Vì sao triển khai thất bại?"
+    - q_vi: "Vì sao đợt triển khai thất bại?"
       choices: ["Router hỏng", "Server hỏng", "Không đủ người"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói đã báo cho ai?"
+    - q_vi: "Linh đã báo cho ai?"
       choices: ["Quản lý", "Khách hàng", "Chưa báo ai"]
       answer: 0
       difficulty: 2
@@ -87,27 +94,27 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "The router is down."
-    prompt_vi: "Đọc to. ROU-ter nhấn âm đầu — sai chỗ này người nghe không nhận ra từ."
+    prompt_vi: "Bạn báo tình hình cho Linh. Đọc to — ROU-ter nhấn âm đầu; nhấn sai chỗ này Linh sẽ không nhận ra từ."
     ipa: "/ðə ˈraʊtər ɪz daʊn/"
     focus_phonemes: [r]
   - kind: read_aloud
     expected_text: "The deployment failed."
-    prompt_vi: "Đọc to. de-PLOY-ment nhấn âm giữa."
+    prompt_vi: "Tin xấu lúc ba giờ chiều. Đọc to — de-PLOY-ment nhấn âm giữa."
     ipa: "/ðə dɪˈplɔɪmənt feɪld/"
     focus_phonemes: [d]
   - kind: shadow
     expected_text: "I sent the report to my manager."
-    prompt_vi: "Nghe rồi nhắc lại. MA-na-ger nhấn âm đầu."
+    prompt_vi: "Bạn nói lại việc mình đã làm sau khi router hỏng. Nghe rồi nhắc lại — MA-na-ger nhấn âm đầu."
     ipa: "/aɪ sɛnt ðə rɪˈpɔːrt tuː maɪ ˈmænɪdʒər/"
     focus_phonemes: [t, dʒ]
   - kind: shadow
     expected_text: "She is a network engineer."
-    prompt_vi: "Nghe rồi nhắc lại. NET-work nhấn đầu, en-gi-NEER nhấn cuối."
+    prompt_vi: "Bạn nói với Linh người bạn sẽ nhờ. Nghe rồi nhắc lại — NET-work nhấn đầu, en-gi-NEER nhấn cuối."
     ipa: "/ʃiː ɪz ə ˈnɛtwɜːrk ˌɛndʒɪˈnɪr/"
     focus_phonemes: [n, r]
   - kind: respond
     prompt_en: "Why did the deployment fail?"
-    prompt_vi: "Giải thích: vì router đang hỏng."
+    prompt_vi: "Linh hỏi vì sao đợt triển khai hỏng. Giải thích — cả câu treo vào một từ, nên nhấn ROU-ter cho đúng."
     accept_patterns:
       - "Because the router is down"
       - "The router is down"
@@ -153,7 +160,7 @@ mini_quiz:
     answer: 1
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "Nghe câu và cho biết từ nào được nhấn mạnh nhất?"
+    prompt_vi: "Nghe Linh nói và cho biết từ nào được nhấn mạnh nhất?"
     audio_text: "The router is down."
     choices: ["router", "is", "down"]
     answer: 0

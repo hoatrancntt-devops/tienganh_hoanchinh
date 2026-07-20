@@ -20,12 +20,12 @@ vocabulary:
   - term: "endpoint"
     ipa: "/ˈɛndpɔɪnt/"
     meaning_vi: "điểm cuối (đường dẫn API)"
-    chunk: "The endpoint is /api/users."
+    chunk: "The endpoint is /v1/secrets/{id}."
     tags: [it_english]
   - term: "request"
     ipa: "/rɪˈkwɛst/"
     meaning_vi: "yêu cầu (gửi đi)"
-    chunk: "Send a POST request."
+    chunk: "Send a GET request."
     tags: [it_english]
   - term: "response"
     ipa: "/rɪˈspɒns/"
@@ -35,17 +35,17 @@ vocabulary:
   - term: "required"
     ipa: "/rɪˈkwaɪərd/"
     meaning_vi: "bắt buộc"
-    chunk: "The email field is required."
+    chunk: "The id field is required."
     tags: [it_english]
   - term: "optional"
     ipa: "/ˈɒpʃənəl/"
     meaning_vi: "không bắt buộc"
-    chunk: "The phone field is optional."
+    chunk: "The version field is optional."
     tags: [it_english]
   - term: "returns"
     ipa: "/rɪˈtɜːrnz/"
     meaning_vi: "trả về"
-    chunk: "Returns 200 on success."
+    chunk: "Returns 403 without permission."
     tags: [it_english]
 
 sentence_patterns:
@@ -57,27 +57,34 @@ sentence_patterns:
       code: ["200", "201"]
 
 dialogue:
-  context_vi: "Một đoạn tài liệu API cho endpoint tạo người dùng (đọc theo trường)."
+  context_vi: >
+    Tài liệu API của secret manager, phần quyền. Đây là cái mà auth service gọi mỗi lần có người
+    đăng nhập. Dòng "Permission" và dòng 403 ở cuối trang giải thích trọn vẹn bảy tiếng mười lăm
+    phút của đêm hôm đó — bằng đúng hai câu tiếng Anh.
   turns:
-    - {speaker: A, en: "POST /api/users — Create a new user.", vi: "POST /api/users — Tạo người dùng mới."}
-    - {speaker: A, en: "Body: email (required), name (required), phone (optional).", vi: "Body: email (bắt buộc), name (bắt buộc), phone (không bắt buộc)."}
-    - {speaker: A, en: "Returns 201 Created on success.", vi: "Trả về 201 Created khi thành công."}
-    - {speaker: A, en: "Returns 400 if a required field is missing.", vi: "Trả về 400 nếu thiếu trường bắt buộc."}
-    - {speaker: A, en: "Returns 401 if the API key is invalid.", vi: "Trả về 401 nếu API key không hợp lệ."}
+    - {speaker: "", en: "GET /v1/secrets/{id} — Read the value of one secret.", vi: "GET /v1/secrets/{id} — Đọc giá trị của một secret."}
+    - {speaker: "", en: "Path: id (required). Query: version (optional).", vi: "Đường dẫn: id (bắt buộc). Tham số query: version (không bắt buộc)."}
+    - {speaker: "", en: "Permission: the caller needs secretsmanager:GetSecretValue on this secret.", vi: "Quyền: bên gọi phải có secretsmanager:GetSecretValue trên secret này."}
+    - {speaker: "", en: "Returns 200 with the secret value on success.", vi: "Trả về 200 kèm giá trị secret khi thành công."}
+    - {speaker: "", en: "Returns 400 if the id is missing or malformed.", vi: "Trả về 400 nếu thiếu id hoặc id sai định dạng."}
+    - {speaker: "", en: "Returns 403 if the caller does not have the permission above.", vi: "Trả về 403 nếu bên gọi không có quyền nói trên."}
 
 listening_snippet:
   id: LS-R08
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Send a POST request to slash api slash users. Email and name are required, phone is optional. It returns 201 on success, or 400 if a required field is missing."
-  transcript_vi: "Gửi yêu cầu POST tới /api/users. Email và name bắt buộc, phone không bắt buộc. Trả về 201 khi thành công, hoặc 400 nếu thiếu trường bắt buộc."
+  context_vi: >
+    Bạn nghe lại phần tóm tắt endpoint này trong buổi review nội bộ. Chú ý câu cuối — mã 403 chính
+    là thứ auth service nhận được hàng nghìn lần trong đêm.
+  transcript_en: "Send a GET request to slash v one slash secrets slash id. The id is required and version is optional. It returns 200 on success, 400 if the id is missing, and 403 if the caller does not have GetSecretValue permission."
+  transcript_vi: "Gửi yêu cầu GET tới /v1/secrets/{id}. Trường id bắt buộc, version không bắt buộc. Trả về 200 khi thành công, 400 nếu thiếu id, và 403 nếu bên gọi không có quyền GetSecretValue."
   questions:
-    - q_vi: "Trường nào KHÔNG bắt buộc?"
-      choices: ["phone", "email", "name"]
+    - q_vi: "Tham số nào KHÔNG bắt buộc?"
+      choices: ["version", "id", "Cả hai đều bắt buộc"]
       answer: 0
       difficulty: 3
-    - q_vi: "Thiếu trường bắt buộc thì trả về mã gì?"
-      choices: ["400", "201", "500"]
+    - q_vi: "Không có quyền GetSecretValue thì API trả về mã gì?"
+      choices: ["403", "200", "400"]
       answer: 0
       difficulty: 3
 
@@ -115,12 +122,12 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Trường “email (required)” nghĩa là?"
+    prompt_vi: "Tài liệu ghi “id (required)”. Nghĩa là?"
     choices: ["Bắt buộc phải gửi", "Có thể bỏ trống", "Chỉ để trang trí"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Mã 400 thường nghĩa là gì?"
+    prompt_vi: "Gọi endpoint này bị 400. Nghĩa là gì?"
     choices:
       - "Yêu cầu gửi sai (lỗi phía bạn)"
       - "Server hỏng"
@@ -133,12 +140,12 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "Gọi API bị 401. Khả năng cao vì?"
+    prompt_vi: "Một dịch vụ khác gọi API bị 401. Khả năng cao vì?"
     choices: ["API key sai hoặc thiếu", "Endpoint không tồn tại", "Thành công"]
     answer: 0
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "Trường nào KHÔNG bắt buộc?"
+    prompt_vi: "Một endpoint khác trong cùng tài liệu. Nghe: trường nào KHÔNG bắt buộc?"
     audio_text: "Email and name are required, phone is optional."
     choices: ["phone", "email", "name"]
     answer: 0

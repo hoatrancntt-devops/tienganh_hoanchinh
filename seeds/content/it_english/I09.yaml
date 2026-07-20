@@ -60,50 +60,56 @@ sentence_patterns:
       small_thing: ["extra blank line here", "typo in the comment", "inconsistent naming"]
 
 dialogue:
-  context_vi: "Bạn review pull request của đồng nghiệp và để lại nhận xét."
+  context_vi: >
+    07:30 sáng thứ Sáu. Bạn đáng lẽ đã đi ngủ, nhưng Priya vừa mở một PR: một bản vá cho phần đọc
+    credential của auth service. Chưa ai biết nguyên nhân gốc, đây mới là phỏng đoán. Bạn được nhờ
+    review — và bản vá này sẽ nằm trong postmortem, nên đọc kỹ và nói cho lịch sự.
   turns:
-    - {speaker: A, en: "I left a few comments on your PR.", vi: "Tôi để vài nhận xét trong PR của bạn rồi."}
-    - {speaker: B, en: "Thanks, let's go through them.", vi: "Cảm ơn, mình xem qua nhé."}
-    - {speaker: A, en: "The main one: could we add a null check here? It might crash on empty input.", vi: "Cái chính: mình thêm kiểm tra null ở đây được không? Có thể lỗi khi input rỗng."}
-    - {speaker: B, en: "Good catch. I'll add it.", vi: "Phát hiện hay. Tôi sẽ thêm."}
-    - {speaker: A, en: "And a nit: extra blank line on line twelve. Up to you.", vi: "Với một góp ý nhỏ: thừa dòng trống ở dòng 12. Tuỳ bạn."}
-    - {speaker: B, en: "Fair point, I'll clean it up.", vi: "Ý hợp lý, tôi dọn lại."}
+    - {speaker: You, en: "Priya, I left a few comments on your PR.", vi: "Priya, mình để vài nhận xét trong PR của bạn rồi."}
+    - {speaker: Priya, en: "Thank you. Let's go through them one by one.", vi: "Cảm ơn bạn. Mình xem qua từng cái nhé."}
+    - {speaker: You, en: "The main one: could we add a null check here? It might crash on empty input.", vi: "Cái chính: mình thêm kiểm tra null ở đây được không? Có thể lỗi khi giá trị trả về rỗng."}
+    - {speaker: Priya, en: "Good catch. That may be exactly the case we are hitting tonight. I will add it.", vi: "Phát hiện hay. Có thể đó đúng là trường hợp tụi mình đang gặp đêm nay. Mình sẽ thêm."}
+    - {speaker: You, en: "And a nit: extra blank line on line twelve. Up to you.", vi: "Với một góp ý nhỏ: thừa dòng trống ở dòng 12. Tuỳ bạn."}
+    - {speaker: Priya, en: "Fair point, I'll clean it up before I merge.", vi: "Ý hợp lý, mình dọn lại trước khi merge."}
 
 listening_snippet:
   id: LS-I09
   speed: 1.0
   voice: en_US_male
-  transcript_en: "The main one: could we add a null check here? It might crash on empty input. And a nit: extra blank line on line twelve, up to you."
-  transcript_vi: "Cái chính: thêm kiểm tra null ở đây được không? Có thể lỗi khi input rỗng. Và góp ý nhỏ: thừa dòng trống ở dòng 12, tuỳ bạn."
+  context_vi: >
+    Bạn để lại một nhận xét cuối cùng. Lúc này bạn chưa biết mình vừa chỉ đúng vào nguyên nhân —
+    một tiếng nữa Priya sẽ tìm ra. Nghe cách phân biệt góp ý bắt buộc với góp ý nhỏ.
+  transcript_en: "One more, and this one is not a nit. Could we log which credential it failed to read? Right now the service just times out, and we've been blind for five hours. Everything else looks good to me."
+  transcript_vi: "Một cái nữa, và cái này không phải góp ý nhỏ. Mình ghi log xem nó đọc hụt credential nào được không? Hiện dịch vụ chỉ báo timeout, và tụi mình mù suốt năm tiếng rồi. Còn lại mình thấy ổn."
   questions:
-    - q_vi: "Góp ý chính là gì?"
-      choices: ["Thêm kiểm tra null", "Đổi màu nút", "Xoá file"]
+    - q_vi: "Góp ý quan trọng nhất là gì?"
+      choices: ["Ghi log xem đọc hụt credential nào", "Đổi màu nút", "Xoá file"]
       answer: 0
       difficulty: 3
-    - q_vi: "“Nit” là loại góp ý gì?"
-      choices: ["Nhỏ, không bắt buộc", "Bắt buộc phải sửa", "Lời khen"]
+    - q_vi: "“Not a nit” nghĩa là góp ý đó thế nào?"
+      choices: ["Quan trọng, nên sửa", "Nhỏ, tuỳ ý", "Chỉ là lời khen"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Could we add a null check here? It might crash on empty input."
-    prompt_vi: "Đọc to. Nêu vấn đề kèm LÝ DO, không chỉ ra lệnh."
+    prompt_vi: "Hàm mới của Priya đọc credential mà không kiểm tra rỗng. Đọc to: nêu vấn đề kèm LÝ DO, không ra lệnh."
     ipa: "/kʊd wiː æd ə nʌl tʃɛk hɪr ɪt maɪt kræʃ ɒn ˈɛmpti ˈɪnpʊt/"
     focus_phonemes: [k, tʃ, ʃ]
   - kind: read_aloud
     expected_text: "What if we rename this? It might be clearer."
-    prompt_vi: "Đọc to. “What if we…” là cách đề xuất nhẹ, mời hợp tác."
+    prompt_vi: "Tên biến trong PR của Priya khó đọc. Đọc to — “What if we…” là đề xuất nhẹ, mời hợp tác."
     ipa: "/wɒt ɪf wiː riːˈneɪm ðɪs ɪt maɪt biː ˈklɪrər/"
     focus_phonemes: [w, r, ð]
   - kind: shadow
     expected_text: "Good catch. Fair point, I'll update it."
-    prompt_vi: "Nghe rồi nhắc lại. Cách NHẬN góp ý đúng mực, không phòng thủ."
+    prompt_vi: "Cách Priya nhận góp ý của bạn — và cách bạn sẽ trả lời khi tới lượt mình bị review. Nghe rồi nhắc lại."
     ipa: "/ɡʊd kætʃ fɛr pɔɪnt aɪl ˈʌpdeɪt ɪt/"
     focus_phonemes: [ɡ, tʃ, f]
   - kind: respond
-    prompt_en: "This function is a bit hard to read."
-    prompt_vi: "Góp ý kèm đề xuất cụ thể, phân biệt bắt buộc hay chỉ là nit."
+    prompt_en: "Any other comments before I merge this?"
+    prompt_vi: "Priya sắp merge bản vá. Góp ý kèm đề xuất cụ thể, và nói rõ đây là bắt buộc hay chỉ là nit."
     accept_patterns:
       - "What if we extract this into a function it might be clearer"
       - "Could we split this up It might be easier to read up to you"
@@ -156,7 +162,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Đồng nghiệp chỉ ra một lỗi thật trong code bạn. Phản hồi tốt nhất?"
+    prompt_vi: "Priya chỉ ra một lỗi thật trong code bạn. Phản hồi tốt nhất?"
     choices: ["Good catch, I'll fix it.", "No, my code is fine.", "Why are you attacking me?"]
     answer: 0
     difficulty: 2

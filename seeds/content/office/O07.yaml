@@ -59,49 +59,56 @@ sentence_patterns:
       action: ["restarting", "clearing the cache", "checking the logs"]
 
 dialogue:
-  context_vi: "Bạn kẹt ở một lỗi và cần đồng nghiệp giúp."
+  context_vi: >
+    Thứ Ba bạn kẹt ở bước deploy. Thứ Tư bạn vẫn kẹt, và ở standup bạn nói "no blockers" vì ngại.
+    Giờ là chiều thứ Năm, hạn của David là mai, và bạn không còn chỗ nào để giấu nữa. Bạn quay
+    sang bàn Minh — hai ngày muộn hơn lẽ ra phải làm.
   turns:
-    - {speaker: A, en: "Hey Minh, do you have a minute? I'm stuck on the deploy step.", vi: "Này Minh, rảnh chút không? Tôi đang kẹt ở bước deploy."}
-    - {speaker: B, en: "Sure. What's happening?", vi: "Được chứ. Bị gì vậy?"}
-    - {speaker: A, en: "It fails with a timeout. I've already tried restarting, but it didn't work.", vi: "Nó lỗi timeout. Tôi thử khởi động lại rồi mà không được."}
-    - {speaker: B, en: "Ah, check the firewall rule. That's usually it.", vi: "À, kiểm tra luật tường lửa xem. Thường là do cái đó."}
-    - {speaker: A, en: "That makes sense. Thanks, I owe you one!", vi: "Hợp lý ghê. Cảm ơn, tôi nợ bạn một lần!"}
+    - {speaker: You, en: "Hey Minh, do you have a minute? I'm stuck on the deploy step.", vi: "Này Minh, rảnh chút không? Mình đang kẹt ở bước deploy."}
+    - {speaker: Minh, en: "Sure. What's happening?", vi: "Được chứ. Bị gì vậy?"}
+    - {speaker: You, en: "It fails with a timeout. I've already tried restarting, but it didn't work.", vi: "Nó lỗi timeout. Mình thử khởi động lại rồi mà không được."}
+    - {speaker: Minh, en: "Ah, check the firewall rule. That's usually it.", vi: "À, kiểm tra luật tường lửa xem. Thường là do cái đó."}
+    - {speaker: You, en: "That makes sense. Thanks, I owe you one!", vi: "Hợp lý ghê. Cảm ơn, mình nợ bạn một lần!"}
 
 listening_snippet:
   id: LS-O07
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Do you have a minute? I'm stuck on the deploy step. I've already tried restarting, but it didn't work."
-  transcript_vi: "Bạn rảnh chút không? Tôi đang kẹt ở bước deploy. Tôi thử khởi động lại rồi mà không được."
+  context_vi: >
+    Minh nói xong chỗ cần sửa thì nói thêm một câu nữa — câu mà bạn sẽ nhớ lâu hơn cả cách sửa
+    lỗi. Cái khó: anh ấy chuyển từ giọng kỹ thuật sang giọng góp ý mà không đổi nhịp, và ý chính
+    nằm ở câu cuối.
+  transcript_en: "Check the firewall rule — the deploy can't reach the registry. Honestly, you should have asked me on Tuesday. Two days is a long time to sit on something like this."
+  transcript_vi: "Kiểm tra luật tường lửa đi — bước deploy không ra được registry. Thật lòng mà nói, đáng lẽ bạn phải hỏi mình từ thứ Ba. Hai ngày là lâu cho một chuyện thế này."
   questions:
-    - q_vi: "Người nói kẹt ở đâu?"
-      choices: ["Bước deploy", "Cuộc họp", "Báo cáo"]
+    - q_vi: "Minh bảo bạn kiểm tra cái gì?"
+      choices: ["Luật tường lửa", "Mật khẩu", "Phiên bản Docker"]
       answer: 0
       difficulty: 2
-    - q_vi: "Người nói đã thử gì?"
-      choices: ["Khởi động lại", "Đổi máy", "Chưa thử gì"]
+    - q_vi: "Minh nói gì về việc bạn kẹt hai ngày mới hỏi?"
+      choices: ["Đáng lẽ nên hỏi từ thứ Ba", "Vậy là bình thường", "Nên tự thử thêm vài hôm"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Do you have a minute? I'm stuck on the deploy step."
-    prompt_vi: "Đọc to. Hỏi rảnh trước, rồi nêu vấn đề gọn."
+    prompt_vi: "Bạn quay sang bàn Minh. Câu này đáng lẽ phải nói từ hai hôm trước. Đọc to — hỏi rảnh trước, rồi nêu vấn đề gọn."
     ipa: "/duː juː hæv ə ˈmɪnɪt aɪm stʌk ɒn ðə dɪˈplɔɪ stɛp/"
     focus_phonemes: [t, k, p]
   - kind: read_aloud
     expected_text: "I've already tried restarting, but it didn't work."
-    prompt_vi: "Đọc to. Nói đã thử gì giúp người kia không lặp lại."
+    prompt_vi: "Minh hỏi bị gì. Đọc to — nói luôn những gì bạn đã thử để anh ấy khỏi bảo bạn làm lại."
     ipa: "/aɪv ɔːlˈrɛdi traɪd riːˈstɑːrtɪŋ bʌt ɪt ˈdɪdənt wɜːrk/"
     focus_phonemes: [d, t, k]
   - kind: shadow
     expected_text: "That makes sense. Thanks, I owe you one!"
-    prompt_vi: "Nghe rồi nhắc lại. Cảm ơn cụ thể tạo quan hệ tốt."
+    prompt_vi: "Minh vừa chỉ đúng chỗ hỏng trong ba mươi giây. Nghe rồi nhắc lại — cảm ơn cụ thể là thứ khiến lần sau bạn dễ hỏi hơn."
     ipa: "/ðæt meɪks sɛns θæŋks aɪ oʊ juː wʌn/"
     focus_phonemes: [ð, s, θ]
   - kind: respond
     prompt_en: "Sure, what's happening?"
-    prompt_vi: "Nêu vấn đề gọn và nói bạn đã thử gì."
+    prompt_vi: "Minh ngẩng lên hỏi bị gì. Nêu vấn đề gọn và nói bạn đã thử gì — đừng kể lại cả hai ngày."
     accept_patterns:
       - "I'm stuck on {problem} I've already tried {action}"
       - "It fails with {error} I tried {action} already"

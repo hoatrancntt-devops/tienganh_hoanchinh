@@ -60,53 +60,60 @@ sentence_patterns:
       understanding: ["we deploy tonight", "the router is down", "I should ask Minh"]
 
 dialogue:
-  context_vi: "Trong cuộc họp, đồng nghiệp nói nhanh và bạn không bắt kịp."
+  context_vi: >
+    Sáng thứ Sáu, cuộc gọi đầu tiên của bạn với David Carter — quản lý kỹ thuật phía khách hàng,
+    người Mỹ. Anh ta nói nhanh và nuốt âm. Linh ngồi ngay cạnh nhưng không nhắc: đây là lúc bạn
+    phải tự mở miệng.
   turns:
-    - {speaker: A, en: "We'll roll back the deployment and re-run the migration tonight.", vi: "Chúng ta sẽ quay lại bản trước và chạy lại migration tối nay."}
-    - {speaker: B, en: "Sorry, could you say that more slowly?", vi: "Xin lỗi, bạn nói chậm lại được không?"}
-    - {speaker: A, en: "Sure. We roll back, then re-run the migration. Tonight.", vi: "Được. Ta quay lại bản trước, rồi chạy lại migration. Tối nay."}
-    - {speaker: B, en: "Got it. So you mean we deploy again tomorrow?", vi: "Hiểu rồi. Vậy ý bạn là mai ta triển khai lại?"}
+    - {speaker: David, en: "We'll roll back the deployment and re-run the migration tonight.", vi: "Bọn tôi sẽ quay lại bản trước và chạy lại migration tối nay."}
+    - {speaker: You, en: "Sorry, could you say that more slowly?", vi: "Xin lỗi anh, anh nói chậm lại giúp em được không ạ?"}
+    - {speaker: David, en: "Sure. We roll back, then re-run the migration. Tonight.", vi: "Được. Quay lại bản trước, rồi chạy lại migration. Tối nay."}
+    - {speaker: You, en: "Got it. So you mean we deploy again tomorrow?", vi: "Em hiểu rồi. Vậy ý anh là mai mình triển khai lại?"}
 
 listening_snippet:
   id: LS-F08
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Sorry, I didn't catch the last part. Could you say that more slowly, please?"
-  transcript_vi: "Xin lỗi, tôi không bắt kịp đoạn cuối. Bạn nói chậm lại giúp được không?"
+  context_vi: >
+    Bạn vừa nhờ David nói chậm lại — và anh ta nói chậm lại thật. Đây là phần thưởng cho câu
+    hỏi đó: lần này bạn nghe được cái chi tiết mà lần đầu bạn đã trượt mất. Nghe đến hết, vì
+    câu cuối David quay ngược lại hỏi bạn.
+  transcript_en: "Sure, no problem. Roll back first. Then re-run the migration — tonight, after nine. And sorry, I didn't catch your name. Could you spell that for me?"
+  transcript_vi: "Được, không sao. Quay lại bản trước trước đã. Rồi chạy lại migration — tối nay, sau chín giờ. À mà xin lỗi, tôi chưa nghe rõ tên bạn. Bạn đánh vần giúp tôi được không?"
   questions:
-    - q_vi: "Người nói đang làm gì?"
-      choices: ["Nhờ nói chậm lại", "Từ chối tham gia", "Xin lỗi vì đến muộn"]
+    - q_vi: "David đang làm gì ở đầu đoạn?"
+      choices: ["Nhắc lại kế hoạch chậm hơn", "Từ chối tham gia", "Xin lỗi vì đến muộn"]
       answer: 0
       difficulty: 2
-    - q_vi: "Người nói không nghe kịp phần nào?"
-      choices: ["Đoạn cuối", "Toàn bộ", "Tên người"]
+    - q_vi: "Cuối đoạn David nhờ bạn điều gì?"
+      choices: ["Đánh vần tên bạn", "Gửi lại log", "Gọi lại sau chín giờ"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Sorry, could you say that again?"
-    prompt_vi: "Đọc to. Đây là câu quan trọng nhất bạn học trong tháng đầu."
+    prompt_vi: "David vừa nói một tràng và bạn trượt mất nửa câu. Đọc to — đây là câu quan trọng nhất bạn học trong tháng đầu."
     ipa: "/ˈsɒri kʊd juː seɪ ðæt əˈɡɛn/"
     focus_phonemes: [s, d]
   - kind: read_aloud
     expected_text: "Could you say that more slowly, please?"
-    prompt_vi: "Đọc to. Dùng khi họ nói quá nhanh chứ không phải quá nhỏ."
+    prompt_vi: "Vấn đề với David không phải anh ta nói nhỏ, mà là nói quá nhanh. Đọc to — dùng đúng câu cho đúng vấn đề."
     ipa: "/kʊd juː seɪ ðæt mɔːr ˈsloʊli pliːz/"
     focus_phonemes: [d, s, l]
   - kind: shadow
     expected_text: "I didn't catch the last part."
-    prompt_vi: "Nghe rồi nhắc lại. Câu này cụ thể hơn “Sorry?” và giúp người kia biết nhắc lại phần nào."
+    prompt_vi: "Bạn chỉ mất đoạn cuối thôi. Nghe rồi nhắc lại — câu này cụ thể hơn “Sorry?” và giúp David biết phải nhắc lại phần nào."
     ipa: "/aɪ ˈdɪdənt kætʃ ðə læst pɑːrt/"
     focus_phonemes: [t, tʃ]
   - kind: shadow
     expected_text: "So you mean we deploy tonight?"
-    prompt_vi: "Nghe rồi nhắc lại. Đây là cách xác nhận lại thay vì gật đầu."
+    prompt_vi: "Trước khi gật đầu với David, xác nhận lại đã. Nghe rồi nhắc lại — đây là cách chốt hiểu đúng thay vì gật cho qua."
     ipa: "/soʊ juː miːn wiː dɪˈplɔɪ təˈnaɪt/"
     focus_phonemes: [m, d]
   - kind: respond
     prompt_en: "We'll roll back and re-run the migration tonight."
-    prompt_vi: "Bạn không nghe kịp. Nhờ họ nhắc lại."
+    prompt_vi: "David vừa nói xong kế hoạch tối nay, bạn không nghe kịp. Nhờ anh ta nhắc lại — đừng gật."
     accept_patterns:
       - "Sorry could you say that again"
       - "Could you say that more slowly"
@@ -144,7 +151,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Đồng nghiệp nói quá nhanh. Bạn nói gì?"
+    prompt_vi: "David nói quá nhanh. Bạn nói gì?"
     choices: ["Repeat again please.", "Could you say that more slowly?", "I don't know."]
     answer: 1
     difficulty: 2
@@ -154,7 +161,7 @@ mini_quiz:
     answer: 0
     difficulty: 1
   - kind: mcq
-    prompt_vi: "Bạn nghĩ mình đã hiểu nhưng muốn chắc chắn. Nói gì?"
+    prompt_vi: "Bạn nghĩ mình đã hiểu kế hoạch của David nhưng muốn chắc chắn. Nói gì?"
     choices: ["Yes yes.", "So you mean we deploy tonight?", "OK OK."]
     answer: 1
     difficulty: 3

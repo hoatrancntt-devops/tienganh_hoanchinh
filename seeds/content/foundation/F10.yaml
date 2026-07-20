@@ -59,25 +59,31 @@ sentence_patterns:
       noun: [time, "does it do", happened]
 
 dialogue:
-  context_vi: "Chú ý mũi tên: ↗ lên giọng, ↘ xuống giọng."
+  context_vi: >
+    Cuối chiều thứ Sáu. David đang chờ một câu trả lời trước khi anh ta tan làm bên kia múi giờ,
+    còn bạn thì phải hỏi Minh trước. Chú ý mũi tên: ↗ lên giọng, ↘ xuống giọng — nếu giọng phẳng,
+    Minh sẽ tưởng bạn đang kể chứ không phải đang hỏi.
   turns:
-    - {speaker: A, en: "Are you free now? (↗)", vi: "Giờ bạn rảnh không? (lên giọng)"}
-    - {speaker: B, en: "Yes. What do you need? (↘)", vi: "Rảnh. Bạn cần gì? (xuống giọng)"}
-    - {speaker: A, en: "Did the deploy finish? (↗)", vi: "Deploy xong chưa? (lên giọng)"}
-    - {speaker: B, en: "Not yet. Who is handling it? (↘)", vi: "Chưa. Ai đang lo việc đó? (xuống giọng)"}
+    - {speaker: You, en: "Are you free now? (↗)", vi: "Anh rảnh không ạ? (lên giọng)"}
+    - {speaker: Minh, en: "Yes. What do you need? (↘)", vi: "Rảnh. Cần gì đó? (xuống giọng)"}
+    - {speaker: You, en: "Did the deploy finish? (↗) David is waiting.", vi: "Deploy xong chưa ạ? David đang đợi. (lên giọng)"}
+    - {speaker: Minh, en: "Not yet. Who is handling it? (↘)", vi: "Chưa. Ai đang lo việc đó? (xuống giọng)"}
 
 listening_snippet:
   id: LS-F10
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Minh đọc lại cho bạn nghe bốn câu hỏi bạn đã hỏi trong ngày hôm nay. Bốn câu, hai kiểu giọng.
+    Nghe hướng giọng ở TỪ CUỐI CÙNG — đó mới là chỗ báo cho David biết bạn đang hỏi hay đang kể.
   transcript_en: "Are you free now? Did the deploy finish? What time is the meeting? Who is handling it?"
   transcript_vi: "Giờ bạn rảnh không? Deploy xong chưa? Cuộc họp mấy giờ? Ai đang lo việc đó?"
   questions:
-    - q_vi: "Câu “Are you free now?” nên lên hay xuống giọng cuối?"
+    - q_vi: "Câu đầu tiên “Are you free now?” — Minh lên hay xuống giọng ở cuối?"
       choices: ["Lên giọng", "Xuống giọng", "Không đổi"]
       answer: 0
       difficulty: 3
-    - q_vi: "Câu “What time is the meeting?” nên lên hay xuống?"
+    - q_vi: "Câu “What time is the meeting?” — lên hay xuống?"
       choices: ["Xuống giọng", "Lên giọng", "Không đổi"]
       answer: 0
       difficulty: 3
@@ -85,22 +91,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "Are you free now?"
-    prompt_vi: "Đọc to và LÊN giọng ở cuối — đây là câu hỏi yes/no."
+    prompt_vi: "Bạn bắt chuyện với Minh cuối giờ. Đọc to và LÊN giọng ở cuối — đây là câu hỏi yes/no."
     ipa: "/ɑr juː friː naʊ ↗/"
     focus_phonemes: [r, f]
   - kind: read_aloud
     expected_text: "What time is the meeting?"
-    prompt_vi: "Đọc to và XUỐNG giọng ở cuối — câu hỏi wh- (what/who/when…)."
+    prompt_vi: "Bạn hỏi Minh giờ họp đầu tuần sau. Đọc to và XUỐNG giọng ở cuối — câu hỏi wh- (what/who/when…)."
     ipa: "/wɒt taɪm ɪz ðə ˈmiːtɪŋ ↘/"
     focus_phonemes: [w, t, ŋ]
   - kind: shadow
     expected_text: "Did it work?"
-    prompt_vi: "Nghe rồi nhắc lại. Yes/no → lên giọng."
+    prompt_vi: "Bạn hỏi bản vá của Minh đã chạy được chưa — David đang đợi câu trả lời. Nghe rồi nhắc lại: yes/no thì lên giọng."
     ipa: "/dɪd ɪt wɜːrk ↗/"
     focus_phonemes: [d, w, k]
   - kind: respond
     prompt_en: "I finished the report."
-    prompt_vi: "Hỏi lại một câu yes/no (lên giọng) và một câu wh- (xuống giọng)."
+    prompt_vi: "Minh nói đã xong báo cáo gửi David. Hỏi lại một câu yes/no (lên giọng) và một câu wh- (xuống giọng)."
     accept_patterns:
       - "Did you send it Who is it for"
       - "Is it ready What time do you need it"
@@ -161,7 +167,7 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "“Are you free now?” là loại câu hỏi gì?"
+    prompt_vi: "Bạn hỏi Minh “Are you free now?” — đây là loại câu hỏi gì?"
     audio_text: "Are you free now?"
     choices: ["Yes/no — lên giọng", "Wh- — xuống giọng", "Câu kể"]
     answer: 0

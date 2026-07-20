@@ -20,12 +20,12 @@ vocabulary:
   - term: "is down"
     ipa: "/ɪz daʊn/"
     meaning_vi: "đang không hoạt động"
-    chunk: "The server is down."
+    chunk: "The portal is down."
     tags: [it_english]
   - term: "since"
     ipa: "/sɪns/"
     meaning_vi: "từ lúc (mốc thời gian)"
-    chunk: "It's been down since nine this morning."
+    chunk: "It's been down since two this morning."
     tags: [it_english, core]
   - term: "affected"
     ipa: "/əˈfɛktɪd/"
@@ -35,7 +35,7 @@ vocabulary:
   - term: "I've tried"
     ipa: "/aɪv traɪd/"
     meaning_vi: "tôi đã thử"
-    chunk: "I've tried restarting it."
+    chunk: "I've tried logging in myself."
     tags: [it_english]
   - term: "the logs show"
     ipa: "/ðə lɒɡz ʃoʊ/"
@@ -60,24 +60,32 @@ sentence_patterns:
       action: ["restarting it", "clearing the cache", "checking the logs"]
 
 dialogue:
-  context_vi: "Bạn báo sự cố cho đồng nghiệp bên network."
+  context_vi: >
+    03:00 sáng thứ Sáu. Ticket #4417 của Emma Brooks vào lúc 02:00, rồi cả phòng kế toán của
+    Northwind Logistics báo lỗi giống nhau. Bạn gọi Linh dậy. Đây là câu đầu tiên của bảy tiếng
+    mười lăm phút tiếp theo — nói sao để Linh hành động được ngay.
   turns:
-    - {speaker: A, en: "The VPN is down since nine this morning.", vi: "VPN hỏng từ chín giờ sáng nay."}
-    - {speaker: B, en: "How many people are affected?", vi: "Bao nhiêu người bị ảnh hưởng?"}
-    - {speaker: A, en: "About twenty. The whole support team can't reach the internal wiki.", vi: "Khoảng hai mươi. Cả đội hỗ trợ không vào được wiki nội bộ."}
-    - {speaker: B, en: "What have you tried?", vi: "Bạn đã thử gì rồi?"}
-    - {speaker: A, en: "I've tried restarting the client. The logs show a timeout error.", vi: "Tôi đã thử khởi động lại client. Log cho thấy lỗi timeout."}
-    - {speaker: B, en: "OK. I'll escalate this to the network team.", vi: "Được. Tôi sẽ chuyển việc này lên đội mạng."}
+    - {speaker: You, en: "Linh, sorry to wake you. The Northwind Portal is down.", vi: "Linh ơi, xin lỗi đã gọi giữa đêm. Northwind Portal đang sập."}
+    - {speaker: Linh, en: "Down since when?", vi: "Sập từ lúc nào?"}
+    - {speaker: You, en: "Since two this morning. Emma Brooks opened ticket four four one seven.", vi: "Từ hai giờ sáng. Emma Brooks mở ticket bốn bốn một bảy."}
+    - {speaker: Linh, en: "How many people are affected?", vi: "Bao nhiêu người bị ảnh hưởng?"}
+    - {speaker: You, en: "About twenty. The whole accounting team can't log in.", vi: "Khoảng hai mươi. Cả phòng kế toán không đăng nhập được."}
+    - {speaker: Linh, en: "What have you tried?", vi: "Em đã thử gì rồi?"}
+    - {speaker: You, en: "I've tried logging in myself, and it fails too. The logs show a timeout error.", vi: "Em tự đăng nhập thử, cũng lỗi. Log cho thấy lỗi timeout."}
+    - {speaker: Linh, en: "OK. I'll escalate this. We're calling it INC-2291.", vi: "Được. Chị sẽ đẩy lên. Mình đặt mã sự cố là INC-2291."}
 
 listening_snippet:
   id: LS-I01
   speed: 1.0
   voice: en_US_male
-  transcript_en: "The VPN has been down since nine this morning. About twenty users are affected. I've tried restarting it, but the logs show a timeout error."
-  transcript_vi: "VPN hỏng từ chín giờ sáng nay. Khoảng hai mươi người dùng bị ảnh hưởng. Tôi đã thử khởi động lại nhưng log cho thấy lỗi timeout."
+  context_vi: >
+    Ngay sau đó Linh đọc lại bản tóm tắt sự cố để ghi vào hệ thống. Nghe xem chị ấy tóm đúng bốn
+    phần bạn vừa báo hay không.
+  transcript_en: "Let me read this back. The Northwind Portal has been down since two this morning. About twenty users are affected — the whole accounting team. You've tried logging in yourself, and the logs show a timeout error."
+  transcript_vi: "Để chị đọc lại. Northwind Portal sập từ hai giờ sáng nay. Khoảng hai mươi người dùng bị ảnh hưởng — cả phòng kế toán. Em đã tự thử đăng nhập, và log cho thấy lỗi timeout."
   questions:
     - q_vi: "Sự cố bắt đầu từ khi nào?"
-      choices: ["Chín giờ sáng nay", "Tối qua", "Một tiếng trước"]
+      choices: ["Hai giờ sáng nay", "Chín giờ sáng nay", "Một tiếng trước"]
       answer: 0
       difficulty: 3
     - q_vi: "Bao nhiêu người bị ảnh hưởng?"
@@ -91,32 +99,32 @@ listening_snippet:
 
 speaking_drills:
   - kind: read_aloud
-    expected_text: "The VPN is down since nine this morning."
-    prompt_vi: "Đọc to. VPN đọc từng chữ cái."
-    ipa: "/ðə viː piː ɛn ɪz daʊn sɪns naɪn ðɪs ˈmɔːrnɪŋ/"
+    expected_text: "The portal is down since two this morning."
+    prompt_vi: "Câu đầu tiên bạn nói với Linh lúc 3 giờ sáng. Đọc to — cái gì hỏng, từ khi nào."
+    ipa: "/ðə ˈpɔːrtl ɪz daʊn sɪns tuː ðɪs ˈmɔːrnɪŋ/"
     focus_phonemes: [ð, s, n]
   - kind: read_aloud
     expected_text: "About twenty users are affected."
-    prompt_vi: "Đọc to. a-FFEC-ted nhấn âm giữa, có thêm âm tiết ở đuôi -ed."
+    prompt_vi: "Linh hỏi bao nhiêu người. Đọc to — a-FFEC-ted nhấn âm giữa, có thêm âm tiết ở đuôi -ed."
     ipa: "/əˈbaʊt ˈtwɛnti ˈjuːzərz ɑr əˈfɛktɪd/"
     focus_phonemes: [z, t, d]
   - kind: shadow
-    expected_text: "I've tried restarting it, but it didn't help."
-    prompt_vi: "Nghe rồi nhắc lại. tried có âm cuối /d/."
-    ipa: "/aɪv traɪd riːˈstɑːrtɪŋ ɪt bʌt ɪt ˈdɪdənt hɛlp/"
+    expected_text: "I've tried logging in myself, but it didn't help."
+    prompt_vi: "Linh hỏi bạn đã thử gì. Nghe rồi nhắc lại — tried có âm cuối /d/."
+    ipa: "/aɪv traɪd ˈlɒɡɪŋ ɪn maɪˈsɛlf bʌt ɪt ˈdɪdənt hɛlp/"
     focus_phonemes: [d, t]
   - kind: shadow
     expected_text: "The logs show a timeout error."
-    prompt_vi: "Nghe rồi nhắc lại. logs có âm cuối /z/."
+    prompt_vi: "Bằng chứng duy nhất bạn có lúc này. Nghe rồi nhắc lại — logs có âm cuối /z/."
     ipa: "/ðə lɒɡz ʃoʊ ə ˈtaɪmaʊt ˈɛrər/"
     focus_phonemes: [z, ʃ, r]
   - kind: respond
     prompt_en: "What's the problem?"
-    prompt_vi: "Báo sự cố VPN đủ bốn phần: cái gì, từ khi nào, ảnh hưởng ai, đã thử gì."
+    prompt_vi: "Linh vừa nhấc máy và hỏi đúng một câu. Báo đủ bốn phần: cái gì, từ khi nào, ảnh hưởng ai, đã thử gì."
     accept_patterns:
-      - "The VPN is down since {time} about {number} users are affected I've tried {action}"
+      - "The portal is down since {time} about {number} users are affected I've tried {action}"
       - "The {system} is down since {time} I've tried {action}"
-      - "The VPN has been down since {time} and {number} users are affected"
+      - "The Northwind Portal has been down since {time} and {number} users are affected"
 
 vietnamese_explanation:
   why_vi: >
@@ -148,7 +156,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Báo sự cố cần bốn phần nào?"
+    prompt_vi: "Bạn đang gọi Linh lúc 3 giờ sáng. Báo sự cố cần bốn phần nào?"
     choices:
       - "Cái gì hỏng, từ khi nào, ảnh hưởng ai, đã thử gì"
       - "Cái gì hỏng, lỗi của ai, sửa bao lâu, tốn bao nhiêu"

@@ -59,25 +59,32 @@ sentence_patterns:
       place: ["a meeting", "the standup", "lunch"]
 
 dialogue:
-  context_vi: "Sáng thứ Hai, bạn gặp đồng nghiệp ở pantry khi lấy cà phê."
+  context_vi: >
+    Thứ Hai tuần sau, 7 giờ 50. Bạn đến sớm mười phút để chuẩn bị phần standup, và Minh đã đứng
+    ở pantry đợi máy pha cà phê. Sáu mươi giây trống trước khi cả hai vào phòng họp — đây đúng là
+    quãng thời gian mà tuần trước bạn chỉ đứng im nhìn cái máy.
   turns:
-    - {speaker: A, en: "Morning! How was your weekend?", vi: "Chào buổi sáng! Cuối tuần bạn thế nào?"}
-    - {speaker: B, en: "Not bad, thanks. Pretty quiet. You?", vi: "Cũng ổn, cảm ơn. Khá yên bình. Bạn thì sao?"}
-    - {speaker: A, en: "Same. Coffee's ready if you want some.", vi: "Tôi cũng vậy. Cà phê xong rồi đấy, uống không?"}
-    - {speaker: B, en: "Thanks! I'm off to the standup. Catch you later.", vi: "Cảm ơn! Tôi đi họp standup đây. Gặp lại sau nhé."}
+    - {speaker: Minh, en: "Morning! How was your weekend?", vi: "Chào buổi sáng! Cuối tuần bạn thế nào?"}
+    - {speaker: You, en: "Not bad, thanks. Pretty quiet. You?", vi: "Cũng ổn, cảm ơn. Khá yên bình. Bạn thì sao?"}
+    - {speaker: Minh, en: "Same. Coffee's ready if you want some.", vi: "Mình cũng vậy. Cà phê xong rồi đấy, uống không?"}
+    - {speaker: You, en: "Thanks! I'm off to the standup. Catch you later.", vi: "Cảm ơn! Mình đi họp standup đây. Gặp lại sau nhé."}
 
 listening_snippet:
   id: LS-O02
   speed: 1.0
   voice: en_US_female
+  context_vi: >
+    Bạn cầm cà phê ra khỏi pantry thì gặp Linh ở hành lang. Chị nói cả ba câu liền một hơi rồi đi
+    mất. Cái khó: câu chào, lời mời và lời chào tạm biệt dính vào nhau, không có khoảng nghỉ nào
+    để bạn kịp phản ứng.
   transcript_en: "Morning! How was your weekend? Coffee's ready if you want some. I'm off to a meeting, catch you later."
-  transcript_vi: "Chào buổi sáng! Cuối tuần thế nào? Cà phê xong rồi đấy. Tôi đi họp đây, gặp lại sau nhé."
+  transcript_vi: "Chào buổi sáng! Cuối tuần thế nào? Cà phê xong rồi đấy. Chị đi họp đây, gặp lại sau nhé."
   questions:
-    - q_vi: "Người nói mời gì?"
+    - q_vi: "Linh mời bạn cái gì?"
       choices: ["Cà phê", "Ăn trưa", "Đi họp cùng"]
       answer: 0
       difficulty: 2
-    - q_vi: "Người nói sắp đi đâu?"
+    - q_vi: "Linh sắp đi đâu?"
       choices: ["Đi họp", "Về nhà", "Đi ăn"]
       answer: 0
       difficulty: 2
@@ -85,22 +92,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "Morning! How was your weekend?"
-    prompt_vi: "Đọc to. “Morning” rút gọn nghe thân mật hơn “Good morning”."
+    prompt_vi: "Minh vừa bước vào pantry. Mở lời trước. Đọc to — “Morning” rút gọn nghe thân mật hơn “Good morning”."
     ipa: "/ˈmɔːrnɪŋ haʊ wɒz jʊr ˈwiːkɛnd/"
     focus_phonemes: [ŋ, z]
   - kind: shadow
     expected_text: "Not bad, thanks. You?"
-    prompt_vi: "Nghe rồi nhắc lại. Ngắn, tự nhiên."
+    prompt_vi: "Minh hỏi cuối tuần bạn thế nào. Nghe rồi nhắc lại — ngắn, tự nhiên, rồi hỏi ngược."
     ipa: "/nɒt bæd θæŋks juː/"
     focus_phonemes: [t, d, θ]
   - kind: shadow
     expected_text: "I'm off to the standup. Catch you later."
-    prompt_vi: "Nghe rồi nhắc lại. Cách rời đi lịch sự."
+    prompt_vi: "Còn năm phút nữa tới standup, bạn phải đi. Nghe rồi nhắc lại — cách rời đi lịch sự."
     ipa: "/aɪm ɒf tuː ðə ˈstændʌp kætʃ juː ˈleɪtər/"
     focus_phonemes: [f, tʃ]
   - kind: respond
     prompt_en: "Morning! How was your weekend?"
-    prompt_vi: "Trả lời ngắn rồi hỏi ngược."
+    prompt_vi: "Minh vừa chào bạn ở pantry. Trả lời ngắn rồi hỏi ngược."
     accept_patterns:
       - "Not bad thanks You"
       - "Pretty good How about you"

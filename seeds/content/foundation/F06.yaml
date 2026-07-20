@@ -59,53 +59,57 @@ sentence_patterns:
       thing: ["a minute", "the file", "access"]
 
 dialogue:
-  context_vi: "Đồng nghiệp nhắn bạn giữa giờ làm."
+  context_vi: "Vẫn thứ Tư, gần cuối giờ. Bạn đang trong call với kỹ sư mạng thì Minh nhắn sang."
   turns:
-    - {speaker: A, en: "Do you have a minute?", vi: "Bạn có rảnh một phút không?"}
-    - {speaker: B, en: "I'm on a call. Is it urgent?", vi: "Tôi đang họp gọi. Có gấp không?"}
-    - {speaker: A, en: "It doesn't work on my laptop. I don't know why.", vi: "Nó không chạy trên máy tôi. Tôi không biết vì sao."}
-    - {speaker: B, en: "He's the one who has access. Ask Minh.", vi: "Người có quyền truy cập là anh ấy. Hỏi Minh nhé."}
+    - {speaker: Minh, en: "Do you have a minute?", vi: "Bạn rảnh một phút không?"}
+    - {speaker: You, en: "I'm on a call. Is it urgent?", vi: "Em đang trong call. Có gấp không anh?"}
+    - {speaker: Minh, en: "A little. The VPN doesn't work on my laptop and I don't know why.", vi: "Hơi gấp. VPN không chạy trên máy mình mà mình không biết vì sao."}
+    - {speaker: You, en: "The network engineer has access. He's in the server room.", vi: "Kỹ sư mạng có quyền truy cập ạ. Anh ấy đang ở phòng server."}
 
 listening_snippet:
   id: LS-F06
   speed: 0.85
   voice: en_US_male
-  transcript_en: "I'm on a call right now. She has the file, but it doesn't work on my laptop."
-  transcript_vi: "Tôi đang họp gọi. Cô ấy có file, nhưng nó không chạy trên máy tôi."
+  context_vi: >
+    Bạn tắt call rồi nhắn lại cho Minh, và Minh trả lời bằng một tin nhắn thoại. Cả đoạn chỉ
+    toàn be / have / do ở dạng rút gọn — I'm, has, doesn't. Nói nhanh thì chúng dính vào nhau,
+    đó là chỗ tai bạn dễ trượt nhất.
+  transcript_en: "I'm on a call right now. Linh has the file, but it doesn't work on my laptop either. I'll try again after four."
+  transcript_vi: "Giờ mình đang trong call. Linh có file, nhưng nó cũng không chạy trên máy mình. Sau bốn giờ mình thử lại."
   questions:
-    - q_vi: "Người nói đang làm gì?"
-      choices: ["Đang họp gọi", "Đang ăn trưa", "Đang rảnh"]
+    - q_vi: "Lúc này Minh đang làm gì?"
+      choices: ["Đang trong call", "Đang ăn trưa", "Đang rảnh"]
       answer: 0
       difficulty: 2
-    - q_vi: "Ai có file?"
-      choices: ["Người nói", "Cô ấy", "Không ai"]
+    - q_vi: "Ai đang giữ file?"
+      choices: ["Minh", "Linh", "Không ai"]
       answer: 1
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "I'm on a call."
-    prompt_vi: "Đọc to. I'm nói liền một hơi, không tách “I am”."
+    prompt_vi: "Minh nhắn hỏi bạn có rảnh không, mà bạn đang bận. Đọc to — I'm nói liền một hơi, không tách “I am”."
     ipa: "/aɪm ɒn ə kɔːl/"
     focus_phonemes: [m, l]
   - kind: read_aloud
     expected_text: "I don't understand."
-    prompt_vi: "Đọc to. Đây là câu bạn sẽ dùng nhiều nhất trong 3 tháng tới."
+    prompt_vi: "Kỹ sư mạng vừa nói một tràng mà bạn không theo kịp. Đọc to — đây là câu bạn sẽ dùng nhiều nhất trong 3 tháng tới."
     ipa: "/aɪ doʊnt ˌʌndərˈstænd/"
     focus_phonemes: [t, d]
   - kind: shadow
     expected_text: "She has two tickets today."
-    prompt_vi: "Nghe rồi nhắc lại. has chứ không phải have."
+    prompt_vi: "Bạn báo lại số việc Linh đang cầm. Nghe rồi nhắc lại — has chứ không phải have."
     ipa: "/ʃiː hæz tuː ˈtɪkɪts təˈdeɪ/"
     focus_phonemes: [z, s]
   - kind: shadow
     expected_text: "It doesn't work on my laptop."
-    prompt_vi: "Nghe rồi nhắc lại."
+    prompt_vi: "Bạn mô tả lại lỗi của Minh cho kỹ sư mạng. Nghe rồi nhắc lại — doesn't, không phải don't."
     ipa: "/ɪt ˈdʌzənt wɜːrk ɒn maɪ ˈlæptɒp/"
     focus_phonemes: [z, t, k]
   - kind: respond
     prompt_en: "Do you have a minute?"
-    prompt_vi: "Bạn đang bận. Trả lời lịch sự."
+    prompt_vi: "Minh nhắn khi bạn đang trong call. Trả lời lịch sự nhưng thật — đừng nhận bừa."
     accept_patterns:
       - "I'm on a call"
       - "I'm in a meeting"
@@ -163,7 +167,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Đồng nghiệp hỏi “Do you have a minute?” khi bạn đang bận. Câu nào tự nhiên nhất?"
+    prompt_vi: "Minh hỏi “Do you have a minute?” khi bạn đang trong call. Câu nào tự nhiên nhất?"
     choices: ["No.", "I'm on a call. Is it urgent?", "I don't have."]
     answer: 1
     difficulty: 3

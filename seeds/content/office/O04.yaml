@@ -61,49 +61,56 @@ sentence_patterns:
       action: ["send it to you first", "start with the bug", "wait for approval"]
 
 dialogue:
-  context_vi: "Quản lý giao việc nhưng chưa rõ. Bạn hỏi lại để làm đúng."
+  context_vi: >
+    Cuối standup, David giao thẳng cho bạn một việc — đúng một câu, rồi anh ta đã chuyển sang tab
+    khác. "Update the report and send it out." Báo cáo nào? Cả bản hay một phần? Gửi cho ai? Bao
+    giờ? Bạn có ba giây để hỏi trước khi anh ta rời call, hoặc mất cả ngày mai làm nhầm thứ.
   turns:
-    - {speaker: A, en: "Can you update the report and send it out?", vi: "Bạn cập nhật báo cáo rồi gửi đi nhé?"}
-    - {speaker: B, en: "Sure. Just to be clear, do you mean the whole report or just section two?", vi: "Được. Cho rõ nhé, ý anh là cả báo cáo hay chỉ phần hai?"}
-    - {speaker: A, en: "Just section two. And send it to me first.", vi: "Chỉ phần hai. Và gửi cho tôi trước."}
-    - {speaker: B, en: "Got it. By when do you need it?", vi: "Hiểu rồi. Anh cần trước khi nào?"}
-    - {speaker: A, en: "End of day tomorrow.", vi: "Cuối ngày mai."}
+    - {speaker: David, en: "Can you update the report and send it out? Thanks.", vi: "Cập nhật báo cáo rồi gửi đi nhé? Cảm ơn."}
+    - {speaker: You, en: "Sure. Just to be clear, do you mean the whole report or just section two?", vi: "Vâng. Cho rõ nhé, ý anh là cả báo cáo hay chỉ phần hai?"}
+    - {speaker: David, en: "Just section two. And send it to me first.", vi: "Chỉ phần hai. Và gửi cho tôi trước."}
+    - {speaker: You, en: "Got it. By when do you need it?", vi: "Hiểu rồi. Anh cần trước khi nào?"}
+    - {speaker: David, en: "End of day tomorrow.", vi: "Cuối ngày mai."}
 
 listening_snippet:
   id: LS-O04
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Just to be clear, do you mean the whole report or just section two? And by when do you need it?"
-  transcript_vi: "Cho rõ nhé, ý bạn là cả báo cáo hay chỉ phần hai? Và bạn cần trước khi nào?"
+  context_vi: >
+    David chưa rời call. Anh ta nói thêm một đoạn nữa, nhanh hơn nữa, trước khi tắt mic. Cái khó:
+    anh ta nói "EOD" thay vì "end of day", "ping me" thay vì "message me", và câu dặn quan trọng
+    nhất nằm ở cuối, lúc giọng đã trôi đi.
+  transcript_en: "One more thing — section two is the priority, the rest can wait. If Linh asks, tell her I said so. And ping me if you're blocked. Don't sit on it."
+  transcript_vi: "Một điều nữa — phần hai là ưu tiên, phần còn lại để sau. Nếu Linh hỏi, cứ bảo là tôi nói vậy. Và nhắn cho tôi nếu bị kẹt. Đừng ôm một mình."
   questions:
-    - q_vi: "Người nói đang làm gì?"
-      choices: ["Hỏi làm rõ yêu cầu", "Từ chối việc", "Báo cáo tiến độ"]
+    - q_vi: "David nói phần nào là ưu tiên?"
+      choices: ["Phần hai", "Cả báo cáo", "Phần một"]
       answer: 0
       difficulty: 2
-    - q_vi: "Người nói hỏi mấy điều?"
-      choices: ["Một", "Hai", "Ba"]
-      answer: 1
+    - q_vi: "David dặn bạn làm gì nếu bị kẹt?"
+      choices: ["Nhắn cho anh ấy ngay", "Đợi đến standup hôm sau", "Tự xoay xở cho xong"]
+      answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Just to be clear, do you mean the whole report or just section two?"
-    prompt_vi: "Đọc to. Cách hỏi làm rõ lịch sự, không làm người kia khó chịu."
+    prompt_vi: "David vừa nói “update the report”. Chặn lại trước khi anh ta rời call. Đọc to — hỏi làm rõ mà không làm người kia khó chịu."
     ipa: "/dʒʌst tuː biː klɪr duː juː miːn ðə hoʊl rɪˈpɔːrt ɔr dʒʌst ˈsɛkʃən tuː/"
     focus_phonemes: [dʒ, r, s]
   - kind: read_aloud
     expected_text: "By when do you need it?"
-    prompt_vi: "Đọc to. Luôn hỏi hạn chót nếu chưa được nói."
+    prompt_vi: "David nói rõ phạm vi rồi nhưng chưa nói hạn. Đọc to — luôn hỏi hạn chót nếu chưa được nói."
     ipa: "/baɪ wɛn duː juː niːd ɪt/"
     focus_phonemes: [w, n, d]
   - kind: shadow
     expected_text: "Got it. So I should send it to you first, right?"
-    prompt_vi: "Nghe rồi nhắc lại. Xác nhận lại giúp tránh làm sai."
+    prompt_vi: "Trước khi David tắt mic, nhắc lại một lần cho chắc. Nghe rồi nói theo — xác nhận giúp bạn khỏi làm nhầm cả ngày mai."
     ipa: "/ɡɒt ɪt soʊ aɪ ʃʊd sɛnd ɪt tuː juː fɜːrst raɪt/"
     focus_phonemes: [t, s, ʃ]
   - kind: respond
     prompt_en: "Can you fix the login bug and deploy it?"
-    prompt_vi: "Bạn chưa rõ có nên deploy ngay không. Hỏi làm rõ."
+    prompt_vi: "David giao thêm một việc nữa, cũng cụt ngủn. Bạn chưa rõ có nên deploy ngay không. Hỏi làm rõ."
     accept_patterns:
       - "Just to be clear should I deploy right after or wait"
       - "Do you mean deploy today or tomorrow"

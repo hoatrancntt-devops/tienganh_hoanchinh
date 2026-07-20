@@ -30,19 +30,23 @@ listening_snippet:
   id: LS-CPR
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Breaking change: you must update your config before upgrading. The error says permission denied. Steps to reproduce: click Save, nothing happens. Severity is critical, so update as soon as possible."
-  transcript_vi: "Thay đổi phá vỡ tương thích: bạn phải cập nhật cấu hình trước khi nâng cấp. Lỗi báo bị từ chối quyền. Các bước tái hiện: bấm Lưu, không có gì xảy ra. Mức nghiêm trọng, nên cập nhật càng sớm càng tốt."
+  context_vi: >
+    Hồ sơ INC-2291 đóng lại. Bốn mảnh văn bản từ bốn loại tài liệu khác nhau, đọc liền một mạch —
+    changelog, log, ticket, advisory. Không có bối cảnh nào thêm. Đây đúng là cách chúng đến với bạn
+    trong một ca trực thật.
+  transcript_en: "Breaking change: the auth service now uses a new IAM role. The log says access denied on the database secret. Steps to reproduce: open the Portal, click Sign in, sign-in fails. Severity is critical, so patch as soon as possible."
+  transcript_vi: "Thay đổi phá vỡ tương thích: auth service giờ dùng IAM role mới. Log báo bị từ chối quyền trên secret của cơ sở dữ liệu. Các bước tái hiện: mở Portal, bấm Sign in, đăng nhập thất bại. Mức nghiêm trọng, nên vá càng sớm càng tốt."
   questions:
-    - q_vi: "Trước khi nâng cấp bạn phải làm gì?"
-      choices: ["Cập nhật cấu hình", "Không làm gì", "Đổi máy chủ"]
+    - q_vi: "Changelog cảnh báo điều gì đã thay đổi?"
+      choices: ["Auth service dùng IAM role mới", "Không có gì thay đổi", "Đổi sang máy chủ khác"]
       answer: 0
       difficulty: 3
-    - q_vi: "Lỗi báo gì?"
-      choices: ["Bị từ chối quyền (permission denied)", "Hết bộ nhớ", "Thành công"]
+    - q_vi: "Log báo lỗi gì?"
+      choices: ["Bị từ chối quyền trên secret của CSDL", "Hết bộ nhớ", "Đăng nhập thành công"]
       answer: 0
       difficulty: 3
     - q_vi: "Mức nghiêm trọng cho biết điều gì?"
-      choices: ["Cần xử lý càng sớm càng tốt", "Không quan trọng", "Đã tự sửa"]
+      choices: ["Cần vá càng sớm càng tốt", "Không quan trọng", "Đã tự sửa"]
       answer: 0
       difficulty: 3
 
@@ -82,32 +86,32 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Email: “FYI, the server was patched.” Bạn phải làm gì?"
+    prompt_vi: "Email của Linh: “FYI, the server was patched.” Bạn phải làm gì?"
     choices: ["Không cần làm gì, chỉ để biết", "Vá lại server", "Trả lời gấp"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Release notes: dòng nào đọc trước khi nâng cấp?"
+    prompt_vi: "Changelog bản 4.2.0: dòng nào đáng lẽ phải đọc trước khi deploy?"
     choices: ["Breaking change", "Added", "License"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Bug report: bug thực chất nằm ở đâu?"
+    prompt_vi: "Ticket #4417 của Emma: bug thực chất nằm ở đâu?"
     choices: ["Khoảng cách Expected vs Actual", "Trong tiêu đề", "Trong người báo"]
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "Log: khi tìm nguyên nhân nên đọc ERROR nào trước?"
+    prompt_vi: "Log auth-service đêm đó: khi tìm nguyên nhân nên đọc ERROR nào trước?"
     choices: ["ERROR đầu tiên theo thời gian", "ERROR cuối cùng", "Dòng INFO"]
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "API: mã 4xx thường là lỗi phía ai?"
+    prompt_vi: "Tài liệu secret manager: mã 4xx thường là lỗi phía ai?"
     choices: ["Phía bạn (gửi sai)", "Phía server", "Không ai"]
     answer: 0
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "Lỗi báo gì?"
+    prompt_vi: "Nghe dòng log này. Nó báo gì?"
     audio_text: "The error says permission denied."
     choices: ["Bị từ chối quyền", "Hết dung lượng", "Sai đường dẫn"]
     answer: 0

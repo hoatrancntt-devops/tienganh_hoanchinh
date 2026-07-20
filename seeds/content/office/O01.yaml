@@ -59,30 +59,37 @@ sentence_patterns:
       plan: ["start the migration", "test the fix", "write the docs"]
 
 dialogue:
-  context_vi: "Standup buổi sáng, mỗi người nói 30 giây."
+  context_vi: >
+    Thứ Hai, 8 giờ sáng. Tuần trước Linh nói bạn sẽ vào dự án của David Carter — và từ hôm nay,
+    mỗi sáng có mười lăm phút standup bằng tiếng Anh với phía khách hàng. David đang ngồi ở Mỹ,
+    cuối ngày của anh ta, và anh ta sẽ gọi tên bạn. Bạn có 30 giây.
   turns:
-    - {speaker: A, en: "Nam, your turn.", vi: "Nam, đến lượt bạn."}
-    - {speaker: B, en: "Yesterday I finished the report and fixed the login bug.", vi: "Hôm qua tôi đã xong báo cáo và sửa lỗi đăng nhập."}
-    - {speaker: B, en: "Today I'll start the migration. No blockers on my side.", vi: "Hôm nay tôi sẽ bắt đầu migration. Bên tôi không có vướng mắc gì."}
-    - {speaker: A, en: "Great. Are we on track for Friday?", vi: "Tốt. Ta có kịp thứ Sáu không?"}
-    - {speaker: B, en: "Yes, on track. I'll follow up with Minh after this.", vi: "Có, đúng tiến độ. Sau đây tôi sẽ trao đổi tiếp với Minh."}
+    - {speaker: Linh, en: "David, this is the new engineer on our side. Go ahead — your turn.", vi: "David, đây là bạn kỹ sư mới bên mình. Nói đi — đến lượt bạn."}
+    - {speaker: You, en: "Yesterday I finished the report and fixed the login bug.", vi: "Hôm qua tôi đã xong báo cáo và sửa lỗi đăng nhập."}
+    - {speaker: You, en: "Today I'll start the migration. No blockers on my side.", vi: "Hôm nay tôi sẽ bắt đầu migration. Bên tôi không có vướng mắc gì."}
+    - {speaker: David, en: "Good. Are we on track for Friday?", vi: "Tốt. Ta có kịp thứ Sáu không?"}
+    - {speaker: You, en: "Yes, on track. I'll follow up with Minh after this.", vi: "Có, đúng tiến độ. Sau đây tôi sẽ trao đổi tiếp với Minh."}
 
 listening_snippet:
   id: LS-O01
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Bạn nói xong, David chuyển sang Minh. Nghe Minh báo — vì đây là bản mẫu bạn sẽ lặp lại mỗi
+    sáng từ giờ. Cái khó: Minh nói liền một mạch không nghỉ, và phần quan trọng nhất — chỗ anh ấy
+    đang kẹt — nằm ở cuối câu.
   transcript_en: "Yesterday I fixed the login bug. Today I'll start the migration. I'm blocked by the VPN issue, so I need help from IT."
   transcript_vi: "Hôm qua tôi sửa lỗi đăng nhập. Hôm nay tôi sẽ bắt đầu migration. Tôi đang vướng vấn đề VPN nên cần IT giúp."
   questions:
-    - q_vi: "Hôm qua người nói làm gì?"
+    - q_vi: "Hôm qua Minh làm gì?"
       choices: ["Sửa lỗi đăng nhập", "Bắt đầu migration", "Viết tài liệu"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói đang vướng gì?"
+    - q_vi: "Minh đang vướng gì?"
       choices: ["Vấn đề VPN", "Không có gì", "Thiếu người"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói cần gì?"
+    - q_vi: "Minh cần gì?"
       choices: ["IT giúp", "Thêm thời gian", "Đổi task"]
       answer: 0
       difficulty: 2
@@ -90,27 +97,27 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "Yesterday I finished the report."
-    prompt_vi: "Đọc to. Âm /t/ cuối finished là thứ cho người nghe biết việc đã xong."
+    prompt_vi: "David vừa gọi tên bạn. Mở đầu phần 1. Đọc to — âm /t/ cuối finished là thứ cho người nghe biết việc đã xong."
     ipa: "/ˈjɛstərdeɪ aɪ ˈfɪnɪʃt ðə rɪˈpɔːrt/"
     focus_phonemes: [t]
   - kind: read_aloud
     expected_text: "Today I'll start the migration."
-    prompt_vi: "Đọc to. “I'll” nói liền, không tách “I will”."
+    prompt_vi: "Sang phần 2 — việc hôm nay. Đọc to, “I'll” nói liền, không tách “I will”."
     ipa: "/təˈdeɪ aɪl stɑːrt ðə maɪˈɡreɪʃən/"
     focus_phonemes: [l, t, ʃ]
   - kind: shadow
     expected_text: "I'm blocked by the VPN issue."
-    prompt_vi: "Nghe rồi nhắc lại. blocked có âm cuối /t/."
+    prompt_vi: "Đây là câu Minh vừa nói ở cuối phần báo của anh ấy. Nghe rồi nhắc lại — blocked có âm cuối /t/."
     ipa: "/aɪm blɒkt baɪ ðə viː piː ɛn ˈɪʃuː/"
     focus_phonemes: [k, t]
   - kind: shadow
     expected_text: "No blockers on my side. We're on track for Friday."
-    prompt_vi: "Nghe rồi nhắc lại."
+    prompt_vi: "David vừa hỏi có kịp thứ Sáu không. Nghe rồi nhắc lại câu trả lời."
     ipa: "/noʊ ˈblɒkərz ɒn maɪ saɪd wɪr ɒn træk fɔr ˈfraɪdeɪ/"
     focus_phonemes: [z, k]
   - kind: respond
-    prompt_en: "Nam, your turn. What's your update?"
-    prompt_vi: "Báo standup đủ ba phần: hôm qua, hôm nay, vướng mắc."
+    prompt_en: "Your turn. What's your update?"
+    prompt_vi: "David gọi tên bạn, cả phòng đang chờ. Báo standup đủ ba phần: hôm qua, hôm nay, vướng mắc."
     accept_patterns:
       - "Yesterday I {action} Today I'll {plan} No blockers"
       - "Yesterday I {action} Today I'll {plan} I'm blocked by {problem}"

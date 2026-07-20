@@ -55,20 +55,26 @@ sentence_patterns:
       v_word: [version, VPN, service]
 
 dialogue:
-  context_vi: "Ba âm /v/ /f/ /w/ xuất hiện dày trong hội thoại IT."
+  context_vi: >
+    Gần trưa thứ Năm. Linh cần biết bản nào đã có bản vá để báo lại cho David. Bạn trả lời trôi
+    chảy — và Linh dừng bạn ngay ở chữ đầu tiên.
   turns:
-    - {speaker: A, en: "Which version has the fix?", vi: "Bản nào có bản vá? (/v/, /f/)"}
-    - {speaker: B, en: "Version five. We verified it works.", vi: "Bản năm. Chúng tôi đã kiểm chứng nó chạy. (/v/, /w/)"}
-    - {speaker: A, en: "Great, the VPN works fine now.", vi: "Tốt, VPN chạy ổn rồi. (/w/, /f/)"}
+    - {speaker: Linh, en: "Which version has the fix?", vi: "Bản nào có bản vá?"}
+    - {speaker: You, en: "Version five. We verified it works.", vi: "Bản năm ạ. Bọn em đã kiểm chứng là nó chạy."}
+    - {speaker: Linh, en: "Right answer. But you said “wersion”. David will hear another word.", vi: "Trả lời đúng. Nhưng bạn nói “wersion”. David sẽ nghe ra một từ khác."}
+    - {speaker: Linh, en: "Teeth on the lip for /v/, round lips for /w/. Say it again before the call.", vi: "Răng chạm môi cho /v/, tròn môi cho /w/. Nói lại lần nữa trước giờ họp."}
 
 listening_snippet:
   id: LS-F15
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Which version has the fix? We verified it works. The VPN works fine now."
-  transcript_vi: "Bản nào có bản vá? Chúng tôi đã kiểm chứng nó chạy. VPN giờ chạy ổn."
+  context_vi: >
+    Linh thu lại câu mẫu để bạn nghe trước cuộc gọi. Bẫy: “version” và “works” đứng sát nhau —
+    một cái cắn môi, một cái tròn môi; còn “fix” và “fine” là cùng vị trí răng-môi nhưng không rung.
+  transcript_en: "Which version has the fix? Version five — we verified it works. The VPN works fine now."
+  transcript_vi: "Bản nào có bản vá? Bản năm — chúng tôi đã kiểm chứng là nó chạy. VPN giờ chạy ổn rồi."
   questions:
-    - q_vi: "Từ “version” bắt đầu bằng âm gì?"
+    - q_vi: "Từ “version” Linh đọc bắt đầu bằng âm gì?"
       choices: ["/v/ (răng chạm môi, rung)", "/w/ (chu môi)", "/f/ (không rung)"]
       answer: 0
       difficulty: 3
@@ -80,22 +86,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "Which version has the fix?"
-    prompt_vi: "Đọc to. /v/ (version): răng trên chạm môi dưới và RUNG. /f/ (fix): giống vậy nhưng KHÔNG rung."
+    prompt_vi: "Câu Linh vừa hỏi bạn. Đọc to — /v/ (version): răng trên chạm môi dưới và RUNG. /f/ (fix): y hệt nhưng KHÔNG rung."
     ipa: "/wɪtʃ ˈvɜːrʒən hæz ðə fɪks/"
     focus_phonemes: [v, f, w]
   - kind: read_aloud
     expected_text: "We verified it works."
-    prompt_vi: "Đọc to. /w/ (we, works): CHU môi tròn, KHÔNG chạm răng. /v/ (verified): răng chạm môi."
+    prompt_vi: "Câu trả lời của bạn — lần này nói cho đúng. Đọc to — /w/ (we, works): CHU môi tròn, KHÔNG chạm răng. /v/ (verified): răng chạm môi."
     ipa: "/wiː ˈvɛrɪfaɪd ɪt wɜːrks/"
     focus_phonemes: [w, v]
   - kind: shadow
     expected_text: "The VPN works fine."
-    prompt_vi: "Nghe rồi nhắc lại. VPN: /v/ ở “V”. works: /w/. fine: /f/."
+    prompt_vi: "Linh đọc mẫu câu cuối để bạn báo cho David. Nghe rồi nhắc lại — VPN: /v/ ở “V”; works: /w/; fine: /f/."
     ipa: "/ðə viː piː ɛn wɜːrks faɪn/"
     focus_phonemes: [v, w, f]
   - kind: respond
     prompt_en: "Which version fixed the bug?"
-    prompt_vi: "Trả lời có “version” và “works” — /v/ rung, /w/ chu môi."
+    prompt_vi: "David hỏi lại qua call. Trả lời có “version” và “works” — /v/ rung, /w/ chu môi."
     accept_patterns:
       - "Version {number} we verified it works"
       - "The new version works fine"

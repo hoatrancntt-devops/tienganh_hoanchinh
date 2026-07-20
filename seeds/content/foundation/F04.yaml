@@ -60,25 +60,28 @@ sentence_patterns:
       period: [month, quarter]
 
 dialogue:
-  context_vi: "Đồng nghiệp đề xuất lịch họp, bạn đồng ý."
+  context_vi: "Ngay sau standup ngày thứ hai. Minh muốn chốt một khung giờ cố định để ngồi cùng bạn xem ticket."
   turns:
-    - {speaker: A, en: "Can we meet at three? That works for me.", vi: "Ba giờ họp được không? Với tôi thì được."}
-    - {speaker: B, en: "That sounds good. Thanks, that helps.", vi: "Nghe ổn đấy. Cảm ơn, vậy đỡ cho tôi."}
-    - {speaker: A, en: "I have two projects this month, so mornings are better.", vi: "Tháng này tôi có hai dự án nên buổi sáng tiện hơn."}
-    - {speaker: B, en: "Understood. Mornings it is.", vi: "Hiểu rồi. Vậy chốt buổi sáng."}
+    - {speaker: Minh, en: "Can we meet at three? That works for me.", vi: "Ba giờ ngồi với nhau được không? Với mình thì ổn."}
+    - {speaker: You, en: "That sounds good. Thanks, that helps.", vi: "Nghe ổn đấy ạ. Cảm ơn anh, vậy đỡ cho em."}
+    - {speaker: Minh, en: "I have two projects this month, so mornings are better next week.", vi: "Tháng này mình có hai dự án, nên tuần sau buổi sáng sẽ tiện hơn."}
+    - {speaker: You, en: "Understood. Mornings it is.", vi: "Em hiểu rồi. Vậy chốt buổi sáng."}
 
 listening_snippet:
   id: LS-F04
   speed: 0.85
   voice: en_US_male
-  transcript_en: "That works for me. I have two projects this month and it sounds difficult."
-  transcript_vi: "Với tôi thì được. Tháng này tôi có hai dự án và nghe có vẻ khó."
+  context_vi: >
+    Minh nói tiếp về lịch tuần sau. Cả đoạn này là một chuỗi cụm phụ âm cuối — works, projects,
+    sounds, months. Nuốt một cụm là mất một thông tin: hai dự án hay một dự án?
+  transcript_en: "OK, three o'clock today. Next week, mornings. I have two projects this month, and one of them sounds difficult — so my afternoons are gone."
+  transcript_vi: "Được, hôm nay ba giờ. Tuần sau thì buổi sáng. Tháng này mình có hai dự án, và một cái nghe có vẻ khó — nên buổi chiều mình không còn thời gian."
   questions:
-    - q_vi: "Người nói có bao nhiêu dự án?"
-      choices: ["một", "hai", "ba"]
+    - q_vi: "Minh có bao nhiêu dự án trong tháng này?"
+      choices: ["Một", "Hai", "Ba"]
       answer: 1
       difficulty: 3
-    - q_vi: "Người nói cảm thấy thế nào?"
+    - q_vi: "Minh thấy một trong hai dự án đó thế nào?"
       choices: ["Thấy dễ", "Thấy khó", "Không nói"]
       answer: 1
       difficulty: 2
@@ -86,27 +89,27 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "That works for me."
-    prompt_vi: "Đọc to. Cụm /ks/ ở cuối works phải nghe thấy cả hai âm."
+    prompt_vi: "Minh hỏi ba giờ có được không. Đọc to — cụm /ks/ ở cuối works phải nghe thấy cả hai âm."
     ipa: "/ðæt wɜːrks fɔr miː/"
     focus_phonemes: [k, s]
   - kind: read_aloud
     expected_text: "That sounds good."
-    prompt_vi: "Đọc to. Cụm /ndz/ ở cuối sounds."
+    prompt_vi: "Bạn đồng ý với lịch Minh đề xuất. Đọc to — cụm /ndz/ ở cuối sounds."
     ipa: "/ðæt saʊndz ɡʊd/"
     focus_phonemes: [d, z]
   - kind: shadow
     expected_text: "I have two projects this month."
-    prompt_vi: "Nghe rồi nhắc lại. Hai cụm khó: /kts/ và /nθs/."
+    prompt_vi: "Minh giải thích vì sao tuần sau phải đổi giờ. Nghe rồi nhắc lại — hai cụm khó: /kts/ và /nθs/."
     ipa: "/aɪ hæv tuː ˈprɒdʒɛkts ðɪs mʌnθs/"
     focus_phonemes: [k, t, s, θ]
   - kind: shadow
     expected_text: "Thanks, that helps a lot."
-    prompt_vi: "Nghe rồi nhắc lại. /ŋks/ và /lps/."
+    prompt_vi: "Bạn cảm ơn Minh vì đã chịu xếp lịch theo bạn. Nghe rồi nhắc lại — /ŋks/ và /lps/."
     ipa: "/θæŋks ðæt hɛlps ə lɒt/"
     focus_phonemes: [θ, k, s, p]
   - kind: respond
     prompt_en: "Can we meet at three?"
-    prompt_vi: "Đồng ý với đề xuất họp lúc 3 giờ."
+    prompt_vi: "Minh đề xuất ngồi lại lúc ba giờ. Đồng ý — và giữ đủ cụm phụ âm cuối để anh ấy không phải hỏi lại."
     accept_patterns:
       - "That works for me"
       - "That sounds good"
@@ -144,7 +147,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq_listen
-    prompt_vi: "Bạn nghe thấy từ nào?"
+    prompt_vi: "Minh nói về khối lượng việc tháng này. Bạn nghe thấy từ nào?"
     audio_text: "I have two projects this month."
     choices: ["project", "projects"]
     answer: 1
@@ -159,7 +162,7 @@ mini_quiz:
     answer: 1
     difficulty: 2
   - kind: fill_chunk
-    prompt_vi: "Đồng ý với lịch họp: “That ___ for me.”"
+    prompt_vi: "Đồng ý với lịch Minh đề xuất: “That ___ for me.”"
     choices: [work, works, working]
     answer: 1
     difficulty: 2

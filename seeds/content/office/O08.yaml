@@ -59,48 +59,54 @@ sentence_patterns:
       request: ["review this PR", "check the logs", "confirm the time"]
 
 dialogue:
-  context_vi: "Vài tin nhắn chat công việc điển hình trong ngày (Teams/Slack)."
+  context_vi: >
+    Sáng thứ Sáu. Luật tường lửa đã sửa, migration đã chạy, và bạn cần biết bản deploy đêm qua có
+    trót lọt không. Priya ở Singapore, đang trong một cuộc họp khác. Cả câu hỏi lẫn câu nhờ đều
+    phải gói trong một dòng — vì cô ấy sẽ đọc nó giữa hai slide.
   turns:
-    - {speaker: A, en: "Quick question — did the deploy finish?", vi: "Hỏi nhanh chút — deploy xong chưa?"}
-    - {speaker: B, en: "In a meeting, will reply after. Short answer: yes.", vi: "Đang họp, lát trả lời. Ngắn gọn: rồi."}
-    - {speaker: A, en: "Thanks! When you get a chance, could you review my PR? No rush.", vi: "Cảm ơn! Khi nào rảnh review PR giúp mình nhé? Không gấp đâu."}
-    - {speaker: B, en: "On it after this call. 👍", vi: "Xong call này mình làm ngay. 👍"}
+    - {speaker: You, en: "Quick question — did the deploy finish?", vi: "Hỏi nhanh chút — deploy xong chưa?"}
+    - {speaker: Priya, en: "In a meeting, will reply after. Short answer: yes.", vi: "Đang họp, lát trả lời. Ngắn gọn: rồi."}
+    - {speaker: You, en: "Thanks! When you get a chance, could you review my PR? No rush.", vi: "Cảm ơn! Khi nào rảnh review PR giúp mình nhé? Không gấp đâu."}
+    - {speaker: Priya, en: "On it after this call. 👍", vi: "Xong call này mình làm ngay. 👍"}
 
 listening_snippet:
   id: LS-O08
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Quick question — did the deploy finish? When you get a chance, could you review my PR? No rush."
-  transcript_vi: "Hỏi nhanh chút — deploy xong chưa? Khi nào rảnh review PR giúp mình nhé? Không gấp đâu."
+  context_vi: >
+    Bạn chưa kịp đóng cửa sổ chat thì Linh đăng một tin lên kênh chung. Bốn dòng, đọc mất mười
+    giây. Cái khó: dòng quan trọng nhất với bạn nằm ở gần cuối, và chị không gọi tên bạn ra.
+  transcript_en: "Heads up, team — I'm on leave all next week. Standup still runs at eight every morning. I've asked our newest engineer to run it. Go easy on them. 👍"
+  transcript_vi: "Báo cả team — tuần sau chị nghỉ phép cả tuần. Standup vẫn chạy tám giờ sáng mỗi ngày. Chị đã nhờ bạn kỹ sư mới nhất chủ trì. Nhẹ tay với bạn ấy nhé. 👍"
   questions:
-    - q_vi: "Người nhắn hỏi gì?"
-      choices: ["Deploy xong chưa", "Mấy giờ họp", "Ai trực"]
+    - q_vi: "Linh nhắn để báo chuyện gì?"
+      choices: ["Chị nghỉ phép cả tuần sau", "Standup đổi giờ", "Dự án bị hoãn"]
       answer: 0
       difficulty: 2
-    - q_vi: "Việc review PR có gấp không?"
-      choices: ["Không gấp", "Rất gấp", "Không nói"]
+    - q_vi: "Ai sẽ chủ trì standup tuần sau?"
+      choices: ["Bạn", "Minh", "David"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Quick question — did the deploy finish?"
-    prompt_vi: "Đọc to. Mở đầu “Quick question” báo hiệu tin ngắn."
+    prompt_vi: "Bạn nhắn Priya hỏi bản deploy đêm qua. Đọc to — “Quick question” báo trước rằng tin này ngắn."
     ipa: "/kwɪk ˈkwɛstʃən dɪd ðə dɪˈplɔɪ ˈfɪnɪʃ/"
     focus_phonemes: [k, tʃ, ʃ]
   - kind: read_aloud
     expected_text: "When you get a chance, could you review this? No rush."
-    prompt_vi: "Đọc to. “No rush” cho biết việc không gấp — lịch sự với thời gian người kia."
+    prompt_vi: "Priya đang họp, PR của bạn thì chờ được đến chiều. Đọc to — “No rush” là cách lịch sự với thời gian người kia."
     ipa: "/wɛn juː ɡɛt ə tʃæns kʊd juː rɪˈvjuː ðɪs noʊ rʌʃ/"
     focus_phonemes: [tʃ, r, ʃ]
   - kind: shadow
     expected_text: "In a meeting, will reply after."
-    prompt_vi: "Nghe rồi nhắc lại. Báo bận gọn thay vì im lặng."
+    prompt_vi: "Đây là câu Priya trả lời bạn từ trong phòng họp. Nghe rồi nhắc lại — báo bận một dòng vẫn hơn im lặng."
     ipa: "/ɪn ə ˈmiːtɪŋ wɪl rɪˈplaɪ ˈæftər/"
     focus_phonemes: [ŋ, l, r]
   - kind: respond
     prompt_en: "Quick question — is the server up?"
-    prompt_vi: "Trả lời ngắn kiểu chat: có/không + một chi tiết."
+    prompt_vi: "Đến lượt bạn bị hỏi: Minh nhắn hỏi server còn sống không. Trả lời ngắn kiểu chat: có/không + một chi tiết."
     accept_patterns:
       - "Yes it's up"
       - "In a meeting will reply after short answer yes"

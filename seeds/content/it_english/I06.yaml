@@ -60,23 +60,30 @@ sentence_patterns:
       time: ["thirty minutes", "an hour", "fifteen minutes"]
 
 dialogue:
-  context_vi: "Bạn cập nhật cho đội và quản lý về sự cố đang xử lý trên kênh chat."
+  context_vi: >
+    04:30 sáng thứ Sáu. David Carter gọi thẳng từ Mỹ. Ông ấy không quan tâm bạn đã cố thế nào —
+    ông ấy cần con số và mốc thời gian. Đây là kiểu người mà một lời xin lỗi dài sẽ khiến bạn mất
+    điểm, còn ba câu có số liệu sẽ khiến bạn được tin.
   turns:
-    - {speaker: A, en: "What's the status on the outage?", vi: "Sự cố sập tình hình sao rồi?"}
-    - {speaker: B, en: "We're aware of it. Currently, the payment service is down and we're investigating.", vi: "Tụi em ghi nhận rồi. Hiện dịch vụ thanh toán đang sập và đang điều tra."}
-    - {speaker: A, en: "Do we know the cause?", vi: "Biết nguyên nhân chưa?"}
-    - {speaker: B, en: "Not the root cause yet, but there's a temporary workaround — users can pay by bank transfer. Next update in thirty minutes.", vi: "Chưa rõ nguyên nhân gốc, nhưng có cách tạm — người dùng thanh toán bằng chuyển khoản. Cập nhật tiếp trong 30 phút."}
-    - {speaker: A, en: "Good, thanks for the clear update.", vi: "Tốt, cảm ơn đã cập nhật rõ ràng."}
+    - {speaker: David, en: "Give me the status. Short version.", vi: "Cho tôi tình hình. Bản ngắn thôi."}
+    - {speaker: You, en: "We're aware of it. Currently the Northwind Portal login is down. It's been down since two, and about twenty users are affected.", vi: "Bên tôi đã ghi nhận. Hiện phần đăng nhập Northwind Portal đang hỏng. Hỏng từ hai giờ, khoảng hai mươi người bị ảnh hưởng."}
+    - {speaker: David, en: "Root cause?", vi: "Nguyên nhân gốc?"}
+    - {speaker: You, en: "Not yet. We're currently checking last night's deploy. There's no workaround for login at the moment.", vi: "Chưa có. Hiện bên tôi đang kiểm tra bản deploy tối qua. Hiện chưa có cách khắc phục tạm cho việc đăng nhập."}
+    - {speaker: David, en: "Okay. Every thirty minutes. Even if nothing's changed.", vi: "Được. Ba mươi phút một lần. Kể cả khi không có gì mới."}
+    - {speaker: You, en: "Understood. Next update in thirty minutes.", vi: "Rõ. Cập nhật tiếp trong ba mươi phút."}
 
 listening_snippet:
   id: LS-I06
   speed: 1.0
   voice: en_US_female
-  transcript_en: "We're aware of the outage. Currently the payment service is down and we're investigating. There's a temporary workaround. Next update in thirty minutes."
-  transcript_vi: "Tụi em ghi nhận sự cố. Hiện dịch vụ thanh toán sập và đang điều tra. Có cách khắc phục tạm. Cập nhật tiếp trong 30 phút."
+  context_vi: >
+    05:00 — đúng ba mươi phút sau, bạn gửi bản cập nhật đầu tiên theo lịch David yêu cầu. Vẫn chưa
+    có nguyên nhân gốc, nhưng vẫn phải gửi. Nghe xem một bản cập nhật "chưa có gì mới" gồm những gì.
+  transcript_en: "Update at five. The portal login is still down, no change since the last update. We're currently reviewing the deploy from eleven forty last night. No root cause yet. Next update in thirty minutes."
+  transcript_vi: "Cập nhật lúc năm giờ. Phần đăng nhập vẫn hỏng, không thay đổi so với lần trước. Hiện bên tôi đang xem lại bản deploy lúc 23:40 tối qua. Chưa có nguyên nhân gốc. Cập nhật tiếp trong ba mươi phút."
   questions:
-    - q_vi: "Dịch vụ nào đang sập?"
-      choices: ["Thanh toán", "Email", "Wi-Fi"]
+    - q_vi: "Bạn đang xem lại thứ gì?"
+      choices: ["Bản deploy lúc 23:40 tối qua", "Máy tính của Emma", "Hợp đồng với khách"]
       answer: 0
       difficulty: 3
     - q_vi: "Bao lâu nữa cập nhật tiếp?"
@@ -87,25 +94,25 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "We're aware of the outage and we're currently investigating."
-    prompt_vi: "Đọc to. Câu mở đầu chuẩn của một incident update."
+    prompt_vi: "David vừa nói “Give me the status. Short version.” Đọc to — đây là câu đầu tiên."
     ipa: "/wɪr əˈwɛr ɒv ðiː ˈaʊtɪdʒ ænd wɪr ˈkɜːrəntli ɪnˈvɛstɪɡeɪtɪŋ/"
     focus_phonemes: [w, dʒ, ŋ]
   - kind: read_aloud
     expected_text: "There's a temporary workaround. Next update in thirty minutes."
-    prompt_vi: "Đọc to. Cho cách tạm và mốc cập nhật để người nghe yên tâm."
+    prompt_vi: "David chỉ cần hai thứ: cách tạm và mốc kế tiếp. Đọc to, đừng thêm lời xin lỗi nào."
     ipa: "/ðɛrz ə ˈtɛmpərɛri ˈwɜːrkəraʊnd nɛkst ˈʌpdeɪt ɪn ˈθɜːrti ˈmɪnɪts/"
     focus_phonemes: [θ, r, k]
   - kind: shadow
     expected_text: "The service is back up and running."
-    prompt_vi: "Nghe rồi nhắc lại. Câu thông báo đã khắc phục xong."
+    prompt_vi: "Câu bạn sẽ được nói lúc 09:15 — còn năm tiếng nữa. Nghe rồi nhắc lại cho quen."
     ipa: "/ðə ˈsɜːrvɪs ɪz bæk ʌp ænd ˈrʌnɪŋ/"
     focus_phonemes: [s, k, ŋ]
   - kind: respond
-    prompt_en: "Any update on the email outage?"
-    prompt_vi: "Cập nhật: hiện trạng + việc đang làm + mốc cập nhật tiếp."
+    prompt_en: "It's been thirty minutes. What have you got?"
+    prompt_vi: "David gọi lại đúng hẹn và chưa có gì mới. Vẫn phải báo: hiện trạng + việc đang làm + mốc kế tiếp."
     accept_patterns:
       - "We're aware of it currently investigating next update in {time}"
-      - "The email service is down we're applying a fix next update in {time}"
+      - "The login is still down we're reviewing the deploy next update in {time}"
       - "We're aware of the outage there's a workaround next update in {time}"
 
 vietnamese_explanation:
@@ -139,7 +146,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Sự cố đang xảy ra, chưa sửa xong. Nên làm gì?"
+    prompt_vi: "05:00, chưa có nguyên nhân gốc, David đang chờ. Nên làm gì?"
     choices:
       - "Cập nhật: đang điều tra, next update in 30 min"
       - "Im lặng đến khi sửa xong"

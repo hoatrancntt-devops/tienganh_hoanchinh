@@ -21,7 +21,7 @@ vocabulary:
   - term: "The goal of this call"
     ipa: "/ðə ɡoʊl ɒv ðɪs kɔːl/"
     meaning_vi: "Mục tiêu cuộc gọi này"
-    chunk: "The goal of this call is to fix the integration."
+    chunk: "The goal of this call is to understand the permission change."
     tags: [it_english]
   - term: "on our side"
     ipa: "/ɒn ˈaʊər saɪd/"
@@ -31,7 +31,7 @@ vocabulary:
   - term: "on your side"
     ipa: "/ɒn jʊr saɪd/"
     meaning_vi: "về phía các bạn"
-    chunk: "Can you check the API key on your side?"
+    chunk: "Can you check the role history on your side?"
     tags: [it_english]
   - term: "Let me share my screen"
     ipa: "/lɛt miː ʃɛr maɪ skriːn/"
@@ -61,53 +61,61 @@ sentence_patterns:
       thing: ["the API key", "the firewall rule", "the logs"]
 
 dialogue:
-  context_vi: "Bạn họp với kỹ sư của nhà cung cấp để sửa lỗi tích hợp API."
+  context_vi: >
+    11:00 sáng thứ Sáu. Hệ thống đã ổn, nhưng còn một câu chưa ai trả lời được: vì sao bản deploy
+    lại đổi IAM role? Linh giao bạn chủ trì cuộc gọi với kỹ sư của nhà cung cấp cloud. Bạn không
+    đi kiện ai — bạn đi lấy một câu trả lời để viết vào postmortem.
   turns:
-    - {speaker: A, en: "Thanks for joining. The goal of this call is to fix the integration errors.", vi: "Cảm ơn đã tham gia. Mục tiêu cuộc gọi này là sửa lỗi tích hợp."}
-    - {speaker: B, en: "Sure. What are you seeing?", vi: "Được. Bên bạn thấy gì?"}
-    - {speaker: A, en: "On our side, we get a 403 error. Can you check the API key on your side?", vi: "Phía chúng tôi báo lỗi 403. Bạn kiểm tra API key phía bạn được không?"}
-    - {speaker: B, en: "Let me check… Ah, the key expired yesterday. I'll issue a new one.", vi: "Để tôi xem… À, key hết hạn hôm qua. Tôi sẽ cấp key mới."}
-    - {speaker: A, en: "Great. So the action item is on your team, and I'll follow up by email with a summary.", vi: "Tuyệt. Vậy việc cần làm thuộc phía các bạn, và tôi sẽ gửi email tóm tắt lại."}
+    - {speaker: You, en: "Thanks for joining. The goal of this call is to understand the permission change on our auth role.", vi: "Cảm ơn đã tham gia. Mục tiêu cuộc gọi này là hiểu vì sao quyền trên auth role của chúng tôi bị đổi."}
+    - {speaker: Vendor, en: "Sure. What are you seeing?", vi: "Được. Bên các anh thấy gì?"}
+    - {speaker: You, en: "On our side, the role lost secretsmanager GetSecretValue at eleven forty last night. Can you check the role history on your side?", vi: "Phía chúng tôi, role mất quyền secretsmanager GetSecretValue lúc 23:40 tối qua. Anh kiểm tra lịch sử role phía các anh được không?"}
+    - {speaker: Vendor, en: "Let me check… I see it. Your deploy template replaced the whole policy instead of adding to it.", vi: "Để tôi xem… Tôi thấy rồi. Template deploy của các anh thay cả policy thay vì thêm vào."}
+    - {speaker: You, en: "So it wasn't a change on your side at all.", vi: "Vậy hoàn toàn không phải thay đổi từ phía các anh."}
+    - {speaker: Vendor, en: "No, but we don't warn you when a policy shrinks. I'll raise that internally.", vi: "Không, nhưng chúng tôi cũng không cảnh báo khi một policy bị thu hẹp. Tôi sẽ nêu việc đó nội bộ."}
+    - {speaker: You, en: "Thank you. So the action item is on your team, and I'll follow up by email with a summary.", vi: "Cảm ơn anh. Vậy việc cần làm thuộc phía các anh, và tôi sẽ gửi email tóm tắt lại."}
 
 listening_snippet:
   id: LS-I14
   speed: 1.0
   voice: en_US_female
-  transcript_en: "The goal of this call is to fix the integration. On our side we get a 403 error. Can you check the API key on your side? I'll follow up by email with a summary."
-  transcript_vi: "Mục tiêu cuộc gọi là sửa tích hợp. Phía chúng tôi báo lỗi 403. Bạn kiểm tra API key phía bạn được không? Tôi sẽ gửi email tóm tắt."
+  context_vi: >
+    Bạn chốt cuộc gọi. Đây là ba mươi giây quyết định cuộc họp một tiếng vừa rồi có giá trị hay
+    không — nghe xem bạn tóm lại những gì.
+  transcript_en: "Let me summarise before we close. On our side, the deploy template replaced the policy — that is ours to fix. On your side, you'll raise the missing warning when a policy shrinks. I'll follow up by email with a summary today."
+  transcript_vi: "Để tôi tóm lại trước khi kết thúc. Phía chúng tôi, template deploy đã thay cả policy — cái đó chúng tôi tự sửa. Phía các anh, các anh sẽ nêu việc thiếu cảnh báo khi policy bị thu hẹp. Hôm nay tôi sẽ gửi email tóm tắt."
   questions:
-    - q_vi: "Mục tiêu cuộc gọi là gì?"
-      choices: ["Sửa lỗi tích hợp", "Ký hợp đồng", "Tuyển dụng"]
+    - q_vi: "Việc cần làm phía nhà cung cấp là gì?"
+      choices: ["Nêu việc thiếu cảnh báo khi policy bị thu hẹp", "Ký hợp đồng mới", "Đổi máy chủ"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói sẽ làm gì sau cuộc gọi?"
+    - q_vi: "Bạn sẽ làm gì sau cuộc gọi?"
       choices: ["Gửi email tóm tắt", "Không làm gì", "Gọi lại ngay"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
-    expected_text: "The goal of this call is to fix the integration."
-    prompt_vi: "Đọc to. Mở đầu cuộc gọi bằng mục tiêu giúp mọi người tập trung."
-    ipa: "/ðə ɡoʊl ɒv ðɪs kɔːl ɪz tuː fɪks ðiː ˌɪntɪˈɡreɪʃən/"
+    expected_text: "The goal of this call is to understand the permission change."
+    prompt_vi: "Câu mở đầu — bạn là người chủ trì, không phải người ngồi nghe. Đọc to."
+    ipa: "/ðə ɡoʊl ɒv ðɪs kɔːl ɪz tuː ˌʌndərˈstænd ðə pərˈmɪʃən tʃeɪndʒ/"
     focus_phonemes: [ɡ, k, ʃ]
   - kind: read_aloud
-    expected_text: "Can you check the API key on your side?"
-    prompt_vi: "Đọc to. Phân biệt “on our side” / “on your side” để chia việc rõ."
-    ipa: "/kæn juː tʃɛk ðiː eɪ piː aɪ kiː ɒn jʊr saɪd/"
+    expected_text: "Can you check the role history on your side?"
+    prompt_vi: "Đọc to. Phân biệt “on our side” / “on your side” — đây là chỗ chia việc, không phải chỗ đổ lỗi."
+    ipa: "/kæn juː tʃɛk ðə roʊl ˈhɪstəri ɒn jʊr saɪd/"
     focus_phonemes: [tʃ, k, s]
   - kind: shadow
     expected_text: "I'll follow up by email with a summary."
-    prompt_vi: "Nghe rồi nhắc lại. Chốt cuộc gọi bằng cam kết theo sau."
+    prompt_vi: "Câu chốt — và cũng là bài tiếp theo của bạn. Nghe rồi nhắc lại."
     ipa: "/aɪl ˈfɒloʊ ʌp baɪ ˈiːmeɪl wɪð ə ˈsʌməri/"
     focus_phonemes: [f, l, m]
   - kind: respond
     prompt_en: "Thanks for joining — what's on the agenda?"
-    prompt_vi: "Mở cuộc gọi: nêu mục tiêu, rồi chia việc bằng on our/your side."
+    prompt_vi: "Nhà cung cấp vừa vào call và chờ bạn dẫn. Nêu mục tiêu, rồi chia việc bằng on our/your side."
     accept_patterns:
       - "The goal of this call is to {goal} on our side {status} can you check {thing} on your side"
       - "We're here to {goal} on our side we see {issue}"
-      - "The goal is to fix {thing} I'll follow up by email after"
+      - "The goal is to understand {thing} I'll follow up by email after"
 
 vietnamese_explanation:
   why_vi: >
@@ -141,7 +149,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Mở một cuộc gọi kỹ thuật với khách nên bắt đầu bằng gì?"
+    prompt_vi: "Bạn chủ trì cuộc gọi với nhà cung cấp cloud. Nên bắt đầu bằng gì?"
     choices:
       - "The goal of this call is to…"
       - "Chuyện thời tiết"
@@ -157,7 +165,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Cuối cuộc gọi nên làm gì để tránh hiểu nhầm?"
+    prompt_vi: "Cuộc gọi này sẽ được trích vào postmortem. Cuối gọi nên làm gì để tránh hiểu nhầm?"
     choices:
       - "Chốt action item và follow up by email"
       - "Cúp máy ngay"

@@ -60,58 +60,64 @@ sentence_patterns:
       reason: ["just resting", "I have a deadline", "I need a break"]
 
 dialogue:
-  context_vi: "Bạn gặp đồng nghiệp ở máy pha cà phê chiều thứ Sáu."
+  context_vi: >
+    Thứ Ba, ngày thứ hai của Priya. Ba giờ chiều, bạn vào pantry lấy nước thì Priya đang đứng đợi
+    máy pha cà phê. Máy chạy mất đúng sáu mươi giây. Không có việc gì để bàn, không có chỗ nào để đi —
+    chỉ có hai người và một khoảng lặng bạn phải lấp.
   turns:
-    - {speaker: A, en: "Hey, how's it going?", vi: "Này, dạo này sao rồi?"}
-    - {speaker: B, en: "Busy week, but it's fine. How about you?", vi: "Tuần bận, nhưng ổn. Còn bạn?"}
-    - {speaker: A, en: "Same here. Any plans for the weekend?", vi: "Tôi cũng vậy. Cuối tuần có kế hoạch gì không?"}
-    - {speaker: B, en: "Nothing much, just resting. You?", vi: "Cũng không có gì, chỉ nghỉ ngơi thôi. Bạn thì sao?"}
-    - {speaker: A, en: "Same. Want to grab a coffee later?", vi: "Tôi cũng vậy. Lát nữa làm ly cà phê không?"}
+    - {speaker: You, en: "Hey, how's it going?", vi: "Chào chị, mọi thứ ổn không ạ?"}
+    - {speaker: Priya, en: "Busy week, but it's fine. How about you?", vi: "Tuần này bận, nhưng vẫn ổn. Còn bạn?"}
+    - {speaker: You, en: "Same here. Any plans for the weekend?", vi: "Em cũng vậy. Cuối tuần chị có kế hoạch gì không?"}
+    - {speaker: Priya, en: "Nothing much, just resting at the hotel. And you?", vi: "Cũng không có gì, chỉ nghỉ ở khách sạn thôi. Còn bạn?"}
+    - {speaker: You, en: "Same. This machine is slow. Want to grab a coffee downstairs later?", vi: "Em cũng vậy. Cái máy này chậm lắm. Lát nữa xuống dưới làm ly cà phê không chị?"}
 
 listening_snippet:
   id: LS-D02
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Busy week, but it's fine. Any plans for the weekend? I'm just going to rest."
-  transcript_vi: "Tuần bận, nhưng ổn. Cuối tuần có kế hoạch gì không? Tôi chắc chỉ nghỉ ngơi thôi."
+  context_vi: >
+    Minh đi vào pantry ngay lúc đó và nói chen vào. Minh nói nhanh và nuốt chữ hơn Priya nhiều —
+    cái khó ở đây là bắt được lời rủ ở cuối câu, vì nó trôi rất nhanh.
+  transcript_en: "Hey, you two. Busy week, but it's fine — Friday is close. Priya, any plans for the weekend? There's a good coffee place downstairs, we can all go after lunch."
+  transcript_vi: "Chào hai người. Tuần bận, nhưng ổn — sắp thứ Sáu rồi. Chị Priya, cuối tuần chị có kế hoạch gì không? Dưới nhà có quán cà phê ngon, ăn trưa xong cả nhóm đi được đấy."
   questions:
-    - q_vi: "Tuần của người nói thế nào?"
+    - q_vi: "Tuần của Minh thế nào?"
       choices: ["Bận nhưng ổn", "Rất tệ", "Rảnh rỗi"]
       answer: 0
       difficulty: 2
-    - q_vi: "Cuối tuần người nói định làm gì?"
-      choices: ["Nghỉ ngơi", "Đi làm", "Đi du lịch"]
+    - q_vi: "Minh rủ cả nhóm đi đâu?"
+      choices: ["Quán cà phê dưới nhà", "Về sớm", "Ra sân bay"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: shadow
     expected_text: "Busy week, but it's fine."
-    prompt_vi: "Nghe rồi nhắc lại. Câu trả lời an toàn cho mọi tình huống."
+    prompt_vi: "Priya vừa hỏi tuần của bạn thế nào. Nghe rồi nhắc lại — câu trả lời an toàn cho mọi tình huống."
     ipa: "/ˈbɪzi wiːk bʌt ɪts faɪn/"
     focus_phonemes: [z, k, t]
   - kind: shadow
     expected_text: "Any plans for the weekend?"
-    prompt_vi: "Nghe rồi nhắc lại. Giọng đi lên ở cuối."
+    prompt_vi: "Máy cà phê còn chạy ba mươi giây nữa. Hỏi Priya câu này — nghe rồi nhắc lại, giọng đi lên ở cuối."
     ipa: "/ˈɛni plænz fɔr ðə ˈwiːkɛnd/"
     focus_phonemes: [z, d]
   - kind: respond
     prompt_en: "Hey, how's it going?"
-    prompt_vi: "Trả lời ngắn rồi hỏi ngược. Đây không phải câu hỏi thật về sức khoẻ."
+    prompt_vi: "Priya quay sang chào bạn ở pantry. Trả lời ngắn rồi hỏi ngược — đây không phải câu hỏi thật về sức khoẻ."
     accept_patterns:
       - "Busy week but it's fine How about you"
       - "Good thanks And you"
       - "Not bad How about you"
   - kind: respond
     prompt_en: "Any plans for the weekend?"
-    prompt_vi: "Trả lời rồi hỏi ngược."
+    prompt_vi: "Priya hỏi lại bạn. Trả lời rồi hỏi ngược."
     accept_patterns:
       - "Nothing much just resting You"
       - "Not really How about you"
       - "Nothing much And you"
   - kind: respond
     prompt_en: "Want to grab a coffee later?"
-    prompt_vi: "Đồng ý hoặc từ chối lịch sự."
+    prompt_vi: "Minh rủ cả nhóm xuống quán cà phê dưới nhà. Đồng ý hoặc từ chối lịch sự."
     accept_patterns:
       - "Sure sounds good"
       - "Yes that works"
@@ -148,7 +154,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Đồng nghiệp đi ngang và nói “How's it going?”. Câu nào tự nhiên nhất?"
+    prompt_vi: "Priya đi ngang bàn bạn và nói “How's it going?”. Câu nào tự nhiên nhất?"
     choices:
       - "I am fine, thank you. And you?"
       - "Busy week, but it's fine. You?"
@@ -156,7 +162,7 @@ mini_quiz:
     answer: 1
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“Any plans for the weekend?” — bạn không có kế hoạch gì. Nói gì?"
+    prompt_vi: "Priya hỏi “Any plans for the weekend?” — bạn không có kế hoạch gì. Nói gì?"
     choices: ["No.", "Nothing much, just resting. You?", "I don't have plan."]
     answer: 1
     difficulty: 2
@@ -169,7 +175,7 @@ mini_quiz:
     answer: 1
     difficulty: 2
   - kind: mcq_listen
-    prompt_vi: "Tuần của người nói thế nào?"
+    prompt_vi: "Tuần của Priya thế nào?"
     audio_text: "Busy week, but it's fine."
     choices: ["Bận nhưng ổn", "Rảnh", "Rất tệ"]
     answer: 0

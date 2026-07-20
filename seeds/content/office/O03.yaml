@@ -59,18 +59,25 @@ sentence_patterns:
       person: [Minh, Lan, "someone on the team"]
 
 dialogue:
-  context_vi: "Bạn gặp quản lý để xin nghỉ một ngày tuần sau."
+  context_vi: >
+    Bạn cần nghỉ thứ Sáu tuần sau — việc nhà, không hoãn được. Nhưng thứ Sáu là ngày dự án của
+    David chốt tiến độ tuần, và bạn vừa mới vào team. Bạn đứng ở bàn Linh sau standup, và điều
+    khiến lời xin nghỉ được duyệt không phải là lý do — mà là phần bạn chuẩn bị sẵn ai làm thay.
   turns:
-    - {speaker: A, en: "Do you have a minute? I'd like to take next Friday off.", vi: "Anh có rảnh chút không? Tôi muốn xin nghỉ thứ Sáu tuần sau."}
-    - {speaker: B, en: "Sure. Is everything okay?", vi: "Được chứ. Mọi thứ ổn chứ?"}
-    - {speaker: A, en: "Yes, just a personal matter. I'll finish the report before I leave.", vi: "Vâng, chỉ là việc cá nhân. Tôi sẽ xong báo cáo trước khi nghỉ."}
-    - {speaker: B, en: "Okay. Who can cover your tickets?", vi: "Được. Ai trực ticket giúp bạn?"}
-    - {speaker: A, en: "Minh can cover for me. I'll hand over on Thursday.", vi: "Minh trực giúp được. Tôi sẽ bàn giao vào thứ Năm."}
+    - {speaker: You, en: "Do you have a minute? I'd like to take next Friday off.", vi: "Chị có rảnh chút không? Em muốn xin nghỉ thứ Sáu tuần sau."}
+    - {speaker: Linh, en: "Sure. Is everything okay?", vi: "Được chứ. Mọi thứ ổn chứ?"}
+    - {speaker: You, en: "Yes, just a personal matter. I'll finish the report before I leave.", vi: "Vâng, chỉ là việc cá nhân. Em sẽ xong báo cáo trước khi nghỉ."}
+    - {speaker: Linh, en: "Okay. Who can cover your tickets?", vi: "Được. Ai trực ticket giúp em?"}
+    - {speaker: You, en: "Minh can cover for me. I'll hand over on Thursday.", vi: "Minh trực giúp được ạ. Em sẽ bàn giao vào thứ Năm."}
 
 listening_snippet:
   id: LS-O03
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Linh duyệt, nhưng bảo bạn tự báo với David ở standup sáng mai — nghỉ ngày chốt tiến độ thì
+    khách hàng phải biết. Đây là bản bạn tập nói trước. Cái khó: gói cả bốn phần vào ba câu, và
+    câu cuối mới là câu David quan tâm.
   transcript_en: "I'd like to take Friday off. It's a personal matter. Minh can cover for me, and I'll hand over on Thursday."
   transcript_vi: "Tôi muốn xin nghỉ thứ Sáu. Là việc cá nhân. Minh trực giúp được, và tôi sẽ bàn giao vào thứ Năm."
   questions:
@@ -79,29 +86,29 @@ listening_snippet:
       answer: 0
       difficulty: 2
     - q_vi: "Ai sẽ trực giúp?"
-      choices: ["Minh", "Lan", "Quản lý"]
+      choices: ["Minh", "Linh", "David"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "I'd like to take Friday off, if that's okay."
-    prompt_vi: "Đọc to. “I'd like to” là cách xin phép lịch sự, không phải thông báo."
+    prompt_vi: "Linh ngẩng lên khỏi màn hình. Câu mở đầu. Đọc to — “I'd like to” là xin phép, không phải thông báo."
     ipa: "/aɪd laɪk tuː teɪk ˈfraɪdeɪ ɒf ɪf ðæts oʊˈkeɪ/"
     focus_phonemes: [d, f, k]
   - kind: read_aloud
     expected_text: "It's a personal matter."
-    prompt_vi: "Đọc to. Không cần giải thích chi tiết lý do."
+    prompt_vi: "Linh hỏi có chuyện gì không. Đọc to — không cần kể chi tiết, câu này là đủ và lịch sự."
     ipa: "/ɪts ə ˈpɜːrsənəl ˈmætər/"
     focus_phonemes: [s, t]
   - kind: shadow
     expected_text: "Minh can cover for me. I'll hand over on Thursday."
-    prompt_vi: "Nghe rồi nhắc lại. Cam kết bàn giao giúp lời xin nghỉ dễ được duyệt."
+    prompt_vi: "Linh vừa hỏi ai trực ticket thay bạn. Nghe rồi nhắc lại — đây là câu khiến chị gật đầu."
     ipa: "/mɪn kæn ˈkʌvər fɔr miː aɪl hænd ˈoʊvər ɒn ˈθɜːrzdeɪ/"
     focus_phonemes: [k, v, θ]
   - kind: respond
     prompt_en: "Sure. Is everything okay?"
-    prompt_vi: "Trả lời: ổn, việc cá nhân, sẽ hoàn thành việc trước khi nghỉ."
+    prompt_vi: "Linh hỏi mọi thứ ổn chứ. Trả lời: ổn, việc cá nhân, sẽ hoàn thành việc trước khi nghỉ."
     accept_patterns:
       - "Yes just a personal matter I'll finish the {thing} first"
       - "Yes everything is fine personal matter"

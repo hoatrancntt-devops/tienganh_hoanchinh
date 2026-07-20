@@ -58,50 +58,56 @@ sentence_patterns:
       alt: ["just sometimes", "only on Wi-Fi", "only in the office"]
 
 dialogue:
-  context_vi: "Người dùng báo máy chậm. Bạn hỏi để khoanh vùng nguyên nhân."
+  context_vi: >
+    03:40 sáng thứ Sáu. Xoá cache không ăn thua, đổi trình duyệt cũng vậy. Nghĩa là lỗi không nằm
+    ở máy Emma. Giờ bạn phải moi ra mốc thời gian và con chữ trong thông báo lỗi — Emma sẽ không
+    tự nói ra nếu bạn không hỏi đúng câu.
   turns:
-    - {speaker: A, en: "My computer is really slow today.", vi: "Máy tôi hôm nay chậm kinh khủng."}
-    - {speaker: B, en: "Okay, let's narrow it down. When did it start?", vi: "Được, mình khoanh vùng nhé. Bắt đầu từ khi nào?"}
-    - {speaker: A, en: "This morning, after an update.", vi: "Sáng nay, sau một bản cập nhật."}
-    - {speaker: B, en: "Got it. Does it happen every time, or just with certain apps?", vi: "Rõ. Lần nào cũng chậm, hay chỉ vài ứng dụng?"}
-    - {speaker: A, en: "Mostly when I open the browser.", vi: "Chủ yếu khi tôi mở trình duyệt."}
-    - {speaker: B, en: "Do you see any error message when that happens?", vi: "Khi đó có báo lỗi nào không?"}
+    - {speaker: You, en: "Okay, it's not your computer then. Let's narrow it down. When did it start?", vi: "Vậy không phải máy chị rồi. Mình khoanh vùng lại nhé. Chuyện này bắt đầu từ khi nào ạ?"}
+    - {speaker: Emma, en: "I got in fine yesterday evening. It was already broken when I checked at two.", vi: "Tối qua tôi vào bình thường. Lúc hai giờ tôi kiểm tra thì đã hỏng rồi."}
+    - {speaker: You, en: "Do you see any error message? What exactly does it say?", vi: "Chị có thấy thông báo lỗi nào không? Nó ghi chính xác là gì ạ?"}
+    - {speaker: Emma, en: "There's a little grey box. It says something like… sorry, we can't sign you in right now.", vi: "Có một ô nhỏ màu xám. Nó ghi kiểu như… xin lỗi, hiện chúng tôi không thể đăng nhập cho bạn."}
+    - {speaker: You, en: "Thank you. Does it happen every time, or just sometimes?", vi: "Cảm ơn chị. Lần nào cũng vậy, hay chỉ thỉnh thoảng ạ?"}
+    - {speaker: Emma, en: "Every single time. And my whole team is stuck too — nobody can get in.", vi: "Lần nào cũng vậy. Và cả phòng tôi cũng kẹt — không ai vào được."}
 
 listening_snippet:
   id: LS-I04
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Let's narrow it down. When did it start? Does it happen every time or just sometimes? And do you see any error message?"
-  transcript_vi: "Mình khoanh vùng nhé. Bắt đầu từ khi nào? Lần nào cũng bị hay thỉnh thoảng? Và có báo lỗi nào không?"
+  context_vi: >
+    Bạn hỏi nốt câu cuối — câu quan trọng nhất trong đêm nay, vì câu trả lời sẽ dẫn thẳng tới bản
+    deploy lúc 23:40.
+  transcript_en: "One more question, and this one matters. Did anything change recently? Any new password, any new laptop, anything at all on your side since yesterday evening?"
+  transcript_vi: "Một câu nữa thôi, và câu này quan trọng. Gần đây có gì thay đổi không ạ? Mật khẩu mới, máy mới, bất cứ thứ gì phía chị từ tối qua đến giờ?"
   questions:
-    - q_vi: "Người hỗ trợ đang làm gì?"
+    - q_vi: "Bạn đang làm gì với Emma?"
       choices: ["Hỏi để khoanh vùng lỗi", "Sửa ngay", "Đổ lỗi người dùng"]
       answer: 0
       difficulty: 2
-    - q_vi: "Người hỗ trợ hỏi mấy câu chẩn đoán?"
-      choices: ["Ba", "Một", "Không câu nào"]
+    - q_vi: "Bạn hỏi Emma về mốc thời gian nào?"
+      choices: ["Từ tối qua đến giờ", "Từ tháng trước", "Không nói mốc nào"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "When did it start? And do you see any error message?"
-    prompt_vi: "Đọc to. Hai câu chẩn đoán quan trọng nhất."
+    prompt_vi: "Hai câu bạn hỏi Emma đầu tiên. Đọc to — mốc thời gian và bằng chứng."
     ipa: "/wɛn dɪd ɪt stɑːrt ænd duː juː siː ˈɛni ˈɛrər ˈmɛsɪdʒ/"
     focus_phonemes: [w, d, dʒ]
   - kind: read_aloud
     expected_text: "Does it happen every time, or just sometimes?"
-    prompt_vi: "Đọc to. Hỏi tần suất để phân biệt lỗi cứng hay chập chờn."
+    prompt_vi: "Câu này phân biệt lỗi cứng với lỗi chập chờn. Emma trả lời “every single time”. Đọc to."
     ipa: "/dʌz ɪt ˈhæpən ˈɛvri taɪm ɔr dʒʌst ˈsʌmtaɪmz/"
     focus_phonemes: [z, h, t]
   - kind: shadow
     expected_text: "Did anything change recently?"
-    prompt_vi: "Nghe rồi nhắc lại. Câu vàng — đa số lỗi đến từ một thay đổi gần đây."
+    prompt_vi: "Câu vàng của đêm nay. Nghe rồi nhắc lại — chính nó sẽ dẫn tới bản deploy lúc 23:40."
     ipa: "/dɪd ˈɛniθɪŋ tʃeɪndʒ ˈriːsəntli/"
     focus_phonemes: [θ, tʃ, dʒ]
   - kind: respond
-    prompt_en: "The app keeps crashing."
-    prompt_vi: "Hỏi ít nhất hai câu chẩn đoán để khoanh vùng."
+    prompt_en: "It just spins and spins. I don't know what else to tell you."
+    prompt_vi: "Emma mô tả xong là hết vốn. Hỏi ít nhất hai câu chẩn đoán để moi ra phần còn lại."
     accept_patterns:
       - "When did it start Does it happen every time or sometimes"
       - "Do you see any error message And did anything change recently"
@@ -146,7 +152,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Người dùng nói “nó lỗi”. Nên hỏi tiếp gì?"
+    prompt_vi: "Emma nói “có một ô nhỏ màu xám”. Nên hỏi tiếp gì?"
     choices:
       - "What exactly does it say?"
       - "OK, tôi sửa đây."

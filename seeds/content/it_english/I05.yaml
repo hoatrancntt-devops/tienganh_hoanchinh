@@ -62,50 +62,57 @@ sentence_patterns:
       advice: ["save your work often", "restart once a week"]
 
 dialogue:
-  context_vi: "Một quản lý không rành kỹ thuật hỏi vì sao hệ thống sập sáng nay."
+  context_vi: >
+    04:10 sáng thứ Sáu. Emma đã chờ hơn một tiếng và bắt đầu hỏi thẳng: chuyện gì đang xảy ra với
+    dữ liệu của chị ấy. Bạn chưa biết nguyên nhân gốc, nhưng vẫn phải nói được điều gì đó thật —
+    bằng thứ ngôn ngữ Emma hiểu, không một từ chuyên môn nào.
   turns:
-    - {speaker: A, en: "So why did the system go down this morning?", vi: "Vậy tại sao sáng nay hệ thống sập?"}
-    - {speaker: B, en: "Basically, too many requests came in at once and the server got overloaded.", vi: "Nói đơn giản, quá nhiều yêu cầu ập tới cùng lúc và máy chủ bị quá tải."}
-    - {speaker: A, en: "Overloaded?", vi: "Quá tải là sao?"}
-    - {speaker: B, en: "Think of it as a traffic jam — too many cars, one road. The good news is, no data was lost.", vi: "Cứ hình dung như kẹt xe — quá nhiều xe, một con đường. Tin tốt là không mất dữ liệu."}
-    - {speaker: A, en: "Okay. Can we prevent it next time?", vi: "Được. Lần sau tránh được không?"}
-    - {speaker: B, en: "Yes. To prevent this, we'll add a second server to share the load. Does that make sense?", vi: "Có. Để tránh, tụi em sẽ thêm máy chủ thứ hai chia tải. Vậy có dễ hiểu không?"}
+    - {speaker: Emma, en: "Can you tell me what's actually happening? Is my work gone?", vi: "Anh nói thật cho tôi biết chuyện gì đang xảy ra được không? Công việc của tôi mất rồi à?"}
+    - {speaker: You, en: "No, nothing is gone. Basically, the system can't check your password right now.", vi: "Không, không mất gì cả. Nói đơn giản, hệ thống hiện không kiểm tra được mật khẩu của chị."}
+    - {speaker: Emma, en: "But my password is right. I've typed it a hundred times.", vi: "Nhưng mật khẩu tôi đúng mà. Tôi gõ cả trăm lần rồi."}
+    - {speaker: You, en: "It is right. Think of it as a locked door where the guard lost his own keys — your key is fine, he just can't open it. The good news is, no data was lost.", vi: "Mật khẩu chị đúng. Cứ hình dung như một cánh cửa mà người gác cổng làm mất chìa của chính anh ta — chìa của chị vẫn tốt, chỉ là anh ta không mở được. Tin tốt là không mất dữ liệu nào."}
+    - {speaker: Emma, en: "Oh. So it's not me. But why is even the error so slow to appear?", vi: "Ồ. Vậy không phải lỗi tôi. Nhưng sao đến cái thông báo lỗi cũng hiện chậm vậy?"}
+    - {speaker: You, en: "Because everyone in your office is retrying at the same time. Basically, the server got overloaded. Think of it as a traffic jam.", vi: "Vì cả phòng chị cùng thử lại một lúc. Nói đơn giản, máy chủ bị quá tải. Cứ hình dung như kẹt xe."}
+    - {speaker: You, en: "It's not you at all. In other words, we have to fix it on our side. Does that make sense?", vi: "Hoàn toàn không phải lỗi chị. Nói cách khác, bên tôi phải sửa. Vậy có dễ hiểu không ạ?"}
 
 listening_snippet:
   id: LS-I05
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Basically, the server got overloaded. Think of it as a traffic jam. The good news is, no data was lost, and we'll add a second server to prevent it."
-  transcript_vi: "Nói đơn giản, máy chủ bị quá tải. Cứ hình dung như kẹt xe. Tin tốt là không mất dữ liệu, và tụi em sẽ thêm máy chủ thứ hai để tránh."
+  context_vi: >
+    Emma hỏi thêm một câu rất người dùng: bao giờ thì xong. Nghe cách bạn trả lời mà không hứa
+    điều mình chưa biết.
+  transcript_en: "I can't give you an exact time yet, and I don't want to promise something I'm not sure about. But the good news is, no data was lost, and nothing is wrong with your account. To prevent this from happening again, we'll change how the system stores its keys."
+  transcript_vi: "Tôi chưa cho chị được giờ chính xác, và tôi không muốn hứa điều mình chưa chắc. Nhưng tin tốt là không mất dữ liệu nào, và tài khoản chị không có vấn đề gì. Để tránh lặp lại, bên tôi sẽ đổi cách hệ thống lưu chìa khoá."
   questions:
-    - q_vi: "Người nói so sánh sự cố với gì?"
-      choices: ["Kẹt xe", "Cháy nhà", "Mưa bão"]
+    - q_vi: "“Tin tốt” bạn nói với Emma là gì?"
+      choices: ["Không mất dữ liệu, tài khoản chị ấy vẫn ổn", "Sẽ xong trong 5 phút", "Được nghỉ làm"]
       answer: 0
       difficulty: 2
-    - q_vi: "“Tin tốt” là gì?"
-      choices: ["Không mất dữ liệu", "Được nghỉ làm", "Miễn phí"]
+    - q_vi: "Vì sao bạn không cho Emma một mốc giờ cụ thể?"
+      choices: ["Chưa chắc nên không hứa", "Không muốn nói chuyện nữa", "Quên mất"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Basically, the server got overloaded. Think of it as a traffic jam."
-    prompt_vi: "Đọc to. Mở đầu bằng “Basically” báo hiệu bản rút gọn dễ hiểu."
+    prompt_vi: "Emma hỏi sao cả cái thông báo lỗi cũng chậm. Đọc to — “Basically” báo hiệu bản rút gọn dễ hiểu."
     ipa: "/ˈbeɪsɪkli ðə ˈsɜːrvər ɡɒt ˈoʊvərloʊdɪd θɪŋk ɒv ɪt æz ə ˈtræfɪk dʒæm/"
     focus_phonemes: [b, θ, dʒ]
   - kind: read_aloud
     expected_text: "The good news is, no data was lost."
-    prompt_vi: "Đọc to. Trấn an trước, giải thích sau — người nghe bớt lo."
+    prompt_vi: "Emma sợ mất hết sổ sách. Đọc to — câu này là thứ chị ấy cần nghe trước mọi thứ khác."
     ipa: "/ðə ɡʊd njuːz ɪz noʊ ˈdeɪtə wɒz lɒst/"
     focus_phonemes: [ɡ, n, z]
   - kind: shadow
     expected_text: "Does that make sense so far?"
-    prompt_vi: "Nghe rồi nhắc lại. Kiểm tra người nghe có theo kịp không."
+    prompt_vi: "Bạn vừa giải thích xong. Nghe rồi nhắc lại — kiểm tra Emma có thật sự hiểu không."
     ipa: "/dʌz ðæt meɪk sɛns soʊ fɑr/"
     focus_phonemes: [ð, s, f]
   - kind: respond
-    prompt_en: "Why is the website so slow today?"
-    prompt_vi: "Giải thích đơn giản, có so sánh, và trấn an — không dùng thuật ngữ."
+    prompt_en: "Can you tell me what's actually happening? Is my work gone?"
+    prompt_vi: "Emma đang hoảng. Giải thích đơn giản, có so sánh, và trấn an — không một từ chuyên môn nào."
     accept_patterns:
       - "Basically too many people are using it at once Think of it as a traffic jam The good news is it's temporary"
       - "Basically the server is overloaded think of it as {analogy}"
@@ -142,7 +149,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Sếp không rành hỏi vì sao web chậm. Mở đầu tốt nhất?"
+    prompt_vi: "Emma hỏi vì sao cổng chậm. Mở đầu tốt nhất?"
     choices:
       - "Basically, too many people are using it at once."
       - "The load balancer's connection pool is exhausted."
@@ -158,7 +165,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Vì sao nên thêm “The good news is…”?"
+    prompt_vi: "Emma sợ mất dữ liệu. Vì sao nên thêm “The good news is…”?"
     choices:
       - "Để trấn an người nghe, không chỉ báo cái hỏng"
       - "Để câu chuyện dài hơn"

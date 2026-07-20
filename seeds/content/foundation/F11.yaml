@@ -58,48 +58,54 @@ sentence_patterns:
     slots: {}
 
 dialogue:
-  context_vi: "Các cụm nối âm rất hay gặp khi hỗ trợ kỹ thuật (đọc liền, đừng tách)."
+  context_vi: >
+    Chiều thứ Tư. Minh mở lại bản ghi cuộc gọi sáng nay với David Carter — engineering manager
+    người Mỹ phía khách hàng. Bạn nghe hai lần, vẫn không tách được một chữ nào. Minh cho nghe
+    lần thứ ba và chỉ ra lý do.
   turns:
-    - {speaker: A, en: "I can't log in. (lo-gin)", vi: "Tôi không đăng nhập được. (nối “lo-gin”)"}
-    - {speaker: B, en: "Hold on, let me check it. (hol-don, che-kit)", vi: "Chờ chút, để tôi kiểm tra. (nối “hol-don”, “che-kit”)"}
-    - {speaker: B, en: "Try to turn it off and on again. (tur-ni-toff)", vi: "Thử tắt đi bật lại. (nối “tur-ni-toff”)"}
-    - {speaker: A, en: "It works now. Thanks!", vi: "Giờ chạy rồi. Cảm ơn!"}
+    - {speaker: Minh, en: "That's David. Same six words, one more time. What do you hear?", vi: "Đó là David. Vẫn sáu chữ đó, nghe thêm lần nữa. Bạn nghe ra gì?"}
+    - {speaker: David, en: "I can't log in — hold on, let me check it.", vi: "Tôi không đăng nhập được — chờ chút, để tôi kiểm tra."}
+    - {speaker: You, en: "It sounds like one long word. I got nothing.", vi: "Nghe như một từ dài. Em không bắt được gì."}
+    - {speaker: Minh, en: "He isn't fast. He links. “log in” becomes “lo-gin”, “check it” becomes “che-kit”.", vi: "Anh ấy không nói nhanh. Anh ấy NỐI. “log in” thành “lo-gin”, “check it” thành “che-kit”."}
 
 listening_snippet:
   id: LS-F11
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Hold on, let me check it. Try to turn it off and on again. Did you get an email?"
-  transcript_vi: "Chờ chút, để tôi kiểm tra. Thử tắt đi bật lại. Bạn có nhận được email không?"
+  context_vi: >
+    Minh cho chạy tiếp phần sau của bản ghi. David nói ba câu liền. Bẫy nằm ở chỗ mỗi câu có một
+    cụm nối: “hol-don”, “che-kit”, “tur-ni-toff”, “a-nemail”. Nếu bạn cố tách từng từ, bạn mất cả câu.
+  transcript_en: "Hold on, let me check it. Try to turn it off and on again. Did you get an email from me?"
+  transcript_vi: "Chờ chút, để tôi kiểm tra. Thử tắt đi bật lại. Bạn có nhận được email tôi gửi không?"
   questions:
-    - q_vi: "Người nói bảo làm gì với thiết bị?"
-      choices: ["Tắt đi bật lại", "Đập vỡ", "Bán đi"]
+    - q_vi: "David bảo làm gì với máy?"
+      choices: ["Tắt đi rồi bật lại", "Cài lại từ đầu", "Đổi sang máy khác"]
       answer: 0
       difficulty: 3
-    - q_vi: "Vì sao “check it” nghe như một từ?"
-      choices: ["Vì nối phụ âm cuối với nguyên âm đầu", "Vì nói sai", "Vì nói nhỏ"]
+    - q_vi: "Vì sao “check it” trong câu của David nghe như một từ?"
+      choices: ["Vì phụ âm cuối nối vào nguyên âm đầu từ sau", "Vì David nói sai", "Vì đường truyền kém"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Let me check it."
-    prompt_vi: "Đọc to. Nối “check” với “it” thành “che-kit”, đừng tách rời."
+    prompt_vi: "Nói lại đúng câu David vừa nói. Đọc to — nối “check” với “it” thành “che-kit”, đừng tách rời."
     ipa: "/lɛt miː ˈtʃɛkɪt/"
     focus_phonemes: [tʃ, k, t]
   - kind: read_aloud
     expected_text: "Turn it off and on again."
-    prompt_vi: "Đọc to. Nối liền “tur-ni-toff”. Đây là cách người bản xứ luôn nói."
+    prompt_vi: "Câu Minh bảo bạn phải thuộc trước khi nói với khách. Đọc to — nối liền “tur-ni-toff”. Đây là cách người bản xứ luôn nói."
     ipa: "/ˈtɜːrnɪˈtɒf ænd ɒn əˈɡɛn/"
     focus_phonemes: [t, n, f]
   - kind: shadow
     expected_text: "Hold on, I can't log in."
-    prompt_vi: "Nghe rồi nhắc lại. “hol-don” và “lo-gin” nối liền."
+    prompt_vi: "Nhắc lại theo bản ghi của David. Nghe rồi nói theo — “hol-don” và “lo-gin” nối liền."
     ipa: "/ˈhoʊldɒn aɪ kænt ˈlɒɡɪn/"
     focus_phonemes: [d, ɡ, n]
   - kind: respond
     prompt_en: "The app is frozen. What should I do?"
-    prompt_vi: "Bảo họ tắt bật lại — nối âm cho tự nhiên."
+    prompt_vi: "Minh đóng vai David gọi lại cho bạn. Bảo họ tắt bật lại — nối âm cho tự nhiên."
     accept_patterns:
       - "Turn it off and on again"
       - "Hold on let me check it"

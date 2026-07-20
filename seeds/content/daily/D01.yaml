@@ -61,31 +61,36 @@ sentence_patterns:
       department: [IT, HR, Accounting]
 
 dialogue:
-  context_vi: "Ở pantry, bạn gặp một đồng nghiệp mới và giới thiệu người thứ ba."
+  context_vi: >
+    Thứ Hai, 8 giờ sáng. Priya Nair — kỹ sư DevOps ở Singapore — sang công tác một tuần, và Linh
+    giao bạn đón. Bạn đứng ở sảnh Vertex, chưa từng gặp cô ấy ngoài đời. Minh đứng cạnh bạn.
   turns:
-    - {speaker: A, en: "Hi, I'm Nam. I don't think we've met.", vi: "Chào, tôi là Nam. Hình như ta chưa gặp nhau."}
-    - {speaker: B, en: "Nice to meet you, Nam. I'm Lan, I'm new here.", vi: "Rất vui được gặp Nam. Tôi là Lan, tôi mới vào."}
-    - {speaker: A, en: "Welcome. I work in IT. And you?", vi: "Chào mừng. Tôi làm bên IT. Còn bạn?"}
-    - {speaker: B, en: "Accounting. I started last week.", vi: "Kế toán. Tôi bắt đầu từ tuần trước."}
-    - {speaker: A, en: "This is Minh, by the way. He works in IT too.", vi: "À, đây là Minh. Anh ấy cũng làm bên IT."}
-    - {speaker: B, en: "Nice to meet you both.", vi: "Rất vui được gặp cả hai."}
+    - {speaker: You, en: "Hi, you must be Priya. I'm from the IT team. Nice to meet you.", vi: "Chào chị, chắc chị là Priya. Em bên team IT. Rất vui được gặp chị."}
+    - {speaker: Priya, en: "Nice to meet you too. Thank you for coming down to the lobby.", vi: "Tôi cũng rất vui được gặp bạn. Cảm ơn bạn đã xuống tận sảnh."}
+    - {speaker: You, en: "No problem. I'm new here, I started last month. And you?", vi: "Không có gì ạ. Em mới vào, em bắt đầu từ tháng trước. Còn chị?"}
+    - {speaker: Priya, en: "I have been with the company for three years. I work in DevOps in Singapore.", vi: "Tôi làm ở công ty được ba năm rồi. Tôi làm mảng DevOps ở Singapore."}
+    - {speaker: You, en: "This is Minh, by the way. He works in IT too. We're on the same team.", vi: "À, đây là Minh. Anh ấy cũng làm bên IT. Bọn em cùng team."}
+    - {speaker: Minh, en: "Nice to meet you, Priya. Welcome to Vietnam.", vi: "Rất vui được gặp chị Priya. Chào mừng chị đến Việt Nam."}
 
 listening_snippet:
   id: LS-D01
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Hi, I'm Lan. I'm new here, I started last week. I work in accounting. How about you?"
-  transcript_vi: "Chào, tôi là Lan. Tôi mới vào, bắt đầu tuần trước. Tôi làm bên kế toán. Còn bạn?"
+  context_vi: >
+    Bạn dẫn Priya lên tầng, cả team đứng dậy chào. Priya tự giới thiệu một lượt. Cô ấy nói chậm và
+    rõ, nhưng nhồi ba thông tin vào bốn câu — bộ phận, thời gian ở lại, và một câu hỏi ngược cho bạn.
+  transcript_en: "Hello everyone, I'm Priya. I work in DevOps in Singapore. This is my first time in Vietnam, and I'm here for one week. How about you — how long have you been on this team?"
+  transcript_vi: "Chào cả nhà, tôi là Priya. Tôi làm mảng DevOps ở Singapore. Đây là lần đầu tôi tới Việt Nam, và tôi ở đây một tuần. Còn các bạn — các bạn ở team này bao lâu rồi?"
   questions:
-    - q_vi: "Lan làm ở bộ phận nào?"
-      choices: ["Kế toán", "IT", "Nhân sự"]
+    - q_vi: "Priya làm ở bộ phận nào?"
+      choices: ["DevOps", "Kế toán", "Nhân sự"]
       answer: 0
       difficulty: 2
-    - q_vi: "Lan vào công ty khi nào?"
-      choices: ["Tuần trước", "Năm ngoái", "Hôm nay"]
+    - q_vi: "Priya ở Việt Nam bao lâu?"
+      choices: ["Một tuần", "Một tháng", "Một năm"]
       answer: 0
       difficulty: 2
-    - q_vi: "Vì sao Lan hỏi “How about you?”"
+    - q_vi: "Vì sao Priya hỏi ngược “How about you?”"
       choices: ["Để giữ hội thoại tiếp diễn", "Vì cô ấy không hiểu", "Vì cô ấy muốn kết thúc"]
       answer: 0
       difficulty: 3
@@ -93,29 +98,29 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "This is Minh. He works in IT."
-    prompt_vi: "Đọc to. Nhớ âm /s/ ở works."
+    prompt_vi: "Bạn giới thiệu Minh với Priya ở sảnh. Đọc to — nhớ âm /s/ ở works."
     ipa: "/ðɪs ɪz mɪn hiː wɜːrks ɪn aɪ tiː/"
     focus_phonemes: [ð, s]
   - kind: shadow
     expected_text: "Nice to meet you. I work in IT. And you?"
-    prompt_vi: "Nghe rồi nhắc lại. Hai từ cuối là thứ giữ hội thoại sống."
+    prompt_vi: "Câu đầu tiên bạn nói với Priya. Nghe rồi nhắc lại — hai từ cuối là thứ giữ hội thoại sống."
     ipa: "/naɪs tuː miːt juː aɪ wɜːrk ɪn aɪ tiː ænd juː/"
     focus_phonemes: [t, s]
   - kind: shadow
-    expected_text: "I'm new here. I started last week."
-    prompt_vi: "Nghe rồi nhắc lại. started có thêm âm tiết."
-    ipa: "/aɪm nuː hɪr aɪ ˈstɑːrtɪd læst wiːk/"
+    expected_text: "I'm new here. I started last month."
+    prompt_vi: "Priya hỏi bạn vào Vertex lâu chưa. Nghe rồi nhắc lại — started có thêm âm tiết."
+    ipa: "/aɪm nuː hɪr aɪ ˈstɑːrtɪd læst mʌnθ/"
     focus_phonemes: [t, d]
   - kind: respond
-    prompt_en: "Hi, I'm Lan. I don't think we've met."
-    prompt_vi: "Tự giới thiệu: tên bạn, bộ phận bạn làm, rồi hỏi ngược lại."
+    prompt_en: "Hi, I'm Priya. I don't think we've met."
+    prompt_vi: "Priya vừa bắt tay bạn ở sảnh. Tự giới thiệu: tên bạn, bộ phận bạn làm, rồi hỏi ngược lại."
     accept_patterns:
       - "I'm {name} I work in {department} And you"
       - "Nice to meet you I'm {name}"
       - "Hi I'm {name} I work in {department}"
   - kind: respond
     prompt_en: "What do you do here?"
-    prompt_vi: "Trả lời và nhớ hỏi ngược lại."
+    prompt_vi: "Trong thang máy, Priya hỏi bạn làm gì ở đây. Trả lời và nhớ hỏi ngược lại."
     accept_patterns:
       - "I work in {department} And you"
       - "I'm a {job} How about you"
@@ -156,7 +161,7 @@ mini_quiz:
     answer: 1
     difficulty: 1
   - kind: mcq
-    prompt_vi: "Giới thiệu đồng nghiệp Minh bên IT:"
+    prompt_vi: "Bạn giới thiệu Minh với Priya:"
     choices:
       - "This is Minh. He work in IT."
       - "This is Minh. He works in IT."
@@ -175,7 +180,7 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "Gặp lại người bạn đã quen. Câu nào tự nhiên nhất?"
+    prompt_vi: "Sáng hôm sau bạn gặp lại Priya ở hành lang. Câu nào tự nhiên nhất?"
     choices: ["Nice to meet you.", "Good to see you.", "Who are you?"]
     answer: 1
     difficulty: 3

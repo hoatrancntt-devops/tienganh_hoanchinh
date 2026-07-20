@@ -60,52 +60,58 @@ sentence_patterns:
       position: [right, left]
 
 dialogue:
-  context_vi: "Bạn hướng dẫn một đồng nghiệp không rành máy tính xoá cache trình duyệt."
+  context_vi: >
+    03:20 sáng thứ Sáu. Bạn chưa biết nguyên nhân, nên phải loại trừ những thứ ở phía Emma trước:
+    xoá cache, đổi trình duyệt. Emma đang ở nhà, không rành máy tính, và mỗi bước bạn nói ra đều
+    phải đủ rõ để làm một mình qua điện thoại.
   turns:
-    - {speaker: A, en: "Okay, let's fix it together. First, click on the three dots at the top right.", vi: "Được, mình sửa cùng nhau. Đầu tiên, bấm vào ba dấu chấm ở góc trên bên phải."}
-    - {speaker: B, en: "Okay, I see a menu now.", vi: "Rồi, tôi thấy một menu hiện ra."}
-    - {speaker: A, en: "Good. Click on Settings. Let me know when you're there.", vi: "Tốt. Bấm vào Settings. Báo tôi khi vào được."}
-    - {speaker: B, en: "I'm in Settings.", vi: "Tôi vào Settings rồi."}
-    - {speaker: A, en: "Great. Now find Clear browsing data and click it. Are you with me?", vi: "Tuyệt. Giờ tìm “Clear browsing data” và bấm vào. Anh theo kịp chứ?"}
-    - {speaker: B, en: "Yes, done. It's cleared.", vi: "Vâng, xong rồi. Đã xoá."}
+    - {speaker: You, en: "Emma, before I go further, can we try two quick things? First, click on the three dots at the top right of your browser.", vi: "Chị Emma, trước khi tôi tìm tiếp, mình thử hai việc nhanh nhé? Đầu tiên, bấm vào ba dấu chấm ở góc trên bên phải trình duyệt."}
+    - {speaker: Emma, en: "The three little dots? Okay, I see a menu now.", vi: "Ba chấm nhỏ đó hả? Được, tôi thấy một menu hiện ra."}
+    - {speaker: You, en: "Good. Click on Settings, then find Clear browsing data. Let me know when you're there.", vi: "Tốt ạ. Bấm vào Settings, rồi tìm “Clear browsing data”. Chị báo tôi khi tới nơi nhé."}
+    - {speaker: Emma, en: "Done. It's cleared. Should I try logging in again?", vi: "Xong rồi. Đã xoá. Tôi thử đăng nhập lại nhé?"}
+    - {speaker: You, en: "Yes, please try once. If it still spins, open a different browser and try there. Are you with me?", vi: "Vâng, chị thử một lần thôi. Nếu vẫn quay mãi, chị mở trình duyệt khác và thử ở đó. Chị theo kịp chứ ạ?"}
+    - {speaker: Emma, en: "I tried both. Same thing — it just spins.", vi: "Tôi thử cả hai rồi. Vẫn vậy — nó cứ quay."}
 
 listening_snippet:
   id: LS-I03
   speed: 1.0
   voice: en_US_male
-  transcript_en: "First, click on the three dots at the top right. Then click on Settings. Let me know when you're there."
-  transcript_vi: "Đầu tiên, bấm vào ba dấu chấm ở góc trên bên phải. Rồi bấm vào Settings. Báo tôi khi vào được."
+  context_vi: >
+    Emma báo cả hai cách đều không ăn thua. Bạn hướng dẫn nốt một bước cuối trước khi kết luận lỗi
+    không nằm ở máy của chị ấy.
+  transcript_en: "Okay, one last thing. Close the browser completely, then open it again and go to the portal. Don't type anything yet — just tell me what you see. Let me know when you're there."
+  transcript_vi: "Được rồi, một việc cuối. Chị đóng hẳn trình duyệt, rồi mở lại và vào cổng. Chưa nhập gì cả — chỉ nói cho tôi biết chị thấy gì. Báo tôi khi tới nơi nhé."
   questions:
-    - q_vi: "Bước đầu tiên là gì?"
-      choices: ["Bấm ba dấu chấm góc trên phải", "Khởi động lại máy", "Gọi cho sếp"]
+    - q_vi: "Bước đầu tiên bạn bảo Emma làm là gì?"
+      choices: ["Đóng hẳn trình duyệt rồi mở lại", "Khởi động lại máy", "Gọi cho sếp"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người hướng dẫn muốn người dùng làm gì sau mỗi bước?"
-      choices: ["Báo lại khi xong", "Tự làm hết rồi báo", "Không cần báo"]
+    - q_vi: "Bạn muốn Emma làm gì sau khi mở lại trang?"
+      choices: ["Báo lại xem thấy gì, chưa nhập gì", "Tự đăng nhập luôn", "Không cần báo"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "First, click on the three dots at the top right."
-    prompt_vi: "Đọc to. Mỗi bước bắt đầu bằng một động từ hành động rõ ràng."
+    prompt_vi: "Bước một cho Emma. Đọc to — mở đầu bằng động từ hành động và nói rõ chỗ trên màn hình."
     ipa: "/fɜːrst klɪk ɒn ðə θriː dɒts æt ðə tɒp raɪt/"
     focus_phonemes: [θ, k, t]
   - kind: read_aloud
     expected_text: "Let me know when you're done."
-    prompt_vi: "Đọc to. Chờ xác nhận trước khi sang bước sau."
+    prompt_vi: "Emma đang mò trên màn hình. Đọc to — chờ chị ấy xác nhận trước khi sang bước sau."
     ipa: "/lɛt miː noʊ wɛn jʊr dʌn/"
     focus_phonemes: [l, n, d]
   - kind: shadow
     expected_text: "Okay so far? Are you with me?"
-    prompt_vi: "Nghe rồi nhắc lại. Kiểm tra người dùng còn theo kịp không."
+    prompt_vi: "Emma im lặng vài giây. Nghe rồi nhắc lại — kiểm tra chị ấy còn theo kịp không."
     ipa: "/ˈoʊkeɪ soʊ fɑr ɑr juː wɪð miː/"
     focus_phonemes: [s, f, ð]
   - kind: respond
-    prompt_en: "My printer isn't printing. What do I do?"
-    prompt_vi: "Hướng dẫn bước đầu tiên rõ ràng và bảo họ báo lại khi xong."
+    prompt_en: "So what should I do now? I'm not very good with computers."
+    prompt_vi: "Emma đang chờ chỉ dẫn. Cho MỘT bước đầu tiên thật rõ và bảo chị ấy báo lại khi xong."
     accept_patterns:
-      - "First check the printer is on Let me know when you're done"
+      - "First close the browser completely Let me know when you're done"
       - "Okay first {step} let me know when you see {result}"
       - "First {step} then tell me what you see"
 
@@ -140,7 +146,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Cách hướng dẫn người không rành tốt nhất?"
+    prompt_vi: "Emma đang ở nhà, một mình, qua điện thoại. Cách hướng dẫn tốt nhất?"
     choices:
       - "Một bước một lúc, chờ xác nhận"
       - "Đọc hết các bước một lần"
@@ -148,7 +154,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Người dùng không biết “cache” là gì. Nên nói sao?"
+    prompt_vi: "Emma không biết “cache” là gì. Bạn nên nói sao?"
     choices:
       - "Mô tả nút họ thấy: “the button that says Clear data”"
       - "Cứ nói “cache”, họ phải biết"
@@ -156,7 +162,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Câu nào kiểm tra người dùng còn theo kịp?"
+    prompt_vi: "Câu nào kiểm tra Emma còn theo kịp?"
     choices: ["Are you with me?", "Hurry up.", "Why so slow?"]
     answer: 0
     difficulty: 1

@@ -20,7 +20,7 @@ vocabulary:
   - term: "thread"
     ipa: "/θrɛd/"
     meaning_vi: "luồng (chuỗi tin nhắn theo chủ đề)"
-    chunk: "Let's keep it in this thread."
+    chunk: "Everything is in this thread."
     tags: [it_english]
   - term: "+1"
     ipa: "/plʌs wʌn/"
@@ -30,7 +30,7 @@ vocabulary:
   - term: "I'll take it"
     ipa: "/aɪl teɪk ɪt/"
     meaning_vi: "để tôi nhận việc đó"
-    chunk: "I'll take the deploy."
+    chunk: "I'll take it from here."
     tags: [it_english]
   - term: "let's go with"
     ipa: "/lɛts ɡoʊ wɪð/"
@@ -40,12 +40,12 @@ vocabulary:
   - term: "circle back"
     ipa: "/ˈsɜːrkəl bæk/"
     meaning_vi: "quay lại bàn sau"
-    chunk: "Let's circle back tomorrow."
+    chunk: "Let's circle back on Monday."
     tags: [it_english]
   - term: "cc"
     ipa: "/siː siː/"
     meaning_vi: "nhắc/kéo ai đó vào (cho biết)"
-    chunk: "cc @Lan for visibility."
+    chunk: "cc @David for visibility."
     tags: [it_english]
 
 sentence_patterns:
@@ -57,27 +57,35 @@ sentence_patterns:
       action: ["take the deploy", "update the doc"]
 
 dialogue:
-  context_vi: "Một luồng chat nhóm bàn cách xử lý sự cố (đọc theo lượt)."
+  context_vi: >
+    Kênh #inc-2291, từ 4 giờ sáng đến lúc hệ thống lên lại. Bạn có mặt trong luồng này suốt hai
+    tiếng đầu, rồi bàn giao và đi ngủ. Giờ bạn đọc lại cả luồng để viết phần diễn biến cho Linh —
+    kể cả đoạn xảy ra khi bạn đang ngủ.
   turns:
-    - {speaker: A, en: "Minh: Server is slow. Option A: restart now. Option B: wait for off-hours.", vi: "Minh: Server chậm. Phương án A: khởi động lại ngay. Phương án B: chờ ngoài giờ."}
-    - {speaker: A, en: "Lan: +1 to option B. Restarting now will disrupt users.", vi: "Lan: +1 phương án B. Khởi động lại giờ sẽ ảnh hưởng người dùng."}
-    - {speaker: A, en: "Minh: Agreed. Let's go with option B, tonight at 10.", vi: "Minh: Đồng ý. Chốt phương án B, tối nay 10 giờ."}
-    - {speaker: A, en: "Huy: I'll take it. cc @Lan for visibility.", vi: "Huy: Để tôi nhận. cc @Lan cho biết."}
-    - {speaker: A, en: "Minh: Thanks. Let's circle back tomorrow to confirm it's stable.", vi: "Minh: Cảm ơn. Mai bàn lại xác nhận đã ổn định."}
+    - {speaker: "", en: "04:32 David Carter: Still down. I need an update every 30 minutes.", vi: "04:32 David Carter: Vẫn chưa lên. Tôi cần cập nhật mỗi 30 phút."}
+    - {speaker: "", en: "05:52 You: Handing over to Priya at 06:00. Everything is in this thread.", vi: "05:52 Bạn: Bàn giao cho Priya lúc 06:00. Mọi thứ nằm trong luồng này."}
+    - {speaker: "", en: "06:04 Priya Nair: I have it. Option A: roll back 4.2.0. Option B: check the new IAM role first.", vi: "06:04 Priya Nair: Tôi nhận rồi. Phương án A: roll back bản 4.2.0. Phương án B: kiểm tra IAM role mới trước."}
+    - {speaker: "", en: "06:06 Linh: +1 to option B. A rollback brings the CVE back.", vi: "06:06 Linh: +1 phương án B. Roll back là lỗ hổng CVE quay lại."}
+    - {speaker: "", en: "06:07 Priya Nair: Agreed. Let's go with option B. I'll take it. cc @David for visibility.", vi: "06:07 Priya Nair: Đồng ý. Chốt phương án B. Để tôi nhận. cc @David cho biết."}
+    - {speaker: "", en: "08:31 Priya Nair: Found it. The new role can't read the database secret.", vi: "08:31 Priya Nair: Tìm ra rồi. Role mới không đọc được secret của CSDL."}
+    - {speaker: "", en: "09:15 Priya Nair: Permission restored, the portal is up. Let's circle back on Monday for the postmortem.", vi: "09:15 Priya Nair: Đã cấp lại quyền, portal lên rồi. Thứ Hai bàn lại để làm postmortem."}
 
 listening_snippet:
   id: LS-R07
   speed: 1.0
   voice: en_US_female
-  transcript_en: "The team agreed to go with option B and restart tonight at 10. Huy said he'll take it. They'll circle back tomorrow to confirm."
-  transcript_vi: "Nhóm chốt chọn phương án B và khởi động lại tối nay lúc 10. Huy nói sẽ nhận việc. Mai họ bàn lại để xác nhận."
+  context_vi: >
+    Bạn ngủ dậy lúc trưa và mở lại kênh. Đây là bản tóm tắt của cả đoạn xảy ra sau khi bạn bàn giao —
+    ba câu, nhưng là bảy tiếng của người khác.
+  transcript_en: "The team agreed to go with option B and check the new IAM role instead of rolling back. Priya said she'll take it. They'll circle back on Monday for the postmortem."
+  transcript_vi: "Nhóm chốt phương án B: kiểm tra IAM role mới thay vì roll back. Priya nói cô ấy nhận việc. Thứ Hai họ bàn lại để làm postmortem."
   questions:
     - q_vi: "Nhóm chốt phương án nào?"
-      choices: ["Phương án B (chờ ngoài giờ)", "Phương án A (ngay)", "Không chốt"]
+      choices: ["Phương án B (kiểm tra IAM role mới)", "Phương án A (roll back bản 4.2.0)", "Không chốt"]
       answer: 0
       difficulty: 3
     - q_vi: "Ai nhận việc?"
-      choices: ["Huy", "Lan", "Không ai"]
+      choices: ["Priya", "Linh", "Không ai"]
       answer: 0
       difficulty: 3
 
@@ -115,17 +123,17 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Câu nào cho biết QUYẾT ĐỊNH cuối cùng?"
+    prompt_vi: "Trong luồng #inc-2291, câu nào cho biết QUYẾT ĐỊNH cuối cùng?"
     choices: ["Let's go with option B.", "+1", "cc @Lan"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "“I'll take it” nghĩa là gì?"
+    prompt_vi: "Priya viết “I'll take it”. Nghĩa là gì?"
     choices: ["Người đó nhận việc", "Người đó phản đối", "Người đó rời nhóm"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "“cc @Lan for visibility” nghĩa là?"
+    prompt_vi: "Cuối tin nhắn có “cc @David for visibility”. Nghĩa là?"
     choices:
       - "Kéo Lan vào cho biết, không giao việc"
       - "Giao việc cho Lan"
@@ -133,14 +141,14 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“Let's circle back tomorrow” nghĩa là?"
-    choices: ["Mai bàn lại", "Đã xong hẳn", "Huỷ bỏ"]
+    prompt_vi: "Priya kết luận “Let's circle back on Monday”. Nghĩa là?"
+    choices: ["Thứ Hai bàn lại", "Đã xong hẳn", "Huỷ bỏ"]
     answer: 0
     difficulty: 2
   - kind: mcq_listen
-    prompt_vi: "Ai nhận việc?"
-    audio_text: "Huy said he'll take it."
-    choices: ["Huy", "Minh", "Không ai"]
+    prompt_vi: "Một luồng chat khác của team. Nghe: ai nhận việc?"
+    audio_text: "Minh said he'll take it."
+    choices: ["Minh", "Priya", "Không ai"]
     answer: 0
     difficulty: 3
 

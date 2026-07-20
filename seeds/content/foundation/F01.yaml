@@ -29,7 +29,7 @@ vocabulary:
   - term: this
     ipa: "/ðɪs/"
     meaning_vi: "cái này, người này"
-    chunk: "This is Minh."
+    chunk: "This is Linh."
     tags: [core]
   - term: that
     ipa: "/ðæt/"
@@ -39,7 +39,7 @@ vocabulary:
   - term: three
     ipa: "/θriː/"
     meaning_vi: "số ba"
-    chunk: "The meeting is at three."
+    chunk: "The sync is at three."
     tags: [core, number]
   - term: thirty
     ipa: "/ˈθɜːrti/"
@@ -58,53 +58,56 @@ sentence_patterns:
       person: ["Minh", "my colleague", "our new teammate"]
 
 dialogue:
-  context_vi: "Ở pantry, bạn giới thiệu đồng nghiệp mới cho người khác."
+  context_vi: "Ngày đầu của bạn ở Vertex. Minh dẫn bạn qua bàn của Linh — team lead — để giới thiệu."
   turns:
-    - {speaker: A, en: "This is Minh. I think you two haven't met.", vi: "Đây là Minh. Tôi nghĩ hai bạn chưa gặp nhau."}
-    - {speaker: B, en: "Nice to meet you, Minh. Thanks for coming over.", vi: "Rất vui được gặp Minh. Cảm ơn bạn đã sang đây."}
-    - {speaker: A, en: "The meeting is at three thirty, right?", vi: "Cuộc họp lúc ba giờ rưỡi đúng không?"}
-    - {speaker: B, en: "That's right. See you there.", vi: "Đúng rồi. Gặp bạn ở đó nhé."}
+    - {speaker: Minh, en: "Linh, this is our new teammate. I think you two haven't met.", vi: "Linh, đây là đồng nghiệp mới của mình. Em nghĩ hai người chưa gặp nhau."}
+    - {speaker: Linh, en: "Not yet. Nice to meet you. Thanks for coming in early today.", vi: "Chưa. Rất vui được gặp bạn. Cảm ơn bạn hôm nay đến sớm."}
+    - {speaker: Minh, en: "The team sync is at three thirty, right?", vi: "Buổi họp team lúc ba giờ rưỡi đúng không?"}
+    - {speaker: Linh, en: "That's right. See you there.", vi: "Đúng rồi. Gặp ở đó nhé."}
 
 listening_snippet:
   id: LS-F01
   speed: 0.85
   voice: en_US_female
-  transcript_en: "This is Minh. I think the meeting is at three thirty, not three thirteen."
-  transcript_vi: "Đây là Minh. Tôi nghĩ cuộc họp lúc ba giờ ba mươi, không phải ba giờ mười ba."
+  context_vi: >
+    Linh quay lại dặn bạn thêm một câu trước khi đi. Đây chính là chỗ bạn sẽ nghe nhầm nếu tai
+    chưa quen: giờ họp là 3:30 hay 3:13?
+  transcript_en: "One more thing — the team sync is at three thirty, not three thirteen. Minh will show you the room."
+  transcript_vi: "Một điều nữa — buổi họp team lúc ba giờ ba mươi, không phải ba giờ mười ba. Minh sẽ chỉ phòng cho bạn."
   questions:
-    - q_vi: "Cuộc họp lúc mấy giờ?"
+    - q_vi: "Buổi họp team lúc mấy giờ?"
       choices: ["3:13", "3:30", "3:00"]
       answer: 1
       difficulty: 3
-    - q_vi: "Người nói đang giới thiệu ai?"
-      choices: ["Minh", "chính mình", "quản lý"]
+    - q_vi: "Ai sẽ chỉ phòng họp cho bạn?"
+      choices: ["Minh", "Linh", "Không ai cả"]
       answer: 0
       difficulty: 1
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "I think so."
-    prompt_vi: "Đọc to câu này. Chú ý lưỡi chạm răng ở đầu từ think."
+    prompt_vi: "Linh vừa hỏi bạn một câu. Đọc to — chú ý lưỡi chạm răng ở đầu từ think."
     ipa: "/aɪ θɪŋk soʊ/"
     focus_phonemes: [θ]
   - kind: read_aloud
-    expected_text: "This is Minh."
-    prompt_vi: "Đọc to. Âm đầu của this có rung — sờ cổ họng sẽ thấy."
-    ipa: "/ðɪs ɪz mɪn/"
+    expected_text: "This is Linh."
+    prompt_vi: "Minh đang giới thiệu bạn với Linh. Đọc to — âm đầu của this có rung, sờ cổ họng sẽ thấy."
+    ipa: "/ðɪs ɪz lɪn/"
     focus_phonemes: [ð]
   - kind: shadow
     expected_text: "Thanks for your help."
-    prompt_vi: "Nghe giọng mẫu rồi nhắc lại."
+    prompt_vi: "Linh cảm ơn bạn đến sớm, bạn đáp lại. Nghe giọng mẫu rồi nhắc lại."
     ipa: "/θæŋks fɔr jʊr hɛlp/"
     focus_phonemes: [θ]
   - kind: shadow
-    expected_text: "The meeting is at three thirty."
-    prompt_vi: "Nghe rồi nhắc lại. Câu này có ba âm TH."
-    ipa: "/ðə ˈmiːtɪŋ ɪz æt θriː ˈθɜːrti/"
+    expected_text: "The sync is at three thirty."
+    prompt_vi: "Nhắc lại giờ họp cho chắc. Nghe rồi nói theo — câu này có ba âm TH."
+    ipa: "/ðə sɪŋk ɪz æt θriː ˈθɜːrti/"
     focus_phonemes: [θ, ð]
   - kind: respond
-    prompt_en: "Is the meeting at three thirty?"
-    prompt_vi: "Đồng nghiệp hỏi cuộc họp có phải 3:30 không. Trả lời xác nhận."
+    prompt_en: "Is the sync at three thirty?"
+    prompt_vi: "Minh hỏi lại bạn cho chắc: họp 3:30 phải không? Trả lời xác nhận."
     accept_patterns:
       - "Yes that's right"
       - "That's right"
@@ -151,13 +154,13 @@ mini_quiz:
     focus_phonemes: [θ]
   - kind: mcq_listen
     prompt_vi: "Bạn nghe thấy số mấy?"
-    audio_text: "The meeting is at ten thirty."
+    audio_text: "The sync is at ten thirty."
     choices: ["10:13", "10:30"]
     answer: 1
     difficulty: 4
     focus_phonemes: [θ]
   - kind: fill_chunk
-    prompt_vi: "Giới thiệu đồng nghiệp: “___ is Minh.”"
+    prompt_vi: "Minh giới thiệu bạn với team lead: “___ is Linh.”"
     choices: ["This", "Dis", "That"]
     answer: 0
     difficulty: 1

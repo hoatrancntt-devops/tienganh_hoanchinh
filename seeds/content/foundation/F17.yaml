@@ -56,24 +56,33 @@ sentence_patterns:
       abbr2: [JSON, cache]
 
 dialogue:
-  context_vi: "Từ viết tắt đọc từng chữ hay đọc liền — chú ý cách đọc."
+  context_vi: >
+    Sáng thứ Sáu. Chiều nay bạn phải nói trước cả team, có David dự qua call. Minh bắt bạn đọc to
+    các thuật ngữ trước — vì bạn nhìn chúng trên màn hình cả tuần mà chưa từng nghe chính mình
+    nói chúng ra.
   turns:
-    - {speaker: A, en: "Call the API and check the JSON response.", vi: "Gọi API và kiểm tra phản hồi JSON. (ây-pi-ai, JAY-sơn)"}
-    - {speaker: B, en: "The URL returns a cache error.", vi: "Cái URL trả về lỗi cache. (diu-a-eo, kash)"}
-    - {speaker: A, en: "Run an SQL query and clear the queue.", vi: "Chạy truy vấn SQL và xoá hàng đợi. (ét-kiu-eo, kiu)"}
+    - {speaker: Minh, en: "Read this line. Out loud.", vi: "Đọc dòng này. Đọc to lên."}
+    - {speaker: You, en: "Call the API and check the JSON response.", vi: "Gọi API và kiểm tra phản hồi JSON."}
+    - {speaker: Minh, en: "API letter by letter — good. But JSON is one word: JAY-sən.", vi: "API đánh vần từng chữ — chuẩn. Nhưng JSON đọc liền như một từ: JAY-sơn."}
+    - {speaker: You, en: "The URL returns a cache error. Run an SQL query and clear the queue.", vi: "URL trả về lỗi cache. Chạy truy vấn SQL và xoá hàng đợi."}
+    - {speaker: Minh, en: "“kash”, not “ca-chê”. And queue is just “kiu”. Say those two again.", vi: "“kash”, không phải “ca-chê”. Còn queue chỉ là “kiu”. Nói lại hai từ đó đi."}
 
 listening_snippet:
   id: LS-F17
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Call the API and check the JSON. The URL returns a cache error. Run an SQL query."
-  transcript_vi: "Gọi API và kiểm tra JSON. URL trả về lỗi cache. Chạy truy vấn SQL."
+  context_vi: >
+    Minh thu một câu mẫu để bạn nghe trước khi lên nói. Bẫy: trong cùng một câu có cả loại đánh vần
+    từng chữ (API, URL, SQL) lẫn loại đọc liền (JSON), cộng hai từ quen mắt mà rất hay sai mồm —
+    cache và queue.
+  transcript_en: "Call the API and check the JSON. The URL returns a cache error. Run an SQL query and clear the queue."
+  transcript_vi: "Gọi API và kiểm tra JSON. URL trả về lỗi cache. Chạy truy vấn SQL và xoá hàng đợi."
   questions:
-    - q_vi: "“JSON” đọc thế nào?"
+    - q_vi: "Minh đọc “JSON” thế nào?"
       choices: ["Như một từ: JAY-sơn", "Từng chữ: J-S-O-N", "“giê-sôn”"]
       answer: 0
       difficulty: 3
-    - q_vi: "“cache” đọc thế nào?"
+    - q_vi: "Minh đọc “cache” thế nào?"
       choices: ["“kash”", "“ca-chê”", "“ca-sờ”"]
       answer: 0
       difficulty: 3
@@ -81,22 +90,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "Call the API and check the URL."
-    prompt_vi: "Đọc to. API = ây-pi-ai, URL = diu-a-eo. Đọc TỪNG CHỮ CÁI."
+    prompt_vi: "Dòng đầu Minh đưa bạn đọc thử. Đọc to — API = ây-pi-ai, URL = diu-a-eo. Đánh vần TỪNG CHỮ CÁI."
     ipa: "/kɔːl ðiː ˌeɪ piː ˈaɪ ænd tʃɛk ðə ˌjuː ɑːr ˈɛl/"
     focus_phonemes: [k, r, l]
   - kind: read_aloud
     expected_text: "Return JSON and clear the cache."
-    prompt_vi: "Đọc to. JSON = JAY-sơn (đọc như từ); cache = “kash” (không phải “ca-chê”)."
+    prompt_vi: "Hai từ Minh vừa bắt bạn sửa. Đọc to — JSON = JAY-sơn (đọc liền như từ); cache = “kash”, không phải “ca-chê”."
     ipa: "/rɪˈtɜːrn ˈdʒeɪsən ænd klɪr ðə kæʃ/"
     focus_phonemes: [dʒ, k, ʃ]
   - kind: shadow
     expected_text: "The job is in the queue."
-    prompt_vi: "Nghe rồi nhắc lại. queue = “kiu”, chỉ đọc âm đầu (bốn chữ cái sau câm)."
+    prompt_vi: "Câu bạn sẽ phải nói chiều nay. Nghe rồi nhắc lại — queue = “kiu”, chỉ đọc âm đầu (bốn chữ cái sau câm)."
     ipa: "/ðə dʒɒb ɪz ɪn ðə kjuː/"
     focus_phonemes: [dʒ, k]
   - kind: respond
     prompt_en: "How do I get the data?"
-    prompt_vi: "Trả lời có “API” và “JSON” — API đọc từng chữ, JSON đọc như từ."
+    prompt_vi: "Minh đóng vai David hỏi bạn trong buổi tập. Trả lời có “API” và “JSON” — API đánh vần từng chữ, JSON đọc liền."
     accept_patterns:
       - "Call the API it returns JSON"
       - "Send a request to the API and read the JSON"

@@ -20,7 +20,7 @@ vocabulary:
   - term: "Prerequisites"
     ipa: "/ˌpriːˈrɛkwɪzɪts/"
     meaning_vi: "yêu cầu cần có trước"
-    chunk: "Prerequisites: Node 18 and Docker."
+    chunk: "Prerequisites: AWS CLI v2 and read access."
     tags: [it_english]
   - term: "Installation"
     ipa: "/ˌɪnstəˈleɪʃən/"
@@ -35,17 +35,17 @@ vocabulary:
   - term: "make sure"
     ipa: "/meɪk ʃʊr/"
     meaning_vi: "đảm bảo rằng"
-    chunk: "Make sure Docker is running."
+    chunk: "Make sure you are logged in."
     tags: [it_english]
   - term: "Usage"
     ipa: "/ˈjuːsɪdʒ/"
     meaning_vi: "cách sử dụng"
-    chunk: "See Usage for examples."
+    chunk: "See Usage for an example."
     tags: [it_english]
   - term: "Note"
     ipa: "/noʊt/"
     meaning_vi: "lưu ý"
-    chunk: "Note: this requires admin rights."
+    chunk: "Note: this tool never changes a role."
     tags: [it_english, core]
 
 sentence_patterns:
@@ -56,27 +56,33 @@ sentence_patterns:
       step: ["run the install", "start the app"]
 
 dialogue:
-  context_vi: "Một đoạn README của một dự án (đọc theo mục)."
+  context_vi: >
+    Priya gửi bạn link công cụ cô ấy dùng lúc 8 rưỡi sáng để tìm ra cái quyền bị mất. Lần sau bạn
+    muốn tự chạy được nó, không phải chờ ai. Đây là README của công cụ đó.
   turns:
-    - {speaker: A, en: "## Prerequisites — You need Node 18 and Docker installed.", vi: "## Yêu cầu — Bạn cần cài Node 18 và Docker."}
-    - {speaker: A, en: "## Installation — First, clone the repo. Then run the following:", vi: "## Cài đặt — Đầu tiên, clone repo. Rồi chạy lệnh sau:"}
-    - {speaker: A, en: "npm install", vi: "npm install"}
-    - {speaker: A, en: "## Usage — Make sure Docker is running, then start the app with npm start.", vi: "## Sử dụng — Đảm bảo Docker đang chạy, rồi khởi động app bằng npm start."}
-    - {speaker: A, en: "Note: the first run may take a few minutes.", vi: "Lưu ý: lần chạy đầu có thể mất vài phút."}
+    - {speaker: "", en: "# iam-check — see what a role is really allowed to do", vi: "# iam-check — xem một role thật sự được phép làm gì"}
+    - {speaker: "", en: "## Prerequisites — You need AWS CLI v2 and read access to the account.", vi: "## Yêu cầu — Bạn cần AWS CLI v2 và quyền đọc trên tài khoản."}
+    - {speaker: "", en: "## Installation — First, clone the repo. Then run the following:", vi: "## Cài đặt — Đầu tiên, clone repo. Rồi chạy lệnh sau:"}
+    - {speaker: "", en: "npm install && npm link", vi: "npm install && npm link"}
+    - {speaker: "", en: "## Usage — Make sure you are logged in, then run: iam-check --role portal-auth-role", vi: "## Sử dụng — Đảm bảo bạn đã đăng nhập, rồi chạy: iam-check --role portal-auth-role"}
+    - {speaker: "", en: "Note: this tool only reads. It never changes a role.", vi: "Lưu ý: công cụ này chỉ đọc. Nó không bao giờ sửa role."}
 
 listening_snippet:
   id: LS-R04
   speed: 1.0
   voice: en_US_male
-  transcript_en: "You need Node 18 and Docker. First clone the repo, then run npm install. Make sure Docker is running before you start the app."
-  transcript_vi: "Bạn cần Node 18 và Docker. Đầu tiên clone repo, rồi chạy npm install. Đảm bảo Docker đang chạy trước khi khởi động app."
+  context_vi: >
+    Priya thu một tin thoại 15 giây hướng dẫn bạn, vì cô ấy sắp hết ca. Nghe một lần rồi tự làm được —
+    đó là mục tiêu.
+  transcript_en: "You need AWS CLI version 2 and read access to the account. First clone the repo, then run npm install. Make sure you are logged in before you run iam-check."
+  transcript_vi: "Bạn cần AWS CLI phiên bản 2 và quyền đọc trên tài khoản. Đầu tiên clone repo, rồi chạy npm install. Đảm bảo bạn đã đăng nhập trước khi chạy iam-check."
   questions:
-    - q_vi: "Cần cài gì trước?"
-      choices: ["Node 18 và Docker", "Chỉ Node", "Không cần gì"]
+    - q_vi: "Cần có gì trước khi cài công cụ này?"
+      choices: ["AWS CLI v2 và quyền đọc tài khoản", "Chỉ cần Docker", "Không cần gì"]
       answer: 0
       difficulty: 3
-    - q_vi: "Phải đảm bảo gì trước khi khởi động app?"
-      choices: ["Docker đang chạy", "Đã đổi mật khẩu", "Đã tắt máy"]
+    - q_vi: "Phải đảm bảo gì trước khi chạy iam-check?"
+      choices: ["Bạn đã đăng nhập", "Đã đổi mật khẩu", "Đã tắt máy"]
       answer: 0
       difficulty: 3
 
@@ -113,22 +119,22 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Phần nào của README nên đọc đầu tiên?"
+    prompt_vi: "Bạn mở README của iam-check. Phần nào nên đọc đầu tiên?"
     choices: ["Prerequisites", "Usage", "License"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "“Make sure Docker is running” nghĩa là?"
+    prompt_vi: "Một README khác ghi “Make sure Docker is running”. Nghĩa là?"
     choices: ["Đảm bảo Docker đang chạy", "Cài lại Docker", "Xoá Docker"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Các bước ghi “First…, Then…”. Nên làm sao?"
+    prompt_vi: "Phần Installation ghi “First…, Then…”. Nên làm sao?"
     choices: ["Theo đúng thứ tự đó", "Làm ngược lại", "Chọn bước nào cũng được"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Cài xong nhưng lệnh báo “command not found”. Khả năng cao vì?"
+    prompt_vi: "Bạn chạy iam-check nhưng máy báo “command not found”. Khả năng cao vì?"
     choices:
       - "Thiếu một prerequisite chưa cài"
       - "README viết sai"
@@ -136,7 +142,7 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "Cần cài gì trước?"
+    prompt_vi: "Một README khác trong repo của team. Nghe: cần cài gì trước?"
     audio_text: "You need Node 18 and Docker."
     choices: ["Node 18 và Docker", "Chỉ Python", "Không cần gì"]
     answer: 0

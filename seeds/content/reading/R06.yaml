@@ -20,27 +20,27 @@ vocabulary:
   - term: "INFO"
     ipa: "/ˈɪnfoʊ/"
     meaning_vi: "thông tin bình thường"
-    chunk: "INFO: server started on port 9999."
+    chunk: "INFO: auth-service started."
     tags: [it_english]
   - term: "WARNING"
     ipa: "/ˈwɔːrnɪŋ/"
     meaning_vi: "cảnh báo (chưa hỏng nhưng đáng ngờ)"
-    chunk: "WARNING: disk space low."
+    chunk: "WARNING: could not refresh credentials."
     tags: [it_english]
   - term: "ERROR"
     ipa: "/ˈɛrər/"
     meaning_vi: "lỗi (đã hỏng)"
-    chunk: "ERROR: failed to save file."
+    chunk: "ERROR: access denied on the secret."
     tags: [it_english]
   - term: "timestamp"
     ipa: "/ˈtaɪmstæmp/"
     meaning_vi: "dấu thời gian"
-    chunk: "Check the timestamp of the error."
+    chunk: "Check the timestamp of the first error."
     tags: [it_english]
   - term: "stack trace"
     ipa: "/stæk treɪs/"
     meaning_vi: "vết gọi hàm khi lỗi"
-    chunk: "The stack trace shows the failing function."
+    chunk: "The stack trace points to the secrets client."
     tags: [it_english]
   - term: "retry"
     ipa: "/ˈriːtraɪ/"
@@ -57,26 +57,33 @@ sentence_patterns:
       time: ["10:02", "10:05", "10:07"]
 
 dialogue:
-  context_vi: "Một đoạn log của máy chủ (đọc từng dòng, theo thời gian)."
+  context_vi: >
+    Log của auth service đêm hôm đó, từ lúc deploy đến lúc Emma không vào được. Toàn bộ câu trả lời
+    nằm gọn trong năm dòng này. Lúc 3 giờ sáng bạn đã cuộn qua nó — nhưng chưa biết dừng ở đâu.
+    Giờ thì biết.
   turns:
-    - {speaker: A, en: "10:02 INFO: Server started on port 9999.", vi: "10:02 INFO: Máy chủ khởi động ở cổng 9999."}
-    - {speaker: A, en: "10:05 WARNING: Disk space is low (15% left).", vi: "10:05 WARNING: Dung lượng ổ thấp (còn 15%)."}
-    - {speaker: A, en: "10:07 ERROR: Failed to save file — no space left on device.", vi: "10:07 ERROR: Không lưu được file — hết dung lượng ổ."}
-    - {speaker: A, en: "10:07 ERROR: Retry 3 of 3 failed. Giving up.", vi: "10:07 ERROR: Thử lại lần 3/3 thất bại. Dừng."}
+    - {speaker: "", en: "23:41 INFO: auth-service started. Release 4.2.0.", vi: "23:41 INFO: auth-service khởi động. Bản 4.2.0."}
+    - {speaker: "", en: "01:58 WARNING: Could not refresh database credentials. Using the cached ones.", vi: "01:58 WARNING: Không làm mới được credential của CSDL. Đang dùng bản lưu tạm."}
+    - {speaker: "", en: "02:03 ERROR: AccessDeniedException — not authorized to perform secretsmanager:GetSecretValue.", vi: "02:03 ERROR: AccessDeniedException — không được phép thực hiện secretsmanager:GetSecretValue."}
+    - {speaker: "", en: "02:03 ERROR: Failed to read the database password. Sign-in failed for user e.brooks.", vi: "02:03 ERROR: Không đọc được mật khẩu CSDL. Đăng nhập thất bại cho người dùng e.brooks."}
+    - {speaker: "", en: "02:04 ERROR: Retry 3 of 3 failed. Giving up.", vi: "02:04 ERROR: Thử lại lần 3/3 thất bại. Dừng."}
 
 listening_snippet:
   id: LS-R06
   speed: 1.0
   voice: en_US_male
-  transcript_en: "At 10:05 a warning says disk space is low. At 10:07 an error says it failed to save the file because there's no space left on the device."
-  transcript_vi: "Lúc 10:05 một cảnh báo nói dung lượng ổ thấp. Lúc 10:07 một lỗi nói không lưu được file vì hết dung lượng ổ."
+  context_vi: >
+    Priya đọc lại đúng hai dòng này trong buổi bàn giao — dòng cảnh báo lúc 01:58 và dòng lỗi
+    đầu tiên lúc 02:03. Hai dòng, cách nhau năm phút, và cái sau là hệ quả của cái trước.
+  transcript_en: "At 1:58 a warning says it could not refresh the database credentials. At 2:03 an error says access denied: the service is not authorized to read the secret."
+  transcript_vi: "Lúc 01:58 một cảnh báo nói không làm mới được credential của CSDL. Lúc 02:03 một lỗi nói bị từ chối: dịch vụ không được phép đọc secret."
   questions:
     - q_vi: "Nguyên nhân gốc của lỗi là gì?"
-      choices: ["Hết dung lượng ổ đĩa", "Sai mật khẩu", "Mất mạng"]
+      choices: ["Dịch vụ không có quyền đọc secret", "Sai mật khẩu của Emma", "Mất mạng"]
       answer: 0
       difficulty: 3
-    - q_vi: "Cảnh báo lúc 10:05 báo gì?"
-      choices: ["Dung lượng ổ thấp", "Máy chủ khởi động", "Có người đăng nhập"]
+    - q_vi: "Cảnh báo lúc 01:58 báo gì?"
+      choices: ["Không làm mới được credential, đang dùng bản lưu tạm", "Máy chủ khởi động", "Có người đăng nhập"]
       answer: 0
       difficulty: 2
 
@@ -113,17 +120,17 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Mức log nào nghĩa là ĐÃ hỏng?"
+    prompt_vi: "Trong log auth-service, mức nào nghĩa là ĐÃ hỏng?"
     choices: [ERROR, INFO, WARNING]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Khi tìm nguyên nhân, nên đọc ERROR nào trước?"
+    prompt_vi: "Log đêm đó có ba dòng ERROR. Nên đọc dòng nào trước?"
     choices: ["ERROR đầu tiên theo thời gian", "ERROR cuối cùng", "ERROR ở giữa"]
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“WARNING: disk space low” rồi “ERROR: failed to save”. Quan hệ?"
+    prompt_vi: "Trong một log khác: “WARNING: disk space low” rồi “ERROR: failed to save”. Quan hệ giữa hai dòng?"
     choices:
       - "Disk thấp là nguyên nhân của save fail"
       - "Không liên quan gì"
@@ -136,7 +143,7 @@ mini_quiz:
     answer: 0
     difficulty: 1
   - kind: mcq_listen
-    prompt_vi: "Nguyên nhân gốc của lỗi?"
+    prompt_vi: "Log của một dịch vụ khác. Nghe: nguyên nhân gốc là gì?"
     audio_text: "It failed to save the file because there's no space left on the device."
     choices: ["Hết dung lượng ổ", "Sai cú pháp", "Mạng chậm"]
     answer: 0

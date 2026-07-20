@@ -20,12 +20,12 @@ vocabulary:
   - term: "access"
     ipa: "/ˈæksɛs/"
     meaning_vi: "quyền truy cập"
-    chunk: "You don't have access to that folder."
+    chunk: "The service doesn't have access to the secret."
     tags: [it_english]
   - term: "grant access"
     ipa: "/ɡrɑːnt ˈæksɛs/"
     meaning_vi: "cấp quyền truy cập"
-    chunk: "I'll grant you access."
+    chunk: "I'll grant it access now."
     tags: [it_english]
   - term: "permissions"
     ipa: "/pərˈmɪʃənz/"
@@ -60,49 +60,57 @@ sentence_patterns:
       item: ["the link", "any attachment", "anything in it"]
 
 dialogue:
-  context_vi: "Một đồng nghiệp nhận email lạ và bạn nhắc về bảo mật."
+  context_vi: >
+    08:30 sáng thứ Sáu. Sáu tiếng rưỡi. Priya so xong hai môi trường và gọi bạn — giọng chị ấy
+    khác hẳn mọi lần. Đây là phút cả sự cố vỡ ra: bản deploy tối qua đã đổi IAM role, và auth
+    service mất đúng một quyền. Chuyện gì cũng thành đơn giản khi bạn nhìn thấy nó.
   turns:
-    - {speaker: A, en: "I got an email saying my account will be closed. It asks me to log in.", vi: "Tôi nhận email báo tài khoản sắp bị đóng. Nó bảo tôi đăng nhập."}
-    - {speaker: B, en: "That looks suspicious. Don't click the link — it could be phishing.", vi: "Cái đó trông đáng ngờ. Đừng bấm vào link — có thể là lừa đảo."}
-    - {speaker: A, en: "Oh, I almost did. What should I do?", vi: "Ồ, suýt nữa tôi bấm. Tôi nên làm gì?"}
-    - {speaker: B, en: "Forward it to IT security and delete it. And to be safe, reset your password.", vi: "Chuyển tiếp cho đội bảo mật rồi xoá đi. Và cho chắc, đặt lại mật khẩu."}
-    - {speaker: A, en: "Will do. Thanks for the heads up.", vi: "Sẽ làm. Cảm ơn đã nhắc."}
+    - {speaker: Priya, en: "I found it. The deploy changed the IAM role on the auth service.", vi: "Mình tìm ra rồi. Bản deploy đã đổi IAM role của auth service."}
+    - {speaker: You, en: "Changed it how?", vi: "Đổi thế nào?"}
+    - {speaker: Priya, en: "The new role does not have secretsmanager GetSecretValue. The service can't read the database credentials, so every single login fails.", vi: "Role mới không có quyền secretsmanager GetSecretValue. Dịch vụ không đọc được credential database, nên mọi lần đăng nhập đều fail."}
+    - {speaker: You, en: "So the password was never the problem. The service doesn't have access to the secret.", vi: "Vậy mật khẩu chưa bao giờ là vấn đề. Dịch vụ không có quyền truy cập vào secret."}
+    - {speaker: Priya, en: "Correct. I'll grant it access now. And one more thing — check your inbox.", vi: "Chính xác. Mình cấp lại quyền ngay đây. Với một việc nữa — bạn xem hộp thư đi."}
+    - {speaker: You, en: "The one about the outage, asking me to log in and verify? That looks suspicious. Don't click the link — it could be phishing.", vi: "Cái email về sự cố, bảo mình đăng nhập để xác minh à? Cái đó trông đáng ngờ. Đừng bấm vào link — có thể là lừa đảo."}
+    - {speaker: Priya, en: "That was my thought too. Somebody is using our outage. Forward it to IT security.", vi: "Mình cũng nghĩ vậy. Có kẻ đang lợi dụng sự cố của tụi mình. Chuyển nó cho đội bảo mật."}
 
 listening_snippet:
   id: LS-I12
   speed: 1.0
   voice: en_US_male
-  transcript_en: "That email looks suspicious. Don't click the link, it could be phishing. Forward it to IT security, delete it, and reset your password to be safe."
-  transcript_vi: "Email đó trông đáng ngờ. Đừng bấm link, có thể là lừa đảo. Chuyển cho đội bảo mật, xoá đi, và đặt lại mật khẩu cho chắc."
+  context_vi: >
+    09:15 — bốn mươi lăm phút sau, Priya báo kết quả. Đây là câu kết thúc bảy giờ mười lăm phút
+    downtime. Nghe kỹ con số cuối cùng.
+  transcript_en: "Permission restored at nine fifteen. Logins are working again — I tested with three accounts, all fine. That is seven hours and fifteen minutes of downtime. Tell the affected users to reset their passwords to be safe, and do not click anything in that email."
+  transcript_vi: "Quyền đã được cấp lại lúc chín giờ mười lăm. Đăng nhập hoạt động trở lại — mình thử ba tài khoản, đều ổn. Vậy là bảy giờ mười lăm phút ngừng hoạt động. Bảo những người bị ảnh hưởng đặt lại mật khẩu cho chắc, và đừng bấm gì trong cái email kia."
   questions:
-    - q_vi: "Email đó có thể là gì?"
-      choices: ["Lừa đảo (phishing)", "Thư mời họp", "Hoá đơn"]
+    - q_vi: "Tổng thời gian ngừng hoạt động là bao lâu?"
+      choices: ["7 giờ 15 phút", "15 phút", "2 giờ"]
       answer: 0
       difficulty: 3
-    - q_vi: "Nên làm gì với cái link?"
+    - q_vi: "Nên làm gì với cái link trong email lạ?"
       choices: ["Đừng bấm vào", "Bấm để kiểm tra", "Gửi cho bạn bè"]
       answer: 0
       difficulty: 2
 
 speaking_drills:
   - kind: read_aloud
-    expected_text: "You don't have access to that folder. I'll grant you access."
-    prompt_vi: "Đọc to. access nhấn âm đầu (AC-cess)."
-    ipa: "/juː doʊnt hæv ˈæksɛs tuː ðæt ˈfoʊldər aɪl ɡrɑːnt juː ˈæksɛs/"
+    expected_text: "The service doesn't have access to the secret. I'll grant it access."
+    prompt_vi: "Câu gỡ nút thắt của cả chương. Đọc to — access nhấn âm đầu (AC-cess)."
+    ipa: "/ðə ˈsɜːrvɪs ˈdʌzənt hæv ˈæksɛs tuː ðə ˈsiːkrət aɪl ɡrɑːnt ɪt ˈæksɛs/"
     focus_phonemes: [k, s, ɡ]
   - kind: read_aloud
     expected_text: "This email looks suspicious. Don't click the link."
-    prompt_vi: "Đọc to. suspicious có ba âm tiết: sus-PI-cious."
+    prompt_vi: "Có kẻ đang lợi dụng sự cố để lừa đảo. Đọc to, dứt khoát — suspicious có ba âm tiết: sus-PI-cious."
     ipa: "/ðɪs ˈiːmeɪl lʊks səˈspɪʃəs doʊnt klɪk ðə lɪŋk/"
     focus_phonemes: [s, ʃ, k]
   - kind: shadow
     expected_text: "To be safe, reset your password."
-    prompt_vi: "Nghe rồi nhắc lại. Lời khuyên bảo mật ngắn gọn."
+    prompt_vi: "Lời khuyên bạn gửi tới hai mươi người vừa vào lại được. Nghe rồi nhắc lại."
     ipa: "/tuː biː seɪf rɪˈsɛt jʊr ˈpæswɜːrd/"
     focus_phonemes: [s, z, d]
   - kind: respond
-    prompt_en: "I got a weird email asking for my login. What now?"
-    prompt_vi: "Cảnh báo bảo mật: đừng bấm, báo đội bảo mật, đổi mật khẩu."
+    prompt_en: "There's an email about the outage asking me to log in and verify. Should I?"
+    prompt_vi: "Emma vừa nhận đúng cái email đó. Cảnh báo dứt khoát: đừng bấm, báo đội bảo mật, đổi mật khẩu."
     accept_patterns:
       - "That looks suspicious don't click the link forward it to IT security"
       - "It could be phishing don't click anything and reset your password"
@@ -139,7 +147,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Email lạ xin đăng nhập. Câu cảnh báo tốt nhất?"
+    prompt_vi: "Email lạ nhân lúc sự cố, xin bạn đăng nhập. Câu cảnh báo tốt nhất?"
     choices:
       - "This looks suspicious. Don't click the link."
       - "Chắc là ổn thôi, cứ đăng nhập thử."
@@ -147,7 +155,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Đồng nghiệp cần vào thư mục chung nhưng chưa vào được. Bạn nói gì?"
+    prompt_vi: "Một dịch vụ không đọc được thứ nó cần. Cách nói đúng là gì?"
     choices:
       - "You don't have access yet. I'll grant you access."
       - "Không phải việc của tôi."

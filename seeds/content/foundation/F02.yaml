@@ -60,53 +60,57 @@ sentence_patterns:
       action: ["a restart", "an update", "a check"]
 
 dialogue:
-  context_vi: "Bạn giới thiệu đồng nghiệp và nói về công việc của họ."
+  context_vi: "Vẫn ngày đầu, đầu giờ chiều. Linh dẫn bạn sang bàn của Minh để bàn giao mấy việc nhỏ đầu tiên."
   turns:
-    - {speaker: A, en: "This is Minh. He works in IT.", vi: "Đây là Minh. Anh ấy làm bên IT."}
-    - {speaker: B, en: "Nice to meet you. What do you work on?", vi: "Rất vui được gặp. Bạn làm mảng gì?"}
-    - {speaker: A, en: "He handles tickets and network issues.", vi: "Anh ấy xử lý ticket và các vấn đề mạng."}
-    - {speaker: B, en: "Thanks. I might need your help this week.", vi: "Cảm ơn. Tuần này có khi tôi cần bạn giúp."}
+    - {speaker: Linh, en: "This is Minh. He works in IT support, same team as you.", vi: "Đây là Minh. Anh ấy làm IT support, cùng team với bạn."}
+    - {speaker: You, en: "Nice to meet you. What do you work on?", vi: "Rất vui được gặp anh. Anh làm mảng gì ạ?"}
+    - {speaker: Minh, en: "I handle tickets and network issues. You get three tickets today.", vi: "Mình xử lý ticket và các vấn đề mạng. Hôm nay bạn nhận ba ticket."}
+    - {speaker: You, en: "Thanks, that helps.", vi: "Cảm ơn anh, vậy là em rõ rồi."}
 
 listening_snippet:
   id: LS-F02
   speed: 0.85
   voice: en_US_male
-  transcript_en: "Minh works in IT. He handles tickets and the server needs a restart today."
-  transcript_vi: "Minh làm bên IT. Anh ấy xử lý ticket và hôm nay máy chủ cần khởi động lại."
+  context_vi: >
+    Linh đi rồi, Minh quay sang bàn giao cho bạn. Nghe kỹ đuôi từ: "ticket" hay "tickets",
+    "need" hay "needs". Cả câu chỉ khác nhau ở một tiếng xì rất nhỏ — mà mất tiếng xì đó là
+    bạn mất luôn con số.
+  transcript_en: "So, these are yours. Three tickets today, all from the same office. The server needs a restart first. Ask me if anything looks strange."
+  transcript_vi: "Vậy nhé, mấy cái này là của bạn. Hôm nay ba ticket, đều từ một văn phòng. Máy chủ cần khởi động lại trước. Có gì thấy lạ thì hỏi mình."
   questions:
-    - q_vi: "Minh làm ở bộ phận nào?"
-      choices: ["IT", "HR", "Sales"]
+    - q_vi: "Nếu thấy có gì lạ, bạn hỏi ai?"
+      choices: ["Minh", "Linh", "Không hỏi ai"]
       answer: 0
       difficulty: 1
-    - q_vi: "Hôm nay cần làm gì với máy chủ?"
-      choices: ["Khởi động lại", "Thay mới", "Tắt hẳn"]
+    - q_vi: "Hôm nay bạn nhận mấy ticket?"
+      choices: ["Ba", "Một", "Hai"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "He works in IT."
-    prompt_vi: "Đọc to. Giữ âm /s/ ở cuối works — đừng để nó rơi mất."
+    prompt_vi: "Linh vừa giới thiệu Minh với bạn. Nói lại — giữ âm /s/ ở cuối works, đừng để nó rơi mất."
     ipa: "/hiː wɜːrks ɪn aɪ tiː/"
     focus_phonemes: [s]
   - kind: read_aloud
     expected_text: "She uses the VPN."
-    prompt_vi: "Đọc to. Âm cuối ở đây là /z/ — có rung."
+    prompt_vi: "Một trong ba ticket là chuyện VPN của Linh. Đọc to — âm cuối ở đây là /z/, có rung."
     ipa: "/ʃiː ˈjuːzɪz ðə viː piː ɛn/"
     focus_phonemes: [z]
   - kind: shadow
     expected_text: "The server needs a restart."
-    prompt_vi: "Nghe rồi nhắc lại."
+    prompt_vi: "Minh dặn việc đầu tiên phải làm. Nghe rồi nhắc lại — âm cuối needs là /z/."
     ipa: "/ðə ˈsɜːrvər niːdz ə ˈriːstɑːrt/"
     focus_phonemes: [z]
   - kind: shadow
     expected_text: "I have three tickets today."
-    prompt_vi: "Nghe rồi nhắc lại. Cụm /ts/ cuối tickets rất dễ rơi."
+    prompt_vi: "Bạn báo lại số việc mình vừa nhận. Nghe rồi nhắc lại — cụm /ts/ cuối tickets rất dễ rơi, mà rơi là mất luôn con số."
     ipa: "/aɪ hæv θriː ˈtɪkɪts təˈdeɪ/"
     focus_phonemes: [s, t]
   - kind: respond
     prompt_en: "Where does Minh work?"
-    prompt_vi: "Trả lời: Minh làm bên IT. Nhớ âm /s/ ở works."
+    prompt_vi: "Cuối ngày có người hỏi bạn Minh làm gì. Trả lời — nhớ âm /s/ ở works."
     accept_patterns:
       - "He works in IT"
       - "Minh works in IT"
@@ -153,7 +157,7 @@ mini_quiz:
     difficulty: 3
     focus_phonemes: [s]
   - kind: fill_chunk
-    prompt_vi: "She ___ in HR."
+    prompt_vi: "Một ticket là của chị bên nhân sự: “She ___ in HR.”"
     choices: [work, works, working]
     answer: 1
     difficulty: 2
@@ -163,7 +167,7 @@ mini_quiz:
     answer: 1
     difficulty: 3
   - kind: mcq_listen
-    prompt_vi: "Bạn nghe thấy mấy cái ticket?"
+    prompt_vi: "Minh vừa bàn giao. Bạn nhận mấy ticket?"
     audio_text: "I have three tickets today."
     choices: ["một", "ba", "không rõ"]
     answer: 1

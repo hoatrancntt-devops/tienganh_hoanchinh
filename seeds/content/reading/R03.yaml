@@ -20,32 +20,32 @@ vocabulary:
   - term: "Added"
     ipa: "/ˈædɪd/"
     meaning_vi: "Đã thêm (tính năng mới)"
-    chunk: "Added dark mode."
+    chunk: "Added a new IAM role for the auth service."
     tags: [it_english]
   - term: "Fixed"
     ipa: "/fɪkst/"
     meaning_vi: "Đã sửa (lỗi)"
-    chunk: "Fixed a crash on startup."
+    chunk: "Fixed CVE-2026-4471 in the auth library."
     tags: [it_english]
   - term: "Deprecated"
     ipa: "/ˈdɛprɪkeɪtɪd/"
     meaning_vi: "Sắp bỏ (còn dùng được nhưng nên thôi)"
-    chunk: "Deprecated the old login API."
+    chunk: "Deprecated the old config file."
     tags: [it_english]
   - term: "Breaking change"
     ipa: "/ˈbreɪkɪŋ tʃeɪndʒ/"
     meaning_vi: "thay đổi phá vỡ tương thích (phải sửa theo)"
-    chunk: "Breaking change: config format updated."
+    chunk: "Breaking change: the auth service uses a new role."
     tags: [it_english]
   - term: "Removed"
     ipa: "/rɪˈmuːvd/"
     meaning_vi: "Đã gỡ bỏ"
-    chunk: "Removed support for Windows 7."
+    chunk: "Removed the old shared role."
     tags: [it_english]
   - term: "upgrade"
     ipa: "/ˈʌpɡreɪd/"
     meaning_vi: "nâng cấp"
-    chunk: "Upgrade to version 3.0."
+    chunk: "Upgrade to release 4.2.0."
     tags: [it_english]
 
 sentence_patterns:
@@ -56,27 +56,34 @@ sentence_patterns:
       action: ["update your config", "migrate to the new API"]
 
 dialogue:
-  context_vi: "Một đoạn release notes cho phiên bản 3.0 (đọc từng mục)."
+  context_vi: >
+    Bạn mở lại changelog của bản deploy lúc 23:40 thứ Năm — bản mà hai tiếng sau làm cả hệ thống
+    nằm im. Dòng "Breaking change" vẫn nằm nguyên đó từ đầu. Nó đã được viết ra. Chỉ là đêm hôm ấy
+    không ai đọc tới dòng thứ tư.
   turns:
-    - {speaker: A, en: "Version 3.0 — Release notes", vi: "Phiên bản 3.0 — Ghi chú phát hành"}
-    - {speaker: A, en: "Added: dark mode and CSV export.", vi: "Đã thêm: chế độ tối và xuất CSV."}
-    - {speaker: A, en: "Fixed: a crash when opening large files.", vi: "Đã sửa: lỗi treo khi mở file lớn."}
-    - {speaker: A, en: "Breaking change: the config format changed. You must update your config before upgrading.", vi: "Thay đổi phá vỡ tương thích: định dạng cấu hình đã đổi. Bạn phải cập nhật cấu hình trước khi nâng cấp."}
-    - {speaker: A, en: "Deprecated: the old login API will be removed in 4.0.", vi: "Sắp bỏ: API đăng nhập cũ sẽ bị gỡ ở bản 4.0."}
+    - {speaker: "", en: "Northwind Portal — Release 4.2.0 — deployed Thursday 23:40", vi: "Northwind Portal — Bản 4.2.0 — deploy lúc 23:40 thứ Năm"}
+    - {speaker: "", en: "Fixed: upgraded the auth library to 5.1.2 to patch CVE-2026-4471.", vi: "Đã sửa: nâng thư viện xác thực lên 5.1.2 để vá CVE-2026-4471."}
+    - {speaker: "", en: "Added: a new IAM role, portal-auth-role, for the auth service.", vi: "Đã thêm: một IAM role mới tên portal-auth-role cho auth service."}
+    - {speaker: "", en: "Removed: the old shared role, portal-service-role.", vi: "Đã gỡ: role dùng chung cũ, portal-service-role."}
+    - {speaker: "", en: "Breaking change: the auth service now uses the new role. You must check that it can still read secrets.", vi: "Thay đổi phá vỡ tương thích: auth service giờ dùng role mới. Bạn phải kiểm tra nó còn đọc được secret hay không."}
+    - {speaker: "", en: "Deprecated: the old config file will be removed in 4.3.", vi: "Sắp bỏ: file cấu hình cũ sẽ bị gỡ ở bản 4.3."}
 
 listening_snippet:
   id: LS-R03
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Version 3.0 adds dark mode and fixes a crash. Breaking change: the config format changed, so you must update your config before upgrading."
-  transcript_vi: "Bản 3.0 thêm chế độ tối và sửa một lỗi treo. Thay đổi phá vỡ tương thích: định dạng cấu hình đã đổi, nên bạn phải cập nhật cấu hình trước khi nâng cấp."
+  context_vi: >
+    Priya đọc lại changelog này qua call sáng thứ Sáu, sau khi nhận ca. Cô ấy dừng đúng ở câu thứ hai —
+    và đó là lúc mọi thứ bắt đầu sáng ra.
+  transcript_en: "Release 4.2.0 upgrades the auth library to patch CVE-2026-4471. Breaking change: the auth service now uses a new IAM role, so you must check that it can still read secrets."
+  transcript_vi: "Bản 4.2.0 nâng thư viện xác thực để vá CVE-2026-4471. Thay đổi phá vỡ tương thích: auth service giờ dùng IAM role mới, nên bạn phải kiểm tra nó còn đọc được secret hay không."
   questions:
-    - q_vi: "Điều gì bạn BẮT BUỘC phải làm trước khi nâng cấp?"
-      choices: ["Cập nhật cấu hình", "Không cần làm gì", "Đổi máy chủ"]
+    - q_vi: "Điều gì bạn BẮT BUỘC phải kiểm tra sau bản này?"
+      choices: ["Auth service còn đọc được secret hay không", "Không cần làm gì", "Đổi máy chủ"]
       answer: 0
       difficulty: 3
-    - q_vi: "Bản 3.0 thêm gì?"
-      choices: ["Chế độ tối", "Đăng nhập vân tay", "Không thêm gì"]
+    - q_vi: "Bản 4.2.0 sửa cái gì?"
+      choices: ["Vá lỗ hổng CVE-2026-4471 trong thư viện xác thực", "Thêm đăng nhập vân tay", "Không sửa gì"]
       answer: 0
       difficulty: 3
 
@@ -113,12 +120,12 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Dòng nào quan trọng nhất trước khi nâng cấp?"
+    prompt_vi: "Trong changelog của bản 4.2.0, dòng nào đáng lẽ phải đọc trước khi deploy?"
     choices: ["Breaking change", "Added", "Fixed"]
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“Deprecated the old API” nghĩa là gì?"
+    prompt_vi: "Changelog ghi “Deprecated: the old config file”. Nghĩa là gì?"
     choices:
       - "Còn dùng được nhưng sắp bỏ, nên chuyển dần"
       - "Đã gỡ hoàn toàn, không dùng được"
@@ -126,12 +133,12 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“Removed support for Windows 7” nghĩa là?"
+    prompt_vi: "Một changelog khác ghi “Removed support for Windows 7”. Nghĩa là?"
     choices: ["Không còn hỗ trợ Windows 7", "Thêm Windows 7", "Sửa lỗi Windows 7"]
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Thấy “Breaking change: config format changed”. Nên làm gì?"
+    prompt_vi: "Bản kế tiếp ghi “Breaking change: config format changed”. Nên làm gì?"
     choices:
       - "Cập nhật cấu hình trước khi nâng cấp"
       - "Nâng cấp ngay, tính sau"

@@ -35,48 +35,55 @@ listening_snippet:
   id: LS-CPI
   speed: 1.0
   voice: en_US_male
-  transcript_en: "The VPN has been down since nine, about twenty users are affected, and I've tried restarting. Basically the server got overloaded — think of it as a traffic jam. We'll deploy a fix tonight, about five minutes of downtime, and roll back if anything breaks."
-  transcript_vi: "VPN hỏng từ chín giờ, khoảng hai mươi người bị ảnh hưởng, và tôi đã thử khởi động lại. Nói đơn giản, máy chủ bị quá tải — cứ hình dung như kẹt xe. Bọn em sẽ deploy bản vá tối nay, ngừng khoảng năm phút, và quay lại nếu có gì hỏng."
+  context_vi: >
+    16:00 chiều thứ Sáu. Cuộc gọi tổng kết với David Carter. Bảy tiếng mười lăm phút downtime,
+    một khách hàng đã mất cả buổi sáng, và người ngồi trả lời hôm nay là bạn — không phải Linh.
+    David mở đầu bằng ba mươi giây của ông ấy, nhanh và nuốt âm như mọi khi. Nghe cho kỹ.
+  transcript_en: "Alright. Seven hours fifteen. I've read the email you sent at two. Before Monday I want three things from you: what broke, why nobody knew for seven hours, and what stops it happening again. Start with the timeline — from the deploy at eleven forty."
+  transcript_vi: "Được rồi. Bảy tiếng mười lăm. Tôi đã đọc email cậu gửi lúc hai giờ. Trước thứ Hai tôi cần ba thứ từ cậu: cái gì hỏng, vì sao suốt bảy tiếng không ai biết, và cái gì ngăn nó lặp lại. Bắt đầu từ dòng thời gian — từ bản deploy lúc 23:40."
   questions:
-    - q_vi: "Sự cố bắt đầu từ khi nào?"
-      choices: ["Chín giờ", "Tối qua", "Không rõ"]
+    - q_vi: "David muốn ba thứ gì trước thứ Hai?"
+      choices:
+        - "Cái gì hỏng, vì sao không ai biết, cách ngăn tái diễn"
+        - "Hoá đơn, hợp đồng, báo giá"
+        - "Tên người chịu trách nhiệm"
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói so sánh sự cố với gì?"
-      choices: ["Kẹt xe", "Mưa bão", "Cháy nhà"]
+    - q_vi: "David muốn bạn bắt đầu từ đâu?"
+      choices: ["Dòng thời gian, từ bản deploy 23:40", "Từ ticket của Emma", "Từ cuộc gọi với nhà cung cấp"]
       answer: 0
       difficulty: 3
-    - q_vi: "Nếu bản vá hỏng thì làm gì?"
-      choices: ["Quay lại bản trước (roll back)", "Tắt hệ thống", "Bỏ mặc"]
+    - q_vi: "Tổng downtime là bao lâu?"
+      choices: ["7 giờ 15 phút", "1 giờ 15 phút", "Không nói"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: respond
-    prompt_en: "What's the problem with the VPN?"
-    prompt_vi: "Báo sự cố đủ bốn phần: cái gì, từ khi nào, ảnh hưởng ai, đã thử gì."
+    prompt_en: "Start with the timeline. What happened?"
+    prompt_vi: "David vừa dứt lời. Báo sự cố đủ bốn phần: cái gì hỏng, từ khi nào, ảnh hưởng ai, đã thử gì."
     accept_patterns:
-      - "The VPN is down since {time} about {number} users are affected I've tried {action}"
-      - "The VPN has been down since {time} {number} users affected I've already tried {action}"
-      - "The VPN is down since {time} the whole team is affected I've tried restarting"
+      - "The portal login was down since {time} about {number} users are affected I've tried {action}"
+      - "The portal has been down since {time} {number} users affected I'd already tried {action}"
+      - "The login was down since two the whole accounting team was affected I've tried restarting"
   - kind: respond
-    prompt_en: "Why did the system go down? (I'm not technical)"
-    prompt_vi: "Giải thích đơn giản cho người không rành: có so sánh, có trấn an."
+    prompt_en: "Emma's director will ask me about this. Give me the version I can tell her."
+    prompt_vi: "David cần bản dành cho người không rành kỹ thuật. Giải thích đơn giản: có so sánh, có trấn an."
     accept_patterns:
       - "Basically the server got overloaded think of it as a traffic jam the good news is no data was lost"
-      - "Basically too many requests came at once the good news is we're fixing it"
-      - "Think of it as a traffic jam it's overloaded but no data was lost"
+      - "Basically the system couldn't check passwords the good news is no data was lost"
+      - "Think of it as a locked door the guard lost his keys but no data was lost"
   - kind: respond
-    prompt_en: "Your turn for standup."
-    prompt_vi: "Standup đủ ba phần: hôm qua, hôm nay, blocker."
+    prompt_en: "And what are you telling your team on Monday?"
+    prompt_vi: "Standup thứ Hai, ngay trước buổi viết postmortem. Đủ ba phần: hôm qua, hôm nay, blocker."
     accept_patterns:
       - "Yesterday I {done} today I'll {plan} I'm blocked on {blocker}"
       - "Yesterday I {done} today I'll {plan} no blockers"
-      - "Yesterday I fixed {thing} today I'll deploy waiting on {who}"
+      - "Yesterday I finished the customer email today I'll write the postmortem waiting on {who}"
   - kind: shadow
-    expected_text: "We'll deploy tonight, about five minutes of downtime, and roll back if anything breaks."
-    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật. Báo deploy: lịch, downtime, phương án lùi."
-    ipa: "/wɪl dɪˈplɔɪ təˈnaɪt əˈbaʊt faɪv ˈmɪnɪts ɒv ˈdaʊntaɪm ænd roʊl bæk ɪf ˈɛniθɪŋ breɪks/"
+    expected_text: "We'll deploy the permanent fix tonight, about five minutes of downtime, and roll back if anything breaks."
+    prompt_vi: "Câu cuối bạn nói với David — và là câu khép lại chương này. Nghe rồi nhắc lại ở tốc độ thật."
+    ipa: "/wɪl dɪˈplɔɪ ðə ˈpɜːrmənənt fɪks təˈnaɪt əˈbaʊt faɪv ˈmɪnɪts ɒv ˈdaʊntaɪm ænd roʊl bæk ɪf ˈɛniθɪŋ breɪks/"
     focus_phonemes: [dʒ, d, r]
 
 vietnamese_explanation:

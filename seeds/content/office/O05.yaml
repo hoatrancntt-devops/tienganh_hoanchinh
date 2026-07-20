@@ -61,18 +61,25 @@ sentence_patterns:
       issue: ["it might be late", "I'm blocked on the VPN", "I need one more day"]
 
 dialogue:
-  context_vi: "Quản lý hỏi tiến độ báo cáo. Bạn báo trung thực và rõ ràng."
+  context_vi: >
+    Chiều thứ Năm, trước buổi báo tiến độ tuần với David. Linh gọi bạn sang bàn chị rà lại một
+    lượt. Phần hai báo cáo thì ổn, nhưng migration thì không — bạn sẽ trễ mất một buổi sáng, và
+    bạn phải quyết định ngay bây giờ: nói ra, hay im và hy vọng kịp.
   turns:
-    - {speaker: A, en: "How's the report coming along?", vi: "Báo cáo tới đâu rồi?"}
-    - {speaker: B, en: "About halfway. I'm on track to finish by end of day.", vi: "Được khoảng một nửa. Tôi đúng tiến độ, cuối ngày là xong."}
-    - {speaker: A, en: "Great. And the migration?", vi: "Tốt. Còn migration thì sao?"}
-    - {speaker: B, en: "Just a heads up, I'm running a bit behind. I'll need until tomorrow morning.", vi: "Báo trước để anh biết, tôi đang hơi trễ. Cần đến sáng mai."}
-    - {speaker: A, en: "Okay, thanks for letting me know.", vi: "Được, cảm ơn đã báo."}
+    - {speaker: Linh, en: "How's the report coming along?", vi: "Báo cáo tới đâu rồi?"}
+    - {speaker: You, en: "About halfway. I'm on track to finish by end of day.", vi: "Được khoảng một nửa. Em đúng tiến độ, cuối ngày là xong."}
+    - {speaker: Linh, en: "Great. And the migration?", vi: "Tốt. Còn migration thì sao?"}
+    - {speaker: You, en: "Just a heads up, I'm running a bit behind. I'll need until tomorrow morning.", vi: "Báo trước để chị biết, em đang hơi trễ. Cần đến sáng mai."}
+    - {speaker: Linh, en: "Okay, thanks for letting me know.", vi: "Được, cảm ơn đã báo."}
 
 listening_snippet:
   id: LS-O05
   speed: 1.0
   voice: en_US_male
+  context_vi: >
+    Linh bảo: chị không báo hộ đâu, mai em tự nói với David. Rồi chị đọc mẫu một lượt cho bạn nghe
+    — đúng ba mảnh, gói trong hai câu. Cái khó: phần tin xấu bị nén vào vế sau của câu thứ hai,
+    nghe lướt là trôi mất.
   transcript_en: "The report is about halfway done, on track for end of day. But just a heads up, the migration is running behind."
   transcript_vi: "Báo cáo được khoảng một nửa, đúng tiến độ cuối ngày. Nhưng báo trước để biết, migration đang bị trễ."
   questions:
@@ -88,22 +95,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "The report is almost done. I'll have it by end of day."
-    prompt_vi: "Đọc to. Báo trạng thái + hạn cụ thể."
+    prompt_vi: "Linh vừa hỏi báo cáo tới đâu. Đọc to — trạng thái kèm hạn cụ thể, không nói mơ hồ."
     ipa: "/ðə rɪˈpɔːrt ɪz ˈɔːlmoʊst dʌn aɪl hæv ɪt baɪ ɛnd əv deɪ/"
     focus_phonemes: [t, d]
   - kind: read_aloud
     expected_text: "I'm about halfway through."
-    prompt_vi: "Đọc to. Ước lượng thành thật thay vì nói mơ hồ."
+    prompt_vi: "Mới xong một nửa, và bạn không định nói quá lên. Đọc to — ước lượng thành thật."
     ipa: "/aɪm əˈbaʊt ˈhæfweɪ θruː/"
     focus_phonemes: [f, θ]
   - kind: shadow
     expected_text: "Just a heads up, I'm running a bit behind."
-    prompt_vi: "Nghe rồi nhắc lại. Báo trễ SỚM là chuyên nghiệp, không phải để giấu."
+    prompt_vi: "Đây là câu khó nhất buổi: nói ra chuyện migration bị trễ. Nghe rồi nhắc lại — báo trễ SỚM là chuyên nghiệp, không phải là thú nhận."
     ipa: "/dʒʌst ə hɛdz ʌp aɪm ˈrʌnɪŋ ə bɪt bɪˈhaɪnd/"
     focus_phonemes: [dʒ, z, ŋ]
   - kind: respond
     prompt_en: "How's the migration coming along?"
-    prompt_vi: "Báo tiến độ: gần xong, hoặc đang trễ — báo trung thực."
+    prompt_vi: "Sáng hôm sau, David hỏi thẳng bạn ở buổi báo tuần. Báo tiến độ: gần xong, hoặc đang trễ — trung thực."
     accept_patterns:
       - "Almost done I'll have it by {time}"
       - "About halfway on track for {time}"

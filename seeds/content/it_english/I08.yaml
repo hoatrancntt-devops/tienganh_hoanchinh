@@ -20,12 +20,12 @@ vocabulary:
   - term: "Yesterday I"
     ipa: "/ˈjɛstərdeɪ aɪ/"
     meaning_vi: "Hôm qua tôi"
-    chunk: "Yesterday I finished the login page."
+    chunk: "Yesterday I finished my shift on the outage."
     tags: [it_english]
   - term: "Today I'll"
     ipa: "/təˈdeɪ aɪl/"
     meaning_vi: "Hôm nay tôi sẽ"
-    chunk: "Today I'll start on the API."
+    chunk: "Today I'll start on the customer update."
     tags: [it_english]
   - term: "I'm blocked on"
     ipa: "/aɪm blɒkt ɒn/"
@@ -61,49 +61,56 @@ sentence_patterns:
       who: ["the DevOps team", "Lan's design", "the client's approval"]
 
 dialogue:
-  context_vi: "Cuộc họp standup buổi sáng, tới lượt bạn báo cáo."
+  context_vi: >
+    06:30 sáng thứ Sáu. Linh gọi standup sớm vì sự cố. Bạn vừa bàn giao xong, chưa ngủ chút nào,
+    và hệ thống khách hàng vẫn đang sập. Cả team chờ ba mươi giây từ bạn — không phải để nghe kể
+    khổ, mà để biết ai cần làm gì tiếp.
   turns:
-    - {speaker: A, en: "Okay, your turn. What's your update?", vi: "Rồi, tới lượt bạn. Cập nhật thế nào?"}
-    - {speaker: B, en: "Yesterday I finished the login page and fixed two bugs.", vi: "Hôm qua tôi làm xong trang đăng nhập và sửa hai lỗi."}
-    - {speaker: A, en: "Nice. And today?", vi: "Tốt. Còn hôm nay?"}
-    - {speaker: B, en: "Today I'll start on the API. But I'm blocked on the access permissions — I'm waiting on the DevOps team.", vi: "Hôm nay tôi sẽ bắt đầu phần API. Nhưng tôi đang kẹt ở quyền truy cập — đang chờ đội DevOps."}
-    - {speaker: A, en: "Got it, I'll follow up with them after standup.", vi: "Rõ, sau standup tôi sẽ hối họ."}
+    - {speaker: Linh, en: "Okay, your turn. Short one — I know you've been up all night.", vi: "Rồi, tới lượt em. Ngắn thôi — chị biết em thức cả đêm rồi."}
+    - {speaker: You, en: "Yesterday I finished my shift on the outage and logged two issues.", vi: "Hôm qua em kết thúc ca trực trong sự cố và ghi lại hai vấn đề."}
+    - {speaker: Linh, en: "Where does INC-2291 stand right now?", vi: "INC-2291 hiện đang ở đâu rồi?"}
+    - {speaker: You, en: "Still down. Four and a half hours so far. No root cause yet — Priya has it now.", vi: "Vẫn sập. Đến giờ là bốn tiếng rưỡi. Chưa có nguyên nhân gốc — Priya đang cầm."}
+    - {speaker: Minh, en: "Four and a half hours. The client will want a written answer for this.", vi: "Bốn tiếng rưỡi. Khách sẽ muốn có câu trả lời bằng văn bản cho vụ này."}
+    - {speaker: You, en: "Today I'll start on the customer update. But I'm blocked on the access permissions — I'm waiting on the DevOps team.", vi: "Hôm nay em sẽ bắt đầu bản thông báo cho khách. Nhưng em đang kẹt ở quyền truy cập — đang chờ đội DevOps."}
+    - {speaker: Linh, en: "Got it. I'll follow up with them after standup. Then go sleep.", vi: "Rõ. Sau standup chị hối họ. Rồi em đi ngủ đi."}
 
 listening_snippet:
   id: LS-I08
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Yesterday I finished the login page and fixed two bugs. Today I'll start on the API. I'm blocked on the access permissions, waiting on the DevOps team."
-  transcript_vi: "Hôm qua tôi làm xong trang đăng nhập và sửa hai lỗi. Hôm nay tôi sẽ bắt đầu API. Tôi kẹt ở quyền truy cập, đang chờ đội DevOps."
+  context_vi: >
+    Ngay sau bạn là lượt của Minh. Nghe một bản standup ba phần chuẩn, nói giữa lúc sự cố còn nóng.
+  transcript_en: "Yesterday I covered the tickets nobody else could take. Today I'll pull the login logs and build the timeline. No blockers on my side, but I'm waiting on Priya before I write anything down."
+  transcript_vi: "Hôm qua tôi ôm hết những ticket không ai nhận. Hôm nay tôi sẽ lấy log đăng nhập và dựng dòng thời gian. Phía tôi không vướng gì, nhưng tôi đang chờ Priya trước khi viết gì xuống."
   questions:
-    - q_vi: "Hôm nay người nói sẽ làm gì?"
-      choices: ["Bắt đầu phần API", "Sửa trang đăng nhập", "Nghỉ phép"]
+    - q_vi: "Hôm nay Minh sẽ làm gì?"
+      choices: ["Lấy log đăng nhập và dựng dòng thời gian", "Sửa trang đăng nhập", "Nghỉ phép"]
       answer: 0
       difficulty: 3
-    - q_vi: "Người nói bị chặn ở đâu?"
-      choices: ["Quyền truy cập", "Thiết kế", "Ngân sách"]
+    - q_vi: "Minh đang chờ ai?"
+      choices: ["Priya", "Emma", "Không chờ ai"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
-    expected_text: "Yesterday I finished the login page and fixed two bugs."
-    prompt_vi: "Đọc to. Việc đã xong nói ở thì quá khứ, gọn."
-    ipa: "/ˈjɛstərdeɪ aɪ ˈfɪnɪʃt ðə ˈlɒɡɪn peɪdʒ ænd fɪkst tuː bʌɡz/"
+    expected_text: "Yesterday I finished my shift on the outage and logged two issues."
+    prompt_vi: "Ô thứ nhất của standup. Đọc to — việc đã xong, thì quá khứ, không kể khổ."
+    ipa: "/ˈjɛstərdeɪ aɪ ˈfɪnɪʃt maɪ ʃɪft ɒn ðiː ˈaʊtɪdʒ ænd lɒɡd tuː ˈɪʃuːz/"
     focus_phonemes: [ʃ, dʒ, z]
   - kind: read_aloud
-    expected_text: "Today I'll start on the API."
-    prompt_vi: "Đọc to. API đọc từng chữ cái ei-pi-ai. Việc hôm nay nói ở thì tương lai."
-    ipa: "/təˈdeɪ aɪl stɑːrt ɒn ðiː eɪ piː aɪ/"
+    expected_text: "Today I'll start on the customer update."
+    prompt_vi: "Ô thứ hai. Đọc to — việc hôm nay nói ở thì tương lai, gọn một câu."
+    ipa: "/təˈdeɪ aɪl stɑːrt ɒn ðə ˈkʌstəmər ˈʌpdeɪt/"
     focus_phonemes: [t, st, p]
   - kind: shadow
     expected_text: "I'm blocked on the access permissions, waiting on the DevOps team."
-    prompt_vi: "Nghe rồi nhắc lại. Nêu blocker rõ để người khác gỡ giúp."
+    prompt_vi: "Ô thứ ba — ô cả team đang chờ nghe. Nghe rồi nhắc lại, đừng giấu blocker."
     ipa: "/aɪm blɒkt ɒn ðiː ˈæksɛs pərˈmɪʃənz ˈweɪtɪŋ ɒn ðə ˈdɛvɒps tiːm/"
     focus_phonemes: [bl, k, ʃ]
   - kind: respond
-    prompt_en: "Your turn — what's your update?"
-    prompt_vi: "Báo standup đủ ba phần: hôm qua, hôm nay, blocker (hoặc no blockers)."
+    prompt_en: "Okay, your turn. Short one — I know you've been up all night."
+    prompt_vi: "Linh vừa gọi tên bạn. Ba mươi giây, đủ ba phần: hôm qua, hôm nay, blocker (hoặc no blockers)."
     accept_patterns:
       - "Yesterday I {done} today I'll {plan} no blockers"
       - "Yesterday I {done} today I'll {plan} I'm blocked on {blocker}"
@@ -148,7 +155,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Đang kẹt vì chờ team khác. Nên làm gì trong standup?"
+    prompt_vi: "Bạn đang kẹt vì chờ DevOps cấp quyền. Nên làm gì trong standup?"
     choices:
       - "Nói rõ blocker: “I'm blocked on…, waiting on…”"
       - "Giấu đi cho đỡ mất mặt"

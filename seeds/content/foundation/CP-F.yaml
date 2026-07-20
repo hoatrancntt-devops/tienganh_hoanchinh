@@ -40,46 +40,51 @@ listening_snippet:
   id: LS-CPF
   speed: 1.0
   voice: en_US_male
-  transcript_en: "I finished the report yesterday. Minh works in IT and he asked about the deployment. The meeting is at ten thirty, not ten thirteen."
-  transcript_vi: "Hôm qua tôi đã xong báo cáo. Minh làm bên IT và anh ấy đã hỏi về việc triển khai. Cuộc họp lúc mười giờ ba mươi, không phải mười giờ mười ba."
+  context_vi: >
+    Bốn giờ chiều thứ Sáu. Cả team ngồi trong phòng họp, David dự qua call và bật camera. Trước khi
+    tới lượt bạn tự giới thiệu, David tóm tắt tuần vừa rồi — ở tốc độ thật, không chậm lại vì bạn.
+    Ba câu này gói đúng những thứ cả tuần nay đã dạy bạn: âm cuối quá khứ, âm /s/ cuối, và cặp
+    -ty/-teen. Không nghe lại lần thứ hai được đâu.
+  transcript_en: "Before you start, let me recap. I finished the report yesterday. Minh works in IT and he asked about the deployment. The meeting is at ten thirty, not ten thirteen. Okay — you're up."
+  transcript_vi: "Trước khi bạn bắt đầu, để tôi tóm tắt. Hôm qua tôi đã xong báo cáo. Minh làm bên IT và anh ấy đã hỏi về việc triển khai. Cuộc họp lúc mười giờ ba mươi, không phải mười giờ mười ba. Rồi — tới lượt bạn."
   questions:
-    - q_vi: "Báo cáo đã xong chưa?"
-      choices: ["Đã xong hôm qua", "Đang làm", "Chưa bắt đầu"]
+    - q_vi: "David nói báo cáo đã xong chưa?"
+      choices: ["Đã xong hôm qua", "Đang làm dở", "Chưa bắt đầu"]
       answer: 0
       difficulty: 4
     - q_vi: "Cuộc họp lúc mấy giờ?"
       choices: ["10:13", "10:30", "10:00"]
       answer: 1
       difficulty: 4
-    - q_vi: "Minh đã hỏi về việc gì?"
-      choices: ["Việc triển khai", "Báo cáo", "Cuộc họp"]
+    - q_vi: "Minh đã hỏi David về việc gì?"
+      choices: ["Việc triển khai", "Bản báo cáo", "Giờ họp"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "I think he works in IT."
-    prompt_vi: "Đọc to. Bài này gom /θ/ và /s/ cuối vào một câu."
+    prompt_vi: "Câu đầu tiên bạn nói trước cả team. Đọc to — /θ/ ở “think” và /s/ cuối ở “works”, cả hai trong một câu."
     ipa: "/aɪ θɪŋk hiː wɜːrks ɪn aɪ tiː/"
     focus_phonemes: [θ, s]
   - kind: read_aloud
     expected_text: "I finished the report and asked him about it."
-    prompt_vi: "Đọc to. Ba âm cuối quá khứ trong một câu."
+    prompt_vi: "Bạn kể việc mình đã làm trong tuần đầu. Đọc to — ba âm cuối quá khứ nằm trong một câu, đừng nuốt cái nào."
     ipa: "/aɪ ˈfɪnɪʃt ðə rɪˈpɔːrt ænd æskt hɪm əˈbaʊt ɪt/"
     focus_phonemes: [t, k]
   - kind: shadow
     expected_text: "The deployment failed because the router is down."
-    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật. Chú ý trọng âm."
+    prompt_vi: "David nhắc lại sự cố hôm qua và nhìn sang bạn. Nghe rồi nhắc lại ở tốc độ thật — chú ý trọng âm."
     ipa: "/ðə dɪˈplɔɪmənt feɪld bɪˈkɒz ðə ˈraʊtər ɪz daʊn/"
     focus_phonemes: [d, r]
   - kind: shadow
     expected_text: "Sorry, could you say that again more slowly?"
-    prompt_vi: "Nghe rồi nhắc lại."
+    prompt_vi: "David nói nhanh và bạn mất một đoạn — cả phòng đang chờ. Nghe rồi nhắc lại câu cứu hộ này."
     ipa: "/ˈsɒri kʊd juː seɪ ðæt əˈɡɛn mɔːr ˈsloʊli/"
     focus_phonemes: [s, d, l]
   - kind: respond
     prompt_en: "What did you do yesterday?"
-    prompt_vi: "Trả lời bằng 1-2 câu về việc bạn đã làm. Nhớ âm cuối quá khứ."
+    prompt_vi: "David hỏi thẳng bạn qua call. Trả lời 1-2 câu về việc bạn đã làm — nhớ âm cuối quá khứ."
     accept_patterns:
       - "I finished the {thing}"
       - "I worked on the {thing}"
@@ -87,7 +92,7 @@ speaking_drills:
       - "I asked {person} about"
   - kind: respond
     prompt_en: "Where does Minh work and what does he do?"
-    prompt_vi: "Trả lời: Minh làm bên IT, xử lý ticket."
+    prompt_vi: "David hỏi Minh làm gì trong team. Trả lời: Minh làm bên IT, xử lý ticket."
     accept_patterns:
       - "He works in IT"
       - "He works in IT and handles tickets"
@@ -96,12 +101,12 @@ speaking_drills:
 vietnamese_explanation:
   why_vi: >
     Checkpoint không phải để làm khó bạn. Nó là chỗ bạn tự biết mình đã sẵn sàng cho hội thoại
-    thật chưa. Tám bài Foundation dạy tám thứ riêng lẻ; bài này kiểm tra bạn có dùng được cả tám
-    cùng lúc trong một câu không — vì đó mới là điều xảy ra trong cuộc họp thật.
+    thật chưa. Hai mươi bài Foundation dạy từng thứ riêng lẻ; bài này kiểm tra bạn có dùng được
+    tất cả cùng lúc trong một câu không — vì đó mới là điều xảy ra trong cuộc họp thật.
   how_vi: >
     Làm một lượt, không tra cứu, không xem lại bài. Nếu chưa đạt, hệ thống sẽ chỉ đúng bài bạn còn
     yếu. Đừng làm lại ngay trong cùng một buổi.
-  contrast_vi: "Làm được từng bài riêng lẻ ↔ làm được cả tám cùng lúc. Chỉ cái thứ hai mới dùng được trong công việc."
+  contrast_vi: "Làm được từng bài riêng lẻ ↔ làm được tất cả cùng lúc. Chỉ cái thứ hai mới dùng được trong công việc."
 
 common_mistakes:
   - mistake: "Trượt rồi làm lại liên tục trong cùng một buổi"

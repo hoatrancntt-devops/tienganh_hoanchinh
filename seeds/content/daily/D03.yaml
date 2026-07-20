@@ -60,57 +60,62 @@ sentence_patterns:
       food: [peanuts, seafood, dairy]
 
 dialogue:
-  context_vi: "Bạn rủ đồng nghiệp đi ăn trưa rồi gọi món ở quán."
+  context_vi: >
+    Thứ Tư, gần mười hai giờ. Priya chưa ăn trưa ở đâu ngoài khách sạn. Bạn rủ cô ấy ra quán cơm
+    cạnh công ty — quán không có thực đơn tiếng Anh, nên bạn là người phải gọi món cho cả hai.
   turns:
-    - {speaker: A, en: "Want to grab lunch? I'm starving.", vi: "Đi ăn trưa không? Tôi đói lắm rồi."}
-    - {speaker: B, en: "Sure. Give me five minutes.", vi: "Được. Cho tôi năm phút."}
-    - {speaker: A, en: "I'll have the chicken rice, please. No spicy.", vi: "Cho tôi cơm gà nhé. Không cay."}
-    - {speaker: B, en: "Same for me, but I'm allergic to peanuts.", vi: "Tôi cũng vậy, nhưng tôi dị ứng đậu phộng."}
-    - {speaker: A, en: "For here or to go?", vi: "Ăn tại chỗ hay mang đi?"}
-    - {speaker: B, en: "For here, thanks. Could we have the bill together?", vi: "Ăn tại chỗ nhé. Tính chung một hoá đơn được không?"}
+    - {speaker: You, en: "It's almost twelve. Want to grab lunch? There's a rice place next door.", vi: "Sắp mười hai giờ rồi. Chị đi ăn trưa không? Cạnh công ty có quán cơm."}
+    - {speaker: Priya, en: "Yes, please. One thing you should know — I'm allergic to peanuts.", vi: "Có chứ. Có một điều bạn nên biết — tôi bị dị ứng đậu phộng."}
+    - {speaker: You, en: "Good to know. The menu is only in Vietnamese, so I'll order for both of us.", vi: "Em biết rồi ạ. Thực đơn chỉ có tiếng Việt, để em gọi cho cả hai."}
+    - {speaker: You, en: "We'll have two chicken rice, please. No spicy, and no peanuts in one of them.", vi: "Cho hai suất cơm gà nhé. Không cay, và một suất không có đậu phộng."}
+    - {speaker: Server, en: "For here or to go?", vi: "Ăn tại chỗ hay mang đi ạ?"}
+    - {speaker: Priya, en: "For here, thanks. And could we have the bill together?", vi: "Ăn tại chỗ, cảm ơn. Và tính chung một hoá đơn được không?"}
 
 listening_snippet:
   id: LS-D03
   speed: 1.0
   voice: en_US_female
-  transcript_en: "I'll have the chicken rice, no spicy please. And I'm allergic to peanuts, so please check."
-  transcript_vi: "Cho tôi cơm gà, không cay nhé. Và tôi dị ứng đậu phộng nên nhờ kiểm tra giúp."
+  context_vi: >
+    Ăn xong, Priya nói với bạn ở bàn. Cô ấy nói tròn vành rõ chữ, nhưng lồng một lời dặn quan trọng
+    vào giữa câu cảm ơn — nghe sót là lần sau bạn gọi món sai.
+  transcript_en: "Thank you for ordering for me, that was very good. Next time lunch is on me — but please remember, no peanuts. Could we have the bill now, please?"
+  transcript_vi: "Cảm ơn bạn đã gọi món giúp tôi, ngon lắm. Lần sau bữa trưa tôi mời — nhưng nhớ giúp tôi, không đậu phộng nhé. Giờ mình xin hoá đơn được không?"
   questions:
-    - q_vi: "Người nói gọi món gì?"
-      choices: ["Cơm gà", "Phở bò", "Món chay"]
+    - q_vi: "Priya nói gì về bữa ăn?"
+      choices: ["Rất ngon", "Quá cay", "Không ăn được"]
       answer: 0
       difficulty: 2
-    - q_vi: "Người nói dị ứng với gì?"
-      choices: ["Đậu phộng", "Hải sản", "Sữa"]
+    - q_vi: "Priya dặn lại điều gì cho lần sau?"
+      choices: ["Không có đậu phộng", "Không có hải sản", "Gọi mang đi"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "I'll have the chicken rice, please."
-    prompt_vi: "Đọc to. “I'll have” là cách gọi món chuẩn, không phải “I want”."
+    prompt_vi: "Chủ quán đang đứng chờ, Priya đứng sau bạn. Đọc to — “I'll have” là cách gọi món chuẩn, không phải “I want”."
     ipa: "/aɪl hæv ðə ˈtʃɪkɪn raɪs pliːz/"
     focus_phonemes: [l, s]
   - kind: read_aloud
     expected_text: "I'm allergic to peanuts."
-    prompt_vi: "Đọc to. a-LLER-gic nhấn âm giữa."
+    prompt_vi: "Câu Priya vừa dặn bạn trước khi vào quán. Nói lại cho chủ quán — a-LLER-gic nhấn âm giữa."
     ipa: "/aɪm əˈlɜːrdʒɪk tuː ˈpiːnʌts/"
     focus_phonemes: [dʒ, s, t]
   - kind: shadow
     expected_text: "Could we have the bill, please?"
-    prompt_vi: "Nghe rồi nhắc lại."
+    prompt_vi: "Ăn xong, Priya muốn tính chung. Nghe rồi nhắc lại."
     ipa: "/kʊd wiː hæv ðə bɪl pliːz/"
     focus_phonemes: [d, l]
   - kind: respond
     prompt_en: "Want to grab lunch?"
-    prompt_vi: "Đồng ý và xin ít phút chuẩn bị."
+    prompt_vi: "Hôm sau Priya rủ lại bạn, lần này cô ấy mời. Đồng ý và xin ít phút chuẩn bị."
     accept_patterns:
       - "Sure give me five minutes"
       - "Yes sounds good"
       - "Sure I'm starving"
   - kind: respond
     prompt_en: "For here or to go?"
-    prompt_vi: "Trả lời: ăn tại chỗ."
+    prompt_vi: "Chủ quán hỏi bạn, Priya còn nửa tiếng trước cuộc họp. Trả lời: ăn tại chỗ."
     accept_patterns:
       - "For here thanks"
       - "For here please"
@@ -147,7 +152,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Gọi món ở quán. Câu nào tự nhiên nhất?"
+    prompt_vi: "Bạn gọi món cho cả bạn và Priya. Câu nào tự nhiên nhất?"
     choices:
       - "I want chicken rice."
       - "I'll have the chicken rice, please."
@@ -155,12 +160,12 @@ mini_quiz:
     answer: 1
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Nhân viên hỏi “For here or to go?”. Bạn muốn mang về. Nói gì?"
+    prompt_vi: "Priya kẹt họp nên nhờ bạn mua giúp. Chủ quán hỏi “For here or to go?”. Nói gì?"
     choices: ["To go, please.", "For here, please.", "Yes."]
     answer: 0
     difficulty: 1
   - kind: mcq
-    prompt_vi: "Bạn dị ứng hải sản. Nói gì?"
+    prompt_vi: "Đến lượt bạn — bạn dị ứng hải sản. Nói với chủ quán thế nào?"
     choices:
       - "I don't like seafood."
       - "I'm allergic to seafood."
@@ -168,13 +173,13 @@ mini_quiz:
     answer: 1
     difficulty: 2
   - kind: mcq_listen
-    prompt_vi: "Người nói dị ứng với gì?"
+    prompt_vi: "Priya dị ứng với gì?"
     audio_text: "I'm allergic to peanuts."
     choices: ["Đậu phộng", "Hải sản", "Trứng"]
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "Xin hoá đơn. Câu nào lịch sự nhất?"
+    prompt_vi: "Hai người ăn xong, bạn xin hoá đơn. Câu nào lịch sự nhất?"
     choices: ["Bill!", "Could we have the bill, please?", "I want pay."]
     answer: 1
     difficulty: 2

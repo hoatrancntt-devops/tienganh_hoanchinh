@@ -56,26 +56,32 @@ sentence_patterns:
       time: ["ten o'clock", "half past two", "a quarter to nine"]
 
 dialogue:
-  context_vi: "Xác nhận giờ họp — chú ý phân biệt -teen và -ty."
+  context_vi: >
+    Cuối chiều thứ Tư. David vừa chốt giờ buổi demo trong cuộc gọi, và Linh bắt bạn nhắc lại cho
+    chắc trước khi ghi vào lịch — đúng thứ bạn đã trượt hôm thứ Hai, khi nghe “three thirty” thành
+    “three thirteen” và lỡ cuộc họp đầu tiên.
   turns:
-    - {speaker: A, en: "The meeting is at ten thirty.", vi: "Cuộc họp lúc mười giờ ba mươi."}
-    - {speaker: B, en: "Ten thirteen? One-three?", vi: "Mười giờ mười ba? Một-ba?"}
-    - {speaker: A, en: "No, ten thirty. Three-zero. Half past ten.", vi: "Không, mười giờ ba mươi. Ba-không. Mười giờ rưỡi."}
-    - {speaker: B, en: "Got it, half past ten. And what date?", vi: "Rõ, mười giờ rưỡi. Còn ngày nào?"}
-    - {speaker: A, en: "The third of June.", vi: "Ngày mùng 3 tháng 6."}
+    - {speaker: Linh, en: "David said the demo is at ten thirty. Say it back to me.", vi: "David nói buổi demo lúc mười giờ ba mươi. Nhắc lại cho tôi nghe."}
+    - {speaker: You, en: "Ten thirteen? One-three?", vi: "Mười giờ mười ba? Một-ba ạ?"}
+    - {speaker: Linh, en: "No. Ten thirty. Three-zero. Half past ten.", vi: "Không. Mười giờ ba mươi. Ba-không. Mười giờ rưỡi."}
+    - {speaker: You, en: "Got it, half past ten. And what date?", vi: "Rõ rồi, mười giờ rưỡi. Còn ngày nào ạ?"}
+    - {speaker: Linh, en: "The third of June. Say dates in words — never “3/6”.", vi: "Ngày mùng 3 tháng 6. Nói ngày bằng chữ — đừng bao giờ nói “3/6”."}
 
 listening_snippet:
   id: LS-F13
   speed: 1.0
   voice: en_US_female
-  transcript_en: "The meeting is at ten thirty, half past ten, on the third of June. Not ten thirteen."
-  transcript_vi: "Cuộc họp lúc mười giờ ba mươi, mười giờ rưỡi, ngày mùng 3 tháng 6. Không phải mười giờ mười ba."
+  context_vi: >
+    Linh gửi bạn một tin nhắn thoại để nghe lần cuối trước khi ghi vào lịch. Hai cái bẫy nằm cạnh
+    nhau: -ty hay -teen, và mùng 3 tháng 6 hay mùng 6 tháng 3.
+  transcript_en: "The demo is at ten thirty — half past ten, three-zero — on the third of June. Not ten thirteen."
+  transcript_vi: "Buổi demo lúc mười giờ ba mươi — mười giờ rưỡi, ba-không — ngày mùng 3 tháng 6. Không phải mười giờ mười ba."
   questions:
-    - q_vi: "Cuộc họp lúc mấy giờ?"
+    - q_vi: "Buổi demo lúc mấy giờ?"
       choices: ["10:30 (ba mươi)", "10:13 (mười ba)", "10:00"]
       answer: 0
       difficulty: 4
-    - q_vi: "Ngày nào?"
+    - q_vi: "Linh nói ngày nào?"
       choices: ["Mùng 3 tháng 6", "Mùng 6 tháng 3", "Ngày 13"]
       answer: 0
       difficulty: 3
@@ -83,22 +89,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "It's thirteen, not thirty."
-    prompt_vi: "Đọc to. thirTEEN nhấn SAU (đuôi kéo dài), THIRty nhấn ĐẦU (ngắn gọn)."
+    prompt_vi: "Linh bắt bạn tách rõ hai số mà bạn vừa nghe nhầm. Đọc to — thirTEEN nhấn SAU (đuôi kéo dài), THIRty nhấn ĐẦU (ngắn gọn)."
     ipa: "/ɪts ˌθɜːrˈtiːn nɒt ˈθɜːrti/"
     focus_phonemes: [θ, t, n]
   - kind: read_aloud
     expected_text: "The meeting is at half past ten."
-    prompt_vi: "Đọc to. “half past ten” = 10:30."
+    prompt_vi: "Xác nhận lại giờ với Linh trước khi ghi vào lịch. Đọc to — “half past ten” = 10:30."
     ipa: "/ðə ˈmiːtɪŋ ɪz æt hɑːf pɑːst tɛn/"
     focus_phonemes: [h, f, t]
   - kind: shadow
     expected_text: "On the third of June, a quarter to nine."
-    prompt_vi: "Nghe rồi nhắc lại. “third” số thứ tự; “a quarter to nine” = 8:45."
+    prompt_vi: "Linh đọc ngày và giờ buổi chuẩn bị hôm sau. Nghe rồi nhắc lại — “third” là số thứ tự; “a quarter to nine” = 8:45."
     ipa: "/ɒn ðə θɜːrd ɒv dʒuːn ə ˈkwɔːrtər tuː naɪn/"
     focus_phonemes: [θ, dʒ, k]
   - kind: respond
     prompt_en: "What time and date is the meeting?"
-    prompt_vi: "Trả lời rõ giờ và ngày. Nếu là -ty hay -teen, nói thêm số rời để chắc."
+    prompt_vi: "Minh hỏi lại bạn giờ và ngày buổi demo. Trả lời rõ — nếu là -ty hay -teen, đọc thêm số rời để chắc."
     accept_patterns:
       - "It's at ten thirty three zero on the third"
       - "Half past ten on the third of June"

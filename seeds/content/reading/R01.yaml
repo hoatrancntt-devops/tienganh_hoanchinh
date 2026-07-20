@@ -20,32 +20,32 @@ vocabulary:
   - term: "please note"
     ipa: "/pliːz noʊt/"
     meaning_vi: "xin lưu ý"
-    chunk: "Please note the new deadline."
+    chunk: "Please note the postmortem is on Friday."
     tags: [office]
   - term: "by EOD"
     ipa: "/baɪ iː oʊ diː/"
     meaning_vi: "trước cuối ngày (end of day)"
-    chunk: "Please send it by EOD Friday."
+    chunk: "Please send your notes by EOD Wednesday."
     tags: [office]
   - term: "action required"
     ipa: "/ˈækʃən rɪˈkwaɪərd/"
     meaning_vi: "cần bạn làm gì đó"
-    chunk: "Action required: review the doc."
+    chunk: "Action required: INC-2291 postmortem."
     tags: [office]
   - term: "FYI"
     ipa: "/ɛf waɪ aɪ/"
     meaning_vi: "để bạn biết thôi (không cần làm gì)"
-    chunk: "FYI, the server was patched last night."
+    chunk: "FYI, the backup job has been fixed."
     tags: [office]
   - term: "let me know"
     ipa: "/lɛt miː noʊ/"
     meaning_vi: "báo lại cho tôi"
-    chunk: "Let me know if you have questions."
+    chunk: "Let me know if you can't make the deadline."
     tags: [office]
   - term: "as discussed"
     ipa: "/æz dɪˈskʌst/"
     meaning_vi: "như đã trao đổi"
-    chunk: "As discussed, we'll deploy on Friday."
+    chunk: "As discussed on Friday, the portal was down."
     tags: [office]
 
 sentence_patterns:
@@ -56,27 +56,33 @@ sentence_patterns:
       deadline: ["EOD Friday", "tomorrow morning", "the end of the week"]
 
 dialogue:
-  context_vi: "Một email nội bộ điển hình bạn nhận sáng thứ Tư."
+  context_vi: >
+    Sáng thứ Hai sau đêm sự cố. Bạn ngủ được bốn tiếng, mở hộp thư, và email đầu tiên là của Linh.
+    Nó không dài. Nhưng trong đó có một việc của bạn và một cái hạn.
   turns:
-    - {speaker: A, en: "Subject: Action required — Q3 report review", vi: "Tiêu đề: Cần xử lý — rà soát báo cáo quý 3"}
-    - {speaker: A, en: "Hi team, as discussed on Monday, the Q3 report is now in the shared drive.", vi: "Chào cả nhóm, như đã trao đổi hôm thứ Hai, báo cáo quý 3 đã có trên ổ chia sẻ."}
-    - {speaker: A, en: "Please review your section and send comments by EOD Friday.", vi: "Vui lòng rà soát phần của mình và gửi góp ý trước cuối ngày thứ Sáu."}
-    - {speaker: A, en: "FYI, the server was patched last night, so the drive may be slow.", vi: "Để mọi người biết: máy chủ đã vá tối qua nên ổ chia sẻ có thể chậm."}
-    - {speaker: A, en: "Let me know if you have questions. Thanks, Lan", vi: "Có gì thắc mắc cứ báo tôi. Cảm ơn, Lan"}
+    - {speaker: Linh, en: "Subject: Action required — INC-2291 postmortem", vi: "Tiêu đề: Cần xử lý — postmortem sự cố INC-2291"}
+    - {speaker: Linh, en: "Hi team, as discussed on Friday, the Northwind Portal was down for 7 hours and 15 minutes.", vi: "Chào cả nhóm, như đã trao đổi hôm thứ Sáu, Northwind Portal đã sập 7 giờ 15 phút."}
+    - {speaker: Linh, en: "Please send me your notes for the timeline by EOD Wednesday.", vi: "Vui lòng gửi tôi ghi chú của bạn cho phần diễn biến, trước cuối ngày thứ Tư."}
+    - {speaker: Linh, en: "Please note the postmortem meeting with David is on Friday.", vi: "Xin lưu ý buổi họp postmortem với David là vào thứ Sáu."}
+    - {speaker: Linh, en: "FYI, the backup job has been fixed. Nobody needs to look at it.", vi: "Để mọi người biết: job backup đã được sửa. Không ai phải đụng vào nữa."}
+    - {speaker: Linh, en: "Let me know if you can't make the deadline. Thanks, Linh", vi: "Nếu không kịp hạn thì báo tôi. Cảm ơn, Linh"}
 
 listening_snippet:
   id: LS-R01
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Please review your section and send comments by EOD Friday. FYI, the server was patched last night."
-  transcript_vi: "Vui lòng rà soát phần của bạn và gửi góp ý trước cuối ngày thứ Sáu. Để bạn biết: máy chủ đã được vá tối qua."
+  context_vi: >
+    Linh gửi thêm một tin thoại ngắn ngay sau email, vì cô ấy biết bạn đọc email lúc còn ngái ngủ.
+    Cô ấy nhắc lại đúng hai thứ: việc và hạn.
+  transcript_en: "Please send me your notes for the timeline by EOD Wednesday. FYI, the backup job has already been fixed."
+  transcript_vi: "Gửi tôi ghi chú cho phần diễn biến trước cuối ngày thứ Tư. Để bạn biết: job backup đã được sửa rồi."
   questions:
-    - q_vi: "Bạn phải làm gì?"
-      choices: ["Rà soát phần của mình và gửi góp ý", "Vá máy chủ", "Không cần làm gì"]
+    - q_vi: "Linh yêu cầu bạn làm gì?"
+      choices: ["Gửi ghi chú cho phần diễn biến sự cố", "Sửa job backup", "Không cần làm gì"]
       answer: 0
       difficulty: 3
     - q_vi: "Hạn chót là khi nào?"
-      choices: ["Cuối ngày thứ Sáu", "Sáng thứ Sáu", "Không có hạn"]
+      choices: ["Cuối ngày thứ Tư", "Sáng thứ Tư", "Không có hạn"]
       answer: 0
       difficulty: 3
 
@@ -112,7 +118,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Email viết “Please review your section by EOD Friday.” Bạn phải làm gì?"
+    prompt_vi: "Một email khác của Linh viết “Please review your section by EOD Friday.” Bạn phải làm gì?"
     choices:
       - "Rà soát phần của mình, xong trước hết ngày thứ Sáu"
       - "Đọc email vào thứ Sáu"
@@ -120,7 +126,7 @@ mini_quiz:
     answer: 0
     difficulty: 2
   - kind: mcq
-    prompt_vi: "Email viết “FYI, the server was patched last night.” Bạn phải làm gì?"
+    prompt_vi: "Email của Linh viết “FYI, the server was patched last night.” Bạn phải làm gì?"
     choices: ["Vá lại máy chủ", "Không cần làm gì, chỉ để biết", "Trả lời xác nhận"]
     answer: 1
     difficulty: 2
@@ -133,7 +139,7 @@ mini_quiz:
     answer: 0
     difficulty: 3
   - kind: mcq
-    prompt_vi: "Cách đọc email công việc hiệu quả nhất là gì?"
+    prompt_vi: "Bạn có 30 giây trước standup để đọc email của Linh. Cách đọc hiệu quả nhất là gì?"
     choices:
       - "Đọc kỹ từng chữ từ đầu đến cuối"
       - "Quét tìm “please”, “by”, và ngày tháng trước"
@@ -141,7 +147,7 @@ mini_quiz:
     answer: 1
     difficulty: 3
   - kind: mcq
-    prompt_vi: "“As discussed on Monday…” cho bạn biết điều gì?"
+    prompt_vi: "Linh mở đầu bằng “As discussed on Friday…”. Câu đó cho bạn biết điều gì?"
     choices:
       - "Đây là phần bối cảnh, không phải việc mới"
       - "Đây là việc gấp nhất"

@@ -60,53 +60,60 @@ sentence_patterns:
       thing: ["the meeting", "the IT department", "your office"]
 
 dialogue:
-  context_vi: "Bạn đang kẹt xe trên đường tới cuộc họp ở văn phòng khách hàng."
+  context_vi: >
+    Thứ Năm, 8 giờ 15 sáng. Hôm nay Priya có buổi họp ở văn phòng khách hàng, và bạn đặt Grab
+    qua khách sạn đón cô ấy. Bạn đang kẹt cứng trên đường và Priya thì đang đứng đợi dưới sảnh
+    khách sạn. Bạn gọi cho cô ấy.
   turns:
-    - {speaker: A, en: "Sorry, I'm running late. The traffic is bad.", vi: "Xin lỗi, tôi đang muộn. Kẹt xe quá."}
-    - {speaker: B, en: "No problem. How long?", vi: "Không sao. Bao lâu nữa?"}
-    - {speaker: A, en: "I'm on my way, ten minutes. Which floor is the meeting on?", vi: "Tôi đang trên đường, mười phút. Cuộc họp ở tầng mấy?"}
-    - {speaker: B, en: "Fifth floor. Just check in at the reception.", vi: "Tầng năm. Cứ khai báo ở quầy lễ tân là được."}
+    - {speaker: You, en: "Sorry, I'm running late. The traffic is bad this morning.", vi: "Xin lỗi chị, em đang bị muộn. Sáng nay kẹt xe quá."}
+    - {speaker: Priya, en: "That's quite all right. How long do you think?", vi: "Không sao đâu. Bạn nghĩ khoảng bao lâu nữa?"}
+    - {speaker: You, en: "I'm on my way, about ten minutes. I'll ask the driver to drop us off at the corner.", vi: "Em đang trên đường, khoảng mười phút. Em sẽ nhờ tài xế cho xuống ở góc đường."}
+    - {speaker: Priya, en: "Thank you. Which floor is the meeting on?", vi: "Cảm ơn bạn. Cuộc họp ở tầng mấy vậy?"}
+    - {speaker: You, en: "Fifth floor. We check in at the reception first.", vi: "Tầng năm ạ. Mình khai báo ở quầy lễ tân trước đã."}
 
 listening_snippet:
   id: LS-D04
   speed: 1.0
   voice: en_US_male
-  transcript_en: "Sorry, I'm running late, the traffic is bad. I'm on my way, about ten minutes. Which floor?"
-  transcript_vi: "Xin lỗi, tôi đang muộn, kẹt xe quá. Tôi đang trên đường, khoảng mười phút. Tầng mấy vậy?"
+  context_vi: >
+    Minh đã tới văn phòng khách hàng trước và gọi lại cho bạn khi bạn còn trên xe. Minh nói nhanh,
+    trong tiếng ồn đường phố — cái khó là nhớ được hai chi tiết cùng lúc: xuống xe ở đâu, và lên tầng mấy.
+  transcript_en: "Hey, it's Minh. I'm already at the client office. The traffic on this street is bad, so tell the driver to drop you off at the corner and walk. The meeting is on the fifth floor — check in at the reception first."
+  transcript_vi: "Này, Minh đây. Anh tới văn phòng khách hàng rồi. Đường này kẹt lắm, nên bảo tài xế cho xuống ở góc đường rồi đi bộ vào. Cuộc họp ở tầng năm — khai báo ở quầy lễ tân trước nhé."
   questions:
-    - q_vi: "Vì sao người nói bị muộn?"
-      choices: ["Kẹt xe", "Ngủ quên", "Nhầm địa chỉ"]
+    - q_vi: "Minh khuyên xuống xe ở đâu?"
+      choices: ["Ở góc đường", "Trước cửa toà nhà", "Ở bãi giữ xe"]
       answer: 0
       difficulty: 2
-    - q_vi: "Bao lâu nữa người nói tới?"
-      choices: ["Khoảng 10 phút", "Khoảng 1 tiếng", "Không nói"]
+    - q_vi: "Cuộc họp ở tầng mấy?"
+      choices: ["Tầng năm", "Tầng ba", "Tầng mười"]
       answer: 0
       difficulty: 3
 
 speaking_drills:
   - kind: read_aloud
     expected_text: "Sorry, I'm running late."
-    prompt_vi: "Đọc to. Câu này bạn sẽ dùng nhiều hơn bạn nghĩ."
+    prompt_vi: "Priya đang đứng đợi dưới sảnh khách sạn. Đọc to — câu này bạn sẽ dùng nhiều hơn bạn nghĩ."
     ipa: "/ˈsɒri aɪm ˈrʌnɪŋ leɪt/"
     focus_phonemes: [r, ŋ, t]
   - kind: read_aloud
     expected_text: "The traffic is bad today."
-    prompt_vi: "Đọc to. TRA-ffic nhấn âm đầu."
+    prompt_vi: "Nói lý do cho Priya trong một câu, không dài dòng. Đọc to — TRA-ffic nhấn âm đầu."
     ipa: "/ðə ˈtræfɪk ɪz bæd təˈdeɪ/"
     focus_phonemes: [ð, k, d]
   - kind: shadow
     expected_text: "I'm on my way, about ten minutes."
-    prompt_vi: "Nghe rồi nhắc lại. Luôn kèm con số — “soon” không đủ thông tin cho người đang chờ."
+    prompt_vi: "Priya hỏi còn bao lâu nữa. Nghe rồi nhắc lại — luôn kèm con số, “soon” không đủ thông tin cho người đang đứng đợi."
     ipa: "/aɪm ɒn maɪ weɪ əˈbaʊt tɛn ˈmɪnɪts/"
     focus_phonemes: [m, t, s]
   - kind: shadow
     expected_text: "Which floor is the meeting on?"
-    prompt_vi: "Nghe rồi nhắc lại."
+    prompt_vi: "Tới quầy lễ tân, bạn hỏi thay cho cả hai. Nghe rồi nhắc lại."
     ipa: "/wɪtʃ flɔːr ɪz ðə ˈmiːtɪŋ ɒn/"
     focus_phonemes: [tʃ, l, ŋ]
   - kind: respond
     prompt_en: "How long until you get here?"
-    prompt_vi: "Bạn còn khoảng 10 phút nữa. Trả lời."
+    prompt_vi: "Priya hỏi qua điện thoại. Bạn còn khoảng 10 phút nữa. Trả lời."
     accept_patterns:
       - "I'm on my way about ten minutes"
       - "About ten minutes"
@@ -142,7 +149,7 @@ memory_trick_vi: >
 
 mini_quiz:
   - kind: mcq
-    prompt_vi: "Bạn đang kẹt xe, còn 10 phút nữa tới. Nhắn gì?"
+    prompt_vi: "Bạn kẹt xe, Priya đợi dưới sảnh, còn 10 phút nữa tới. Nhắn gì cho cô ấy?"
     choices:
       - "I will come soon."
       - "Sorry, I'm running late. On my way, about ten minutes."
@@ -158,12 +165,12 @@ mini_quiz:
     answer: 1
     difficulty: 3
   - kind: fill_chunk
-    prompt_vi: "___ floor is the meeting on?"
+    prompt_vi: "Ở quầy lễ tân, bạn hỏi lễ tân: “___ floor is the meeting on?”"
     choices: [What, Which, Where]
     answer: 1
     difficulty: 2
   - kind: mcq_listen
-    prompt_vi: "Người nói còn bao lâu nữa tới?"
+    prompt_vi: "Bạn nhắn cho Priya: còn bao lâu nữa tới?"
     audio_text: "I'm on my way, about ten minutes."
     choices: ["Khoảng 10 phút", "Khoảng 1 tiếng", "Đã tới rồi"]
     answer: 0

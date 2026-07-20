@@ -56,21 +56,27 @@ sentence_patterns:
       verb: [check, review, send]
 
 dialogue:
-  context_vi: "Cùng nội dung, nhưng giọng mềm và đuôi lên nhẹ tạo sự lịch sự."
+  context_vi: >
+    Chiều thứ Sáu, còn một tiếng nữa tới buổi giới thiệu. Bạn cần Minh xem lại phần bạn sắp nói,
+    nhưng Minh đang bận — và hôm thứ Ba bạn nhờ bằng giọng phẳng nên nghe như đang sai việc.
+    Từ giống nhau, chỉ giọng khác.
   turns:
-    - {speaker: A, en: "Could you check this, if that's okay? (rising, soft)", vi: "Bạn xem giúp cái này, nếu được nhé? (mềm, lên nhẹ)"}
-    - {speaker: B, en: "Of course. When do you need it?", vi: "Tất nhiên. Bạn cần khi nào?"}
-    - {speaker: A, en: "I was wondering if tomorrow works?", vi: "Không biết ngày mai có tiện không?"}
-    - {speaker: B, en: "Tomorrow's fine.", vi: "Mai được."}
+    - {speaker: You, en: "Could you check this, if that's okay?", vi: "Anh xem giúp em cái này, nếu tiện nhé? (mềm, đuôi lên nhẹ)"}
+    - {speaker: Minh, en: "Of course. When do you need it?", vi: "Được chứ. Khi nào bạn cần?"}
+    - {speaker: You, en: "I was wondering if before three works?", vi: "Không biết trước ba giờ có kịp không ạ?"}
+    - {speaker: Minh, en: "Before three is fine. And that “could you” sounded right this time.", vi: "Trước ba giờ ổn. Mà câu “could you” lần này nghe đúng rồi đấy."}
 
 listening_snippet:
   id: LS-F19
   speed: 1.0
   voice: en_US_female
-  transcript_en: "Could you check this, if that's okay? I was wondering if tomorrow works for you?"
-  transcript_vi: "Bạn xem giúp cái này, nếu được nhé? Không biết ngày mai có tiện với bạn không?"
+  context_vi: >
+    Minh thu lại chính hai câu nhờ vả của bạn, đọc đúng ngữ điệu để bạn đối chiếu. Bẫy: từ ngữ
+    không đổi một chữ nào — chỉ có giọng đổi. Nghe cái đuôi câu đi lên hay đi xuống.
+  transcript_en: "Could you check this, if that's okay? I was wondering if before three works for you?"
+  transcript_vi: "Bạn xem giúp cái này, nếu được nhé? Không biết trước ba giờ có tiện với bạn không?"
   questions:
-    - q_vi: "Giọng người nói thế nào?"
+    - q_vi: "Giọng trong bản thu thế nào?"
       choices: ["Mềm, lịch sự (nhờ vả)", "Ra lệnh, gắt", "Tức giận"]
       answer: 0
       difficulty: 3
@@ -82,22 +88,22 @@ listening_snippet:
 speaking_drills:
   - kind: read_aloud
     expected_text: "Could you check this, if that's okay?"
-    prompt_vi: "Đọc to, giọng MỀM, đuôi LÊN nhẹ. “if that's okay?” làm lời nhờ nhẹ nhàng."
+    prompt_vi: "Bạn nhờ Minh xem lại phần giới thiệu. Đọc to, giọng MỀM, đuôi LÊN nhẹ — “if that's okay?” làm lời nhờ nhẹ đi."
     ipa: "/kʊd juː tʃɛk ðɪs ɪf ðæts ˈoʊkeɪ/"
     focus_phonemes: [k, tʃ, ð]
   - kind: read_aloud
     expected_text: "Would you mind sending it again?"
-    prompt_vi: "Đọc to. “Would you mind…?” là mức lịch sự cao. Giọng nhẹ, không nhấn mạnh mệnh lệnh."
+    prompt_vi: "David gửi nhầm file cũ, bạn phải xin lại. Đọc to — “Would you mind…?” là mức lịch sự cao nhất; giọng nhẹ, không nhấn mệnh lệnh."
     ipa: "/wʊd juː maɪnd ˈsɛndɪŋ ɪt əˈɡɛn/"
     focus_phonemes: [w, d, ŋ]
   - kind: shadow
     expected_text: "I was wondering if you could help."
-    prompt_vi: "Nghe rồi nhắc lại. Mở đầu “I was wondering…” rất lịch sự, giọng đều và ấm."
+    prompt_vi: "Cách mở lời khi bạn ngại làm phiền. Nghe rồi nhắc lại — “I was wondering…” rất lịch sự, giọng đều và ấm."
     ipa: "/aɪ wɒz ˈwʌndərɪŋ ɪf juː kʊd hɛlp/"
     focus_phonemes: [w, d, h]
   - kind: respond
     prompt_en: "I'm busy right now."
-    prompt_vi: "Nhờ họ làm gì đó một cách lịch sự, giọng mềm."
+    prompt_vi: "Minh nói đang bận. Nhờ lại một cách lịch sự, giọng mềm, đuôi lên nhẹ."
     accept_patterns:
       - "Could you do it later if that's okay"
       - "Would you mind helping when you're free"
