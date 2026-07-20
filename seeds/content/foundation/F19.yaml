@@ -1,0 +1,179 @@
+schema_version: 1
+id: F19
+slug: ngu-dieu-lich-su
+unit: U-F3
+title_vi: "Ngữ điệu lịch sự — cùng câu, khác thái độ"
+title_en: "Polite intonation"
+phase: foundation
+topic: core
+cefr_target: b1
+order_index: 19
+est_minutes: 10
+
+objective_vi: "Dùng giọng mềm và lên nhẹ cuối câu yêu cầu, để lời nhờ vả nghe lịch sự thay vì ra lệnh."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng giọng lịch sự 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F18, min_mastery: 78, kind: hard}
+  - {lesson: F10, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "Could you"
+    ipa: "/kʊd juː/"
+    meaning_vi: "Bạn có thể… (mềm hơn “can you”)"
+    chunk: "Could you help me?"
+    tags: [office]
+  - term: "Would you mind"
+    ipa: "/wʊd juː maɪnd/"
+    meaning_vi: "Phiền bạn… (rất lịch sự)"
+    chunk: "Would you mind checking this?"
+    tags: [office]
+  - term: "just"
+    ipa: "/dʒʌst/"
+    meaning_vi: "chỉ (làm mềm yêu cầu)"
+    chunk: "Could you just wait a moment?"
+    tags: [office]
+  - term: "if that's okay"
+    ipa: "/ɪf ðæts ˈoʊkeɪ/"
+    meaning_vi: "nếu được (đuôi mềm)"
+    chunk: "Tomorrow, if that's okay?"
+    tags: [office]
+  - term: "a bit"
+    ipa: "/ə bɪt/"
+    meaning_vi: "một chút (giảm nhẹ)"
+    chunk: "It's a bit late."
+    tags: [core]
+  - term: "I was wondering"
+    ipa: "/aɪ wɒz ˈwʌndərɪŋ/"
+    meaning_vi: "Không biết là… (mở đầu rất lịch sự)"
+    chunk: "I was wondering if you could help."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "Could you {verb} this, if that's okay? (soft, rising)"
+    meaning_vi: "Bạn {verb} cái này giúp, nếu được nhé? (giọng mềm, lên nhẹ)"
+    slots:
+      verb: [check, review, send]
+
+dialogue:
+  context_vi: "Cùng nội dung, nhưng giọng mềm và đuôi lên nhẹ tạo sự lịch sự."
+  turns:
+    - {speaker: A, en: "Could you check this, if that's okay? (rising, soft)", vi: "Bạn xem giúp cái này, nếu được nhé? (mềm, lên nhẹ)"}
+    - {speaker: B, en: "Of course. When do you need it?", vi: "Tất nhiên. Bạn cần khi nào?"}
+    - {speaker: A, en: "I was wondering if tomorrow works?", vi: "Không biết ngày mai có tiện không?"}
+    - {speaker: B, en: "Tomorrow's fine.", vi: "Mai được."}
+
+listening_snippet:
+  id: LS-F19
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Could you check this, if that's okay? I was wondering if tomorrow works for you?"
+  transcript_vi: "Bạn xem giúp cái này, nếu được nhé? Không biết ngày mai có tiện với bạn không?"
+  questions:
+    - q_vi: "Giọng người nói thế nào?"
+      choices: ["Mềm, lịch sự (nhờ vả)", "Ra lệnh, gắt", "Tức giận"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "“Could you… if that's okay?” so với “Do this now” thì?"
+      choices: ["Lịch sự hơn nhiều", "Cộc hơn", "Giống nhau"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Could you check this, if that's okay?"
+    prompt_vi: "Đọc to, giọng MỀM, đuôi LÊN nhẹ. “if that's okay?” làm lời nhờ nhẹ nhàng."
+    ipa: "/kʊd juː tʃɛk ðɪs ɪf ðæts ˈoʊkeɪ/"
+    focus_phonemes: [k, tʃ, ð]
+  - kind: read_aloud
+    expected_text: "Would you mind sending it again?"
+    prompt_vi: "Đọc to. “Would you mind…?” là mức lịch sự cao. Giọng nhẹ, không nhấn mạnh mệnh lệnh."
+    ipa: "/wʊd juː maɪnd ˈsɛndɪŋ ɪt əˈɡɛn/"
+    focus_phonemes: [w, d, ŋ]
+  - kind: shadow
+    expected_text: "I was wondering if you could help."
+    prompt_vi: "Nghe rồi nhắc lại. Mở đầu “I was wondering…” rất lịch sự, giọng đều và ấm."
+    ipa: "/aɪ wɒz ˈwʌndərɪŋ ɪf juː kʊd hɛlp/"
+    focus_phonemes: [w, d, h]
+  - kind: respond
+    prompt_en: "I'm busy right now."
+    prompt_vi: "Nhờ họ làm gì đó một cách lịch sự, giọng mềm."
+    accept_patterns:
+      - "Could you do it later if that's okay"
+      - "Would you mind helping when you're free"
+      - "I was wondering if you could look at it later"
+
+vietnamese_explanation:
+  why_vi: >
+    Trong tiếng Anh, LỊCH SỰ nằm nhiều ở GIỌNG chứ không chỉ ở từ. Cùng câu “Send me the file”, nói
+    giọng phẳng-mạnh nghe như ra lệnh; nói giọng mềm, đuôi lên nhẹ nghe như lời nhờ. Người Việt dịch
+    đúng từ nhưng hay giữ giọng phẳng, nên vô tình nghe cộc — dù trong lòng rất lịch sự.
+  how_vi: >
+    Hai lớp: (1) TỪ làm mềm — “Could you…”, “Would you mind…”, “just”, “a bit”, “if that's okay”, “I
+    was wondering…”; (2) GIỌNG làm mềm — hạ âm lượng một chút, đuôi câu yêu cầu LÊN nhẹ (như câu hỏi),
+    không nhấn mạnh động từ mệnh lệnh. Kết hợp cả hai mới thật sự lịch sự.
+  contrast_vi: "“Send me the file.” (phẳng, mạnh → ra lệnh) ↔ “Could you send me the file, if that's okay? ↗” (mềm, lên nhẹ → nhờ vả)."
+
+common_mistakes:
+  - mistake: "Dùng từ lịch sự nhưng giọng vẫn phẳng-mạnh"
+    why_vi: "Nghĩ chỉ cần đúng từ là đủ lịch sự."
+    fix_vi: "Giọng cũng phải mềm: hạ nhẹ âm lượng, đuôi lên nhẹ. Từ “could you” mà nói giọng ra lệnh vẫn nghe cộc."
+    detect: {}
+  - mistake: "Nhấn mạnh động từ mệnh lệnh (“SEND me the file”)"
+    why_vi: "Nhấn để cho rõ, nhưng vô tình nghe như quát."
+    fix_vi: "Đừng nhấn động từ mệnh lệnh. Giữ giọng đều, đuôi lên nhẹ. Nhấn mạnh mệnh lệnh nghe như ép buộc."
+    detect: {}
+  - mistake: "Giọng đi xuống mạnh ở cuối lời nhờ"
+    why_vi: "Quen kết câu bằng giọng xuống."
+    fix_vi: "Lời nhờ nên đuôi LÊN nhẹ (như đang hỏi ý). Giọng xuống mạnh khiến lời nhờ nghe như quyết định đã rồi."
+    detect: {}
+
+memory_trick_vi: >
+  Lịch sự = TỪ mềm + GIỌNG mềm. Từ: “Could you… if that's okay?”. Giọng: nhỏ hơn một chút, đuôi LÊN
+  nhẹ như xin phép. Cùng một câu, giọng quyết định bạn đang NHỜ hay đang RA LỆNH.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Điều gì làm một lời nhờ nghe lịch sự trong tiếng Anh?"
+    choices:
+      - "Cả từ mềm VÀ giọng mềm (đuôi lên nhẹ)"
+      - "Chỉ cần đúng từ"
+      - "Nói to và rõ"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Câu nào lịch sự nhất?"
+    choices:
+      - "Would you mind checking this, if that's okay?"
+      - "Check this."
+      - "You must check this now."
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đuôi câu của một lời NHỜ nên?"
+    choices: ["Lên nhẹ (như xin phép)", "Xuống mạnh", "Giữ phẳng gắt"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao “SEND me the file” (nhấn mạnh) nghe cộc?"
+    choices:
+      - "Nhấn động từ mệnh lệnh nghe như ép buộc"
+      - "Vì sai ngữ pháp"
+      - "Vì quá dài"
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Giọng người nói thế nào?"
+    audio_text: "Could you check this, if that's okay?"
+    choices: ["Mềm, lịch sự", "Ra lệnh", "Bực bội"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F20

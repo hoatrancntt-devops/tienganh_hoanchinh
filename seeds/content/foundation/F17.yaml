@@ -1,0 +1,169 @@
+schema_version: 1
+id: F17
+slug: doc-chu-viet-tat
+unit: U-F3
+title_vi: "Đọc chữ viết tắt và thuật ngữ IT thành tiếng"
+title_en: "Saying acronyms & abbreviations"
+phase: foundation
+topic: it_english
+cefr_target: a2
+order_index: 17
+est_minutes: 10
+
+objective_vi: "Đọc to đúng các viết tắt IT: loại đọc từng chữ (API, SQL, URL) và loại đọc như từ (SQL cũng có kiểu, JSON, CAPTCHA)."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng cách đọc 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F16, min_mastery: 78, kind: hard}
+
+vocabulary:
+  - term: "API /eɪ piː aɪ/"
+    ipa: "/ˌeɪ piː ˈaɪ/"
+    meaning_vi: "đọc từng chữ: ây-pi-ai"
+    chunk: "Call the API."
+    tags: [it_english]
+  - term: "URL /juː ɑːr ɛl/"
+    ipa: "/ˌjuː ɑːr ˈɛl/"
+    meaning_vi: "đọc từng chữ: diu-a-eo"
+    chunk: "Copy the URL."
+    tags: [it_english]
+  - term: "JSON /ˈdʒeɪsən/"
+    ipa: "/ˈdʒeɪsən/"
+    meaning_vi: "đọc như từ: “JAY-sơn”"
+    chunk: "Return JSON."
+    tags: [it_english]
+  - term: "SQL /ˌɛs kjuː ˈɛl/"
+    ipa: "/ˌɛs kjuː ˈɛl/"
+    meaning_vi: "đọc từng chữ ét-kiu-eo (hoặc “sequel”)"
+    chunk: "Write an SQL query."
+    tags: [it_english]
+  - term: "cache /kæʃ/"
+    ipa: "/kæʃ/"
+    meaning_vi: "đọc là “kash”, KHÔNG phải “ca-chê”"
+    chunk: "Clear the cache."
+    tags: [it_english]
+  - term: "queue /kjuː/"
+    ipa: "/kjuː/"
+    meaning_vi: "đọc là “kiu”, chỉ nghe âm đầu"
+    chunk: "The job is in the queue."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Call the {abbr} and check the {abbr2}."
+    meaning_vi: "Gọi {abbr} và kiểm tra {abbr2}."
+    slots:
+      abbr: [API, URL]
+      abbr2: [JSON, cache]
+
+dialogue:
+  context_vi: "Từ viết tắt đọc từng chữ hay đọc liền — chú ý cách đọc."
+  turns:
+    - {speaker: A, en: "Call the API and check the JSON response.", vi: "Gọi API và kiểm tra phản hồi JSON. (ây-pi-ai, JAY-sơn)"}
+    - {speaker: B, en: "The URL returns a cache error.", vi: "Cái URL trả về lỗi cache. (diu-a-eo, kash)"}
+    - {speaker: A, en: "Run an SQL query and clear the queue.", vi: "Chạy truy vấn SQL và xoá hàng đợi. (ét-kiu-eo, kiu)"}
+
+listening_snippet:
+  id: LS-F17
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Call the API and check the JSON. The URL returns a cache error. Run an SQL query."
+  transcript_vi: "Gọi API và kiểm tra JSON. URL trả về lỗi cache. Chạy truy vấn SQL."
+  questions:
+    - q_vi: "“JSON” đọc thế nào?"
+      choices: ["Như một từ: JAY-sơn", "Từng chữ: J-S-O-N", "“giê-sôn”"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "“cache” đọc thế nào?"
+      choices: ["“kash”", "“ca-chê”", "“ca-sờ”"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Call the API and check the URL."
+    prompt_vi: "Đọc to. API = ây-pi-ai, URL = diu-a-eo. Đọc TỪNG CHỮ CÁI."
+    ipa: "/kɔːl ðiː ˌeɪ piː ˈaɪ ænd tʃɛk ðə ˌjuː ɑːr ˈɛl/"
+    focus_phonemes: [k, r, l]
+  - kind: read_aloud
+    expected_text: "Return JSON and clear the cache."
+    prompt_vi: "Đọc to. JSON = JAY-sơn (đọc như từ); cache = “kash” (không phải “ca-chê”)."
+    ipa: "/rɪˈtɜːrn ˈdʒeɪsən ænd klɪr ðə kæʃ/"
+    focus_phonemes: [dʒ, k, ʃ]
+  - kind: shadow
+    expected_text: "The job is in the queue."
+    prompt_vi: "Nghe rồi nhắc lại. queue = “kiu”, chỉ đọc âm đầu (bốn chữ cái sau câm)."
+    ipa: "/ðə dʒɒb ɪz ɪn ðə kjuː/"
+    focus_phonemes: [dʒ, k]
+  - kind: respond
+    prompt_en: "How do I get the data?"
+    prompt_vi: "Trả lời có “API” và “JSON” — API đọc từng chữ, JSON đọc như từ."
+    accept_patterns:
+      - "Call the API it returns JSON"
+      - "Send a request to the API and read the JSON"
+      - "Use the API the response is JSON"
+
+vietnamese_explanation:
+  why_vi: >
+    Dân IT đọc các từ này hàng ngày trên màn hình nhưng ít khi nghe ai đọc lên, nên tự chế cách đọc:
+    “API” thành “a-pi”, “cache” thành “ca-chê”, “queue” thành “quê-quê”. Khi họp với người nước ngoài,
+    những cách đọc tự chế này khiến người nghe không hiểu — dù bạn đang nói đúng thuật ngữ.
+  how_vi: >
+    Hai loại viết tắt: (1) đọc TỪNG CHỮ CÁI — API (ây-pi-ai), URL (diu-a-eo), SQL (ét-kiu-eo), HTTP,
+    CPU, ID; (2) đọc như MỘT TỪ — JSON (JAY-sơn), CAPTCHA, JPEG, SCADA. Và vài từ thường (không viết
+    tắt) hay đọc sai: cache = “kash”, queue = “kiu”, null = “nol”, GUI = “gooey”. Nghe mẫu từng từ.
+  contrast_vi: "“ca-chê” (tự chế, người nghe ngơ ngác) ↔ “kash” (đúng). “a-pi” ↔ “ây-pi-ai”. Đọc đúng thuật ngữ là tối thiểu để họp được."
+
+common_mistakes:
+  - mistake: "Đọc “cache” thành “ca-chê”"
+    why_vi: "Trông giống từ tiếng Pháp/Việt hoá."
+    fix_vi: "cache = “kash” (một âm tiết, như “cash”). Không có âm “chê”."
+    detect: {}
+  - mistake: "Đọc “queue” thành “quê-quê” hoặc đánh vần"
+    why_vi: "Năm chữ cái nhưng chỉ đọc một âm."
+    fix_vi: "queue = “kiu” /kjuː/. Chỉ nghe âm của chữ “q”; bốn chữ còn lại câm."
+    detect: {}
+  - mistake: "Đọc “JSON” từng chữ J-S-O-N"
+    why_vi: "Tưởng viết tắt nào cũng đọc từng chữ."
+    fix_vi: "JSON đọc như một từ: “JAY-sơn”. Ngược lại API/URL/SQL đọc từng chữ. Phải nhớ theo từng từ."
+    detect: {}
+
+memory_trick_vi: >
+  Hai rổ viết tắt: rổ ĐÁNH VẦN (API, URL, SQL, HTTP, CPU — đọc từng chữ) và rổ ĐỌC LIỀN (JSON, JPEG,
+  CAPTCHA — đọc như từ). Và nhớ ba “bẫy quen mắt”: cache = kash, queue = kiu, null = nol.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“API” đọc thế nào?"
+    choices: ["Từng chữ: ây-pi-ai", "Như từ: “a-pi”", "“áp”"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“cache” đọc là?"
+    choices: ["“kash”", "“ca-chê”", "“ca-sơ”"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“JSON” đọc thế nào?"
+    choices: ["Như một từ: JAY-sơn", "Từng chữ J-S-O-N", "“giơ-son”"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“queue” đọc là?"
+    choices: ["“kiu” (chỉ âm chữ q)", "“quê-uê”", "đánh vần Q-U-E-U-E"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Từ nào được đọc như một từ (không đánh vần)?"
+    audio_text: "Return JSON and clear the cache."
+    choices: ["JSON (JAY-sơn)", "API", "URL"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F18

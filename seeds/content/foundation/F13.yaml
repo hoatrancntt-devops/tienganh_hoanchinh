@@ -1,0 +1,175 @@
+schema_version: 1
+id: F13
+slug: so-ngay-gio
+unit: U-F4
+title_vi: "Số, ngày và giờ — nói rõ để không nhầm"
+title_en: "Numbers, dates & times"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 13
+est_minutes: 11
+
+objective_vi: "Nói và nghe số, giờ, ngày chính xác — phân biệt các cặp dễ nhầm (13 vs 30, 10:13 vs 10:30)."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe đúng số 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F12, min_mastery: 78, kind: hard}
+  - {lesson: F03, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "thirteen /θɜːrˈtiːn/"
+    ipa: "/ˌθɜːrˈtiːn/"
+    meaning_vi: "13 — nhấn âm SAU (-teen)"
+    chunk: "It's thirteen, not thirty."
+    tags: [core]
+  - term: "thirty /ˈθɜːrti/"
+    ipa: "/ˈθɜːrti/"
+    meaning_vi: "30 — nhấn âm ĐẦU (thir-)"
+    chunk: "Thirty minutes."
+    tags: [core]
+  - term: "o'clock"
+    ipa: "/əˈklɒk/"
+    meaning_vi: "giờ chẵn"
+    chunk: "At ten o'clock."
+    tags: [core]
+  - term: "half past"
+    ipa: "/hɑːf pɑːst/"
+    meaning_vi: "rưỡi (30 phút)"
+    chunk: "Half past ten (10:30)."
+    tags: [core]
+  - term: "a quarter to"
+    ipa: "/ə ˈkwɔːrtər tuː/"
+    meaning_vi: "kém 15 (45 phút)"
+    chunk: "A quarter to nine (8:45)."
+    tags: [core]
+  - term: "the third"
+    ipa: "/ðə θɜːrd/"
+    meaning_vi: "ngày mùng 3 (số thứ tự)"
+    chunk: "On the third of May."
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "The meeting is at {time}."
+    meaning_vi: "Cuộc họp lúc {time}."
+    slots:
+      time: ["ten o'clock", "half past two", "a quarter to nine"]
+
+dialogue:
+  context_vi: "Xác nhận giờ họp — chú ý phân biệt -teen và -ty."
+  turns:
+    - {speaker: A, en: "The meeting is at ten thirty.", vi: "Cuộc họp lúc mười giờ ba mươi."}
+    - {speaker: B, en: "Ten thirteen? One-three?", vi: "Mười giờ mười ba? Một-ba?"}
+    - {speaker: A, en: "No, ten thirty. Three-zero. Half past ten.", vi: "Không, mười giờ ba mươi. Ba-không. Mười giờ rưỡi."}
+    - {speaker: B, en: "Got it, half past ten. And what date?", vi: "Rõ, mười giờ rưỡi. Còn ngày nào?"}
+    - {speaker: A, en: "The third of June.", vi: "Ngày mùng 3 tháng 6."}
+
+listening_snippet:
+  id: LS-F13
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "The meeting is at ten thirty, half past ten, on the third of June. Not ten thirteen."
+  transcript_vi: "Cuộc họp lúc mười giờ ba mươi, mười giờ rưỡi, ngày mùng 3 tháng 6. Không phải mười giờ mười ba."
+  questions:
+    - q_vi: "Cuộc họp lúc mấy giờ?"
+      choices: ["10:30 (ba mươi)", "10:13 (mười ba)", "10:00"]
+      answer: 0
+      difficulty: 4
+    - q_vi: "Ngày nào?"
+      choices: ["Mùng 3 tháng 6", "Mùng 6 tháng 3", "Ngày 13"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "It's thirteen, not thirty."
+    prompt_vi: "Đọc to. thirTEEN nhấn SAU (đuôi kéo dài), THIRty nhấn ĐẦU (ngắn gọn)."
+    ipa: "/ɪts ˌθɜːrˈtiːn nɒt ˈθɜːrti/"
+    focus_phonemes: [θ, t, n]
+  - kind: read_aloud
+    expected_text: "The meeting is at half past ten."
+    prompt_vi: "Đọc to. “half past ten” = 10:30."
+    ipa: "/ðə ˈmiːtɪŋ ɪz æt hɑːf pɑːst tɛn/"
+    focus_phonemes: [h, f, t]
+  - kind: shadow
+    expected_text: "On the third of June, a quarter to nine."
+    prompt_vi: "Nghe rồi nhắc lại. “third” số thứ tự; “a quarter to nine” = 8:45."
+    ipa: "/ɒn ðə θɜːrd ɒv dʒuːn ə ˈkwɔːrtər tuː naɪn/"
+    focus_phonemes: [θ, dʒ, k]
+  - kind: respond
+    prompt_en: "What time and date is the meeting?"
+    prompt_vi: "Trả lời rõ giờ và ngày. Nếu là -ty hay -teen, nói thêm số rời để chắc."
+    accept_patterns:
+      - "It's at ten thirty three zero on the third"
+      - "Half past ten on the third of June"
+      - "At {time} on the {date}"
+
+vietnamese_explanation:
+  why_vi: >
+    Số, giờ, ngày là nơi hiểu nhầm gây hậu quả thật: lỡ họp, sai deadline, nhầm số lượng. Cặp bẫy
+    lớn nhất là -TEEN (13,14,15…) và -TY (30,40,50…): chỉ khác trọng âm và âm cuối. “thirTEEN” nhấn
+    sau, đuôi /n/ kéo dài; “THIRty” nhấn trước, đuôi /i/ nhẹ. Người Việt hay đọc đều nên người nghe
+    không phân biệt được — và bản thân cũng nghe nhầm.
+  how_vi: >
+    Ba mẹo: (1) -TEEN nhấn ÂM SAU và kéo dài (“thir-TEEN”); -TY nhấn ÂM ĐẦU, ngắn (“THIR-ty”); (2)
+    khi quan trọng, đọc thêm số RỜI để chắc: “thirty, three-zero”, “thirteen, one-three”; (3) giờ:
+    “half past ten” = 10:30, “a quarter to nine” = 8:45. Xác nhận lại số khi nghe.
+  contrast_vi: "“ten thirty” (10:30) ↔ “ten thirteen” (10:13). Một chữ sai là lỡ họp. Đọc thêm “three-zero / one-three” để chắc."
+
+common_mistakes:
+  - mistake: "Đọc -teen và -ty giống nhau"
+    why_vi: "Không nhấn đúng chỗ nên hai số nghe như một."
+    fix_vi: "-TEEN nhấn SAU, kéo dài; -TY nhấn ĐẦU, ngắn. Khi quan trọng, thêm số rời: “thirty, three-zero”."
+    detect: {}
+  - mistake: "Không xác nhận lại số/giờ quan trọng"
+    why_vi: "Ngại hỏi lại."
+    fix_vi: "Với giờ họp, deadline, số lượng — luôn nhắc lại: “So, ten thirty, half past ten?”. Sai số tốn kém hơn một câu xác nhận."
+    detect: {}
+  - mistake: "Nhầm thứ tự ngày/tháng (3/6 là mùng 3 hay tháng 3?)"
+    why_vi: "Định dạng ngày khác nhau giữa các nước."
+    fix_vi: "Nói rõ bằng chữ: “the third of June” thay vì “3/6”. Tránh mọi mơ hồ về ngày."
+    detect: {}
+
+memory_trick_vi: >
+  -TEEN kéo dài như “teen” tuổi teen (nhấn sau, đuôi N rõ); -TY ngắn gọn (nhấn đầu). Khi số quan
+  trọng, đọc RỜI để chắc: “thirty — three, zero”. Giờ và ngày thì nói bằng chữ, đừng để người nghe đoán.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“thirteen” nhấn âm nào?"
+    choices: ["Âm sau (-TEEN), kéo dài", "Âm đầu (THIR-)", "Nhấn đều"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“half past ten” là mấy giờ?"
+    choices: ["10:30", "10:15", "9:30"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Cách chắc nhất để người nghe không nhầm 30 với 13?"
+    choices:
+      - "Đọc thêm số rời: “thirty, three-zero”"
+      - "Nói to hơn"
+      - "Nói nhanh hơn"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“a quarter to nine” là mấy giờ?"
+    choices: ["8:45", "9:15", "9:45"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Cuộc họp lúc mấy giờ?"
+    audio_text: "The meeting is at ten thirty, half past ten."
+    choices: ["10:30", "10:13", "10:00"]
+    answer: 0
+    difficulty: 4
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F14

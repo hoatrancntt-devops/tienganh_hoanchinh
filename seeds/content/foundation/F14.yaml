@@ -1,0 +1,177 @@
+schema_version: 1
+id: F14
+slug: cap-am-de-nham
+unit: U-F1
+title_vi: "Cặp âm dễ nhầm: /iː/ và /ɪ/ (sheep vs ship)"
+title_en: "Minimal pairs: /iː/ vs /ɪ/"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 14
+est_minutes: 10
+
+objective_vi: "Phân biệt và phát âm đúng nguyên âm dài /iː/ và ngắn /ɪ/ — cặp âm tiếng Việt gộp làm một."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe phân biệt đúng 4/5 cặp từ."
+
+prerequisites:
+  - {lesson: F13, min_mastery: 78, kind: hard}
+  - {lesson: F01, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "sheep /ʃiːp/"
+    ipa: "/ʃiːp/"
+    meaning_vi: "con cừu — âm /iː/ DÀI"
+    chunk: "a white sheep"
+    tags: [core]
+  - term: "ship /ʃɪp/"
+    ipa: "/ʃɪp/"
+    meaning_vi: "con tàu — âm /ɪ/ NGẮN"
+    chunk: "a big ship"
+    tags: [core]
+  - term: "leave /liːv/"
+    ipa: "/liːv/"
+    meaning_vi: "rời đi — /iː/ dài"
+    chunk: "I'll leave at five."
+    tags: [core]
+  - term: "live /lɪv/"
+    ipa: "/lɪv/"
+    meaning_vi: "sống — /ɪ/ ngắn"
+    chunk: "I live here."
+    tags: [core]
+  - term: "reach /riːtʃ/"
+    ipa: "/riːtʃ/"
+    meaning_vi: "chạm/liên hệ tới — /iː/ dài"
+    chunk: "I can't reach the server."
+    tags: [it_english]
+  - term: "rich /rɪtʃ/"
+    ipa: "/rɪtʃ/"
+    meaning_vi: "giàu — /ɪ/ ngắn"
+    chunk: "a rich company"
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "It's a {word_long}, not a {word_short}."
+    meaning_vi: "Là {word_long} (âm dài), không phải {word_short} (âm ngắn)."
+    slots:
+      word_long: [sheep, leave]
+      word_short: [ship, live]
+
+dialogue:
+  context_vi: "Luyện phân biệt hai âm qua các cặp từ (nghe kỹ độ dài)."
+  turns:
+    - {speaker: A, en: "Did you say leave or live?", vi: "Bạn nói “leave” (rời) hay “live” (sống)?"}
+    - {speaker: B, en: "Leave — with a long ee. I'll leave at five.", vi: "“Leave” — âm “i” dài. Tôi sẽ rời lúc năm giờ."}
+    - {speaker: A, en: "Got it. And can you reach the server?", vi: "Rõ. Với bạn liên hệ tới server được không?"}
+    - {speaker: B, en: "No, I can't reach it — long ee, reach.", vi: "Không, tôi không tới được — âm “i” dài, “reach”."}
+
+listening_snippet:
+  id: LS-F14
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "I'll leave at five. I can't reach the server. It's a ship, not a sheep."
+  transcript_vi: "Tôi sẽ rời lúc năm giờ. Tôi không liên hệ tới server được. Là con tàu, không phải con cừu."
+  questions:
+    - q_vi: "Từ “leave” (rời đi) có âm gì?"
+      choices: ["/iː/ dài", "/ɪ/ ngắn", "Không có nguyên âm"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "“ship” và “sheep” khác nhau ở đâu?"
+      choices: ["Độ dài nguyên âm (/ɪ/ vs /iː/)", "Phụ âm đầu", "Trọng âm"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "It's a ship, not a sheep."
+    prompt_vi: "Đọc to. “ship” ngắn gọn /ɪ/; “sheep” kéo dài /iː/. Cảm nhận độ dài khác nhau."
+    ipa: "/ɪts ə ʃɪp nɒt ə ʃiːp/"
+    focus_phonemes: [ʃ, ɪ, iː]
+  - kind: read_aloud
+    expected_text: "I'll leave at five."
+    prompt_vi: "Đọc to. “leave” âm /iː/ dài — kéo dài môi cười."
+    ipa: "/aɪl liːv æt faɪv/"
+    focus_phonemes: [l, iː, v]
+  - kind: shadow
+    expected_text: "I can't reach the server."
+    prompt_vi: "Nghe rồi nhắc lại. “reach” /iː/ dài, khác “rich” /ɪ/ ngắn."
+    ipa: "/aɪ kænt riːtʃ ðə ˈsɜːrvər/"
+    focus_phonemes: [r, iː, tʃ]
+  - kind: respond
+    prompt_en: "When will you leave?"
+    prompt_vi: "Trả lời có dùng “leave” — giữ âm /iː/ dài, đừng rút thành “live”."
+    accept_patterns:
+      - "I'll leave at {time}"
+      - "I leave at {time}"
+      - "I'm leaving at {time}"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt chỉ có một âm “i”, nên tai người Việt gộp /iː/ (dài) và /ɪ/ (ngắn) làm một. Nhưng
+    trong tiếng Anh chúng là HAI âm khác nghĩa: “leave” (rời) vs “live” (sống), “reach” vs “rich”,
+    “sheep” vs “ship”. Không phân biệt được khiến bạn vừa nói nhầm nghĩa vừa nghe nhầm.
+  how_vi: >
+    /iː/ (dài): môi kéo NGANG như đang cười, âm ngân dài — “sheep, leave, reach”. /ɪ/ (ngắn): miệng
+    thả lỏng hơn, âm ngắn dứt khoát — “ship, live, rich”. Mẹo: /iː/ căng và dài, /ɪ/ lỏng và ngắn.
+    Luyện theo cặp (minimal pairs) để tai quen sự khác biệt.
+  contrast_vi: "“I'll leave” (rời đi, /iː/) ↔ “I live” (sống ở, /ɪ/). Cùng phụ âm, khác độ dài nguyên âm — khác hẳn nghĩa."
+
+common_mistakes:
+  - mistake: "Đọc /iː/ và /ɪ/ giống nhau"
+    why_vi: "Tiếng Việt chỉ có một âm “i”."
+    fix_vi: "/iː/ kéo dài, môi căng ngang (cười); /ɪ/ ngắn, miệng lỏng. Cường điệu độ dài lúc luyện để tai và miệng quen."
+    detect: {}
+  - mistake: "Nghe nhầm “leave” thành “live”, “reach” thành “rich”"
+    why_vi: "Tai chưa tách được hai âm."
+    fix_vi: "Luyện nghe theo cặp tối thiểu (minimal pairs). Chú ý ĐỘ DÀI: dài = /iː/, ngắn = /ɪ/."
+    detect: {}
+  - mistake: "Nghĩ chỉ cần đọc gần đúng là được"
+    why_vi: "Coi nhẹ vì “nghe cũng hiểu”."
+    fix_vi: "Ở nhiều cặp, sai âm là sai NGHĨA (leave/live). Với các từ này, độ dài nguyên âm là bắt buộc, không phải tuỳ chọn."
+    detect: {}
+
+memory_trick_vi: >
+  /iː/ = nụ cười DÀI (sheep, leave, reach — kéo môi ngang, ngân ra); /ɪ/ = cái nháy NGẮN (ship, live,
+  rich — thả lỏng, dứt nhanh). Cùng “i” nhưng một cái cười dài, một cái chớp mắt.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“leave” (rời đi) dùng âm nào?"
+    choices: ["/iː/ dài", "/ɪ/ ngắn", "Cả hai"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Cặp nào khác nhau ở độ dài /iː/–/ɪ/?"
+    choices: ["reach / rich", "cat / cut", "big / bag"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Cách tạo âm /iː/ đúng?"
+    choices:
+      - "Kéo môi ngang như cười, ngân dài"
+      - "Chu môi tròn"
+      - "Mím chặt môi"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao cặp âm này quan trọng?"
+    choices:
+      - "Sai độ dài có thể sai nghĩa (leave/live)"
+      - "Vì khó phát âm"
+      - "Vì hiếm gặp"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe từ nào?"
+    audio_text: "I'll leave at five."
+    choices: ["leave (rời đi)", "live (sống)", "love (yêu)"]
+    answer: 0
+    difficulty: 4
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F15

@@ -1,0 +1,183 @@
+schema_version: 1
+id: F20
+slug: noi-ro-tren-cuoc-goi
+unit: U-F4
+title_vi: "Nói rõ trên điện thoại và họp online"
+title_en: "Speaking clearly on calls"
+phase: foundation
+topic: core
+cefr_target: b1
+order_index: 20
+est_minutes: 11
+
+objective_vi: "Nói rõ khi không thấy mặt: đánh vần bằng bảng chữ cái, đọc email/mã, và xử lý khi âm thanh chập chờn."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng cách xử lý 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F19, min_mastery: 78, kind: hard}
+  - {lesson: F13, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "spell it out"
+    ipa: "/spɛl ɪt aʊt/"
+    meaning_vi: "đánh vần ra"
+    chunk: "Let me spell it out."
+    tags: [office]
+  - term: "as in"
+    ipa: "/æz ɪn/"
+    meaning_vi: "như trong (làm rõ chữ cái)"
+    chunk: "B as in Bravo."
+    tags: [office]
+  - term: "You're breaking up"
+    ipa: "/jʊr ˈbreɪkɪŋ ʌp/"
+    meaning_vi: "tiếng bạn bị ngắt quãng"
+    chunk: "Sorry, you're breaking up."
+    tags: [it_english]
+  - term: "at /æt/"
+    ipa: "/æt/"
+    meaning_vi: "dấu @ trong email"
+    chunk: "lan at gmail dot com"
+    tags: [it_english]
+  - term: "dot"
+    ipa: "/dɒt/"
+    meaning_vi: "dấu chấm (.)"
+    chunk: "example dot com"
+    tags: [it_english]
+  - term: "Can you hear me?"
+    ipa: "/kæn juː hɪr miː/"
+    meaning_vi: "Bạn nghe tôi được không?"
+    chunk: "Can you hear me now?"
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "It's {letter} as in {word}."
+    meaning_vi: "Là chữ {letter}, như trong {word}."
+    slots:
+      letter: [B, M, S]
+      word: [Bravo, Mike, Sierra]
+
+dialogue:
+  context_vi: "Đọc email và mã qua điện thoại, xử lý khi tín hiệu kém."
+  turns:
+    - {speaker: A, en: "What's your email?", vi: "Email của bạn là gì?"}
+    - {speaker: B, en: "It's lan dot tran at gmail dot com. Lan: L as in London, A, N.", vi: "Là lan.tran@gmail.com. Lan: L như London, A, N."}
+    - {speaker: A, en: "Sorry, you're breaking up. Could you spell the last name?", vi: "Xin lỗi, tiếng bạn bị ngắt. Bạn đánh vần họ được không?"}
+    - {speaker: B, en: "Sure. T as in Tango, R, A, N.", vi: "Được. T như Tango, R, A, N."}
+    - {speaker: A, en: "Got it, thanks. Can you hear me okay now?", vi: "Rõ, cảm ơn. Giờ bạn nghe tôi ổn chứ?"}
+
+listening_snippet:
+  id: LS-F20
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "It's lan dot tran at gmail dot com. Sorry, you're breaking up. T as in Tango, R, A, N."
+  transcript_vi: "Là lan.tran@gmail.com. Xin lỗi, tiếng bạn bị ngắt. T như Tango, R, A, N."
+  questions:
+    - q_vi: "“at” trong email nghĩa là dấu gì?"
+      choices: ["Dấu @", "Dấu chấm", "Dấu gạch"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "“You're breaking up” nghĩa là gì?"
+      choices: ["Tiếng bị ngắt quãng", "Cuộc gọi kết thúc", "Bạn nói sai"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "It's lan dot tran at gmail dot com."
+    prompt_vi: "Đọc to. “dot” = dấu chấm, “at” = @. Đọc email chậm, rõ từng phần."
+    ipa: "/ɪts læn dɒt træn æt ˈdʒiːmeɪl dɒt kɒm/"
+    focus_phonemes: [d, t, æ]
+  - kind: read_aloud
+    expected_text: "T as in Tango, R, A, N."
+    prompt_vi: "Đọc to. Khi chữ cái dễ nhầm, dùng “X as in [từ]” để làm rõ."
+    ipa: "/tiː æz ɪn ˈtæŋɡoʊ ɑːr eɪ ɛn/"
+    focus_phonemes: [t, ŋ, n]
+  - kind: shadow
+    expected_text: "Sorry, you're breaking up. Could you say that again?"
+    prompt_vi: "Nghe rồi nhắc lại. Câu xử lý khi tín hiệu kém — rất hay dùng."
+    ipa: "/ˈsɒri jʊr ˈbreɪkɪŋ ʌp kʊd juː seɪ ðæt əˈɡɛn/"
+    focus_phonemes: [r, ŋ, k]
+  - kind: respond
+    prompt_en: "Sorry, I didn't catch your email. Could you repeat it?"
+    prompt_vi: "Đọc lại email của bạn, dùng “dot” và “at”, đánh vần phần khó."
+    accept_patterns:
+      - "Sure it's {name} at gmail dot com {letter} as in {word}"
+      - "It's {name} dot {name} at {domain} dot com"
+      - "Let me spell it out {letter} as in {word}"
+
+vietnamese_explanation:
+  why_vi: >
+    Qua điện thoại/họp online, bạn mất khẩu hình và tín hiệu hay kém — nên phát âm chưa chuẩn càng dễ
+    bị hiểu nhầm. Ba tình huống hay gặp: đọc email/mã (dễ nhầm chữ cái), đánh vần tên, và xử lý khi
+    tiếng ngắt quãng. Có vài câu và quy ước cố định giúp bạn qua trơn tru.
+  how_vi: >
+    (1) Email: “@”=“at”, “.”=“dot”, ví dụ “lan dot tran at gmail dot com”. (2) Đánh vần chữ dễ nhầm
+    bằng “X as in [từ]”: “B as in Bravo”, “M as in Mike” (b/p, m/n, s/f hay nhầm qua điện thoại). (3)
+    Tín hiệu kém: “Sorry, you're breaking up”, “Could you say that again?”, “Can you hear me?”. Đọc
+    số/mã thì chậm và tách nhóm.
+  contrast_vi: "“my email is lantran…” (nhanh, người kia chép sai) ↔ “lan dot tran at gmail dot com, L as in London…” (rõ, chép đúng ngay)."
+
+common_mistakes:
+  - mistake: "Đọc email/mã quá nhanh, không dùng “dot”/“at”"
+    why_vi: "Nghĩ người kia tự hiểu ký hiệu."
+    fix_vi: "Nói rõ “dot” cho “.”, “at” cho “@”, đọc chậm và tách nhóm. Người nghe đang GÕ theo bạn."
+    detect: {}
+  - mistake: "Không đánh vần chữ dễ nhầm"
+    why_vi: "Nghĩ đọc chữ cái là đủ rõ."
+    fix_vi: "Qua điện thoại b/p, m/n, s/f rất dễ nhầm. Dùng “B as in Bravo”, “F as in Foxtrot” để loại bỏ mơ hồ."
+    detect: {}
+  - mistake: "Im lặng hoặc đoán khi tiếng ngắt quãng"
+    why_vi: "Ngại nói mình không nghe được."
+    fix_vi: "Nói thẳng “Sorry, you're breaking up, could you repeat that?”. Đoán mò rồi ghi sai còn tệ hơn."
+    detect: {}
+
+memory_trick_vi: >
+  Trên cuộc gọi, ba bộ công cụ: KÝ HIỆU (dot = chấm, at = @), ĐÁNH VẦN (“B as in Bravo” cho chữ dễ
+  nhầm), và CỨU HỘ (“you're breaking up, say that again?”). Người kia đang gõ theo bạn — chậm và rõ
+  quan trọng hơn nhanh.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Đọc email “lan.tran@gmail.com” qua điện thoại, nói thế nào?"
+    choices:
+      - "lan dot tran at gmail dot com"
+      - "lan chấm tran a còng gmail chấm com"
+      - "lan-tran-gmail-com"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chữ “B” dễ nhầm với “P” qua điện thoại. Làm rõ thế nào?"
+    choices: ["B as in Bravo", "Nói to hơn", "Bỏ qua"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Tiếng người kia bị ngắt quãng. Nói gì?"
+    choices:
+      - "Sorry, you're breaking up. Could you repeat that?"
+      - "(im lặng, đoán đại)"
+      - "Cúp máy luôn"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Vì sao nên đọc email/mã chậm và rõ?"
+    choices:
+      - "Người nghe đang gõ theo từng ký tự"
+      - "Để kéo dài cuộc gọi"
+      - "Không cần thiết"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "“at” trong email là dấu gì?"
+    audio_text: "It's lan at gmail dot com."
+    choices: ["Dấu @", "Dấu chấm", "Dấu gạch dưới"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: CP-F

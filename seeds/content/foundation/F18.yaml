@@ -1,0 +1,181 @@
+schema_version: 1
+id: F18
+slug: nhip-cau-ngat-nghi
+unit: U-F3
+title_vi: "Nhịp câu và ngắt nghỉ — nói cụm, đừng nói từng từ"
+title_en: "Sentence rhythm & chunking"
+phase: foundation
+topic: core
+cefr_target: b1
+order_index: 18
+est_minutes: 10
+
+objective_vi: "Nói theo CỤM ý nghĩa với chỗ ngắt hợp lý, để câu dài vẫn dễ nghe và dễ nói."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng chỗ ngắt 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F17, min_mastery: 78, kind: hard}
+  - {lesson: F12, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "chunk"
+    ipa: "/tʃʌŋk/"
+    meaning_vi: "cụm từ đi liền (một ý nhỏ)"
+    chunk: "Say it in chunks."
+    tags: [core]
+  - term: "pause"
+    ipa: "/pɔːz/"
+    meaning_vi: "chỗ ngắt/nghỉ"
+    chunk: "Pause between ideas."
+    tags: [core]
+  - term: "take a breath"
+    ipa: "/teɪk ə brɛθ/"
+    meaning_vi: "lấy hơi"
+    chunk: "Take a breath at the comma."
+    tags: [core]
+  - term: "in one breath"
+    ipa: "/ɪn wʌn brɛθ/"
+    meaning_vi: "trong một hơi"
+    chunk: "Don't say it all in one breath."
+    tags: [core]
+  - term: "slow down"
+    ipa: "/sloʊ daʊn/"
+    meaning_vi: "chậm lại"
+    chunk: "Slow down at key points."
+    tags: [core]
+  - term: "key word"
+    ipa: "/kiː wɜːrd/"
+    meaning_vi: "từ khoá (từ nhấn)"
+    chunk: "Stress the key word."
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "{chunk1} / {chunk2} / {chunk3}."
+    meaning_vi: "Nói theo ba cụm, ngắt nhẹ giữa các cụm."
+    slots:
+      chunk1: ["The server is down"]
+      chunk2: ["since this morning"]
+      chunk3: ["and users can't log in"]
+
+dialogue:
+  context_vi: "Dấu / là chỗ ngắt nhẹ. Nói từng cụm, lấy hơi ở dấu /."
+  turns:
+    - {speaker: A, en: "The server is down / since this morning / and users can't log in.", vi: "Server sập / từ sáng nay / và người dùng không đăng nhập được."}
+    - {speaker: B, en: "Okay / I'll check the logs / and get back to you.", vi: "Được / tôi sẽ xem log / rồi báo lại bạn."}
+    - {speaker: A, en: "Thanks / take your time / it's not urgent.", vi: "Cảm ơn / cứ từ từ / không gấp đâu."}
+
+listening_snippet:
+  id: LS-F18
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "The server is down since this morning, and users can't log in. I'll check the logs and get back to you."
+  transcript_vi: "Server sập từ sáng nay, và người dùng không đăng nhập được. Tôi sẽ xem log rồi báo lại."
+  questions:
+    - q_vi: "Cách nói câu dài dễ nghe nhất là gì?"
+      choices: ["Chia thành cụm, ngắt nhẹ giữa các cụm", "Nói liền một hơi", "Nói thật nhanh"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Nên lấy hơi ở đâu?"
+      choices: ["Ở chỗ ngắt giữa các cụm ý", "Giữa mỗi từ", "Không cần lấy hơi"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The server is down since this morning, and users can't log in."
+    prompt_vi: "Đọc to theo ba cụm: “The server is down / since this morning / and users can't log in.” Ngắt nhẹ ở dấu phẩy."
+    ipa: "/ðə ˈsɜːrvər ɪz daʊn sɪns ðɪs ˈmɔːrnɪŋ ænd ˈjuːzərz kænt lɒɡ ɪn/"
+    focus_phonemes: [s, d, n]
+  - kind: read_aloud
+    expected_text: "I'll check the logs and get back to you."
+    prompt_vi: "Đọc to theo hai cụm: “I'll check the logs / and get back to you.” Nhấn “check” và “back”."
+    ipa: "/aɪl tʃɛk ðə lɒɡz ænd ɡɛt bæk tuː juː/"
+    focus_phonemes: [tʃ, ɡ, b]
+  - kind: shadow
+    expected_text: "Take your time, it's not urgent."
+    prompt_vi: "Nghe rồi nhắc lại. Ngắt nhẹ ở dấu phẩy, giọng thả lỏng."
+    ipa: "/teɪk jʊr taɪm ɪts nɒt ˈɜːrdʒənt/"
+    focus_phonemes: [t, dʒ]
+  - kind: respond
+    prompt_en: "Can you explain what happened?"
+    prompt_vi: "Nói một câu dài theo cụm, ngắt nhẹ ở giữa các ý."
+    accept_patterns:
+      - "The server is down since this morning and users can't log in"
+      - "I checked the logs and found the error"
+      - "We deployed last night and something broke"
+
+vietnamese_explanation:
+  why_vi: >
+    Khi nói câu dài, người Việt hay mắc hai lỗi ngược nhau: nói từng-từ-một (rời rạc, mất nhịp) hoặc
+    nói liền một hơi không ngắt (người nghe không kịp xử lý, bản thân hụt hơi). Cách đúng ở giữa: chia
+    câu thành CỤM Ý, mỗi cụm nói liền, giữa các cụm ngắt nhẹ và lấy hơi. Đây là điều làm câu dài nghe
+    rõ ràng, tự tin.
+  how_vi: >
+    Chia câu theo Ý, không theo từ: “The server is down / since this morning / and users can't log
+    in.” Mỗi dấu / là chỗ ngắt nhẹ để lấy hơi. Trong mỗi cụm, nhấn một từ khoá. Chỗ ngắt tự nhiên:
+    trước “and/but/so”, ở dấu phẩy, giữa mệnh đề. Ngắt cho người nghe kịp, không phải vì hết hơi.
+  contrast_vi: "“The-server-is-down-since-this-morning-and…” (một hơi, hụt) ↔ “The server is down / since this morning / and…” (có nhịp, rõ)."
+
+common_mistakes:
+  - mistake: "Nói cả câu dài trong một hơi"
+    why_vi: "Sợ ngắt sẽ mất mạch, hoặc muốn nói cho nhanh xong."
+    fix_vi: "Chia thành cụm, ngắt nhẹ giữa các cụm ý. Người nghe cần khoảng nghỉ để xử lý; bạn cần khoảng nghỉ để lấy hơi."
+    detect: {}
+  - mistake: "Ngắt nghỉ giữa mỗi từ (rời rạc)"
+    why_vi: "Cố đọc rõ từng từ."
+    fix_vi: "Ngắt theo CỤM Ý, không theo từ. Trong một cụm, các từ nối liền; chỉ ngắt giữa các cụm."
+    detect: {}
+  - mistake: "Ngắt sai chỗ, giữa cụm dính liền"
+    why_vi: "Ngắt tuỳ tiện hoặc khi bí từ."
+    fix_vi: "Ngắt ở ranh giới ý: trước “and/but/so”, ở dấu phẩy. Đừng ngắt giữa “the … server” hay “check … the logs”."
+    detect: {}
+
+memory_trick_vi: >
+  Nói câu dài như bơi: lấy hơi ở CUỐI mỗi cụm (dấu /), không lấy hơi giữa chừng một sải tay. Chia
+  câu theo Ý, mỗi ý một hơi, nhấn một từ khoá. Không một-hơi-tất-cả, cũng không từng-từ-rời-rạc.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Cách nói câu dài dễ nghe nhất?"
+    choices:
+      - "Chia thành cụm ý, ngắt nhẹ giữa các cụm"
+      - "Nói liền một hơi"
+      - "Ngắt sau mỗi từ"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Nên ngắt nghỉ ở đâu?"
+    choices:
+      - "Ranh giới ý: trước and/but, ở dấu phẩy"
+      - "Giữa mọi từ"
+      - "Chỉ ở cuối câu"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Trong mỗi cụm, nên làm gì?"
+    choices: ["Nối các từ liền, nhấn một từ khoá", "Ngắt từng từ", "Nói đều tất cả"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Mục đích của chỗ ngắt là gì?"
+    choices:
+      - "Cho người nghe kịp xử lý và mình lấy hơi"
+      - "Để câu dài hơn"
+      - "Để tỏ ra trang trọng"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói chia câu thế nào?"
+    audio_text: "The server is down since this morning, and users can't log in."
+    choices: ["Theo cụm ý, có ngắt nhẹ", "Một hơi không ngắt", "Từng từ rời"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F19

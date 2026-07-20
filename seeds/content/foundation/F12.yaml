@@ -1,0 +1,176 @@
+schema_version: 1
+id: F12
+slug: dang-yeu-va-schwa
+unit: U-F3
+title_vi: "Dạng yếu và âm schwa /ə/ — bí mật của nhịp Anh"
+title_en: "Weak forms & the schwa"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 12
+est_minutes: 10
+
+objective_vi: "Đọc nhẹ các từ chức năng (a, the, to, of, and) thành /ə/, để câu có nhịp tự nhiên."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng từ được đọc nhẹ 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F11, min_mastery: 78, kind: hard}
+
+vocabulary:
+  - term: "to /tə/"
+    ipa: "/tə/"
+    meaning_vi: "“to” đọc nhẹ thành /tə/"
+    chunk: "I need to go. (need-tuh-go)"
+    tags: [core]
+  - term: "of /əv/"
+    ipa: "/əv/"
+    meaning_vi: "“of” đọc nhẹ thành /əv/"
+    chunk: "A lot of work. (lotta work)"
+    tags: [core]
+  - term: "and /ən/"
+    ipa: "/ən/"
+    meaning_vi: "“and” đọc nhẹ thành /ən/"
+    chunk: "Fish and chips. (fish-en-chips)"
+    tags: [core]
+  - term: "the /ðə/"
+    ipa: "/ðə/"
+    meaning_vi: "“the” đọc nhẹ thành /ðə/"
+    chunk: "Check the logs. (check-thuh-logs)"
+    tags: [core]
+  - term: "for /fər/"
+    ipa: "/fər/"
+    meaning_vi: "“for” đọc nhẹ thành /fər/"
+    chunk: "It's for you. (fer you)"
+    tags: [core]
+  - term: "schwa /ə/"
+    ipa: "/ə/"
+    meaning_vi: "âm “ơ” mờ, ngắn nhất — âm phổ biến nhất tiếng Anh"
+    chunk: "The schwa is everywhere."
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "I need to {verb} the {noun}."
+    meaning_vi: "Tôi cần {verb} {noun}. (“to” và “the” đọc nhẹ)"
+    slots:
+      verb: [check, fix, send]
+      noun: [logs, report, config]
+
+dialogue:
+  context_vi: "Các từ in nghiêng đọc NHẸ, lướt qua — đừng nhấn."
+  turns:
+    - {speaker: A, en: "I need to check the logs. (need-tuh, thuh)", vi: "Tôi cần kiểm tra log. (“to/the” đọc nhẹ)"}
+    - {speaker: B, en: "There's a lot of them. (lotta)", vi: "Nhiều lắm. (“of” đọc nhẹ thành “lotta”)"}
+    - {speaker: A, en: "I'll look for the error and fix it. (fer, en)", vi: "Tôi sẽ tìm lỗi và sửa. (“for/and” đọc nhẹ)"}
+
+listening_snippet:
+  id: LS-F12
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "I need to check the logs and fix the error. There's a lot of work to do."
+  transcript_vi: "Tôi cần kiểm tra log và sửa lỗi. Có nhiều việc phải làm."
+  questions:
+    - q_vi: "Trong “a lot of work”, từ “of” được đọc thế nào?"
+      choices: ["Nhẹ, lướt (“lotta”)", "To và rõ", "Bỏ hẳn"]
+      answer: 0
+      difficulty: 4
+    - q_vi: "Các từ nào được đọc nhẹ?"
+      choices: ["to, the, and, of", "check, fix, logs", "work, error"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I need to check the logs."
+    prompt_vi: "Đọc to. “to” và “the” đọc nhẹ, lướt: “need-tuh check-thuh logs”."
+    ipa: "/aɪ niːd tə tʃɛk ðə lɒɡz/"
+    focus_phonemes: [t, ð]
+  - kind: read_aloud
+    expected_text: "There's a lot of work to do."
+    prompt_vi: "Đọc to. “of” thành /əv/ gần như “lotta”. Nhấn “lot” và “work”."
+    ipa: "/ðɛrz ə lɒt əv wɜːrk tə duː/"
+    focus_phonemes: [v, t]
+  - kind: shadow
+    expected_text: "I'll look for the error and fix it."
+    prompt_vi: "Nghe rồi nhắc lại. “for/and/the” đọc nhẹ; nhấn “look, error, fix”."
+    ipa: "/aɪl lʊk fər ðiː ˈɛrər ən fɪks ɪt/"
+    focus_phonemes: [f, ð, n]
+  - kind: respond
+    prompt_en: "What do you need to do?"
+    prompt_vi: "Trả lời một câu, đọc nhẹ to/the/and, nhấn động từ và danh từ chính."
+    accept_patterns:
+      - "I need to check the logs and fix the error"
+      - "I have to send the report"
+      - "I need to look at the config"
+
+vietnamese_explanation:
+  why_vi: >
+    Đây là bí mật lớn nhất của “giọng Anh tự nhiên”. Tiếng Việt đọc mọi tiếng đều và rõ. Tiếng Anh
+    chia từ làm hai loại: từ NỘI DUNG (danh/động/tính từ — đọc to, rõ) và từ CHỨC NĂNG (a, the, to,
+    of, and, for — đọc NHẸ, mờ thành /ə/). Người Việt đọc rõ mọi từ nên câu nghe “bằng phẳng”, mất
+    nhịp. Đọc nhẹ từ chức năng là thứ tạo ra tiết tấu Anh.
+  how_vi: >
+    Nhấn từ mang NGHĨA (check, logs, fix, error), lướt nhẹ từ chức năng: to→/tə/, the→/ðə/, of→/əv/,
+    and→/ən/, for→/fər/. Âm /ə/ (schwa) là âm phổ biến nhất tiếng Anh — ngắn, mờ, thư giãn miệng.
+    Đừng cố đọc rõ “of”, “to” — càng mờ càng đúng.
+  contrast_vi: "“I NEED TO CHECK THE LOGS” (đều, máy móc) ↔ “I need-tuh check-thuh LOGS” (có nhịp, tự nhiên)."
+
+common_mistakes:
+  - mistake: "Đọc rõ và bằng nhau mọi từ, kể cả a/the/of"
+    why_vi: "Nghĩ đọc rõ mọi từ là chuẩn."
+    fix_vi: "Đọc rõ từ NGHĨA, lướt nhẹ từ chức năng. Câu tiếng Anh có đỉnh (từ nhấn) và thung lũng (từ nhẹ)."
+    detect: {}
+  - mistake: "Cố phát âm “to” thành “tu”, “of” thành “óp”"
+    why_vi: "Đọc theo chính tả."
+    fix_vi: "Trong câu, “to”→/tə/, “of”→/əv/ (gần “ơv”). Dạng mạnh chỉ dùng khi đứng một mình hoặc nhấn mạnh."
+    detect: {}
+  - mistake: "Nhấn nhầm vào từ chức năng"
+    why_vi: "Chưa phân biệt từ nghĩa và từ chức năng."
+    fix_vi: "Nhấn danh/động/tính từ. Nếu nhấn “the”, “to”, câu nghe rất lạ. Hỏi: từ này có mang thông tin không?"
+    detect: {}
+
+memory_trick_vi: >
+  Câu tiếng Anh như nhạc: từ NGHĨA là nốt nhấn (to, rõ), từ CHỨC NĂNG là nốt lướt (a, the, to, of —
+  mờ thành “ơ”). Âm “ơ” (schwa) là nốt đệm phổ biến nhất. Đọc đều mọi nốt là mất nhạc.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Trong câu, “to” thường đọc thế nào?"
+    choices: ["Nhẹ, thành /tə/", "To và rõ “tu”", "Bỏ hẳn"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Từ nào nên đọc NHẸ (không nhấn)?"
+    choices: ["the, of, and, to", "check, logs, fix", "error, report"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Âm schwa /ə/ là gì?"
+    choices:
+      - "Âm “ơ” mờ, ngắn — phổ biến nhất tiếng Anh"
+      - "Âm “a” dài"
+      - "Một phụ âm"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao đọc nhẹ từ chức năng lại quan trọng?"
+    choices:
+      - "Nó tạo nhịp điệu tự nhiên của tiếng Anh"
+      - "Để nói nhanh hơn"
+      - "Để tiết kiệm hơi"
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "“of” trong “a lot of work” đọc thế nào?"
+    audio_text: "There's a lot of work to do."
+    choices: ["Nhẹ, lướt (“lotta”)", "To và rõ", "Bỏ hẳn"]
+    answer: 0
+    difficulty: 4
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F13

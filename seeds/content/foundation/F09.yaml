@@ -1,0 +1,173 @@
+schema_version: 1
+id: F09
+slug: trong-am-tu-dai
+unit: U-F3
+title_vi: "Trọng âm từ nhiều âm tiết"
+title_en: "Word stress in longer words"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 9
+est_minutes: 10
+
+objective_vi: "Đặt trọng âm đúng ở các từ dài hay dùng trong công việc, để người nghe hiểu ngay."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng vị trí trọng âm 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F08, min_mastery: 78, kind: hard}
+  - {lesson: F03, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "deVELopment"
+    ipa: "/dɪˈvɛləpmənt/"
+    meaning_vi: "sự phát triển (nhấn âm 2)"
+    chunk: "The development is on track."
+    tags: [it_english]
+  - term: "conFIGuration"
+    ipa: "/kənˌfɪɡjəˈreɪʃən/"
+    meaning_vi: "cấu hình (nhấn RA)"
+    chunk: "Check the configuration."
+    tags: [it_english]
+  - term: "PROBlem"
+    ipa: "/ˈprɒbləm/"
+    meaning_vi: "vấn đề (nhấn âm đầu)"
+    chunk: "We have a problem."
+    tags: [core]
+  - term: "aVAILable"
+    ipa: "/əˈveɪləbəl/"
+    meaning_vi: "có sẵn (nhấn âm 2)"
+    chunk: "The report is available."
+    tags: [office]
+  - term: "reSPONsible"
+    ipa: "/rɪˈspɒnsəbəl/"
+    meaning_vi: "chịu trách nhiệm (nhấn âm 2)"
+    chunk: "Who is responsible for this?"
+    tags: [office]
+  - term: "TEMporary"
+    ipa: "/ˈtɛmpərɛri/"
+    meaning_vi: "tạm thời (nhấn âm đầu)"
+    chunk: "It's a temporary fix."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "The {word} is ready."
+    meaning_vi: "{word} đã sẵn sàng."
+    slots:
+      word: [development, configuration, report]
+
+dialogue:
+  context_vi: "Hai đồng nghiệp nói về tiến độ, chú ý trọng âm các từ dài."
+  turns:
+    - {speaker: A, en: "Is the development on track?", vi: "Phần phát triển có đúng tiến độ không?"}
+    - {speaker: B, en: "Yes, but the configuration has a problem.", vi: "Có, nhưng cấu hình đang có vấn đề."}
+    - {speaker: A, en: "Who's responsible for it?", vi: "Ai chịu trách nhiệm việc đó?"}
+    - {speaker: B, en: "Minh. He made a temporary fix; a full one is available tomorrow.", vi: "Minh. Anh ấy vá tạm; bản đầy đủ có vào ngày mai."}
+
+listening_snippet:
+  id: LS-F09
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "The development is on track, but the configuration has a problem. It's a temporary fix and a full one is available tomorrow."
+  transcript_vi: "Phần phát triển đúng tiến độ, nhưng cấu hình có vấn đề. Đây là bản vá tạm và bản đầy đủ có vào mai."
+  questions:
+    - q_vi: "Cái gì đang có vấn đề?"
+      choices: ["Cấu hình (configuration)", "Phát triển", "Báo cáo"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Bản vá hiện tại là gì?"
+      choices: ["Tạm thời", "Đầy đủ", "Không có"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The development is on track."
+    prompt_vi: "Đọc to. deVELopment — nhấn âm thứ hai, không nhấn âm đầu."
+    ipa: "/ðə dɪˈvɛləpmənt ɪz ɒn træk/"
+    focus_phonemes: [d, v, t]
+  - kind: read_aloud
+    expected_text: "Check the configuration."
+    prompt_vi: "Đọc to. configuRAtion — trọng âm rơi vào “RA” gần cuối."
+    ipa: "/tʃɛk ðə kənˌfɪɡjəˈreɪʃən/"
+    focus_phonemes: [k, ʃ, r]
+  - kind: shadow
+    expected_text: "Who is responsible for this?"
+    prompt_vi: "Nghe rồi nhắc lại. reSPONsible — nhấn âm hai."
+    ipa: "/huː ɪz rɪˈspɒnsəbəl fɔr ðɪs/"
+    focus_phonemes: [r, s, b]
+  - kind: respond
+    prompt_en: "What's the status of the project?"
+    prompt_vi: "Trả lời có dùng “development”, “configuration” — đặt trọng âm đúng."
+    accept_patterns:
+      - "The development is on track but the configuration has a problem"
+      - "Development is fine configuration needs work"
+      - "It's a temporary fix a full one is available tomorrow"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt là ngôn ngữ đơn âm — mỗi tiếng một trọng lượng đều nhau. Tiếng Anh thì một từ dài chỉ
+    có MỘT âm được nhấn mạnh, phần còn lại nhẹ đi. Đặt sai trọng âm là lý do số một khiến người bản
+    xứ “không hiểu” dù bạn đọc đúng từng chữ cái. “deVELopment” nhấn sai thành “DEvelopment” nghe lạ tai ngay.
+  how_vi: >
+    Với từ dài, học trọng âm CÙNG LÚC với từ, đừng học riêng. Quy tắc mềm: nhiều danh từ -tion/-sion
+    nhấn ngay trước đuôi (configuRAtion, informAtion); nhiều từ -ible/-able/-ity nhấn xa đuôi
+    (reSPONsible, aVAILable). Nhưng cách chắc nhất: nghe mẫu và lặp lại, đánh dấu âm nhấn.
+  contrast_vi: "Đọc đều từng âm như tiếng Việt ↔ nhấn MỘT âm, nhẹ phần còn lại. Chỉ cái sau người bản xứ nghe ra."
+
+common_mistakes:
+  - mistake: "Đọc đều mọi âm tiết như tiếng Việt"
+    why_vi: "Tiếng Việt mỗi tiếng nặng bằng nhau, nên phản xạ là đọc đều."
+    fix_vi: "Chọn MỘT âm để nhấn to và dài hơn, các âm còn lại đọc nhẹ và nhanh. Sự chênh lệch đó chính là “giọng Anh”."
+    detect: {}
+  - mistake: "Nhấn sai âm ở từ chuyên môn: DEvelopment, conFIGuration"
+    why_vi: "Đoán trọng âm từ chính tả."
+    fix_vi: "deVELopment (âm 2), configuRAtion (âm RA). Nghe mẫu cho từng từ dài hay dùng, đừng đoán."
+    detect: {}
+  - mistake: "Nhấn tất cả các âm để cho “rõ”"
+    why_vi: "Nghĩ nhấn nhiều là rõ hơn."
+    fix_vi: "Nhấn nhiều âm khiến từ mất nhịp và khó hiểu hơn. Một từ chỉ một đỉnh nhấn."
+    detect: {}
+
+memory_trick_vi: >
+  Mỗi từ dài là một quả núi: chỉ một ĐỈNH (âm nhấn), còn lại là sườn thoải. Đọc đều là san phẳng núi
+  — người nghe mất mốc để nhận ra từ. Tìm đỉnh, nhấn nó, thả phần còn lại.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“development” nhấn âm nào?"
+    choices: ["de-VEL-op-ment (âm 2)", "DE-vel-op-ment (âm 1)", "de-vel-OP-ment (âm 3)"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“configuration” nhấn âm nào?"
+    choices: ["con-fig-u-RA-tion", "CON-fig-u-ra-tion", "con-FIG-u-ra-tion"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao đặt sai trọng âm gây khó hiểu?"
+    choices:
+      - "Người nghe mất mốc để nhận ra từ"
+      - "Vì sai ngữ pháp"
+      - "Vì thiếu từ vựng"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“responsible” nhấn ở đâu?"
+    choices: ["re-SPON-si-ble", "RE-spon-si-ble", "re-spon-SI-ble"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Cái gì có vấn đề?"
+    audio_text: "The configuration has a problem."
+    choices: ["Cấu hình", "Phát triển", "Mạng"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F10

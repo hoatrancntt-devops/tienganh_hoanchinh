@@ -1,0 +1,177 @@
+schema_version: 1
+id: F10
+slug: ngu-dieu-cau-hoi
+unit: U-F3
+title_vi: "Ngữ điệu câu hỏi — lên hay xuống"
+title_en: "Question intonation"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 10
+est_minutes: 10
+
+objective_vi: "Dùng đúng ngữ điệu: câu hỏi yes/no lên giọng cuối, câu hỏi wh- xuống giọng cuối."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng hướng giọng 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F09, min_mastery: 78, kind: hard}
+
+vocabulary:
+  - term: "Are you free?"
+    ipa: "/ɑr juː friː ↗/"
+    meaning_vi: "Bạn rảnh không? (lên giọng)"
+    chunk: "Are you free? (rising)"
+    tags: [office]
+  - term: "What time?"
+    ipa: "/wɒt taɪm ↘/"
+    meaning_vi: "Mấy giờ? (xuống giọng)"
+    chunk: "What time is the meeting? (falling)"
+    tags: [office]
+  - term: "rising tone"
+    ipa: "/ˈraɪzɪŋ toʊn/"
+    meaning_vi: "giọng lên"
+    chunk: "Yes/no questions use a rising tone."
+    tags: [core]
+  - term: "falling tone"
+    ipa: "/ˈfɔːlɪŋ toʊn/"
+    meaning_vi: "giọng xuống"
+    chunk: "Wh- questions use a falling tone."
+    tags: [core]
+  - term: "Did it work?"
+    ipa: "/dɪd ɪt wɜːrk ↗/"
+    meaning_vi: "Nó chạy được không? (lên)"
+    chunk: "Did it work? (rising)"
+    tags: [it_english]
+  - term: "Who fixed it?"
+    ipa: "/huː fɪkst ɪt ↘/"
+    meaning_vi: "Ai sửa vậy? (xuống)"
+    chunk: "Who fixed it? (falling)"
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Are you {adj}? (rising)"
+    meaning_vi: "Bạn có {adj} không? (lên giọng cuối)"
+    slots:
+      adj: [free, ready, sure]
+  - pattern: "What {noun}? (falling)"
+    meaning_vi: "{noun} nào/gì? (xuống giọng cuối)"
+    slots:
+      noun: [time, "does it do", happened]
+
+dialogue:
+  context_vi: "Chú ý mũi tên: ↗ lên giọng, ↘ xuống giọng."
+  turns:
+    - {speaker: A, en: "Are you free now? (↗)", vi: "Giờ bạn rảnh không? (lên giọng)"}
+    - {speaker: B, en: "Yes. What do you need? (↘)", vi: "Rảnh. Bạn cần gì? (xuống giọng)"}
+    - {speaker: A, en: "Did the deploy finish? (↗)", vi: "Deploy xong chưa? (lên giọng)"}
+    - {speaker: B, en: "Not yet. Who is handling it? (↘)", vi: "Chưa. Ai đang lo việc đó? (xuống giọng)"}
+
+listening_snippet:
+  id: LS-F10
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Are you free now? Did the deploy finish? What time is the meeting? Who is handling it?"
+  transcript_vi: "Giờ bạn rảnh không? Deploy xong chưa? Cuộc họp mấy giờ? Ai đang lo việc đó?"
+  questions:
+    - q_vi: "Câu “Are you free now?” nên lên hay xuống giọng cuối?"
+      choices: ["Lên giọng", "Xuống giọng", "Không đổi"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Câu “What time is the meeting?” nên lên hay xuống?"
+      choices: ["Xuống giọng", "Lên giọng", "Không đổi"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Are you free now?"
+    prompt_vi: "Đọc to và LÊN giọng ở cuối — đây là câu hỏi yes/no."
+    ipa: "/ɑr juː friː naʊ ↗/"
+    focus_phonemes: [r, f]
+  - kind: read_aloud
+    expected_text: "What time is the meeting?"
+    prompt_vi: "Đọc to và XUỐNG giọng ở cuối — câu hỏi wh- (what/who/when…)."
+    ipa: "/wɒt taɪm ɪz ðə ˈmiːtɪŋ ↘/"
+    focus_phonemes: [w, t, ŋ]
+  - kind: shadow
+    expected_text: "Did it work?"
+    prompt_vi: "Nghe rồi nhắc lại. Yes/no → lên giọng."
+    ipa: "/dɪd ɪt wɜːrk ↗/"
+    focus_phonemes: [d, w, k]
+  - kind: respond
+    prompt_en: "I finished the report."
+    prompt_vi: "Hỏi lại một câu yes/no (lên giọng) và một câu wh- (xuống giọng)."
+    accept_patterns:
+      - "Did you send it Who is it for"
+      - "Is it ready What time do you need it"
+      - "Are you sure When is it due"
+
+vietnamese_explanation:
+  why_vi: >
+    Trong tiếng Việt, câu hỏi đánh dấu bằng TỪ (“không”, “à”, “hả”), giọng không nhất thiết đổi. Trong
+    tiếng Anh, HƯỚNG GIỌNG mang nghĩa: câu hỏi yes/no lên giọng cuối, câu hỏi wh- (what/who/when/where/
+    why/how) xuống giọng cuối. Người Việt hay giữ giọng phẳng — khiến câu hỏi nghe như câu kể, người
+    nghe không biết bạn đang hỏi.
+  how_vi: >
+    Hai quy tắc: (1) Câu trả lời được bằng YES/NO → LÊN giọng cuối (“Are you free? ↗”); (2) Câu bắt
+    đầu bằng WH- → XUỐNG giọng cuối (“What time? ↘”). Nghe như ngược trực giác nhưng đúng: wh- đã có
+    từ hỏi rồi nên giọng đi xuống, chắc chắn.
+  contrast_vi: "Giọng phẳng “Are you free.” (nghe như ra lệnh/kể) ↔ “Are you free? ↗” (rõ ràng là câu hỏi)."
+
+common_mistakes:
+  - mistake: "Giữ giọng phẳng ở câu hỏi yes/no"
+    why_vi: "Tiếng Việt không đổi giọng để hỏi, dựa vào từ “không/à”."
+    fix_vi: "Yes/no thì cuối câu LÊN giọng. Không lên giọng, người nghe tưởng bạn đang kể, không hỏi."
+    detect: {}
+  - mistake: "Lên giọng ở câu hỏi wh-"
+    why_vi: "Nghĩ mọi câu hỏi đều lên giọng."
+    fix_vi: "Wh- (what/who/when…) XUỐNG giọng cuối. Từ hỏi đã báo là câu hỏi rồi, giọng đi xuống nghe tự nhiên và tự tin."
+    detect: {}
+  - mistake: "Lên giọng giữa câu thay vì cuối câu"
+    why_vi: "Chưa quen điều khiển giọng."
+    fix_vi: "Giữ giọng đều, chỉ thay đổi ở TỪ CUỐI. Lên/xuống ở đúng âm cuối cùng."
+    detect: {}
+
+memory_trick_vi: >
+  Hai mũi tên: YES/NO đi LÊN (↗ vì đang chờ câu trả lời mở), WH- đi XUỐNG (↘ vì đã có từ hỏi, nói
+  chắc nịch). Nhớ: “free? ↗” nhưng “what time? ↘”.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“Did it work?” nên?"
+    choices: ["Lên giọng cuối", "Xuống giọng cuối", "Giọng phẳng"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“Who fixed it?” nên?"
+    choices: ["Xuống giọng cuối", "Lên giọng cuối", "Giọng phẳng"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Câu hỏi loại nào LÊN giọng?"
+    choices: ["Yes/no (Are you…? Did you…?)", "Wh- (What…? Who…?)", "Cả hai"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Vì sao câu wh- xuống giọng nghe tự nhiên?"
+    choices:
+      - "Từ hỏi đã báo là câu hỏi, giọng đi xuống nghe chắc chắn"
+      - "Vì wh- luôn ngắn"
+      - "Vì cho lịch sự hơn"
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "“Are you free now?” là loại câu hỏi gì?"
+    audio_text: "Are you free now?"
+    choices: ["Yes/no — lên giọng", "Wh- — xuống giọng", "Câu kể"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F11

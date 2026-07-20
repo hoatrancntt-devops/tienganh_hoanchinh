@@ -180,4 +180,4 @@ unlock_condition:
   challenge_threshold: 85
 
 recommended_next:
-  default: CP-F
+  default: F09

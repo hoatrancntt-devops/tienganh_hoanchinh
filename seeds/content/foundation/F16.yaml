@@ -1,0 +1,174 @@
+schema_version: 1
+id: F16
+slug: am-l-n-r
+unit: U-F2
+title_vi: "Âm /l/, /n/ và /r/ — và âm cuối /l/"
+title_en: "The /l/, /n/ and /r/ sounds"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 16
+est_minutes: 10
+
+objective_vi: "Phát âm rõ /l/ và /n/ (nhất là ở cuối từ), và /r/ cong lưỡi kiểu Anh-Mỹ."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe phân biệt đúng 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F15, min_mastery: 78, kind: hard}
+  - {lesson: F02, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "email /ˈiːmeɪl/"
+    ipa: "/ˈiːmeɪl/"
+    meaning_vi: "email — âm cuối /l/ (lưỡi chạm sau răng trên)"
+    chunk: "Send an email."
+    tags: [office]
+  - term: "call /kɔːl/"
+    ipa: "/kɔːl/"
+    meaning_vi: "cuộc gọi — âm cuối /l/"
+    chunk: "Join the call."
+    tags: [office]
+  - term: "run /rʌn/"
+    ipa: "/rʌn/"
+    meaning_vi: "chạy — /r/ đầu, /n/ cuối"
+    chunk: "Run the script."
+    tags: [it_english]
+  - term: "router /ˈraʊtər/"
+    ipa: "/ˈraʊtər/"
+    meaning_vi: "bộ định tuyến — /r/ cong lưỡi"
+    chunk: "Restart the router."
+    tags: [it_english]
+  - term: "online /ˈɒnlaɪn/"
+    ipa: "/ˈɒnlaɪn/"
+    meaning_vi: "trực tuyến — /n/ rồi /l/"
+    chunk: "The server is online."
+    tags: [it_english]
+  - term: "reload /riːˈloʊd/"
+    ipa: "/riːˈloʊd/"
+    meaning_vi: "tải lại — /r/ đầu, /l/ giữa"
+    chunk: "Reload the page."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Please reload and run it again."
+    meaning_vi: "Tải lại rồi chạy lại. (chú ý /r/, /l/, /n/)"
+    slots: {}
+
+dialogue:
+  context_vi: "Các âm /l/ /n/ /r/ dày đặc trong câu lệnh IT."
+  turns:
+    - {speaker: A, en: "The router is offline. Please reload the page.", vi: "Router mất kết nối. Tải lại trang giúp. (/r/, /l/, /n/)"}
+    - {speaker: B, en: "I'll run the script and call you.", vi: "Tôi sẽ chạy script rồi gọi bạn. (/r/, /n/, /l/)"}
+    - {speaker: A, en: "It's online now. Send an email to confirm.", vi: "Giờ online rồi. Gửi email xác nhận. (/n/, /l/)"}
+
+listening_snippet:
+  id: LS-F16
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "The router is offline. Please reload the page. I'll run the script and call you. It's online now."
+  transcript_vi: "Router mất kết nối. Tải lại trang giúp. Tôi sẽ chạy script rồi gọi bạn. Giờ online rồi."
+  questions:
+    - q_vi: "Từ “call” kết thúc bằng âm gì?"
+      choices: ["/l/ (lưỡi chạm sau răng trên)", "/n/", "Không có âm cuối"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói bảo làm gì với trang?"
+      choices: ["Tải lại (reload)", "Xoá", "In ra"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Please reload the page."
+    prompt_vi: "Đọc to. /l/ ở “reload”: đầu lưỡi chạm sau răng trên. Đừng bỏ âm cuối /d/."
+    ipa: "/pliːz riːˈloʊd ðə peɪdʒ/"
+    focus_phonemes: [l, r, d]
+  - kind: read_aloud
+    expected_text: "Join the call."
+    prompt_vi: "Đọc to. Âm cuối /l/ ở “call” — người Việt hay bỏ. Giữ lưỡi chạm răng trên."
+    ipa: "/dʒɔɪn ðə kɔːl/"
+    focus_phonemes: [dʒ, l]
+  - kind: shadow
+    expected_text: "Restart the router and run it again."
+    prompt_vi: "Nghe rồi nhắc lại. /r/ (router, run): cong lưỡi, không rung như tiếng Việt “r”."
+    ipa: "/riːˈstɑːrt ðə ˈraʊtər ænd rʌn ɪt əˈɡɛn/"
+    focus_phonemes: [r, t, n]
+  - kind: respond
+    prompt_en: "The page won't load. What do I do?"
+    prompt_vi: "Bảo họ tải lại và chạy lại — giữ rõ /l/, /r/, /n/."
+    accept_patterns:
+      - "Please reload the page and run it again"
+      - "Reload the page and call me if it fails"
+      - "Restart the router and reload"
+
+vietnamese_explanation:
+  why_vi: >
+    Hai vấn đề chính: (1) âm CUỐI /l/ và /n/ — người Việt hay nuốt (“email” thành “emay”, “call”
+    thành “co”); (2) âm /r/ — tiếng Việt “r” khác hẳn /r/ Anh-Mỹ (cong lưỡi). Bỏ âm cuối /l/,/n/ và
+    đọc /r/ kiểu Việt là hai dấu hiệu “giọng Việt” rõ nhất, và đôi khi làm sai nghĩa.
+  how_vi: >
+    /l/: đầu lưỡi chạm ngay sau răng cửa TRÊN, giữ một nhịp — đặc biệt ở CUỐI từ (call, email, online).
+    /n/: lưỡi chạm cùng chỗ nhưng hơi ra mũi. /r/ (Anh-Mỹ): cong đầu lưỡi lên, KHÔNG rung/rung ít, môi
+    hơi tròn — khác “r” rung của tiếng Việt. Cố tình kéo dài âm cuối lúc luyện.
+  contrast_vi: "“email” đủ /l/ cuối ↔ “emay” (nuốt /l/). “router” /r/ cong lưỡi ↔ “r” rung kiểu Việt. Âm cuối và /r/ là hai mốc giọng."
+
+common_mistakes:
+  - mistake: "Nuốt âm cuối /l/ và /n/ (“call”→“co”, “run”→“rơ”)"
+    why_vi: "Tiếng Việt ít có phụ âm cuối /l/; âm cuối hay bị bỏ."
+    fix_vi: "Giữ lưỡi chạm sau răng trên ở cuối từ có /l/. Với /n/ cuối, giữ lưỡi chạm và cho hơi ra mũi. Kéo dài để tập."
+    detect: {}
+  - mistake: "Đọc /r/ Anh-Mỹ bằng “r” rung của tiếng Việt"
+    why_vi: "Thay bằng âm quen."
+    fix_vi: "/r/ Anh-Mỹ: cong đầu lưỡi lên gần vòm miệng nhưng KHÔNG chạm, không rung mạnh. Môi hơi tròn. Rất khác “r” Việt."
+    detect: {}
+  - mistake: "Lẫn /l/ và /n/ (“light”/“night”)"
+    why_vi: "Một số vùng phát âm gần nhau."
+    fix_vi: "/l/: hơi thoát hai BÊN lưỡi, không qua mũi. /n/: hơi qua MŨI. Bịt mũi thử: /n/ sẽ nghẹt, /l/ thì không."
+    detect: {}
+
+memory_trick_vi: >
+  Âm cuối /l/,/n/ đừng nuốt — giữ lưỡi chạm sau răng trên thêm một nhịp (“ca-LL”, “ru-N”). Âm /r/
+  Anh-Mỹ là CONG lưỡi, không rung như “r” Việt. Bịt mũi để tách /l/ (thông) và /n/ (nghẹt).
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Âm cuối /l/ trong “call” tạo thế nào?"
+    choices:
+      - "Đầu lưỡi chạm sau răng trên, giữ một nhịp"
+      - "Bỏ qua, không cần"
+      - "Chu môi tròn"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "/r/ Anh-Mỹ khác “r” tiếng Việt thế nào?"
+    choices:
+      - "Cong lưỡi, không rung mạnh"
+      - "Rung mạnh hơn"
+      - "Giống hệt"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Cách tách /l/ và /n/ khi nói?"
+    choices: ["Bịt mũi: /n/ nghẹt, /l/ thông", "Nói to hơn", "Không tách được"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Lỗi “giọng Việt” phổ biến nhất ở âm cuối là?"
+    choices: ["Nuốt /l/, /n/ cuối từ", "Nhấn quá mạnh", "Thêm nguyên âm"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói bảo làm gì với trang?"
+    audio_text: "Please reload the page."
+    choices: ["Tải lại (reload)", "Đóng lại", "In ra"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F17

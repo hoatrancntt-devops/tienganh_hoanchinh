@@ -1,0 +1,175 @@
+schema_version: 1
+id: F15
+slug: am-v-f-w
+unit: U-F1
+title_vi: "Âm /v/, /f/ và /w/ — ba âm hay lẫn"
+title_en: "The /v/, /f/ and /w/ sounds"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 15
+est_minutes: 10
+
+objective_vi: "Phát âm đúng /v/ (răng chạm môi, rung), /f/ (răng chạm môi, không rung), /w/ (chu môi tròn)."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe phân biệt đúng 4/5 câu quiz."
+
+prerequisites:
+  - {lesson: F14, min_mastery: 78, kind: hard}
+
+vocabulary:
+  - term: "very /ˈvɛri/"
+    ipa: "/ˈvɛri/"
+    meaning_vi: "rất — âm /v/ (răng chạm môi dưới, RUNG)"
+    chunk: "very good"
+    tags: [core]
+  - term: "file /faɪl/"
+    ipa: "/faɪl/"
+    meaning_vi: "tệp — âm /f/ (răng chạm môi dưới, KHÔNG rung)"
+    chunk: "Open the file."
+    tags: [it_english]
+  - term: "we /wiː/"
+    ipa: "/wiː/"
+    meaning_vi: "chúng tôi — âm /w/ (CHU môi tròn, không chạm răng)"
+    chunk: "We can fix it."
+    tags: [core]
+  - term: "version /ˈvɜːrʒən/"
+    ipa: "/ˈvɜːrʒən/"
+    meaning_vi: "phiên bản — bắt đầu bằng /v/"
+    chunk: "the new version"
+    tags: [it_english]
+  - term: "works /wɜːrks/"
+    ipa: "/wɜːrks/"
+    meaning_vi: "hoạt động — bắt đầu bằng /w/"
+    chunk: "It works now."
+    tags: [it_english]
+  - term: "fix /fɪks/"
+    ipa: "/fɪks/"
+    meaning_vi: "sửa — bắt đầu bằng /f/"
+    chunk: "I'll fix it."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "The {v_word} works fine."
+    meaning_vi: "{v_word} chạy tốt. (chú ý /v/, /w/, /f/)"
+    slots:
+      v_word: [version, VPN, service]
+
+dialogue:
+  context_vi: "Ba âm /v/ /f/ /w/ xuất hiện dày trong hội thoại IT."
+  turns:
+    - {speaker: A, en: "Which version has the fix?", vi: "Bản nào có bản vá? (/v/, /f/)"}
+    - {speaker: B, en: "Version five. We verified it works.", vi: "Bản năm. Chúng tôi đã kiểm chứng nó chạy. (/v/, /w/)"}
+    - {speaker: A, en: "Great, the VPN works fine now.", vi: "Tốt, VPN chạy ổn rồi. (/w/, /f/)"}
+
+listening_snippet:
+  id: LS-F15
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Which version has the fix? We verified it works. The VPN works fine now."
+  transcript_vi: "Bản nào có bản vá? Chúng tôi đã kiểm chứng nó chạy. VPN giờ chạy ổn."
+  questions:
+    - q_vi: "Từ “version” bắt đầu bằng âm gì?"
+      choices: ["/v/ (răng chạm môi, rung)", "/w/ (chu môi)", "/f/ (không rung)"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Từ “works” bắt đầu bằng âm gì?"
+      choices: ["/w/ (chu môi tròn)", "/v/", "/f/"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Which version has the fix?"
+    prompt_vi: "Đọc to. /v/ (version): răng trên chạm môi dưới và RUNG. /f/ (fix): giống vậy nhưng KHÔNG rung."
+    ipa: "/wɪtʃ ˈvɜːrʒən hæz ðə fɪks/"
+    focus_phonemes: [v, f, w]
+  - kind: read_aloud
+    expected_text: "We verified it works."
+    prompt_vi: "Đọc to. /w/ (we, works): CHU môi tròn, KHÔNG chạm răng. /v/ (verified): răng chạm môi."
+    ipa: "/wiː ˈvɛrɪfaɪd ɪt wɜːrks/"
+    focus_phonemes: [w, v]
+  - kind: shadow
+    expected_text: "The VPN works fine."
+    prompt_vi: "Nghe rồi nhắc lại. VPN: /v/ ở “V”. works: /w/. fine: /f/."
+    ipa: "/ðə viː piː ɛn wɜːrks faɪn/"
+    focus_phonemes: [v, w, f]
+  - kind: respond
+    prompt_en: "Which version fixed the bug?"
+    prompt_vi: "Trả lời có “version” và “works” — /v/ rung, /w/ chu môi."
+    accept_patterns:
+      - "Version {number} we verified it works"
+      - "The new version works fine"
+      - "Version {number} has the fix"
+
+vietnamese_explanation:
+  why_vi: >
+    Ba âm này hay lẫn vì tiếng Việt không có đủ chúng. Người Việt hay đọc /v/ thành “vờ” nặng, /w/
+    thành /v/, và /f/ thành “ph”. Kết quả: “very” nghe như “wery”, “works” như “vorks”. Ba âm khác
+    nhau ở MIỆNG: /v/ và /f/ dùng RĂNG + môi; /w/ dùng MÔI TRÒN, không đụng răng.
+  how_vi: >
+    /v/: răng trên chạm nhẹ môi dưới, bật hơi CÓ rung (đặt tay lên cổ thấy rung). /f/: y hệt nhưng
+    KHÔNG rung. /w/: chu môi tròn như huýt sáo, KHÔNG cho răng chạm môi. Mẹo: /v/,/f/ = “cắn môi”;
+    /w/ = “tròn môi”. Phân biệt răng-chạm-môi hay không là chìa khoá.
+  contrast_vi: "“vest” (/v/, cắn môi) ↔ “west” (/w/, tròn môi). “fan” (/f/, không rung) ↔ “van” (/v/, rung). Vị trí miệng quyết định."
+
+common_mistakes:
+  - mistake: "Đọc /w/ thành /v/ (“works” thành “vorks”)"
+    why_vi: "Đưa răng chạm môi ở âm /w/ — thói quen từ /v/."
+    fix_vi: "/w/ KHÔNG cho răng chạm môi. Chu môi tròn như huýt sáo rồi bật ra. Nếu răng chạm môi, bạn đang đọc /v/."
+    detect: {}
+  - mistake: "Không rung khi đọc /v/ (“very” thành “ferry”)"
+    why_vi: "Quên bật rung, thành ra /f/."
+    fix_vi: "Đặt tay lên cổ: /v/ phải thấy RUNG, /f/ thì không. Cùng vị trí răng-môi, khác ở rung hay không."
+    detect: {}
+  - mistake: "Đọc /f/ thành “ph” nặng của tiếng Việt"
+    why_vi: "Gần giống nên thay bằng âm quen."
+    fix_vi: "/f/ là hơi thoát ra giữa răng và môi, nhẹ và dài hơn “ph”. Đừng thêm âm bật mạnh."
+    detect: {}
+
+memory_trick_vi: >
+  Hai nhóm miệng: CẮN MÔI cho /v/ và /f/ (răng trên chạm môi dưới — /v/ rung, /f/ không); TRÒN MÔI
+  cho /w/ (như huýt sáo, không đụng răng). Nhớ: “van” cắn môi + rung, “fan” cắn môi + không rung,
+  “when” tròn môi.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Âm /w/ (trong “works”) tạo thế nào?"
+    choices:
+      - "Chu môi tròn, không cho răng chạm môi"
+      - "Răng chạm môi dưới"
+      - "Lưỡi chạm răng"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "/v/ và /f/ khác nhau ở đâu?"
+    choices:
+      - "/v/ có rung, /f/ không rung"
+      - "Vị trí lưỡi"
+      - "Độ dài"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“west” và “vest” khác nhau ở?"
+    choices: ["/w/ tròn môi vs /v/ cắn môi", "Trọng âm", "Số âm tiết"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Đọc “version” đúng bắt đầu bằng?"
+    choices: ["/v/ cắn môi + rung", "/w/ tròn môi", "/b/"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Từ đầu tiên bắt đầu bằng âm gì?"
+    audio_text: "We verified it works."
+    choices: ["/w/ (we)", "/v/", "/f/"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F16

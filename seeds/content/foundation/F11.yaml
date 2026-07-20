@@ -1,0 +1,179 @@
+schema_version: 1
+id: F11
+slug: noi-am
+unit: U-F3
+title_vi: "Nối âm — vì sao người bản xứ nói “dính” vào nhau"
+title_en: "Linking / connected speech"
+phase: foundation
+topic: core
+cefr_target: a2
+order_index: 11
+est_minutes: 10
+
+objective_vi: "Nối phụ âm cuối với nguyên âm đầu của từ sau, để nói mượt và NGHE ra khi người khác nối."
+objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nhận ra cụm nối 4/5 câu quiz nghe."
+
+prerequisites:
+  - {lesson: F10, min_mastery: 78, kind: hard}
+  - {lesson: F02, min_mastery: 70, kind: soft}
+
+vocabulary:
+  - term: "an email"
+    ipa: "/ə ˈniːmeɪl/"
+    meaning_vi: "một email (nối n→e: “a-nemail”)"
+    chunk: "I got an email."
+    tags: [office]
+  - term: "check it"
+    ipa: "/ˈtʃɛkɪt/"
+    meaning_vi: "kiểm tra nó (nối k→i: “che-kit”)"
+    chunk: "Let me check it."
+    tags: [it_english]
+  - term: "pick up"
+    ipa: "/ˈpɪkʌp/"
+    meaning_vi: "nhấc lên/đón (nối k→u: “pi-kup”)"
+    chunk: "Pick up the phone."
+    tags: [core]
+  - term: "turn it off"
+    ipa: "/ˈtɜːrnɪˈtɒf/"
+    meaning_vi: "tắt nó đi (nối liền cả ba)"
+    chunk: "Turn it off and on."
+    tags: [it_english]
+  - term: "log in"
+    ipa: "/ˈlɒɡɪn/"
+    meaning_vi: "đăng nhập (nối g→i: “lo-gin”)"
+    chunk: "I can't log in."
+    tags: [it_english]
+  - term: "hold on"
+    ipa: "/ˈhoʊldɒn/"
+    meaning_vi: "chờ chút (nối d→o: “hol-don”)"
+    chunk: "Hold on a second."
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "Let me check it."
+    meaning_vi: "Để tôi kiểm tra nó. (nối “che-kit”)"
+    slots: {}
+  - pattern: "Turn it off and on again."
+    meaning_vi: "Tắt rồi bật lại. (nối liền “tur-ni-toff”)"
+    slots: {}
+
+dialogue:
+  context_vi: "Các cụm nối âm rất hay gặp khi hỗ trợ kỹ thuật (đọc liền, đừng tách)."
+  turns:
+    - {speaker: A, en: "I can't log in. (lo-gin)", vi: "Tôi không đăng nhập được. (nối “lo-gin”)"}
+    - {speaker: B, en: "Hold on, let me check it. (hol-don, che-kit)", vi: "Chờ chút, để tôi kiểm tra. (nối “hol-don”, “che-kit”)"}
+    - {speaker: B, en: "Try to turn it off and on again. (tur-ni-toff)", vi: "Thử tắt đi bật lại. (nối “tur-ni-toff”)"}
+    - {speaker: A, en: "It works now. Thanks!", vi: "Giờ chạy rồi. Cảm ơn!"}
+
+listening_snippet:
+  id: LS-F11
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Hold on, let me check it. Try to turn it off and on again. Did you get an email?"
+  transcript_vi: "Chờ chút, để tôi kiểm tra. Thử tắt đi bật lại. Bạn có nhận được email không?"
+  questions:
+    - q_vi: "Người nói bảo làm gì với thiết bị?"
+      choices: ["Tắt đi bật lại", "Đập vỡ", "Bán đi"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Vì sao “check it” nghe như một từ?"
+      choices: ["Vì nối phụ âm cuối với nguyên âm đầu", "Vì nói sai", "Vì nói nhỏ"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Let me check it."
+    prompt_vi: "Đọc to. Nối “check” với “it” thành “che-kit”, đừng tách rời."
+    ipa: "/lɛt miː ˈtʃɛkɪt/"
+    focus_phonemes: [tʃ, k, t]
+  - kind: read_aloud
+    expected_text: "Turn it off and on again."
+    prompt_vi: "Đọc to. Nối liền “tur-ni-toff”. Đây là cách người bản xứ luôn nói."
+    ipa: "/ˈtɜːrnɪˈtɒf ænd ɒn əˈɡɛn/"
+    focus_phonemes: [t, n, f]
+  - kind: shadow
+    expected_text: "Hold on, I can't log in."
+    prompt_vi: "Nghe rồi nhắc lại. “hol-don” và “lo-gin” nối liền."
+    ipa: "/ˈhoʊldɒn aɪ kænt ˈlɒɡɪn/"
+    focus_phonemes: [d, ɡ, n]
+  - kind: respond
+    prompt_en: "The app is frozen. What should I do?"
+    prompt_vi: "Bảo họ tắt bật lại — nối âm cho tự nhiên."
+    accept_patterns:
+      - "Turn it off and on again"
+      - "Hold on let me check it"
+      - "Try to log in again"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt tách rời từng tiếng, có khoảng nghỉ nhỏ giữa các chữ. Tiếng Anh thì DÍNH các từ lại:
+    phụ âm cuối của từ này chạy sang nguyên âm đầu của từ sau. Đây là lý do lớn nhất khiến bạn “nghe
+    không kịp” — không phải họ nói nhanh, mà họ NỐI. “check it” thành “che-kit”, “turn it off” thành
+    “tur-ni-toff”. Học nối âm giúp bạn vừa nói mượt vừa nghe ra.
+  how_vi: >
+    Quy tắc chính: phụ âm cuối + nguyên âm đầu = nối liền. “log in” → “lo-gin”, “pick up” → “pi-kup”,
+    “an email” → “a-nemail”. Tập nói CHẬM nhưng vẫn nối, đừng chèn khoảng nghỉ. Khi nghe, đừng cố
+    tách từng từ — nghe theo cụm.
+  contrast_vi: "“check … it” (tách, nghe kỳ và khó nghe lại) ↔ “che-kit” (nối, tự nhiên). Nối không phải nói ẩu — đó là cách đúng."
+
+common_mistakes:
+  - mistake: "Tách rời từng từ, chèn khoảng nghỉ"
+    why_vi: "Phản xạ từ tiếng Việt đơn âm."
+    fix_vi: "Nối phụ âm cuối vào nguyên âm đầu từ sau. Nói chậm vẫn nối được — mượt chứ không ẩu."
+    detect: {}
+  - mistake: "Nghe không ra vì cố tách từng từ"
+    why_vi: "Não tìm khoảng nghỉ giữa từ mà người bản xứ không tạo."
+    fix_vi: "Nghe theo CỤM, không theo từ. Quen dần với “tur-ni-toff” là một khối, không phải ba từ."
+    detect: {}
+  - mistake: "Thêm nguyên âm vào giữa để tách (“turn-uh-it”)"
+    why_vi: "Cố phát âm rõ từng từ."
+    fix_vi: "Không chèn âm phụ. Để phụ âm cuối trượt thẳng vào nguyên âm sau — đó là nối âm."
+    detect: {}
+
+memory_trick_vi: >
+  Từ tiếng Anh như toa tàu: phụ âm cuối MÓC vào nguyên âm đầu toa sau, cả câu chạy liền một mạch.
+  “log in” = “lo-gin”, “turn it off” = “tur-ni-toff”. Nghe không kịp thường là vì họ nối, không phải nhanh.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“log in” khi nói tự nhiên nghe như?"
+    choices: ["lo-gin (nối)", "log … in (tách)", "log-uh-in"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Vì sao bạn hay “nghe không kịp” người bản xứ?"
+    choices:
+      - "Họ NỐI các từ, không tách rời như tiếng Việt"
+      - "Họ dùng từ khó"
+      - "Họ nói quá to"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Nối âm xảy ra khi?"
+    choices:
+      - "Phụ âm cuối gặp nguyên âm đầu từ sau"
+      - "Hai nguyên âm cạnh nhau"
+      - "Cuối câu"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Cách luyện nghe cụm nối tốt nhất?"
+    choices: ["Nghe theo cụm, không tách từng từ", "Tra từng từ một", "Nghe thật to"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói bảo làm gì?"
+    audio_text: "Turn it off and on again."
+    choices: ["Tắt đi bật lại", "Gọi kỹ thuật", "Mua máy mới"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 78
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F12
