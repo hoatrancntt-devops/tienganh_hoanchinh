@@ -1,0 +1,176 @@
+schema_version: 1
+id: O04
+slug: hoi-lam-ro-yeu-cau
+unit: U-O1
+title_vi: "Hỏi làm rõ yêu cầu công việc"
+title_en: "Clarifying a request"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 4
+est_minutes: 10
+
+objective_vi: "Hỏi lại để làm rõ yêu cầu thay vì đoán mò, và xác nhận đã hiểu đúng."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill hỏi làm rõ."
+
+prerequisites:
+  - {lesson: O03, min_mastery: 75, kind: hard}
+  - {lesson: F08, min_mastery: 60, kind: soft}
+
+vocabulary:
+  - term: "Just to be clear"
+    ipa: "/dʒʌst tuː biː klɪr/"
+    meaning_vi: "Cho rõ ràng thì"
+    chunk: "Just to be clear, you need it by Friday?"
+    tags: [office]
+  - term: "Do you mean"
+    ipa: "/duː juː miːn/"
+    meaning_vi: "Ý bạn là"
+    chunk: "Do you mean the whole report or just section two?"
+    tags: [office]
+  - term: "by when"
+    ipa: "/baɪ wɛn/"
+    meaning_vi: "trước khi nào (hạn)"
+    chunk: "By when do you need it?"
+    tags: [office]
+  - term: "So I should"
+    ipa: "/soʊ aɪ ʃʊd/"
+    meaning_vi: "Vậy tôi nên"
+    chunk: "So I should send it to you first?"
+    tags: [office]
+  - term: "Got it"
+    ipa: "/ɡɒt ɪt/"
+    meaning_vi: "Hiểu rồi"
+    chunk: "Got it, I'll start today."
+    tags: [office]
+  - term: "priority"
+    ipa: "/praɪˈɒrɪti/"
+    meaning_vi: "ưu tiên"
+    chunk: "Which one is the priority?"
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "Just to be clear, do you mean {a} or {b}?"
+    meaning_vi: "Cho rõ nhé, ý bạn là {a} hay {b}?"
+    slots:
+      a: ["the whole report", "today"]
+      b: ["just section two", "tomorrow"]
+  - pattern: "So I should {action}, right?"
+    meaning_vi: "Vậy tôi nên {action}, đúng không?"
+    slots:
+      action: ["send it to you first", "start with the bug", "wait for approval"]
+
+dialogue:
+  context_vi: "Quản lý giao việc nhưng chưa rõ. Bạn hỏi lại để làm đúng."
+  turns:
+    - {speaker: A, en: "Can you update the report and send it out?", vi: "Bạn cập nhật báo cáo rồi gửi đi nhé?"}
+    - {speaker: B, en: "Sure. Just to be clear, do you mean the whole report or just section two?", vi: "Được. Cho rõ nhé, ý anh là cả báo cáo hay chỉ phần hai?"}
+    - {speaker: A, en: "Just section two. And send it to me first.", vi: "Chỉ phần hai. Và gửi cho tôi trước."}
+    - {speaker: B, en: "Got it. By when do you need it?", vi: "Hiểu rồi. Anh cần trước khi nào?"}
+    - {speaker: A, en: "End of day tomorrow.", vi: "Cuối ngày mai."}
+
+listening_snippet:
+  id: LS-O04
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Just to be clear, do you mean the whole report or just section two? And by when do you need it?"
+  transcript_vi: "Cho rõ nhé, ý bạn là cả báo cáo hay chỉ phần hai? Và bạn cần trước khi nào?"
+  questions:
+    - q_vi: "Người nói đang làm gì?"
+      choices: ["Hỏi làm rõ yêu cầu", "Từ chối việc", "Báo cáo tiến độ"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Người nói hỏi mấy điều?"
+      choices: ["Một", "Hai", "Ba"]
+      answer: 1
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Just to be clear, do you mean the whole report or just section two?"
+    prompt_vi: "Đọc to. Cách hỏi làm rõ lịch sự, không làm người kia khó chịu."
+    ipa: "/dʒʌst tuː biː klɪr duː juː miːn ðə hoʊl rɪˈpɔːrt ɔr dʒʌst ˈsɛkʃən tuː/"
+    focus_phonemes: [dʒ, r, s]
+  - kind: read_aloud
+    expected_text: "By when do you need it?"
+    prompt_vi: "Đọc to. Luôn hỏi hạn chót nếu chưa được nói."
+    ipa: "/baɪ wɛn duː juː niːd ɪt/"
+    focus_phonemes: [w, n, d]
+  - kind: shadow
+    expected_text: "Got it. So I should send it to you first, right?"
+    prompt_vi: "Nghe rồi nhắc lại. Xác nhận lại giúp tránh làm sai."
+    ipa: "/ɡɒt ɪt soʊ aɪ ʃʊd sɛnd ɪt tuː juː fɜːrst raɪt/"
+    focus_phonemes: [t, s, ʃ]
+  - kind: respond
+    prompt_en: "Can you fix the login bug and deploy it?"
+    prompt_vi: "Bạn chưa rõ có nên deploy ngay không. Hỏi làm rõ."
+    accept_patterns:
+      - "Just to be clear should I deploy right after or wait"
+      - "Do you mean deploy today or tomorrow"
+      - "By when do you need it"
+
+vietnamese_explanation:
+  why_vi: >
+    Hỏi lại để làm rõ là dấu hiệu của người làm việc CẨN THẬN, không phải người kém. Nhưng người
+    Việt thường sợ hỏi lại — sợ bị coi là chậm hiểu — nên gật đầu rồi đoán mò, và làm sai. Sửa lại
+    một việc đã làm sai tốn thời gian của cả hai gấp nhiều lần một câu hỏi.
+  how_vi: >
+    Ba câu vàng: "Just to be clear, do you mean A or B?" (làm rõ phạm vi) → "By when do you need it?"
+    (hạn chót) → "So I should…, right?" (xác nhận đã hiểu). Ba câu này khiến bạn trông chuyên nghiệp
+    hơn, không phải kém hơn.
+  contrast_vi: "Gật đầu rồi đoán ↔ hỏi một câu làm rõ. Cái sau tiết kiệm cả buổi làm lại."
+
+common_mistakes:
+  - mistake: "Gật đầu “OK” khi chưa rõ phạm vi hoặc hạn chót"
+    why_vi: "Sợ bị đánh giá là chậm hiểu nếu hỏi lại."
+    fix_vi: "Dùng “Just to be clear…” — nghe rất chuyên nghiệp. Người giao việc thường cũng chưa nói rõ, câu hỏi của bạn giúp họ."
+    detect: {}
+  - mistake: "Không hỏi hạn chót, tự đoán"
+    why_vi: "Ngại hỏi thêm."
+    fix_vi: "“By when do you need it?” — một câu ngắn tránh được việc bạn làm gấp thứ không gấp, hoặc để trễ thứ gấp."
+    detect: {}
+  - mistake: "“What?” hoặc “I don't understand” khi chưa rõ"
+    why_vi: "Nghe hơi cộc và không cụ thể."
+    fix_vi: "Hỏi cụ thể: “Do you mean A or B?”. Câu hỏi cụ thể giúp người kia trả lời nhanh."
+    detect: {}
+
+memory_trick_vi: >
+  Trước khi bắt tay làm, hỏi ba chữ: CÁI GÌ (phạm vi) — KHI NÀO (hạn) — XÁC NHẬN (so I should…?).
+  Ba câu hỏi này là “đo hai lần, cắt một lần” của công sở.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Sếp giao việc chưa rõ phạm vi. Bạn nên làm gì?"
+    choices:
+      - "Gật đầu rồi tự đoán"
+      - "Hỏi: “Just to be clear, do you mean A or B?”"
+      - "Làm hết cho chắc"
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chưa biết hạn chót. Hỏi thế nào?"
+    choices: ["When?", "By when do you need it?", "Is it urgent for you personally?"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Vì sao hỏi làm rõ lại tốt?"
+    choices:
+      - "Vì làm sai rồi sửa tốn thời gian gấp nhiều lần"
+      - "Vì kéo dài cuộc họp"
+      - "Vì để tỏ ra bận rộn"
+    answer: 0
+    difficulty: 2
+  - kind: fill_chunk
+    prompt_vi: "Xác nhận lại: “So I ___ send it to you first, right?”"
+    choices: [should, will, must]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: O05

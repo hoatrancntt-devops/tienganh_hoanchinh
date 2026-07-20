@@ -1,0 +1,176 @@
+schema_version: 1
+id: O05
+slug: bao-tien-do
+unit: U-O1
+title_vi: "Báo tiến độ công việc"
+title_en: "Reporting progress"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 5
+est_minutes: 10
+
+objective_vi: "Báo tiến độ ngắn gọn: đang ở đâu, còn gì, khi nào xong — và báo sớm khi trễ."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill báo tiến độ."
+
+prerequisites:
+  - {lesson: O04, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "almost done"
+    ipa: "/ˈɔːlmoʊst dʌn/"
+    meaning_vi: "gần xong"
+    chunk: "The report is almost done."
+    tags: [office]
+  - term: "about halfway"
+    ipa: "/əˈbaʊt ˈhæfweɪ/"
+    meaning_vi: "được khoảng một nửa"
+    chunk: "I'm about halfway through."
+    tags: [office]
+  - term: "on track"
+    ipa: "/ɒn træk/"
+    meaning_vi: "đúng tiến độ"
+    chunk: "We're on track for Friday."
+    tags: [office]
+  - term: "running behind"
+    ipa: "/ˈrʌnɪŋ bɪˈhaɪnd/"
+    meaning_vi: "đang bị trễ tiến độ"
+    chunk: "I'm running behind on the migration."
+    tags: [office]
+  - term: "by end of day"
+    ipa: "/baɪ ɛnd əv deɪ/"
+    meaning_vi: "trước cuối ngày"
+    chunk: "I'll have it by end of day."
+    tags: [office]
+  - term: "heads up"
+    ipa: "/hɛdz ʌp/"
+    meaning_vi: "báo trước cho biết"
+    chunk: "Just a heads up, it might be late."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "The {task} is {status}. I'll have it {time}."
+    meaning_vi: "{task} đang {status}. Tôi sẽ xong {time}."
+    slots:
+      task: [report, fix, migration]
+      status: ["almost done", "about halfway", "on track"]
+      time: ["by end of day", "tomorrow morning", "by Friday"]
+  - pattern: "Just a heads up, {issue}."
+    meaning_vi: "Báo trước để anh biết, {issue}."
+    slots:
+      issue: ["it might be late", "I'm blocked on the VPN", "I need one more day"]
+
+dialogue:
+  context_vi: "Quản lý hỏi tiến độ báo cáo. Bạn báo trung thực và rõ ràng."
+  turns:
+    - {speaker: A, en: "How's the report coming along?", vi: "Báo cáo tới đâu rồi?"}
+    - {speaker: B, en: "About halfway. I'm on track to finish by end of day.", vi: "Được khoảng một nửa. Tôi đúng tiến độ, cuối ngày là xong."}
+    - {speaker: A, en: "Great. And the migration?", vi: "Tốt. Còn migration thì sao?"}
+    - {speaker: B, en: "Just a heads up, I'm running a bit behind. I'll need until tomorrow morning.", vi: "Báo trước để anh biết, tôi đang hơi trễ. Cần đến sáng mai."}
+    - {speaker: A, en: "Okay, thanks for letting me know.", vi: "Được, cảm ơn đã báo."}
+
+listening_snippet:
+  id: LS-O05
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "The report is about halfway done, on track for end of day. But just a heads up, the migration is running behind."
+  transcript_vi: "Báo cáo được khoảng một nửa, đúng tiến độ cuối ngày. Nhưng báo trước để biết, migration đang bị trễ."
+  questions:
+    - q_vi: "Báo cáo tới đâu?"
+      choices: ["Khoảng một nửa", "Chưa bắt đầu", "Đã xong"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Cái gì đang bị trễ?"
+      choices: ["Migration", "Báo cáo", "Cuộc họp"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The report is almost done. I'll have it by end of day."
+    prompt_vi: "Đọc to. Báo trạng thái + hạn cụ thể."
+    ipa: "/ðə rɪˈpɔːrt ɪz ˈɔːlmoʊst dʌn aɪl hæv ɪt baɪ ɛnd əv deɪ/"
+    focus_phonemes: [t, d]
+  - kind: read_aloud
+    expected_text: "I'm about halfway through."
+    prompt_vi: "Đọc to. Ước lượng thành thật thay vì nói mơ hồ."
+    ipa: "/aɪm əˈbaʊt ˈhæfweɪ θruː/"
+    focus_phonemes: [f, θ]
+  - kind: shadow
+    expected_text: "Just a heads up, I'm running a bit behind."
+    prompt_vi: "Nghe rồi nhắc lại. Báo trễ SỚM là chuyên nghiệp, không phải để giấu."
+    ipa: "/dʒʌst ə hɛdz ʌp aɪm ˈrʌnɪŋ ə bɪt bɪˈhaɪnd/"
+    focus_phonemes: [dʒ, z, ŋ]
+  - kind: respond
+    prompt_en: "How's the migration coming along?"
+    prompt_vi: "Báo tiến độ: gần xong, hoặc đang trễ — báo trung thực."
+    accept_patterns:
+      - "Almost done I'll have it by {time}"
+      - "About halfway on track for {time}"
+      - "Just a heads up I'm running a bit behind"
+
+vietnamese_explanation:
+  why_vi: >
+    Báo tiến độ tốt là báo NGẮN, RÕ, và TRUNG THỰC — nhất là khi trễ. Người Việt hay giấu việc
+    trễ đến phút chót vì sợ bị trách, nhưng ở môi trường quốc tế, báo trễ sớm được đánh giá cao
+    hơn nhiều so với im lặng rồi lỡ hạn bất ngờ.
+  how_vi: >
+    Ba mảnh: trạng thái ("almost done" / "about halfway") → tiến độ ("on track" / "running behind")
+    → hạn ("by end of day"). Nếu sắp trễ, mở đầu bằng "Just a heads up…" để báo trước.
+  contrast_vi: "Im lặng rồi lỡ hạn ↔ “Just a heads up, I'm running behind.” Câu sau giữ được lòng tin."
+
+common_mistakes:
+  - mistake: "Giấu việc trễ đến phút chót"
+    why_vi: "Sợ bị trách nếu nói sớm. Nhưng lỡ hạn bất ngờ khiến người khác không kịp xoay xở."
+    fix_vi: "Báo sớm bằng “Just a heads up…”. Sếp nào cũng thích biết trước hơn là bị bất ngờ."
+    detect: {}
+  - mistake: "Trả lời mơ hồ: “Sắp xong rồi” không kèm hạn"
+    why_vi: "Ngại cam kết con số."
+    fix_vi: "Luôn kèm hạn cụ thể: “I'll have it by end of day.” Người nghe cần con số để lập kế hoạch."
+    detect: {}
+  - mistake: "Báo tiến độ quá dài, kể mọi chi tiết kỹ thuật"
+    why_vi: "Nghĩ nói nhiều thể hiện làm nhiều."
+    fix_vi: "Ba câu là đủ: đang ở đâu, đúng/trễ tiến độ, khi nào xong. Chi tiết để khi được hỏi."
+    detect: {}
+
+memory_trick_vi: >
+  Báo tiến độ như đèn giao thông: XANH (on track, đúng hạn) — VÀNG (heads up, sắp trễ) — luôn kèm
+  MỐC THỜI GIAN. Đừng để đèn đỏ (lỡ hạn) xuất hiện mà không báo trước.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Bạn sắp trễ hạn. Nên làm gì?"
+    choices:
+      - "Im lặng, cố làm cho kịp"
+      - "Báo sớm: “Just a heads up, I'm running behind.”"
+      - "Đợi đến hạn rồi mới nói"
+    answer: 1
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Báo tiến độ tốt gồm gì?"
+    choices:
+      - "Trạng thái + tiến độ + hạn cụ thể"
+      - "Mọi chi tiết kỹ thuật"
+      - "Chỉ nói “sắp xong”"
+    answer: 0
+    difficulty: 2
+  - kind: fill_chunk
+    prompt_vi: "“I'm about ___ through.” (được khoảng một nửa)"
+    choices: [halfway, half, middle]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Cái gì đang bị trễ?"
+    audio_text: "The migration is running behind."
+    choices: ["Migration", "Báo cáo", "Deploy"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: O06

@@ -1,0 +1,175 @@
+schema_version: 1
+id: O03
+slug: xin-nghi-phep
+unit: U-O1
+title_vi: "Xin nghỉ phép với quản lý"
+title_en: "Asking for time off"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 3
+est_minutes: 10
+
+objective_vi: "Xin nghỉ một cách chuyên nghiệp: xin phép, nêu lý do ngắn, cam kết bàn giao."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill xin nghỉ."
+
+prerequisites:
+  - {lesson: O02, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "take a day off"
+    ipa: "/teɪk ə deɪ ɒf/"
+    meaning_vi: "nghỉ một ngày"
+    chunk: "I'd like to take a day off next Friday."
+    tags: [office]
+  - term: "I'd like to"
+    ipa: "/aɪd laɪk tuː/"
+    meaning_vi: "tôi muốn (xin phép, lịch sự)"
+    chunk: "I'd like to take Friday off."
+    tags: [office]
+  - term: "cover for me"
+    ipa: "/ˈkʌvər fɔr miː/"
+    meaning_vi: "trực/làm thay giúp tôi"
+    chunk: "Minh can cover for me."
+    tags: [office]
+  - term: "hand over"
+    ipa: "/hænd ˈoʊvər/"
+    meaning_vi: "bàn giao"
+    chunk: "I'll hand over my tickets before I leave."
+    tags: [office]
+  - term: "personal matter"
+    ipa: "/ˈpɜːrsənəl ˈmætər/"
+    meaning_vi: "việc cá nhân"
+    chunk: "It's a personal matter."
+    tags: [office]
+  - term: "in advance"
+    ipa: "/ɪn ədˈvæns/"
+    meaning_vi: "trước, sớm"
+    chunk: "I'm letting you know in advance."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "I'd like to take {day} off, if that's okay."
+    meaning_vi: "Tôi muốn xin nghỉ {day}, nếu được ạ."
+    slots:
+      day: [Friday, "next Monday", "the 15th"]
+  - pattern: "{person} can cover for me that day."
+    meaning_vi: "{person} có thể trực giúp tôi ngày đó."
+    slots:
+      person: [Minh, Lan, "someone on the team"]
+
+dialogue:
+  context_vi: "Bạn gặp quản lý để xin nghỉ một ngày tuần sau."
+  turns:
+    - {speaker: A, en: "Do you have a minute? I'd like to take next Friday off.", vi: "Anh có rảnh chút không? Tôi muốn xin nghỉ thứ Sáu tuần sau."}
+    - {speaker: B, en: "Sure. Is everything okay?", vi: "Được chứ. Mọi thứ ổn chứ?"}
+    - {speaker: A, en: "Yes, just a personal matter. I'll finish the report before I leave.", vi: "Vâng, chỉ là việc cá nhân. Tôi sẽ xong báo cáo trước khi nghỉ."}
+    - {speaker: B, en: "Okay. Who can cover your tickets?", vi: "Được. Ai trực ticket giúp bạn?"}
+    - {speaker: A, en: "Minh can cover for me. I'll hand over on Thursday.", vi: "Minh trực giúp được. Tôi sẽ bàn giao vào thứ Năm."}
+
+listening_snippet:
+  id: LS-O03
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "I'd like to take Friday off. It's a personal matter. Minh can cover for me, and I'll hand over on Thursday."
+  transcript_vi: "Tôi muốn xin nghỉ thứ Sáu. Là việc cá nhân. Minh trực giúp được, và tôi sẽ bàn giao vào thứ Năm."
+  questions:
+    - q_vi: "Người nói muốn nghỉ ngày nào?"
+      choices: ["Thứ Sáu", "Thứ Hai", "Thứ Năm"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Ai sẽ trực giúp?"
+      choices: ["Minh", "Lan", "Quản lý"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I'd like to take Friday off, if that's okay."
+    prompt_vi: "Đọc to. “I'd like to” là cách xin phép lịch sự, không phải thông báo."
+    ipa: "/aɪd laɪk tuː teɪk ˈfraɪdeɪ ɒf ɪf ðæts oʊˈkeɪ/"
+    focus_phonemes: [d, f, k]
+  - kind: read_aloud
+    expected_text: "It's a personal matter."
+    prompt_vi: "Đọc to. Không cần giải thích chi tiết lý do."
+    ipa: "/ɪts ə ˈpɜːrsənəl ˈmætər/"
+    focus_phonemes: [s, t]
+  - kind: shadow
+    expected_text: "Minh can cover for me. I'll hand over on Thursday."
+    prompt_vi: "Nghe rồi nhắc lại. Cam kết bàn giao giúp lời xin nghỉ dễ được duyệt."
+    ipa: "/mɪn kæn ˈkʌvər fɔr miː aɪl hænd ˈoʊvər ɒn ˈθɜːrzdeɪ/"
+    focus_phonemes: [k, v, θ]
+  - kind: respond
+    prompt_en: "Sure. Is everything okay?"
+    prompt_vi: "Trả lời: ổn, việc cá nhân, sẽ hoàn thành việc trước khi nghỉ."
+    accept_patterns:
+      - "Yes just a personal matter I'll finish the {thing} first"
+      - "Yes everything is fine personal matter"
+      - "Yes I'll hand over before I leave"
+
+vietnamese_explanation:
+  why_vi: >
+    Xin nghỉ ở môi trường quốc tế là một lời XIN PHÉP có chuẩn bị, không phải thông báo cụt.
+    Người Việt hay mắc một trong hai thái cực: nói trống không "thứ Sáu tôi nghỉ", hoặc giải thích
+    lý do dài dòng. Cả hai đều không cần thiết.
+  how_vi: >
+    Bốn phần: xin phép ("I'd like to take… off") → lý do ngắn ("a personal matter") → cam kết
+    hoàn thành việc → sắp xếp người thay ("Minh can cover"). Lý do KHÔNG cần chi tiết — "personal
+    matter" là đủ và lịch sự.
+  contrast_vi: "“Friday I don't come” (thông báo, hơi vô lễ) ↔ “I'd like to take Friday off, if that's okay” (xin phép, chuyên nghiệp)."
+
+common_mistakes:
+  - mistake: "“Friday I will not come.” — thông báo thay vì xin phép"
+    why_vi: "Dịch thẳng “Thứ Sáu tôi không đến”. Nghe như đã quyết, không tôn trọng vai trò của quản lý."
+    fix_vi: "Dùng “I'd like to take Friday off, if that's okay.” Chỉ đổi cách nói mà thái độ khác hẳn."
+    detect: {}
+  - mistake: "Giải thích lý do quá chi tiết, riêng tư"
+    why_vi: "Nghĩ rằng lý do càng rõ càng dễ được duyệt."
+    fix_vi: "“It's a personal matter” là đủ. Quản lý không cần biết chi tiết, và bạn không cần kể."
+    detect: {}
+  - mistake: "Không nói ai sẽ trực thay"
+    why_vi: "Chỉ nghĩ đến việc mình nghỉ, quên phần công việc."
+    fix_vi: "Chuẩn bị sẵn người thay và cam kết bàn giao. Đây là thứ khiến lời xin nghỉ gần như luôn được duyệt."
+    detect: {}
+
+memory_trick_vi: >
+  Xin nghỉ như nộp đơn hoàn chỉnh: XIN PHÉP → LÝ DO NGẮN → CAM KẾT XONG VIỆC → NGƯỜI THAY.
+  Đủ bốn phần thì sếp gật đầu ngay. Thiếu phần cuối là dễ bị hỏi vặn.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Xin nghỉ thứ Sáu. Câu nào chuyên nghiệp nhất?"
+    choices:
+      - "Friday I don't come."
+      - "I'd like to take Friday off, if that's okay."
+      - "I need Friday."
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Sếp hỏi lý do. Bạn không muốn kể chi tiết. Nói gì?"
+    choices: ["I can't tell you.", "It's a personal matter.", "Why do you ask?"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Điều gì giúp lời xin nghỉ dễ được duyệt nhất?"
+    choices:
+      - "Kể lý do thật chi tiết"
+      - "Sắp xếp sẵn người trực thay và cam kết bàn giao"
+      - "Xin vào phút chót"
+    answer: 1
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Người nói muốn nghỉ ngày nào?"
+    audio_text: "I'd like to take Friday off."
+    choices: ["Thứ Sáu", "Thứ Hai", "Thứ Tư"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: O04
