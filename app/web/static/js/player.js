@@ -33,7 +33,10 @@ const Player = (() => {
   function studyView() {
     const s = L.study || {}, vocab = s.vocabulary || [], dlg = s.dialogue || {}, pats = s.sentence_patterns || [];
     const play = (a) => a ? `<button class="playbtn" onclick="Player.play('${a}')"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>` : '';
-    let h = '<div class="card"><div class="pill pill-acc" style="margin-bottom:.9rem">📖 Học từ & hội thoại</div>';
+    const topic = s.topic || 'core';
+    let h = '<div class="card">'
+      + `<img src="/static/img/topic-${topic}.svg" alt="" width="56" height="56" style="display:block;margin:0 auto .4rem">`
+      + '<div class="center" style="margin-bottom:.9rem"><span class="pill pill-acc">📖 Học từ &amp; hội thoại</span></div>';
     if (vocab.length) {
       h += '<h3 style="margin:.4rem 0 .5rem">Từ vựng</h3>';
       vocab.forEach(v => {

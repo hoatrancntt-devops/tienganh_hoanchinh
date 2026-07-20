@@ -21,9 +21,12 @@
   <div class="stat"><div class="n">{{ (profile.cefr_level_current or 'pre_a1')|upper|replace('_','-') }}</div><div class="l">Trình độ hiện tại</div></div>
 </div>
 {% if retention < 70 %}<div class="alert alert-warn" style="margin-bottom:1.5rem"><b>Sức khoẻ ghi nhớ {{ retention }}%.</b> Một số bài bạn từng nắm đang trôi. <a href="/learn/review">Ôn ngay</a></div>{% endif %}
+{% set phase_img = {'orientation':'core','foundation':'core','daily':'social','office':'office','it_english':'it_english','reading':'office'} %}
 {% for p in phases %}
 <section class="phase">
-  <div class="phase-head"><h2>{{ p.title }}</h2><span class="sub">{{ p.sub }}</span><span class="cnt">{{ p.mastered }}/{{ p.total }}</span></div>
+  <div class="phase-head">
+    <img src="/static/img/topic-{{ phase_img.get(p.key, 'core') }}.svg?v={{ sv }}" alt="" width="28" height="28" style="flex:0 0 auto">
+    <h2>{{ p.title }}</h2><span class="sub">{{ p.sub }}</span><span class="cnt">{{ p.mastered }}/{{ p.total }}</span></div>
   <div class="bar {{ 'ok' if p.pct == 100 }}" style="margin-bottom:.9rem"><i style="width:{{ p.pct }}%"></i></div>
   <div class="grid-auto">
     {% for c in p.cards %}

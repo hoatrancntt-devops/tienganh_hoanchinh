@@ -216,6 +216,7 @@ async def lesson_player(
         "blocking": state["blocking"], "state": state["state"],
         # Nội dung "học" hiển thị trước câu hỏi. Bản xem trước chỉ cho từ vựng, ẩn hội thoại.
         "study": {
+            "topic": lesson.topic or "core",
             "vocabulary": lesson.vocabulary or [],
             "dialogue": {} if is_preview else (lesson.dialogue or {}),
             "sentence_patterns": lesson.sentence_patterns or [],
