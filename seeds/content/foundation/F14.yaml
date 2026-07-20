@@ -90,17 +90,17 @@ speaking_drills:
     expected_text: "It's a ship, not a sheep."
     prompt_vi: "Minh đưa cặp từ kinh điển ra cho bạn tập. Đọc to — “ship” ngắn gọn /ɪ/; “sheep” kéo dài /iː/. Cảm nhận độ dài khác nhau."
     ipa: "/ɪts ə ʃɪp nɒt ə ʃiːp/"
-    focus_phonemes: [ʃ, ɪ, iː]
+    focus_phonemes: [ʃ, ɪ, i]
   - kind: read_aloud
     expected_text: "I'll leave at five."
     prompt_vi: "Câu bạn sẽ phải nói với David chiều nay. Đọc to — “leave” âm /iː/ dài, kéo môi ngang như đang cười."
     ipa: "/aɪl liːv æt faɪv/"
-    focus_phonemes: [l, iː, v]
+    focus_phonemes: [l, i, v]
   - kind: shadow
     expected_text: "I can't reach the server."
     prompt_vi: "Nói lại câu vừa khiến Minh hiểu nhầm. Nghe rồi nhắc lại — “reach” /iː/ dài, khác hẳn “rich” /ɪ/ ngắn."
     ipa: "/aɪ kænt riːtʃ ðə ˈsɜːrvər/"
-    focus_phonemes: [r, iː, tʃ]
+    focus_phonemes: [r, i, tʃ]
   - kind: respond
     prompt_en: "When will you leave?"
     prompt_vi: "Minh hỏi chiều nay bạn về lúc mấy giờ. Trả lời có dùng “leave” — giữ âm /iː/ dài, đừng rút thành “live”."

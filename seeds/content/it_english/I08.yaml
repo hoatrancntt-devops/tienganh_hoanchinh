@@ -102,12 +102,12 @@ speaking_drills:
     expected_text: "Today I'll start on the customer update."
     prompt_vi: "Ô thứ hai. Đọc to — việc hôm nay nói ở thì tương lai, gọn một câu."
     ipa: "/təˈdeɪ aɪl stɑːrt ɒn ðə ˈkʌstəmər ˈʌpdeɪt/"
-    focus_phonemes: [t, st, p]
+    focus_phonemes: [t, s, p]
   - kind: shadow
     expected_text: "I'm blocked on the access permissions, waiting on the DevOps team."
     prompt_vi: "Ô thứ ba — ô cả team đang chờ nghe. Nghe rồi nhắc lại, đừng giấu blocker."
     ipa: "/aɪm blɒkt ɒn ðiː ˈæksɛs pərˈmɪʃənz ˈweɪtɪŋ ɒn ðə ˈdɛvɒps tiːm/"
-    focus_phonemes: [bl, k, ʃ]
+    focus_phonemes: [b, l, k, ʃ]
   - kind: respond
     prompt_en: "Okay, your turn. Short one — I know you've been up all night."
     prompt_vi: "Linh vừa gọi tên bạn. Ba mươi giây, đủ ba phần: hôm qua, hôm nay, blocker (hoặc no blockers)."

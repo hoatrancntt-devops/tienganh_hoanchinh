@@ -102,7 +102,7 @@ speaking_drills:
     expected_text: "Hold on, I can't log in."
     prompt_vi: "Nhắc lại theo bản ghi của David. Nghe rồi nói theo — “hol-don” và “lo-gin” nối liền."
     ipa: "/ˈhoʊldɒn aɪ kænt ˈlɒɡɪn/"
-    focus_phonemes: [d, ɡ, n]
+    focus_phonemes: [d, g, n]
   - kind: respond
     prompt_en: "The app is frozen. What should I do?"
     prompt_vi: "Minh đóng vai David gọi lại cho bạn. Bảo họ tắt bật lại — nối âm cho tự nhiên."

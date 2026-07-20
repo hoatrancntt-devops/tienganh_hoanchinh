@@ -96,7 +96,7 @@ speaking_drills:
     expected_text: "I'll check the logs and get back to you."
     prompt_vi: "Câu bạn nhận việc trước Linh. Đọc to theo hai cụm: “I'll check the logs / and get back to you.” Nhấn “check” và “back”."
     ipa: "/aɪl tʃɛk ðə lɒɡz ænd ɡɛt bæk tuː juː/"
-    focus_phonemes: [tʃ, ɡ, b]
+    focus_phonemes: [tʃ, g, b]
   - kind: shadow
     expected_text: "Take your time, it's not urgent."
     prompt_vi: "Linh trấn an bạn trước buổi chiều. Nghe rồi nhắc lại — ngắt nhẹ ở dấu phẩy, giọng thả lỏng."

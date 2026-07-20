@@ -107,7 +107,7 @@ speaking_drills:
     expected_text: "If something breaks, we'll roll back to the previous version."
     prompt_vi: "Câu hỏi lớn trên bàn lúc 8 giờ sáng. Nghe rồi nhắc lại — roll back là phương án, không phải phản xạ."
     ipa: "/ɪf ˈsʌmθɪŋ breɪks wɪl roʊl bæk tuː ðə ˈpriːviəs ˈvɜːrʒən/"
-    focus_phonemes: [θ, r, ʒ]
+    focus_phonemes: [θ, r, s]
   - kind: respond
     prompt_en: "Walk me through last night's deploy. What went out, and what did we expect?"
     prompt_vi: "Priya hỏi lại toàn bộ lần deploy. Kể đủ: đẩy gì, test ở đâu, downtime dự kiến, phương án lùi."

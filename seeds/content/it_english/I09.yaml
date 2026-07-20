@@ -106,7 +106,7 @@ speaking_drills:
     expected_text: "Good catch. Fair point, I'll update it."
     prompt_vi: "Cách Priya nhận góp ý của bạn — và cách bạn sẽ trả lời khi tới lượt mình bị review. Nghe rồi nhắc lại."
     ipa: "/ɡʊd kætʃ fɛr pɔɪnt aɪl ˈʌpdeɪt ɪt/"
-    focus_phonemes: [ɡ, tʃ, f]
+    focus_phonemes: [g, tʃ, f]
   - kind: respond
     prompt_en: "Any other comments before I merge this?"
     prompt_vi: "Priya sắp merge bản vá. Góp ý kèm đề xuất cụ thể, và nói rõ đây là bắt buộc hay chỉ là nit."

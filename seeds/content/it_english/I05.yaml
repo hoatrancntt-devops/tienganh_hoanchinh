@@ -104,7 +104,7 @@ speaking_drills:
     expected_text: "The good news is, no data was lost."
     prompt_vi: "Emma sợ mất hết sổ sách. Đọc to — câu này là thứ chị ấy cần nghe trước mọi thứ khác."
     ipa: "/ðə ɡʊd njuːz ɪz noʊ ˈdeɪtə wɒz lɒst/"
-    focus_phonemes: [ɡ, n, z]
+    focus_phonemes: [g, n, z]
   - kind: shadow
     expected_text: "Does that make sense so far?"
     prompt_vi: "Bạn vừa giải thích xong. Nghe rồi nhắc lại — kiểm tra Emma có thật sự hiểu không."

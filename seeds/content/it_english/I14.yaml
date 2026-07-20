@@ -98,7 +98,7 @@ speaking_drills:
     expected_text: "The goal of this call is to understand the permission change."
     prompt_vi: "Câu mở đầu — bạn là người chủ trì, không phải người ngồi nghe. Đọc to."
     ipa: "/ðə ɡoʊl ɒv ðɪs kɔːl ɪz tuː ˌʌndərˈstænd ðə pərˈmɪʃən tʃeɪndʒ/"
-    focus_phonemes: [ɡ, k, ʃ]
+    focus_phonemes: [g, k, ʃ]
   - kind: read_aloud
     expected_text: "Can you check the role history on your side?"
     prompt_vi: "Đọc to. Phân biệt “on our side” / “on your side” — đây là chỗ chia việc, không phải chỗ đổ lỗi."

@@ -97,7 +97,7 @@ speaking_drills:
     expected_text: "The service doesn't have access to the secret. I'll grant it access."
     prompt_vi: "Câu gỡ nút thắt của cả chương. Đọc to — access nhấn âm đầu (AC-cess)."
     ipa: "/ðə ˈsɜːrvɪs ˈdʌzənt hæv ˈæksɛs tuː ðə ˈsiːkrət aɪl ɡrɑːnt ɪt ˈæksɛs/"
-    focus_phonemes: [k, s, ɡ]
+    focus_phonemes: [k, s, g]
   - kind: read_aloud
     expected_text: "This email looks suspicious. Don't click the link."
     prompt_vi: "Có kẻ đang lợi dụng sự cố để lừa đảo. Đọc to, dứt khoát — suspicious có ba âm tiết: sus-PI-cious."
