@@ -1,0 +1,108 @@
+schema_version: 1
+id: CP-O
+slug: checkpoint-tieng-anh-cong-so
+unit: U-O1
+title_vi: "Checkpoint: Tiếng Anh công sở"
+title_en: "Checkpoint: Office English"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 99
+est_minutes: 12
+is_checkpoint: true
+
+objective_vi: "Xử lý được một ngày công sở bằng tiếng Anh: nhận việc, hỏi làm rõ, báo tiến độ, đặt lịch, xin giúp đỡ và nhắn tin gọn."
+objective_observable: "Đạt ≥70 điểm giao tiếp trên toàn bộ bài, hỏi làm rõ và xác nhận đúng ngữ cảnh."
+
+prerequisites:
+  - {lesson: O01, min_mastery: 75, kind: hard}
+  - {lesson: O02, min_mastery: 75, kind: hard}
+  - {lesson: O03, min_mastery: 75, kind: hard}
+  - {lesson: O04, min_mastery: 75, kind: hard}
+  - {lesson: O05, min_mastery: 75, kind: hard}
+  - {lesson: O06, min_mastery: 75, kind: hard}
+  - {lesson: O07, min_mastery: 75, kind: hard}
+  - {lesson: O08, min_mastery: 75, kind: hard}
+
+listening_snippet:
+  id: LS-CPO
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Just to be clear, do you mean the whole report? The first half is almost done, on track for end of day. Just a heads up, I'm running a bit behind on the second half. Are you free at four to go over it?"
+  transcript_vi: "Cho rõ nhé, ý anh là cả báo cáo? Nửa đầu gần xong, đúng tiến độ cuối ngày. Báo trước để anh biết, nửa sau tôi đang hơi trễ. Bốn giờ anh rảnh để rà soát không?"
+  questions:
+    - q_vi: "Người nói đang làm gì ở câu đầu?"
+      choices: ["Hỏi làm rõ yêu cầu", "Từ chối việc", "Xin nghỉ"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Phần nào đang bị trễ?"
+      choices: ["Nửa sau báo cáo", "Cả báo cáo", "Cuộc họp"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Vì sao người nói nói “Just a heads up”?"
+      choices: ["Để báo trễ sớm cho người kia chủ động", "Để xin lỗi", "Để kết thúc"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: respond
+    prompt_en: "Can you update the report and send it out?"
+    prompt_vi: "Chưa rõ phạm vi và hạn. Hỏi làm rõ trước khi làm."
+    accept_patterns:
+      - "Just to be clear do you mean the whole report or just section two By when do you need it"
+      - "Do you mean the whole report And by when"
+      - "Sure just to be clear which part and by when do you need it"
+  - kind: respond
+    prompt_en: "How's the migration coming along?"
+    prompt_vi: "Báo tiến độ trung thực: đang ở đâu, đúng/trễ, khi nào xong."
+    accept_patterns:
+      - "About halfway on track for end of day"
+      - "Almost done I'll have it by {time}"
+      - "Just a heads up I'm running a bit behind I'll need until {time}"
+  - kind: respond
+    prompt_en: "Two doesn't work for me. Can we find another time?"
+    prompt_vi: "Đề xuất giờ khác và chốt bằng lời mời họp."
+    accept_patterns:
+      - "Are you free at four Does that work I'll send an invite"
+      - "Can we push it back to {time} I'll send an invite"
+      - "How about {time} works for me I'll send an invite"
+  - kind: shadow
+    expected_text: "Do you have a minute? I'm stuck on the deploy step. I've already tried restarting."
+    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật. Xin giúp đúng cách: nêu vấn đề gọn, nói đã thử gì."
+    ipa: "/duː juː hæv ə ˈmɪnɪt aɪm stʌk ɒn ðə dɪˈplɔɪ stɛp aɪv ɔːlˈrɛdi traɪd riːˈstɑːrtɪŋ/"
+    focus_phonemes: [t, k, d]
+
+vietnamese_explanation:
+  why_vi: >
+    Tám bài Office dạy từng kỹ năng riêng: nhận việc, hỏi làm rõ, báo tiến độ, đặt lịch, xin giúp đỡ,
+    nhắn tin. Trong một ngày làm thật, chúng đan vào nhau — sếp giao việc mơ hồ, bạn hỏi lại, làm được
+    nửa thì kẹt phải xin giúp, rồi báo trễ và dời họp. Bài này kiểm tra bạn nối các mảnh đó có mượt không.
+  how_vi: >
+    Làm một lượt như một ngày làm việc. Ba phản xạ cốt lõi cần chắc: HỎI LÀM RÕ trước khi bắt tay,
+    BÁO TIẾN ĐỘ trung thực (nhất là khi trễ), và XIN GIÚP ĐÚNG CÁCH (nêu vấn đề gọn + đã thử gì).
+    Đừng cố nói hoa mỹ — nói rõ để người kia hành động đúng là đủ.
+  contrast_vi: "Gật đại rồi đoán mò, giấu việc trễ, tự vật lộn ↔ hỏi làm rõ, báo trễ sớm, xin giúp gọn. Chỉ nhóm sau giữ được lòng tin ở công sở."
+
+common_mistakes:
+  - mistake: "Gật “OK” khi chưa rõ phạm vi hoặc hạn chót"
+    why_vi: "Sợ bị coi là chậm hiểu nếu hỏi lại, nên đoán mò rồi làm sai."
+    fix_vi: "Một câu “Just to be clear…” + “By when?” tiết kiệm cả buổi làm lại. Hỏi làm rõ là chuyên nghiệp, không phải kém."
+    detect: {}
+  - mistake: "Giấu việc trễ đến phút chót"
+    why_vi: "Dưới áp lực đo điểm và thói quen sợ bị trách, phần báo trễ sớm là thứ bị bỏ đầu tiên."
+    fix_vi: "Mở đầu bằng “Just a heads up…” ngay khi thấy sắp trễ. Báo sớm luôn được đánh giá cao hơn im lặng rồi lỡ hạn."
+    detect: {}
+  - mistake: "Trượt rồi làm lại ngay"
+    why_vi: "Muốn qua nhanh cho xong phase."
+    fix_vi: "Ôn đúng bài yếu một buổi rồi quay lại hôm sau. Hệ thống sẽ chỉ đúng bài cần ôn."
+    detect: {}
+
+memory_trick_vi: >
+  Qua được bài này nghĩa là bạn sống sót một ngày công sở bằng tiếng Anh: nhận việc rõ ràng, báo
+  tiến độ thật, xin giúp gọn, dời họp lịch sự. Phần còn lại của khoá là tiếng Anh chuyên ngành (IT).
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {speak: 0.6, listen: 0.4}
+  min_speaking_attempts: 4
+  challenge_threshold: 90

@@ -1,0 +1,179 @@
+schema_version: 1
+id: O08
+slug: tin-nhan-teams-slack
+unit: U-O1
+title_vi: "Viết tin nhắn Teams/Slack ngắn"
+title_en: "Short chat messages at work"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 8
+est_minutes: 10
+
+objective_vi: "Viết tin nhắn chat công việc ngắn, rõ, đúng mực — chào, nhờ việc, báo bận, cảm ơn."
+objective_observable: "Trả lời đúng 4/5 câu quiz chọn tin nhắn phù hợp và đạt ≥70 điểm nói trên drill."
+
+prerequisites:
+  - {lesson: O07, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Quick question"
+    ipa: "/kwɪk ˈkwɛstʃən/"
+    meaning_vi: "Hỏi nhanh chút"
+    chunk: "Quick question — is the server up?"
+    tags: [office]
+  - term: "When you get a chance"
+    ipa: "/wɛn juː ɡɛt ə tʃæns/"
+    meaning_vi: "Khi nào rảnh (không gấp)"
+    chunk: "When you get a chance, can you review this?"
+    tags: [office]
+  - term: "No rush"
+    ipa: "/noʊ rʌʃ/"
+    meaning_vi: "Không gấp đâu"
+    chunk: "No rush, just whenever."
+    tags: [office]
+  - term: "On it"
+    ipa: "/ɒn ɪt/"
+    meaning_vi: "Làm ngay đây (nhận việc)"
+    chunk: "On it! Give me ten minutes."
+    tags: [office]
+  - term: "In a meeting"
+    ipa: "/ɪn ə ˈmiːtɪŋ/"
+    meaning_vi: "đang họp"
+    chunk: "In a meeting, will reply after."
+    tags: [office]
+  - term: "Thanks a lot"
+    ipa: "/θæŋks ə lɒt/"
+    meaning_vi: "Cảm ơn nhiều"
+    chunk: "Thanks a lot, that helps!"
+    tags: [social]
+
+sentence_patterns:
+  - pattern: "Quick question — {question}?"
+    meaning_vi: "Hỏi nhanh chút — {question}?"
+    slots:
+      question: ["is the server up", "did the deploy finish", "who has access"]
+  - pattern: "When you get a chance, could you {request}? No rush."
+    meaning_vi: "Khi nào rảnh, bạn {request} giúp nhé? Không gấp đâu."
+    slots:
+      request: ["review this PR", "check the logs", "confirm the time"]
+
+dialogue:
+  context_vi: "Vài tin nhắn chat công việc điển hình trong ngày (Teams/Slack)."
+  turns:
+    - {speaker: A, en: "Quick question — did the deploy finish?", vi: "Hỏi nhanh chút — deploy xong chưa?"}
+    - {speaker: B, en: "In a meeting, will reply after. Short answer: yes.", vi: "Đang họp, lát trả lời. Ngắn gọn: rồi."}
+    - {speaker: A, en: "Thanks! When you get a chance, could you review my PR? No rush.", vi: "Cảm ơn! Khi nào rảnh review PR giúp mình nhé? Không gấp đâu."}
+    - {speaker: B, en: "On it after this call. 👍", vi: "Xong call này mình làm ngay. 👍"}
+
+listening_snippet:
+  id: LS-O08
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Quick question — did the deploy finish? When you get a chance, could you review my PR? No rush."
+  transcript_vi: "Hỏi nhanh chút — deploy xong chưa? Khi nào rảnh review PR giúp mình nhé? Không gấp đâu."
+  questions:
+    - q_vi: "Người nhắn hỏi gì?"
+      choices: ["Deploy xong chưa", "Mấy giờ họp", "Ai trực"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Việc review PR có gấp không?"
+      choices: ["Không gấp", "Rất gấp", "Không nói"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Quick question — did the deploy finish?"
+    prompt_vi: "Đọc to. Mở đầu “Quick question” báo hiệu tin ngắn."
+    ipa: "/kwɪk ˈkwɛstʃən dɪd ðə dɪˈplɔɪ ˈfɪnɪʃ/"
+    focus_phonemes: [k, tʃ, ʃ]
+  - kind: read_aloud
+    expected_text: "When you get a chance, could you review this? No rush."
+    prompt_vi: "Đọc to. “No rush” cho biết việc không gấp — lịch sự với thời gian người kia."
+    ipa: "/wɛn juː ɡɛt ə tʃæns kʊd juː rɪˈvjuː ðɪs noʊ rʌʃ/"
+    focus_phonemes: [tʃ, r, ʃ]
+  - kind: shadow
+    expected_text: "In a meeting, will reply after."
+    prompt_vi: "Nghe rồi nhắc lại. Báo bận gọn thay vì im lặng."
+    ipa: "/ɪn ə ˈmiːtɪŋ wɪl rɪˈplaɪ ˈæftər/"
+    focus_phonemes: [ŋ, l, r]
+  - kind: respond
+    prompt_en: "Quick question — is the server up?"
+    prompt_vi: "Trả lời ngắn kiểu chat: có/không + một chi tiết."
+    accept_patterns:
+      - "Yes it's up"
+      - "In a meeting will reply after short answer yes"
+      - "On it let me check"
+
+vietnamese_explanation:
+  why_vi: >
+    Tin nhắn công việc (Teams/Slack) có văn phong riêng: NGẮN, thẳng, nhưng vẫn lịch sự. Người Việt
+    hay viết như email trang trọng (dài, "Dear…") hoặc quá cụt (chỉ một chữ). Cả hai đều lệch. Chat
+    tốt là một-hai câu, có báo mức độ gấp.
+  how_vi: >
+    Mở đầu báo loại tin: "Quick question —" (hỏi nhanh), "When you get a chance…" (không gấp),
+    "No rush" (thêm cho chắc). Bận thì báo "In a meeting, will reply after". Nhận việc thì "On it".
+    Emoji 👍 dùng được và thân thiện.
+  contrast_vi: "Email trang trọng “Dear Minh, I would like to…” ↔ chat “Quick question — is the server up?”. Đúng kênh, đúng văn phong."
+
+common_mistakes:
+  - mistake: "Viết chat dài như email trang trọng"
+    why_vi: "Quen văn phong email, hoặc sợ cụt lủn bị coi là bất lịch sự."
+    fix_vi: "Chat cần ngắn. Một-hai câu là đủ. “Dear…” trong Slack nghe kỳ lạ."
+    detect: {}
+  - mistake: "Nhắn quá cụt, không báo mức độ gấp"
+    why_vi: "Chỉ gõ đúng nội dung, quên ngữ cảnh."
+    fix_vi: "Thêm “No rush” hoặc “when you get a chance” nếu không gấp — người nhận biết cách sắp xếp."
+    detect: {}
+  - mistake: "Im lặng khi đang bận, để người kia chờ"
+    why_vi: "Nghĩ đang bận thì thôi khỏi trả lời."
+    fix_vi: "Nhắn nhanh “In a meeting, will reply after” — một dòng giúp người kia không chờ mòn mỏi."
+    detect: {}
+
+memory_trick_vi: >
+  Chat công việc = tin nhắn cho bạn thân nhưng lịch sự: NGẮN, có NHÃN mức độ gấp ("no rush" /
+  "quick question"), và một emoji 👍 là ổn. Đừng viết như thư gửi sếp lớn.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Nhắn Slack hỏi nhanh. Câu nào phù hợp nhất?"
+    choices:
+      - "Dear Minh, I would like to inquire whether the server is operational."
+      - "Quick question — is the server up?"
+      - "server?"
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Nhờ review nhưng không gấp. Thêm gì?"
+    choices: ["ASAP!!!", "When you get a chance… No rush.", "(không thêm gì)"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đang họp, có người nhắn. Nên làm gì?"
+    choices:
+      - "Im lặng, họp xong tính"
+      - "Nhắn nhanh: “In a meeting, will reply after.”"
+      - "Rời họp để trả lời"
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Nhận việc và sẽ làm ngay. Nhắn gì?"
+    choices: ["Maybe.", "On it!", "I will think about it."]
+    answer: 1
+    difficulty: 1
+  - kind: mcq_listen
+    prompt_vi: "Việc review có gấp không?"
+    audio_text: "When you get a chance, could you review my PR? No rush."
+    choices: ["Không gấp", "Rất gấp", "Không rõ"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.4, quiz: 0.4, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: CP-O

@@ -1,0 +1,178 @@
+schema_version: 1
+id: O07
+slug: xin-giup-do
+unit: U-O1
+title_vi: "Xin giúp đỡ khi bị kẹt"
+title_en: "Asking for help"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 7
+est_minutes: 10
+
+objective_vi: "Xin giúp đỡ đúng cách: nêu vấn đề gọn, nói đã thử gì, hỏi cụ thể — và cảm ơn."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill xin giúp đỡ."
+
+prerequisites:
+  - {lesson: O06, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Could you help me with"
+    ipa: "/kʊd juː hɛlp miː wɪð/"
+    meaning_vi: "Bạn giúp tôi… được không"
+    chunk: "Could you help me with this bug?"
+    tags: [office]
+  - term: "I'm stuck on"
+    ipa: "/aɪm stʌk ɒn/"
+    meaning_vi: "tôi đang kẹt ở"
+    chunk: "I'm stuck on the deploy step."
+    tags: [office]
+  - term: "Do you have a minute"
+    ipa: "/duː juː hæv ə ˈmɪnɪt/"
+    meaning_vi: "Bạn có rảnh một phút không"
+    chunk: "Do you have a minute?"
+    tags: [office]
+  - term: "I've already tried"
+    ipa: "/aɪv ɔːlˈrɛdi traɪd/"
+    meaning_vi: "tôi đã thử rồi"
+    chunk: "I've already tried restarting it."
+    tags: [office]
+  - term: "That makes sense"
+    ipa: "/ðæt meɪks sɛns/"
+    meaning_vi: "Hiểu rồi, hợp lý"
+    chunk: "That makes sense, thanks!"
+    tags: [office]
+  - term: "I owe you one"
+    ipa: "/aɪ oʊ juː wʌn/"
+    meaning_vi: "Tôi nợ bạn một lần (cảm ơn thân)"
+    chunk: "Thanks, I owe you one!"
+    tags: [social]
+
+sentence_patterns:
+  - pattern: "Do you have a minute? I'm stuck on {problem}."
+    meaning_vi: "Bạn rảnh chút không? Tôi đang kẹt ở {problem}."
+    slots:
+      problem: ["the deploy step", "this error", "the config"]
+  - pattern: "I've already tried {action}, but it didn't work."
+    meaning_vi: "Tôi đã thử {action} rồi mà không được."
+    slots:
+      action: ["restarting", "clearing the cache", "checking the logs"]
+
+dialogue:
+  context_vi: "Bạn kẹt ở một lỗi và cần đồng nghiệp giúp."
+  turns:
+    - {speaker: A, en: "Hey Minh, do you have a minute? I'm stuck on the deploy step.", vi: "Này Minh, rảnh chút không? Tôi đang kẹt ở bước deploy."}
+    - {speaker: B, en: "Sure. What's happening?", vi: "Được chứ. Bị gì vậy?"}
+    - {speaker: A, en: "It fails with a timeout. I've already tried restarting, but it didn't work.", vi: "Nó lỗi timeout. Tôi thử khởi động lại rồi mà không được."}
+    - {speaker: B, en: "Ah, check the firewall rule. That's usually it.", vi: "À, kiểm tra luật tường lửa xem. Thường là do cái đó."}
+    - {speaker: A, en: "That makes sense. Thanks, I owe you one!", vi: "Hợp lý ghê. Cảm ơn, tôi nợ bạn một lần!"}
+
+listening_snippet:
+  id: LS-O07
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Do you have a minute? I'm stuck on the deploy step. I've already tried restarting, but it didn't work."
+  transcript_vi: "Bạn rảnh chút không? Tôi đang kẹt ở bước deploy. Tôi thử khởi động lại rồi mà không được."
+  questions:
+    - q_vi: "Người nói kẹt ở đâu?"
+      choices: ["Bước deploy", "Cuộc họp", "Báo cáo"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Người nói đã thử gì?"
+      choices: ["Khởi động lại", "Đổi máy", "Chưa thử gì"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Do you have a minute? I'm stuck on the deploy step."
+    prompt_vi: "Đọc to. Hỏi rảnh trước, rồi nêu vấn đề gọn."
+    ipa: "/duː juː hæv ə ˈmɪnɪt aɪm stʌk ɒn ðə dɪˈplɔɪ stɛp/"
+    focus_phonemes: [t, k, p]
+  - kind: read_aloud
+    expected_text: "I've already tried restarting, but it didn't work."
+    prompt_vi: "Đọc to. Nói đã thử gì giúp người kia không lặp lại."
+    ipa: "/aɪv ɔːlˈrɛdi traɪd riːˈstɑːrtɪŋ bʌt ɪt ˈdɪdənt wɜːrk/"
+    focus_phonemes: [d, t, k]
+  - kind: shadow
+    expected_text: "That makes sense. Thanks, I owe you one!"
+    prompt_vi: "Nghe rồi nhắc lại. Cảm ơn cụ thể tạo quan hệ tốt."
+    ipa: "/ðæt meɪks sɛns θæŋks aɪ oʊ juː wʌn/"
+    focus_phonemes: [ð, s, θ]
+  - kind: respond
+    prompt_en: "Sure, what's happening?"
+    prompt_vi: "Nêu vấn đề gọn và nói bạn đã thử gì."
+    accept_patterns:
+      - "I'm stuck on {problem} I've already tried {action}"
+      - "It fails with {error} I tried {action} already"
+      - "The {thing} isn't working I've tried {action}"
+
+vietnamese_explanation:
+  why_vi: >
+    Xin giúp đỡ đúng cách tiết kiệm thời gian cho cả hai. Người Việt hay ngại xin giúp (sợ làm
+    phiền) hoặc xin sai cách (mô tả mơ hồ, không nói đã thử gì). Một câu hỏi gọn, cụ thể, kèm những
+    gì đã thử — sẽ được giúp nhanh và không ai thấy phiền.
+  how_vi: >
+    Bốn bước: hỏi rảnh ("Do you have a minute?") → nêu vấn đề gọn ("I'm stuck on…") → nói đã thử gì
+    ("I've already tried…") → cảm ơn cụ thể ("Thanks, I owe you one!"). Nói đã thử gì giúp người kia
+    không phí công gợi lại điều bạn đã làm.
+  contrast_vi: "“It doesn't work, help me” (mơ hồ) ↔ “I'm stuck on the deploy step, I've tried restarting” (cụ thể, được giúp ngay)."
+
+common_mistakes:
+  - mistake: "Ngại xin giúp, tự vật lộn hàng giờ"
+    why_vi: "Sợ làm phiền hoặc sợ bị coi là kém."
+    fix_vi: "Xin giúp đúng cách là dấu hiệu làm việc thông minh. Sau 20–30 phút kẹt, hỏi là hợp lý."
+    detect: {}
+  - mistake: "Mô tả vấn đề mơ hồ: “It doesn't work”"
+    why_vi: "Không biết diễn đạt cụ thể bằng tiếng Anh."
+    fix_vi: "Nói cụ thể: kẹt ở bước nào, lỗi gì. “I'm stuck on the deploy step, it fails with a timeout.”"
+    detect: {}
+  - mistake: "Không nói những gì đã thử"
+    why_vi: "Quên hoặc nghĩ không quan trọng."
+    fix_vi: "Luôn nói “I've already tried…”. Nếu không, người giúp sẽ bảo bạn làm lại đúng thứ bạn đã làm."
+    detect: {}
+
+memory_trick_vi: >
+  Xin giúp như báo bác sĩ: TRIỆU CHỨNG (kẹt ở đâu) — ĐÃ UỐNG THUỐC GÌ (đã thử gì) — rồi mới nhờ
+  chẩn đoán. Bác sĩ giúp nhanh hơn khi bạn nói rõ, và đừng quên CẢM ƠN.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Bạn kẹt một lỗi 30 phút. Nên làm gì?"
+    choices:
+      - "Tự vật lộn tiếp cho đỡ phiền"
+      - "Hỏi: “Do you have a minute? I'm stuck on…”"
+      - "Bỏ qua task"
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Cách mô tả vấn đề tốt nhất?"
+    choices:
+      - "It doesn't work."
+      - "I'm stuck on the deploy step, it fails with a timeout."
+      - "Everything is broken."
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Vì sao nên nói “I've already tried…”?"
+    choices:
+      - "Để người giúp không bảo bạn làm lại thứ đã làm"
+      - "Để tỏ ra giỏi"
+      - "Để kéo dài cuộc nói chuyện"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói đã thử gì?"
+    audio_text: "I've already tried restarting, but it didn't work."
+    choices: ["Khởi động lại", "Đổi mật khẩu", "Chưa thử gì"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: O08

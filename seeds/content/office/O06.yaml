@@ -1,0 +1,170 @@
+schema_version: 1
+id: O06
+slug: dat-lich-hop
+unit: U-O1
+title_vi: "Đặt và dời lịch họp"
+title_en: "Scheduling a meeting"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 6
+est_minutes: 10
+
+objective_vi: "Đề xuất giờ họp, hỏi người khác có rảnh không, và dời lịch một cách lịch sự."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill đặt lịch."
+
+prerequisites:
+  - {lesson: O05, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Are you free"
+    ipa: "/ɑr juː friː/"
+    meaning_vi: "Bạn có rảnh không"
+    chunk: "Are you free at three?"
+    tags: [office]
+  - term: "Does that work"
+    ipa: "/dʌz ðæt wɜːrk/"
+    meaning_vi: "Vậy có tiện không"
+    chunk: "Thursday at two — does that work for you?"
+    tags: [office]
+  - term: "push it back"
+    ipa: "/pʊʃ ɪt bæk/"
+    meaning_vi: "dời (họp) lại muộn hơn"
+    chunk: "Can we push it back to four?"
+    tags: [office]
+  - term: "reschedule"
+    ipa: "/riːˈskɛdʒuːl/"
+    meaning_vi: "đổi lịch"
+    chunk: "Can we reschedule to tomorrow?"
+    tags: [office]
+  - term: "send an invite"
+    ipa: "/sɛnd ən ɪnˈvaɪt/"
+    meaning_vi: "gửi lời mời họp (lịch)"
+    chunk: "I'll send an invite for Thursday."
+    tags: [office]
+  - term: "works for me"
+    ipa: "/wɜːrks fɔr miː/"
+    meaning_vi: "với tôi thì tiện"
+    chunk: "Two o'clock works for me."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "Are you free {time}? Does that work?"
+    meaning_vi: "Bạn rảnh {time} không? Vậy có tiện không?"
+    slots:
+      time: ["at three", "Thursday morning", "after lunch"]
+  - pattern: "Can we push it back to {time}?"
+    meaning_vi: "Ta dời lại {time} được không?"
+    slots:
+      time: [four, tomorrow, "next week"]
+
+dialogue:
+  context_vi: "Bạn muốn đặt lịch họp với đồng nghiệp, rồi phải dời một chút."
+  turns:
+    - {speaker: A, en: "Are you free Thursday at two? I'd like to go over the report.", vi: "Thứ Năm hai giờ bạn rảnh không? Tôi muốn rà soát báo cáo."}
+    - {speaker: B, en: "Two doesn't work for me. Can we push it back to four?", vi: "Hai giờ tôi không tiện. Dời lại bốn giờ được không?"}
+    - {speaker: A, en: "Four works for me. I'll send an invite.", vi: "Bốn giờ tôi tiện. Tôi sẽ gửi lời mời họp."}
+    - {speaker: B, en: "Great, thanks. See you then.", vi: "Tuyệt, cảm ơn. Hẹn gặp lúc đó."}
+
+listening_snippet:
+  id: LS-O06
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Are you free Thursday at two? If not, we can push it back to four. I'll send an invite."
+  transcript_vi: "Thứ Năm hai giờ bạn rảnh không? Nếu không, ta dời lại bốn giờ. Tôi sẽ gửi lời mời họp."
+  questions:
+    - q_vi: "Người nói đề xuất họp ngày nào?"
+      choices: ["Thứ Năm", "Thứ Ba", "Thứ Sáu"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Nếu không tiện thì dời tới mấy giờ?"
+      choices: ["Bốn giờ", "Ba giờ", "Năm giờ"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Are you free Thursday at two?"
+    prompt_vi: "Đọc to. Cách hỏi lịch nhẹ nhàng."
+    ipa: "/ɑr juː friː ˈθɜːrzdeɪ æt tuː/"
+    focus_phonemes: [r, θ, t]
+  - kind: read_aloud
+    expected_text: "Can we push it back to four?"
+    prompt_vi: "Đọc to. Cách dời họp lịch sự, không cần xin lỗi dài."
+    ipa: "/kæn wiː pʊʃ ɪt bæk tuː fɔr/"
+    focus_phonemes: [k, ʃ]
+  - kind: shadow
+    expected_text: "Four works for me. I'll send an invite."
+    prompt_vi: "Nghe rồi nhắc lại. Chốt giờ rồi gửi lịch."
+    ipa: "/fɔr wɜːrks fɔr miː aɪl sɛnd ən ɪnˈvaɪt/"
+    focus_phonemes: [f, k, s]
+  - kind: respond
+    prompt_en: "Are you free at two for a quick sync?"
+    prompt_vi: "Hai giờ bạn bận. Đề xuất giờ khác."
+    accept_patterns:
+      - "Two doesn't work can we push it back to {time}"
+      - "Sorry I'm busy at two how about {time}"
+      - "Can we do {time} instead"
+
+vietnamese_explanation:
+  why_vi: >
+    Đặt lịch họp là chuỗi câu ngắn có công thức: hỏi rảnh → xác nhận tiện → gửi lời mời. Nếu bận,
+    dời lịch bằng "push it back" hoặc "reschedule" — không cần xin lỗi dài dòng. Người Việt hay
+    ngại nói "tôi không tiện" nên gật đại rồi lỡ họp; nói thẳng và đề xuất giờ khác thì tốt hơn.
+  how_vi: >
+    Ba câu: "Are you free at…?" (hỏi rảnh) → "Does that work?" (xác nhận) → "I'll send an invite"
+    (gửi lịch). Cần dời thì "Can we push it back to…?". Đề xuất giờ thay thế luôn, đừng chỉ nói "không".
+  contrast_vi: "“I can't” (cụt) ↔ “Two doesn't work — can we push it back to four?” (nói không kèm giải pháp)."
+
+common_mistakes:
+  - mistake: "Gật đồng ý giờ họp dù thật ra bận"
+    why_vi: "Ngại từ chối. Nhưng lỡ họp còn khó xử hơn nhiều."
+    fix_vi: "Nói thẳng “Two doesn't work” và đề xuất giờ khác ngay. Đó là chuyện bình thường ở công sở."
+    detect: {}
+  - mistake: "Từ chối cụt lủn: “No, I can't.”"
+    why_vi: "Chỉ nói không, không đưa giải pháp."
+    fix_vi: "Luôn kèm đề xuất thay thế: “Can we push it back to four?”. Từ chối kèm giải pháp mới là hợp tác."
+    detect: {}
+  - mistake: "Xin lỗi quá dài khi dời họp"
+    why_vi: "Nghĩ dời họp là lỗi lớn."
+    fix_vi: "Dời họp là bình thường. “Can we reschedule to tomorrow?” là đủ, không cần xin lỗi rối rít."
+    detect: {}
+
+memory_trick_vi: >
+  Đặt lịch như đánh bóng bàn: HỎI RẢNH → ĐỠ (tiện/không tiện) → nếu không, ĐÁNH TRẢ một giờ khác.
+  Đừng để bóng rơi bằng cách chỉ nói “no”.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Hỏi đồng nghiệp có rảnh họp không. Câu nào tự nhiên?"
+    choices: ["You have time?", "Are you free Thursday at two?", "Meeting now?"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Giờ họp đề xuất bạn bận. Nên nói gì?"
+    choices:
+      - "No."
+      - "Two doesn't work — can we push it back to four?"
+      - "(gật đồng ý dù bận)"
+    answer: 1
+    difficulty: 2
+  - kind: fill_chunk
+    prompt_vi: "Chốt giờ: “Four ___ for me.” (tiện)"
+    choices: [works, work, working]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Nếu không tiện thì dời tới mấy giờ?"
+    audio_text: "We can push it back to four."
+    choices: ["Bốn giờ", "Hai giờ", "Sáu giờ"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: O07
