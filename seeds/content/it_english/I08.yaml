@@ -1,0 +1,177 @@
+schema_version: 1
+id: I08
+slug: daily-standup
+unit: U-I2
+title_vi: "Báo cáo standup hằng ngày"
+title_en: "Daily standup update"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 8
+est_minutes: 11
+
+objective_vi: "Báo standup chuẩn ba phần: hôm qua làm gì, hôm nay làm gì, có bị chặn ở đâu không."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và nêu đủ ba phần standup."
+
+prerequisites:
+  - {lesson: I07, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Yesterday I"
+    ipa: "/ˈjɛstərdeɪ aɪ/"
+    meaning_vi: "Hôm qua tôi"
+    chunk: "Yesterday I finished the login page."
+    tags: [it_english]
+  - term: "Today I'll"
+    ipa: "/təˈdeɪ aɪl/"
+    meaning_vi: "Hôm nay tôi sẽ"
+    chunk: "Today I'll start on the API."
+    tags: [it_english]
+  - term: "I'm blocked on"
+    ipa: "/aɪm blɒkt ɒn/"
+    meaning_vi: "tôi đang bị chặn ở"
+    chunk: "I'm blocked on the access permissions."
+    tags: [it_english]
+  - term: "no blockers"
+    ipa: "/noʊ ˈblɒkərz/"
+    meaning_vi: "không có gì cản trở"
+    chunk: "No blockers on my side."
+    tags: [it_english]
+  - term: "waiting on"
+    ipa: "/ˈweɪtɪŋ ɒn/"
+    meaning_vi: "đang chờ (ai/cái gì)"
+    chunk: "I'm waiting on the design from Lan."
+    tags: [it_english]
+  - term: "wrapped up"
+    ipa: "/ræpt ʌp/"
+    meaning_vi: "hoàn tất, làm xong"
+    chunk: "I wrapped up the testing."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Yesterday I {done}. Today I'll {plan}."
+    meaning_vi: "Hôm qua tôi {done}. Hôm nay tôi sẽ {plan}."
+    slots:
+      done: ["finished the login page", "fixed two bugs", "wrapped up the tests"]
+      plan: ["start on the API", "review the pull request", "deploy to staging"]
+  - pattern: "I'm blocked on {blocker}. I'm waiting on {who}."
+    meaning_vi: "Tôi đang kẹt ở {blocker}. Đang chờ {who}."
+    slots:
+      blocker: ["the access permissions", "the test data"]
+      who: ["the DevOps team", "Lan's design", "the client's approval"]
+
+dialogue:
+  context_vi: "Cuộc họp standup buổi sáng, tới lượt bạn báo cáo."
+  turns:
+    - {speaker: A, en: "Okay, your turn. What's your update?", vi: "Rồi, tới lượt bạn. Cập nhật thế nào?"}
+    - {speaker: B, en: "Yesterday I finished the login page and fixed two bugs.", vi: "Hôm qua tôi làm xong trang đăng nhập và sửa hai lỗi."}
+    - {speaker: A, en: "Nice. And today?", vi: "Tốt. Còn hôm nay?"}
+    - {speaker: B, en: "Today I'll start on the API. But I'm blocked on the access permissions — I'm waiting on the DevOps team.", vi: "Hôm nay tôi sẽ bắt đầu phần API. Nhưng tôi đang kẹt ở quyền truy cập — đang chờ đội DevOps."}
+    - {speaker: A, en: "Got it, I'll follow up with them after standup.", vi: "Rõ, sau standup tôi sẽ hối họ."}
+
+listening_snippet:
+  id: LS-I08
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Yesterday I finished the login page and fixed two bugs. Today I'll start on the API. I'm blocked on the access permissions, waiting on the DevOps team."
+  transcript_vi: "Hôm qua tôi làm xong trang đăng nhập và sửa hai lỗi. Hôm nay tôi sẽ bắt đầu API. Tôi kẹt ở quyền truy cập, đang chờ đội DevOps."
+  questions:
+    - q_vi: "Hôm nay người nói sẽ làm gì?"
+      choices: ["Bắt đầu phần API", "Sửa trang đăng nhập", "Nghỉ phép"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói bị chặn ở đâu?"
+      choices: ["Quyền truy cập", "Thiết kế", "Ngân sách"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Yesterday I finished the login page and fixed two bugs."
+    prompt_vi: "Đọc to. Việc đã xong nói ở thì quá khứ, gọn."
+    ipa: "/ˈjɛstərdeɪ aɪ ˈfɪnɪʃt ðə ˈlɒɡɪn peɪdʒ ænd fɪkst tuː bʌɡz/"
+    focus_phonemes: [ʃ, dʒ, z]
+  - kind: read_aloud
+    expected_text: "Today I'll start on the API."
+    prompt_vi: "Đọc to. API đọc từng chữ cái ei-pi-ai. Việc hôm nay nói ở thì tương lai."
+    ipa: "/təˈdeɪ aɪl stɑːrt ɒn ðiː eɪ piː aɪ/"
+    focus_phonemes: [t, st, p]
+  - kind: shadow
+    expected_text: "I'm blocked on the access permissions, waiting on the DevOps team."
+    prompt_vi: "Nghe rồi nhắc lại. Nêu blocker rõ để người khác gỡ giúp."
+    ipa: "/aɪm blɒkt ɒn ðiː ˈæksɛs pərˈmɪʃənz ˈweɪtɪŋ ɒn ðə ˈdɛvɒps tiːm/"
+    focus_phonemes: [bl, k, ʃ]
+  - kind: respond
+    prompt_en: "Your turn — what's your update?"
+    prompt_vi: "Báo standup đủ ba phần: hôm qua, hôm nay, blocker (hoặc no blockers)."
+    accept_patterns:
+      - "Yesterday I {done} today I'll {plan} no blockers"
+      - "Yesterday I {done} today I'll {plan} I'm blocked on {blocker}"
+      - "Yesterday I wrapped up {task} today I'll start on {task} waiting on {who}"
+
+vietnamese_explanation:
+  why_vi: >
+    Standup là bài kiểm tra tiếng Anh hằng ngày của dân dev — 30 giây, cả team nghe. Người Việt hay
+    lỗi hai kiểu: nói lan man từng dòng code, hoặc ngại nói blocker vì sợ bị coi là chậm. Cả hai đều
+    làm standup mất tác dụng: standup tồn tại để GỠ BLOCKER, không phải để khoe việc.
+  how_vi: >
+    Ba phần cố định: "Yesterday I…" (đã xong, quá khứ) → "Today I'll…" (kế hoạch, tương lai) →
+    blocker: "I'm blocked on… / waiting on…" hoặc "No blockers". Nói ở mức TÍNH NĂNG, không phải
+    dòng code. Blocker là phần quý nhất — nói ra để người khác gỡ giúp.
+  contrast_vi: "“I wrote some code, fixed things” (mơ hồ) ↔ “Finished login, today API, blocked on permissions” (rõ, gỡ được)."
+
+common_mistakes:
+  - mistake: "Ngại nói blocker vì sợ bị coi là kém"
+    why_vi: "Văn hoá ngại thừa nhận đang kẹt."
+    fix_vi: "Blocker là lý do standup tồn tại. Nói sớm để được gỡ. Giấu blocker mới là thứ làm chậm cả team."
+    detect: {}
+  - mistake: "Báo cáo ở mức dòng code, quá chi tiết"
+    why_vi: "Nghĩ chi tiết mới thể hiện làm nhiều."
+    fix_vi: "Nói ở mức tính năng/nhiệm vụ: “finished the login page”, không phải “I wrote a for-loop…”. Cả team chỉ cần bức tranh."
+    detect: {}
+  - mistake: "Lẫn thì: dùng hiện tại cho việc đã xong"
+    why_vi: "Chưa quen chia thì khi nói nhanh."
+    fix_vi: "Hôm qua = quá khứ (“I finished”), hôm nay = tương lai (“I'll start”). Hai thì này đủ cho 90% standup."
+    detect: {}
+
+memory_trick_vi: >
+  Standup ba ô: HÔM QUA (đã xong) — HÔM NAY (sẽ làm) — KẸT Ở ĐÂU (blocker). Đừng bỏ ô thứ ba — đó
+  là ô cả team đang chờ nghe để giúp bạn.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Standup gồm ba phần nào?"
+    choices:
+      - "Hôm qua, hôm nay, blocker"
+      - "Lương, thưởng, nghỉ phép"
+      - "Code, test, deploy"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đang kẹt vì chờ team khác. Nên làm gì trong standup?"
+    choices:
+      - "Nói rõ blocker: “I'm blocked on…, waiting on…”"
+      - "Giấu đi cho đỡ mất mặt"
+      - "Nói “mọi thứ ổn”"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Yesterday I ___ the login page.” (đã làm xong)"
+    choices: [finished, finish, will finish]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói bị chặn ở đâu?"
+    audio_text: "I'm blocked on the access permissions."
+    choices: ["Quyền truy cập", "Thiết kế giao diện", "Máy in"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I09

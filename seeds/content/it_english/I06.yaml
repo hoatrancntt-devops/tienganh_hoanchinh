@@ -1,0 +1,173 @@
+schema_version: 1
+id: I06
+slug: cap-nhat-su-co
+unit: U-I2
+title_vi: "Cập nhật trạng thái sự cố (incident update)"
+title_en: "Giving an incident/status update"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 6
+est_minutes: 11
+
+objective_vi: "Cập nhật sự cố đang xử lý: hiện trạng, nguyên nhân (nếu biết), việc đang làm, và mốc cập nhật tiếp theo."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và có mốc cập nhật tiếp theo."
+
+prerequisites:
+  - {lesson: I05, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "We're aware of"
+    ipa: "/wɪr əˈwɛr ɒv/"
+    meaning_vi: "Chúng tôi đã ghi nhận"
+    chunk: "We're aware of the outage."
+    tags: [it_english]
+  - term: "currently"
+    ipa: "/ˈkɜːrəntli/"
+    meaning_vi: "hiện tại"
+    chunk: "We're currently investigating."
+    tags: [it_english, core]
+  - term: "root cause"
+    ipa: "/ruːt kɔːz/"
+    meaning_vi: "nguyên nhân gốc"
+    chunk: "We've found the root cause."
+    tags: [it_english]
+  - term: "workaround"
+    ipa: "/ˈwɜːrkəraʊnd/"
+    meaning_vi: "cách khắc phục tạm"
+    chunk: "There's a temporary workaround."
+    tags: [it_english]
+  - term: "next update"
+    ipa: "/nɛkst ˈʌpdeɪt/"
+    meaning_vi: "lần cập nhật tiếp theo"
+    chunk: "Next update in thirty minutes."
+    tags: [it_english]
+  - term: "back up and running"
+    ipa: "/bæk ʌp ænd ˈrʌnɪŋ/"
+    meaning_vi: "hoạt động trở lại"
+    chunk: "The service is back up and running."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "We're aware of {issue} and we're currently {action}."
+    meaning_vi: "Chúng tôi đã ghi nhận {issue} và hiện đang {action}."
+    slots:
+      issue: ["the outage", "the slow response", "the login problem"]
+      action: ["investigating", "applying a fix", "restarting the service"]
+  - pattern: "Next update in {time}."
+    meaning_vi: "Cập nhật tiếp theo trong {time}."
+    slots:
+      time: ["thirty minutes", "an hour", "fifteen minutes"]
+
+dialogue:
+  context_vi: "Bạn cập nhật cho đội và quản lý về sự cố đang xử lý trên kênh chat."
+  turns:
+    - {speaker: A, en: "What's the status on the outage?", vi: "Sự cố sập tình hình sao rồi?"}
+    - {speaker: B, en: "We're aware of it. Currently, the payment service is down and we're investigating.", vi: "Tụi em ghi nhận rồi. Hiện dịch vụ thanh toán đang sập và đang điều tra."}
+    - {speaker: A, en: "Do we know the cause?", vi: "Biết nguyên nhân chưa?"}
+    - {speaker: B, en: "Not the root cause yet, but there's a temporary workaround — users can pay by bank transfer. Next update in thirty minutes.", vi: "Chưa rõ nguyên nhân gốc, nhưng có cách tạm — người dùng thanh toán bằng chuyển khoản. Cập nhật tiếp trong 30 phút."}
+    - {speaker: A, en: "Good, thanks for the clear update.", vi: "Tốt, cảm ơn đã cập nhật rõ ràng."}
+
+listening_snippet:
+  id: LS-I06
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "We're aware of the outage. Currently the payment service is down and we're investigating. There's a temporary workaround. Next update in thirty minutes."
+  transcript_vi: "Tụi em ghi nhận sự cố. Hiện dịch vụ thanh toán sập và đang điều tra. Có cách khắc phục tạm. Cập nhật tiếp trong 30 phút."
+  questions:
+    - q_vi: "Dịch vụ nào đang sập?"
+      choices: ["Thanh toán", "Email", "Wi-Fi"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Bao lâu nữa cập nhật tiếp?"
+      choices: ["30 phút", "3 giờ", "Ngày mai"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "We're aware of the outage and we're currently investigating."
+    prompt_vi: "Đọc to. Câu mở đầu chuẩn của một incident update."
+    ipa: "/wɪr əˈwɛr ɒv ðiː ˈaʊtɪdʒ ænd wɪr ˈkɜːrəntli ɪnˈvɛstɪɡeɪtɪŋ/"
+    focus_phonemes: [w, dʒ, ŋ]
+  - kind: read_aloud
+    expected_text: "There's a temporary workaround. Next update in thirty minutes."
+    prompt_vi: "Đọc to. Cho cách tạm và mốc cập nhật để người nghe yên tâm."
+    ipa: "/ðɛrz ə ˈtɛmpərɛri ˈwɜːrkəraʊnd nɛkst ˈʌpdeɪt ɪn ˈθɜːrti ˈmɪnɪts/"
+    focus_phonemes: [θ, r, k]
+  - kind: shadow
+    expected_text: "The service is back up and running."
+    prompt_vi: "Nghe rồi nhắc lại. Câu thông báo đã khắc phục xong."
+    ipa: "/ðə ˈsɜːrvɪs ɪz bæk ʌp ænd ˈrʌnɪŋ/"
+    focus_phonemes: [s, k, ŋ]
+  - kind: respond
+    prompt_en: "Any update on the email outage?"
+    prompt_vi: "Cập nhật: hiện trạng + việc đang làm + mốc cập nhật tiếp."
+    accept_patterns:
+      - "We're aware of it currently investigating next update in {time}"
+      - "The email service is down we're applying a fix next update in {time}"
+      - "We're aware of the outage there's a workaround next update in {time}"
+
+vietnamese_explanation:
+  why_vi: >
+    Khi sự cố đang xảy ra, người ta lo nhất là KHÔNG BIẾT GÌ ĐANG DIỄN RA. Một incident update tốt
+    không cần đã sửa xong — chỉ cần cho biết bạn đã ghi nhận, đang làm gì, và KHI NÀO có tin tiếp.
+    Người Việt hay im lặng cho đến khi sửa xong, khiến cả team và sếp hoảng loạn hỏi dồn.
+  how_vi: >
+    Bốn phần: (1) ghi nhận "We're aware of…" → (2) hiện trạng "Currently, … is down" → (3) việc đang
+    làm / cách tạm "we're investigating / there's a workaround" → (4) MỐC cập nhật tiếp "Next update
+    in 30 minutes". Phần 4 quan trọng nhất — nó chặn dòng câu hỏi dồn dập.
+  contrast_vi: "Im lặng đến khi xong ↔ “We're aware, investigating, next update in 30 min”. Câu sau khiến mọi người bình tĩnh chờ."
+
+common_mistakes:
+  - mistake: "Im lặng cho đến khi sửa xong mới báo"
+    why_vi: "Nghĩ chưa có kết quả thì chưa có gì để nói."
+    fix_vi: "“Đang điều tra, chưa rõ nguyên nhân” CŨNG là thông tin. Im lặng khiến người ta tưởng bị bỏ mặc."
+    detect: {}
+  - mistake: "Không cho mốc cập nhật tiếp theo"
+    why_vi: "Sợ hứa rồi lỡ."
+    fix_vi: "Luôn có “Next update in X”. Nếu tới hạn chưa xong, cứ báo “still investigating, next update in X”. Đều đặn quan trọng hơn nhanh."
+    detect: {}
+  - mistake: "Cập nhật quá kỹ thuật, sếp không hiểu mức độ nghiêm trọng"
+    why_vi: "Đi vào chi tiết log, stack trace."
+    fix_vi: "Nói ẢNH HƯỞNG (ai không dùng được gì) và MỐC thời gian trước; chi tiết kỹ thuật để cho team kỹ thuật."
+    detect: {}
+
+memory_trick_vi: >
+  Incident update như bản tin thời sự giữa cơn bão: chúng tôi BIẾT (aware) — ĐANG làm gì (currently)
+  — bản tin TIẾP THEO lúc mấy giờ (next update). Khán giả sợ nhất là màn hình đen, không phải tin xấu.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Sự cố đang xảy ra, chưa sửa xong. Nên làm gì?"
+    choices:
+      - "Cập nhật: đang điều tra, next update in 30 min"
+      - "Im lặng đến khi sửa xong"
+      - "Tắt kênh chat cho đỡ ồn"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Phần nào của incident update hay bị quên nhưng quan trọng nhất?"
+    choices: ["Mốc cập nhật tiếp theo", "Tên người trực", "Màu sắc giao diện"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“Workaround” nghĩa là gì?"
+    choices: ["Cách khắc phục tạm", "Nguyên nhân gốc", "Bản vá chính thức"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bao lâu nữa cập nhật tiếp?"
+    audio_text: "Next update in thirty minutes."
+    choices: ["30 phút", "13 phút", "3 giờ"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I07

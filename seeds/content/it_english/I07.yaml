@@ -1,0 +1,177 @@
+schema_version: 1
+id: I07
+slug: ban-giao-ca-truc
+unit: U-I2
+title_vi: "Bàn giao ca trực (handover)"
+title_en: "Shift handover"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 7
+est_minutes: 11
+
+objective_vi: "Bàn giao ca: việc gì đang mở, cái gì cần theo dõi, cái gì đã xong — ngắn gọn và đủ."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và nêu được việc đang mở + việc cần theo dõi."
+
+prerequisites:
+  - {lesson: I06, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "handing over to you"
+    ipa: "/ˈhændɪŋ ˈoʊvər tuː juː/"
+    meaning_vi: "bàn giao cho bạn"
+    chunk: "I'm handing over to you now."
+    tags: [it_english]
+  - term: "still open"
+    ipa: "/stɪl ˈoʊpən/"
+    meaning_vi: "vẫn còn mở (chưa xong)"
+    chunk: "One ticket is still open."
+    tags: [it_english]
+  - term: "keep an eye on"
+    ipa: "/kiːp ən aɪ ɒn/"
+    meaning_vi: "để mắt tới, theo dõi"
+    chunk: "Keep an eye on the disk space."
+    tags: [it_english]
+  - term: "resolved"
+    ipa: "/rɪˈzɒlvd/"
+    meaning_vi: "đã xử lý xong"
+    chunk: "The login issue is resolved."
+    tags: [it_english]
+  - term: "if it happens again"
+    ipa: "/ɪf ɪt ˈhæpənz əˈɡɛn/"
+    meaning_vi: "nếu tái diễn"
+    chunk: "If it happens again, restart the service."
+    tags: [it_english]
+  - term: "the notes are in"
+    ipa: "/ðə noʊts ɑr ɪn/"
+    meaning_vi: "ghi chú nằm ở"
+    chunk: "The notes are in the ticket."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "{ticket} is still open. Keep an eye on {thing}."
+    meaning_vi: "{ticket} vẫn đang mở. Theo dõi {thing} giúp nhé."
+    slots:
+      ticket: ["The backup job", "The payment ticket", "One alert"]
+      thing: ["the disk space", "the error rate", "the queue"]
+  - pattern: "{issue} is resolved. If it happens again, {action}."
+    meaning_vi: "{issue} đã xử lý xong. Nếu tái diễn thì {action}."
+    slots:
+      issue: ["The login issue", "The timeout"]
+      action: ["restart the service", "check the logs", "ping me"]
+
+dialogue:
+  context_vi: "Cuối ca, bạn bàn giao cho đồng nghiệp ca sau."
+  turns:
+    - {speaker: A, en: "Okay, I'm handing over to you now. Two things.", vi: "Rồi, mình bàn giao cho bạn đây. Có hai việc."}
+    - {speaker: B, en: "Go ahead.", vi: "Nói đi."}
+    - {speaker: A, en: "First, the backup job is still open — keep an eye on the disk space. Second, the login issue is resolved, notes are in the ticket.", vi: "Một, job sao lưu vẫn đang chạy — theo dõi dung lượng ổ đĩa. Hai, lỗi đăng nhập đã xong, ghi chú trong ticket."}
+    - {speaker: B, en: "Got it. Anything I should watch for?", vi: "Rõ. Có gì tôi cần để ý không?"}
+    - {speaker: A, en: "If the timeout happens again, just restart the service. That fixed it today.", vi: "Nếu lỗi timeout tái diễn, cứ khởi động lại dịch vụ. Hôm nay làm vậy là ổn."}
+
+listening_snippet:
+  id: LS-I07
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Handing over to you. The backup job is still open, keep an eye on the disk space. The login issue is resolved. If the timeout happens again, restart the service."
+  transcript_vi: "Bàn giao cho bạn. Job sao lưu vẫn mở, theo dõi dung lượng ổ đĩa. Lỗi đăng nhập đã xong. Nếu timeout tái diễn, khởi động lại dịch vụ."
+  questions:
+    - q_vi: "Việc gì vẫn đang mở?"
+      choices: ["Job sao lưu", "Lỗi đăng nhập", "Không có gì"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Nếu timeout tái diễn thì làm gì?"
+      choices: ["Khởi động lại dịch vụ", "Tắt máy chủ", "Gọi khách hàng"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I'm handing over to you now. Two things."
+    prompt_vi: "Đọc to. Mở đầu bàn giao và báo số lượng việc để người nghe chuẩn bị."
+    ipa: "/aɪm ˈhændɪŋ ˈoʊvər tuː juː naʊ tuː θɪŋz/"
+    focus_phonemes: [h, ŋ, θ]
+  - kind: read_aloud
+    expected_text: "The backup job is still open. Keep an eye on the disk space."
+    prompt_vi: "Đọc to. Việc đang mở + điều cần theo dõi đi cùng nhau."
+    ipa: "/ðə ˈbækʌp dʒɒb ɪz stɪl ˈoʊpən kiːp ən aɪ ɒn ðə dɪsk speɪs/"
+    focus_phonemes: [dʒ, p, k]
+  - kind: shadow
+    expected_text: "If it happens again, just restart the service."
+    prompt_vi: "Nghe rồi nhắc lại. Cho người ca sau một chỉ dẫn hành động rõ."
+    ipa: "/ɪf ɪt ˈhæpənz əˈɡɛn dʒʌst ˈriːstɑːrt ðə ˈsɜːrvɪs/"
+    focus_phonemes: [f, dʒ, s]
+  - kind: respond
+    prompt_en: "Anything I need to know before you leave?"
+    prompt_vi: "Bàn giao: một việc đang mở cần theo dõi + một việc đã xong."
+    accept_patterns:
+      - "The backup job is still open keep an eye on {thing} the login issue is resolved"
+      - "One ticket is still open watch the {thing} everything else is resolved"
+      - "{issue} is resolved but keep an eye on {thing}"
+
+vietnamese_explanation:
+  why_vi: >
+    Bàn giao ca kém là nguồn gốc của nhiều sự cố “mồ côi” — không ai biết cái gì đang treo. Bàn giao
+    tốt gói gọn trong ba nhóm: ĐANG MỞ (chưa xong, cần tiếp), CẦN THEO DÕI (chưa hỏng nhưng đáng ngờ),
+    ĐÃ XONG (đóng lại, ghi chú ở đâu). Người Việt hay bàn giao kiểu “ổn hết” rồi ca sau vỡ trận.
+  how_vi: >
+    Mở bằng "Handing over to you, X things" để người nghe đếm. Mỗi việc một câu: trạng thái + hành
+    động cần làm. Với việc đã xong, chỉ chỗ ghi chú "notes are in the ticket". Với việc có thể tái
+    diễn, cho cách xử lý "If it happens again, …".
+  contrast_vi: "“Mọi thứ ổn nhé” (ca sau mù) ↔ “Backup còn mở, theo dõi disk; login đã xong, notes trong ticket” (ca sau kiểm soát được)."
+
+common_mistakes:
+  - mistake: "Bàn giao chung chung “ổn hết rồi”"
+    why_vi: "Muốn về nhanh, hoặc ngại kể dài."
+    fix_vi: "Nêu rõ việc đang mở và việc cần theo dõi. “Ổn hết” là câu khiến ca sau lãnh đủ khi có sự cố treo."
+    detect: {}
+  - mistake: "Chỉ nói việc đã xong, quên việc đang treo"
+    why_vi: "Việc xong dễ kể, việc treo ngại nói vì chưa giải quyết được."
+    fix_vi: "Ưu tiên kể việc ĐANG MỞ trước — đó mới là thứ ca sau cần. Việc xong chỉ cần một câu."
+    detect: {}
+  - mistake: "Không cho hành động cụ thể khi sự cố tái diễn"
+    why_vi: "Nghĩ ca sau tự biết."
+    fix_vi: "Cho một câu hành động: “If it happens again, restart the service.” Ca sau xử lý được ngay, không cần gọi bạn giữa đêm."
+    detect: {}
+
+memory_trick_vi: >
+  Bàn giao ca theo ba ngăn: ĐANG MỞ (còn nóng) — THEO DÕI (đang ấm, coi chừng) — ĐÃ XONG (đã nguội,
+  ghi chú ở đâu). Kể ngăn nóng trước; ngăn nguội chỉ một câu.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Bàn giao ca nên ưu tiên nói gì trước?"
+    choices:
+      - "Việc đang mở và cần theo dõi"
+      - "Việc đã xong từ lâu"
+      - "Chuyện ăn trưa"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“Keep an eye on the disk space” nghĩa là?"
+    choices: ["Theo dõi dung lượng ổ đĩa", "Xoá ổ đĩa", "Thay ổ đĩa"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Vì sao nên cho hành động khi sự cố tái diễn?"
+    choices:
+      - "Để ca sau tự xử lý, không phải gọi bạn"
+      - "Để bàn giao dài hơn"
+      - "Không cần thiết"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Việc gì vẫn đang mở?"
+    audio_text: "The backup job is still open, keep an eye on the disk space."
+    choices: ["Job sao lưu", "Cuộc họp", "Đơn hàng"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I08

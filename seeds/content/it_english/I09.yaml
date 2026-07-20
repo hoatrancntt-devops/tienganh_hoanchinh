@@ -1,0 +1,177 @@
+schema_version: 1
+id: I09
+slug: code-review-nhan-xet
+unit: U-I2
+title_vi: "Nhận xét và phản hồi khi review code"
+title_en: "Code review comments"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 9
+est_minutes: 11
+
+objective_vi: "Góp ý code lịch sự và rõ: nêu vấn đề, đề xuất cách sửa, phân biệt bắt buộc với gợi ý — và nhận góp ý đúng mực."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill; góp ý có đề xuất kèm theo, không chỉ chê."
+
+prerequisites:
+  - {lesson: I08, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "What if we"
+    ipa: "/wɒt ɪf wiː/"
+    meaning_vi: "Hay là mình… (đề xuất nhẹ)"
+    chunk: "What if we rename this variable?"
+    tags: [it_english]
+  - term: "nit"
+    ipa: "/nɪt/"
+    meaning_vi: "góp ý nhỏ (không bắt buộc)"
+    chunk: "Nit: extra space on line ten."
+    tags: [it_english]
+  - term: "Could we"
+    ipa: "/kʊd wiː/"
+    meaning_vi: "Mình có thể… không"
+    chunk: "Could we add a test for this?"
+    tags: [it_english]
+  - term: "Good catch"
+    ipa: "/ɡʊd kætʃ/"
+    meaning_vi: "Phát hiện hay đấy"
+    chunk: "Good catch, I'll fix it."
+    tags: [it_english]
+  - term: "Fair point"
+    ipa: "/fɛr pɔɪnt/"
+    meaning_vi: "Ý hợp lý"
+    chunk: "Fair point, let me update it."
+    tags: [it_english]
+  - term: "up to you"
+    ipa: "/ʌp tuː juː/"
+    meaning_vi: "tuỳ bạn quyết"
+    chunk: "It's a nit, up to you."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "What if we {suggestion}? It might {benefit}."
+    meaning_vi: "Hay là mình {suggestion}? Có thể {benefit}."
+    slots:
+      suggestion: ["rename this to isReady", "extract this into a function", "add a null check"]
+      benefit: ["be clearer", "avoid a crash", "be easier to test"]
+  - pattern: "Nit: {small_thing}. Up to you."
+    meaning_vi: "Góp ý nhỏ: {small_thing}. Tuỳ bạn."
+    slots:
+      small_thing: ["extra blank line here", "typo in the comment", "inconsistent naming"]
+
+dialogue:
+  context_vi: "Bạn review pull request của đồng nghiệp và để lại nhận xét."
+  turns:
+    - {speaker: A, en: "I left a few comments on your PR.", vi: "Tôi để vài nhận xét trong PR của bạn rồi."}
+    - {speaker: B, en: "Thanks, let's go through them.", vi: "Cảm ơn, mình xem qua nhé."}
+    - {speaker: A, en: "The main one: could we add a null check here? It might crash on empty input.", vi: "Cái chính: mình thêm kiểm tra null ở đây được không? Có thể lỗi khi input rỗng."}
+    - {speaker: B, en: "Good catch. I'll add it.", vi: "Phát hiện hay. Tôi sẽ thêm."}
+    - {speaker: A, en: "And a nit: extra blank line on line twelve. Up to you.", vi: "Với một góp ý nhỏ: thừa dòng trống ở dòng 12. Tuỳ bạn."}
+    - {speaker: B, en: "Fair point, I'll clean it up.", vi: "Ý hợp lý, tôi dọn lại."}
+
+listening_snippet:
+  id: LS-I09
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "The main one: could we add a null check here? It might crash on empty input. And a nit: extra blank line on line twelve, up to you."
+  transcript_vi: "Cái chính: thêm kiểm tra null ở đây được không? Có thể lỗi khi input rỗng. Và góp ý nhỏ: thừa dòng trống ở dòng 12, tuỳ bạn."
+  questions:
+    - q_vi: "Góp ý chính là gì?"
+      choices: ["Thêm kiểm tra null", "Đổi màu nút", "Xoá file"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "“Nit” là loại góp ý gì?"
+      choices: ["Nhỏ, không bắt buộc", "Bắt buộc phải sửa", "Lời khen"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Could we add a null check here? It might crash on empty input."
+    prompt_vi: "Đọc to. Nêu vấn đề kèm LÝ DO, không chỉ ra lệnh."
+    ipa: "/kʊd wiː æd ə nʌl tʃɛk hɪr ɪt maɪt kræʃ ɒn ˈɛmpti ˈɪnpʊt/"
+    focus_phonemes: [k, tʃ, ʃ]
+  - kind: read_aloud
+    expected_text: "What if we rename this? It might be clearer."
+    prompt_vi: "Đọc to. “What if we…” là cách đề xuất nhẹ, mời hợp tác."
+    ipa: "/wɒt ɪf wiː riːˈneɪm ðɪs ɪt maɪt biː ˈklɪrər/"
+    focus_phonemes: [w, r, ð]
+  - kind: shadow
+    expected_text: "Good catch. Fair point, I'll update it."
+    prompt_vi: "Nghe rồi nhắc lại. Cách NHẬN góp ý đúng mực, không phòng thủ."
+    ipa: "/ɡʊd kætʃ fɛr pɔɪnt aɪl ˈʌpdeɪt ɪt/"
+    focus_phonemes: [ɡ, tʃ, f]
+  - kind: respond
+    prompt_en: "This function is a bit hard to read."
+    prompt_vi: "Góp ý kèm đề xuất cụ thể, phân biệt bắt buộc hay chỉ là nit."
+    accept_patterns:
+      - "What if we extract this into a function it might be clearer"
+      - "Could we split this up It might be easier to read up to you"
+      - "Nit we could rename this up to you"
+
+vietnamese_explanation:
+  why_vi: >
+    Code review bằng tiếng Anh là nơi dễ gây hiểu lầm nhất: một câu cụt như “this is wrong” đọc rất
+    gắt, dù bạn không có ý đó. Người Việt hay lỗi hai đầu: hoặc chê thẳng (nghe như tấn công), hoặc
+    ngại nói (để lọt lỗi). Bí quyết là góp ý VÀO CODE, kèm ĐỀ XUẤT, và phân loại mức độ.
+  how_vi: >
+    Ba chiêu: (1) đề xuất nhẹ bằng câu hỏi "Could we…? / What if we…?" thay vì ra lệnh; (2) nêu LÝ DO
+    "It might crash/be clearer"; (3) phân loại "nit / up to you" cho góp ý nhỏ, để người viết biết
+    cái nào bắt buộc. Khi NHẬN góp ý: "Good catch", "Fair point" — cảm ơn, đừng phòng thủ.
+  contrast_vi: "“This is wrong, fix it.” (gắt, tổn thương) ↔ “Could we add a null check? It might crash on empty input.” (rõ, dễ chịu, vẫn thẳng)."
+
+common_mistakes:
+  - mistake: "Góp ý cụt: “This is wrong” / “Bad code”"
+    why_vi: "Dịch thẳng ý trong đầu, quên tiếng Anh cụt nghe rất gắt."
+    fix_vi: "Chuyển thành câu hỏi kèm lý do: “Could we…? It might…”. Cùng nội dung nhưng mời hợp tác thay vì phán xét."
+    detect: {}
+  - mistake: "Không phân biệt bắt buộc với gợi ý"
+    why_vi: "Để tất cả cùng một giọng, người viết không biết cái nào phải sửa."
+    fix_vi: "Dùng “nit / up to you” cho việc nhỏ, nói rõ “this could crash” cho việc quan trọng. Phân loại giúp người viết ưu tiên."
+    detect: {}
+  - mistake: "Phòng thủ khi nhận góp ý"
+    why_vi: "Cảm giác bị chê code như bị chê bản thân."
+    fix_vi: "Code review là về code, không phải về bạn. “Good catch, I'll fix it” là phản hồi chuyên nghiệp nhất."
+    detect: {}
+
+memory_trick_vi: >
+  Góp ý code theo công thức HỎI + LÝ DO + NHÃN: “Could we…?” (hỏi, không ra lệnh) — “it might…” (lý
+  do) — “nit / up to you” (nhãn mức độ). Nhận góp ý thì hai chữ vàng: “Good catch.”
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Cách góp ý code nào dễ chịu và vẫn rõ?"
+    choices:
+      - "Could we add a null check? It might crash on empty input."
+      - "This is wrong."
+      - "Bad code, redo it."
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Nit: extra blank line. Up to you.” nghĩa là gì?"
+    choices:
+      - "Góp ý nhỏ, không bắt buộc sửa"
+      - "Lỗi nghiêm trọng phải sửa ngay"
+      - "Lời khen"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đồng nghiệp chỉ ra một lỗi thật trong code bạn. Phản hồi tốt nhất?"
+    choices: ["Good catch, I'll fix it.", "No, my code is fine.", "Why are you attacking me?"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Góp ý chính là gì?"
+    audio_text: "Could we add a null check here? It might crash on empty input."
+    choices: ["Thêm kiểm tra null", "Xoá hàm", "Đổi tên file"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I10
