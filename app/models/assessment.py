@@ -15,8 +15,13 @@ class SpeechAttempt(Base, UUIDMixin, TimestampMixin):
     user_id: Mapped[uuid.UUID] = mapped_column(
         sa.ForeignKey("users.id", ondelete="CASCADE"), index=True
     )
-    item_id: Mapped[uuid.UUID | None] = mapped_column(sa.ForeignKey("items.id"))
-    lesson_id: Mapped[uuid.UUID | None] = mapped_column(sa.ForeignKey("lessons.id"))
+    # SET NULL: seed xoá+tạo lại item -> giữ lịch sử chấm nói, chỉ bỏ liên kết item.
+    item_id: Mapped[uuid.UUID | None] = mapped_column(
+        sa.ForeignKey("items.id", ondelete="SET NULL")
+    )
+    lesson_id: Mapped[uuid.UUID | None] = mapped_column(
+        sa.ForeignKey("lessons.id", ondelete="SET NULL")
+    )
     audio_path: Mapped[str] = mapped_column(sa.String(400), default="")
     transcript: Mapped[str] = mapped_column(sa.Text, default="")
     score_pronunciation: Mapped[float] = mapped_column(sa.Float, default=0.0)
