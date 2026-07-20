@@ -13,11 +13,28 @@ const Player = (() => {
     if (!flat.length) { document.getElementById('stage').innerHTML = '<div class="empty">Bài này chưa có nội dung.</div>'; return; }
     render();
   }
-  function steps() { return flat.map((_, i) => `<i class="${i < idx ? 'done' : i === idx ? 'now' : ''}"></i>`).join(''); }
+  // Nhãn kỹ năng cho từng bước — để người học luôn biết đang luyện gì.
+  function stepMeta(it) {
+    if (it.__study) return { icon: '📖', label: 'Học từ & hội thoại' };
+    if (it.choices && it.choices.length) {
+      if (it.audio) return { icon: '🎧', label: 'Nghe hiểu' };
+      return L.phase === 'reading'
+        ? { icon: '📖', label: 'Đọc hiểu' }
+        : { icon: '🧠', label: 'Ôn từ & mẫu câu' };
+    }
+    return { icon: '🎙', label: it.act === 'shadow' ? 'Nói — nhắc lại mẫu' : 'Nói' };
+  }
+  function steps() {
+    return flat.map((it, i) => {
+      const m = stepMeta(it);
+      return `<i class="${i < idx ? 'done' : i === idx ? 'now' : ''}" title="${esc(m.label)}"></i>`;
+    }).join('');
+  }
   function render() {
     const it = flat[idx];
+    const m = stepMeta(it);
     document.getElementById('steps').innerHTML = steps();
-    document.getElementById('counter').textContent = `${idx + 1}/${flat.length}`;
+    document.getElementById('counter').textContent = `Bước ${idx + 1}/${flat.length} · ${m.icon} ${m.label}`;
     const nb = document.getElementById('nextBtn');
     if (it.__study) {
       document.getElementById('stage').innerHTML = studyView();
@@ -63,15 +80,18 @@ const Player = (() => {
     return h;
   }
   function quizView(it) {
+    const m = stepMeta(it);
     return `<div class="card">
+      <div class="pill pill-acc" style="margin-bottom:.9rem">${m.icon} ${esc(m.label)}</div>
       ${it.audio ? `<button class="playbtn" onclick="Player.play('${it.audio}')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe câu</button>` : ''}
       <p class="prompt-vi" style="margin:.9rem 0 1rem;font-size:.98rem;color:var(--fg)">${esc(it.prompt_vi || it.prompt_en)}</p>
       <div id="choices">${it.choices.map((c, i) => `<button class="choice" data-i="${i}" onclick="Player.answer(${i})">${esc(c)}</button>`).join('')}</div>
       <div id="fb" style="margin-top:.9rem"></div></div>`;
   }
   function speakView(it) {
+    const m = stepMeta(it);
     return `<div class="card center">
-      <div class="pill pill-acc" style="margin-bottom:.9rem">${it.act === 'shadow' ? 'Nhắc lại theo mẫu' : 'Luyện nói'}</div>
+      <div class="pill pill-acc" style="margin-bottom:.9rem">${m.icon} ${esc(m.label)}</div>
       <p class="prompt-en">${esc(it.prompt_en || '')}</p>
       ${it.ipa ? `<div class="prompt-ipa">${esc(it.ipa)}</div>` : ''}
       ${it.prompt_vi ? `<p class="prompt-vi">${esc(it.prompt_vi)}</p>` : ''}

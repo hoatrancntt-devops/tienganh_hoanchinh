@@ -32,7 +32,7 @@
 {% block scripts %}
 <script src="/static/js/recorder.js?v={{ sv }}"></script>
 <script src="/static/js/player.js?v={{ sv }}"></script>
-<script id="lessonData" type="application/json">{{ {"activities": activities, "is_preview": is_preview, "study": study}|tojson }}</script>
+<script id="lessonData" type="application/json">{{ {"activities": activities, "is_preview": is_preview, "study": study, "phase": lesson.phase}|tojson }}</script>
 <script>
 Player.init(JSON.parse(document.getElementById('lessonData').textContent));
 </script>
