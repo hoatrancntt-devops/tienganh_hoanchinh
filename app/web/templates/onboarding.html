@@ -2,8 +2,27 @@
 {% block title %}Bắt đầu{% endblock %}
 {% block main_class %}narrow{% endblock %}
 {% block body %}
+
+<div class="ob-intro">
+  <img src="/static/img/hero.svg?v={{ sv }}" alt="" width="120" height="80" style="display:block;margin:0 auto .6rem">
+  <h2 class="center" style="margin-bottom:.4rem">Chào mừng 👋</h2>
+  <p class="center mut" style="margin:0 auto 1rem;max-width:38ch">Ba câu hỏi nhanh để cá nhân hoá lộ trình cho bạn. Khoá này rèn:</p>
+  <div class="row" style="justify-content:center;margin-bottom:.3rem">
+    <span class="sk sk-listen">🎧 Nghe</span>
+    <span class="sk sk-speak">🎙 Nói</span>
+    <span class="sk sk-read">📖 Đọc</span>
+    <span class="sk sk-write">✍️ Viết</span>
+  </div>
+  <p class="center mut-3" style="margin-top:.6rem">Lộ trình 5 bước: Nền tảng → Hằng ngày → Công sở → CNTT → Đọc</p>
+</div>
+
+<div class="ob-progress" id="obProgress">
+  <span class="ob-dot on"></span><span class="ob-dot"></span><span class="ob-dot"></span>
+  <span class="ob-step mut-3" id="obStep">Bước 1/3</span>
+</div>
+
 <div id="s1">
-  <h1>Bạn học để làm gì?</h1>
+  <h1>1. Bạn học để làm gì?</h1>
   <p class="mut" style="margin:.4rem 0 1.5rem">Chọn cái gần nhất — đổi sau được.</p>
   <div class="stack">
     <button class="card" style="text-align:left;cursor:pointer;border-color:var(--acc)" onclick="pick('speaking')">
@@ -17,30 +36,42 @@
     </button>
   </div>
 </div>
+
 <div id="s2" hidden>
-  <h1>Mỗi ngày bạn học được bao lâu?</h1>
+  <h1>2. Mỗi ngày bạn học được bao lâu?</h1>
   <p class="mut" style="margin:.4rem 0 1.5rem">Chọn ít thôi. Đều đặn hơn nhiều.</p>
   <div class="stack">
     <button class="card" style="text-align:left;cursor:pointer;border-color:var(--acc)" onclick="mins(10)"><h3>10 phút <span class="pill pill-acc">Khuyên dùng</span></h3><p class="mut-3" style="margin:.4rem 0 0">Đúng một bài. Vừa đủ để không bỏ.</p></button>
     <button class="card" style="text-align:left;cursor:pointer" onclick="mins(20)"><h3>20 phút</h3><p class="mut-3" style="margin:.4rem 0 0">Hai bài, hoặc một bài cộng ôn tập.</p></button>
     <button class="card" style="text-align:left;cursor:pointer" onclick="mins(30)"><h3>30 phút</h3><p class="mut-3" style="margin:.4rem 0 0">Nếu bạn thật sự có 30 phút mỗi ngày.</p></button>
   </div>
+  <button class="btn btn-quiet" style="margin-top:1rem" onclick="show('s1')">← Quay lại</button>
 </div>
+
 <div id="s3" hidden>
-  <h1>Kiểm tra micro</h1>
+  <h1>3. Kiểm tra micro</h1>
   <p class="mut" style="margin:.4rem 0 1.5rem">Phần nói là trọng tâm của khoá này, nên ta kiểm tra micro trước. Lỗi micro ở bài thật gây bực gấp mười.</p>
   <div class="card center">
     <div id="micState" class="mut" style="padding:1.5rem 0">Chưa kiểm tra</div>
     <button class="btn btn-lg btn-full" onclick="checkMic()" id="micBtn">Cho phép dùng micro</button>
     <button class="btn btn-quiet btn-full" style="margin-top:.6rem" onclick="goPlacement()">Bỏ qua, kiểm tra sau</button>
   </div>
+  <p class="center mut-3" style="margin-top:1rem">Sau bước này là bài xếp lớp ngắn để biết bạn nên bắt đầu từ đâu.</p>
+  <button class="btn btn-quiet" style="margin-top:.4rem" onclick="show('s2')">← Quay lại</button>
 </div>
 {% endblock %}
 {% block scripts %}
 <script src="/static/js/recorder.js?v={{ sv }}"></script>
 <script>
 let goal='speaking',minutes=10;
-function show(id){['s1','s2','s3'].forEach(s=>document.getElementById(s).hidden=s!==id);window.scrollTo(0,0);}
+const STEP={s1:1,s2:2,s3:3};
+function show(id){
+  ['s1','s2','s3'].forEach(s=>document.getElementById(s).hidden=s!==id);
+  const n=STEP[id]||1;
+  document.querySelectorAll('#obProgress .ob-dot').forEach((d,i)=>d.classList.toggle('on',i<n));
+  document.getElementById('obStep').textContent='Bước '+n+'/3';
+  window.scrollTo(0,0);
+}
 function pick(g){goal=g;show('s2');}
 function mins(m){minutes=m;show('s3');}
 async function checkMic(){
