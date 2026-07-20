@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{ wset.title_vi }}{% endblock %}
+{% block main_class %}player{% endblock %}
+{% block body %}
+<div class="between" style="margin-bottom:.9rem">
+  <a class="btn btn-quiet" href="/learn/write" style="padding:.4rem .6rem"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Luyện viết</a>
+  <span class="mut-3" id="counter">—</span>
+</div>
+<div class="steps" id="steps"></div>
+<div style="margin:0 0 1rem">
+  <div class="lcard-code">{{ wset.id }}</div>
+  <h1 style="font-size:1.1rem;margin-top:.2rem">{{ wset.title_vi }}</h1>
+  <p class="mut-3" style="margin-top:.3rem">{{ wset.context_vi }}</p>
+</div>
+<div id="stage"></div>
+<div class="player-nav">
+  <span class="mut-3">✍️ Viết · {{ wset.tasks|length }} câu</span>
+  <button class="btn" id="nextBtn" onclick="WR.next()" disabled>Tiếp theo</button>
+</div>
+{% endblock %}
+{% block scripts %}
+<script id="wrData" type="application/json">{{ {"id": wset.id, "tasks": wset.tasks|map(attribute='prompt_vi')|list, "kinds": wset.tasks|map(attribute='kind')|list}|tojson }}</script>
+<script>
+const WR = (() => {
+  const D = JSON.parse(document.getElementById('wrData').textContent);
+  const n = D.tasks.length; let idx = 0, checked = [];
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function steps(){return D.tasks.map((_,i)=>`<i class="${i<idx?'done':i===idx?'now':''}"></i>`).join('');}
+  function band(v){return v>=75?['Tốt','ok']:v>=45?['Khá','warn']:['Cần luyện','err'];}
+  function render(){
+    document.getElementById('steps').innerHTML = steps();
+    document.getElementById('counter').textContent = `Câu ${idx+1}/${n}`;
+    const nb = document.getElementById('nextBtn');
+    nb.textContent = idx===n-1 ? 'Hoàn thành' : 'Tiếp theo';
+    nb.disabled = !checked[idx];
+    const kindLabel = D.kinds[idx]==='compose' ? '✍️ Viết theo yêu cầu' : '🔤 Dịch sang tiếng Anh';
+    document.getElementById('stage').innerHTML = `<div class="card">
+      <div class="pill pill-acc" style="margin-bottom:.9rem">${kindLabel}</div>
+      <p class="prompt-vi" style="font-size:1rem;color:var(--fg);margin-bottom:.9rem">${esc(D.tasks[idx])}</p>
+      <textarea id="ans" rows="3" placeholder="Gõ câu tiếng Anh của bạn…" style="font-size:1rem"></textarea>
+      <button class="btn btn-full" style="margin-top:.8rem" id="checkBtn" onclick="WR.check()">Kiểm tra</button>
+      <div id="fb" style="margin-top:.9rem"></div></div>`;
+    const prev = checked[idx];
+    if (prev) showResult(prev.r, prev.ans);
+    setTimeout(()=>{const a=document.getElementById('ans'); if(a && !prev) a.focus();},50);
+  }
+  async function check(){
+    const a = document.getElementById('ans'); const ans = a.value.trim();
+    if(!ans){ toast('Bạn chưa viết gì.','warn'); return; }
+    const btn = document.getElementById('checkBtn'); btn.disabled = true; btn.textContent='Đang chấm…';
+    const r = await api('/learn/write/grade', {set_id:D.id, task_index:idx, answer:ans});
+    btn.disabled = false; btn.textContent='Kiểm tra lại';
+    if(!r.ok){ toast(r.data.detail||'Lỗi khi chấm.','err'); return; }
+    checked[idx] = {r:r.data, ans};
+    showResult(r.data, ans);
+    document.getElementById('nextBtn').disabled = false;
+  }
+  function showResult(d, ans){
+    const [lbl,cls] = band(d.score);
+    const a = document.getElementById('ans'); if(a) a.value = ans;
+    document.getElementById('fb').innerHTML =
+      `<div class="scores" style="grid-template-columns:1fr"><div class="score"><div class="v">${lbl} · ${d.score}%</div><div class="k">Điểm câu này</div></div></div>
+       <div class="alert alert-${cls==='ok'?'ok':cls==='warn'?'warn':'err'}" style="text-align:left">${esc(d.feedback_vi)}</div>
+       ${d.sample?`<div class="card-tight" style="background:var(--card-2);border-radius:var(--r);margin-top:.7rem"><div class="mut-3" style="margin-bottom:.2rem">Câu mẫu</div><div style="font-size:.95rem">“${esc(d.sample)}”</div></div>`:''}`;
+  }
+  function next(){ if(idx<n-1){ idx++; render(); window.scrollTo(0,0);} else finish(); }
+  function finish(){
+    const avg = Math.round(checked.filter(Boolean).reduce((s,c)=>s+c.r.score,0)/n);
+    document.getElementById('stage').innerHTML = `<div class="card center">
+      <div style="font-size:2.4rem;margin-bottom:.6rem">✅</div><h2>Xong bài viết</h2>
+      <p class="mut" style="margin:.5rem 0 1.2rem">Điểm trung bình: <b>${avg}%</b> · ${n} câu</p>
+      <a class="btn btn-lg btn-full" href="/learn/write">Bài viết khác</a>
+      <a class="btn btn-quiet btn-full" style="margin-top:.5rem" href="/learn">Về lộ trình</a></div>`;
+    document.getElementById('steps').innerHTML = D.tasks.map(()=>'<i class="done"></i>').join('');
+    document.querySelector('.player-nav').style.display='none';
+  }
+  render();
+  return { check, next };
+})();
+</script>
+{% endblock %}

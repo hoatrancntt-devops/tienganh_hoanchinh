@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Luyện viết{% endblock %}
+{% block body %}
+{% set topic_img = {'social':'social','food':'food','transport':'transport','office':'office','it_english':'it_english','core':'core'} %}
+<div class="page-head">
+  <h1>✍️ Luyện viết</h1>
+  <p>Gõ câu tiếng Anh theo yêu cầu, hệ thống chấm ngay và cho câu mẫu. Không cần đúng từng chữ — đúng ý và đúng văn phong là được.</p>
+</div>
+<div class="grid-auto">
+  {% for s in sets %}
+  <a class="lcard" href="/learn/write/{{ s.id }}">
+    <div class="lcard-top">
+      <img src="/static/img/topic-{{ topic_img.get(s.topic,'core') }}.svg?v={{ sv }}" alt="" width="26" height="26">
+      <span class="lcard-code">{{ s.id }}</span>
+      <span class="pill pill-acc" style="margin-left:auto">✍️ Viết</span>
+    </div>
+    <h3>{{ s.title_vi }}</h3>
+    <p class="lcard-warn" style="color:var(--fg-2)">{{ s.context_vi }}</p>
+    <div class="mut-3" style="margin-top:.5rem">{{ s.count }} câu</div>
+  </a>
+  {% else %}
+  <div class="empty">Chưa có bài luyện viết nào.</div>
+  {% endfor %}
+</div>
+{% endblock %}

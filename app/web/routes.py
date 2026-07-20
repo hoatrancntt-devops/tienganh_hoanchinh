@@ -1,6 +1,6 @@
 """Web SSR: Jinja2 + HTMX. Route mỏng, mọi luật nằm ở services."""
 from fastapi import APIRouter, Depends, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -44,7 +44,7 @@ SKILL_META = {
     "listen": {"icon": "🎧", "label": "Nghe"},
     "speak": {"icon": "🎙", "label": "Nói"},
     "read": {"icon": "📖", "label": "Đọc"},
-    "write": {"icon": "✍️", "label": "Viết", "soon": True},
+    "write": {"icon": "✍️", "label": "Viết"},
 }
 
 
@@ -341,6 +341,61 @@ async def roleplay_run(
     ctx = await _shell(request, db, user)
     ctx["scenario"] = scenario
     return templates.TemplateResponse(request, "roleplay.html", ctx)
+
+
+@router.get("/learn/write", response_class=HTMLResponse)
+async def writing_list(
+    request: Request,
+    user: User | None = Depends(current_user_optional),
+    db: AsyncSession = Depends(get_session),
+):
+    if user is None:
+        return _redirect("/login")
+    from app.services import writing_service
+
+    ctx = await _shell(request, db, user)
+    ctx["sets"] = writing_service.list_sets()
+    return templates.TemplateResponse(request, "writing_list.html", ctx)
+
+
+@router.get("/learn/write/{sid}", response_class=HTMLResponse)
+async def writing_set(
+    sid: str,
+    request: Request,
+    user: User | None = Depends(current_user_optional),
+    db: AsyncSession = Depends(get_session),
+):
+    if user is None:
+        return _redirect("/login")
+    from app.services import writing_service
+
+    wset = writing_service.get_set(sid)
+    if wset is None:
+        return _redirect("/learn/write")
+    ctx = await _shell(request, db, user)
+    ctx["wset"] = wset
+    return templates.TemplateResponse(request, "writing.html", ctx)
+
+
+@router.post("/learn/write/grade", response_class=JSONResponse)
+async def writing_grade(
+    request: Request,
+    user: User | None = Depends(current_user_optional),
+    db: AsyncSession = Depends(get_session),
+):
+    if user is None:
+        return JSONResponse({"detail": "Chưa đăng nhập"}, status_code=401)
+    from app.services import writing_service
+
+    body = await request.json()
+    wset = writing_service.get_set(body.get("set_id", ""))
+    if wset is None:
+        return JSONResponse({"detail": "Không tìm thấy bài"}, status_code=404)
+    tasks = wset.get("tasks", [])
+    idx = body.get("task_index", -1)
+    if not isinstance(idx, int) or not 0 <= idx < len(tasks):
+        return JSONResponse({"detail": "Câu không hợp lệ"}, status_code=400)
+    return JSONResponse(writing_service.grade(tasks[idx], body.get("answer", "")))
 
 
 @router.get("/notifications", response_class=HTMLResponse)

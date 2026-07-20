@@ -1,0 +1,30 @@
+id: WR-02
+title_vi: "Viết tin nhắn & email IT"
+context_vi: "Viết tin nhắn/email công việc theo yêu cầu. Không cần giống hệt mẫu — chỉ cần đủ ý và đúng văn phong. Bấm Kiểm tra để xem gợi ý."
+topic: it_english
+level: b1
+tasks:
+  - kind: compose
+    prompt_vi: "Nhắn Slack cho đồng nghiệp: bạn đang họp, lát sẽ trả lời."
+    keywords: ["in a meeting", "reply"]
+    min_words: 4
+    sample_en: "In a meeting, will reply after."
+    hint_vi: "Chat công việc nên NGẮN. Báo bận: “In a meeting, will reply after.”"
+  - kind: compose
+    prompt_vi: "Báo sự cố: VPN hỏng từ 9 giờ sáng, khoảng 20 người bị ảnh hưởng."
+    keywords: ["VPN", "down", "since", "affected"]
+    min_words: 8
+    sample_en: "The VPN is down since nine this morning. About twenty users are affected."
+    hint_vi: "Báo sự cố đủ: cái gì hỏng + từ khi nào + ảnh hưởng ai. “… is down since … , … users are affected.”"
+  - kind: compose
+    prompt_vi: "Viết dòng tiêu đề + câu đầu email thông báo bảo trì tối nay 10–11 giờ."
+    keywords: ["maintenance", "unavailable", "10"]
+    min_words: 8
+    sample_en: "Subject: Maintenance tonight 10-11 PM. The portal will be unavailable from 10 to 11 PM tonight."
+    hint_vi: "Email kỹ thuật: tiêu đề nói thẳng, câu đầu là kết luận. “… will be unavailable from 10 to 11 PM.”"
+  - kind: compose
+    prompt_vi: "Xin đồng nghiệp review PR giúp, không gấp."
+    keywords: ["review", "no rush"]
+    min_words: 5
+    sample_en: "When you get a chance, could you review my PR? No rush."
+    hint_vi: "Nhờ việc không gấp: “When you get a chance, could you …? No rush.”"

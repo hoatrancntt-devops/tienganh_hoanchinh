@@ -1,0 +1,41 @@
+id: WR-03
+title_vi: "Viết câu tiếng Anh CNTT"
+context_vi: "Dịch các câu hay dùng khi làm việc trong ngành CNTT sang tiếng Anh."
+topic: it_english
+level: b1
+tasks:
+  - kind: translate
+    prompt_vi: "Tôi đã thử khởi động lại nhưng không được."
+    accept:
+      - "I've tried restarting but it didn't work"
+      - "I have tried restarting but it didn't work"
+      - "I've already tried restarting but it didn't work"
+      - "I tried restarting but it didn't work"
+    hint_vi: "Đã thử gì: “I've tried … but it didn't work.”"
+  - kind: translate
+    prompt_vi: "Hôm qua tôi làm xong trang đăng nhập. Hôm nay tôi sẽ bắt đầu phần API."
+    accept:
+      - "Yesterday I finished the login page. Today I'll start on the API"
+      - "Yesterday I finished the login page. Today I will start on the API"
+    hint_vi: "Standup: hôm qua (quá khứ) “I finished…”, hôm nay (tương lai) “I'll start…”."
+  - kind: translate
+    prompt_vi: "Bọn mình sẽ deploy lên production tối nay, ngừng khoảng năm phút."
+    accept:
+      - "We'll deploy to production tonight, about five minutes of downtime"
+      - "We will deploy to production tonight, about five minutes of downtime"
+      - "We'll deploy to production tonight with about five minutes of downtime"
+    hint_vi: "“deploy to production”, “five minutes of downtime”."
+  - kind: translate
+    prompt_vi: "Nói đơn giản, máy chủ bị quá tải. Cứ hình dung như kẹt xe."
+    accept:
+      - "Basically, the server got overloaded. Think of it as a traffic jam"
+      - "Basically the server got overloaded. Think of it as a traffic jam"
+      - "Basically, the server was overloaded. Think of it as a traffic jam"
+    hint_vi: "Giải thích dễ hiểu: “Basically, …. Think of it as …”."
+  - kind: translate
+    prompt_vi: "Đừng lo, bọn mình có bản sao lưu từ tối qua. Không mất dữ liệu."
+    accept:
+      - "Don't worry, we have a backup from last night. There was no data loss"
+      - "Don't worry, we have a backup from last night. No data loss"
+      - "Do not worry, we have a backup from last night. There was no data loss"
+    hint_vi: "Trấn an: “Don't worry, we have a backup … . There was no data loss.”"

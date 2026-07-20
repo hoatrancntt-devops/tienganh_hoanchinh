@@ -1,0 +1,39 @@
+id: WR-01
+title_vi: "Viết câu công sở"
+context_vi: "Dịch các câu công sở hay dùng sang tiếng Anh. Gõ câu của bạn rồi bấm Kiểm tra."
+topic: office
+level: a2
+tasks:
+  - kind: translate
+    prompt_vi: "Tôi sẽ gửi báo cáo trước cuối ngày."
+    accept:
+      - "I'll send the report by end of day"
+      - "I will send the report by end of day"
+      - "I'll send the report by end of the day"
+    hint_vi: "Hạn chót dùng “by end of day”. “I'll” = I will."
+  - kind: translate
+    prompt_vi: "Cho tôi hỏi, ý anh là cả báo cáo hay chỉ phần hai?"
+    accept:
+      - "Just to be clear, do you mean the whole report or just section two?"
+      - "Do you mean the whole report or just section two?"
+    hint_vi: "Hỏi làm rõ: “Just to be clear, do you mean … or …?”"
+  - kind: translate
+    prompt_vi: "Báo trước để anh biết, tôi đang hơi trễ tiến độ."
+    accept:
+      - "Just a heads up, I'm running a bit behind"
+      - "Just a heads up, I am running a bit behind"
+      - "Heads up, I'm running a bit behind"
+    hint_vi: "Báo trước: “Just a heads up, …”. Trễ tiến độ: “running behind”."
+  - kind: translate
+    prompt_vi: "Thứ Năm hai giờ bạn có rảnh không?"
+    accept:
+      - "Are you free Thursday at two?"
+      - "Are you free on Thursday at two?"
+      - "Are you free at two on Thursday?"
+    hint_vi: "Hỏi rảnh: “Are you free …?”"
+  - kind: translate
+    prompt_vi: "Bạn rảnh một phút không? Tôi đang kẹt ở bước deploy."
+    accept:
+      - "Do you have a minute? I'm stuck on the deploy step"
+      - "Do you have a minute? I am stuck on the deploy step"
+    hint_vi: "Xin giúp: “Do you have a minute? I'm stuck on …”"

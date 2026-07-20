@@ -15,6 +15,7 @@
   <nav class="topnav">
     <a href="/learn" class="{{ 'active' if request.url.path == '/learn' }}">Lộ trình</a>
     <a href="/learn/roleplay" class="{{ 'active' if '/roleplay' in request.url.path }}">Đóng vai</a>
+    <a href="/learn/write" class="{{ 'active' if '/write' in request.url.path }}">Luyện viết</a>
     <a href="/learn/review" class="{{ 'active' if '/review' in request.url.path }}">Ôn tập</a>
     {% if user.is_admin %}<a href="/admin">Quản trị</a>{% endif %}
   </nav>
