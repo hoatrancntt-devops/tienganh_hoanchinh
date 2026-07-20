@@ -1,0 +1,152 @@
+schema_version: 1
+id: R06
+slug: doc-log-tim-loi
+unit: U-R1
+title_vi: "Đọc log để tìm lỗi"
+title_en: "Reading logs"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 6
+est_minutes: 10
+
+objective_vi: "Đọc dòng log và phân biệt mức độ (INFO/WARN/ERROR), tìm đúng dòng gây sự cố."
+objective_observable: "Trả lời đúng 4/5 câu hỏi về mức log và dòng lỗi gốc."
+
+prerequisites:
+  - {lesson: R05, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "INFO"
+    ipa: "/ˈɪnfoʊ/"
+    meaning_vi: "thông tin bình thường"
+    chunk: "INFO: server started on port 9999."
+    tags: [it_english]
+  - term: "WARNING"
+    ipa: "/ˈwɔːrnɪŋ/"
+    meaning_vi: "cảnh báo (chưa hỏng nhưng đáng ngờ)"
+    chunk: "WARNING: disk space low."
+    tags: [it_english]
+  - term: "ERROR"
+    ipa: "/ˈɛrər/"
+    meaning_vi: "lỗi (đã hỏng)"
+    chunk: "ERROR: failed to save file."
+    tags: [it_english]
+  - term: "timestamp"
+    ipa: "/ˈtaɪmstæmp/"
+    meaning_vi: "dấu thời gian"
+    chunk: "Check the timestamp of the error."
+    tags: [it_english]
+  - term: "stack trace"
+    ipa: "/stæk treɪs/"
+    meaning_vi: "vết gọi hàm khi lỗi"
+    chunk: "The stack trace shows the failing function."
+    tags: [it_english]
+  - term: "retry"
+    ipa: "/ˈriːtraɪ/"
+    meaning_vi: "thử lại"
+    chunk: "Retry 3 of 5 failed."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "{level}: {message} at {time}."
+    meaning_vi: "{level}: {message} lúc {time}."
+    slots:
+      level: [INFO, WARNING, ERROR]
+      message: ["server started", "disk space low", "failed to save file"]
+      time: ["10:02", "10:05", "10:07"]
+
+dialogue:
+  context_vi: "Một đoạn log của máy chủ (đọc từng dòng, theo thời gian)."
+  turns:
+    - {speaker: A, en: "10:02 INFO: Server started on port 9999.", vi: "10:02 INFO: Máy chủ khởi động ở cổng 9999."}
+    - {speaker: A, en: "10:05 WARNING: Disk space is low (15% left).", vi: "10:05 WARNING: Dung lượng ổ thấp (còn 15%)."}
+    - {speaker: A, en: "10:07 ERROR: Failed to save file — no space left on device.", vi: "10:07 ERROR: Không lưu được file — hết dung lượng ổ."}
+    - {speaker: A, en: "10:07 ERROR: Retry 3 of 3 failed. Giving up.", vi: "10:07 ERROR: Thử lại lần 3/3 thất bại. Dừng."}
+
+listening_snippet:
+  id: LS-R06
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "At 10:05 a warning says disk space is low. At 10:07 an error says it failed to save the file because there's no space left on the device."
+  transcript_vi: "Lúc 10:05 một cảnh báo nói dung lượng ổ thấp. Lúc 10:07 một lỗi nói không lưu được file vì hết dung lượng ổ."
+  questions:
+    - q_vi: "Nguyên nhân gốc của lỗi là gì?"
+      choices: ["Hết dung lượng ổ đĩa", "Sai mật khẩu", "Mất mạng"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Cảnh báo lúc 10:05 báo gì?"
+      choices: ["Dung lượng ổ thấp", "Máy chủ khởi động", "Có người đăng nhập"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Log là một dòng thời gian: mỗi dòng có DẤU THỜI GIAN, MỨC ĐỘ (INFO/WARNING/ERROR) và thông điệp.
+    Bí quyết đọc log không phải đọc hết — mà là NHẢY tới dòng ERROR đầu tiên, rồi nhìn các WARNING
+    NGAY TRƯỚC nó để hiểu vì sao. Người Việt hay đọc tuần tự từ trên xuống, mất thời gian ở đống INFO vô hại.
+  how_vi: >
+    Ba bước: (1) tìm "ERROR" đầu tiên theo thời gian — đó là chỗ hỏng; (2) đọc các "WARNING" ngay
+    trước nó — thường là mầm mống (vd disk thấp → save fail); (3) bỏ qua "INFO" trừ khi cần mốc thời
+    gian. Dòng ERROR đầu tiên quan trọng hơn các ERROR sau (chúng thường là hệ quả).
+  contrast_vi: "Đọc từ dòng đầu tuần tự (chậm) ↔ nhảy tới ERROR đầu tiên rồi ngược lên WARNING (nhanh, đúng nguyên nhân)."
+
+common_mistakes:
+  - mistake: "Đọc log tuần tự từ trên xuống"
+    why_vi: "Thói quen đọc văn bản."
+    fix_vi: "Nhảy tới “ERROR” đầu tiên trước. Đống “INFO” phía trên đa phần vô hại."
+    detect: {}
+  - mistake: "Nhìn ERROR cuối cùng thay vì ERROR đầu tiên"
+    why_vi: "Cuộn xuống dưới cùng vì nghĩ lỗi mới nhất là gốc."
+    fix_vi: "ERROR ĐẦU TIÊN theo thời gian thường là nguyên nhân; các ERROR sau thường là hệ quả dây chuyền."
+    detect: {}
+  - mistake: "Bỏ qua WARNING ngay trước ERROR"
+    why_vi: "Nghĩ warning không quan trọng."
+    fix_vi: "WARNING ngay trước ERROR thường là mầm mống (disk thấp → save fail). Đọc nó để hiểu gốc rễ."
+    detect: {}
+
+memory_trick_vi: >
+  Đọc log như điều tra hiện trường theo giờ: tìm TIẾNG NỔ đầu tiên (ERROR sớm nhất), rồi nhìn các
+  DẤU HIỆU BÁO TRƯỚC (WARNING ngay trước). Đám INFO chỉ là người qua đường vô can.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Mức log nào nghĩa là ĐÃ hỏng?"
+    choices: [ERROR, INFO, WARNING]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Khi tìm nguyên nhân, nên đọc ERROR nào trước?"
+    choices: ["ERROR đầu tiên theo thời gian", "ERROR cuối cùng", "ERROR ở giữa"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“WARNING: disk space low” rồi “ERROR: failed to save”. Quan hệ?"
+    choices:
+      - "Disk thấp là nguyên nhân của save fail"
+      - "Không liên quan gì"
+      - "Save fail gây ra disk thấp"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Mức nào chỉ là thông tin bình thường?"
+    choices: [INFO, ERROR, WARNING]
+    answer: 0
+    difficulty: 1
+  - kind: mcq_listen
+    prompt_vi: "Nguyên nhân gốc của lỗi?"
+    audio_text: "It failed to save the file because there's no space left on the device."
+    choices: ["Hết dung lượng ổ", "Sai cú pháp", "Mạng chậm"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: R07

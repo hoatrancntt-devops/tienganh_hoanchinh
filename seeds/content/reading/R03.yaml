@@ -1,0 +1,155 @@
+schema_version: 1
+id: R03
+slug: doc-release-notes
+unit: U-R1
+title_vi: "Đọc release notes / changelog"
+title_en: "Reading release notes"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 3
+est_minutes: 10
+
+objective_vi: "Đọc ghi chú phát hành và xác định: có gì mới, có gì sửa, và có gì ảnh hưởng đến mình (breaking change)."
+objective_observable: "Trả lời đúng 4/5 câu hỏi về thay đổi quan trọng và breaking change."
+
+prerequisites:
+  - {lesson: R02, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "Added"
+    ipa: "/ˈædɪd/"
+    meaning_vi: "Đã thêm (tính năng mới)"
+    chunk: "Added dark mode."
+    tags: [it_english]
+  - term: "Fixed"
+    ipa: "/fɪkst/"
+    meaning_vi: "Đã sửa (lỗi)"
+    chunk: "Fixed a crash on startup."
+    tags: [it_english]
+  - term: "Deprecated"
+    ipa: "/ˈdɛprɪkeɪtɪd/"
+    meaning_vi: "Sắp bỏ (còn dùng được nhưng nên thôi)"
+    chunk: "Deprecated the old login API."
+    tags: [it_english]
+  - term: "Breaking change"
+    ipa: "/ˈbreɪkɪŋ tʃeɪndʒ/"
+    meaning_vi: "thay đổi phá vỡ tương thích (phải sửa theo)"
+    chunk: "Breaking change: config format updated."
+    tags: [it_english]
+  - term: "Removed"
+    ipa: "/rɪˈmuːvd/"
+    meaning_vi: "Đã gỡ bỏ"
+    chunk: "Removed support for Windows 7."
+    tags: [it_english]
+  - term: "upgrade"
+    ipa: "/ˈʌpɡreɪd/"
+    meaning_vi: "nâng cấp"
+    chunk: "Upgrade to version 3.0."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Breaking change: {change}. You must {action}."
+    meaning_vi: "Thay đổi phá vỡ tương thích: {change}. Bạn phải {action}."
+    slots:
+      change: ["the config format changed", "the old API was removed"]
+      action: ["update your config", "migrate to the new API"]
+
+dialogue:
+  context_vi: "Một đoạn release notes cho phiên bản 3.0 (đọc từng mục)."
+  turns:
+    - {speaker: A, en: "Version 3.0 — Release notes", vi: "Phiên bản 3.0 — Ghi chú phát hành"}
+    - {speaker: A, en: "Added: dark mode and CSV export.", vi: "Đã thêm: chế độ tối và xuất CSV."}
+    - {speaker: A, en: "Fixed: a crash when opening large files.", vi: "Đã sửa: lỗi treo khi mở file lớn."}
+    - {speaker: A, en: "Breaking change: the config format changed. You must update your config before upgrading.", vi: "Thay đổi phá vỡ tương thích: định dạng cấu hình đã đổi. Bạn phải cập nhật cấu hình trước khi nâng cấp."}
+    - {speaker: A, en: "Deprecated: the old login API will be removed in 4.0.", vi: "Sắp bỏ: API đăng nhập cũ sẽ bị gỡ ở bản 4.0."}
+
+listening_snippet:
+  id: LS-R03
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Version 3.0 adds dark mode and fixes a crash. Breaking change: the config format changed, so you must update your config before upgrading."
+  transcript_vi: "Bản 3.0 thêm chế độ tối và sửa một lỗi treo. Thay đổi phá vỡ tương thích: định dạng cấu hình đã đổi, nên bạn phải cập nhật cấu hình trước khi nâng cấp."
+  questions:
+    - q_vi: "Điều gì bạn BẮT BUỘC phải làm trước khi nâng cấp?"
+      choices: ["Cập nhật cấu hình", "Không cần làm gì", "Đổi máy chủ"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Bản 3.0 thêm gì?"
+      choices: ["Chế độ tối", "Đăng nhập vân tay", "Không thêm gì"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Release notes có từ khoá cố định: Added (thêm), Fixed (sửa), Deprecated (sắp bỏ), Removed (đã gỡ),
+    Breaking change (phải sửa theo). Trong tất cả, dòng quan trọng NHẤT với bạn là "Breaking change"
+    — nó nghĩa là code/cấu hình hiện tại của bạn sẽ HỎNG nếu không sửa. Người Việt hay lướt qua vì
+    ham đọc tính năng mới, rồi nâng cấp xong mới vỡ.
+  how_vi: >
+    Quét theo nhãn: tìm "Breaking change" và "Removed" TRƯỚC — đó là thứ có thể làm hỏng việc của
+    bạn. "Deprecated" là cảnh báo sớm (chưa gấp nhưng nên lên kế hoạch). "Added"/"Fixed" đọc sau cùng.
+  contrast_vi: "“Added dark mode” (vui nhưng không bắt buộc) ↔ “Breaking change: update your config” (không làm là hỏng). Đọc cái sau trước."
+
+common_mistakes:
+  - mistake: "Chỉ đọc phần “Added”, bỏ qua “Breaking change”"
+    why_vi: "Tính năng mới hấp dẫn hơn cảnh báo."
+    fix_vi: "Đọc “Breaking change” và “Removed” ĐẦU TIÊN — chúng quyết định bạn có phải sửa gì không."
+    detect: {}
+  - mistake: "Nhầm “Deprecated” là “đã bỏ, không dùng được”"
+    why_vi: "Từ lạ, đoán nghĩa."
+    fix_vi: "Deprecated = CÒN dùng được nhưng sắp bỏ. Là cảnh báo sớm để bạn lên kế hoạch chuyển, chưa phải gấp."
+    detect: {}
+  - mistake: "Nâng cấp ngay mà không đọc release notes"
+    why_vi: "Nghĩ nâng cấp luôn an toàn."
+    fix_vi: "Luôn quét “Breaking change” trước khi upgrade. Một dòng đọc trước tiết kiệm cả buổi sửa sau."
+    detect: {}
+
+memory_trick_vi: >
+  Release notes đọc ngược: xem PHÁ VỠ (breaking) và ĐÃ GỠ (removed) trước — đó là mìn. SẮP BỎ
+  (deprecated) là biển báo. THÊM/SỬA (added/fixed) là quà, mở sau cùng.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Dòng nào quan trọng nhất trước khi nâng cấp?"
+    choices: ["Breaking change", "Added", "Fixed"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Deprecated the old API” nghĩa là gì?"
+    choices:
+      - "Còn dùng được nhưng sắp bỏ, nên chuyển dần"
+      - "Đã gỡ hoàn toàn, không dùng được"
+      - "API mới vừa thêm"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Removed support for Windows 7” nghĩa là?"
+    choices: ["Không còn hỗ trợ Windows 7", "Thêm Windows 7", "Sửa lỗi Windows 7"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Thấy “Breaking change: config format changed”. Nên làm gì?"
+    choices:
+      - "Cập nhật cấu hình trước khi nâng cấp"
+      - "Nâng cấp ngay, tính sau"
+      - "Bỏ qua"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn bắt buộc phải làm gì trước khi nâng cấp?"
+    audio_text: "You must update your config before upgrading."
+    choices: ["Cập nhật cấu hình", "Xoá ứng dụng", "Đổi mật khẩu"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: R04

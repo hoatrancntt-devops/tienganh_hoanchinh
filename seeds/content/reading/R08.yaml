@@ -1,0 +1,154 @@
+schema_version: 1
+id: R08
+slug: doc-tai-lieu-api
+unit: U-R1
+title_vi: "Đọc tài liệu API"
+title_en: "Reading API docs"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 8
+est_minutes: 11
+
+objective_vi: "Đọc mô tả một endpoint API và nắm: phương thức, tham số bắt buộc, và ý nghĩa mã trả về."
+objective_observable: "Trả lời đúng 4/5 câu hỏi về tham số required và mã trạng thái."
+
+prerequisites:
+  - {lesson: R07, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "endpoint"
+    ipa: "/ˈɛndpɔɪnt/"
+    meaning_vi: "điểm cuối (đường dẫn API)"
+    chunk: "The endpoint is /api/users."
+    tags: [it_english]
+  - term: "request"
+    ipa: "/rɪˈkwɛst/"
+    meaning_vi: "yêu cầu (gửi đi)"
+    chunk: "Send a POST request."
+    tags: [it_english]
+  - term: "response"
+    ipa: "/rɪˈspɒns/"
+    meaning_vi: "phản hồi (nhận về)"
+    chunk: "The response is JSON."
+    tags: [it_english]
+  - term: "required"
+    ipa: "/rɪˈkwaɪərd/"
+    meaning_vi: "bắt buộc"
+    chunk: "The email field is required."
+    tags: [it_english]
+  - term: "optional"
+    ipa: "/ˈɒpʃənəl/"
+    meaning_vi: "không bắt buộc"
+    chunk: "The phone field is optional."
+    tags: [it_english]
+  - term: "returns"
+    ipa: "/rɪˈtɜːrnz/"
+    meaning_vi: "trả về"
+    chunk: "Returns 200 on success."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Send a {method} request to {endpoint}. Returns {code} on success."
+    meaning_vi: "Gửi yêu cầu {method} tới {endpoint}. Trả về {code} khi thành công."
+    slots:
+      method: [GET, POST, DELETE]
+      endpoint: ["/api/users", "/api/login"]
+      code: ["200", "201"]
+
+dialogue:
+  context_vi: "Một đoạn tài liệu API cho endpoint tạo người dùng (đọc theo trường)."
+  turns:
+    - {speaker: A, en: "POST /api/users — Create a new user.", vi: "POST /api/users — Tạo người dùng mới."}
+    - {speaker: A, en: "Body: email (required), name (required), phone (optional).", vi: "Body: email (bắt buộc), name (bắt buộc), phone (không bắt buộc)."}
+    - {speaker: A, en: "Returns 201 Created on success.", vi: "Trả về 201 Created khi thành công."}
+    - {speaker: A, en: "Returns 400 if a required field is missing.", vi: "Trả về 400 nếu thiếu trường bắt buộc."}
+    - {speaker: A, en: "Returns 401 if the API key is invalid.", vi: "Trả về 401 nếu API key không hợp lệ."}
+
+listening_snippet:
+  id: LS-R08
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Send a POST request to slash api slash users. Email and name are required, phone is optional. It returns 201 on success, or 400 if a required field is missing."
+  transcript_vi: "Gửi yêu cầu POST tới /api/users. Email và name bắt buộc, phone không bắt buộc. Trả về 201 khi thành công, hoặc 400 nếu thiếu trường bắt buộc."
+  questions:
+    - q_vi: "Trường nào KHÔNG bắt buộc?"
+      choices: ["phone", "email", "name"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Thiếu trường bắt buộc thì trả về mã gì?"
+      choices: ["400", "201", "500"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Tài liệu API trông kỹ thuật nhưng thật ra rất khuôn mẫu: PHƯƠNG THỨC (GET/POST/DELETE) + ĐƯỜNG DẪN
+    + THAM SỐ (required/optional) + MÃ TRẢ VỀ. Hai từ quan trọng nhất là "required" (bắt buộc, thiếu
+    là lỗi) và các mã như 200/201/400/401. Người Việt hay đọc ví dụ code trước, bỏ qua bảng tham số —
+    rồi gọi API bị 400 mà không hiểu vì sao.
+  how_vi: >
+    Đọc bốn ô: (1) phương thức + endpoint (dòng đầu); (2) tham số nào "required" — phải gửi đủ; (3)
+    mã thành công (200/201); (4) mã lỗi và ý nghĩa (400 = gửi sai; 401 = không có quyền/sai key; 404
+    = không tìm thấy; 500 = lỗi phía server). Nhớ nhóm mã: 2xx ổn, 4xx lỗi phía bạn, 5xx lỗi phía họ.
+  contrast_vi: "“phone (optional)” = bỏ trống được ↔ “email (required)” = thiếu là 400. Đọc đúng cột này tránh cả buổi thử-sai."
+
+common_mistakes:
+  - mistake: "Bỏ qua tham số “required”, chỉ chép ví dụ"
+    why_vi: "Ví dụ code trực quan hơn bảng tham số."
+    fix_vi: "Đọc cột required trước. Thiếu một trường bắt buộc là lý do phổ biến nhất của lỗi 400."
+    detect: {}
+  - mistake: "Không phân biệt nhóm mã 4xx và 5xx"
+    why_vi: "Coi mọi mã lỗi như nhau."
+    fix_vi: "4xx = lỗi phía BẠN (gửi sai, thiếu quyền) — tự sửa được; 5xx = lỗi phía SERVER — báo cho họ. Phân biệt để biết sửa ở đâu."
+    detect: {}
+  - mistake: "Nhầm 401 với 404"
+    why_vi: "Hai mã gần nhau, hay lẫn."
+    fix_vi: "401 = chưa xác thực / sai key (vấn đề quyền); 404 = không tìm thấy đường dẫn. Đọc kỹ ý nghĩa từng mã."
+    detect: {}
+
+memory_trick_vi: >
+  API docs bốn ô: LÀM GÌ (method + endpoint) — GỬI GÌ (required fields) — ỔN (2xx) — HỎNG (4xx lỗi
+  bạn, 5xx lỗi họ). Nhớ: 4 là “four = your fault”, 5 là “server”. Đọc cột required trước tiên.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Trường “email (required)” nghĩa là?"
+    choices: ["Bắt buộc phải gửi", "Có thể bỏ trống", "Chỉ để trang trí"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Mã 400 thường nghĩa là gì?"
+    choices:
+      - "Yêu cầu gửi sai (lỗi phía bạn)"
+      - "Server hỏng"
+      - "Thành công"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Nhóm mã nào là lỗi phía SERVER?"
+    choices: ["5xx", "2xx", "4xx"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Gọi API bị 401. Khả năng cao vì?"
+    choices: ["API key sai hoặc thiếu", "Endpoint không tồn tại", "Thành công"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Trường nào KHÔNG bắt buộc?"
+    audio_text: "Email and name are required, phone is optional."
+    choices: ["phone", "email", "name"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: R09

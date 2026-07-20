@@ -1,0 +1,148 @@
+schema_version: 1
+id: R02
+slug: doc-thong-bao-loi
+unit: U-R1
+title_vi: "Đọc thông báo lỗi — hiểu nó muốn nói gì"
+title_en: "Reading error messages"
+phase: reading
+topic: it_english
+cefr_target: a2
+order_index: 2
+est_minutes: 10
+
+objective_vi: "Đọc một thông báo lỗi và xác định: cái gì hỏng, ở đâu, và gợi ý cách sửa."
+objective_observable: "Trả lời đúng 4/5 câu hỏi đọc hiểu về nguyên nhân và hướng xử lý."
+
+prerequisites:
+  - {lesson: R01, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "failed to"
+    ipa: "/feɪld tuː/"
+    meaning_vi: "không thể (làm gì đó)"
+    chunk: "Failed to connect to the database."
+    tags: [it_english]
+  - term: "permission denied"
+    ipa: "/pərˈmɪʃən dɪˈnaɪd/"
+    meaning_vi: "bị từ chối quyền"
+    chunk: "Error: permission denied."
+    tags: [it_english]
+  - term: "not found"
+    ipa: "/nɒt faʊnd/"
+    meaning_vi: "không tìm thấy"
+    chunk: "File not found."
+    tags: [it_english]
+  - term: "timed out"
+    ipa: "/taɪmd aʊt/"
+    meaning_vi: "quá thời gian chờ"
+    chunk: "The request timed out."
+    tags: [it_english]
+  - term: "expected ... but got"
+    ipa: "/ɪkˈspɛktɪd bʌt ɡɒt/"
+    meaning_vi: "cần … nhưng nhận được"
+    chunk: "Expected a number but got a string."
+    tags: [it_english]
+  - term: "line"
+    ipa: "/laɪn/"
+    meaning_vi: "dòng (số dòng lỗi)"
+    chunk: "Error on line 42."
+    tags: [it_english, core]
+
+sentence_patterns:
+  - pattern: "{action} failed: {reason}."
+    meaning_vi: "{action} thất bại: {reason}."
+    slots:
+      action: ["Connection", "Login", "Upload"]
+      reason: ["permission denied", "timed out", "file not found"]
+
+dialogue:
+  context_vi: "Một thông báo lỗi điển hình khi chạy chương trình (đọc từng dòng)."
+  turns:
+    - {speaker: A, en: "Error: Failed to connect to the database.", vi: "Lỗi: Không kết nối được tới cơ sở dữ liệu."}
+    - {speaker: A, en: "Reason: Connection timed out after 30 seconds.", vi: "Nguyên nhân: Kết nối quá thời gian chờ sau 30 giây."}
+    - {speaker: A, en: "Hint: Check that the database server is running and reachable.", vi: "Gợi ý: Kiểm tra máy chủ CSDL có đang chạy và truy cập được không."}
+    - {speaker: A, en: "at server.js line 42", vi: "tại server.js dòng 42"}
+
+listening_snippet:
+  id: LS-R02
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Failed to connect to the database. The connection timed out. Check that the database server is running."
+  transcript_vi: "Không kết nối được tới cơ sở dữ liệu. Kết nối quá thời gian chờ. Kiểm tra máy chủ CSDL có đang chạy không."
+  questions:
+    - q_vi: "Lỗi này về cái gì?"
+      choices: ["Kết nối cơ sở dữ liệu", "Sai mật khẩu", "Hết dung lượng"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Gợi ý sửa là gì?"
+      choices: ["Kiểm tra máy chủ CSDL có chạy không", "Mua máy mới", "Xoá file"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Thông báo lỗi tiếng Anh trông đáng sợ nhưng thật ra có cấu trúc rất đều: CÁI GÌ hỏng + LÝ DO +
+    (thường) GỢI Ý sửa + VỊ TRÍ (file/dòng). Người Việt làm IT hay hoảng khi thấy khối chữ đỏ, cuộn
+    qua rồi Google cả câu — trong khi câu trả lời thường nằm ngay ở dòng đầu.
+  how_vi: >
+    Đọc theo bốn mảnh: (1) động từ hỏng — "failed to…", "cannot…"; (2) lý do — "timed out",
+    "permission denied", "not found"; (3) gợi ý — câu bắt đầu bằng "Check…", "Try…", "Hint:"; (4)
+    vị trí — "at … line 42". Đọc dòng ĐẦU và dòng có "line" trước, phần stack trace để sau.
+  contrast_vi: "“Permission denied” = vấn đề QUYỀN (không phải code sai) ↔ “not found” = thiếu FILE/đường dẫn. Đọc đúng lý do là nửa lời giải."
+
+common_mistakes:
+  - mistake: "Hoảng khi thấy khối chữ đỏ, không đọc dòng đầu"
+    why_vi: "Nhìn nhiều chữ tưởng phức tạp."
+    fix_vi: "Dòng ĐẦU thường nói đủ: cái gì hỏng + lý do. Đọc nó trước khi cuộn xuống stack trace."
+    detect: {}
+  - mistake: "Không phân biệt “permission denied” với lỗi code"
+    why_vi: "Coi mọi lỗi đỏ là do code sai."
+    fix_vi: "“permission denied” là vấn đề QUYỀN, “not found” là thiếu file, “timed out” là mạng/kết nối. Lý do chỉ đúng chỗ cần sửa."
+    detect: {}
+  - mistake: "Bỏ qua số dòng “line 42”"
+    why_vi: "Không để ý phần đuôi."
+    fix_vi: "“at file line N” chỉ thẳng chỗ lỗi. Mở đúng dòng đó thay vì đọc cả file."
+    detect: {}
+
+memory_trick_vi: >
+  Đọc lỗi theo bốn ô: HỎNG GÌ (failed to…) — VÌ SAO (timed out / denied / not found) — SỬA SAO
+  (Check/Try…) — Ở ĐÂU (line N). Chữ đỏ không đáng sợ; nó là một biểu mẫu điền sẵn.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“Failed to connect: connection timed out.” Vấn đề thuộc nhóm nào?"
+    choices: ["Kết nối/mạng", "Sai cú pháp code", "Thiếu bản quyền"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Permission denied” nghĩa là gì?"
+    choices: ["Bị từ chối quyền truy cập", "File hỏng", "Hết bộ nhớ"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“Error at server.js line 42” cho biết gì?"
+    choices: ["Vị trí lỗi: file server.js, dòng 42", "Có 42 lỗi", "Server chạy 42 giây"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Nên đọc phần nào của thông báo lỗi trước?"
+    choices: ["Dòng đầu và dòng có “line”", "Toàn bộ stack trace", "Không đọc, Google luôn"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Gợi ý sửa là gì?"
+    audio_text: "Check that the database server is running."
+    choices: ["Kiểm tra máy chủ CSDL có chạy không", "Khởi động lại máy tính", "Đổi mật khẩu"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: R03

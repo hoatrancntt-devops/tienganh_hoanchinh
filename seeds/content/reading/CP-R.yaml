@@ -1,0 +1,122 @@
+schema_version: 1
+id: CP-R
+slug: checkpoint-doc-phuc-vu-cong-viec
+unit: U-R1
+title_vi: "Checkpoint: Đọc phục vụ công việc"
+title_en: "Checkpoint: Reading for work"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 99
+est_minutes: 12
+is_checkpoint: true
+
+objective_vi: "Đọc nhanh và đúng các loại văn bản công việc CNTT: email, lỗi, release notes, README, ticket, log, chat, API, cảnh báo bảo mật, postmortem."
+objective_observable: "Đạt ≥70 điểm và trả lời đúng các câu hỏi rút thông tin hành động trên nhiều loại văn bản."
+
+prerequisites:
+  - {lesson: R01, min_mastery: 70, kind: hard}
+  - {lesson: R02, min_mastery: 70, kind: hard}
+  - {lesson: R03, min_mastery: 70, kind: hard}
+  - {lesson: R04, min_mastery: 70, kind: hard}
+  - {lesson: R05, min_mastery: 70, kind: hard}
+  - {lesson: R06, min_mastery: 70, kind: hard}
+  - {lesson: R07, min_mastery: 70, kind: hard}
+  - {lesson: R08, min_mastery: 70, kind: hard}
+  - {lesson: R09, min_mastery: 70, kind: hard}
+  - {lesson: R10, min_mastery: 70, kind: hard}
+
+listening_snippet:
+  id: LS-CPR
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Breaking change: you must update your config before upgrading. The error says permission denied. Steps to reproduce: click Save, nothing happens. Severity is critical, so update as soon as possible."
+  transcript_vi: "Thay đổi phá vỡ tương thích: bạn phải cập nhật cấu hình trước khi nâng cấp. Lỗi báo bị từ chối quyền. Các bước tái hiện: bấm Lưu, không có gì xảy ra. Mức nghiêm trọng, nên cập nhật càng sớm càng tốt."
+  questions:
+    - q_vi: "Trước khi nâng cấp bạn phải làm gì?"
+      choices: ["Cập nhật cấu hình", "Không làm gì", "Đổi máy chủ"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Lỗi báo gì?"
+      choices: ["Bị từ chối quyền (permission denied)", "Hết bộ nhớ", "Thành công"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Mức nghiêm trọng cho biết điều gì?"
+      choices: ["Cần xử lý càng sớm càng tốt", "Không quan trọng", "Đã tự sửa"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Mười bài Đọc dạy mười loại văn bản CNTT: email, thông báo lỗi, release notes, README, ticket, log,
+    chat nhóm, tài liệu API, cảnh báo bảo mật, postmortem. Điểm chung của mọi loại: đừng đọc từng chữ
+    từ đầu đến cuối — hãy QUÉT tìm phần hành động (việc phải làm, hạn, nguyên nhân, mức độ). Bài này
+    kiểm tra bạn rút đúng thông tin hành động từ nhiều loại văn bản trộn lẫn.
+  how_vi: >
+    Mỗi loại có "mỏ neo" riêng: email → please/by/FYI; lỗi → failed/denied/line; release notes →
+    breaking change; README → prerequisites; ticket → steps/expected/actual; log → ERROR đầu tiên;
+    chat → let's go with/I'll take it; API → required + mã trả về; bảo mật → severity/affected
+    versions; postmortem → root cause/action items. Nhớ mỏ neo, quét tới nó, bỏ phần còn lại.
+  contrast_vi: "Đọc mọi văn bản như đọc truyện (chậm, mệt) ↔ quét đúng mỏ neo theo loại (nhanh, đúng việc). Người đi làm đọc theo cách sau."
+
+common_mistakes:
+  - mistake: "Đọc mọi văn bản tuần tự từ đầu đến cuối"
+    why_vi: "Thói quen học đường: mỗi chữ đều quan trọng."
+    fix_vi: "Văn bản công việc có phần thông tin và phần nền. Quét mỏ neo (please/error/breaking/root cause) trước, đọc phần còn lại chỉ khi cần."
+    detect: {}
+  - mistake: "Nhầm phần bối cảnh với phần hành động"
+    why_vi: "“As discussed…”, mô tả dài, INFO log — trông quan trọng nhưng là nền."
+    fix_vi: "Phần hành động thường có động từ mệnh lệnh hoặc nhãn (please, must, action items). Phân biệt nền và việc để không làm nhầm."
+    detect: {}
+  - mistake: "Trượt rồi làm lại ngay"
+    why_vi: "Muốn qua nhanh."
+    fix_vi: "Ôn đúng loại văn bản còn yếu một buổi rồi quay lại. Hệ thống sẽ chỉ đúng bài cần ôn."
+    detect: {}
+
+memory_trick_vi: >
+  Đọc công việc = tìm MỎ NEO, không đọc cả biển. Mỗi loại văn bản có neo riêng (please, error,
+  breaking change, root cause…). Quét tới neo, rút thông tin hành động, đi tiếp. Đó là cách người
+  đi làm đọc — nhanh và đúng việc.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Email: “FYI, the server was patched.” Bạn phải làm gì?"
+    choices: ["Không cần làm gì, chỉ để biết", "Vá lại server", "Trả lời gấp"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Release notes: dòng nào đọc trước khi nâng cấp?"
+    choices: ["Breaking change", "Added", "License"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bug report: bug thực chất nằm ở đâu?"
+    choices: ["Khoảng cách Expected vs Actual", "Trong tiêu đề", "Trong người báo"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Log: khi tìm nguyên nhân nên đọc ERROR nào trước?"
+    choices: ["ERROR đầu tiên theo thời gian", "ERROR cuối cùng", "Dòng INFO"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "API: mã 4xx thường là lỗi phía ai?"
+    choices: ["Phía bạn (gửi sai)", "Phía server", "Không ai"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Lỗi báo gì?"
+    audio_text: "The error says permission denied."
+    choices: ["Bị từ chối quyền", "Hết dung lượng", "Sai đường dẫn"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 90
+
+recommended_next: {}

@@ -1,0 +1,152 @@
+schema_version: 1
+id: R05
+slug: doc-ticket-bug-report
+unit: U-R1
+title_vi: "Đọc ticket / bug report"
+title_en: "Reading a ticket / bug report"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 5
+est_minutes: 10
+
+objective_vi: "Đọc một bug report và nắm: các bước tái hiện, kết quả mong đợi vs thực tế, và mức ưu tiên."
+objective_observable: "Trả lời đúng 4/5 câu hỏi về steps to reproduce và mức độ ưu tiên."
+
+prerequisites:
+  - {lesson: R04, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "Steps to reproduce"
+    ipa: "/stɛps tuː ˌriːprəˈdjuːs/"
+    meaning_vi: "các bước tái hiện lỗi"
+    chunk: "Steps to reproduce: 1. Open the app…"
+    tags: [it_english]
+  - term: "Expected"
+    ipa: "/ɪkˈspɛktɪd/"
+    meaning_vi: "kết quả mong đợi"
+    chunk: "Expected: the file saves."
+    tags: [it_english]
+  - term: "Actual"
+    ipa: "/ˈæktʃuəl/"
+    meaning_vi: "kết quả thực tế"
+    chunk: "Actual: it shows an error."
+    tags: [it_english]
+  - term: "Priority"
+    ipa: "/praɪˈɒrɪti/"
+    meaning_vi: "mức ưu tiên"
+    chunk: "Priority: high."
+    tags: [it_english]
+  - term: "reproducible"
+    ipa: "/ˌriːprəˈdjuːsəbəl/"
+    meaning_vi: "có thể tái hiện được"
+    chunk: "It's reproducible every time."
+    tags: [it_english]
+  - term: "assigned to"
+    ipa: "/əˈsaɪnd tuː/"
+    meaning_vi: "được giao cho"
+    chunk: "Assigned to: the backend team."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Expected: {expected}. Actual: {actual}."
+    meaning_vi: "Mong đợi: {expected}. Thực tế: {actual}."
+    slots:
+      expected: ["the file saves", "the user logs in"]
+      actual: ["it shows an error", "the page is blank"]
+
+dialogue:
+  context_vi: "Một bug report điển hình trong hệ thống quản lý ticket (đọc theo trường)."
+  turns:
+    - {speaker: A, en: "Title: Save button does nothing on the profile page", vi: "Tiêu đề: Nút Lưu không hoạt động ở trang hồ sơ"}
+    - {speaker: A, en: "Steps to reproduce: 1. Open profile. 2. Edit name. 3. Click Save.", vi: "Các bước tái hiện: 1. Mở hồ sơ. 2. Sửa tên. 3. Bấm Lưu."}
+    - {speaker: A, en: "Expected: the name is saved. Actual: nothing happens, no error.", vi: "Mong đợi: tên được lưu. Thực tế: không có gì xảy ra, không báo lỗi."}
+    - {speaker: A, en: "Priority: high. Reproducible: every time. Assigned to: frontend team.", vi: "Ưu tiên: cao. Tái hiện: lần nào cũng bị. Giao cho: đội frontend."}
+
+listening_snippet:
+  id: LS-R05
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Steps to reproduce: open profile, edit name, click Save. Expected: the name is saved. Actual: nothing happens. Priority is high and it's reproducible every time."
+  transcript_vi: "Các bước tái hiện: mở hồ sơ, sửa tên, bấm Lưu. Mong đợi: tên được lưu. Thực tế: không có gì xảy ra. Ưu tiên cao và lần nào cũng bị."
+  questions:
+    - q_vi: "Kết quả thực tế khi bấm Lưu là gì?"
+      choices: ["Không có gì xảy ra", "Tên được lưu", "Máy treo"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Mức ưu tiên là gì?"
+      choices: ["Cao", "Thấp", "Không ghi"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Bug report tốt luôn có ba trường vàng: Steps to reproduce (làm sao để thấy lỗi), Expected (đáng
+    lẽ phải thế nào), Actual (thực tế thế nào). Hiểu ba trường này là hiểu toàn bộ lỗi. Người Việt
+    mới vào nghề hay đọc phần mô tả dài mà bỏ qua "Steps to reproduce" — trong khi đó mới là phần
+    giúp bạn tự thấy lỗi và sửa.
+  how_vi: >
+    Đọc theo trường: (1) "Steps to reproduce" — làm theo để tự thấy lỗi; (2) so sánh "Expected" vs
+    "Actual" — khoảng cách giữa hai cái chính là bug; (3) "Priority" và "Reproducible" cho biết gấp
+    đến đâu và có dễ bắt không. "Assigned to" cho biết ai chịu trách nhiệm.
+  contrast_vi: "“Nó bị lỗi” (mô tả dài vô dụng) ↔ “Steps: 1,2,3. Expected: saves. Actual: nothing.” (đọc xong tự tái hiện được)."
+
+common_mistakes:
+  - mistake: "Bỏ qua “Steps to reproduce”"
+    why_vi: "Đọc phần mô tả trước, nghĩ đã đủ."
+    fix_vi: "“Steps to reproduce” là phần quý nhất — làm theo để TỰ thấy lỗi. Không tái hiện được thì khó sửa."
+    detect: {}
+  - mistake: "Không phân biệt Expected với Actual"
+    why_vi: "Đọc lướt, gộp hai trường."
+    fix_vi: "Expected = đáng lẽ thế nào; Actual = thực tế thế nào. KHOẢNG CÁCH giữa chúng chính là bug cần sửa."
+    detect: {}
+  - mistake: "Bỏ qua Priority, xử lý sai thứ tự"
+    why_vi: "Chỉ nhìn nội dung lỗi, không nhìn mức ưu tiên."
+    fix_vi: "“Priority: high” xử lý trước “low”. Đọc trường này để sắp thứ tự công việc đúng."
+    detect: {}
+
+memory_trick_vi: >
+  Bug report ba trường vàng: LÀM SAO thấy (steps) — ĐÁNG LẼ (expected) — THỰC TẾ (actual). Bug nằm
+  ở KHE HỞ giữa “đáng lẽ” và “thực tế”. Priority cho biết bịt khe đó gấp đến đâu.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Trường nào giúp bạn tự thấy lỗi?"
+    choices: ["Steps to reproduce", "Priority", "Assigned to"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bug thực chất nằm ở đâu?"
+    choices:
+      - "Khoảng cách giữa Expected và Actual"
+      - "Trong tiêu đề"
+      - "Trong tên người báo"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Reproducible: every time” nghĩa là?"
+    choices: ["Lần nào cũng tái hiện được lỗi", "Chỉ bị một lần", "Không thể tái hiện"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Có hai bug: một “Priority: high”, một “low”. Xử lý cái nào trước?"
+    choices: ["High", "Low", "Cái nào cũng được"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Kết quả thực tế khi bấm Lưu?"
+    audio_text: "Actual: nothing happens."
+    choices: ["Không có gì xảy ra", "Lưu thành công", "Báo lỗi đỏ"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: R06

@@ -1,0 +1,152 @@
+schema_version: 1
+id: R04
+slug: doc-readme-huong-dan-cai-dat
+unit: U-R1
+title_vi: "Đọc README / hướng dẫn cài đặt"
+title_en: "Reading a README / setup docs"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 4
+est_minutes: 10
+
+objective_vi: "Đọc README và làm theo: yêu cầu cần có, các bước cài, và lệnh cần chạy."
+objective_observable: "Trả lời đúng 4/5 câu hỏi về yêu cầu (prerequisites) và thứ tự các bước."
+
+prerequisites:
+  - {lesson: R03, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "Prerequisites"
+    ipa: "/ˌpriːˈrɛkwɪzɪts/"
+    meaning_vi: "yêu cầu cần có trước"
+    chunk: "Prerequisites: Node 18 and Docker."
+    tags: [it_english]
+  - term: "Installation"
+    ipa: "/ˌɪnstəˈleɪʃən/"
+    meaning_vi: "cài đặt"
+    chunk: "See the Installation section."
+    tags: [it_english]
+  - term: "run the following"
+    ipa: "/rʌn ðə ˈfɒloʊɪŋ/"
+    meaning_vi: "chạy lệnh sau"
+    chunk: "Run the following command."
+    tags: [it_english]
+  - term: "make sure"
+    ipa: "/meɪk ʃʊr/"
+    meaning_vi: "đảm bảo rằng"
+    chunk: "Make sure Docker is running."
+    tags: [it_english]
+  - term: "Usage"
+    ipa: "/ˈjuːsɪdʒ/"
+    meaning_vi: "cách sử dụng"
+    chunk: "See Usage for examples."
+    tags: [it_english]
+  - term: "Note"
+    ipa: "/noʊt/"
+    meaning_vi: "lưu ý"
+    chunk: "Note: this requires admin rights."
+    tags: [it_english, core]
+
+sentence_patterns:
+  - pattern: "Make sure {requirement} before you {step}."
+    meaning_vi: "Đảm bảo {requirement} trước khi bạn {step}."
+    slots:
+      requirement: ["Docker is running", "Node 18 is installed"]
+      step: ["run the install", "start the app"]
+
+dialogue:
+  context_vi: "Một đoạn README của một dự án (đọc theo mục)."
+  turns:
+    - {speaker: A, en: "## Prerequisites — You need Node 18 and Docker installed.", vi: "## Yêu cầu — Bạn cần cài Node 18 và Docker."}
+    - {speaker: A, en: "## Installation — First, clone the repo. Then run the following:", vi: "## Cài đặt — Đầu tiên, clone repo. Rồi chạy lệnh sau:"}
+    - {speaker: A, en: "npm install", vi: "npm install"}
+    - {speaker: A, en: "## Usage — Make sure Docker is running, then start the app with npm start.", vi: "## Sử dụng — Đảm bảo Docker đang chạy, rồi khởi động app bằng npm start."}
+    - {speaker: A, en: "Note: the first run may take a few minutes.", vi: "Lưu ý: lần chạy đầu có thể mất vài phút."}
+
+listening_snippet:
+  id: LS-R04
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "You need Node 18 and Docker. First clone the repo, then run npm install. Make sure Docker is running before you start the app."
+  transcript_vi: "Bạn cần Node 18 và Docker. Đầu tiên clone repo, rồi chạy npm install. Đảm bảo Docker đang chạy trước khi khởi động app."
+  questions:
+    - q_vi: "Cần cài gì trước?"
+      choices: ["Node 18 và Docker", "Chỉ Node", "Không cần gì"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Phải đảm bảo gì trước khi khởi động app?"
+      choices: ["Docker đang chạy", "Đã đổi mật khẩu", "Đã tắt máy"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    README có cấu trúc gần như cố định: Prerequisites (cần gì trước) → Installation (cài thế nào) →
+    Usage (dùng thế nào) → Note (lưu ý). Lỗi phổ biến của người mới là NHẢY thẳng vào phần lệnh, bỏ
+    qua Prerequisites — rồi lệnh báo lỗi vì thiếu thứ cần có. Đọc đúng thứ tự mục là làm đúng ngay lần đầu.
+  how_vi: >
+    Luôn đọc "Prerequisites" TRƯỚC — thiếu thứ cần có thì mọi bước sau đều lỗi. Sau đó làm "Installation"
+    theo đúng THỨ TỰ (First…, Then…). Chú ý các "Note:" — chúng thường cảnh báo cạm bẫy. Lệnh trong
+    khối code chạy nguyên văn.
+  contrast_vi: "Nhảy vào chạy “npm install” ngay ↔ đọc Prerequisites, cài Node trước. Cái sau chạy được lần đầu; cái trước lỗi rồi loay hoay."
+
+common_mistakes:
+  - mistake: "Bỏ qua phần Prerequisites, nhảy vào chạy lệnh"
+    why_vi: "Nóng lòng chạy cho nhanh."
+    fix_vi: "Đọc Prerequisites trước. Đa số lỗi cài đặt là do thiếu thứ cần có, không phải do lệnh sai."
+    detect: {}
+  - mistake: "Làm các bước không theo thứ tự"
+    why_vi: "Không để ý “First…, Then…”."
+    fix_vi: "Các bước có thứ tự: “First”, “Then”, “Finally”. Làm đúng thứ tự, đừng nhảy cóc."
+    detect: {}
+  - mistake: "Bỏ qua các dòng “Note:”"
+    why_vi: "Nghĩ chỉ là chú thích phụ."
+    fix_vi: "“Note:” thường cảnh báo cạm bẫy (cần quyền admin, lần đầu chậm…). Đọc để tránh hoảng oan."
+    detect: {}
+
+memory_trick_vi: >
+  README đọc theo bốn tầng: CẦN GÌ (prerequisites) — CÀI SAO (installation, đúng thứ tự) — DÙNG SAO
+  (usage) — CẠM BẪY (note). Bỏ tầng một là ngã ngay ở tầng hai.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Phần nào của README nên đọc đầu tiên?"
+    choices: ["Prerequisites", "Usage", "License"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“Make sure Docker is running” nghĩa là?"
+    choices: ["Đảm bảo Docker đang chạy", "Cài lại Docker", "Xoá Docker"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Các bước ghi “First…, Then…”. Nên làm sao?"
+    choices: ["Theo đúng thứ tự đó", "Làm ngược lại", "Chọn bước nào cũng được"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Cài xong nhưng lệnh báo “command not found”. Khả năng cao vì?"
+    choices:
+      - "Thiếu một prerequisite chưa cài"
+      - "README viết sai"
+      - "Máy tính hỏng"
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Cần cài gì trước?"
+    audio_text: "You need Node 18 and Docker."
+    choices: ["Node 18 và Docker", "Chỉ Python", "Không cần gì"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: R05

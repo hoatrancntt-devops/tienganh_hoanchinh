@@ -1,0 +1,154 @@
+schema_version: 1
+id: R07
+slug: doc-luong-chat-cong-viec
+unit: U-R1
+title_vi: "Đọc luồng chat công việc (Slack/Teams)"
+title_en: "Reading a work chat thread"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 7
+est_minutes: 10
+
+objective_vi: "Theo dõi một luồng chat nhóm và nắm: quyết định cuối cùng, ai làm gì, còn gì chưa chốt."
+objective_observable: "Trả lời đúng 4/5 câu hỏi về quyết định và người phụ trách."
+
+prerequisites:
+  - {lesson: R06, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "thread"
+    ipa: "/θrɛd/"
+    meaning_vi: "luồng (chuỗi tin nhắn theo chủ đề)"
+    chunk: "Let's keep it in this thread."
+    tags: [it_english]
+  - term: "+1"
+    ipa: "/plʌs wʌn/"
+    meaning_vi: "tôi đồng ý / ủng hộ"
+    chunk: "+1 to option B."
+    tags: [it_english]
+  - term: "I'll take it"
+    ipa: "/aɪl teɪk ɪt/"
+    meaning_vi: "để tôi nhận việc đó"
+    chunk: "I'll take the deploy."
+    tags: [it_english]
+  - term: "let's go with"
+    ipa: "/lɛts ɡoʊ wɪð/"
+    meaning_vi: "chốt chọn phương án"
+    chunk: "Let's go with option B."
+    tags: [it_english]
+  - term: "circle back"
+    ipa: "/ˈsɜːrkəl bæk/"
+    meaning_vi: "quay lại bàn sau"
+    chunk: "Let's circle back tomorrow."
+    tags: [it_english]
+  - term: "cc"
+    ipa: "/siː siː/"
+    meaning_vi: "nhắc/kéo ai đó vào (cho biết)"
+    chunk: "cc @Lan for visibility."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Let's go with {choice}. {person} will {action}."
+    meaning_vi: "Chốt {choice}. {person} sẽ {action}."
+    slots:
+      choice: ["option B", "the second plan"]
+      person: ["Minh", "I"]
+      action: ["take the deploy", "update the doc"]
+
+dialogue:
+  context_vi: "Một luồng chat nhóm bàn cách xử lý sự cố (đọc theo lượt)."
+  turns:
+    - {speaker: A, en: "Minh: Server is slow. Option A: restart now. Option B: wait for off-hours.", vi: "Minh: Server chậm. Phương án A: khởi động lại ngay. Phương án B: chờ ngoài giờ."}
+    - {speaker: A, en: "Lan: +1 to option B. Restarting now will disrupt users.", vi: "Lan: +1 phương án B. Khởi động lại giờ sẽ ảnh hưởng người dùng."}
+    - {speaker: A, en: "Minh: Agreed. Let's go with option B, tonight at 10.", vi: "Minh: Đồng ý. Chốt phương án B, tối nay 10 giờ."}
+    - {speaker: A, en: "Huy: I'll take it. cc @Lan for visibility.", vi: "Huy: Để tôi nhận. cc @Lan cho biết."}
+    - {speaker: A, en: "Minh: Thanks. Let's circle back tomorrow to confirm it's stable.", vi: "Minh: Cảm ơn. Mai bàn lại xác nhận đã ổn định."}
+
+listening_snippet:
+  id: LS-R07
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "The team agreed to go with option B and restart tonight at 10. Huy said he'll take it. They'll circle back tomorrow to confirm."
+  transcript_vi: "Nhóm chốt chọn phương án B và khởi động lại tối nay lúc 10. Huy nói sẽ nhận việc. Mai họ bàn lại để xác nhận."
+  questions:
+    - q_vi: "Nhóm chốt phương án nào?"
+      choices: ["Phương án B (chờ ngoài giờ)", "Phương án A (ngay)", "Không chốt"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Ai nhận việc?"
+      choices: ["Huy", "Lan", "Không ai"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Chat nhóm dài dễ khiến bạn lạc: nhiều người nói xen kẽ, nhiều ý kiến. Nhưng điều bạn thật sự cần
+    chỉ là ba thứ: QUYẾT ĐỊNH cuối (thường có "let's go with"), AI LÀM (thường có "I'll take it"),
+    và CÒN GÌ TREO ("circle back"). Người Việt hay đọc từng tin một, cố hiểu hết — nên tốn thời gian
+    mà vẫn không rõ chốt gì.
+  how_vi: >
+    Quét tìm ba tín hiệu: (1) "let's go with / agreed / decided" → quyết định cuối; (2) "I'll take
+    it / assigned" → người phụ trách; (3) "circle back / TBD / still open" → việc chưa chốt. "+1"
+    chỉ là biểu quyết đồng ý, "cc" là kéo người vào cho biết, không phải giao việc.
+  contrast_vi: "Đọc 30 tin để hiểu ↔ quét “let's go with” + “I'll take it”. Hai câu đó là toàn bộ kết luận."
+
+common_mistakes:
+  - mistake: "Đọc từng tin nhắn, cố hiểu hết"
+    why_vi: "Sợ bỏ sót nên đọc tuần tự."
+    fix_vi: "Quét tín hiệu quyết định (“let's go with”) và giao việc (“I'll take it”) trước. Phần tranh luận ở giữa thường không cần."
+    detect: {}
+  - mistake: "Hiểu “+1” là một điểm hay một việc"
+    why_vi: "Ký hiệu lạ."
+    fix_vi: "“+1” = “tôi đồng ý/ủng hộ”. Nó là phiếu bầu, không phải nội dung hành động."
+    detect: {}
+  - mistake: "Nghĩ “cc @ai đó” là giao việc cho người đó"
+    why_vi: "Không quen quy ước chat."
+    fix_vi: "“cc” chỉ kéo người vào cho BIẾT (visibility). Người NHẬN việc là người nói “I'll take it”."
+    detect: {}
+
+memory_trick_vi: >
+  Chat nhóm quét ba mỏ neo: CHỐT GÌ (let's go with) — AI LÀM (I'll take it) — CÒN TREO (circle back).
+  “+1” là phiếu bầu, “cc” là mời xem. Ba mỏ neo cho bạn toàn bộ kết luận trong 10 giây.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Câu nào cho biết QUYẾT ĐỊNH cuối cùng?"
+    choices: ["Let's go with option B.", "+1", "cc @Lan"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“I'll take it” nghĩa là gì?"
+    choices: ["Người đó nhận việc", "Người đó phản đối", "Người đó rời nhóm"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“cc @Lan for visibility” nghĩa là?"
+    choices:
+      - "Kéo Lan vào cho biết, không giao việc"
+      - "Giao việc cho Lan"
+      - "Xoá Lan khỏi nhóm"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Let's circle back tomorrow” nghĩa là?"
+    choices: ["Mai bàn lại", "Đã xong hẳn", "Huỷ bỏ"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Ai nhận việc?"
+    audio_text: "Huy said he'll take it."
+    choices: ["Huy", "Minh", "Không ai"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: R08

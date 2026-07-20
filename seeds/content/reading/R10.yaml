@@ -1,0 +1,153 @@
+schema_version: 1
+id: R10
+slug: doc-postmortem-su-co
+unit: U-R1
+title_vi: "Đọc postmortem sự cố"
+title_en: "Reading an incident postmortem"
+phase: reading
+topic: it_english
+cefr_target: b1
+order_index: 10
+est_minutes: 11
+
+objective_vi: "Đọc báo cáo hậu sự cố và nắm: chuyện gì xảy ra, nguyên nhân gốc, và các việc phòng ngừa."
+objective_observable: "Trả lời đúng 4/5 câu hỏi về root cause và action items."
+
+prerequisites:
+  - {lesson: R09, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "postmortem"
+    ipa: "/ˌpoʊstˈmɔːrtəm/"
+    meaning_vi: "báo cáo hậu sự cố"
+    chunk: "We wrote a postmortem."
+    tags: [it_english]
+  - term: "impact"
+    ipa: "/ˈɪmpækt/"
+    meaning_vi: "tác động, ảnh hưởng"
+    chunk: "Impact: 2 hours of downtime."
+    tags: [it_english]
+  - term: "root cause"
+    ipa: "/ruːt kɔːz/"
+    meaning_vi: "nguyên nhân gốc"
+    chunk: "The root cause was a full disk."
+    tags: [it_english]
+  - term: "timeline"
+    ipa: "/ˈtaɪmlaɪn/"
+    meaning_vi: "diễn biến theo thời gian"
+    chunk: "See the timeline of events."
+    tags: [it_english]
+  - term: "action items"
+    ipa: "/ˈækʃən ˈaɪtəmz/"
+    meaning_vi: "việc cần làm để phòng ngừa"
+    chunk: "Action items to prevent recurrence."
+    tags: [it_english]
+  - term: "blameless"
+    ipa: "/ˈbleɪmləs/"
+    meaning_vi: "không đổ lỗi cá nhân"
+    chunk: "This is a blameless postmortem."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "The root cause was {cause}. Action items: {action}."
+    meaning_vi: "Nguyên nhân gốc là {cause}. Việc cần làm: {action}."
+    slots:
+      cause: ["a full disk", "an expired certificate", "a bad config change"]
+      action: ["add disk alerts", "automate cert renewal", "add a config review step"]
+
+dialogue:
+  context_vi: "Một báo cáo hậu sự cố ngắn (đọc theo mục)."
+  turns:
+    - {speaker: A, en: "Postmortem: Payment outage on July 10.", vi: "Postmortem: Sự cố thanh toán ngày 10 tháng 7."}
+    - {speaker: A, en: "Impact: Payments were down for 2 hours; about 500 orders were delayed.", vi: "Tác động: Thanh toán sập 2 giờ; khoảng 500 đơn bị chậm."}
+    - {speaker: A, en: "Root cause: The database disk filled up, so writes failed.", vi: "Nguyên nhân gốc: Ổ đĩa CSDL đầy nên ghi dữ liệu thất bại."}
+    - {speaker: A, en: "This is a blameless postmortem — we focus on the system, not the person.", vi: "Đây là postmortem không đổ lỗi — tập trung vào hệ thống, không phải cá nhân."}
+    - {speaker: A, en: "Action items: 1. Add disk alerts. 2. Automate cleanup of old logs.", vi: "Việc cần làm: 1. Thêm cảnh báo dung lượng ổ. 2. Tự động dọn log cũ."}
+
+listening_snippet:
+  id: LS-R10
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Payments were down for two hours. The root cause was a full database disk, so writes failed. Action items: add disk alerts and automate cleanup of old logs."
+  transcript_vi: "Thanh toán sập hai giờ. Nguyên nhân gốc là ổ đĩa CSDL đầy nên ghi dữ liệu thất bại. Việc cần làm: thêm cảnh báo dung lượng ổ và tự động dọn log cũ."
+  questions:
+    - q_vi: "Nguyên nhân gốc là gì?"
+      choices: ["Ổ đĩa CSDL đầy", "Sai mật khẩu", "Mất điện"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Một việc cần làm để phòng ngừa là gì?"
+      choices: ["Thêm cảnh báo dung lượng ổ", "Sa thải người trực", "Đổi ngân hàng"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills: []
+
+vietnamese_explanation:
+  why_vi: >
+    Postmortem là báo cáo sau sự cố, và văn hoá kỹ thuật quốc tế nhấn mạnh nó phải "blameless" —
+    không đổ lỗi cá nhân, chỉ mổ xẻ hệ thống để không tái diễn. Bốn mục cần nắm: IMPACT (thiệt hại),
+    ROOT CAUSE (nguyên nhân gốc, không phải triệu chứng), TIMELINE (diễn biến), ACTION ITEMS (việc
+    phòng ngừa). Người Việt hay đọc để tìm "ai gây ra" — nhưng điểm của postmortem là tìm "sửa hệ thống thế nào".
+  how_vi: >
+    Đọc bốn mục: (1) IMPACT — hiểu quy mô thiệt hại; (2) ROOT CAUSE — nguyên nhân GỐC (vd “disk đầy”),
+    phân biệt với triệu chứng (“ghi thất bại”); (3) TIMELINE — nếu cần hiểu diễn biến; (4) ACTION ITEMS
+    — đây là phần giá trị nhất, các việc để không lặp lại. Không đi tìm "lỗi của ai".
+  contrast_vi: "“Lỗi tại bạn Huy” (đổ lỗi, vô ích) ↔ “Root cause: disk đầy; action: thêm cảnh báo” (sửa hệ thống, không tái diễn)."
+
+common_mistakes:
+  - mistake: "Đọc postmortem để tìm “ai có lỗi”"
+    why_vi: "Thói quen quy trách nhiệm cá nhân."
+    fix_vi: "Postmortem là blameless — mục đích là sửa HỆ THỐNG. Tập trung vào root cause và action items, không phải con người."
+    detect: {}
+  - mistake: "Nhầm triệu chứng với nguyên nhân gốc"
+    why_vi: "Cái dễ thấy (ghi thất bại) tưởng là gốc."
+    fix_vi: "Hỏi “vì sao” tới cùng: ghi thất bại VÌ disk đầy VÌ log không được dọn. Root cause là mắt xích sâu nhất sửa được."
+    detect: {}
+  - mistake: "Bỏ qua Action items"
+    why_vi: "Nghĩ đọc nguyên nhân là đủ."
+    fix_vi: "Action items là phần quan trọng nhất — chúng là cam kết để sự cố không lặp lại. Đọc và theo dõi chúng."
+    detect: {}
+
+memory_trick_vi: >
+  Postmortem bốn mục, không đổ lỗi: THIỆT HẠI (impact) — GỐC RỄ (root cause, hỏi “vì sao” tới cùng)
+  — DIỄN BIẾN (timeline) — PHÒNG NGỪA (action items). Tìm “sửa hệ thống sao”, đừng tìm “lỗi tại ai”.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Mục đích chính của postmortem “blameless” là gì?"
+    choices:
+      - "Sửa hệ thống để không tái diễn"
+      - "Tìm người để khiển trách"
+      - "Ghi lại cho có"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Ghi dữ liệu thất bại vì disk đầy”. Đâu là root cause?"
+    choices: ["Disk đầy", "Ghi dữ liệu thất bại", "Có người đăng nhập"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Phần nào của postmortem giá trị nhất để tránh lặp lại?"
+    choices: ["Action items", "Tiêu đề", "Timeline"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“Impact: 2 hours of downtime, 500 orders delayed” cho biết?"
+    choices: ["Quy mô thiệt hại", "Nguyên nhân", "Người phụ trách"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Nguyên nhân gốc là gì?"
+    audio_text: "The root cause was a full database disk."
+    choices: ["Ổ đĩa CSDL đầy", "Lỗi mạng", "Sai mật khẩu"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {quiz: 0.7, listen: 0.3}
+  min_speaking_attempts: 0
+  challenge_threshold: 85
+
+recommended_next:
+  default: CP-R
