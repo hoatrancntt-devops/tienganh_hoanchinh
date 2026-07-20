@@ -1,0 +1,32 @@
+name: CI
+
+# Cổng chất lượng nội dung phải chạy tự động. Docstring của validate_content nói nó
+# "chạy trong CI, không chạy bằng thiện chí" — file này là chỗ biến câu đó thành sự thật.
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Cài dependency
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check .
+
+      # Bắt lỗi nội dung trước khi seed chạy lúc deploy: DAG hỏng, tag âm vị không khớp
+      # bộ ký hiệu của g2p, ngưỡng mở khoá làm học viên kẹt giữa hai con số.
+      - name: Cổng chất lượng nội dung
+        run: python -m app.seeds.validate_content
