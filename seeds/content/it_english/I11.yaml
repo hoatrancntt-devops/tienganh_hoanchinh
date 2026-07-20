@@ -1,0 +1,174 @@
+schema_version: 1
+id: I11
+slug: cloud-va-trien-khai
+unit: U-I3
+title_vi: "Nói về cloud và triển khai (deploy)"
+title_en: "Cloud & deployment"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 11
+est_minutes: 11
+
+objective_vi: "Dùng đúng từ vựng cloud/deploy: server, môi trường, deploy, rollback, downtime — và báo trạng thái một lần deploy."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ deploy."
+
+prerequisites:
+  - {lesson: I10, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "deploy"
+    ipa: "/dɪˈplɔɪ/"
+    meaning_vi: "triển khai (đưa code lên chạy)"
+    chunk: "We'll deploy the new version tonight."
+    tags: [it_english]
+  - term: "staging"
+    ipa: "/ˈsteɪdʒɪŋ/"
+    meaning_vi: "môi trường thử trước khi lên thật"
+    chunk: "It works on staging."
+    tags: [it_english]
+  - term: "production"
+    ipa: "/prəˈdʌkʃən/"
+    meaning_vi: "môi trường thật (đang phục vụ người dùng)"
+    chunk: "Don't test on production."
+    tags: [it_english]
+  - term: "roll back"
+    ipa: "/roʊl bæk/"
+    meaning_vi: "quay lại bản trước"
+    chunk: "We had to roll back the release."
+    tags: [it_english]
+  - term: "downtime"
+    ipa: "/ˈdaʊntaɪm/"
+    meaning_vi: "thời gian ngừng hoạt động"
+    chunk: "Expect five minutes of downtime."
+    tags: [it_english]
+  - term: "the build failed"
+    ipa: "/ðə bɪld feɪld/"
+    meaning_vi: "bản build lỗi"
+    chunk: "The build failed on the last step."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "We'll deploy to {env} {time}. Expect {downtime} of downtime."
+    meaning_vi: "Bọn mình sẽ deploy lên {env} {time}. Dự kiến ngừng {downtime}."
+    slots:
+      env: [staging, production]
+      time: [tonight, "at 10 PM", "after hours"]
+      downtime: ["five minutes", "no", "a short"]
+  - pattern: "If something breaks, we'll roll back to {version}."
+    meaning_vi: "Nếu có gì hỏng, bọn mình sẽ quay lại {version}."
+    slots:
+      version: ["the previous version", "the last stable build"]
+
+dialogue:
+  context_vi: "Bạn báo kế hoạch deploy cho quản lý."
+  turns:
+    - {speaker: A, en: "Is the new release ready?", vi: "Bản mới sẵn sàng chưa?"}
+    - {speaker: B, en: "Yes, it's been tested on staging. We'll deploy to production tonight at ten.", vi: "Rồi, đã test trên staging. Bọn em sẽ deploy lên production tối nay lúc mười giờ."}
+    - {speaker: A, en: "Any downtime?", vi: "Có ngừng dịch vụ không?"}
+    - {speaker: B, en: "About five minutes. And if something breaks, we'll roll back to the previous version.", vi: "Khoảng năm phút. Và nếu có gì hỏng, bọn em quay lại bản trước."}
+    - {speaker: A, en: "Sounds safe. Go ahead.", vi: "Nghe an toàn. Cứ làm."}
+
+listening_snippet:
+  id: LS-I11
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "It's been tested on staging. We'll deploy to production tonight, about five minutes of downtime. If something breaks, we'll roll back to the previous version."
+  transcript_vi: "Đã test trên staging. Bọn em sẽ deploy lên production tối nay, ngừng khoảng năm phút. Nếu hỏng thì quay lại bản trước."
+  questions:
+    - q_vi: "Deploy lên môi trường nào?"
+      choices: ["Production", "Staging", "Máy cá nhân"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Nếu hỏng thì làm gì?"
+      choices: ["Quay lại bản trước (roll back)", "Tắt hệ thống", "Bỏ luôn"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "We'll deploy to production tonight."
+    prompt_vi: "Đọc to. deploy nhấn SAU (de-PLOY); production nhấn giữa (pro-DUC-tion)."
+    ipa: "/wɪl dɪˈplɔɪ tuː prəˈdʌkʃən təˈnaɪt/"
+    focus_phonemes: [dʒ, k, ʃ]
+  - kind: read_aloud
+    expected_text: "It works on staging. Expect five minutes of downtime."
+    prompt_vi: "Đọc to. staging có /eɪ/; downtime nhấn âm đầu."
+    ipa: "/ɪt wɜːrks ɒn ˈsteɪdʒɪŋ ɪkˈspɛkt faɪv ˈmɪnɪts ɒv ˈdaʊntaɪm/"
+    focus_phonemes: [dʒ, t, d]
+  - kind: shadow
+    expected_text: "If something breaks, we'll roll back to the previous version."
+    prompt_vi: "Nghe rồi nhắc lại. Có kế hoạch roll back khiến người nghe yên tâm."
+    ipa: "/ɪf ˈsʌmθɪŋ breɪks wɪl roʊl bæk tuː ðə ˈpriːviəs ˈvɜːrʒən/"
+    focus_phonemes: [θ, r, ʒ]
+  - kind: respond
+    prompt_en: "Are we ready to release the new version?"
+    prompt_vi: "Báo kế hoạch deploy: đã test ở đâu, downtime bao lâu, kế hoạch roll back."
+    accept_patterns:
+      - "Yes it's tested on staging we'll deploy to production tonight about {downtime} of downtime"
+      - "It works on staging we'll deploy tonight and roll back if something breaks"
+      - "We'll deploy to production expect {downtime} of downtime"
+
+vietnamese_explanation:
+  why_vi: >
+    “Deploy”, “rollback”, “staging”, “production” là những từ dân IT gõ mỗi ngày nhưng hay phát âm sai
+    khi nói (deploy thành “đề-ploi”). Quan trọng hơn từ vựng là CẤU TRÚC báo deploy: đã test ở đâu →
+    khi nào lên → downtime bao lâu → kế hoạch dự phòng. Thiếu phần dự phòng khiến sếp/khách lo.
+  how_vi: >
+    Bốn phần khi báo deploy: (1) đã test "tested on staging" → (2) lịch "deploy to production tonight"
+    → (3) ảnh hưởng "five minutes of downtime" → (4) phương án lùi "roll back to the previous version".
+    Phân biệt staging (thử) và production (thật) — nhầm hai cái này là sự cố lớn.
+  contrast_vi: "“Tối nay em đẩy lên” (sếp lo) ↔ “Tested on staging, 5 min downtime, roll back ready” (sếp gật ngay)."
+
+common_mistakes:
+  - mistake: "Phát âm sai: deploy, production, staging"
+    why_vi: "Đọc từ chính tả thay vì nghe mẫu."
+    fix_vi: "de-PLOY (nhấn sau), pro-DUC-tion (nhấn giữa), STA-ging (/eɪ/). Nghe giọng mẫu cho từng từ."
+    detect: {}
+  - mistake: "Không nói downtime và kế hoạch roll back"
+    why_vi: "Nghĩ deploy là chuyện kỹ thuật, không cần báo rủi ro."
+    fix_vi: "Luôn nói downtime dự kiến và “we'll roll back if…”. Người nghe cần biết rủi ro và phương án lùi."
+    detect: {}
+  - mistake: "Nhầm/lẫn staging với production"
+    why_vi: "Chưa nắm chắc khác biệt hai môi trường."
+    fix_vi: "staging = sân tập (an toàn để thử); production = sân đấu thật (người dùng đang dùng). Test trên staging, cẩn trọng với production."
+    detect: {}
+
+memory_trick_vi: >
+  Báo deploy như báo cất cánh: đã KIỂM TRA (staging) — giờ CẤT CÁNH (production, tối nay) — dự kiến
+  RUNG LẮC bao lâu (downtime) — và có DÙ DỰ PHÒNG (roll back). Thiếu dù là hành khách hoảng.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Môi trường nào là “thật”, người dùng đang dùng?"
+    choices: [production, staging, localhost]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Deploy xong bản mới bị lỗi nặng. Nên làm gì?"
+    choices:
+      - "Roll back về bản trước"
+      - "Để nguyên cho người dùng chịu"
+      - "Tắt hẳn hệ thống"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“deploy” nhấn âm nào?"
+    choices: ["de-PLOY", "DE-ploy", "nhấn đều"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Nếu hỏng thì làm gì?"
+    audio_text: "If something breaks, we'll roll back to the previous version."
+    choices: ["Quay lại bản trước", "Xoá dữ liệu", "Đổi máy chủ"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I12

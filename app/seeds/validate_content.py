@@ -14,6 +14,18 @@ from app.seeds.schema import LessonYAML
 CONTENT_DIR = Path("seeds/content")
 
 
+def check_units(lessons: list[LessonYAML]) -> list[str]:
+    """Bắt sớm lỗi unit chưa khai báo — nếu không, seed lúc deploy mới nổ."""
+    from app.seeds.loader import UNITS  # lazy: loader nhập ngược module này
+
+    declared = {code for code, *_ in UNITS}
+    errors = []
+    for lesson in lessons:
+        if lesson.unit not in declared:
+            errors.append(f"{lesson.id}: unit '{lesson.unit}' chưa khai báo trong loader.UNITS.")
+    return errors
+
+
 def load_all() -> tuple[list[LessonYAML], list[str]]:
     lessons, errors = [], []
     files = sorted(CONTENT_DIR.rglob("*.yaml"))
@@ -110,6 +122,7 @@ def main() -> int:
     if lessons:
         errors += check_graph(lessons)
         errors += check_pedagogy(lessons)
+        errors += check_units(lessons)
 
     if errors:
         print(f"\n[X] {len(errors)} loi noi dung:\n")

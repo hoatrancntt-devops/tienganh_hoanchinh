@@ -1,0 +1,176 @@
+schema_version: 1
+id: I12
+slug: bao-mat-va-quyen-truy-cap
+unit: U-I3
+title_vi: "Nói về bảo mật và quyền truy cập"
+title_en: "Security & access"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 12
+est_minutes: 11
+
+objective_vi: "Xử lý tình huống bảo mật bằng tiếng Anh: cấp/thu quyền, đổi mật khẩu, cảnh báo lừa đảo (phishing)."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ bảo mật."
+
+prerequisites:
+  - {lesson: I11, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "access"
+    ipa: "/ˈæksɛs/"
+    meaning_vi: "quyền truy cập"
+    chunk: "You don't have access to that folder."
+    tags: [it_english]
+  - term: "grant access"
+    ipa: "/ɡrɑːnt ˈæksɛs/"
+    meaning_vi: "cấp quyền truy cập"
+    chunk: "I'll grant you access."
+    tags: [it_english]
+  - term: "permissions"
+    ipa: "/pərˈmɪʃənz/"
+    meaning_vi: "phân quyền"
+    chunk: "Check your permissions."
+    tags: [it_english]
+  - term: "reset your password"
+    ipa: "/rɪˈsɛt jʊr ˈpæswɜːrd/"
+    meaning_vi: "đặt lại mật khẩu"
+    chunk: "Please reset your password."
+    tags: [it_english]
+  - term: "suspicious"
+    ipa: "/səˈspɪʃəs/"
+    meaning_vi: "đáng ngờ"
+    chunk: "This email looks suspicious."
+    tags: [it_english]
+  - term: "don't click"
+    ipa: "/doʊnt klɪk/"
+    meaning_vi: "đừng bấm vào"
+    chunk: "Don't click the link."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "You don't have access to {resource}. I'll grant you access."
+    meaning_vi: "Bạn chưa có quyền vào {resource}. Tôi sẽ cấp quyền cho bạn."
+    slots:
+      resource: ["that folder", "the shared drive", "the admin panel"]
+  - pattern: "This {thing} looks suspicious. Don't click {item}."
+    meaning_vi: "{thing} này trông đáng ngờ. Đừng bấm {item}."
+    slots:
+      thing: [email, message, link]
+      item: ["the link", "any attachment", "anything in it"]
+
+dialogue:
+  context_vi: "Một đồng nghiệp nhận email lạ và bạn nhắc về bảo mật."
+  turns:
+    - {speaker: A, en: "I got an email saying my account will be closed. It asks me to log in.", vi: "Tôi nhận email báo tài khoản sắp bị đóng. Nó bảo tôi đăng nhập."}
+    - {speaker: B, en: "That looks suspicious. Don't click the link — it could be phishing.", vi: "Cái đó trông đáng ngờ. Đừng bấm vào link — có thể là lừa đảo."}
+    - {speaker: A, en: "Oh, I almost did. What should I do?", vi: "Ồ, suýt nữa tôi bấm. Tôi nên làm gì?"}
+    - {speaker: B, en: "Forward it to IT security and delete it. And to be safe, reset your password.", vi: "Chuyển tiếp cho đội bảo mật rồi xoá đi. Và cho chắc, đặt lại mật khẩu."}
+    - {speaker: A, en: "Will do. Thanks for the heads up.", vi: "Sẽ làm. Cảm ơn đã nhắc."}
+
+listening_snippet:
+  id: LS-I12
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "That email looks suspicious. Don't click the link, it could be phishing. Forward it to IT security, delete it, and reset your password to be safe."
+  transcript_vi: "Email đó trông đáng ngờ. Đừng bấm link, có thể là lừa đảo. Chuyển cho đội bảo mật, xoá đi, và đặt lại mật khẩu cho chắc."
+  questions:
+    - q_vi: "Email đó có thể là gì?"
+      choices: ["Lừa đảo (phishing)", "Thư mời họp", "Hoá đơn"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Nên làm gì với cái link?"
+      choices: ["Đừng bấm vào", "Bấm để kiểm tra", "Gửi cho bạn bè"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "You don't have access to that folder. I'll grant you access."
+    prompt_vi: "Đọc to. access nhấn âm đầu (AC-cess)."
+    ipa: "/juː doʊnt hæv ˈæksɛs tuː ðæt ˈfoʊldər aɪl ɡrɑːnt juː ˈæksɛs/"
+    focus_phonemes: [k, s, ɡ]
+  - kind: read_aloud
+    expected_text: "This email looks suspicious. Don't click the link."
+    prompt_vi: "Đọc to. suspicious có ba âm tiết: sus-PI-cious."
+    ipa: "/ðɪs ˈiːmeɪl lʊks səˈspɪʃəs doʊnt klɪk ðə lɪŋk/"
+    focus_phonemes: [s, ʃ, k]
+  - kind: shadow
+    expected_text: "To be safe, reset your password."
+    prompt_vi: "Nghe rồi nhắc lại. Lời khuyên bảo mật ngắn gọn."
+    ipa: "/tuː biː seɪf rɪˈsɛt jʊr ˈpæswɜːrd/"
+    focus_phonemes: [s, z, d]
+  - kind: respond
+    prompt_en: "I got a weird email asking for my login. What now?"
+    prompt_vi: "Cảnh báo bảo mật: đừng bấm, báo đội bảo mật, đổi mật khẩu."
+    accept_patterns:
+      - "That looks suspicious don't click the link forward it to IT security"
+      - "It could be phishing don't click anything and reset your password"
+      - "Don't click delete it and reset your password to be safe"
+
+vietnamese_explanation:
+  why_vi: >
+    Bảo mật là chủ đề mà nói SAI hoặc CHẬM có thể gây thiệt hại thật. Dân IT thường phải cảnh báo,
+    cấp/thu quyền, hướng dẫn đổi mật khẩu bằng tiếng Anh — với cả người dùng lẫn khách. Từ vựng phải
+    chuẩn và giọng phải RÕ RÀNG, DỨT KHOÁT (nhất là “Don't click”), không mơ hồ.
+  how_vi: >
+    Ba nhóm tình huống: (1) quyền — "You don't have access", "I'll grant you access", "check your
+    permissions"; (2) mật khẩu — "reset your password"; (3) cảnh báo — "This looks suspicious",
+    "Don't click the link", "it could be phishing". Cảnh báo phải DỨT KHOÁT, không rào đón.
+  contrast_vi: "“Chắc email này hơi lạ…” (người dùng vẫn bấm) ↔ “This is phishing. Don't click anything.” (dứt khoát, an toàn)."
+
+common_mistakes:
+  - mistake: "Cảnh báo mơ hồ, thiếu dứt khoát"
+    why_vi: "Ngại nói mạnh, sợ mất lịch sự."
+    fix_vi: "Với bảo mật, rõ ràng quan trọng hơn lịch sự: “Don't click the link.” Câu mệnh lệnh ở đây là đúng và cần thiết."
+    detect: {}
+  - mistake: "Phát âm sai: access, permissions, suspicious"
+    why_vi: "Từ dài, ít khi nói lên."
+    fix_vi: "AC-cess (nhấn đầu), per-MIS-sions, sus-PI-cious. Nghe mẫu vài lần trước khi dùng thật."
+    detect: {}
+  - mistake: "Nhầm “access” (danh từ, không đếm) thành số nhiều"
+    why_vi: "Dịch “các quyền” thành “accesses”."
+    fix_vi: "Nói “access” (không thêm s) cho quyền truy cập chung; dùng “permissions” khi nói về các phân quyền cụ thể."
+    detect: {}
+
+memory_trick_vi: >
+  Bảo mật ba chữ: QUYỀN (access/permissions — cấp hay thu) — MẬT KHẨU (reset khi nghi ngờ) — CẢNH
+  BÁO (suspicious → “Don't click”). Với cảnh báo, nói như còi báo cháy: ngắn, rõ, dứt khoát.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Email lạ xin đăng nhập. Câu cảnh báo tốt nhất?"
+    choices:
+      - "This looks suspicious. Don't click the link."
+      - "Chắc là ổn thôi, cứ đăng nhập thử."
+      - "Không biết nữa."
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đồng nghiệp cần vào thư mục chung nhưng chưa vào được. Bạn nói gì?"
+    choices:
+      - "You don't have access yet. I'll grant you access."
+      - "Không phải việc của tôi."
+      - "Tự tìm cách đi."
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Nghi tài khoản bị lộ. Việc nên làm ngay?"
+    choices: ["Reset your password", "Đăng nhập lại nhiều lần", "Không làm gì"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Email đó có thể là gì?"
+    audio_text: "It could be phishing. Don't click the link."
+    choices: ["Lừa đảo (phishing)", "Thư nội bộ", "Quảng cáo hợp lệ"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I13

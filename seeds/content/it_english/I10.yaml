@@ -1,0 +1,176 @@
+schema_version: 1
+id: I10
+slug: mang-va-ket-noi
+unit: U-I3
+title_vi: "Nói về mạng và kết nối"
+title_en: "Network & connectivity"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 10
+est_minutes: 11
+
+objective_vi: "Dùng đúng từ vựng mạng để mô tả và chẩn đoán sự cố kết nối: mạng, IP, DNS, tường lửa, VPN."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ mạng."
+
+prerequisites:
+  - {lesson: I09, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "connection"
+    ipa: "/kəˈnɛkʃən/"
+    meaning_vi: "kết nối"
+    chunk: "The connection keeps dropping."
+    tags: [it_english]
+  - term: "drops"
+    ipa: "/drɒps/"
+    meaning_vi: "rớt (mạng)"
+    chunk: "The Wi-Fi drops every few minutes."
+    tags: [it_english]
+  - term: "can't reach"
+    ipa: "/kænt riːtʃ/"
+    meaning_vi: "không truy cập được tới"
+    chunk: "I can't reach the server."
+    tags: [it_english]
+  - term: "firewall"
+    ipa: "/ˈfaɪərwɔːl/"
+    meaning_vi: "tường lửa"
+    chunk: "The firewall is blocking port 443."
+    tags: [it_english]
+  - term: "DNS"
+    ipa: "/diː ɛn ɛs/"
+    meaning_vi: "hệ thống phân giải tên miền"
+    chunk: "It looks like a DNS issue."
+    tags: [it_english]
+  - term: "ping"
+    ipa: "/pɪŋ/"
+    meaning_vi: "gửi tín hiệu kiểm tra kết nối"
+    chunk: "Can you ping the gateway?"
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "I can't reach {target}. The connection {problem}."
+    meaning_vi: "Tôi không truy cập được {target}. Kết nối {problem}."
+    slots:
+      target: ["the server", "the internal wiki", "the database"]
+      problem: ["keeps dropping", "times out", "is very slow"]
+  - pattern: "It looks like a {layer} issue."
+    meaning_vi: "Có vẻ là vấn đề {layer}."
+    slots:
+      layer: [DNS, firewall, VPN, routing]
+
+dialogue:
+  context_vi: "Bạn và đồng nghiệp network chẩn đoán vì sao không vào được một trang nội bộ."
+  turns:
+    - {speaker: A, en: "I can't reach the internal wiki. The connection just times out.", vi: "Tôi không vào được wiki nội bộ. Kết nối cứ timeout."}
+    - {speaker: B, en: "Can you ping the server?", vi: "Bạn ping thử máy chủ được không?"}
+    - {speaker: A, en: "Ping works, but the browser can't open the page.", vi: "Ping được, nhưng trình duyệt không mở được trang."}
+    - {speaker: B, en: "Then it's probably not the network — it looks like a DNS issue. Try flushing your DNS cache.", vi: "Vậy chắc không phải mạng — có vẻ là vấn đề DNS. Thử xoá cache DNS xem."}
+    - {speaker: A, en: "That fixed it. Thanks!", vi: "Được rồi. Cảm ơn!"}
+
+listening_snippet:
+  id: LS-I10
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "I can't reach the internal wiki, the connection times out. Ping works but the page won't open. It looks like a DNS issue."
+  transcript_vi: "Tôi không vào được wiki nội bộ, kết nối timeout. Ping được nhưng trang không mở. Có vẻ là vấn đề DNS."
+  questions:
+    - q_vi: "Ping có hoạt động không?"
+      choices: ["Có", "Không", "Không thử"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Nghi ngờ vấn đề ở đâu?"
+      choices: ["DNS", "Nguồn điện", "Màn hình"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I can't reach the server. The connection keeps dropping."
+    prompt_vi: "Đọc to. “reach” có âm /iː/ dài; “connection” nhấn âm giữa."
+    ipa: "/aɪ kænt riːtʃ ðə ˈsɜːrvər ðə kəˈnɛkʃən kiːps ˈdrɒpɪŋ/"
+    focus_phonemes: [tʃ, k, ʃ]
+  - kind: read_aloud
+    expected_text: "It looks like a DNS issue."
+    prompt_vi: "Đọc to. DNS đọc từng chữ: dee-en-ess."
+    ipa: "/ɪt lʊks laɪk ə diː ɛn ɛs ˈɪʃuː/"
+    focus_phonemes: [k, s, ʃ]
+  - kind: shadow
+    expected_text: "The firewall is blocking port 443."
+    prompt_vi: "Nghe rồi nhắc lại. “firewall” nhấn âm đầu; số đọc four-four-three."
+    ipa: "/ðə ˈfaɪərwɔːl ɪz ˈblɒkɪŋ pɔːrt fɔːr fɔːr θriː/"
+    focus_phonemes: [f, w, θ]
+  - kind: respond
+    prompt_en: "The website won't load for me. Any idea?"
+    prompt_vi: "Chẩn đoán bằng từ vựng mạng: nêu triệu chứng và đoán tầng nào."
+    accept_patterns:
+      - "Can you ping the server if ping works it might be a DNS issue"
+      - "The connection times out it looks like a firewall issue"
+      - "Try checking if you can reach it it might be DNS"
+
+vietnamese_explanation:
+  why_vi: >
+    Sự cố mạng là thứ dân IT gặp mỗi ngày, nhưng để nói ĐÚNG với đồng nghiệp nước ngoài cần đúng từ:
+    “mạng chậm” chung chung khác hẳn “ping được nhưng DNS hỏng”. Người Việt biết khái niệm nhưng
+    thường chưa nghe/nói các từ này bao giờ, nên phát âm tự chế (DNS thành “đê-nờ-ét”, port thành “po”).
+  how_vi: >
+    Nắm bộ từ lõi: connection (kết nối), drops/times out (rớt/timeout), can't reach (không tới được),
+    firewall (tường lửa), DNS, ping. Khi chẩn đoán, nói theo TẦNG: ping được → không phải mạng vật lý;
+    ping không được → mạng/định tuyến; ping được mà trang không mở → DNS hoặc firewall.
+  contrast_vi: "“Mạng lỗi rồi” (vô dụng) ↔ “Ping works but the page times out — looks like DNS” (đồng nghiệp biết chỗ sửa)."
+
+common_mistakes:
+  - mistake: "Phát âm sai thuật ngữ: DNS, port, ping, firewall"
+    why_vi: "Đọc trên màn hình hàng ngày nhưng chưa nghe ai đọc lên."
+    fix_vi: "DNS = dee-en-ess (từng chữ); port = /pɔːrt/; ping = /pɪŋ/; firewall nhấn “FIRE”. Nghe mẫu, đừng đoán từ chữ viết."
+    detect: {}
+  - mistake: "Mô tả chung chung “mạng có vấn đề”"
+    why_vi: "Ngại dùng thuật ngữ vì sợ sai."
+    fix_vi: "Nói triệu chứng cụ thể: “times out”, “can't reach”, “ping works but…”. Cụ thể giúp khoanh vùng nhanh."
+    detect: {}
+  - mistake: "Nhầm “can't connect” với “can't reach”"
+    why_vi: "Hai cụm gần nghĩa, dùng lẫn."
+    fix_vi: "Cả hai đều ổn trong hội thoại; “can't reach the server” tự nhiên khi nói về một đích cụ thể. Miễn là có nêu đích."
+    detect: {}
+
+memory_trick_vi: >
+  Chẩn đoán mạng như kiểm tra đường ống nước: PING xem nước có tới không → nếu tới mà vòi không chảy,
+  vấn đề ở DNS/firewall (cái van), không phải đường ống (mạng). Nói theo tầng, đừng nói “nước hỏng”.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Ping được nhưng trang web không mở. Nghi ngờ gì?"
+    choices:
+      - "DNS hoặc firewall"
+      - "Đứt cáp mạng"
+      - "Hỏng màn hình"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“DNS” đọc thế nào?"
+    choices: ["dee-en-ess (từng chữ)", "đi-nớt", "dins"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Cách mô tả sự cố mạng tốt nhất?"
+    choices:
+      - "The connection times out when I reach the server."
+      - "Mạng hỏng rồi."
+      - "Nó không chạy."
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Nghi ngờ vấn đề ở đâu?"
+    audio_text: "It looks like a DNS issue."
+    choices: ["DNS", "Chuột", "Bàn phím"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I11

@@ -32,8 +32,10 @@ UNITS = [
     ("U-D2", "Ăn uống", 6, "food"),
     ("U-D3", "Đi lại", 7, "transport"),
     ("U-O1", "Công sở", 8, "office"),
-    ("U-I1", "Tiếng Anh CNTT", 9, "it_english"),
-    ("U-R1", "Đọc phục vụ công việc", 10, "core"),
+    ("U-I1", "CNTT: hỗ trợ & báo sự cố", 9, "it_english"),
+    ("U-I2", "CNTT: làm việc nhóm & báo cáo", 10, "it_english"),
+    ("U-I3", "CNTT: mạng, cloud, bảo mật, dữ liệu", 11, "it_english"),
+    ("U-R1", "Đọc phục vụ công việc", 12, "core"),
 ]
 COURSE = ("speaking-core", "Nghe nói giao tiếp công sở", "Speaking Core")
 

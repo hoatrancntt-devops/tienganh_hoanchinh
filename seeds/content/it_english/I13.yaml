@@ -1,0 +1,173 @@
+schema_version: 1
+id: I13
+slug: co-so-du-lieu-va-sao-luu
+unit: U-I3
+title_vi: "Nói về cơ sở dữ liệu và sao lưu"
+title_en: "Database & backup"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 13
+est_minutes: 11
+
+objective_vi: "Dùng đúng từ vựng dữ liệu: database, backup, restore, query chậm, mất dữ liệu — và trấn an khi có sự cố dữ liệu."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ dữ liệu."
+
+prerequisites:
+  - {lesson: I12, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "database"
+    ipa: "/ˈdeɪtəbeɪs/"
+    meaning_vi: "cơ sở dữ liệu"
+    chunk: "The database is running slow."
+    tags: [it_english]
+  - term: "backup"
+    ipa: "/ˈbækʌp/"
+    meaning_vi: "bản sao lưu"
+    chunk: "We have a backup from last night."
+    tags: [it_english]
+  - term: "restore"
+    ipa: "/rɪˈstɔːr/"
+    meaning_vi: "khôi phục (từ backup)"
+    chunk: "We can restore from the backup."
+    tags: [it_english]
+  - term: "the query is slow"
+    ipa: "/ðə ˈkwɪəri ɪz sloʊ/"
+    meaning_vi: "câu truy vấn chạy chậm"
+    chunk: "This query is slow, it needs an index."
+    tags: [it_english]
+  - term: "data loss"
+    ipa: "/ˈdeɪtə lɒs/"
+    meaning_vi: "mất dữ liệu"
+    chunk: "There was no data loss."
+    tags: [it_english]
+  - term: "up to date"
+    ipa: "/ʌp tuː deɪt/"
+    meaning_vi: "cập nhật đến thời điểm mới nhất"
+    chunk: "The backup is up to date."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "The database {problem}. We can {fix}."
+    meaning_vi: "Cơ sở dữ liệu {problem}. Bọn mình có thể {fix}."
+    slots:
+      problem: ["is running slow", "is down", "lost some records"]
+      fix: ["add an index", "restart it", "restore from the backup"]
+  - pattern: "We have a backup from {time}. There was no data loss."
+    meaning_vi: "Bọn mình có bản sao lưu từ {time}. Không mất dữ liệu."
+    slots:
+      time: ["last night", "this morning", "an hour ago"]
+
+dialogue:
+  context_vi: "Có sự cố dữ liệu, quản lý lo lắng hỏi bạn."
+  turns:
+    - {speaker: A, en: "I heard the database crashed. Did we lose anything?", vi: "Nghe nói database sập. Mình có mất gì không?"}
+    - {speaker: B, en: "Don't worry. We have a backup from last night, and it's up to date.", vi: "Đừng lo. Bọn em có bản sao lưu từ tối qua, và nó mới nhất."}
+    - {speaker: A, en: "So no data loss?", vi: "Vậy không mất dữ liệu?"}
+    - {speaker: B, en: "Almost none. We can restore from the backup — about ten minutes of work.", vi: "Gần như không. Bọn em khôi phục từ backup — khoảng mười phút."}
+    - {speaker: A, en: "Great, please go ahead.", vi: "Tốt, cứ tiến hành."}
+
+listening_snippet:
+  id: LS-I13
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "The database crashed, but we have a backup from last night. It's up to date, so there was no data loss. We can restore in about ten minutes."
+  transcript_vi: "Database sập, nhưng bọn em có bản sao lưu từ tối qua. Nó mới nhất nên không mất dữ liệu. Khôi phục khoảng mười phút."
+  questions:
+    - q_vi: "Có mất dữ liệu không?"
+      choices: ["Không", "Mất hết", "Mất một nửa"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Bản sao lưu từ khi nào?"
+      choices: ["Tối qua", "Tuần trước", "Năm ngoái"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "We have a backup from last night."
+    prompt_vi: "Đọc to. backup nhấn âm đầu (BACK-up)."
+    ipa: "/wiː hæv ə ˈbækʌp frɒm læst naɪt/"
+    focus_phonemes: [b, k, t]
+  - kind: read_aloud
+    expected_text: "We can restore from the backup."
+    prompt_vi: "Đọc to. restore nhấn âm sau (re-STORE)."
+    ipa: "/wiː kæn rɪˈstɔːr frɒm ðə ˈbækʌp/"
+    focus_phonemes: [r, s, k]
+  - kind: shadow
+    expected_text: "There was no data loss."
+    prompt_vi: "Nghe rồi nhắc lại. Câu trấn an quan trọng nhất khi có sự cố dữ liệu."
+    ipa: "/ðɛr wɒz noʊ ˈdeɪtə lɒs/"
+    focus_phonemes: [ð, t, s]
+  - kind: respond
+    prompt_en: "The database went down — did we lose data?"
+    prompt_vi: "Trấn an: có backup, không mất dữ liệu, khôi phục bao lâu."
+    accept_patterns:
+      - "Don't worry we have a backup from last night there was no data loss"
+      - "We have a backup it's up to date we can restore in {time}"
+      - "No data loss we can restore from the backup"
+
+vietnamese_explanation:
+  why_vi: >
+    Sự cố dữ liệu khiến người ta hoảng nhất — mất dữ liệu là nỗi sợ lớn nhất của doanh nghiệp. Khi
+    đó, việc đầu tiên dân IT phải làm bằng tiếng Anh là TRẤN AN đúng cách: có backup không, mất bao
+    nhiêu, khôi phục bao lâu. Người Việt hay đi thẳng vào kỹ thuật, quên câu trấn an mà sếp cần nghe nhất.
+  how_vi: >
+    Trật tự vàng khi có sự cố dữ liệu: (1) TRẤN AN "Don't worry, we have a backup" → (2) mức thiệt hại
+    "There was no data loss / almost none" → (3) thời gian khôi phục "We can restore in ten minutes".
+    Từ lõi: database, backup, restore, data loss, up to date, query slow.
+  contrast_vi: "“Database sập, đang xử lý…” (sếp hoảng) ↔ “We have a last-night backup, no data loss, restore in 10 min” (sếp thở phào)."
+
+common_mistakes:
+  - mistake: "Quên câu trấn an, đi thẳng vào kỹ thuật"
+    why_vi: "Tập trung xử lý sự cố, quên người nghe đang lo."
+    fix_vi: "Câu đầu tiên phải là “Don't worry, we have a backup”. Mất dữ liệu là nỗi sợ lớn — trấn an trước, giải thích sau."
+    detect: {}
+  - mistake: "Phát âm sai: database, restore, query"
+    why_vi: "Từ quen mắt nhưng ít nói."
+    fix_vi: "DA-ta-base (nhấn đầu), re-STORE (nhấn sau), query = /ˈkwɪəri/. Nghe mẫu trước khi dùng."
+    detect: {}
+  - mistake: "Nói “backup” như động từ và danh từ lẫn lộn"
+    why_vi: "Tiếng Việt không phân biệt."
+    fix_vi: "Danh từ: “a backup” (bản sao lưu). Động từ: “to back up” (viết rời). “We have a backup” vs “We back up nightly”."
+    detect: {}
+
+memory_trick_vi: >
+  Sự cố dữ liệu, nói theo thứ tự cấp cứu: TRẤN AN (“có backup, đừng lo”) — MỨC THIỆT HẠI (“no data
+  loss”) — THỜI GIAN HỒI PHỤC (“restore in 10 min”). Trấn an trước, thuật ngữ sau.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Database sập, sếp hỏi có mất dữ liệu không. Câu đầu tiên nên là?"
+    choices:
+      - "Don't worry, we have a backup from last night."
+      - "The InnoDB engine had a page corruption."
+      - "Để em xem log đã."
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Restore from the backup” nghĩa là gì?"
+    choices: ["Khôi phục từ bản sao lưu", "Xoá bản sao lưu", "Tạo dữ liệu mới"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bản sao lưu “up to date” nghĩa là?"
+    choices: ["Mới nhất, không thiếu dữ liệu gần đây", "Đã cũ", "Bị lỗi"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Có mất dữ liệu không?"
+    audio_text: "There was no data loss."
+    choices: ["Không mất dữ liệu", "Mất hết", "Không rõ"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I14
