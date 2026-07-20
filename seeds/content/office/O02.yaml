@@ -1,0 +1,167 @@
+schema_version: 1
+id: O02
+slug: chao-buoi-sang-pantry
+unit: U-O1
+title_vi: "Chào buổi sáng & pantry"
+title_en: "Morning greetings at work"
+phase: office
+topic: office
+cefr_target: a2
+order_index: 2
+est_minutes: 10
+
+objective_vi: "Chào hỏi tự nhiên buổi sáng ở văn phòng và tán gẫu ngắn ở pantry mà không gượng."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill chào hỏi."
+
+prerequisites:
+  - {lesson: O01, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Morning!"
+    ipa: "/ˈmɔːrnɪŋ/"
+    meaning_vi: "Chào buổi sáng (rút gọn, thân mật)"
+    chunk: "Morning! How was your weekend?"
+    tags: [office, social]
+  - term: "How was your weekend?"
+    ipa: "/haʊ wɒz jʊr ˈwiːkɛnd/"
+    meaning_vi: "Cuối tuần của bạn thế nào?"
+    chunk: "Morning! How was your weekend?"
+    tags: [office, social]
+  - term: "Not bad"
+    ipa: "/nɒt bæd/"
+    meaning_vi: "Cũng ổn"
+    chunk: "Not bad, thanks. You?"
+    tags: [social]
+  - term: "Coffee's ready"
+    ipa: "/ˈkɒfiz ˈrɛdi/"
+    meaning_vi: "Cà phê xong rồi"
+    chunk: "Coffee's ready if you want some."
+    tags: [office, food]
+  - term: "Catch you later"
+    ipa: "/kætʃ juː ˈleɪtər/"
+    meaning_vi: "Gặp lại sau nhé"
+    chunk: "I'm off to a meeting. Catch you later."
+    tags: [social]
+  - term: "Have a good one"
+    ipa: "/hæv ə ɡʊd wʌn/"
+    meaning_vi: "Chúc một ngày tốt lành"
+    chunk: "See you tomorrow, have a good one!"
+    tags: [social]
+
+sentence_patterns:
+  - pattern: "Morning! How was your {time}?"
+    meaning_vi: "Chào buổi sáng! {time} của bạn thế nào?"
+    slots:
+      time: [weekend, evening, holiday]
+  - pattern: "I'm off to {place}. Catch you later."
+    meaning_vi: "Tôi đi {place} đây. Gặp lại sau nhé."
+    slots:
+      place: ["a meeting", "the standup", "lunch"]
+
+dialogue:
+  context_vi: "Sáng thứ Hai, bạn gặp đồng nghiệp ở pantry khi lấy cà phê."
+  turns:
+    - {speaker: A, en: "Morning! How was your weekend?", vi: "Chào buổi sáng! Cuối tuần bạn thế nào?"}
+    - {speaker: B, en: "Not bad, thanks. Pretty quiet. You?", vi: "Cũng ổn, cảm ơn. Khá yên bình. Bạn thì sao?"}
+    - {speaker: A, en: "Same. Coffee's ready if you want some.", vi: "Tôi cũng vậy. Cà phê xong rồi đấy, uống không?"}
+    - {speaker: B, en: "Thanks! I'm off to the standup. Catch you later.", vi: "Cảm ơn! Tôi đi họp standup đây. Gặp lại sau nhé."}
+
+listening_snippet:
+  id: LS-O02
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "Morning! How was your weekend? Coffee's ready if you want some. I'm off to a meeting, catch you later."
+  transcript_vi: "Chào buổi sáng! Cuối tuần thế nào? Cà phê xong rồi đấy. Tôi đi họp đây, gặp lại sau nhé."
+  questions:
+    - q_vi: "Người nói mời gì?"
+      choices: ["Cà phê", "Ăn trưa", "Đi họp cùng"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Người nói sắp đi đâu?"
+      choices: ["Đi họp", "Về nhà", "Đi ăn"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Morning! How was your weekend?"
+    prompt_vi: "Đọc to. “Morning” rút gọn nghe thân mật hơn “Good morning”."
+    ipa: "/ˈmɔːrnɪŋ haʊ wɒz jʊr ˈwiːkɛnd/"
+    focus_phonemes: [ŋ, z]
+  - kind: shadow
+    expected_text: "Not bad, thanks. You?"
+    prompt_vi: "Nghe rồi nhắc lại. Ngắn, tự nhiên."
+    ipa: "/nɒt bæd θæŋks juː/"
+    focus_phonemes: [t, d, θ]
+  - kind: shadow
+    expected_text: "I'm off to the standup. Catch you later."
+    prompt_vi: "Nghe rồi nhắc lại. Cách rời đi lịch sự."
+    ipa: "/aɪm ɒf tuː ðə ˈstændʌp kætʃ juː ˈleɪtər/"
+    focus_phonemes: [f, tʃ]
+  - kind: respond
+    prompt_en: "Morning! How was your weekend?"
+    prompt_vi: "Trả lời ngắn rồi hỏi ngược."
+    accept_patterns:
+      - "Not bad thanks You"
+      - "Pretty good How about you"
+      - "Quiet weekend You"
+
+vietnamese_explanation:
+  why_vi: >
+    Chào buổi sáng ở công sở phương Tây rất ngắn và có nhịp cố định — không phải màn hỏi thăm dài.
+    Người Việt hay lúng túng vì nghĩ phải trả lời thật kỹ, hoặc ngược lại, chỉ gật đầu im lặng.
+    Cả hai đều khiến không khí gượng.
+  how_vi: >
+    Ba mảnh ghép: chào ("Morning!") → hỏi cuối tuần ("How was your weekend?") → trả lời ngắn + hỏi
+    ngược ("Not bad, you?"). Và khi rời đi: "Catch you later" hoặc "Have a good one". Nói y hệt mỗi ngày.
+  contrast_vi: "Im lặng đi ngang ↔ “Morning!” một tiếng. Một từ thôi cũng đủ để không bị coi là lạnh lùng."
+
+common_mistakes:
+  - mistake: "Đi ngang đồng nghiệp mà không chào gì"
+    why_vi: "Ở Việt Nam gật đầu là đủ, nhưng ở môi trường quốc tế im lặng bị hiểu là khó gần."
+    fix_vi: "Chỉ cần “Morning!” hoặc “Hey!”. Một tiếng, không tốn gì, mà tạo thiện cảm rõ rệt."
+    detect: {}
+  - mistake: "Trả lời “How was your weekend?” bằng một câu chuyện dài"
+    why_vi: "Hiểu là câu hỏi thật. Nhưng nó là nghi thức, giống small talk."
+    fix_vi: "Ngắn thôi: “Not bad, you?”. Muốn kể thêm thì để khi ngồi ăn trưa."
+    detect: {}
+  - mistake: "Rời đi mà không nói gì, quay lưng bỏ đi"
+    why_vi: "Ngại tìm câu kết."
+    fix_vi: "“Catch you later” hoặc “I'm off to a meeting” là đủ. Kết thúc gọn khiến người kia thấy được tôn trọng."
+    detect: {}
+
+memory_trick_vi: >
+  Buổi sáng công sở như một điệu nhảy ngắn: CHÀO → HỎI → ĐÁP NGẮN → RỜI ĐI LỊCH SỰ.
+  Bốn bước, mỗi bước một câu, nói y hệt mỗi ngày. Không ai để ý bạn lặp lại.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Gặp đồng nghiệp sáng sớm. Câu nào tự nhiên nhất?"
+    choices: ["(im lặng gật đầu)", "Morning! How was your weekend?", "How do you do?"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bạn cần rời đi để họp. Nói gì?"
+    choices: ["Bye bye.", "I'm off to a meeting. Catch you later.", "I go now."]
+    answer: 1
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“How was your weekend?” là gì?"
+    choices: ["Câu hỏi thật cần kể chi tiết", "Nghi thức chào hỏi, trả lời ngắn là đủ", "Câu hỏi công việc"]
+    answer: 1
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói mời gì?"
+    audio_text: "Coffee's ready if you want some."
+    choices: ["Cà phê", "Trà", "Bánh"]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: O03
