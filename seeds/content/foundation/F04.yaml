@@ -14,7 +14,7 @@ objective_vi: "Nói được các cụm phụ âm cuối như /sks/, /kts/, /ndz
 objective_observable: "Đạt ≥75 điểm phát âm trên 3/4 câu drill có cụm phụ âm cuối."
 
 prerequisites:
-  - {lesson: F03, min_mastery: 80, kind: hard}
+  - {lesson: F03, min_mastery: 78, kind: hard}
 
 vocabulary:
   - term: asks
@@ -173,7 +173,7 @@ mini_quiz:
       - "Vì từ quá dài"
       - "Vì nó là số nhiều"
     answer: 0
-    difficulty: 3
+    difficulty: 2
 
 unlock_condition:
   mastery_threshold: 78

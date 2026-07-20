@@ -171,7 +171,7 @@ mini_quiz:
     difficulty: 2
 
 unlock_condition:
-  mastery_threshold: 80
+  mastery_threshold: 78
   mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
   min_speaking_attempts: 4
   challenge_threshold: 85

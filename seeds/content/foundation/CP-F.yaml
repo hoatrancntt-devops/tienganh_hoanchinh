@@ -15,9 +15,9 @@ objective_vi: "Chứng minh bạn nghe ra và nói được các âm nền ở t
 objective_observable: "Đạt ≥75 điểm tổng hợp trên toàn bộ bài kiểm tra."
 
 prerequisites:
-  - {lesson: F01, min_mastery: 80, kind: hard}
-  - {lesson: F02, min_mastery: 80, kind: hard}
-  - {lesson: F03, min_mastery: 80, kind: hard}
+  - {lesson: F01, min_mastery: 78, kind: hard}
+  - {lesson: F02, min_mastery: 78, kind: hard}
+  - {lesson: F03, min_mastery: 78, kind: hard}
   - {lesson: F04, min_mastery: 78, kind: hard}
   - {lesson: F05, min_mastery: 78, kind: hard}
   - {lesson: F06, min_mastery: 78, kind: hard}

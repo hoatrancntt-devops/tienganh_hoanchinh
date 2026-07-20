@@ -14,7 +14,7 @@ objective_vi: "Phát âm được âm cuối /s/ và /z/ trong 6 từ thường 
 objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill có âm cuối /s/ hoặc /z/."
 
 prerequisites:
-  - {lesson: F01, min_mastery: 80, kind: hard}
+  - {lesson: F01, min_mastery: 78, kind: hard}
 
 vocabulary:
   - term: works
@@ -165,7 +165,7 @@ mini_quiz:
     prompt_vi: "Âm cuối của “needs” là gì?"
     choices: ["/s/ không rung", "/z/ có rung", "Không có âm cuối"]
     answer: 1
-    difficulty: 3
+    difficulty: 2
   - kind: mcq_listen
     prompt_vi: "Minh vừa bàn giao. Bạn nhận mấy ticket?"
     audio_text: "I have three tickets today."
@@ -175,7 +175,7 @@ mini_quiz:
     focus_phonemes: [s]
 
 unlock_condition:
-  mastery_threshold: 80
+  mastery_threshold: 78
   mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
   min_speaking_attempts: 4
   challenge_threshold: 85
