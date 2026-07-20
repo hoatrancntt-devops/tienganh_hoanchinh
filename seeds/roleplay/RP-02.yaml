@@ -1,0 +1,30 @@
+id: RP-02
+title_vi: "Gọi món ăn trưa"
+context_vi: "Bạn vào quán ăn trưa. Nhân viên phục vụ đến nhận order. Hãy gọi món và xử lý tình huống."
+topic: food
+partner: Nhân viên
+start: n1
+nodes:
+  n1:
+    partner_en: "Hi there! What can I get for you?"
+    partner_vi: "Chào bạn! Bạn dùng gì ạ?"
+    options:
+      - {en: "I'll have the chicken rice, please. No spicy.", vi: "Cho tôi cơm gà nhé. Không cay.", next: n2}
+      - {en: "Chicken rice.", vi: "Cơm gà.", next: n2, feedback_vi: "Thêm “I'll have… please” nghe lịch sự và tự nhiên hơn."}
+  n2:
+    partner_en: "Sure. Anything to drink?"
+    partner_vi: "Vâng. Bạn uống gì không ạ?"
+    options:
+      - {en: "Just water, thanks. Oh, and I'm allergic to peanuts.", vi: "Nước lọc thôi, cảm ơn. À, và tôi dị ứng đậu phộng.", next: n3}
+      - {en: "No.", vi: "Không.", next: n3, feedback_vi: "Nếu có dị ứng, đây là lúc nên nói để an toàn."}
+  n3:
+    partner_en: "No peanuts, got it. For here or to go?"
+    partner_vi: "Không đậu phộng, rõ rồi. Ăn tại chỗ hay mang đi ạ?"
+    options:
+      - {en: "For here, please.", vi: "Ăn tại chỗ nhé.", next: end}
+      - {en: "To go, please.", vi: "Mang đi nhé.", next: end}
+  end:
+    partner_en: "Perfect. It'll be ready in five minutes!"
+    partner_vi: "Tuyệt. Năm phút nữa có ngay ạ!"
+    ending: true
+    summary_vi: "Bạn đã gọi món trọn vẹn: chọn món, đồ uống, báo dị ứng, chọn chỗ ăn. Bốn câu này dùng được ở mọi quán."

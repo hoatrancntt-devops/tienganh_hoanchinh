@@ -1,0 +1,30 @@
+id: RP-01
+title_vi: "Làm quen đồng nghiệp mới ở pantry"
+context_vi: "Bạn gặp một đồng nghiệp mới ở khu pha trà. Hãy làm quen và giữ cuộc trò chuyện tự nhiên."
+topic: social
+partner: Lan
+start: n1
+nodes:
+  n1:
+    partner_en: "Hi! I don't think we've met. I'm Lan, from Accounting."
+    partner_vi: "Chào! Hình như ta chưa gặp nhau. Mình là Lan, bên Kế toán."
+    options:
+      - {en: "Nice to meet you, Lan. I'm Nam, I work in IT.", vi: "Rất vui được gặp Lan. Mình là Nam, làm bên IT.", next: n2}
+      - {en: "Hi.", vi: "Chào.", next: n2, feedback_vi: "Hơi cụt — nên giới thiệu tên và bộ phận của mình luôn."}
+  n2:
+    partner_en: "Oh, IT! Have you been here long?"
+    partner_vi: "Ồ, IT à! Bạn làm ở đây lâu chưa?"
+    options:
+      - {en: "About two years. How about you?", vi: "Khoảng hai năm. Còn bạn?", next: n3}
+      - {en: "Two years.", vi: "Hai năm.", next: n3, feedback_vi: "Nhớ hỏi ngược lại “How about you?” để giữ hội thoại."}
+  n3:
+    partner_en: "I just started last week. Everyone seems really busy!"
+    partner_vi: "Mình mới bắt đầu tuần trước. Ai cũng có vẻ bận rộn ghê!"
+    options:
+      - {en: "Yeah, busy week. But it's a good team. Let me know if you need anything.", vi: "Ừ, tuần bận đấy. Nhưng đội tốt lắm. Cần gì cứ bảo mình nhé.", next: end}
+      - {en: "Yes, very busy.", vi: "Ừ, bận lắm.", next: end, feedback_vi: "Thử thêm một câu thân thiện để tạo thiện cảm."}
+  end:
+    partner_en: "Thanks, Nam! Nice chatting. See you around!"
+    partner_vi: "Cảm ơn Nam! Vui được nói chuyện. Gặp lại nhé!"
+    ending: true
+    summary_vi: "Bạn vừa hoàn thành một cuộc làm quen trọn vẹn: chào, giới thiệu, hỏi ngược, và tạo thiện cảm. Đây đúng là điều xảy ra ở pantry mỗi ngày."

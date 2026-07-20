@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Đóng vai{% endblock %}
+{% block body %}
+{% set topic_img = {'social':'social','food':'food','transport':'transport','office':'office','it_english':'it_english','core':'core'} %}
+<div class="page-head">
+  <h1>Đóng vai</h1>
+  <p>Luyện hội thoại thật trong tình huống công việc. Bạn chọn câu trả lời, đối phương phản hồi theo.</p>
+</div>
+<div class="grid-auto">
+  {% for s in scenarios %}
+  <a class="lcard" href="/learn/roleplay/{{ s.id }}">
+    <div class="lcard-top">
+      <img src="/static/img/topic-{{ topic_img.get(s.topic,'core') }}.svg?v={{ sv }}" alt="" width="26" height="26">
+      <span class="lcard-code">{{ s.id }}</span>
+      <span class="pill pill-acc" style="margin-left:auto">🎭 Đóng vai</span>
+    </div>
+    <h3>{{ s.title_vi }}</h3>
+    <p class="lcard-warn" style="color:var(--fg-2)">{{ s.context_vi }}</p>
+    <div class="mut-3" style="margin-top:.5rem">Bạn thoại với: <b>{{ s.partner }}</b></div>
+  </a>
+  {% else %}
+  <div class="empty">Chưa có kịch bản đóng vai nào.</div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -137,6 +137,25 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
                 await _write(db, dest, wav, "en_US_female")
                 made += 1
 
+        # 4. Roleplay: câu của "partner" mỗi node
+        rp_dir = Path("seeds/roleplay")
+        for path in sorted(rp_dir.glob("RP-*.yaml")):
+            rp = yaml.safe_load(path.read_text(encoding="utf-8"))
+            for nid, node in rp.get("nodes", {}).items():
+                text = (node.get("partner_en") or "").strip()
+                if not text:
+                    continue
+                dest = media / "roleplay" / f"{rp['id']}_{nid}.wav"
+                if dest.exists() and not force:
+                    skipped += 1
+                    continue
+                wav = await _synth(client, text, "en_US_female", 1.0)
+                if wav is None:
+                    failed += 1
+                    continue
+                await _write(db, dest, wav, "en_US_female")
+                made += 1
+
     log.info("audio: %s mới, %s bỏ qua, %s lỗi", made, skipped, failed)
     return {"made": made, "skipped": skipped, "failed": failed}
 

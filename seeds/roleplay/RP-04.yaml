@@ -1,0 +1,30 @@
+id: RP-04
+title_vi: "Helpdesk: đồng nghiệp không vào được VPN"
+context_vi: "Bạn trực helpdesk. Một đồng nghiệp gọi báo không vào được VPN. Hãy hỏi thông tin và hướng dẫn."
+topic: it_english
+partner: Đồng nghiệp
+start: n1
+nodes:
+  n1:
+    partner_en: "Hi, I can't connect to the VPN. It just keeps failing."
+    partner_vi: "Chào, tôi không kết nối được VPN. Cứ báo lỗi hoài."
+    options:
+      - {en: "OK, let's take a look. Since when has it been failing?", vi: "Được, để xem nào. Nó lỗi từ khi nào vậy?", next: n2}
+      - {en: "Restart your computer.", vi: "Khởi động lại máy đi.", next: n2, feedback_vi: "Nên hỏi thông tin trước khi đưa cách sửa — chẩn đoán rồi mới xử lý."}
+  n2:
+    partner_en: "Since this morning, around nine. I've tried restarting already."
+    partner_vi: "Từ sáng nay, khoảng chín giờ. Tôi khởi động lại rồi mà vẫn vậy."
+    options:
+      - {en: "Got it. What error message do you see exactly?", vi: "Rõ. Bạn thấy thông báo lỗi cụ thể là gì?", next: n3}
+      - {en: "OK.", vi: "Ừ.", next: n3, feedback_vi: "Hỏi thông báo lỗi cụ thể giúp xác định nguyên nhân nhanh hơn."}
+  n3:
+    partner_en: "It says 'connection timeout'."
+    partner_vi: "Nó ghi “connection timeout”."
+    options:
+      - {en: "Thanks. That looks like a network issue. I'll escalate this to the network team and update you shortly.", vi: "Cảm ơn. Có vẻ là lỗi mạng. Tôi sẽ chuyển lên đội mạng và báo lại bạn sớm.", next: end}
+      - {en: "I don't know.", vi: "Tôi không biết.", next: end, feedback_vi: "Nếu chưa xử lý được, hãy nói rõ bước tiếp theo (leo thang, báo lại)."}
+  end:
+    partner_en: "Thank you so much, I appreciate it!"
+    partner_vi: "Cảm ơn bạn nhiều, tôi cảm kích lắm!"
+    ending: true
+    summary_vi: "Bạn đã xử lý một ticket đúng cách: hỏi từ khi nào → đã thử gì → thông báo lỗi → leo thang. Đây là quy trình helpdesk chuẩn."

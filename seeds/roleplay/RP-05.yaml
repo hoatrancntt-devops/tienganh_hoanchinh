@@ -1,0 +1,30 @@
+id: RP-05
+title_vi: "Xin nghỉ phép với quản lý"
+context_vi: "Bạn cần xin nghỉ một ngày. Hãy trao đổi với quản lý một cách chuyên nghiệp."
+topic: office
+partner: Quản lý
+start: n1
+nodes:
+  n1:
+    partner_en: "Hi Nam, you wanted to talk to me?"
+    partner_vi: "Chào Nam, bạn muốn gặp tôi à?"
+    options:
+      - {en: "Yes, I'd like to take next Friday off, if that's okay.", vi: "Vâng, tôi muốn xin nghỉ thứ Sáu tuần sau, nếu được ạ.", next: n2}
+      - {en: "I won't come Friday.", vi: "Thứ Sáu tôi không đến.", next: n2, feedback_vi: "Nên xin phép (“I'd like to take… off”) thay vì thông báo — nghe chuyên nghiệp hơn."}
+  n2:
+    partner_en: "Sure. Is everything okay?"
+    partner_vi: "Được chứ. Mọi thứ ổn chứ?"
+    options:
+      - {en: "Yes, just a personal matter. I'll finish the report before I leave.", vi: "Vâng, chỉ là việc cá nhân. Tôi sẽ xong báo cáo trước khi nghỉ.", next: n3}
+      - {en: "It's personal.", vi: "Việc cá nhân.", next: n3, feedback_vi: "Thêm cam kết hoàn thành việc trước khi nghỉ giúp quản lý yên tâm."}
+  n3:
+    partner_en: "No problem. Who can cover your tickets that day?"
+    partner_vi: "Không sao. Ngày đó ai xử lý ticket giúp bạn?"
+    options:
+      - {en: "Minh can cover for me. I'll brief him on Thursday.", vi: "Minh có thể trực giúp tôi. Tôi sẽ bàn giao cho anh ấy thứ Năm.", next: end}
+      - {en: "I'm not sure.", vi: "Tôi không chắc.", next: end, feedback_vi: "Chuẩn bị sẵn người thay giúp lời xin nghỉ dễ được duyệt hơn."}
+  end:
+    partner_en: "Great, that works. Enjoy your day off!"
+    partner_vi: "Tuyệt, vậy được. Chúc bạn nghỉ vui!"
+    ending: true
+    summary_vi: "Bạn đã xin nghỉ chuyên nghiệp: xin phép → nêu lý do ngắn → cam kết hoàn thành việc → sắp xếp người thay. Cách này gần như luôn được duyệt."

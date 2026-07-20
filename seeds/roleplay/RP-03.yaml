@@ -1,0 +1,30 @@
+id: RP-03
+title_vi: "Báo cáo standup buổi sáng"
+context_vi: "Đến lượt bạn trong buổi standup. Quản lý hỏi cập nhật. Báo đủ ba phần: hôm qua, hôm nay, vướng mắc."
+topic: office
+partner: Quản lý
+start: n1
+nodes:
+  n1:
+    partner_en: "Nam, your turn. What's your update?"
+    partner_vi: "Nam, đến lượt bạn. Cập nhật thế nào?"
+    options:
+      - {en: "Yesterday I finished the login bug. Today I'll start the migration.", vi: "Hôm qua tôi đã sửa xong lỗi đăng nhập. Hôm nay tôi sẽ bắt đầu migration.", next: n2}
+      - {en: "I did some work.", vi: "Tôi làm được vài việc.", next: n2, feedback_vi: "Standup cần cụ thể: hôm qua làm gì, hôm nay làm gì."}
+  n2:
+    partner_en: "Good. Any blockers?"
+    partner_vi: "Tốt. Có vướng gì không?"
+    options:
+      - {en: "I'm blocked by the VPN issue, so I need help from IT.", vi: "Tôi đang vướng vấn đề VPN nên cần IT giúp.", next: n3}
+      - {en: "No blockers on my side.", vi: "Bên tôi không có vướng gì.", next: n3}
+  n3:
+    partner_en: "OK. Are we still on track for Friday?"
+    partner_vi: "Được. Ta có kịp thứ Sáu không?"
+    options:
+      - {en: "Yes, on track. I'll follow up with Minh after this.", vi: "Có, đúng tiến độ. Sau đây tôi sẽ trao đổi tiếp với Minh.", next: end}
+      - {en: "Maybe.", vi: "Có lẽ.", next: end, feedback_vi: "Trả lời rõ ràng giúp cả nhóm lập kế hoạch tốt hơn."}
+  end:
+    partner_en: "Great, thanks Nam. Next, Lan?"
+    partner_vi: "Tuyệt, cảm ơn Nam. Tiếp theo, Lan nhé?"
+    ending: true
+    summary_vi: "Bạn đã báo standup đúng chuẩn: hôm qua → hôm nay → vướng mắc → tiến độ, gọn trong 30 giây."

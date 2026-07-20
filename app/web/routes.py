@@ -274,6 +274,40 @@ async def review_page(
     return templates.TemplateResponse(request, "review.html", ctx)
 
 
+@router.get("/learn/roleplay", response_class=HTMLResponse)
+async def roleplay_list(
+    request: Request,
+    user: User | None = Depends(current_user_optional),
+    db: AsyncSession = Depends(get_session),
+):
+    if user is None:
+        return _redirect("/login")
+    from app.services import roleplay_service
+
+    ctx = await _shell(request, db, user)
+    ctx["scenarios"] = roleplay_service.list_scenarios()
+    return templates.TemplateResponse(request, "roleplay_list.html", ctx)
+
+
+@router.get("/learn/roleplay/{rid}", response_class=HTMLResponse)
+async def roleplay_run(
+    rid: str,
+    request: Request,
+    user: User | None = Depends(current_user_optional),
+    db: AsyncSession = Depends(get_session),
+):
+    if user is None:
+        return _redirect("/login")
+    from app.services import roleplay_service
+
+    scenario = roleplay_service.get_scenario(rid)
+    if scenario is None:
+        return _redirect("/learn/roleplay")
+    ctx = await _shell(request, db, user)
+    ctx["scenario"] = scenario
+    return templates.TemplateResponse(request, "roleplay.html", ctx)
+
+
 @router.get("/notifications", response_class=HTMLResponse)
 async def notifications_page(
     request: Request,

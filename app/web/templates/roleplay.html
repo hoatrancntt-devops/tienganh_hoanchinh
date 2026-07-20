@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Đóng vai: {{ scenario.title_vi }}{% endblock %}
+{% block main_class %}player{% endblock %}
+{% block body %}
+<div class="between" style="margin-bottom:.9rem">
+  <a class="btn btn-quiet" href="/learn/roleplay" style="padding:.4rem .6rem">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Kịch bản</a>
+  <span class="pill pill-acc">🎭 {{ scenario.id }}</span>
+</div>
+<h1 style="font-size:1.15rem">{{ scenario.title_vi }}</h1>
+<p class="mut" style="margin:.4rem 0 1rem;font-size:.9rem">{{ scenario.context_vi }} · Bạn thoại với <b>{{ scenario.partner }}</b>.</p>
+<div id="chat" class="stack" style="gap:.6rem"></div>
+<div id="opts" style="margin-top:1rem"></div>
+{% endblock %}
+{% block scripts %}
+<style>
+.rp-row{display:flex;gap:.5rem;max-width:92%}
+.rp-row.me{margin-left:auto;flex-direction:row-reverse}
+.rp-av{flex:0 0 30px;height:30px;border-radius:99px;display:grid;place-items:center;font-size:.8rem;font-weight:700;background:var(--card-2);color:var(--fg-2)}
+.rp-row.me .rp-av{background:var(--acc);color:#fff}
+.rp-b{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.6rem .8rem}
+.rp-row.me .rp-b{background:var(--acc-soft);border-color:color-mix(in srgb,var(--acc) 30%,transparent)}
+.rp-en{font-weight:550;font-size:.92rem}
+.rp-vi{color:var(--fg-3);font-size:.8rem;margin-top:.15rem}
+.rp-tip{background:var(--warn-soft);color:var(--fg);border:1px dashed color-mix(in srgb,var(--warn) 40%,transparent);border-radius:var(--r-sm);padding:.5rem .7rem;font-size:.82rem;margin:.2rem 0 .2rem 2.5rem}
+.rp-opt{display:block;width:100%;text-align:left;padding:.7rem .9rem;margin-bottom:.5rem;background:var(--card-2);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--fg);font:400 .9rem/1.5 var(--font);cursor:pointer}
+.rp-opt:hover{border-color:var(--acc)}
+.rp-opt .v{color:var(--fg-3);font-size:.78rem;margin-top:.1rem}
+</style>
+<script id="rpData" type="application/json">{{ scenario|tojson }}</script>
+<script>
+const RP = (() => {
+  const S = JSON.parse(document.getElementById('rpData').textContent);
+  const PARTNER = (S.partner||'?')[0];
+  let cur = S.start;
+  function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function play(a){ if(a) new Audio(a).play().catch(()=>{}); }
+  function bubble(side, av, en, vi, audio){
+    const c=document.getElementById('chat');
+    const row=document.createElement('div'); row.className='rp-row '+side;
+    row.innerHTML=`<div class="rp-av">${esc(av)}</div><div class="rp-b">
+      <div class="rp-en">${esc(en)}${audio?` <button class="playbtn" style="padding:.15rem .4rem;margin-left:.3rem" onclick="RP.play('${audio}')"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>`:''}</div>
+      <div class="rp-vi">${esc(vi)}</div></div>`;
+    c.appendChild(row); window.scrollTo(0, document.body.scrollHeight);
+  }
+  function tip(t){ const c=document.getElementById('chat'); const d=document.createElement('div'); d.className='rp-tip'; d.textContent='💡 '+t; c.appendChild(d); }
+  function render(){
+    const n = S.nodes[cur];
+    bubble('them', PARTNER, n.partner_en, n.partner_vi, n.audio);
+    play(n.audio);
+    const opts=document.getElementById('opts'); opts.innerHTML='';
+    if(n.ending){
+      opts.innerHTML=`<div class="card center"><div style="font-size:2rem">🎉</div>
+        <p class="mut" style="margin:.6rem 0 1rem">${esc(n.summary_vi||'')}</p>
+        <button class="btn btn-lg btn-full" onclick="RP.finish()">Hoàn thành</button>
+        <a class="btn btn-quiet btn-full" style="margin-top:.5rem" href="/learn/roleplay">Kịch bản khác</a></div>`;
+      return;
+    }
+    (n.options||[]).forEach((o,i)=>{
+      const b=document.createElement('button'); b.className='rp-opt';
+      b.innerHTML=`${esc(o.en)}<div class="v">${esc(o.vi||'')}</div>`;
+      b.onclick=()=>pick(o); opts.appendChild(b);
+    });
+  }
+  function pick(o){
+    document.getElementById('opts').innerHTML='';
+    bubble('me', 'B', o.en, o.vi, null);
+    if(o.feedback_vi) tip(o.feedback_vi);
+    cur = o.next;
+    setTimeout(render, 350);
+  }
+  async function finish(){
+    await api(`/api/v1/roleplay/${S.id}/complete`, {});
+    toast('Hoàn thành đóng vai — tính vào streak hôm nay 🔥', 'ok');
+    setTimeout(()=>location.href='/learn/roleplay', 900);
+  }
+  render();
+  return { play, finish };
+})();
+</script>
+{% endblock %}
