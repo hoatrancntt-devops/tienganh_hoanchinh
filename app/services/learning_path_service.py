@@ -24,6 +24,22 @@ PHASE_ORDER = [
 ]
 RECENT_ATTEMPTS = 3  # chỉ lấy 3 lần gần nhất: phải *đang* làm được, không phải *từng* làm được
 
+# Kỹ năng mỗi bài rèn, suy từ phase (nội dung mỗi phase đồng nhất: foundation/daily/office/
+# it_english có drill nói + đoạn nghe; reading có đọc hiểu + đoạn nghe). Không lưu DB — tránh
+# migration; nếu sau này một phase trộn nhiều kiểu bài thì chuyển sang suy từ activity.
+PHASE_SKILLS: dict[str, list[str]] = {
+    Phase.FOUNDATION: ["speak", "listen"],
+    Phase.DAILY: ["speak", "listen"],
+    Phase.OFFICE: ["speak", "listen"],
+    Phase.IT_ENGLISH: ["speak", "listen"],
+    Phase.READING: ["read", "listen"],
+    Phase.ORIENTATION: ["listen"],
+}
+
+
+def skills_for_phase(phase: str) -> list[str]:
+    return PHASE_SKILLS.get(phase, [])
+
 
 async def _recent_scores_by_kind(
     db: AsyncSession, user_id: uuid.UUID, lesson_id: uuid.UUID
@@ -147,6 +163,9 @@ async def lesson_cards(db: AsyncSession, user_id: uuid.UUID, phase: str | None =
             "mastery_effective": round(eff, 1), "threshold": lesson.mastery_threshold,
             "warning_level": level, "warning_vi": msg,
             "blocking_lesson_code": result["blocking"],
+            "is_checkpoint": lesson.is_checkpoint,
+            "objective_vi": lesson.objective_vi,
+            "skills": skills_for_phase(lesson.phase),
         })
     return cards
 

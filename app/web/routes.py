@@ -23,13 +23,28 @@ templates = Jinja2Templates(directory="app/web/templates")
 # Cache-busting cho file tĩnh: đổi version -> URL đổi -> Cloudflare/edge lấy bản mới.
 templates.env.globals["sv"] = __version__
 
+# (tên, phụ đề, "xong phase này bạn LÀM ĐƯỢC gì", nhãn ngắn cho bản đồ lộ trình)
 PHASE_META = {
-    Phase.ORIENTATION: ("Khởi động", "Làm quen hệ thống"),
-    Phase.FOUNDATION: ("Nền tảng", "Âm và câu lõi"),
-    Phase.DAILY: ("Giao tiếp hằng ngày", "Xã giao, ăn uống, đi lại"),
-    Phase.OFFICE: ("Công sở", "Họp, xin nghỉ, báo tiến độ"),
-    Phase.IT_ENGLISH: ("Tiếng Anh CNTT", "System, network, cloud, helpdesk, AI"),
-    Phase.READING: ("Đọc phục vụ công việc", "Email, ticket, tài liệu"),
+    Phase.ORIENTATION: ("Khởi động", "Làm quen hệ thống",
+                        "Biết cách học và dùng hệ thống.", "Khởi động"),
+    Phase.FOUNDATION: ("Nền tảng", "Âm và câu lõi",
+                       "Phát âm rõ, nghe ra âm, nói câu lõi ở tốc độ thật.", "Nền tảng"),
+    Phase.DAILY: ("Giao tiếp hằng ngày", "Xã giao, ăn uống, đi lại",
+                  "Chào hỏi, small talk, gọi món, hỏi đường — và đáp lại tự nhiên.", "Hằng ngày"),
+    Phase.OFFICE: ("Công sở", "Họp, xin nghỉ, báo tiến độ",
+                   "Nhận việc, hỏi làm rõ, báo tiến độ, đặt lịch, xin giúp đỡ.", "Công sở"),
+    Phase.IT_ENGLISH: ("Tiếng Anh CNTT", "Báo sự cố, helpdesk, standup, họp",
+                       "Báo sự cố, hỗ trợ người dùng, standup, giải thích, chốt việc với đối tác.", "CNTT"),
+    Phase.READING: ("Đọc phục vụ công việc", "Lỗi, release notes, ticket, log, API",
+                    "Đọc nhanh và đúng tài liệu IT, rút ra việc phải làm.", "Đọc"),
+}
+
+# Kỹ năng: icon + nhãn tiếng Việt. "write" chưa có bài chấm — đánh dấu sắp có.
+SKILL_META = {
+    "listen": {"icon": "🎧", "label": "Nghe"},
+    "speak": {"icon": "🎙", "label": "Nói"},
+    "read": {"icon": "📖", "label": "Đọc"},
+    "write": {"icon": "✍️", "label": "Viết", "soon": True},
 }
 
 
@@ -144,17 +159,35 @@ async def dashboard(
     health = await prerequisite_service.retention_health(db, user.id)
 
     phases = []
-    for phase, (title, sub) in PHASE_META.items():
+    for phase, (title, sub, outcome, short) in PHASE_META.items():
         group = [c for c in cards if c["phase"] == phase]
         if not group:
             continue
         mastered = sum(1 for c in group if c["state"] == LessonState.MASTERED)
+        started = any(c["state"] != LessonState.LOCKED for c in group)
         phases.append({
-            "key": phase, "title": title, "sub": sub, "cards": group,
+            "key": phase, "title": title, "sub": sub, "outcome": outcome,
+            "short": short, "cards": group,
             "mastered": mastered, "total": len(group),
             "pct": round(mastered / len(group) * 100) if group else 0,
             "locked": all(c["state"] == LessonState.LOCKED for c in group),
+            "started": started,
+            "skills": path.skills_for_phase(phase),
         })
+
+    # Bản đồ lộ trình: phase "hiện tại" = phase chứa bài next_up (hoặc phase dở đầu tiên).
+    current_phase = next((c["phase"] for c in cards if c["code"] == next_up.get("code")), None)
+    if current_phase is None:
+        current_phase = next((p["key"] for p in phases if p["pct"] < 100), None)
+    for p in phases:
+        p["is_current"] = p["key"] == current_phase
+
+    # next_up: gắn kỹ năng để hero hiện nhãn Nghe/Nói/Đọc.
+    if next_up.get("code"):
+        nu_card = next((c for c in cards if c["code"] == next_up["code"]), None)
+        if nu_card:
+            next_up["skills"] = nu_card["skills"]
+            next_up["is_checkpoint"] = nu_card["is_checkpoint"]
 
     total = len(cards)
     done = sum(1 for c in cards if c["state"] == LessonState.MASTERED)
@@ -163,6 +196,8 @@ async def dashboard(
         "retention": round(health * 100),
         "overall_pct": round(done / total * 100) if total else 0,
         "done": done, "total": total,
+        "skill_meta": SKILL_META,
+        "is_new_user": done == 0,
     })
     return templates.TemplateResponse(request, "dashboard.html", ctx)
 
