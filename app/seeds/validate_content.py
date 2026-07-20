@@ -117,12 +117,73 @@ def check_pedagogy(lessons: list[LessonYAML]) -> list[str]:
     return errors
 
 
+# Bộ ký hiệu mà speech_service/g2p.py có thể sinh ra. Tag nằm ngoài đây sẽ không bao giờ
+# khớp với kết quả chấm, nên phản hồi lỗi phát âm im lặng không chạy — không có gì báo sai.
+# Cố ý chép lại thay vì import: app và speech_service là hai service riêng, app không phụ
+# thuộc speech_service lúc chạy. Nếu g2p đổi bộ ký hiệu thì phải cập nhật danh sách này.
+# Lưu ý hai cái bẫy đã từng dính:
+#   - 'g' là U+0067 ASCII, KHÔNG phải 'ɡ' U+0261 (script g) hay dùng trong chuỗi ipa.
+#   - g2p không dùng dấu dài ('i' chứ không phải 'iː') và phân rã cụm phụ âm thành âm đơn
+#     ('s' + 't', không phải 'st').
+G2P_PHONEMES = {
+    "aɪ", "aʊ", "b", "d", "dʒ", "eɪ", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+    "oʊ", "p", "r", "s", "t", "tʃ", "u", "v", "w", "z", "æ", "ð", "ŋ", "ɑ", "ɑr",
+    "ɔ", "ɔr", "ɔɪ", "ə", "ər", "ɛ", "ɛr", "ɜr", "ɪ", "ɪr", "ʃ", "ʊ", "ʌ", "θ",
+}
+
+
+def check_phoneme_tags(lessons: list[LessonYAML]) -> list[str]:
+    """Tag âm vị sai chính tả không làm gãy gì cả — nó chỉ lặng lẽ tắt phản hồi phát âm."""
+    errors = []
+
+    def check(tags: list[str], lesson_id: str, where: str) -> None:
+        for tag in tags:
+            if tag not in G2P_PHONEMES:
+                errors.append(
+                    f"{lesson_id}: {where} có âm vị '{tag}' không nằm trong bộ ký hiệu của g2p "
+                    f"— sẽ không bao giờ khớp, phản hồi phát âm sẽ im lặng."
+                )
+
+    for lesson in lessons:
+        for drill in lesson.speaking_drills:
+            check(drill.focus_phonemes, lesson.id, "speaking_drill")
+        for q in lesson.mini_quiz:
+            check(q.focus_phonemes, lesson.id, "mini_quiz")
+        for m in lesson.common_mistakes:
+            check(m.detect.phoneme_missing, lesson.id, "common_mistake.detect.phoneme_missing")
+            check(m.detect.phoneme_inserted, lesson.id, "common_mistake.detect.phoneme_inserted")
+    return errors
+
+
+def check_unlock_reachable(lessons: list[LessonYAML]) -> list[str]:
+    """Bài B đòi bài A cao hơn mức A cần để hoàn thành → học viên kẹt ở khoảng giữa.
+
+    Đạt đủ điểm xong bài A nhưng vẫn không mở được B, và không có gì nói cho họ biết
+    còn thiếu bao nhiêu. Chỉ chặn tiên quyết 'hard' — 'soft' là gợi ý, không khoá đường đi.
+    """
+    done = {lesson.id: lesson.unlock_condition.mastery_threshold for lesson in lessons}
+    errors = []
+    for lesson in lessons:
+        for pre in lesson.prerequisites:
+            if pre.kind != "hard":
+                continue
+            need, have = pre.min_mastery, done.get(pre.lesson)
+            if have is not None and need > have:
+                errors.append(
+                    f"{lesson.id}: đòi {pre.lesson} ≥{need} nhưng {pre.lesson} hoàn thành chỉ cần "
+                    f"{have} — học viên đạt {have}..{need - 1} sẽ kẹt, không mở được bài nào."
+                )
+    return errors
+
+
 def main() -> int:
     lessons, errors = load_all()
     if lessons:
         errors += check_graph(lessons)
         errors += check_pedagogy(lessons)
         errors += check_units(lessons)
+        errors += check_phoneme_tags(lessons)
+        errors += check_unlock_reachable(lessons)
 
     if errors:
         print(f"\n[X] {len(errors)} loi noi dung:\n")
