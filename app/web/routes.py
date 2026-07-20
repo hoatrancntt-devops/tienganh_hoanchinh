@@ -13,7 +13,7 @@ from app.models.enums import LessonState, Phase
 from app.models.user import User
 from app.services import learning_path_service as path
 from app.services import notification_service as notif
-from app.services import placement_service, prerequisite_service
+from app.services import placement_service, prerequisite_service, story_service
 from app.services.ai import router as ai_router
 
 from app import __version__
@@ -234,6 +234,9 @@ async def lesson_player(
         await db.refresh(act, ["items"])
         activities.append({
             "id": str(act.id), "kind": act.kind, "title_vi": act.title_vi,
+            # Đoạn nghe: bối cảnh + file tiếng, để câu hỏi có cái mà dựa vào.
+            "config": act.config or {},
+            "audio": f"/media/tts/{act.id}.wav" if act.kind == "listen" else None,
             "items": [
                 {"id": str(i.id), "kind": i.kind, "prompt_en": i.prompt_en,
                  "prompt_vi": i.prompt_vi, "ipa": i.ipa, "choices": i.choices,
@@ -246,8 +249,14 @@ async def lesson_player(
         if is_preview:
             break  # preview: chỉ hoạt động đầu tiên
 
+    # Màn mở chương: chỉ ở bài đầu tiên của phase, để người học biết mình đang ở đâu trong truyện.
+    first_of_phase = (await db.execute(
+        select(Lesson.id).where(Lesson.phase == lesson.phase).order_by(Lesson.order_index).limit(1)
+    )).scalar_one_or_none()
+    chapter = story_service.chapter_for_phase(lesson.phase) if first_of_phase == lesson.id else None
+
     ctx.update({
-        "lesson": lesson, "activities": activities, "is_preview": is_preview,
+        "lesson": lesson, "activities": activities, "is_preview": is_preview, "chapter": chapter,
         "blocking": state["blocking"], "state": state["state"],
         # Nội dung "học" hiển thị trước câu hỏi. Bản xem trước chỉ cho từ vựng, ẩn hội thoại.
         "study": {

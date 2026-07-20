@@ -13,7 +13,8 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import get_settings
-from app.models.content import Item, Lesson, MediaAsset
+from app.models.content import Activity, Item, Lesson, MediaAsset
+from app.models.enums import ActivityKind
 
 log = logging.getLogger(__name__)
 settings = get_settings()
@@ -101,7 +102,26 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
                 await _write(db, dest, wav, "en_US_female")
                 made += 1
 
-        # 3. Hội thoại + từ vựng của từng bài (nội dung "học" trước câu hỏi)
+        # 3. Đoạn nghe của từng bài — câu hỏi nghe không có tiếng thì không trả lời được.
+        listen_acts = (
+            await db.execute(select(Activity).where(Activity.kind == ActivityKind.LISTEN))
+        ).scalars().all()
+        for act in listen_acts:
+            text = ((act.config or {}).get("transcript_en") or "").strip()
+            if not text:
+                continue
+            dest = media / "tts" / f"{act.id}.wav"
+            if dest.exists() and not force:
+                skipped += 1
+                continue
+            wav = await _synth(client, text, "en_US_female", (act.config or {}).get("speed", 1.0))
+            if wav is None:
+                failed += 1
+                continue
+            await _write(db, dest, wav, "en_US_female")
+            made += 1
+
+        # 4. Hội thoại + từ vựng của từng bài (nội dung "học" trước câu hỏi)
         lessons = (await db.execute(select(Lesson))).scalars().all()
         for lesson in lessons:
             speed = 0.85 if lesson.phase == "foundation" else 1.0
@@ -137,7 +157,7 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
                 await _write(db, dest, wav, "en_US_female")
                 made += 1
 
-        # 4. Roleplay: câu của "partner" mỗi node
+        # 5. Roleplay: câu của "partner" mỗi node
         rp_dir = Path("seeds/roleplay")
         for path in sorted(rp_dir.glob("RP-*.yaml")):
             rp = yaml.safe_load(path.read_text(encoding="utf-8"))

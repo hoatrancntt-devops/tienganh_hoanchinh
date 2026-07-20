@@ -3,21 +3,29 @@ const Player = (() => {
   let L = null, flat = [], idx = 0, busy = false;
   function init(data) {
     L = data; flat = [];
-    data.activities.forEach(a => a.items.forEach(i => flat.push({ ...i, act: a.kind })));
+    data.activities.forEach(a => {
+      // Đoạn nghe: chèn màn nghe (bối cảnh + audio) TRƯỚC câu hỏi, nếu không người học chỉ đoán.
+      if (a.kind === 'listen' && a.audio) flat.push({ __listen: true, act: a.kind, audio: a.audio, config: a.config || {} });
+      a.items.forEach(i => flat.push({ ...i, act: a.kind, listenAudio: a.kind === 'listen' ? a.audio : null }));
+    });
     // Chèn màn "Học từ & hội thoại" làm bước ĐẦU TIÊN nếu bài có nội dung học.
     const s = data.study || {};
     L.hasStudy = (s.vocabulary && s.vocabulary.length) ||
       (s.dialogue && s.dialogue.turns && s.dialogue.turns.length) ||
       (s.sentence_patterns && s.sentence_patterns.length);
     if (L.hasStudy) flat.unshift({ __study: true });
+    // Mở chương: chỉ ở bài đầu tiên của phase, đứng trước tất cả.
+    if (data.chapter) flat.unshift({ __chapter: true });
     if (!flat.length) { document.getElementById('stage').innerHTML = '<div class="empty">Bài này chưa có nội dung.</div>'; return; }
     render();
   }
   // Nhãn kỹ năng cho từng bước — để người học luôn biết đang luyện gì.
   function stepMeta(it) {
+    if (it.__chapter) return { icon: '📕', label: 'Mở chương' };
     if (it.__study) return { icon: '📖', label: 'Học từ & hội thoại' };
+    if (it.__listen) return { icon: '🎧', label: 'Nghe đoạn hội thoại' };
     if (it.choices && it.choices.length) {
-      if (it.audio) return { icon: '🎧', label: 'Nghe hiểu' };
+      if (it.audio || it.listenAudio) return { icon: '🎧', label: 'Nghe hiểu' };
       return L.phase === 'reading'
         ? { icon: '📖', label: 'Đọc hiểu' }
         : { icon: '🧠', label: 'Ôn từ & mẫu câu' };
@@ -36,10 +44,22 @@ const Player = (() => {
     document.getElementById('steps').innerHTML = steps();
     document.getElementById('counter').textContent = `Bước ${idx + 1}/${flat.length} · ${m.icon} ${m.label}`;
     const nb = document.getElementById('nextBtn');
+    if (it.__chapter) {
+      document.getElementById('stage').innerHTML = chapterView(L.chapter);
+      nb.disabled = false;
+      nb.textContent = 'Vào chương';
+      return;
+    }
     if (it.__study) {
       document.getElementById('stage').innerHTML = studyView();
       nb.disabled = false;                       // màn học: không chấm, cho đi tiếp ngay
       nb.textContent = 'Bắt đầu luyện tập';
+      return;
+    }
+    if (it.__listen) {
+      document.getElementById('stage').innerHTML = listenView(it);
+      nb.disabled = false;                       // màn nghe: không chấm
+      nb.textContent = 'Trả lời câu hỏi';
       return;
     }
     document.getElementById('stage').innerHTML = (it.choices && it.choices.length) ? quizView(it) : speakView(it);
@@ -68,7 +88,7 @@ const Player = (() => {
       if (dlg.context_vi) h += `<div class="mut-3" style="margin-bottom:.6rem">${esc(dlg.context_vi)}</div>`;
       dlg.turns.forEach(t => {
         h += `<div class="dturn"><div class="between" style="gap:.5rem">
-          <div><span class="spk">${esc(t.speaker || '')}</span> <b>${esc(t.en)}</b></div>${play(t.audio)}</div>
+          <div>${t.speaker ? `<span class="spk">${esc(t.speaker)}</span> ` : ''}<b>${esc(t.en)}</b></div>${play(t.audio)}</div>
           <div class="mut-3">${esc(t.vi || '')}</div></div>`;
       });
     }
@@ -79,11 +99,40 @@ const Player = (() => {
     h += '<p class="hint" style="margin-top:1rem">Đọc và nghe qua một lượt, rồi bấm “Bắt đầu luyện tập”.</p></div>';
     return h;
   }
+  // Mở chương: bối cảnh chung (chỉ chương 1), chuyện sắp xảy ra, và những nhân vật mới.
+  function chapterView(c) {
+    if (!c) return '';
+    const faces = (c.cast || []).map(p => `<div class="dturn">
+      <b>${esc(p.name)}</b><div class="mut-3">${esc(p.role_vi || '')}</div>
+      ${p.note_vi ? `<div style="font-size:.88rem;margin-top:.15rem">${esc(p.note_vi)}</div>` : ''}</div>`).join('');
+    return `<div class="card">
+      <div class="center" style="margin-bottom:.9rem"><span class="pill pill-acc">📕 Chương ${c.number}</span></div>
+      <h2 class="center" style="margin-bottom:.3rem">${esc(c.title_vi || '')}</h2>
+      ${c.hook_vi ? `<p class="center" style="font-style:italic;margin-bottom:1.1rem">“${esc(c.hook_vi)}”</p>` : ''}
+      ${c.number === 1 && c.setting_vi ? `<p class="mut-3" style="margin-bottom:.9rem">${esc(c.setting_vi)}</p>` : ''}
+      <p style="margin-bottom:1rem">${esc(c.body_vi || '')}</p>
+      ${faces ? `<h3 style="margin:1.1rem 0 .3rem">Bạn sẽ gặp</h3>${faces}` : ''}
+      ${c.ends_vi ? `<p class="hint" style="margin-top:1.1rem">${esc(c.ends_vi)}</p>` : ''}
+    </div>`;
+  }
+  // Màn nghe: bối cảnh trước, tiếng sau, lời thoại giấu trong accordion cho ai cần đối chiếu.
+  function listenView(it) {
+    const c = it.config || {};
+    return `<div class="card">
+      <div class="pill pill-acc" style="margin-bottom:.9rem">🎧 Nghe đoạn hội thoại</div>
+      ${c.context_vi ? `<p class="prompt-vi" style="margin-bottom:1rem">${esc(c.context_vi)}</p>` : ''}
+      <div class="center"><button class="playbtn" onclick="Player.play('${it.audio}')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe đoạn này</button></div>
+      <p class="hint" style="margin-top:1rem">Nghe 2–3 lần trước khi sang câu hỏi. Chưa cần hiểu hết từng từ.</p>
+      ${c.transcript_en ? `<details class="acc" style="margin-top:1rem"><summary>📝 Xem lời thoại</summary><div class="acc-body">
+        <p><b>${esc(c.transcript_en)}</b></p>${c.transcript_vi ? `<p class="mut-3">${esc(c.transcript_vi)}</p>` : ''}</div></details>` : ''}
+    </div>`;
+  }
   function quizView(it) {
     const m = stepMeta(it);
+    const listen = it.audio || it.listenAudio;
     return `<div class="card">
       <div class="pill pill-acc" style="margin-bottom:.9rem">${m.icon} ${esc(m.label)}</div>
-      ${it.audio ? `<button class="playbtn" onclick="Player.play('${it.audio}')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe câu</button>` : ''}
+      ${listen ? `<button class="playbtn" onclick="Player.play('${listen}')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> ${it.audio ? 'Nghe câu' : 'Nghe lại đoạn'}</button>` : ''}
       <p class="prompt-vi" style="margin:.9rem 0 1rem;font-size:.98rem;color:var(--fg)">${esc(it.prompt_vi || it.prompt_en)}</p>
       <div id="choices">${it.choices.map((c, i) => `<button class="choice" data-i="${i}" onclick="Player.answer(${i})">${esc(c)}</button>`).join('')}</div>
       <div id="fb" style="margin-top:.9rem"></div></div>`;
@@ -159,7 +208,7 @@ const Player = (() => {
     if (L.is_preview) { location.href = '/learn'; return; }
     const r = await api('/api/v1/learn/next'); const n = r.data || {};
     document.getElementById('stage').innerHTML = `<div class="card center"><div style="font-size:2.4rem;margin-bottom:.6rem">✅</div>
-      <h2>Xong bài rồi</h2><p class="mut" style="margin:.5rem 0 1.4rem">Bạn vừa hoàn thành ${flat.filter(x => !x.__study).length} hoạt động.</p>
+      <h2>Xong bài rồi</h2><p class="mut" style="margin:.5rem 0 1.4rem">Bạn vừa hoàn thành ${flat.filter(x => !x.__study && !x.__listen && !x.__chapter).length} hoạt động.</p>
       <div class="card-tight" style="background:var(--card-2);text-align:left;margin-bottom:1.2rem;border-radius:var(--r)">
         <div class="hero-tag">Gợi ý tiếp theo</div><div style="font-weight:600;margin:.35rem 0">${esc(n.title_vi || 'Ôn tập')}</div>
         <div class="mut-3" style="line-height:1.6">${esc(n.reason_vi || '')}</div></div>

@@ -135,6 +135,7 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
                        title_vi="Nghe hội thoại",
                        config={"transcript_en": snippet.transcript_en,
                                "transcript_vi": snippet.transcript_vi,
+                               "context_vi": snippet.context_vi,
                                "snippet_id": snippet.id, "speed": snippet.speed})
         db.add(act)
         await db.commit()

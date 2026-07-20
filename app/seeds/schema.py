@@ -44,6 +44,8 @@ class Listening(BaseModel):
     id: str
     speed: float = Field(default=1.0, ge=0.5, le=1.5)
     voice: str = "en_US_female"
+    # Bối cảnh tiếng Việt đặt trước khi phát: ai đang nói, ở đâu, đang cần gì.
+    context_vi: str = ""
     transcript_en: str
     transcript_vi: str
     questions: list[ListenQ] = []

@@ -1,0 +1,82 @@
+# Cốt truyện xuyên suốt: 5 chương, mỗi chương một phase.
+# Hiển thị làm màn mở đầu khi người học vào bài đầu tiên của phase.
+# Người học là "bạn" — ngôi thứ hai, không tên, để nhập vai trực tiếp.
+
+setting_vi: >
+  Bạn vừa được nhận vào Vertex Solutions — công ty phần mềm Việt Nam làm dự án cho khách hàng
+  nước ngoài. Sáu tháng đầu đi làm của bạn là toàn bộ chặng đường học này.
+
+cast:
+  - name: Minh
+    role_vi: "Đồng nghiệp cùng team, vào trước bạn một năm"
+    note_vi: "Người dễ nói chuyện nhất. Tập nói sai với Minh không sao cả."
+  - name: Linh
+    role_vi: "Team lead của bạn"
+    note_vi: "Giao việc, hỏi tiến độ, review code. Nói tiếng Anh rõ và chậm."
+  - name: David Carter
+    role_vi: "Engineering manager phía khách hàng, người Mỹ"
+    note_vi: "Nói nhanh và nuốt âm. Đây là người bạn phải luyện tai để nghe được."
+  - name: Priya Nair
+    role_vi: "Kỹ sư DevOps ở Singapore"
+    note_vi: "Giọng Ấn, lịch sự và chính xác. Cùng bạn trực ca và deploy."
+  - name: Emma Brooks
+    role_vi: "Nhân viên kế toán bên khách hàng"
+    note_vi: "Không rành kỹ thuật. Bạn phải giải thích sao cho Emma hiểu."
+
+chapters:
+  - phase: foundation
+    number: 1
+    title_vi: "Tuần đầu tiên"
+    hook_vi: "Bạn nói được. Chỉ là chưa ai hiểu."
+    body_vi: >
+      Ngày đầu ở Vertex, Minh dẫn bạn đi một vòng, Linh giao vài việc nhẹ. Mọi thứ ổn — cho đến
+      lúc bạn mở miệng nói tiếng Anh. Bạn nói "three thirty", người ta nghe "three thirteen", và
+      bạn lỡ mất cuộc họp đầu tiên. Chương này là chuỗi những lần bị hiểu nhầm như thế, và cách
+      sửa từng cái một: từ vị trí cái lưỡi cho đến nhịp của cả câu.
+    ends_vi: "Cuối chương, bạn tự giới thiệu trước cả team — có David dự qua call."
+    new_faces: [Minh, Linh]
+
+  - phase: daily
+    number: 2
+    title_vi: "Hoà nhập"
+    hook_vi: "Nói đúng là một chuyện. Nói cho người ta muốn nói chuyện tiếp là chuyện khác."
+    body_vi: >
+      Priya từ Singapore sang công tác một tuần, và Linh giao bạn lo phần đưa đón, ăn trưa,
+      chuyện trò. Không có áp lực kỹ thuật nào ở đây — chỉ có sáu mươi giây ở pantry mà bạn
+      không biết nói gì, và một bữa trưa mà bạn phải gọi món cho cả hai người.
+    ends_vi: "Cuối chương, bạn tiễn Priya ra sân bay — và hai người đã thành đồng nghiệp thật."
+    new_faces: [Priya Nair]
+
+  - phase: office
+    number: 3
+    title_vi: "Thành viên thật của team"
+    hook_vi: "Không còn là người mới nữa. Giờ bạn phải báo cáo."
+    body_vi: >
+      Linh đưa bạn vào dự án của David. Nghĩa là standup mỗi sáng bằng tiếng Anh, báo tiến độ
+      mỗi tuần, và những lúc bạn bị kẹt mà phải mở miệng xin giúp trước khi quá muộn. Đây là
+      chương của những câu ngắn nhưng phải đúng — vì người nghe không có thời gian hỏi lại.
+    ends_vi: "Cuối chương, Linh nghỉ phép và bạn là người chủ trì standup."
+    new_faces: [David Carter]
+
+  - phase: it_english
+    number: 4
+    title_vi: "Sự cố"
+    hook_vi: "2 giờ sáng thứ Sáu. Hệ thống của khách hàng vừa sập."
+    body_vi: >
+      Emma không đăng nhập được, rồi cả phòng kế toán không đăng nhập được, rồi David gọi. Cả
+      chương này là một sự cố duy nhất kéo dài: bạn nhận ticket, hỏi để chẩn đoán, giải thích
+      cho người không rành kỹ thuật, cập nhật cho khách hàng, bàn giao ca cho Priya lúc rạng
+      sáng, rồi lần theo mạng, cloud, quyền truy cập và database để tìm ra thứ đã gây ra nó.
+    ends_vi: "Cuối chương, bạn ngồi trong cuộc gọi tổng kết với David — và bạn là người nói."
+    new_faces: [Emma Brooks]
+
+  - phase: reading
+    number: 5
+    title_vi: "Tự xoay sở bằng chữ"
+    hook_vi: "Mọi thứ bạn cần đều đã có ở đó. Bằng tiếng Anh."
+    body_vi: >
+      Sự cố đã qua, nhưng nó để lại một đống giấy tờ: email của David, log của đêm hôm đó,
+      ticket của Emma, cảnh báo bảo mật về đúng lỗ hổng đã gây ra chuyện, và bản postmortem
+      dài chín trang. Chương này bạn không nói câu nào — bạn đọc, và bạn hiểu.
+    ends_vi: "Bài cuối, bạn đọc bản postmortem: chính câu chuyện bạn vừa sống, viết bằng tiếng Anh."
+    new_faces: []

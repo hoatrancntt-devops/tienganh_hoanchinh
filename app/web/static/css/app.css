@@ -287,4 +287,5 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--acc);outline-off
 /* ---------- màn học: từ vựng + hội thoại ---------- */
 .vrow,.dturn{padding:.55rem 0;border-bottom:1px solid var(--line)}
 .vrow:last-child,.dturn:last-child{border-bottom:0}
-.spk{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:99px;background:var(--card-2);color:var(--fg-2);font-size:.7rem;font-weight:700;margin-right:.15rem;vertical-align:middle}
+/* Nhãn người nói: giờ là tên thật (Minh, Priya, David) chứ không còn A/B, nên phải co giãn. */
+.spk{display:inline-block;padding:.08rem .38rem;border-radius:99px;background:var(--card-2);color:var(--fg-2);font-size:.7rem;font-weight:700;margin-right:.25rem;vertical-align:middle;white-space:nowrap}
