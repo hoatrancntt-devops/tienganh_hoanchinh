@@ -1,0 +1,117 @@
+schema_version: 1
+id: CP-I
+slug: checkpoint-tieng-anh-cntt
+unit: U-I4
+title_vi: "Checkpoint: Tiếng Anh CNTT"
+title_en: "Checkpoint: IT English"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 99
+est_minutes: 12
+is_checkpoint: true
+
+objective_vi: "Xử lý một ngày làm CNTT bằng tiếng Anh: báo sự cố, hỗ trợ người dùng, standup, giải thích cho người không rành, và chốt việc với bên ngoài."
+objective_observable: "Đạt ≥70 điểm giao tiếp trên toàn bộ bài, báo sự cố đủ bốn phần và chốt được bước tiếp theo."
+
+prerequisites:
+  - {lesson: I01, min_mastery: 75, kind: hard}
+  - {lesson: I02, min_mastery: 75, kind: hard}
+  - {lesson: I03, min_mastery: 75, kind: hard}
+  - {lesson: I04, min_mastery: 75, kind: hard}
+  - {lesson: I05, min_mastery: 75, kind: hard}
+  - {lesson: I06, min_mastery: 75, kind: hard}
+  - {lesson: I07, min_mastery: 75, kind: hard}
+  - {lesson: I08, min_mastery: 75, kind: hard}
+  - {lesson: I09, min_mastery: 75, kind: hard}
+  - {lesson: I10, min_mastery: 75, kind: hard}
+  - {lesson: I11, min_mastery: 75, kind: hard}
+  - {lesson: I12, min_mastery: 75, kind: hard}
+  - {lesson: I13, min_mastery: 75, kind: hard}
+  - {lesson: I14, min_mastery: 75, kind: hard}
+  - {lesson: I15, min_mastery: 75, kind: hard}
+
+listening_snippet:
+  id: LS-CPI
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "The VPN has been down since nine, about twenty users are affected, and I've tried restarting. Basically the server got overloaded — think of it as a traffic jam. We'll deploy a fix tonight, about five minutes of downtime, and roll back if anything breaks."
+  transcript_vi: "VPN hỏng từ chín giờ, khoảng hai mươi người bị ảnh hưởng, và tôi đã thử khởi động lại. Nói đơn giản, máy chủ bị quá tải — cứ hình dung như kẹt xe. Bọn em sẽ deploy bản vá tối nay, ngừng khoảng năm phút, và quay lại nếu có gì hỏng."
+  questions:
+    - q_vi: "Sự cố bắt đầu từ khi nào?"
+      choices: ["Chín giờ", "Tối qua", "Không rõ"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói so sánh sự cố với gì?"
+      choices: ["Kẹt xe", "Mưa bão", "Cháy nhà"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Nếu bản vá hỏng thì làm gì?"
+      choices: ["Quay lại bản trước (roll back)", "Tắt hệ thống", "Bỏ mặc"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: respond
+    prompt_en: "What's the problem with the VPN?"
+    prompt_vi: "Báo sự cố đủ bốn phần: cái gì, từ khi nào, ảnh hưởng ai, đã thử gì."
+    accept_patterns:
+      - "The VPN is down since {time} about {number} users are affected I've tried {action}"
+      - "The VPN has been down since {time} {number} users affected I've already tried {action}"
+      - "The VPN is down since {time} the whole team is affected I've tried restarting"
+  - kind: respond
+    prompt_en: "Why did the system go down? (I'm not technical)"
+    prompt_vi: "Giải thích đơn giản cho người không rành: có so sánh, có trấn an."
+    accept_patterns:
+      - "Basically the server got overloaded think of it as a traffic jam the good news is no data was lost"
+      - "Basically too many requests came at once the good news is we're fixing it"
+      - "Think of it as a traffic jam it's overloaded but no data was lost"
+  - kind: respond
+    prompt_en: "Your turn for standup."
+    prompt_vi: "Standup đủ ba phần: hôm qua, hôm nay, blocker."
+    accept_patterns:
+      - "Yesterday I {done} today I'll {plan} I'm blocked on {blocker}"
+      - "Yesterday I {done} today I'll {plan} no blockers"
+      - "Yesterday I fixed {thing} today I'll deploy waiting on {who}"
+  - kind: shadow
+    expected_text: "We'll deploy tonight, about five minutes of downtime, and roll back if anything breaks."
+    prompt_vi: "Nghe rồi nhắc lại ở tốc độ thật. Báo deploy: lịch, downtime, phương án lùi."
+    ipa: "/wɪl dɪˈplɔɪ təˈnaɪt əˈbaʊt faɪv ˈmɪnɪts ɒv ˈdaʊntaɪm ænd roʊl bæk ɪf ˈɛniθɪŋ breɪks/"
+    focus_phonemes: [dʒ, d, r]
+
+vietnamese_explanation:
+  why_vi: >
+    Mười lăm bài CNTT dạy từng kỹ năng: báo sự cố, nhận ticket, hướng dẫn, chẩn đoán, giải thích cho
+    người không rành, incident update, bàn giao, standup, code review, và từ vựng mạng/cloud/bảo mật/
+    dữ liệu, rồi họp với bên ngoài và viết email. Một ngày làm thật, chúng đan vào nhau: sự cố xảy ra,
+    bạn chẩn đoán, giải thích cho sếp, báo tiến độ ở standup, chốt với nhà cung cấp. Bài này kiểm tra
+    bạn chuyển giữa các tình huống có mượt không.
+  how_vi: >
+    Làm một lượt như một ca trực. Ba phản xạ cốt lõi: BÁO SỰ CỐ đủ bốn phần (cái gì/từ khi nào/ảnh
+    hưởng ai/đã thử gì), GIẢI THÍCH cho người không rành (đơn giản + so sánh + trấn an), và CHỐT VIỆC
+    (action item, next update, roll back). Đừng nói hoa mỹ — nói để người kia hành động đúng.
+  contrast_vi: "Xổ thuật ngữ, im lặng khi sự cố, không chốt việc ↔ báo đủ bốn phần, giải thích dễ hiểu, chốt bước tiếp. Chỉ nhóm sau khiến bạn đáng tin ở môi trường quốc tế."
+
+common_mistakes:
+  - mistake: "Báo sự cố thiếu phần “đã thử gì” hoặc “ảnh hưởng ai”"
+    why_vi: "Dưới áp lực đo điểm, kể theo trình tự mình phát hiện thay vì trình tự người nghe cần."
+    fix_vi: "Luôn đủ bốn phần. Người nhận dùng “ảnh hưởng ai” để xếp ưu tiên và “đã thử gì” để không lặp việc."
+    detect: {}
+  - mistake: "Giải thích cho người không rành bằng thuật ngữ"
+    why_vi: "Càng giỏi kỹ thuật càng quên người nghe không biết server/cache/DNS."
+    fix_vi: "Dùng “Basically…” + “Think of it as…” + “The good news is…”. Bỏ thuật ngữ, hoặc giải nghĩa ngay."
+    detect: {}
+  - mistake: "Trượt rồi làm lại ngay"
+    why_vi: "Muốn qua nhanh cho xong phase."
+    fix_vi: "Ôn đúng bài yếu một buổi rồi quay lại hôm sau. Hệ thống sẽ chỉ đúng bài cần ôn."
+    detect: {}
+
+memory_trick_vi: >
+  Qua được bài này nghĩa là bạn làm được một ca CNTT bằng tiếng Anh: báo sự cố rõ, hỗ trợ người dùng,
+  giải thích cho sếp, báo standup, chốt với đối tác. Đây là đích chính của khoá — tiếng Anh để LÀM VIỆC.
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {speak: 0.6, listen: 0.4}
+  min_speaking_attempts: 4
+  challenge_threshold: 90

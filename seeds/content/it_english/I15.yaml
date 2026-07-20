@@ -1,0 +1,176 @@
+schema_version: 1
+id: I15
+slug: viet-email-thong-bao-ky-thuat
+unit: U-I4
+title_vi: "Viết email và thông báo kỹ thuật"
+title_en: "Writing a technical email/announcement"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 15
+est_minutes: 12
+
+objective_vi: "Viết email/thông báo kỹ thuật rõ ràng: tiêu đề nói thẳng, dòng đầu là kết luận, việc cần làm ở cuối."
+objective_observable: "Đạt ≥75 điểm trên 3/4 drill và chọn đúng cấu trúc email (kết luận trước, chi tiết sau)."
+
+prerequisites:
+  - {lesson: I14, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Heads up"
+    ipa: "/hɛdz ʌp/"
+    meaning_vi: "Thông báo trước (tiêu đề)"
+    chunk: "Subject: Heads up — maintenance tonight."
+    tags: [it_english]
+  - term: "scheduled maintenance"
+    ipa: "/ˈskɛdʒuːld ˈmeɪntənəns/"
+    meaning_vi: "bảo trì theo lịch"
+    chunk: "There's scheduled maintenance tonight."
+    tags: [it_english]
+  - term: "will be unavailable"
+    ipa: "/wɪl biː ˌʌnəˈveɪləbəl/"
+    meaning_vi: "sẽ không dùng được"
+    chunk: "The portal will be unavailable from 10 PM."
+    tags: [it_english]
+  - term: "What you need to do"
+    ipa: "/wɒt juː niːd tuː duː/"
+    meaning_vi: "Việc bạn cần làm"
+    chunk: "What you need to do: save your work before 10."
+    tags: [it_english]
+  - term: "no action needed"
+    ipa: "/noʊ ˈækʃən ˈniːdɪd/"
+    meaning_vi: "không cần làm gì"
+    chunk: "No action needed on your part."
+    tags: [it_english]
+  - term: "reach out"
+    ipa: "/riːtʃ aʊt/"
+    meaning_vi: "liên hệ (nếu cần)"
+    chunk: "Reach out if you have questions."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "Subject: {topic}. {conclusion_first}."
+    meaning_vi: "Tiêu đề: {topic}. Rồi câu đầu là kết luận: {conclusion_first}."
+    slots:
+      topic: ["Maintenance tonight", "Password reset required"]
+      conclusion_first: ["The portal will be down 10-11 PM", "Please reset your password today"]
+  - pattern: "What you need to do: {action}. Reach out if {condition}."
+    meaning_vi: "Việc bạn cần làm: {action}. Liên hệ nếu {condition}."
+    slots:
+      action: ["save your work before 10 PM", "reset your password today"]
+      condition: ["you have questions", "you see any errors"]
+
+dialogue:
+  context_vi: "Một email thông báo bảo trì gửi cho toàn công ty (đọc như hội thoại một chiều)."
+  turns:
+    - {speaker: A, en: "Subject: Heads up — maintenance tonight, 10 to 11 PM.", vi: "Tiêu đề: Thông báo — bảo trì tối nay, 10 đến 11 giờ."}
+    - {speaker: A, en: "The internal portal will be unavailable from 10 to 11 PM tonight.", vi: "Cổng nội bộ sẽ không dùng được từ 10 đến 11 giờ tối nay."}
+    - {speaker: A, en: "What you need to do: save your work before 10 PM.", vi: "Việc bạn cần làm: lưu công việc trước 10 giờ."}
+    - {speaker: A, en: "No action needed after that. Reach out to IT if you have questions.", vi: "Sau đó không cần làm gì. Liên hệ IT nếu có thắc mắc."}
+
+listening_snippet:
+  id: LS-I15
+  speed: 1.0
+  voice: en_US_male
+  transcript_en: "Heads up: the portal will be unavailable tonight from 10 to 11 PM. What you need to do: save your work before 10. Reach out to IT if you have questions."
+  transcript_vi: "Thông báo: cổng sẽ không dùng được tối nay từ 10 đến 11 giờ. Việc bạn cần làm: lưu công việc trước 10 giờ. Liên hệ IT nếu có thắc mắc."
+  questions:
+    - q_vi: "Người dùng cần làm gì?"
+      choices: ["Lưu công việc trước 10 giờ", "Tắt máy cả đêm", "Đổi mật khẩu"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Cổng không dùng được lúc nào?"
+      choices: ["10–11 giờ tối", "Cả ngày mai", "Sáng nay"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The portal will be unavailable from 10 to 11 PM tonight."
+    prompt_vi: "Đọc to. Câu đầu email là KẾT LUẬN, không phải mở bài dài."
+    ipa: "/ðə ˈpɔːrtl wɪl biː ˌʌnəˈveɪləbəl frɒm tɛn tuː ɪˈlɛvən piː ɛm təˈnaɪt/"
+    focus_phonemes: [p, v, l]
+  - kind: read_aloud
+    expected_text: "What you need to do: save your work before 10 PM."
+    prompt_vi: "Đọc to. Việc cần làm nêu rõ, đặt nổi bật."
+    ipa: "/wɒt juː niːd tuː duː seɪv jʊr wɜːrk bɪˈfɔːr tɛn piː ɛm/"
+    focus_phonemes: [w, d, v]
+  - kind: shadow
+    expected_text: "Reach out to IT if you have questions."
+    prompt_vi: "Nghe rồi nhắc lại. Câu chốt mời liên hệ."
+    ipa: "/riːtʃ aʊt tuː aɪ tiː ɪf juː hæv ˈkwɛstʃənz/"
+    focus_phonemes: [tʃ, t, k]
+  - kind: respond
+    prompt_en: "Draft a short notice: the email server restarts tonight at 11."
+    prompt_vi: "Nói bản nháp: kết luận trước, việc cần làm, lời mời liên hệ."
+    accept_patterns:
+      - "Heads up the email server will restart tonight at 11 what you need to do save your work reach out if you have questions"
+      - "The email will be down tonight at 11 save your work before then no action needed after"
+      - "Subject maintenance tonight the server restarts at 11 reach out if you have questions"
+
+vietnamese_explanation:
+  why_vi: >
+    Email kỹ thuật của người Việt hay mắc “cấu trúc kể chuyện”: mở bài dài, giải thích lý do, mãi
+    cuối mới tới điều quan trọng. Người đọc bận chỉ liếc 3 giây — nếu kết luận nằm ở cuối, họ bỏ lỡ.
+    Email công sở quốc tế đi NGƯỢC: kết luận trước, chi tiết sau, việc cần làm nổi bật.
+  how_vi: >
+    Bốn phần: (1) TIÊU ĐỀ nói thẳng nội dung ("Heads up — maintenance tonight"); (2) DÒNG ĐẦU là
+    kết luận ("The portal will be down 10-11 PM"); (3) VIỆC CẦN LÀM tách riêng, dễ thấy ("What you
+    need to do: …"); (4) LỜI MỜI liên hệ ("Reach out if…"). Ngắn, quét mắt là hiểu.
+  contrast_vi: "“Kính gửi anh chị, như đã biết hệ thống… vì lý do… nên…” (chôn kết luận) ↔ “Portal down 10-11 PM. Save your work before 10.” (3 giây là hiểu)."
+
+common_mistakes:
+  - mistake: "Chôn kết luận ở cuối email"
+    why_vi: "Thói quen viết văn: mở bài → thân bài → kết luận."
+    fix_vi: "Đảo ngược: kết luận ở DÒNG ĐẦU. Người đọc bận cần biết ngay cái quan trọng, chi tiết để sau."
+    detect: {}
+  - mistake: "Tiêu đề mơ hồ: “Thông báo”, “Update”"
+    why_vi: "Ngại viết tiêu đề dài."
+    fix_vi: "Tiêu đề nói thẳng: “Maintenance tonight 10-11 PM”. Người nhận quyết định mở hay không dựa vào tiêu đề."
+    detect: {}
+  - mistake: "Không tách rõ việc người nhận cần làm"
+    why_vi: "Trộn việc cần làm vào đoạn văn dài."
+    fix_vi: "Tách hẳn: “What you need to do: …” hoặc “No action needed”. Người đọc tìm ngay phần liên quan đến họ."
+    detect: {}
+
+memory_trick_vi: >
+  Email kỹ thuật như tin nhắn khẩn: TIÊU ĐỀ nói thẳng — DÒNG ĐẦU là kết luận — VIỆC CẦN LÀM in đậm.
+  Viết ngược lại văn mẫu học trò: đừng để “kết bài” ở cuối, đưa nó lên đầu.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Câu đầu tiên của email thông báo nên là gì?"
+    choices:
+      - "Kết luận: “The portal will be down 10-11 PM.”"
+      - "“Kính gửi anh chị, như anh chị đã biết…”"
+      - "Lời chào dài dòng"
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Tiêu đề nào tốt nhất?"
+    choices:
+      - "Maintenance tonight, 10-11 PM"
+      - "Thông báo"
+      - "Quan trọng!!!"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Người nhận không cần làm gì. Nên ghi gì?"
+    choices: ["No action needed.", "(bỏ trống)", "Đoạn văn dài giải thích"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người dùng cần làm gì?"
+    audio_text: "What you need to do: save your work before 10."
+    choices: ["Lưu công việc trước 10 giờ", "Gọi cho IT ngay", "Đổi máy tính"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.4, quiz: 0.4, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: CP-I

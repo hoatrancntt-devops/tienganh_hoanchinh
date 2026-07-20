@@ -1,0 +1,181 @@
+schema_version: 1
+id: I14
+slug: hop-voi-nha-cung-cap
+unit: U-I4
+title_vi: "Họp kỹ thuật với nhà cung cấp / khách hàng"
+title_en: "Technical vendor/client call"
+phase: it_english
+topic: it_english
+cefr_target: b1
+order_index: 14
+est_minutes: 12
+
+objective_vi: "Dẫn dắt một cuộc gọi kỹ thuật với bên ngoài: nêu mục tiêu, hỏi/trả lời rõ, chốt bước tiếp theo."
+objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và chốt được bước tiếp theo (action item)."
+
+prerequisites:
+  - {lesson: I13, min_mastery: 75, kind: hard}
+  - {lesson: O06, min_mastery: 60, kind: soft}
+
+vocabulary:
+  - term: "The goal of this call"
+    ipa: "/ðə ɡoʊl ɒv ðɪs kɔːl/"
+    meaning_vi: "Mục tiêu cuộc gọi này"
+    chunk: "The goal of this call is to fix the integration."
+    tags: [it_english]
+  - term: "on our side"
+    ipa: "/ɒn ˈaʊər saɪd/"
+    meaning_vi: "về phía chúng tôi"
+    chunk: "On our side, everything is configured."
+    tags: [it_english]
+  - term: "on your side"
+    ipa: "/ɒn jʊr saɪd/"
+    meaning_vi: "về phía các bạn"
+    chunk: "Can you check the API key on your side?"
+    tags: [it_english]
+  - term: "Let me share my screen"
+    ipa: "/lɛt miː ʃɛr maɪ skriːn/"
+    meaning_vi: "Để tôi chia sẻ màn hình"
+    chunk: "Let me share my screen to show you."
+    tags: [it_english]
+  - term: "action item"
+    ipa: "/ˈækʃən ˈaɪtəm/"
+    meaning_vi: "việc cần làm (đã chốt)"
+    chunk: "So the action item is on your team."
+    tags: [it_english]
+  - term: "follow up by email"
+    ipa: "/ˈfɒloʊ ʌp baɪ ˈiːmeɪl/"
+    meaning_vi: "gửi email theo sau"
+    chunk: "I'll follow up by email with a summary."
+    tags: [it_english]
+
+sentence_patterns:
+  - pattern: "The goal of this call is to {goal}."
+    meaning_vi: "Mục tiêu cuộc gọi này là {goal}."
+    slots:
+      goal: ["fix the integration", "review the API errors", "plan the migration"]
+  - pattern: "On our side, {status}. Can you check {thing} on your side?"
+    meaning_vi: "Phía chúng tôi thì {status}. Bạn kiểm tra {thing} phía các bạn được không?"
+    slots:
+      status: ["everything is configured", "we see a 403 error"]
+      thing: ["the API key", "the firewall rule", "the logs"]
+
+dialogue:
+  context_vi: "Bạn họp với kỹ sư của nhà cung cấp để sửa lỗi tích hợp API."
+  turns:
+    - {speaker: A, en: "Thanks for joining. The goal of this call is to fix the integration errors.", vi: "Cảm ơn đã tham gia. Mục tiêu cuộc gọi này là sửa lỗi tích hợp."}
+    - {speaker: B, en: "Sure. What are you seeing?", vi: "Được. Bên bạn thấy gì?"}
+    - {speaker: A, en: "On our side, we get a 403 error. Can you check the API key on your side?", vi: "Phía chúng tôi báo lỗi 403. Bạn kiểm tra API key phía bạn được không?"}
+    - {speaker: B, en: "Let me check… Ah, the key expired yesterday. I'll issue a new one.", vi: "Để tôi xem… À, key hết hạn hôm qua. Tôi sẽ cấp key mới."}
+    - {speaker: A, en: "Great. So the action item is on your team, and I'll follow up by email with a summary.", vi: "Tuyệt. Vậy việc cần làm thuộc phía các bạn, và tôi sẽ gửi email tóm tắt lại."}
+
+listening_snippet:
+  id: LS-I14
+  speed: 1.0
+  voice: en_US_female
+  transcript_en: "The goal of this call is to fix the integration. On our side we get a 403 error. Can you check the API key on your side? I'll follow up by email with a summary."
+  transcript_vi: "Mục tiêu cuộc gọi là sửa tích hợp. Phía chúng tôi báo lỗi 403. Bạn kiểm tra API key phía bạn được không? Tôi sẽ gửi email tóm tắt."
+  questions:
+    - q_vi: "Mục tiêu cuộc gọi là gì?"
+      choices: ["Sửa lỗi tích hợp", "Ký hợp đồng", "Tuyển dụng"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói sẽ làm gì sau cuộc gọi?"
+      choices: ["Gửi email tóm tắt", "Không làm gì", "Gọi lại ngay"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The goal of this call is to fix the integration."
+    prompt_vi: "Đọc to. Mở đầu cuộc gọi bằng mục tiêu giúp mọi người tập trung."
+    ipa: "/ðə ɡoʊl ɒv ðɪs kɔːl ɪz tuː fɪks ðiː ˌɪntɪˈɡreɪʃən/"
+    focus_phonemes: [ɡ, k, ʃ]
+  - kind: read_aloud
+    expected_text: "Can you check the API key on your side?"
+    prompt_vi: "Đọc to. Phân biệt “on our side” / “on your side” để chia việc rõ."
+    ipa: "/kæn juː tʃɛk ðiː eɪ piː aɪ kiː ɒn jʊr saɪd/"
+    focus_phonemes: [tʃ, k, s]
+  - kind: shadow
+    expected_text: "I'll follow up by email with a summary."
+    prompt_vi: "Nghe rồi nhắc lại. Chốt cuộc gọi bằng cam kết theo sau."
+    ipa: "/aɪl ˈfɒloʊ ʌp baɪ ˈiːmeɪl wɪð ə ˈsʌməri/"
+    focus_phonemes: [f, l, m]
+  - kind: respond
+    prompt_en: "Thanks for joining — what's on the agenda?"
+    prompt_vi: "Mở cuộc gọi: nêu mục tiêu, rồi chia việc bằng on our/your side."
+    accept_patterns:
+      - "The goal of this call is to {goal} on our side {status} can you check {thing} on your side"
+      - "We're here to {goal} on our side we see {issue}"
+      - "The goal is to fix {thing} I'll follow up by email after"
+
+vietnamese_explanation:
+  why_vi: >
+    Gọi với bên ngoài (nhà cung cấp, khách hàng) áp lực hơn nội bộ: bạn đại diện công ty, và người
+    kia không quen giọng bạn. Người Việt hay bị động — chỉ trả lời, không dẫn dắt — nên cuộc gọi
+    lan man, kết thúc mà không ai rõ ai làm gì tiếp. Bí quyết: MỞ bằng mục tiêu, CHIA việc rõ, CHỐT
+    bằng action item.
+  how_vi: >
+    Ba mốc: (1) mở "The goal of this call is to…" để định hướng; (2) chia việc bằng "on our side /
+    on your side" cho rõ ai làm gì; (3) chốt "the action item is…" + "I'll follow up by email".
+    Email theo sau là bảo hiểm: nếu nghe nhầm điều gì, văn bản sẽ đính chính.
+  contrast_vi: "Gọi xong ai cũng mơ hồ ↔ “Goal was X, action item on your side, I'll email a summary.” Rõ ràng, có bằng chứng."
+
+common_mistakes:
+  - mistake: "Không nêu mục tiêu ở đầu cuộc gọi"
+    why_vi: "Nghĩ ai cũng biết vì sao gọi."
+    fix_vi: "Một câu “The goal of this call is to…” giữ cả nhóm đúng hướng, tránh lan man."
+    detect: {}
+  - mistake: "Không chốt action item, ai làm gì tiếp"
+    why_vi: "Ngại phân việc cho bên ngoài, hoặc quên."
+    fix_vi: "Cuối gọi luôn tóm: “So the action item is on your side / our side.” Không chốt là cuộc gọi vô ích."
+    detect: {}
+  - mistake: "Không gửi email theo sau"
+    why_vi: "Nghĩ nói xong là xong."
+    fix_vi: "“I'll follow up by email with a summary.” Văn bản đính chính hiểu nhầm và ghi lại cam kết."
+    detect: {}
+
+memory_trick_vi: >
+  Gọi với bên ngoài theo ba mốc M-C-C: MỤC TIÊU (mở đầu) — CHIA việc (on our/your side) — CHỐT +
+  email (action item). Không có ba mốc này, cuộc gọi 30 phút thành 0 kết quả.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Mở một cuộc gọi kỹ thuật với khách nên bắt đầu bằng gì?"
+    choices:
+      - "The goal of this call is to…"
+      - "Chuyện thời tiết"
+      - "Im lặng đợi họ nói"
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Muốn nói lỗi thuộc phía bạn kiểm tra. Câu nào?"
+    choices:
+      - "Can you check the API key on your side?"
+      - "It's your problem."
+      - "I don't care."
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Cuối cuộc gọi nên làm gì để tránh hiểu nhầm?"
+    choices:
+      - "Chốt action item và follow up by email"
+      - "Cúp máy ngay"
+      - "Nói “ok bye” là đủ"
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Người nói sẽ làm gì sau cuộc gọi?"
+    audio_text: "I'll follow up by email with a summary."
+    choices: ["Gửi email tóm tắt", "Xoá cuộc họp", "Gọi cho sếp"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: I15
