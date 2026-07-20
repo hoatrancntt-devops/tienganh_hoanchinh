@@ -214,6 +214,12 @@ async def lesson_player(
     ctx.update({
         "lesson": lesson, "activities": activities, "is_preview": is_preview,
         "blocking": state["blocking"], "state": state["state"],
+        # Nội dung "học" hiển thị trước câu hỏi. Bản xem trước chỉ cho từ vựng, ẩn hội thoại.
+        "study": {
+            "vocabulary": lesson.vocabulary or [],
+            "dialogue": {} if is_preview else (lesson.dialogue or {}),
+            "sentence_patterns": lesson.sentence_patterns or [],
+        },
     })
     return templates.TemplateResponse(request, "lesson.html", ctx)
 

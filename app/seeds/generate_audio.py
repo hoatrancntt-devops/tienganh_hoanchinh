@@ -13,7 +13,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import get_settings
-from app.models.content import Item, MediaAsset
+from app.models.content import Item, Lesson, MediaAsset
 
 log = logging.getLogger(__name__)
 settings = get_settings()
@@ -95,6 +95,42 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
                     skipped += 1
                     continue
                 wav = await _synth(client, text, "en_US_female", 1.0)
+                if wav is None:
+                    failed += 1
+                    continue
+                await _write(db, dest, wav, "en_US_female")
+                made += 1
+
+        # 3. Hội thoại + từ vựng của từng bài (nội dung "học" trước câu hỏi)
+        lessons = (await db.execute(select(Lesson))).scalars().all()
+        for lesson in lessons:
+            speed = 0.85 if lesson.phase == "foundation" else 1.0
+            # hội thoại: mỗi lượt một file
+            turns = (lesson.dialogue or {}).get("turns", [])
+            for i, turn in enumerate(turns):
+                text = (turn.get("en") or "").strip()
+                if not text:
+                    continue
+                dest = media / "dialogue" / f"{lesson.code}_{i}.wav"
+                if dest.exists() and not force:
+                    skipped += 1
+                    continue
+                wav = await _synth(client, text, "en_US_female", speed)
+                if wav is None:
+                    failed += 1
+                    continue
+                await _write(db, dest, wav, "en_US_female")
+                made += 1
+            # từ vựng: đọc câu ví dụ (chunk)
+            for i, v in enumerate(lesson.vocabulary or []):
+                text = (v.get("chunk") or v.get("term") or "").strip()
+                if not text:
+                    continue
+                dest = media / "vocab" / f"{lesson.code}_{i}.wav"
+                if dest.exists() and not force:
+                    skipped += 1
+                    continue
+                wav = await _synth(client, text, "en_US_female", speed)
                 if wav is None:
                     failed += 1
                     continue

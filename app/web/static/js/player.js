@@ -4,6 +4,12 @@ const Player = (() => {
   function init(data) {
     L = data; flat = [];
     data.activities.forEach(a => a.items.forEach(i => flat.push({ ...i, act: a.kind })));
+    // Chèn màn "Học từ & hội thoại" làm bước ĐẦU TIÊN nếu bài có nội dung học.
+    const s = data.study || {};
+    L.hasStudy = (s.vocabulary && s.vocabulary.length) ||
+      (s.dialogue && s.dialogue.turns && s.dialogue.turns.length) ||
+      (s.sentence_patterns && s.sentence_patterns.length);
+    if (L.hasStudy) flat.unshift({ __study: true });
     if (!flat.length) { document.getElementById('stage').innerHTML = '<div class="empty">Bài này chưa có nội dung.</div>'; return; }
     render();
   }
@@ -12,9 +18,46 @@ const Player = (() => {
     const it = flat[idx];
     document.getElementById('steps').innerHTML = steps();
     document.getElementById('counter').textContent = `${idx + 1}/${flat.length}`;
+    const nb = document.getElementById('nextBtn');
+    if (it.__study) {
+      document.getElementById('stage').innerHTML = studyView();
+      nb.disabled = false;                       // màn học: không chấm, cho đi tiếp ngay
+      nb.textContent = 'Bắt đầu luyện tập';
+      return;
+    }
     document.getElementById('stage').innerHTML = (it.choices && it.choices.length) ? quizView(it) : speakView(it);
-    document.getElementById('nextBtn').disabled = true;
-    document.getElementById('nextBtn').textContent = idx === flat.length - 1 ? 'Hoàn thành' : 'Tiếp theo';
+    nb.disabled = true;
+    nb.textContent = idx === flat.length - 1 ? 'Hoàn thành' : 'Tiếp theo';
+  }
+
+  function studyView() {
+    const s = L.study || {}, vocab = s.vocabulary || [], dlg = s.dialogue || {}, pats = s.sentence_patterns || [];
+    const play = (a) => a ? `<button class="playbtn" onclick="Player.play('${a}')"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>` : '';
+    let h = '<div class="card"><div class="pill pill-acc" style="margin-bottom:.9rem">📖 Học từ & hội thoại</div>';
+    if (vocab.length) {
+      h += '<h3 style="margin:.4rem 0 .5rem">Từ vựng</h3>';
+      vocab.forEach(v => {
+        h += `<div class="vrow"><div class="between" style="gap:.5rem">
+          <div><b>${esc(v.term)}</b> <span class="mut-3">${esc(v.ipa || '')}</span></div>${play(v.audio)}</div>
+          <div class="mut-3">${esc(v.meaning_vi || '')}</div>
+          ${v.chunk ? `<div style="font-size:.88rem;margin-top:.15rem">“${esc(v.chunk)}”</div>` : ''}</div>`;
+      });
+    }
+    if (dlg.turns && dlg.turns.length) {
+      h += '<h3 style="margin:1.1rem 0 .3rem">Hội thoại</h3>';
+      if (dlg.context_vi) h += `<div class="mut-3" style="margin-bottom:.6rem">${esc(dlg.context_vi)}</div>`;
+      dlg.turns.forEach(t => {
+        h += `<div class="dturn"><div class="between" style="gap:.5rem">
+          <div><span class="spk">${esc(t.speaker || '')}</span> <b>${esc(t.en)}</b></div>${play(t.audio)}</div>
+          <div class="mut-3">${esc(t.vi || '')}</div></div>`;
+      });
+    }
+    if (pats.length) {
+      h += '<h3 style="margin:1.1rem 0 .3rem">Mẫu câu</h3>';
+      pats.forEach(p => { h += `<div class="dturn"><b>${esc(p.pattern)}</b><div class="mut-3">${esc(p.meaning_vi || '')}</div></div>`; });
+    }
+    h += '<p class="hint" style="margin-top:1rem">Đọc và nghe qua một lượt, rồi bấm “Bắt đầu luyện tập”.</p></div>';
+    return h;
   }
   function quizView(it) {
     return `<div class="card">
@@ -93,7 +136,7 @@ const Player = (() => {
     if (L.is_preview) { location.href = '/learn'; return; }
     const r = await api('/api/v1/learn/next'); const n = r.data || {};
     document.getElementById('stage').innerHTML = `<div class="card center"><div style="font-size:2.4rem;margin-bottom:.6rem">✅</div>
-      <h2>Xong bài rồi</h2><p class="mut" style="margin:.5rem 0 1.4rem">Bạn vừa hoàn thành ${flat.length} hoạt động.</p>
+      <h2>Xong bài rồi</h2><p class="mut" style="margin:.5rem 0 1.4rem">Bạn vừa hoàn thành ${flat.filter(x => !x.__study).length} hoạt động.</p>
       <div class="card-tight" style="background:var(--card-2);text-align:left;margin-bottom:1.2rem;border-radius:var(--r)">
         <div class="hero-tag">Gợi ý tiếp theo</div><div style="font-weight:600;margin:.35rem 0">${esc(n.title_vi || 'Ôn tập')}</div>
         <div class="mut-3" style="line-height:1.6">${esc(n.reason_vi || '')}</div></div>

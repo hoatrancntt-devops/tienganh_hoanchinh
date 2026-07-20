@@ -72,6 +72,27 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
     lesson = (
         await db.execute(select(Lesson).where(Lesson.code == spec.id))
     ).scalar_one_or_none()
+
+    # Nội dung học: gắn sẵn đường dẫn audio (sinh ở generate_audio) theo mã bài + chỉ số.
+    dialogue = {}
+    if spec.dialogue:
+        dialogue = {
+            "context_vi": spec.dialogue.context_vi,
+            "turns": [
+                {"speaker": t.speaker, "en": t.en, "vi": t.vi,
+                 "audio": f"/media/dialogue/{spec.id}_{i}.wav"}
+                for i, t in enumerate(spec.dialogue.turns)
+            ],
+        }
+    vocabulary = [
+        {"term": v.term, "ipa": v.ipa, "meaning_vi": v.meaning_vi, "chunk": v.chunk,
+         "audio": f"/media/vocab/{spec.id}_{i}.wav"}
+        for i, v in enumerate(spec.vocabulary)
+    ]
+    sentence_patterns = [
+        {"pattern": p.pattern, "meaning_vi": p.meaning_vi} for p in spec.sentence_patterns
+    ]
+
     fields = dict(
         unit_id=unit.id, slug=spec.slug, phase=Phase(spec.phase), topic=spec.topic,
         cefr_target=Cefr(spec.cefr_target), order_index=spec.order_index,
@@ -81,6 +102,9 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
         vietnamese_explanation=spec.vietnamese_explanation.model_dump(),
         common_mistakes=[m.model_dump() for m in spec.common_mistakes],
         memory_trick_vi=spec.memory_trick_vi,
+        dialogue=dialogue,
+        vocabulary=vocabulary,
+        sentence_patterns=sentence_patterns,
         mastery_threshold=spec.unlock_condition.mastery_threshold,
         mastery_weights=spec.unlock_condition.mastery_weights,
         min_speaking_attempts=spec.unlock_condition.min_speaking_attempts,

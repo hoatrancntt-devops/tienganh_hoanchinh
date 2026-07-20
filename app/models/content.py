@@ -65,6 +65,10 @@ class Lesson(Base, UUIDMixin, TimestampMixin):
     vietnamese_explanation: Mapped[dict] = mapped_column(sa.JSON, default=dict)
     common_mistakes: Mapped[list] = mapped_column(sa.JSON, default=list)
     memory_trick_vi: Mapped[str] = mapped_column(sa.Text, default="")
+    # Nội dung "học" hiển thị TRƯỚC câu hỏi: hội thoại (EN/VI), từ vựng, mẫu câu.
+    dialogue: Mapped[dict] = mapped_column(sa.JSON, default=dict)
+    vocabulary: Mapped[list] = mapped_column(sa.JSON, default=list)
+    sentence_patterns: Mapped[list] = mapped_column(sa.JSON, default=list)
 
     mastery_threshold: Mapped[int] = mapped_column(sa.Integer, default=80)
     mastery_weights: Mapped[dict] = mapped_column(

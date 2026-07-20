@@ -70,6 +70,9 @@ async def lesson_detail(
         "vietnamese_explanation": lesson.vietnamese_explanation,
         "common_mistakes": lesson.common_mistakes,
         "memory_trick_vi": lesson.memory_trick_vi,
+        "vocabulary": lesson.vocabulary,
+        "dialogue": {} if is_preview else lesson.dialogue,
+        "sentence_patterns": lesson.sentence_patterns,
         "threshold": lesson.mastery_threshold,
         "state": state["state"], "is_preview": is_preview,
         "preview_banner_vi": (

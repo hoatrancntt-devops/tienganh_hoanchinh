@@ -212,3 +212,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--acc);outline-off
 .help-body .hb b{color:var(--fg)}
 .help-body .hb ol{margin:.2rem 0;padding-left:1.1rem}
 .help-body .hb li{margin-bottom:.3rem}
+
+/* ---------- màn học: từ vựng + hội thoại ---------- */
+.vrow,.dturn{padding:.55rem 0;border-bottom:1px solid var(--line)}
+.vrow:last-child,.dturn:last-child{border-bottom:0}
+.spk{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:99px;background:var(--card-2);color:var(--fg-2);font-size:.7rem;font-weight:700;margin-right:.15rem;vertical-align:middle}
