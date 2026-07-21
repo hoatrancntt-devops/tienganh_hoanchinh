@@ -29,7 +29,7 @@
   <div class="scorebox-grid">
     <div>
       <h4>Điểm mỗi bài (mastery)</h4>
-      <p>Mỗi bài có thanh <b>%</b>. Bạn phải đạt mốc (thường <b>75–80%</b>) thì bài mới tính là <span class="pill pill-ok">✓ Đã nắm</span> và mở bài kế tiếp. Điểm gộp từ: nói, quiz, và nghe.</p>
+      <p>Mỗi bài có thanh <b>%</b>. Bạn phải đạt mốc thì bài mới tính là <span class="pill pill-ok">✓ Đã nắm</span> và mở bài kế tiếp. Mốc <b>tăng dần theo bậc</b>: 70% ở bậc khởi động, 80% ở bậc B1 — càng lên cao càng đòi chính xác. Điểm gộp từ cả bốn kỹ năng cộng quiz.</p>
     </div>
     <div>
       <h4>Ba điểm khi Nói 🎙</h4>
@@ -56,7 +56,7 @@
   <div class="howto-head"><span style="font-size:1.3rem">👋</span><b>Bắt đầu từ đây — khoá này hoạt động thế nào</b></div>
   <ol class="howto-steps">
     <li><b>Học theo lộ trình.</b> Mỗi ngày làm 1 bài ({{ profile.daily_goal_minutes if profile else 10 }} phút). Không nhảy cóc được — làm được bài trước mới mở bài sau.</li>
-    <li><b>Mỗi bài rèn kỹ năng cụ thể.</b> Nhìn nhãn {{ skillbadges(['listen','speak']) }} trên thẻ để biết bài đó luyện gì. Bài {{ skillbadges(['read']) }} nằm ở phần Đọc.</li>
+    <li><b>Mỗi bài rèn cả bốn kỹ năng.</b> {{ skillbadges(['listen','speak','read','write']) }} — nghe đoạn hội thoại, nói vào micro, đọc một văn bản công việc, rồi viết. Nhãn trên thẻ cho biết bài đó nặng phần nào.</li>
     <li><b>Đạt mốc điểm thì mở bài mới.</b> Nói vào micro để chấm phát âm; làm quiz nghe/đọc. Không rõ điểm? Bấm <button type="button" class="linklike" onclick="toggleScore()">“Điểm số nghĩa là gì?”</button></li>
   </ol>
 </div>
@@ -85,6 +85,21 @@
   <div class="stat" title="Bài đã nắm sẽ trôi dần nếu lâu không ôn"><div class="n">{{ retention }}%</div><div class="l">Sức khoẻ ghi nhớ</div></div>
   <div class="stat"><div class="n">{{ (profile.cefr_level_current or 'pre_a1')|upper|replace('_','-') }}</div><div class="l">Trình độ hiện tại</div></div>
 </div>
+{% if tien_do_bac %}
+{# Tiến độ theo bậc — phase chỉ là chủ đề, bậc mới là trục dọc của lộ trình. #}
+<div class="card" style="margin-bottom:1.4rem">
+  <h2 style="font-size:.95rem;margin-bottom:.9rem">Tiến độ theo bậc</h2>
+  {% for b in tien_do_bac %}
+  <div style="margin-bottom:.7rem">
+    <div class="between" style="margin-bottom:.25rem">
+      <span style="font-size:.85rem">{{ b.ten_vi }}</span>
+      <span class="mut-3">{{ b.da_xong }}/{{ b.tong }} bài</span>
+    </div>
+    <div class="bar {{ 'ok' if b.phan_tram == 100 }}"><i style="width:{{ b.phan_tram }}%"></i></div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
 {% if roadmap_eta and roadmap_eta.bai_con_lai %}
 {# Khoảng, không phải một con số — và luôn nói rõ dựa trên căn cứ nào. #}
 <div class="mut-3" style="margin:-.9rem 0 1.4rem;text-align:center;font-size:.85rem">
@@ -120,6 +135,7 @@
   <button type="button" class="skchip" data-skill="speak">🎙 Nói</button>
   <button type="button" class="skchip" data-skill="listen">🎧 Nghe</button>
   <button type="button" class="skchip" data-skill="read">📖 Đọc</button>
+  <button type="button" class="skchip" data-skill="write">✍️ Viết</button>
 </div>
 
 {% set phase_img = {'orientation':'core','foundation':'core','daily':'social','office':'office','it_english':'it_english','reading':'office'} %}

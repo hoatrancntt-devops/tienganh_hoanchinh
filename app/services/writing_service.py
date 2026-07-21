@@ -35,12 +35,26 @@ def _load_all() -> dict[str, dict]:
     return _cache
 
 
-def list_sets() -> list[dict]:
-    return [
+# Thứ tự bậc, dùng để biết bộ nào vượt trình độ hiện tại của học viên.
+BAC = ["pre_a1", "a1", "a2", "b1"]
+
+
+def list_sets(bac_hoc_vien: str | None = None) -> list[dict]:
+    """Danh sách bộ luyện viết, sắp theo bậc.
+
+    `bac_hoc_vien` để đánh dấu bộ nào vượt trình độ hiện tại. Chỉ ĐÁNH DẤU, không khoá —
+    đây là phần luyện thêm, chặn nó không giúp ai. Trước đây trường `level` có sẵn trong
+    YAML nhưng không nơi nào đọc, nên ba bộ hiện như nhau dù có bộ ở bậc A2 có bộ ở B1.
+    """
+    cua_toi = BAC.index(bac_hoc_vien) if bac_hoc_vien in BAC else len(BAC) - 1
+    ra = [
         {"id": d["id"], "title_vi": d["title_vi"], "context_vi": d.get("context_vi", ""),
-         "topic": d.get("topic", "core"), "count": len(d.get("tasks", []))}
+         "topic": d.get("topic", "core"), "count": len(d.get("tasks", [])),
+         "level": d.get("level", "a2"),
+         "vuot_bac": BAC.index(d.get("level", "a2")) > cua_toi}
         for d in _load_all().values()
     ]
+    return sorted(ra, key=lambda x: (BAC.index(x["level"]), x["id"]))
 
 
 def get_set(sid: str) -> dict | None:

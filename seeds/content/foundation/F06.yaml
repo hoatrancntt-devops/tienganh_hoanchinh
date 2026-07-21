@@ -110,7 +110,7 @@ writing_task:
 
 listening_snippet:
   id: LS-F06
-  speed: 0.85
+  speed: 0.9
   voice: en_US_male
   context_vi: >
     Bạn tắt call rồi nhắn lại cho Minh, và Minh trả lời bằng một tin nhắn thoại. Cả đoạn chỉ

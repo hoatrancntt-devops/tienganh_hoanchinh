@@ -114,7 +114,7 @@ writing_task:
 
 listening_snippet:
   id: LS-D01
-  speed: 1.0
+  speed: 0.9
   voice: en_US_female
   context_vi: >
     Bạn dẫn Priya lên tầng, cả team đứng dậy chào. Priya tự giới thiệu một lượt. Cô ấy nói chậm và

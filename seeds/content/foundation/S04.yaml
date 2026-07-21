@@ -127,7 +127,7 @@ writing_task:
 
 listening_snippet:
   id: LS-S04
-  speed: 1.0
+  speed: 0.85
   voice: en_US_male
   context_vi: >
     Lần này David nói ở tốc độ thật, không chậm lại vì bạn. Bạn sẽ không hiểu hết — đó là

@@ -113,7 +113,7 @@ writing_task:
 
 listening_snippet:
   id: LS-D04
-  speed: 1.0
+  speed: 0.9
   voice: en_US_male
   context_vi: >
     Minh đã tới văn phòng khách hàng trước và gọi lại cho bạn khi bạn còn trên xe. Minh nói nhanh,

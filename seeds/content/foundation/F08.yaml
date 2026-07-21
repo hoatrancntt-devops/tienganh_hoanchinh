@@ -115,7 +115,7 @@ writing_task:
 
 listening_snippet:
   id: LS-F08
-  speed: 1.0
+  speed: 0.9
   voice: en_US_male
   context_vi: >
     Bạn vừa nhờ David nói chậm lại — và anh ta nói chậm lại thật. Đây là phần thưởng cho câu

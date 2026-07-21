@@ -115,7 +115,7 @@ writing_task:
 
 listening_snippet:
   id: LS-D02
-  speed: 1.0
+  speed: 0.9
   voice: en_US_male
   context_vi: >
     Minh đi vào pantry ngay lúc đó và nói chen vào. Minh nói nhanh và nuốt chữ hơn Priya nhiều —

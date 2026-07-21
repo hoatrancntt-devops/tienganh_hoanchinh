@@ -111,7 +111,7 @@ writing_task:
 
 listening_snippet:
   id: LS-F20
-  speed: 1.0
+  speed: 1.1
   voice: en_US_male
   context_vi: >
     David đọc ngược lại địa chỉ để đối chiếu, giữa lúc tiếng vẫn ngắt quãng. Bẫy: “dot” và “at” là

@@ -23,6 +23,18 @@ settings = get_settings()
 PLACEMENT_DIR = Path("seeds/placement")
 
 
+# Tốc độ đọc theo BẬC, không theo phase. Trước đây ba chỗ hardcode
+# `0.85 if phase == "foundation" else 1.0`, nên F18-F20 (bậc B1) nói chậm 0.85 — chậm hơn
+# cả bài A2 — còn toàn bộ bậc B1 không bao giờ vượt 1.0. Mục tiêu sản phẩm là standup và
+# call với khách nước ngoài, nơi người ta nói nhanh hơn 1.0; học viên thạo hết ở 1.0 vẫn
+# đứng hình trong cuộc gọi thật.
+TOC_DO = {"pre_a1": 0.85, "a1": 0.9, "a2": 1.0, "b1": 1.1}
+
+
+def toc_do_theo_bac(cefr: str) -> float:
+    return TOC_DO.get(cefr, 1.0)
+
+
 async def _synth(client: httpx.AsyncClient, text: str, voice: str, speed: float) -> bytes | None:
     try:
         r = await client.post(
@@ -65,6 +77,19 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
             log.warning("speech service chưa lên — bỏ qua sinh audio.")
             return {"made": 0, "skipped": 0, "failed": 0, "reason": "service_down"}
 
+        # Bậc của từng Item, tra qua Activity -> Lesson. Cần trước khi sinh tiếng vì tốc độ
+        # đọc lấy theo bậc.
+        bac_cua_item = {
+            item_id: cefr
+            for item_id, cefr in (
+                await db.execute(
+                    select(Item.id, Lesson.cefr_target)
+                    .join(Activity, Item.activity_id == Activity.id)
+                    .join(Lesson, Activity.lesson_id == Lesson.id)
+                )
+            ).all()
+        }
+
         # 1. Item có expected_text (drill nói + quiz nghe)
         items = (
             await db.execute(select(Item).where(Item.expected_text.isnot(None)))
@@ -74,8 +99,7 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
             if dest.exists() and not force:
                 skipped += 1
                 continue
-            # Foundation nói chậm hơn: 0.85x. Phần còn lại tốc độ thật.
-            speed = 0.85 if "foundation" in (item.tags or []) else 1.0
+            speed = toc_do_theo_bac(bac_cua_item.get(item.id, "a2"))
             wav = await _synth(client, item.expected_text, "en_US_female", speed)
             if wav is None:
                 failed += 1
@@ -105,9 +129,13 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
 
         # 3. Đoạn nghe của từng bài — câu hỏi nghe không có tiếng thì không trả lời được.
         listen_acts = (
-            await db.execute(select(Activity).where(Activity.kind == ActivityKind.LISTEN))
-        ).scalars().all()
-        for act in listen_acts:
+            await db.execute(
+                select(Activity, Lesson.cefr_target)
+                .join(Lesson, Activity.lesson_id == Lesson.id)
+                .where(Activity.kind == ActivityKind.LISTEN)
+            )
+        ).all()
+        for act, cefr in listen_acts:
             text = ((act.config or {}).get("transcript_en") or "").strip()
             if not text:
                 continue
@@ -115,7 +143,8 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
             if dest.exists() and not force:
                 skipped += 1
                 continue
-            wav = await _synth(client, text, "en_US_female", (act.config or {}).get("speed", 1.0))
+            # Tốc độ theo bậc, không lấy từ YAML: một nguồn duy nhất thì không lệch được.
+            wav = await _synth(client, text, "en_US_female", toc_do_theo_bac(cefr))
             if wav is None:
                 failed += 1
                 continue
@@ -125,7 +154,7 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
         # 4. Hội thoại + từ vựng của từng bài (nội dung "học" trước câu hỏi)
         lessons = (await db.execute(select(Lesson))).scalars().all()
         for lesson in lessons:
-            speed = 0.85 if lesson.phase == "foundation" else 1.0
+            speed = toc_do_theo_bac(lesson.cefr_target)
             # hội thoại: mỗi lượt một file
             turns = (lesson.dialogue or {}).get("turns", [])
             for i, turn in enumerate(turns):

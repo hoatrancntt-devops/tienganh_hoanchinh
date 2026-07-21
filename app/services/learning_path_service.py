@@ -24,21 +24,19 @@ PHASE_ORDER = [
 ]
 RECENT_ATTEMPTS = 3  # chỉ lấy 3 lần gần nhất: phải *đang* làm được, không phải *từng* làm được
 
-# Kỹ năng mỗi bài rèn, suy từ phase (nội dung mỗi phase đồng nhất: foundation/daily/office/
-# it_english có drill nói + đoạn nghe; reading có đọc hiểu + đoạn nghe). Không lưu DB — tránh
-# migration; nếu sau này một phase trộn nhiều kiểu bài thì chuyển sang suy từ activity.
-PHASE_SKILLS: dict[str, list[str]] = {
-    Phase.FOUNDATION: ["speak", "listen"],
-    Phase.DAILY: ["speak", "listen"],
-    Phase.OFFICE: ["speak", "listen"],
-    Phase.IT_ENGLISH: ["speak", "listen"],
-    Phase.READING: ["read", "listen"],
-    Phase.ORIENTATION: ["listen"],
-}
+# Thứ tự hiển thị nhãn kỹ năng trên thẻ bài.
+THU_TU_KY_NANG = ["listen", "speak", "read", "write"]
 
 
-def skills_for_phase(phase: str) -> list[str]:
-    return PHASE_SKILLS.get(phase, [])
+def skills_of(lesson: Lesson) -> list[str]:
+    """Kỹ năng một bài thật sự rèn, suy từ `mastery_weights` của chính bài đó.
+
+    Trước đây suy từ phase, với giả định "mỗi phase một kiểu bài". Giả định đó hết đúng khi
+    mọi bài đều có đủ bốn kỹ năng: thẻ bài foundation vẫn chỉ hiện Nói + Nghe dù bài đó có
+    cả Đọc và Viết. `mastery_weights` là nguồn đúng vì nó chính là thứ quyết định bài đo gì.
+    """
+    w = lesson.mastery_weights or {}
+    return [k for k in THU_TU_KY_NANG if w.get(k, 0) > 0]
 
 
 async def _recent_scores_by_kind(
@@ -181,7 +179,7 @@ async def lesson_cards(db: AsyncSession, user_id: uuid.UUID, phase: str | None =
             "blocking_lesson_code": result["blocking"],
             "is_checkpoint": lesson.is_checkpoint,
             "objective_vi": lesson.objective_vi,
-            "skills": skills_for_phase(lesson.phase),
+            "skills": skills_of(lesson),
         })
     return cards
 

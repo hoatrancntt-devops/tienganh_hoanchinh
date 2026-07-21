@@ -76,7 +76,7 @@ writing_task:
 
 listening_snippet:
   id: LS-CPF
-  speed: 1.0
+  speed: 0.9
   voice: en_US_male
   context_vi: >
     Bốn giờ chiều thứ Sáu. Cả team ngồi trong phòng họp, David dự qua call và bật camera. Trước khi

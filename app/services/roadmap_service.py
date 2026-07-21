@@ -121,3 +121,54 @@ async def cho_hoc_vien(db: AsyncSession, user_id: uuid.UUID) -> UocLuong:
         so_ngay_da_hoc=so_ngay,
         bai_da_xong=len(xong),
     )
+
+
+# Tên hiển thị của từng kỹ năng, dùng chung cho mọi chỗ báo cho học viên.
+TEN_KY_NANG = {"speak": "Nói", "listen": "Nghe", "read": "Đọc", "write": "Viết",
+               "quiz": "Từ vựng"}
+BAC_VI = {"pre_a1": "Khởi động", "a1": "Sơ cấp (A1)", "a2": "Sơ trung cấp (A2)",
+          "b1": "Trung cấp (B1)"}
+
+
+async def san_sang_theo_bac(db: AsyncSession, user_id: uuid.UUID) -> list[dict]:
+    """Mức sẵn sàng của học viên ở TỪNG BẬC, tính trên toàn bộ bài của bậc đó.
+
+    Checkpoint chỉ chốt một phase (CP-O chỉ gồm O01–O08), nên qua checkpoint không có
+    nghĩa là đã vững cả bậc — bậc A2 còn F09–F17, I01–I04, R01–R02. Đây là bản đọc trung
+    thực cho cả bậc, không phải một bài kiểm tra mới: nó chỉ tổng hợp điểm đã có.
+    """
+    rows = (
+        await db.execute(
+            select(Lesson.cefr_target, Lesson.id, LessonProgress.state,
+                   LessonProgress.mastery_raw)
+            .outerjoin(
+                LessonProgress,
+                (LessonProgress.lesson_id == Lesson.id)
+                & (LessonProgress.user_id == user_id),
+            )
+            .where(Lesson.status == ContentStatus.PUBLISHED)
+        )
+    ).all()
+
+    gom: dict[str, list[float]] = {}
+    xong: dict[str, int] = {}
+    for cefr, _lid, state, raw in rows:
+        gom.setdefault(cefr, []).append(float(raw or 0.0))
+        if state == LessonState.MASTERED:
+            xong[cefr] = xong.get(cefr, 0) + 1
+
+    ra = []
+    for cefr in ("pre_a1", "a1", "a2", "b1"):
+        diem = gom.get(cefr) or []
+        if not diem:
+            continue
+        da_xong = xong.get(cefr, 0)
+        ra.append({
+            "bac": cefr,
+            "ten_vi": BAC_VI[cefr],
+            "tong": len(diem),
+            "da_xong": da_xong,
+            "phan_tram": round(da_xong / len(diem) * 100),
+            "da_bat_dau": any(d > 0 for d in diem),
+        })
+    return ra

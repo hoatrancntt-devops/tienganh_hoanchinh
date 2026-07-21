@@ -173,7 +173,9 @@ async def dashboard(
             "pct": round(mastered / len(group) * 100) if group else 0,
             "locked": all(c["state"] == LessonState.LOCKED for c in group),
             "started": started,
-            "skills": path.skills_for_phase(phase),
+            # Gom từ chính các bài trong phase, không đoán theo tên phase.
+            "skills": [k for k in path.THU_TU_KY_NANG
+                       if any(k in (c["skills"] or []) for c in group)],
         })
 
     # Bản đồ lộ trình: phase "hiện tại" = phase chứa bài next_up (hoặc phase dở đầu tiên).
@@ -201,6 +203,9 @@ async def dashboard(
         "is_new_user": done == 0,
         # Ước lượng từ nhịp học thật, không phải hằng số theo band.
         "roadmap_eta": await roadmap_service.cho_hoc_vien(db, user.id),
+        # Tiến độ theo BẬC, không theo phase: checkpoint chỉ chốt một phase nên qua
+        # checkpoint không có nghĩa là đã vững cả bậc.
+        "tien_do_bac": await roadmap_service.san_sang_theo_bac(db, user.id),
     })
     return templates.TemplateResponse(request, "dashboard.html", ctx)
 
@@ -366,7 +371,9 @@ async def writing_list(
     from app.services import writing_service
 
     ctx = await _shell(request, db, user)
-    ctx["sets"] = writing_service.list_sets()
+    await db.refresh(user, ["profile"])
+    bac = user.profile.cefr_level_current if user.profile else None
+    ctx["sets"] = writing_service.list_sets(bac)
     return templates.TemplateResponse(request, "writing_list.html", ctx)
 
 

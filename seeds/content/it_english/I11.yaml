@@ -138,7 +138,7 @@ writing_task:
 
 listening_snippet:
   id: LS-I11
-  speed: 1.0
+  speed: 1.1
   voice: en_US_female
   context_vi: >
     Priya bắt đầu so sánh staging với production và đọc to những gì chị ấy thấy. Đây là mười phút
