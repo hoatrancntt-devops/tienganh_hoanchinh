@@ -132,111 +132,159 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
     await db.commit()
     await db.refresh(lesson)
 
-    # Activity/Item dựng lại từ đầu: nội dung là YAML, DB chỉ là bản chiếu.
-    await db.execute(delete(Activity).where(Activity.lesson_id == lesson.id))
-    await db.commit()
+    await _upsert_activities(db, lesson, _activity_specs(spec))
+    return lesson
 
-    order = 0
+
+def _activity_specs(spec: LessonYAML) -> list[dict]:
+    """Mô tả các hoạt động của bài dưới dạng dữ liệu thuần, chưa chạm DB.
+
+    Thứ tự trong danh sách là thứ tự học viên gặp trên player.
+    """
+    out: list[dict] = []
 
     if spec.listening_snippet:
-        snippet = spec.listening_snippet
-        act = Activity(lesson_id=lesson.id, kind=ActivityKind.LISTEN, order_index=order,
-                       title_vi="Nghe hội thoại",
-                       config={"transcript_en": snippet.transcript_en,
-                               "transcript_vi": snippet.transcript_vi,
-                               "context_vi": snippet.context_vi,
-                               "snippet_id": snippet.id, "speed": snippet.speed})
-        db.add(act)
-        await db.commit()
-        await db.refresh(act)
-        for i, q in enumerate(snippet.questions):
-            db.add(Item(activity_id=act.id, order_index=i, kind="mcq",
-                        prompt_vi=q.q_vi, prompt_en=snippet.transcript_en,
-                        choices=q.choices, answer_index=q.answer, difficulty=q.difficulty,
-                        tags=["listening", snippet.id]))
-        order += 1
+        s = spec.listening_snippet
+        out.append({
+            "kind": ActivityKind.LISTEN, "title_vi": "Nghe hội thoại",
+            "config": {"transcript_en": s.transcript_en, "transcript_vi": s.transcript_vi,
+                       "context_vi": s.context_vi, "snippet_id": s.id, "speed": s.speed},
+            "items": [
+                {"kind": "mcq", "prompt_vi": q.q_vi, "prompt_en": s.transcript_en,
+                 "choices": q.choices, "answer_index": q.answer, "difficulty": q.difficulty,
+                 "tags": ["listening", s.id]}
+                for q in s.questions
+            ],
+        })
 
     if spec.speaking_drills:
-        act = Activity(lesson_id=lesson.id, kind=ActivityKind.SPEAK, order_index=order,
-                       title_vi="Luyện nói", config={})
-        db.add(act)
-        await db.commit()
-        await db.refresh(act)
-        phase_tag = spec.phase
-        for i, d in enumerate(spec.speaking_drills):
-            db.add(Item(
-                activity_id=act.id, order_index=i, kind=d.kind,
-                prompt_en=d.prompt_en or (d.expected_text or ""),
-                prompt_vi=d.prompt_vi, expected_text=d.expected_text, ipa=d.ipa,
-                focus_phonemes=d.focus_phonemes, accept_patterns=d.accept_patterns,
-                scoring_weights={}, difficulty=2, tags=["speak", phase_tag],
-            ))
-        order += 1
+        out.append({
+            "kind": ActivityKind.SPEAK, "title_vi": "Luyện nói", "config": {},
+            "items": [
+                {"kind": d.kind, "prompt_en": d.prompt_en or (d.expected_text or ""),
+                 "prompt_vi": d.prompt_vi, "expected_text": d.expected_text, "ipa": d.ipa,
+                 "focus_phonemes": d.focus_phonemes, "accept_patterns": d.accept_patterns,
+                 "difficulty": 2, "tags": ["speak", spec.phase]}
+                for d in spec.speaking_drills
+            ],
+        })
 
     if spec.reading_passage:
         rp = spec.reading_passage
-        act = Activity(lesson_id=lesson.id, kind=ActivityKind.READ, order_index=order,
-                       title_vi="Đọc hiểu",
-                       config={"passage_id": rp.id, "kind": rp.kind,
-                               "context_vi": rp.context_vi,
-                               "text_en": rp.text_en, "text_vi": rp.text_vi})
-        db.add(act)
-        await db.commit()
-        await db.refresh(act)
-        for i, q in enumerate(rp.questions):
+        out.append({
+            "kind": ActivityKind.READ, "title_vi": "Đọc hiểu",
+            "config": {"passage_id": rp.id, "kind": rp.kind, "context_vi": rp.context_vi,
+                       "text_en": rp.text_en, "text_vi": rp.text_vi},
             # expected_text để None: generate_audio chỉ sinh tiếng cho Item có expected_text,
             # nên đây là chỗ giữ cho bài đọc không bao giờ đọc thành tiếng.
-            db.add(Item(activity_id=act.id, order_index=i, kind="mcq_read",
-                        prompt_en=q.q_en, prompt_vi="", expected_text=None,
-                        choices=q.choices, answer_index=q.answer, difficulty=q.difficulty,
-                        tags=["read", q.skill, rp.id]))
-        order += 1
+            "items": [
+                {"kind": "mcq_read", "prompt_en": q.q_en, "prompt_vi": "",
+                 "expected_text": None, "choices": q.choices, "answer_index": q.answer,
+                 "difficulty": q.difficulty, "tags": ["read", q.skill, rp.id]}
+                for q in rp.questions
+            ],
+        })
 
     if spec.writing_task:
         wt = spec.writing_task
-        # config là payload cho học viên: KHÔNG chứa đáp án. `ordered_lines` được xáo ở
-        # tầng UI, `blanks`/`accept`/`required_chunks` chỉ nằm ở Item để chấm server-side.
-        act = Activity(lesson_id=lesson.id, kind=ActivityKind.WRITE, order_index=order,
-                       title_vi="Luyện viết",
-                       config={"task_id": wt.id, "kind": wt.kind, "frame_vi": wt.frame_vi,
-                               "min_words": wt.min_words, "hint_vi": wt.hint_vi,
-                               "so_o": len(wt.blanks),
-                               # Sắp theo bảng chữ cái, KHÔNG theo thứ tự đúng — client tự
-                               # xáo để hiện. Gửi đúng thứ tự xuống là gửi luôn đáp án.
-                               "lines": sorted(wt.ordered_lines)})
-        db.add(act)
-        await db.commit()
-        await db.refresh(act)
-        # Một Item cho cả bài viết. expected_text để None: generate_audio chỉ sinh tiếng cho
-        # Item có expected_text, nên bài viết không bao giờ bị đọc thành tiếng.
-        db.add(Item(
-            activity_id=act.id, order_index=0, kind=wt.kind,
-            prompt_en=wt.prompt_en, prompt_vi=wt.prompt_vi, expected_text=None,
-            choices=[], answer_index=None, accept_patterns=wt.accept,
-            scoring_weights={"kind": wt.kind, "min_words": wt.min_words,
-                             "keywords": wt.keywords, "blanks": wt.blanks,
-                             "ordered_lines": wt.ordered_lines,
-                             "required_chunks": wt.required_chunks,
-                             "hint_vi": wt.hint_vi, "sample_en": wt.sample_en},
-            difficulty=2, tags=["write", wt.kind],
-        ))
-        order += 1
+        out.append({
+            "kind": ActivityKind.WRITE, "title_vi": "Luyện viết",
+            # config là payload cho trình duyệt: KHÔNG chứa đáp án. `lines` sắp theo bảng
+            # chữ cái chứ không theo thứ tự đúng — gửi đúng thứ tự xuống là gửi luôn đáp án.
+            "config": {"task_id": wt.id, "kind": wt.kind, "frame_vi": wt.frame_vi,
+                       "min_words": wt.min_words, "hint_vi": wt.hint_vi,
+                       "so_o": len(wt.blanks), "lines": sorted(wt.ordered_lines)},
+            "items": [{
+                "kind": wt.kind, "prompt_en": wt.prompt_en, "prompt_vi": wt.prompt_vi,
+                "expected_text": None, "choices": [], "answer_index": None,
+                "accept_patterns": wt.accept,
+                "scoring_weights": {"kind": wt.kind, "min_words": wt.min_words,
+                                    "keywords": wt.keywords, "blanks": wt.blanks,
+                                    "ordered_lines": wt.ordered_lines,
+                                    "required_chunks": wt.required_chunks,
+                                    "hint_vi": wt.hint_vi, "sample_en": wt.sample_en},
+                "difficulty": 2, "tags": ["write", wt.kind],
+            }],
+        })
 
     if spec.mini_quiz:
-        act = Activity(lesson_id=lesson.id, kind=ActivityKind.QUIZ, order_index=order,
-                       title_vi="Củng cố nhanh", config={})
-        db.add(act)
-        await db.commit()
-        await db.refresh(act)
-        for i, q in enumerate(spec.mini_quiz):
-            db.add(Item(
-                activity_id=act.id, order_index=i, kind=q.kind, prompt_vi=q.prompt_vi,
-                prompt_en=q.audio_text, expected_text=q.audio_text or None,
-                choices=q.choices, answer_index=q.answer, difficulty=q.difficulty,
-                focus_phonemes=q.focus_phonemes, tags=["quiz"],
-            ))
+        out.append({
+            "kind": ActivityKind.QUIZ, "title_vi": "Củng cố nhanh", "config": {},
+            "items": [
+                {"kind": q.kind, "prompt_vi": q.prompt_vi, "prompt_en": q.audio_text,
+                 "expected_text": q.audio_text or None, "choices": q.choices,
+                 "answer_index": q.answer, "difficulty": q.difficulty,
+                 "focus_phonemes": q.focus_phonemes, "tags": ["quiz"]}
+                for q in spec.mini_quiz
+            ],
+        })
+    return out
+
+
+# Giá trị mặc định cho các cột không phải hoạt động nào cũng khai.
+_ITEM_DEFAULTS = {
+    "prompt_en": "", "prompt_vi": "", "expected_text": None, "ipa": "",
+    "choices": [], "answer_index": None, "accept_patterns": [], "focus_phonemes": [],
+    "scoring_weights": {}, "difficulty": 2, "tags": [],
+}
+
+
+async def _upsert_activities(db: AsyncSession, lesson: Lesson, specs: list[dict]) -> None:
+    """Cập nhật tại chỗ thay vì xoá rồi dựng lại.
+
+    Bản cũ `delete(Activity)` mỗi lần seed. `Item.activity_id` cascade từ Activity, và
+    `ItemAttempt.item_id` cascade từ Item — nên mỗi lần `make seed` là XOÁ SẠCH lịch sử
+    làm bài của mọi học viên. Không có gì báo, và `LessonProgress` còn lại thì tính lại
+    từ số 0.
+
+    Khoá định danh: Activity theo (lesson, kind), Item theo (activity, order_index).
+    Đánh đổi đã biết: đảo thứ tự câu trong cùng một hoạt động sẽ gán lượt làm bài cũ sang
+    câu khác. Chấp nhận được vì mastery tính gộp theo loại hoạt động, và đảo thứ tự câu
+    là việc hiếm — đổi lại, sửa nội dung không còn thổi bay tiến độ học viên.
+    """
+    hien_co = {
+        act.kind: act
+        for act in (
+            await db.execute(select(Activity).where(Activity.lesson_id == lesson.id))
+        ).scalars().all()
+    }
+    giu_lai = set()
+
+    for order, aspec in enumerate(specs):
+        kind = str(aspec["kind"])
+        giu_lai.add(kind)
+        act = hien_co.get(kind)
+        if act is None:
+            act = Activity(lesson_id=lesson.id, kind=aspec["kind"])
+            db.add(act)
+        act.order_index = order
+        act.title_vi = aspec["title_vi"]
+        act.config = aspec["config"]
+        await db.flush()            # cần act.id để gắn Item, nhưng chưa chốt transaction
+
+        cu = {
+            item.order_index: item
+            for item in (
+                await db.execute(select(Item).where(Item.activity_id == act.id))
+            ).scalars().all()
+        }
+        for i, ispec in enumerate(aspec["items"]):
+            item = cu.pop(i, None)
+            if item is None:
+                item = Item(activity_id=act.id, order_index=i)
+                db.add(item)
+            for field, mac_dinh in _ITEM_DEFAULTS.items():
+                setattr(item, field, ispec.get(field, mac_dinh))
+            item.kind = ispec["kind"]
+        # Câu bị bỏ khỏi giáo trình thì xoá — lượt làm bài của nó đi theo, đúng như vậy.
+        for thua in cu.values():
+            await db.delete(thua)
+
+    for kind, act in hien_co.items():
+        if kind not in giu_lai:
+            await db.delete(act)
+    # Một lần commit cho cả bài: nếu giữa chừng hỏng thì bài đó không bị nửa vời.
     await db.commit()
-    return lesson
 
 
 async def _upsert_edges(db: AsyncSession, specs: list[LessonYAML]) -> int:
