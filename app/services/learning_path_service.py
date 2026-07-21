@@ -96,8 +96,12 @@ async def update_mastery(db: AsyncSession, user_id: uuid.UUID, lesson_id: uuid.U
         )
     ).scalar_one_or_none()
     if prog is None:
-        # default= chỉ áp lúc INSERT, chưa flush thì các cột số vẫn là None.
-        prog = LessonProgress(user_id=user_id, lesson_id=lesson_id, attempts_count=0)
+        # default= chỉ áp lúc INSERT, chưa flush thì mọi cột chưa khai vẫn là None.
+        # `state` phải khai luôn: thiếu nó thì `prog.state` là None, phép kiểm
+        # `state in (AVAILABLE, PREVIEWABLE, LOCKED)` bên dưới trượt, và bài không bao giờ
+        # chuyển sang "đang học" — học viên làm xong một hoạt động mà lộ trình vẫn hiện khoá.
+        prog = LessonProgress(user_id=user_id, lesson_id=lesson_id, attempts_count=0,
+                              state=LessonState.LOCKED)
         db.add(prog)
 
     prog.mastery_raw = raw
