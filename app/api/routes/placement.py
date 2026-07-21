@@ -38,6 +38,11 @@ async def get_form(form: str = "A"):
             stripped["so_o"] = len(item["blanks"])
         if item.get("ordered_lines"):
             stripped["lines"] = sorted(item["ordered_lines"])  # sắp a-b-c, không phải thứ tự đúng
+        # Server quyết định URL audio; client không tự ghép theo mã câu nữa. Xem
+        # placement_service.audio_name — tên file gắn hash nội dung.
+        name = placement_service.audio_name(item)
+        if name:
+            stripped["audio"] = f"/media/placement/{name}"
         items.append(stripped)
     return {"form": data["form"], "est_minutes": data.get("est_minutes", 18), "items": items}
 

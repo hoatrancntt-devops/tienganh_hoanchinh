@@ -32,7 +32,7 @@ const Placement = (() => {
       ? `<div class="passage" style="margin-bottom:1rem">${esc(it.passage_en || lastPassage)}</div>` : '';
     // Câu hỏi đọc hỏi bằng tiếng Anh — hỏi bằng tiếng Việt là đo hiểu tiếng Việt.
     const hoi = it.section === 'reading' ? (it.prompt_en || '') : it.prompt_vi;
-    return `<div class="card">${audio ? `<div class="center" style="margin-bottom:1.1rem"><button class="playbtn" id="pl" onclick="Placement.playIt('${it.id}')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe</button><div class="mut-3" id="plc" style="margin-top:.5rem">Nghe lại tối đa 2 lần</div></div>` : ''}
+    return `<div class="card">${audio ? `<div class="center" style="margin-bottom:1.1rem"><button class="playbtn" id="pl" onclick="Placement.playIt()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe</button><div class="mut-3" id="plc" style="margin-top:.5rem">Nghe lại tối đa 2 lần</div></div>` : ''}
       ${passage}${it.prompt_vi && it.section === 'reading' ? `<p class="mut-3" style="margin-bottom:.5rem">${esc(it.prompt_vi)}</p>` : ''}
       <p style="font-size:1rem;margin-bottom:1rem">${esc(hoi)}</p>${it.choices.map((c, k) => `<button class="choice" onclick="Placement.pick(${k})">${esc(c)}</button>`).join('')}</div>`;
   }
@@ -64,15 +64,19 @@ const Placement = (() => {
   function speak(it) {
     return `<div class="card center"><p class="prompt-vi" style="margin-bottom:.8rem">${esc(it.prompt_vi)}</p>
       ${it.kind !== 'repeat' && it.prompt_en !== undefined ? `<p class="prompt-en">${esc(it.prompt_en || '')}</p>` : ''}
-      ${it.kind === 'repeat' ? `<button class="playbtn" onclick="Placement.playIt('${it.id}')" style="margin:.6rem 0 0"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe câu</button>` : ''}
+      ${it.kind === 'repeat' ? `<button class="playbtn" onclick="Placement.playIt()" style="margin:.6rem 0 0"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe câu</button>` : ''}
       <div style="margin:1.6rem 0 .5rem"><button class="mic" id="pmic" onclick="Placement.mic()" aria-label="Ghi âm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg></button></div>
       <div class="mut-3" id="pmh">Bấm để ghi âm, bấm lần nữa để dừng</div>
       <button class="btn btn-quiet" style="margin-top:1rem" onclick="Placement.skip()">Bỏ qua câu này</button></div>`;
   }
-  function playIt(id) {
+  // URL do server cấp (tên file gắn hash nội dung), client không tự ghép theo mã câu —
+  // ghép theo mã thì sửa lời một câu nghe sẽ phát ra file cũ mà không có gì báo.
+  function playIt() {
+    const src = form.items[i].audio;
+    if (!src) { toast('Câu này không có audio.', 'warn'); return; }
     if (plays >= 2) { toast('Bạn đã nghe 2 lần rồi.', 'warn'); return; }
     plays++; const c = document.getElementById('plc'); if (c) c.textContent = plays >= 2 ? 'Đã hết lượt nghe lại' : 'Còn 1 lần nghe lại';
-    new Audio(`/media/placement/${id}.wav`).play().catch(() => toast('Chưa có audio cho câu này (chạy make seed).', 'warn'));
+    new Audio(src).play().catch(() => toast('Chưa có audio cho câu này (chạy make seed).', 'warn'));
   }
   function pick(k) { const it = form.items[i]; answers.push({ item_ref: it.id, section: it.section, kind: it.kind, choice_index: k, latency_ms: Date.now() - t0, replay_count: plays }); advance(); }
   function skip() { const it = form.items[i]; answers.push({ item_ref: it.id, section: it.section, kind: it.kind, latency_ms: 0 }); advance(); }

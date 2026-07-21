@@ -40,20 +40,20 @@ def test_cau_hoi_doc_bang_tieng_anh(name):
 def test_phan_doc_va_viet_khong_bao_gio_sinh_audio(name):
     """Bài đọc mà nghe được thì không còn là bài đọc.
 
-    generate_audio chỉ sinh tiếng cho section listening/speaking. Test này khoá cả hai
-    đầu: đề không khai transcript, VÀ bộ sinh audio không đụng tới hai section này.
+    Kiểm bằng hành vi của `audio_text` — đó là một chỗ duy nhất quyết định câu nào có
+    tiếng, dùng chung cho cả bộ sinh audio lẫn API trả đề.
     """
-    import inspect
-
-    from app.seeds import generate_audio
-
     for item in _form(name)["items"]:
-        if item["section"] in ("reading", "writing"):
-            assert "transcript_en" not in item, f"{item['id']} có transcript — sẽ bị sinh audio"
-    src = inspect.getsource(generate_audio)
-    assert '("listening", "speaking")' in src, (
-        "generate_audio đổi cách lọc section — kiểm lại xem reading/writing có bị sinh audio không"
-    )
+        if item["section"] in ("reading", "writing", "vocab", "grammar", "self"):
+            assert ps.audio_text(item) is None, f"{item['id']} sẽ bị sinh audio"
+
+
+def test_read_aloud_khong_can_tieng_nhung_repeat_thi_can():
+    """read_aloud có chữ trên màn hình; repeat thì không, nên bắt buộc phải có tiếng."""
+    assert ps.audio_text({"section": "speaking", "kind": "read_aloud",
+                          "expected_text": "He works in IT."}) is None
+    assert ps.audio_text({"section": "speaking", "kind": "repeat",
+                          "expected_text": "He works in IT."}) == "He works in IT."
 
 
 # --- Hai form phải tương đương ---
@@ -171,3 +171,36 @@ def test_knowledge_khong_tinh_vao_luat_lech_ky_nang():
     v = sc.decide({"listening": 70, "reading": 70, "speaking": 70, "writing": 70,
                    "knowledge": 20}, True, 0)
     assert v.confidence == "high"
+
+
+# --- Tên file audio phải đổi khi lời câu nghe đổi ---
+
+@pytest.mark.parametrize("name", FORMS)
+def test_moi_cau_co_tieng_deu_co_ten_file_kem_hash(name):
+    for item in _form(name)["items"]:
+        ten = ps.audio_name(item)
+        if ps.audio_text(item):
+            assert ten and ten.startswith(item["id"] + "-") and ten.endswith(".wav")
+        else:
+            assert ten is None, f"{item['id']} không nên có audio"
+
+
+def test_doi_loi_cau_nghe_thi_doi_ten_file():
+    """Bảo vệ chính xác cái bẫy đã dính: sửa lời nhưng giữ mã câu, học viên nghe file cũ.
+
+    Bộ sinh audio bỏ qua file đã tồn tại, nên tên trùng = tiếng cũ + câu hỏi mới, và
+    không có gì báo.
+    """
+    goc = {"id": "L3", "section": "listening", "transcript_en": "He works in the IT department."}
+    sua = {"id": "L3", "section": "listening", "transcript_en": "Sorry, I can't join right now."}
+    assert ps.audio_name(goc) != ps.audio_name(sua)
+
+
+@pytest.mark.parametrize("name", FORMS)
+async def test_api_tra_ve_url_audio_dung_ten_file(name):
+    for item in (await get_form(name))["items"]:
+        goc = next(i for i in _form(name)["items"] if i["id"] == item["id"])
+        if ps.audio_text(goc):
+            assert item["audio"] == f"/media/placement/{ps.audio_name(goc)}"
+        else:
+            assert "audio" not in item

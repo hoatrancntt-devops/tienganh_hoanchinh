@@ -3,6 +3,7 @@
 Luật chấm nằm ở `placement_scoring` (thuần, test được). File này giữ phần I/O:
 nạp form, ghi DB, mở khoá bài vào.
 """
+import hashlib
 import logging
 import uuid
 from pathlib import Path
@@ -37,6 +38,33 @@ BAND_VI = {
     Cefr.A2: "sơ trung cấp (A2)",
     Cefr.B1: "trung cấp (B1)",
 }
+
+
+def audio_text(item: dict) -> str | None:
+    """Câu sẽ được đọc lên cho item này, hoặc None nếu item không có tiếng.
+
+    Một chỗ duy nhất quyết định điều đó, để bộ sinh audio và API trả đề không lệch nhau.
+    """
+    if item.get("section") not in ("listening", "speaking"):
+        return None
+    if item.get("section") == "speaking" and item.get("kind") != "repeat":
+        return None                       # read_aloud có chữ trên màn hình, không cần tiếng
+    return item.get("transcript_en") or item.get("expected_text") or None
+
+
+def audio_name(item: dict) -> str | None:
+    """Tên file audio = mã câu + hash NỘI DUNG.
+
+    Trước đây tên file chỉ là mã câu, mà bộ sinh audio bỏ qua file đã tồn tại. Nên khi sửa
+    lời một câu nghe nhưng giữ nguyên mã, học viên vẫn nghe câu CŨ trong khi đề hỏi câu MỚI
+    — và không có gì báo. Gắn hash nội dung vào tên khiến chuyện đó không xảy ra được nữa:
+    lời đổi thì tên đổi, file cũ đơn giản là không ai dùng tới.
+    """
+    text = audio_text(item)
+    if not text:
+        return None
+    digest = hashlib.sha1(text.encode("utf-8")).hexdigest()[:8]
+    return f"{item['id']}-{digest}.wav"
 
 
 def load_form(form: str = "A") -> dict:

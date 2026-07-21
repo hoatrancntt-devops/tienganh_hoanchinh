@@ -15,6 +15,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.config import get_settings
 from app.models.content import Activity, Item, Lesson, MediaAsset
 from app.models.enums import ActivityKind
+from app.services import placement_service
 
 log = logging.getLogger(__name__)
 settings = get_settings()
@@ -86,12 +87,12 @@ async def generate_all(db: AsyncSession, force: bool = False) -> dict:
         for path in sorted(PLACEMENT_DIR.glob("form_*.yaml")):
             form = yaml.safe_load(path.read_text(encoding="utf-8"))
             for spec in form["items"]:
-                text = spec.get("transcript_en") or spec.get("expected_text")
-                if not text or spec["section"] not in ("listening", "speaking"):
+                # Tên file gắn hash nội dung — xem placement_service.audio_name.
+                text = placement_service.audio_text(spec)
+                name = placement_service.audio_name(spec)
+                if not text or not name:
                     continue
-                if spec["section"] == "speaking" and spec["kind"] != "repeat":
-                    continue  # read_aloud có chữ trên màn hình, không cần tiếng
-                dest = media / "placement" / f"{spec['id']}.wav"
+                dest = media / "placement" / name
                 if dest.exists() and not force:
                     skipped += 1
                     continue
