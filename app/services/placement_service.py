@@ -1,4 +1,8 @@
-"""Placement test (PART I). Chấm 100% bằng luật — chi phí AI bằng 0."""
+"""Placement test (PART I). Chấm 100% bằng luật — chi phí AI bằng 0.
+
+Luật chấm nằm ở `placement_scoring` (thuần, test được). File này giữ phần I/O:
+nạp form, ghi DB, mở khoá bài vào.
+"""
 import logging
 import uuid
 from pathlib import Path
@@ -8,10 +12,11 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.base import utcnow
-from app.models.assessment import CEFR_ORDER, PlacementResponse, PlacementTest
+from app.models.assessment import PlacementResponse, PlacementTest
 from app.models.content import Lesson
 from app.models.enums import Cefr
 from app.models.user import User
+from app.services import placement_scoring as scoring
 from app.services import prerequisite_service as prereq
 
 log = logging.getLogger(__name__)
@@ -19,10 +24,18 @@ log = logging.getLogger(__name__)
 FORMS_DIR = Path("seeds/placement")
 _forms_cache: dict[str, dict] = {}
 
-WEIGHTS = {"knowledge": 0.30, "listening": 0.30, "speaking": 0.40}  # nói nặng nhất: đó là mục tiêu
-BANDS = [(35, Cefr.PRE_A1), (65, Cefr.A1), (101, Cefr.A2)]
-ENTRY_LESSON = {Cefr.PRE_A1: "F01", Cefr.A1: "F05", Cefr.A2: "D01"}
-REPLAY_PENALTY = 0.15  # nghe 3 lần mới hiểu thì chưa thực sự nghe hiểu
+# Tái xuất để route và test không phải biết module nào giữ hằng số.
+ENTRY_LESSON = scoring.ENTRY_LESSON
+BANDS = scoring.BANDS
+WEIGHTS = scoring.WEIGHTS
+
+MCQ_SECTIONS = ("vocab", "grammar", "listening")
+BAND_VI = {
+    Cefr.PRE_A1: "chưa có nền (Pre-A1)",
+    Cefr.A1: "sơ cấp (A1)",
+    Cefr.A2: "sơ trung cấp (A2)",
+    Cefr.B1: "trung cấp (B1)",
+}
 
 
 def load_form(form: str = "A") -> dict:
@@ -44,35 +57,12 @@ async def start_test(db: AsyncSession, user: User, form: str = "A") -> Placement
     return test
 
 
-def _score_mcq(item: dict, choice_index: int | None, replay_count: int) -> tuple[bool, float]:
-    correct = choice_index is not None and choice_index == item["answer"]
-    if not correct:
-        return False, 0.0
-    weight = item.get("difficulty", 2)
-    score = 100.0 * (0.5 + 0.5 * weight / 5)          # câu khó đúng đáng giá hơn câu dễ đúng
-    score *= max(0.0, 1 - REPLAY_PENALTY * replay_count)
-    return True, round(min(100.0, score), 2)
-
-
-def _score_speaking(item: dict, speech: dict | None) -> dict:
-    """speech: kết quả từ speech_service (pronunciation/fluency/communication)."""
-    if not speech:
-        return {"pronunciation": 0.0, "fluency": 0.0, "communication": 0.0, "score": 0.0,
-                "silent": True}
-    kind = item["kind"]
-    pron = float(speech.get("pronunciation", 0))
-    flu = float(speech.get("fluency", 0))
-    comm = float(speech.get("communication", 0))
-    if kind == "read_aloud":
-        score = pron
-    elif kind == "repeat":
-        # đo trí nhớ làm việc thính giác: người mất gốc rơi rụng nửa cuối câu
-        score = 0.6 * pron + 0.4 * comm
-    else:  # short_answer
-        score = 0.5 * comm + 0.3 * flu + 0.2 * pron
-    silent = not str(speech.get("transcript", "")).strip()
-    return {"pronunciation": pron, "fluency": flu, "communication": comm,
-            "score": round(score, 2), "silent": silent}
+def _section_sizes(form: dict) -> dict[str, int]:
+    """Số câu mỗi section CÓ TRONG FORM — dùng làm mẫu số, không dùng số câu đã trả lời."""
+    sizes: dict[str, int] = {}
+    for item in form["items"]:
+        sizes[item["section"]] = sizes.get(item["section"], 0) + 1
+    return sizes
 
 
 async def submit(
@@ -81,86 +71,69 @@ async def submit(
     """responses: list dict theo ResponseIn. speech_results: {item_ref: {...}} từ speech service."""
     form = load_form(test.form)
     items = {i["id"]: i for i in form["items"]}
+    sizes = _section_sizes(form)
     speech_results = speech_results or {}
 
-    buckets: dict[str, list[float]] = {"vocab": [], "grammar": [], "listening": [], "speaking": []}
+    earned: dict[str, list[float]] = {s: [] for s in MCQ_SECTIONS}
+    speak_scores: list[float] = []
     speak_detail: dict[str, list[float]] = {"pronunciation": [], "fluency": [], "communication": []}
     self_answers: list[int] = []
+    latencies: list[int] = []
     silent_count = 0
+    speech_seen = 0
 
     for resp in responses:
         item = items.get(resp["item_ref"])
         if not item:
             continue
+        section = resp["section"]
         row = PlacementResponse(
-            test_id=test.id, item_ref=resp["item_ref"], section=resp["section"],
+            test_id=test.id, item_ref=resp["item_ref"], section=section,
             kind=resp["kind"], choice_index=resp.get("choice_index"),
             audio_ref=resp.get("audio_ref"), latency_ms=resp.get("latency_ms", 0),
             replay_count=resp.get("replay_count", 0),
         )
-        if resp["section"] == "self":
-            self_answers.append(resp.get("choice_index") or 0)
+        if section == "self":
+            choice = resp.get("choice_index")
+            if choice is not None:          # bỏ trống KHÁC với "Không bao giờ"
+                self_answers.append(choice)
             row.score = 0.0
-        elif resp["section"] == "speaking":
-            detail = _score_speaking(item, speech_results.get(resp["item_ref"]))
+        elif section == "speaking":
+            detail = scoring.score_speaking(item["kind"], speech_results.get(resp["item_ref"]))
             row.score = detail["score"]
             row.is_correct = detail["score"] >= 50
             row.detail = detail
-            buckets["speaking"].append(detail["score"])
-            for key in speak_detail:
-                speak_detail[key].append(detail[key])
-            if detail["silent"]:
-                silent_count += 1
-        else:
-            ok, score = _score_mcq(item, resp.get("choice_index"), resp.get("replay_count", 0))
-            row.is_correct, row.score = ok, score
-            buckets[resp["section"]].append(score)
+            if not detail["no_data"]:
+                speech_seen += 1
+                speak_scores.append(detail["score"])
+                for key in speak_detail:
+                    speak_detail[key].append(detail[key])
+                if detail["silent"]:
+                    silent_count += 1
+        elif section in earned:
+            choice = resp.get("choice_index")
+            correct = choice is not None and choice == item["answer"]
+            score = scoring.score_mcq(
+                difficulty=item.get("difficulty", 2), correct=correct,
+                replay_count=resp.get("replay_count", 0), is_listening=section == "listening",
+            )
+            row.is_correct, row.score = correct, score
+            earned[section].append(score)
+            latencies.append(resp.get("latency_ms", 0))
         db.add(row)
 
-    def avg(vals: list[float]) -> float:
-        return round(sum(vals) / len(vals), 2) if vals else 0.0
+    knowledge_total = sizes.get("vocab", 0) + sizes.get("grammar", 0)
+    knowledge = scoring.section_average(earned["vocab"] + earned["grammar"], knowledge_total)
+    listening = scoring.section_average(earned["listening"], sizes.get("listening", 0))
+    speech_available = speech_seen > 0
+    speaking = scoring.section_average(speak_scores, speech_seen) if speech_available else 0.0
 
-    knowledge = avg(buckets["vocab"] + buckets["grammar"])
-    listening = avg(buckets["listening"])
-    speaking = avg(buckets["speaking"])
-    speech_available = bool(buckets["speaking"])
-
-    if speech_available:
-        overall = (
-            WEIGHTS["knowledge"] * knowledge
-            + WEIGHTS["listening"] * listening
-            + WEIGHTS["speaking"] * speaking
-        )
-    else:
-        overall = 0.5 * knowledge + 0.5 * listening
-
-    band = next(cefr for limit, cefr in BANDS if overall < limit)
-    confidence = "high"
-    notes: list[str] = []
-
-    # Sàn im lặng: >=3/5 lượt nói rỗng -> Pre-A1, không tính trung bình.
-    if silent_count >= 3:
-        band, confidence = Cefr.PRE_A1, "low"
-        notes.append("Phần nói gần như không có dữ liệu.")
-    else:
-        # Speaking có quyền phủ quyết: đọc hiểu tốt nhưng câm thì bắt đầu ở chỗ tập nói.
-        if speech_available and speaking < 30 and band != Cefr.PRE_A1:
-            band = CEFR_ORDER[max(0, CEFR_ORDER.index(band) - 1)]
-            notes.append("Điểm nói thấp nên lộ trình bắt đầu sớm hơn một bậc.")
-        if not speech_available:
-            band = CEFR_ORDER[max(0, CEFR_ORDER.index(band) - 1)]
-            confidence = "low"
-            notes.append("Chưa chấm được phần nói nên hệ thống xếp thận trọng.")
-
-    # Tự đánh giá: KHÔNG cộng điểm. Chỉ phá thế cân bằng + đặt confidence.
-    self_avg = sum(self_answers) / len(self_answers) if self_answers else 3.0
-    near_edge = any(abs(overall - limit) <= 3 for limit, _ in BANDS[:-1])
-    if near_edge and CEFR_ORDER.index(band) > 0:
-        band = CEFR_ORDER[CEFR_ORDER.index(band) - 1]  # sát biên -> nghiêng về phía thấp hơn
-        notes.append("Điểm nằm sát ranh giới nên xếp về mức thấp hơn cho chắc.")
-    measured_level = CEFR_ORDER.index(band) + 1
-    if abs(self_avg - measured_level * 1.5) >= 2 and confidence == "high":
-        confidence = "low"
+    verdict = scoring.decide(
+        knowledge=knowledge, listening=listening, speaking=speaking,
+        speech_available=speech_available, silent_count=silent_count,
+        slow_ratio=scoring.slow_answer_ratio(latencies),
+    )
+    band, confidence, overall = verdict.band, verdict.confidence, verdict.overall
 
     strengths, gaps = [], []
     if listening >= 60:
@@ -169,25 +142,24 @@ async def submit(
         strengths.append("Phát âm rõ, người nghe hiểu được")
     if knowledge >= 60:
         strengths.append("Vốn từ nền đủ dùng")
-    if speaking < 45:
+    if speech_available and speaking < 45:
         gaps.append("Nói còn ngập ngừng và thiếu âm cuối")
     if listening < 45:
         gaps.append("Chưa bắt kịp khi người nói nói ở tốc độ thật")
     if knowledge < 45:
         gaps.append("Thiếu vốn từ công sở cơ bản")
 
-    band_vi = {Cefr.PRE_A1: "chưa có nền (Pre-A1)", Cefr.A1: "sơ cấp (A1)",
-               Cefr.A2: "sơ trung cấp (A2)"}[band]
+    self_avg = sum(self_answers) / len(self_answers) if self_answers else None
     explanation = (
-        f"Bạn đang ở mức {band_vi}. Điểm nghe {listening:.0f}, nói {speaking:.0f}, "
+        f"Bạn đang ở mức {BAND_VI[band]}. Điểm nghe {listening:.0f}, nói {speaking:.0f}, "
         f"từ vựng và ngữ pháp {knowledge:.0f} trên thang 100. "
     )
-    if self_answers and self_avg <= 2 and speaking >= 55:
+    if self_avg is not None and self_avg <= 2 and speaking >= 55:
         explanation += (
             "Bạn tự nhận là chưa dám nói, nhưng phần phát âm của bạn khá ổn — "
             "vấn đề là sự tự tin, không phải năng lực. "
         )
-    explanation += " ".join(notes)
+    explanation += " ".join(verdict.notes)
     explanation += (
         " Lộ trình sẽ bắt đầu từ chỗ hợp với bạn nhất, và bạn có thể thi vượt "
         "bất cứ bài nào nếu thấy quá dễ."
@@ -202,7 +174,7 @@ async def submit(
     test.result_cefr = band
     test.confidence = confidence
     test.result_scores = {"knowledge": knowledge, "listening": listening,
-                          "speaking": speaking, "overall": round(overall, 2)}
+                          "speaking": speaking, "overall": overall}
     test.explanation_vi = explanation
     test.entry_lesson_id = entry.id if entry else None
     test.can_challenge = confidence == "low"
@@ -219,13 +191,16 @@ async def submit(
                 user.profile.onboarded_at = utcnow()
                 await db.commit()
 
-    weeks = {Cefr.PRE_A1: 14, Cefr.A1: 10, Cefr.A2: 7}[band]
+    def avg(vals: list[float]) -> float:
+        return round(sum(vals) / len(vals), 2) if vals else 0.0
+
     return {
         "test_id": test.id, "result_cefr": band, "confidence": confidence,
         "scores": test.result_scores,
         "speaking_detail": {k: avg(v) for k, v in speak_detail.items()},
         "entry_lesson_code": entry_code, "strengths_vi": strengths[:2], "gaps_vi": gaps[:2],
-        "explanation_vi": explanation, "estimated_weeks_to_goal": weeks,
+        "explanation_vi": explanation,
+        "estimated_weeks_to_goal": scoring.WEEKS_TO_GOAL[band],
         "can_challenge": test.can_challenge,
     }
 

@@ -176,6 +176,27 @@ def check_unlock_reachable(lessons: list[LessonYAML]) -> list[str]:
     return errors
 
 
+def check_level_order(lessons: list[LessonYAML]) -> list[str]:
+    """Bài tiên quyết không được nằm ở bậc cao hơn bài phụ thuộc.
+
+    `cefr_target` là trục dọc của lộ trình (xem docs/khung-level.md). Một cạnh đi từ bậc
+    cao xuống bậc thấp nghĩa là học viên phải thạo nội dung khó hơn để mở nội dung dễ hơn —
+    lỗi này không làm gãy gì, nó chỉ lặng lẽ dựng một bức tường trước bài lẽ ra học sớm.
+    """
+    rank = {"pre_a1": 1, "a1": 2, "a2": 3, "b1": 4}
+    level = {lesson.id: rank[lesson.cefr_target] for lesson in lessons}
+    errors = []
+    for lesson in lessons:
+        for pre in lesson.prerequisites:
+            src = level.get(pre.lesson)
+            if src is not None and src > level[lesson.id]:
+                errors.append(
+                    f"{lesson.id} ({lesson.cefr_target}): tiên quyết '{pre.lesson}' ở bậc cao hơn "
+                    f"— bài dễ bị khoá sau bài khó."
+                )
+    return errors
+
+
 def main() -> int:
     lessons, errors = load_all()
     if lessons:
@@ -184,6 +205,7 @@ def main() -> int:
         errors += check_units(lessons)
         errors += check_phoneme_tags(lessons)
         errors += check_unlock_reachable(lessons)
+        errors += check_level_order(lessons)
 
     if errors:
         print(f"\n[X] {len(errors)} loi noi dung:\n")

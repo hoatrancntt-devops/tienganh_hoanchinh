@@ -14,6 +14,9 @@ is_checkpoint: true
 objective_vi: "Chứng minh bạn nghe ra và nói được các âm nền ở tốc độ thật, không tra cứu."
 objective_observable: "Đạt ≥75 điểm tổng hợp trên toàn bộ bài kiểm tra."
 
+# Chốt đúng phần nền của bậc A1: F01-F08. F09 trở đi đã là A2/B1, thuộc bậc cao hơn,
+# nên không nằm sau cổng này — nếu không, bài giao tiếp A1 đầu tiên (D01) bị khoá sau
+# 20 bài, trong đó có cả bài B1.
 prerequisites:
   - {lesson: F01, min_mastery: 78, kind: hard}
   - {lesson: F02, min_mastery: 78, kind: hard}
@@ -23,18 +26,6 @@ prerequisites:
   - {lesson: F06, min_mastery: 78, kind: hard}
   - {lesson: F07, min_mastery: 78, kind: hard}
   - {lesson: F08, min_mastery: 78, kind: hard}
-  - {lesson: F09, min_mastery: 78, kind: hard}
-  - {lesson: F10, min_mastery: 78, kind: hard}
-  - {lesson: F11, min_mastery: 78, kind: hard}
-  - {lesson: F12, min_mastery: 78, kind: hard}
-  - {lesson: F13, min_mastery: 78, kind: hard}
-  - {lesson: F14, min_mastery: 78, kind: hard}
-  - {lesson: F15, min_mastery: 78, kind: hard}
-  - {lesson: F16, min_mastery: 78, kind: hard}
-  - {lesson: F17, min_mastery: 78, kind: hard}
-  - {lesson: F18, min_mastery: 78, kind: hard}
-  - {lesson: F19, min_mastery: 78, kind: hard}
-  - {lesson: F20, min_mastery: 78, kind: hard}
 
 listening_snippet:
   id: LS-CPF
