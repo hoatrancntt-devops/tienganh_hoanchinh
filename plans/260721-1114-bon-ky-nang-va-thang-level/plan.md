@@ -1,6 +1,6 @@
 # Bốn kỹ năng và thang Level
 
-**Trạng thái:** Phase 01–06 xong · Phase 07, 08 chưa làm
+**Trạng thái:** Phase 01–06, 08 xong · Phase 07 xong một phần (L1: 4→8 bài, mục tiêu 12)
 **Ngày:** 2026-07-21 · Cập nhật: 2026-07-21
 
 ## Đã xong (đã chạy trên https://eng.hoatranlab.io.vn)
@@ -13,8 +13,8 @@
 | 04 Chấm Viết bằng luật | ✅ mở rộng `writing_service` sẵn có, 6 dạng bài |
 | 05 Đề xếp lớp 4 kỹ năng | ✅ 26 câu, 18 phút, 4 trục |
 | 06 Chuyển đổi 62 bài | ✅ **62/62 bài** có đủ bốn kỹ năng, cả ba đợt xong |
-| 07 Dày nền mất gốc | ⬜ chưa |
-| 08 Kiểm tra kết thúc level | ⬜ chưa |
+| 07 Dày nền mất gốc | 🟡 **L1 4→8 bài** (S01–S04: chữ cái, số, giờ, câu cứu hộ). Mục tiêu 12; L2 chưa dày thêm |
+| 08 Kiểm tra kết thúc level | ✅ Ngưỡng riêng từng kỹ năng ở 5 checkpoint + lộ trình động theo nhịp học thật |
 
 Ngoài kế hoạch, ba lỗi hạ tầng phát hiện và đã sửa: migration chưa từng được áp lên DB
 (`env.py` thiếu `begin_transaction`), CI chưa từng xanh (`pip install -e .` hỏng), repo

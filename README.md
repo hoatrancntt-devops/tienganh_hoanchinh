@@ -120,9 +120,9 @@ make validate     # cổng chất lượng, chạy được ngoài Docker
 
 Cổng này chặn publish nếu: thiếu `vietnamese_explanation`, có dưới 2 `common_mistakes`, `mastery_weights` không cộng đúng 1.0, DAG có chu trình, bài phase nói có dưới 4 drill, hoặc `est_minutes > 12`.
 
-**Hiện có 62 bài** trải bốn level Pre-A1 → B1. Thang level, tuyên bố đầu ra từng kỹ năng và bảng ánh xạ bài ↔ level nằm ở [`docs/khung-level.md`](docs/khung-level.md).
+**Hiện có 66 bài** trải bốn level Pre-A1 → B1. Thang level, tuyên bố đầu ra từng kỹ năng và bảng ánh xạ bài ↔ level nằm ở [`docs/khung-level.md`](docs/khung-level.md).
 
-**Cả 62 bài đều có đủ bốn kỹ năng** — nghe, nói, đọc, viết. Bài đọc là văn bản liền không sinh audio, câu hỏi bằng tiếng Anh; bài viết chấm bằng luật ngay tại máy chủ, không cần API key.
+**Cả 66 bài đều có đủ bốn kỹ năng** — nghe, nói, đọc, viết. Bài đọc là văn bản liền không sinh audio, câu hỏi bằng tiếng Anh; bài viết chấm bằng luật ngay tại máy chủ, không cần API key.
 
 Toàn bộ nội dung **tự biên soạn 100%**. CEFR / British Council / BBC / Cambridge / VOA chỉ dùng để định hướng — không sao chép câu, hội thoại hay bài tập nào.
 
@@ -135,7 +135,7 @@ make logs                        # xem log
 make backup                      # dump DB + media vào ./backups, giữ 7 ngày
 make restore f=backups/db-....gz # phục hồi
 make psql                        # mở psql
-make test                        # 103 test (SQLite in-memory, không cần Docker)
+make test                        # 145 test (SQLite in-memory, không cần Docker)
 make dev                         # hot reload
 make clean                       # dọn file rác build/test (không đụng dữ liệu)
 ```
