@@ -117,12 +117,24 @@ async def update_mastery(db: AsyncSession, user_id: uuid.UUID, lesson_id: uuid.U
             prog.state = LessonState.IN_PROGRESS
         await db.commit()
 
+    # Kỹ năng lệch: điểm tổng đạt nhưng một kỹ năng còn dưới ngưỡng riêng của bài.
+    yeu = prereq.skills_below_threshold(scores, lesson)
+    canh_bao = ""
+    if yeu:
+        ten = {"speak": "Nói", "listen": "Nghe", "read": "Đọc", "write": "Viết", "quiz": "Từ vựng"}
+        chi_tiet = ", ".join(f"{ten.get(k, k)} {d:.0f}/{n}" for k, d, n in yeu)
+        canh_bao = (
+            f"Bạn qua bài này, nhưng còn lệch: {chi_tiet}. "
+            f"Nên quay lại luyện thêm phần {ten.get(yeu[0][0], yeu[0][0])} trước khi đi tiếp."
+        )
+
     return {
         "mastery_raw": raw,
         "state": prog.state,
         "threshold": lesson.mastery_threshold,
         "speaking_attempts": speaking_attempts,
         "unlocked_codes": unlocked,
+        "skill_warning_vi": canh_bao,
     }
 
 

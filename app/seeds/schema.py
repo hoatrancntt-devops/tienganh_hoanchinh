@@ -210,6 +210,20 @@ class Unlock(BaseModel):
     }
     min_speaking_attempts: int = Field(default=4, ge=0)
     challenge_threshold: int = Field(default=85, ge=50, le=100)
+    # Ngưỡng tối thiểu cho từng kỹ năng, dùng ở checkpoint. Điểm tổng có thể che một kỹ năng
+    # yếu: đọc 90 kéo nói 40 lên vẫn qua, và tuyên bố đầu ra của level thành lời hứa suông.
+    min_per_skill: dict[str, int] = {}
+
+    @field_validator("min_per_skill")
+    @classmethod
+    def per_skill_hop_le(cls, v: dict[str, int]) -> dict[str, int]:
+        la = set(v) - MASTERY_KINDS
+        if la:
+            raise ValueError(f"min_per_skill có khoá lạ {sorted(la)}")
+        for k, n in v.items():
+            if not 0 <= n <= 100:
+                raise ValueError(f"min_per_skill['{k}'] = {n}, phải trong 0..100")
+        return v
 
     @field_validator("mastery_weights")
     @classmethod

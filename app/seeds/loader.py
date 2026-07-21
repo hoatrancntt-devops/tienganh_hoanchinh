@@ -121,6 +121,7 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
         mastery_weights=spec.unlock_condition.mastery_weights,
         min_speaking_attempts=spec.unlock_condition.min_speaking_attempts,
         challenge_threshold=spec.unlock_condition.challenge_threshold,
+        min_per_skill=spec.unlock_condition.min_per_skill,
         recommended_next=spec.recommended_next,
     )
     if lesson is None:

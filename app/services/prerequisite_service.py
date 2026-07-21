@@ -51,6 +51,24 @@ def compute_mastery_raw(scores_by_kind: dict[str, float], lesson: Lesson) -> flo
     return round(min(100.0, max(0.0, score)), 2)
 
 
+def skills_below_threshold(scores_by_kind: dict[str, float], lesson: Lesson) -> list[tuple[str, float, int]]:
+    """Các kỹ năng chưa đạt ngưỡng riêng của bài. Trả (kỹ năng, điểm đang có, ngưỡng cần).
+
+    Điểm tổng có thể che một kỹ năng yếu: đọc 90 kéo nói 40 lên vẫn qua ngưỡng chung, và
+    tuyên bố đầu ra của level thành lời hứa suông. Chỉ checkpoint mới khai `min_per_skill`.
+
+    CẢNH BÁO chứ không chặn: với người mất gốc, thêm một cổng chặn cứng là thêm một chỗ
+    bỏ cuộc. Học viên vẫn qua bài, nhưng được chỉ đúng kỹ năng cần quay lại.
+    """
+    can = lesson.min_per_skill or {}
+    thieu = []
+    for ky_nang, nguong in can.items():
+        diem = scores_by_kind.get(ky_nang)
+        if diem is not None and diem < nguong:
+            thieu.append((ky_nang, round(diem, 1), nguong))
+    return sorted(thieu, key=lambda x: x[1])
+
+
 def apply_speaking_gate(raw: float, speaking_attempts: int, lesson: Lesson) -> float:
     """Chốt chặn chống lách: quiz giỏi + bỏ phần nói không được vượt ngưỡng."""
     if lesson.min_speaking_attempts > 0 and speaking_attempts < lesson.min_speaking_attempts:

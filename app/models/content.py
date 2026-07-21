@@ -79,6 +79,8 @@ class Lesson(Base, UUIDMixin, TimestampMixin):
     )
     min_speaking_attempts: Mapped[int] = mapped_column(sa.Integer, default=4)
     challenge_threshold: Mapped[int] = mapped_column(sa.Integer, default=85)
+    # Ngưỡng riêng từng kỹ năng ở checkpoint — xem chú thích Unlock.min_per_skill.
+    min_per_skill: Mapped[dict] = mapped_column(sa.JSON, default=dict)
     recommended_next: Mapped[dict] = mapped_column(sa.JSON, default=dict)
 
     unit: Mapped[Unit] = relationship(back_populates="lessons")

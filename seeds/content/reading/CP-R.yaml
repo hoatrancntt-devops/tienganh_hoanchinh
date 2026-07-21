@@ -192,6 +192,7 @@ mini_quiz:
 unlock_condition:
   mastery_threshold: 70
   mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
+  min_per_skill: {read: 65, write: 60, listen: 50}
   min_speaking_attempts: 0
   challenge_threshold: 90
 

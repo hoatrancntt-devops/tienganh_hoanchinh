@@ -136,3 +136,33 @@ def test_bai_doc_co_ban_dich_tieng_viet(co_doc):
     """Bản dịch ẩn tới khi trả lời xong, nhưng phải có — không ai đoán mò được cả đoạn."""
     for x in co_doc:
         assert x.reading_passage.text_vi.strip(), f"{x.id}: thiếu text_vi"
+
+
+# --- Ngưỡng riêng từng kỹ năng ở checkpoint ---
+
+def test_moi_checkpoint_deu_co_nguong_rieng_tung_ky_nang(lessons):
+    """Điểm tổng che được một kỹ năng yếu: đọc 90 kéo nói 40 lên vẫn qua."""
+    thieu = [x.id for x in lessons if x.is_checkpoint and not x.unlock_condition.min_per_skill]
+    assert not thieu, f"checkpoint chưa đặt min_per_skill: {thieu}"
+
+
+def test_nguong_rieng_chi_dat_cho_ky_nang_bai_do_thuc_su_do(lessons):
+    """Đặt ngưỡng cho kỹ năng bài không đo thì học viên bị chặn bởi một con số không có thật."""
+    sai = []
+    for x in lessons:
+        w = x.unlock_condition.mastery_weights
+        for ky_nang in x.unlock_condition.min_per_skill:
+            if ky_nang not in w:
+                sai.append(f"{x.id}: đặt ngưỡng '{ky_nang}' nhưng mastery_weights không đo nó")
+    assert not sai, "\n".join(sai)
+
+
+def test_nguong_rieng_khong_cao_hon_nguong_tong(lessons):
+    """Ngưỡng riêng cao hơn ngưỡng tổng thì nó thành cổng chặn cứng, không còn là cảnh báo."""
+    sai = []
+    for x in lessons:
+        tong = x.unlock_condition.mastery_threshold
+        for ky_nang, n in x.unlock_condition.min_per_skill.items():
+            if n > tong:
+                sai.append(f"{x.id}: ngưỡng '{ky_nang}'={n} > ngưỡng tổng {tong}")
+    assert not sai, "\n".join(sai)

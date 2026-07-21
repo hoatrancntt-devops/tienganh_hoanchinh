@@ -292,6 +292,13 @@ const Player = (() => {
       const lbl = document.getElementById('mval'); if (lbl) lbl.textContent = Math.round(d.mastery_raw) + '%';
     }
     if (d.unlocked_codes && d.unlocked_codes.length) toast(`Đã mở ${d.unlocked_codes.length} bài mới`, 'ok');
+    // Lệch kỹ năng ở checkpoint: qua bài nhưng một kỹ năng còn dưới ngưỡng riêng.
+    // Cảnh báo chứ không chặn — chặn cứng là thêm một chỗ bỏ cuộc cho người mất gốc.
+    if (d.skill_warning_vi) {
+      const box = document.getElementById('fb') || document.getElementById('result');
+      if (box) box.insertAdjacentHTML('beforeend',
+        `<div class="alert alert-warn" style="margin-top:.7rem">${esc(d.skill_warning_vi)}</div>`);
+    }
   }
   function next() { if (idx < flat.length - 1) { idx++; render(); window.scrollTo(0, 0); } else finish(); }
   async function finish() {

@@ -163,5 +163,6 @@ memory_trick_vi: >
 unlock_condition:
   mastery_threshold: 75
   mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
+  min_per_skill: {speak: 65, listen: 60, read: 55, write: 55}
   min_speaking_attempts: 6
   challenge_threshold: 90
