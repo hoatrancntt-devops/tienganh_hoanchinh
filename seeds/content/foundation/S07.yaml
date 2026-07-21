@@ -1,0 +1,229 @@
+schema_version: 1
+id: S07
+slug: bon-cum-lich-su
+unit: U-S1
+title_vi: "Bốn cụm lịch sự — please, thank you, sorry, excuse me"
+title_en: "Four polite phrases"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 6
+est_minutes: 14
+
+objective_vi: "Dùng đúng bốn cụm lịch sự cơ bản, đặc biệt phân biệt “sorry” với “excuse me”."
+objective_observable: "Chọn đúng cụm cho 4/5 tình huống, trong đó có ít nhất hai ca sorry / excuse me."
+
+prerequisites:
+  - {lesson: S06, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "please"
+    ipa: "/pliːz/"
+    meaning_vi: "làm ơn (đặt cuối câu nhờ vả)"
+    chunk: "Could you check this, please?"
+    tags: [social]
+  - term: "thank you"
+    ipa: "/θæŋk juː/"
+    meaning_vi: "cảm ơn"
+    chunk: "Thank you for your help."
+    tags: [social]
+  - term: "sorry"
+    ipa: "/ˈsɑri/"
+    meaning_vi: "xin lỗi (khi đã làm điều gì đó)"
+    chunk: "Sorry, that was my mistake."
+    tags: [social]
+  - term: "excuse me"
+    ipa: "/ɪkˈskjuːz miː/"
+    meaning_vi: "xin phép (trước khi làm phiền ai)"
+    chunk: "Excuse me, could I ask something?"
+    tags: [social]
+  - term: "you're welcome"
+    ipa: "/jʊr ˈwɛlkəm/"
+    meaning_vi: "không có gì (đáp lại cảm ơn)"
+    chunk: "You're welcome, any time."
+    tags: [social]
+  - term: "my fault"
+    ipa: "/maɪ fɔːlt/"
+    meaning_vi: "lỗi của tôi"
+    chunk: "Sorry, my fault."
+    tags: [social]
+
+sentence_patterns:
+  - pattern: "Could you {viec}, please?"
+    meaning_vi: "Anh/chị {viec} giúp được không ạ?"
+    slots:
+      viec: ["check this", "send it again", "wait a moment"]
+  - pattern: "Excuse me, {cau_hoi}?"
+    meaning_vi: "Xin lỗi cho hỏi, {cau_hoi}?"
+    slots:
+      cau_hoi: ["do you have a minute", "where is the meeting room", "is this seat free"]
+
+dialogue:
+  context_vi: >
+    Bốn tình huống trong một buổi sáng. Để ý hai câu giống nhau trong tiếng Việt —
+    “xin lỗi” — nhưng tiếng Anh dùng hai từ khác hẳn.
+  turns:
+    - {speaker: Nam, en: "Excuse me, do you have a minute?", vi: "Xin lỗi, anh có rảnh một phút không?"}
+    - {speaker: David, en: "Sure, what's up?", vi: "Được, có chuyện gì thế?"}
+    - {speaker: Nam, en: "Could you check this file, please?", vi: "Anh kiểm tra giúp file này được không ạ?"}
+    - {speaker: David, en: "No problem. ...Ah, the numbers are wrong here.", vi: "Không vấn đề gì. ...À, mấy con số ở đây sai rồi."}
+    - {speaker: Nam, en: "Sorry, my fault. I'll fix it now. Thank you.", vi: "Xin lỗi anh, lỗi của em. Em sửa ngay. Cảm ơn anh."}
+    - {speaker: David, en: "You're welcome.", vi: "Không có gì."}
+
+reading_passage:
+  id: RP-S07
+  kind: chat
+  context_vi: >
+    Cùng một người, hai tin nhắn. Đọc và tìm xem chỗ nào dùng “sorry”, chỗ nào dùng
+    “excuse me”, và vì sao lại khác nhau.
+  text_en: |
+    09:10  Nam: Excuse me, is the meeting room free at ten?
+    09:11  Linh: Yes, it is.
+
+    11:40  Nam: Sorry, I sent you the wrong file. My fault.
+    11:41  Nam: Here is the right one. Thank you for waiting.
+    11:42  Linh: No problem. You're welcome.
+  text_vi: |
+    09:10  Nam: Xin lỗi cho hỏi, mười giờ phòng họp có trống không ạ?
+    09:11  Linh: Có, trống.
+
+    11:40  Nam: Xin lỗi chị, em gửi nhầm file. Lỗi của em.
+    11:41  Nam: File đúng đây ạ. Cảm ơn chị đã chờ.
+    11:42  Linh: Không sao. Không có gì.
+  questions:
+    - q_en: "Why does Nam say \"Sorry\" at 11:40?"
+      choices: ["He sent the wrong file", "He wants to ask a question", "He is leaving"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "In this chat, \"Excuse me\" is used to:"
+      choices: ["start a question politely", "apologise for a mistake", "say thank you"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-S07
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống. Ô đầu: bạn sắp làm phiền ai đó. Ô sau: bạn vừa làm sai."
+  prompt_en: "___ ___, do you have a minute? ... ___, my fault."
+  blanks:
+    - ["excuse"]
+    - ["me"]
+    - ["sorry"]
+  hint_vi: "Trước khi làm phiền dùng “Excuse me”. Sau khi làm sai dùng “Sorry”."
+  sample_en: "Excuse me, do you have a minute? ... Sorry, my fault."
+
+listening_snippet:
+  id: LS-S07
+  speed: 0.85
+  voice: en_US_female
+  context_vi: >
+    Một đồng nghiệp đi ngang bàn bạn. Nghe xem cô ấy đang xin phép hay đang xin lỗi.
+  transcript_en: "Excuse me, could I borrow your charger, please? Thank you so much."
+  transcript_vi: "Xin lỗi, tôi mượn sạc của bạn được không? Cảm ơn bạn nhiều."
+  questions:
+    - q_vi: "Người nói muốn gì?"
+      choices: ["Mượn cục sạc", "Xin lỗi vì làm hỏng đồ", "Trả lại đồ"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Cô ấy mở đầu bằng cụm nào?"
+      choices: ["Excuse me", "Sorry", "Thank you"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Excuse me, do you have a minute?"
+    prompt_vi: "Câu mở đầu khi làm phiền ai. Đọc to — “excuse” có cụm /skj/ khá khó."
+    ipa: "/ɪkˈskjuːz miː duː juː hæv ə ˈmɪnɪt/"
+    focus_phonemes: [k, s, j, z]
+  - kind: read_aloud
+    expected_text: "Could you check this, please?"
+    prompt_vi: "Nhờ vả lịch sự. “Please” đặt cuối câu, không chen giữa."
+    ipa: "/kʊd juː tʃɛk ðɪs pliːz/"
+    focus_phonemes: [k, tʃ, p, l, z]
+  - kind: repeat
+    expected_text: "Sorry, my fault. I'll fix it now."
+    prompt_vi: "Nghe rồi nhắc lại. Nhận lỗi ngắn gọn rồi nói ngay mình sẽ làm gì."
+    ipa: "/ˈsɑri maɪ fɔːlt aɪl fɪks ɪt naʊ/"
+    focus_phonemes: [s, f, l, t]
+  - kind: repeat
+    expected_text: "Thank you for your help. You're welcome."
+    prompt_vi: "Nghe rồi nhắc lại cả cặp cảm ơn và đáp lại."
+    ipa: "/θæŋk juː fɔːr jʊr hɛlp jʊr ˈwɛlkəm/"
+    focus_phonemes: [θ, ŋ, k, w]
+  - kind: respond
+    prompt_en: "Thanks for fixing that so quickly!"
+    prompt_vi: "Đáp lại lời cảm ơn."
+    accept_patterns:
+      - "You're welcome"
+      - "No problem"
+      - "Any time"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt dùng “xin lỗi” cho cả hai việc: xin phép hỏi ai đó, và nhận lỗi vì đã làm sai.
+    Tiếng Anh tách hẳn hai từ. Dùng nhầm không gây hiểu lầm lớn, nhưng nó nghe lạ ngay lập
+    tức — giống như nói “cảm ơn” lúc đáng phải nói “xin chào”.
+  how_vi: >
+    Một quy tắc thời gian: **excuse me đứng TRƯỚC** việc bạn sắp làm (hỏi, đi qua, ngắt lời).
+    **Sorry đứng SAU** việc bạn đã làm (gửi nhầm, tới muộn, làm sai). Trước dùng excuse,
+    sau dùng sorry.
+  contrast_vi: "“Excuse me, could I ask?” = tôi sắp làm phiền anh ↔ “Sorry, I was wrong.” = tôi đã làm sai rồi."
+
+common_mistakes:
+  - mistake: "Dùng “Sorry” để bắt chuyện với người lạ"
+    why_vi: "Dịch thẳng “xin lỗi cho hỏi”."
+    fix_vi: "Bắt chuyện dùng “Excuse me”. “Sorry” để dành cho lúc bạn thật sự đã làm gì đó."
+    detect: {}
+  - mistake: "Chen “please” vào giữa câu: “Could you please check this file please?”"
+    why_vi: "Nghĩ càng nhiều “please” càng lịch sự."
+    fix_vi: "Một lần là đủ, và đặt cuối câu: “Could you check this file, please?”"
+    detect: {}
+  - mistake: "Im lặng khi được cảm ơn"
+    why_vi: "Tiếng Việt nhiều khi chỉ cười là đủ, nên không có thói quen đáp lại bằng lời."
+    fix_vi: "Luôn đáp một câu: “You're welcome” hoặc “No problem”. Im lặng nghe như bạn khó chịu."
+    detect: {}
+
+memory_trick_vi: >
+  TRƯỚC dùng excuse, SAU dùng sorry. Excuse me đi trước việc bạn sắp làm; Sorry đi sau việc
+  bạn đã làm. Và khi ai đó cảm ơn, đừng chỉ cười — nói “You're welcome”.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Bạn muốn hỏi đường một người lạ. Mở đầu thế nào?"
+    choices: ["Excuse me, ...", "Sorry, ...", "Please, ..."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Bạn vừa gửi nhầm file. Nói gì?"
+    choices: ["Sorry, my fault.", "Excuse me, my fault.", "Thank you, my fault."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chọn câu tự nhiên nhất"
+    choices: ["Could you check this file, please?", "Could you please check this file please?"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Đồng nghiệp nói “Thank you!”. Bạn đáp gì?"
+    choices: ["You're welcome.", "Yes.", "Sorry."]
+    answer: 0
+    difficulty: 1
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy cụm nào?"
+    audio_text: "Excuse me, could I ask you something?"
+    choices: ["Excuse me", "Sorry"]
+    answer: 0
+    difficulty: 2
+    focus_phonemes: [k, s]
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F01

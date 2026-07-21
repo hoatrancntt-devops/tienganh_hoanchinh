@@ -241,4 +241,4 @@ unlock_condition:
   challenge_threshold: 85
 
 recommended_next:
-  default: F01
+  default: S06

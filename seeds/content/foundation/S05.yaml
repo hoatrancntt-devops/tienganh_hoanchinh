@@ -1,0 +1,224 @@
+schema_version: 1
+id: S05
+slug: gioi-thieu-ban-than-o-cong-so
+unit: U-S1
+title_vi: "Giới thiệu bản thân — ba câu là đủ"
+title_en: "Introducing yourself at work"
+phase: foundation
+topic: core
+cefr_target: a1
+order_index: 7
+est_minutes: 14
+
+objective_vi: "Giới thiệu được tên, bộ phận và công việc của mình trong ba câu, không cần chuẩn bị."
+objective_observable: "Nói ba câu giới thiệu liền mạch, người nghe nhắc lại đúng cả ba thông tin."
+
+prerequisites:
+  - {lesson: S07, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "I work in"
+    ipa: "/aɪ wɜːrk ɪn/"
+    meaning_vi: "tôi làm ở (bộ phận)"
+    chunk: "I work in the IT department."
+    tags: [office]
+  - term: "I take care of"
+    ipa: "/aɪ teɪk kɛr əv/"
+    meaning_vi: "tôi phụ trách"
+    chunk: "I take care of the servers."
+    tags: [office]
+  - term: "I've been here"
+    ipa: "/aɪv bɪn hɪr/"
+    meaning_vi: "tôi ở đây được (bao lâu)"
+    chunk: "I've been here for two months."
+    tags: [office]
+  - term: "based in"
+    ipa: "/beɪst ɪn/"
+    meaning_vi: "làm việc tại (thành phố)"
+    chunk: "I'm based in Hanoi."
+    tags: [office]
+  - term: "report to"
+    ipa: "/rɪˈpɔːrt tuː/"
+    meaning_vi: "báo cáo cho (quản lý)"
+    chunk: "I report to Linh."
+    tags: [office]
+  - term: "nice to meet you"
+    ipa: "/naɪs tuː miːt juː/"
+    meaning_vi: "rất vui được gặp"
+    chunk: "Nice to meet you all."
+    tags: [social]
+
+sentence_patterns:
+  - pattern: "I work in {team}."
+    meaning_vi: "Tôi làm ở {team}."
+    slots:
+      team: ["the IT department", "the support team", "accounting"]
+  - pattern: "I take care of {thing}."
+    meaning_vi: "Tôi phụ trách {thing}."
+    slots:
+      thing: ["the servers", "user tickets", "the network"]
+
+dialogue:
+  context_vi: >
+    Cuộc họp đầu tiên có người nước ngoài. Tới lượt bạn, cả phòng nhìn sang. Ba câu này là
+    thứ bạn cần thuộc trước — không ai chờ bạn nghĩ.
+  turns:
+    - {speaker: David, en: "Let's go around. Could you introduce yourself?", vi: "Mình lần lượt nhé. Bạn giới thiệu được không?"}
+    - {speaker: Nam, en: "Sure. I'm Nam. I work in the IT department.", vi: "Vâng. Tôi là Nam. Tôi làm ở phòng IT."}
+    - {speaker: Nam, en: "I take care of the servers and the backup jobs.", vi: "Tôi phụ trách máy chủ và các job sao lưu."}
+    - {speaker: Nam, en: "I've been here for two months. I report to Linh.", vi: "Tôi ở đây được hai tháng. Tôi báo cáo cho chị Linh."}
+    - {speaker: David, en: "Great, thanks Nam. Nice to meet you.", vi: "Tốt, cảm ơn Nam. Rất vui được gặp bạn."}
+
+reading_passage:
+  id: RP-S05
+  kind: chat
+  context_vi: >
+    Hai người tự giới thiệu trong cùng một buổi. Đọc và xem ai để lại thông tin dùng được.
+  text_en: |
+    Nam: Hi, I'm Nam. I work in IT and I take care of the servers.
+    I've been here for two months and I report to Linh.
+
+    Hoa: Hi. I'm Hoa. I do many things. It's hard to explain.
+    I've been here a while.
+  text_vi: |
+    Nam: Chào, tôi là Nam. Tôi làm bên IT và phụ trách máy chủ.
+    Tôi ở đây được hai tháng và báo cáo cho chị Linh.
+
+    Hoa: Chào. Tôi là Hoa. Tôi làm nhiều thứ. Khó giải thích lắm.
+    Tôi ở đây cũng một thời gian rồi.
+  questions:
+    - q_en: "Who does Nam report to?"
+      choices: ["Linh", "Hoa", "He does not say"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Whose introduction is more useful to a new colleague?"
+      choices: ["Nam's", "Hoa's", "They are the same"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-S05
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống trong câu giới thiệu."
+  prompt_en: "I ___ in the IT department. I ___ care of the servers."
+  blanks:
+    - ["work"]
+    - ["take"]
+  hint_vi: "“Làm ở bộ phận nào” dùng “work in”. “Phụ trách cái gì” dùng “take care of”."
+  sample_en: "I work in the IT department. I take care of the servers."
+
+listening_snippet:
+  id: LS-S05
+  speed: 0.9
+  voice: en_US_female
+  context_vi: >
+    Một đồng nghiệp mới tự giới thiệu. Nghe và bắt lấy ba thông tin: bộ phận, việc phụ trách,
+    và làm ở đây bao lâu.
+  transcript_en: "Hi everyone, I'm Emma. I work in accounting and I take care of the invoices. I've been here for three years."
+  transcript_vi: "Chào mọi người, tôi là Emma. Tôi làm bên kế toán và phụ trách hoá đơn. Tôi ở đây được ba năm."
+  questions:
+    - q_vi: "Emma làm ở bộ phận nào?"
+      choices: ["Kế toán", "IT", "Nhân sự"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Emma làm ở đây bao lâu rồi?"
+      choices: ["Ba năm", "Ba tháng", "Ba tuần"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "I work in the IT department."
+    prompt_vi: "Câu một. Đọc to, giữ âm /k/ cuối trong “work”."
+    ipa: "/aɪ wɜːrk ɪn ðə aɪ tiː dɪˈpɑrtmənt/"
+    focus_phonemes: [w, k, t]
+  - kind: read_aloud
+    expected_text: "I take care of the servers."
+    prompt_vi: "Câu hai. Nói rõ bạn phụ trách gì — đây là thứ người ta nhớ về bạn."
+    ipa: "/aɪ teɪk kɛr əv ðə ˈsɜːrvərz/"
+    focus_phonemes: [k, r, z]
+  - kind: repeat
+    expected_text: "I've been here for two months."
+    prompt_vi: "Nghe rồi nhắc lại. Chú ý cụm phụ âm cuối trong “months”."
+    ipa: "/aɪv bɪn hɪr fɔːr tuː mʌnθs/"
+    focus_phonemes: [n, θ, s]
+  - kind: repeat
+    expected_text: "Nice to meet you all."
+    prompt_vi: "Nghe rồi nhắc lại. Câu kết thúc phần giới thiệu."
+    ipa: "/naɪs tuː miːt juː ɔːl/"
+    focus_phonemes: [n, s, t, l]
+  - kind: respond
+    prompt_en: "Could you introduce yourself?"
+    prompt_vi: "Giới thiệu chính bạn trong ba câu: làm ở đâu, phụ trách gì, được bao lâu."
+    accept_patterns:
+      - "I work in {team}"
+      - "I'm {name} and I work in {team}"
+      - "I take care of {thing}"
+
+vietnamese_explanation:
+  why_vi: >
+    Người Việt hay giới thiệu bằng chức danh — “Tôi là chuyên viên hệ thống” — rồi dừng.
+    Người nước ngoài nghe xong vẫn không biết gọi bạn khi có việc gì. Cái họ cần là: bạn ở
+    bộ phận nào, bạn phụ trách cái gì, và tìm bạn thế nào.
+  how_vi: >
+    Ba câu, thuộc lòng, không đổi: “I work in ___.” — “I take care of ___.” — “I've been here
+    for ___.” Chuẩn bị một lần rồi dùng mãi. Khi bị hỏi bất ngờ, bạn không phải nghĩ câu nào cả.
+  contrast_vi: "Nói chức danh ↔ nói việc bạn phụ trách. Chức danh chỉ có nghĩa với người trong công ty; việc phụ trách thì ai cũng hiểu."
+
+common_mistakes:
+  - mistake: "Nói “I am work in IT”"
+    why_vi: "Trộn hai cấu trúc: “I am” và “I work”. Rất phổ biến ở người mới."
+    fix_vi: "Chọn một: “I work in IT” (thói quen, công việc) hoặc “I am working on X” (đang làm dở việc gì)."
+    detect: {}
+  - mistake: "Nói “I have been here since two months”"
+    why_vi: "Dịch thẳng “được hai tháng rồi”."
+    fix_vi: "Khoảng thời gian dùng “for”: “for two months”. “Since” đi với mốc bắt đầu: “since March”."
+    detect: {}
+  - mistake: "Giới thiệu xong không nói mình phụ trách gì"
+    why_vi: "Nghĩ rằng nói tên và bộ phận là đủ."
+    fix_vi: "Thêm một câu “I take care of ___.” Đó là câu khiến người ta biết khi nào cần tìm bạn."
+    detect: {}
+
+memory_trick_vi: >
+  Ba câu, ba thông tin: Ở ĐÂU (work in) — LÀM GÌ (take care of) — BAO LÂU (been here for).
+  Viết sẵn ba câu của riêng bạn hôm nay, đọc to năm lần. Lần sau bị hỏi bất ngờ, chúng tự bật ra.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["I work in IT.", "I am work in IT.", "I working in IT."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["I've been here for two months.", "I've been here since two months."]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“I take care of the servers” nghĩa là gì?"
+    choices: ["Tôi phụ trách máy chủ", "Tôi cẩn thận với máy chủ", "Tôi sửa máy chủ hôm nay"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Người nước ngoài cần biết gì nhất khi bạn giới thiệu?"
+    choices: ["Bạn phụ trách việc gì", "Chức danh chính xác của bạn", "Bạn học trường nào"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "I've been here for two months."
+    choices: ["I've been here for two months.", "I've been here for two minutes."]
+    answer: 0
+    difficulty: 3
+    focus_phonemes: [n, θ]
+
+unlock_condition:
+  mastery_threshold: 73
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: S06

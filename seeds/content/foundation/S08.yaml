@@ -1,0 +1,236 @@
+schema_version: 1
+id: S08
+slug: nho-va-xin-phep
+unit: U-S1
+title_vi: "Nhờ và xin phép — Can I, Could you, Is it OK if"
+title_en: "Asking for things and permission"
+phase: foundation
+topic: core
+cefr_target: a1
+order_index: 8
+est_minutes: 14
+
+objective_vi: "Nhờ người khác làm việc gì và xin phép làm việc gì, ở mức lịch sự phù hợp công sở."
+objective_observable: "Dùng đúng ba mẫu câu nhờ/xin phép trong ba tình huống, không dùng câu mệnh lệnh trần."
+
+prerequisites:
+  - {lesson: S05, min_mastery: 73, kind: hard}
+
+vocabulary:
+  - term: "Can I"
+    ipa: "/kæn aɪ/"
+    meaning_vi: "tôi ... được không (xin phép, thân mật)"
+    chunk: "Can I use this room?"
+    tags: [office]
+  - term: "Could you"
+    ipa: "/kʊd juː/"
+    meaning_vi: "anh/chị ... giúp được không (nhờ vả, lịch sự)"
+    chunk: "Could you send me the file?"
+    tags: [office]
+  - term: "Is it OK if"
+    ipa: "/ɪz ɪt oʊ keɪ ɪf/"
+    meaning_vi: "tôi ... có được không ạ"
+    chunk: "Is it OK if I leave at four?"
+    tags: [office]
+  - term: "of course"
+    ipa: "/əv kɔːrs/"
+    meaning_vi: "tất nhiên rồi (đồng ý)"
+    chunk: "Of course, go ahead."
+    tags: [office]
+  - term: "go ahead"
+    ipa: "/ɡoʊ əˈhɛd/"
+    meaning_vi: "cứ tự nhiên"
+    chunk: "Go ahead, it's free."
+    tags: [office]
+  - term: "I'm afraid"
+    ipa: "/aɪm əˈfreɪd/"
+    meaning_vi: "e là (mở đầu lời từ chối nhẹ nhàng)"
+    chunk: "I'm afraid it's booked."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "Could you {viec}?"
+    meaning_vi: "Anh/chị {viec} giúp được không?"
+    slots:
+      viec: ["send me the file", "check this", "join the call"]
+  - pattern: "Is it OK if I {viec}?"
+    meaning_vi: "Em {viec} có được không ạ?"
+    slots:
+      viec: ["leave at four", "use this laptop", "join later"]
+
+dialogue:
+  context_vi: >
+    Ba lời nhờ trong một buổi chiều — và một lời từ chối. Để ý người ta từ chối thế nào mà
+    vẫn không làm ai khó xử.
+  turns:
+    - {speaker: Nam, en: "Could you send me the report, please?", vi: "Chị gửi em bản báo cáo được không ạ?"}
+    - {speaker: Linh, en: "Of course. Give me five minutes.", vi: "Tất nhiên rồi. Cho chị năm phút nhé."}
+    - {speaker: Nam, en: "Thanks. Can I use meeting room 3 at four?", vi: "Cảm ơn chị. Bốn giờ em dùng phòng họp 3 được không ạ?"}
+    - {speaker: Linh, en: "I'm afraid it's booked. Room 5 is free though.", vi: "E là phòng đó đặt rồi. Nhưng phòng 5 còn trống."}
+    - {speaker: Nam, en: "Room 5 works. Is it OK if I leave at five today?", vi: "Phòng 5 cũng được ạ. Hôm nay em về lúc năm giờ có được không ạ?"}
+    - {speaker: Linh, en: "Sure, go ahead.", vi: "Được chứ, em cứ về."}
+
+reading_passage:
+  id: RP-S08
+  kind: chat
+  context_vi: >
+    Hai người cùng nhờ một việc. Đọc và xem lời nhờ nào dễ được đồng ý hơn, và vì sao.
+  text_en: |
+    Nam: Send me the file.
+    Linh: ...
+
+    Hoa: Could you send me the file when you have a moment, please?
+    Linh: Of course! Just sent it.
+    Hoa: Thank you.
+  text_vi: |
+    Nam: Gửi tôi cái file.
+    Linh: ...
+
+    Hoa: Lúc nào rảnh chị gửi em cái file được không ạ?
+    Linh: Tất nhiên rồi! Chị vừa gửi đấy.
+    Hoa: Em cảm ơn chị.
+  questions:
+    - q_en: "Why did Linh not answer Nam?"
+      choices:
+        - "His message sounds like an order"
+        - "She did not see it"
+        - "She does not have the file"
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "Which words make Hoa's message polite?"
+      choices:
+        - "Could you ... please"
+        - "Send me"
+        - "The file"
+      answer: 0
+      skill: scan
+      difficulty: 2
+
+writing_task:
+  id: WT-S08
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống: một câu nhờ và một câu xin phép."
+  prompt_en: "___ you send me the file? ... Is it ___ if I leave at four?"
+  blanks:
+    - ["could", "can"]
+    - ["ok", "okay"]
+  hint_vi: "Nhờ người khác làm dùng “Could you”. Xin phép cho mình dùng “Is it OK if I”."
+  sample_en: "Could you send me the file? Is it OK if I leave at four?"
+
+listening_snippet:
+  id: LS-S08
+  speed: 0.9
+  voice: en_US_male
+  context_vi: >
+    Quản lý trả lời một lời xin phép. Nghe xem là đồng ý hay từ chối — câu từ chối trong
+    tiếng Anh công sở thường rất nhẹ, dễ nghe nhầm thành đồng ý.
+  transcript_en: "I'm afraid the room is booked until five, but you can use room 5 instead."
+  transcript_vi: "E là phòng đó đã đặt tới năm giờ, nhưng bạn dùng phòng 5 thay thế được."
+  questions:
+    - q_vi: "Phòng bạn hỏi có dùng được không?"
+      choices: ["Không, đã có người đặt", "Có, dùng được ngay", "Có, sau bốn giờ"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Người nói đề xuất gì?"
+      choices: ["Dùng phòng 5", "Dời sang mai", "Không đề xuất gì"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Could you send me the file, please?"
+    prompt_vi: "Mẫu nhờ vả chuẩn nhất ở công sở. Giữ âm /d/ cuối trong “could”."
+    ipa: "/kʊd juː sɛnd miː ðə faɪl pliːz/"
+    focus_phonemes: [k, d, s, l]
+  - kind: read_aloud
+    expected_text: "Is it OK if I leave at four?"
+    prompt_vi: "Mẫu xin phép. Lên giọng nhẹ ở cuối để nghe như câu hỏi."
+    ipa: "/ɪz ɪt oʊ keɪ ɪf aɪ liːv æt fɔːr/"
+    focus_phonemes: [z, k, f, v]
+  - kind: repeat
+    expected_text: "Of course, go ahead."
+    prompt_vi: "Nghe rồi nhắc lại. Câu đồng ý gọn nhất."
+    ipa: "/əv kɔːrs ɡoʊ əˈhɛd/"
+    focus_phonemes: [v, k, r, s, g]
+  - kind: repeat
+    expected_text: "I'm afraid it's booked."
+    prompt_vi: "Nghe rồi nhắc lại. Cách từ chối mà không làm ai khó xử."
+    ipa: "/aɪm əˈfreɪd ɪts bʊkt/"
+    focus_phonemes: [f, r, d, k, t]
+  - kind: respond
+    prompt_en: "Do you need anything from me?"
+    prompt_vi: "Nhờ đồng nghiệp gửi bạn một thứ, dùng mẫu lịch sự."
+    accept_patterns:
+      - "Could you send me"
+      - "Could you {viec}"
+      - "Is it OK if I"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt lịch sự bằng cách thêm từ ở cuối: “gửi giúp em nhé”, “ạ”. Tiếng Anh lịch sự
+    bằng cách đổi CẤU TRÚC câu: từ mệnh lệnh “Send me the file” thành câu hỏi “Could you
+    send me the file?”. Dịch thẳng từ tiếng Việt sẽ ra câu mệnh lệnh trần, và người nhận
+    thấy bị sai bảo — dù bạn không hề có ý đó.
+  how_vi: >
+    Ba mẫu, ba tình huống. Nhờ người khác làm: “Could you ___?” Xin phép cho mình làm:
+    “Can I ___?” hoặc lịch sự hơn “Is it OK if I ___?” Thêm “please” ở cuối là xong.
+    Từ chối thì mở bằng “I'm afraid...” rồi đưa ngay một phương án khác.
+  contrast_vi: "“Send me the file.” = ra lệnh ↔ “Could you send me the file?” = nhờ vả. Cùng một việc, khác hẳn cảm giác người nhận."
+
+common_mistakes:
+  - mistake: "Dịch thẳng thành câu mệnh lệnh: “Send me the file.”"
+    why_vi: "Tiếng Việt “gửi em cái file nhé” đã đủ lịch sự nhờ chữ “nhé”. Tiếng Anh không có chữ tương đương nên câu trở thành mệnh lệnh trần."
+    fix_vi: "Đổi thành câu hỏi: “Could you send me the file?” Cấu trúc câu hỏi chính là phép lịch sự."
+    detect: {}
+  - mistake: "Dùng “Can you” với quản lý hoặc khách hàng"
+    why_vi: "Nghĩ “can” và “could” như nhau."
+    fix_vi: "“Can you” dùng với đồng nghiệp thân. Với quản lý, khách hàng, người lạ thì dùng “Could you”."
+    detect: {}
+  - mistake: "Từ chối bằng “No.”"
+    why_vi: "Trả lời thẳng cho nhanh."
+    fix_vi: "Mở bằng “I'm afraid...” rồi đưa phương án khác: “I'm afraid it's booked, but room 5 is free.”"
+    detect: {}
+
+memory_trick_vi: >
+  NHỜ người khác thì “Could YOU...”, XIN PHÉP cho mình thì “Can I...”. Nhớ theo chủ ngữ:
+  you là việc của người ta, I là việc của mình. Và từ chối luôn mở bằng “I'm afraid” —
+  hai chữ đó biến lời từ chối thành lời tiếc nuối.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Nhờ quản lý gửi tài liệu. Câu nào phù hợp nhất?"
+    choices: ["Could you send me the document, please?", "Send me the document.", "Can you send document?"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Xin phép về sớm. Chọn câu đúng."
+    choices: ["Is it OK if I leave at four?", "Could you leave at four?", "Is it OK if you leave at four?"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“I'm afraid it's booked” nghĩa là gì?"
+    choices: ["Rất tiếc, phòng đã có người đặt", "Tôi sợ cái phòng đó", "Phòng sắp được đặt"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "Với khách hàng, nên dùng từ nào?"
+    choices: ["Could you", "Can you", "Cả hai như nhau"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "Could you send me the file?"
+    choices: ["Could you send me the file?", "Can I send you the file?"]
+    answer: 0
+    difficulty: 3
+    focus_phonemes: [k, d]
+
+unlock_condition:
+  mastery_threshold: 73
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F05

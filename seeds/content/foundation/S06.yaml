@@ -1,0 +1,222 @@
+schema_version: 1
+id: S06
+slug: chao-hoi-va-tam-biet
+unit: U-S1
+title_vi: "Chào hỏi và tạm biệt — câu đầu tiên và câu cuối cùng mỗi ngày"
+title_en: "Greetings and goodbyes"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 5
+est_minutes: 14
+
+objective_vi: "Chào và tạm biệt đúng theo buổi và theo mức thân sơ, không dùng nhầm câu."
+objective_observable: "Chọn đúng câu chào cho 4/5 tình huống khác nhau về buổi và về người đối diện."
+
+prerequisites:
+  - {lesson: S04, min_mastery: 70, kind: hard}
+
+vocabulary:
+  - term: "Good morning"
+    ipa: "/ɡʊd ˈmɔːrnɪŋ/"
+    meaning_vi: "chào buổi sáng (trước 12 giờ)"
+    chunk: "Good morning, everyone."
+    tags: [social]
+  - term: "Good afternoon"
+    ipa: "/ɡʊd ˌæftərˈnuːn/"
+    meaning_vi: "chào buổi chiều (sau 12 giờ)"
+    chunk: "Good afternoon, Mr Carter."
+    tags: [social]
+  - term: "How are you?"
+    ipa: "/haʊ ɑr juː/"
+    meaning_vi: "bạn khoẻ không (câu xã giao, không phải hỏi thật)"
+    chunk: "Hi Nam, how are you?"
+    tags: [social]
+  - term: "See you tomorrow"
+    ipa: "/siː juː təˈmɑroʊ/"
+    meaning_vi: "hẹn mai gặp"
+    chunk: "See you tomorrow, Linh."
+    tags: [social]
+  - term: "Have a good weekend"
+    ipa: "/hæv ə ɡʊd ˈwiːkɛnd/"
+    meaning_vi: "chúc cuối tuần vui"
+    chunk: "Have a good weekend!"
+    tags: [social]
+  - term: "Take care"
+    ipa: "/teɪk kɛr/"
+    meaning_vi: "giữ gìn sức khoẻ nhé (tạm biệt thân mật)"
+    chunk: "Take care, see you Monday."
+    tags: [social]
+
+sentence_patterns:
+  - pattern: "Good {buoi}, {ten}."
+    meaning_vi: "Chào {buoi}, {ten}."
+    slots:
+      buoi: ["morning", "afternoon", "evening"]
+      ten: ["everyone", "Linh", "Mr Carter"]
+  - pattern: "See you {khi_nao}."
+    meaning_vi: "Hẹn gặp {khi_nao}."
+    slots:
+      khi_nao: ["tomorrow", "on Monday", "later"]
+
+dialogue:
+  context_vi: >
+    Một ngày ở văn phòng, từ lúc bước vào tới lúc về. Để ý câu chào đổi theo buổi, và câu
+    tạm biệt đổi theo việc mai có gặp lại hay không.
+  turns:
+    - {speaker: Linh, en: "Good morning, Nam. How are you?", vi: "Chào buổi sáng, Nam. Bạn khoẻ không?"}
+    - {speaker: Nam, en: "Good morning. I'm fine, thanks. And you?", vi: "Chào chị. Em ổn, cảm ơn chị. Còn chị?"}
+    - {speaker: Linh, en: "Good, thanks.", vi: "Chị ổn, cảm ơn em."}
+    - {speaker: David, en: "Good afternoon, everyone. Sorry I'm late.", vi: "Chào buổi chiều mọi người. Xin lỗi tôi đến muộn."}
+    - {speaker: Nam, en: "No problem. See you tomorrow, David.", vi: "Không sao ạ. Mai gặp anh nhé, David."}
+    - {speaker: Linh, en: "It's Friday. Have a good weekend!", vi: "Hôm nay thứ Sáu mà. Chúc cuối tuần vui nhé!"}
+
+reading_passage:
+  id: RP-S06
+  kind: chat
+  context_vi: >
+    Ba tin nhắn gửi vào ba thời điểm khác nhau trong ngày. Đọc và để ý câu chào đổi thế nào.
+  text_en: |
+    08:05  Linh: Good morning! The standup is at 9:15 today.
+    14:30  Linh: Good afternoon. Could you check the server logs?
+    17:45  Linh: That's all from me. Have a good weekend, see you Monday!
+  text_vi: |
+    08:05  Linh: Chào buổi sáng! Hôm nay standup lúc 9:15.
+    14:30  Linh: Chào buổi chiều. Bạn kiểm tra giúp log máy chủ nhé?
+    17:45  Linh: Chị hết việc rồi. Chúc cuối tuần vui, thứ Hai gặp nhé!
+  questions:
+    - q_en: "What day is it?"
+      choices: ["Friday", "Monday", "The messages do not say"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "Which greeting is used at 14:30?"
+      choices: ["Good afternoon", "Good morning", "Good evening"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+
+writing_task:
+  id: WT-S06
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống: tin nhắn lúc 8 giờ sáng thứ Sáu, cuối ngày."
+  prompt_en: "Good ___! ... Have a good ___!"
+  blanks:
+    - ["morning"]
+    - ["weekend"]
+  hint_vi: "Trước 12 giờ là “morning”. Chiều thứ Sáu thì chúc “weekend”."
+  sample_en: "Good morning! Have a good weekend!"
+
+listening_snippet:
+  id: LS-S06
+  speed: 0.85
+  voice: en_US_male
+  context_vi: >
+    Đồng nghiệp chào bạn ở hành lang lúc cuối ngày. Nghe xem hôm sau có gặp lại không.
+  transcript_en: "Good afternoon, Nam. I'm leaving now. Have a good weekend, and take care."
+  transcript_vi: "Chào buổi chiều, Nam. Tôi về đây. Chúc cuối tuần vui, giữ gìn sức khoẻ nhé."
+  questions:
+    - q_vi: "Người nói đang làm gì?"
+      choices: ["Chào tạm biệt để về", "Chào buổi sáng", "Mời đi ăn"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Hôm sau là ngày gì?"
+      choices: ["Cuối tuần", "Thứ Hai", "Không nói"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Good morning, everyone."
+    prompt_vi: "Câu đầu tiên bạn nói mỗi ngày. Giữ âm /d/ cuối trong “good” và /ŋ/ cuối trong “morning”."
+    ipa: "/ɡʊd ˈmɔːrnɪŋ ˈɛvriwʌn/"
+    focus_phonemes: [g, d, ŋ]
+  - kind: read_aloud
+    expected_text: "I'm fine, thanks. And you?"
+    prompt_vi: "Câu đáp lại “How are you?”. Nhớ hỏi ngược lại — không hỏi lại là hội thoại chết."
+    ipa: "/aɪm faɪn θæŋks ænd juː/"
+    focus_phonemes: [f, n, θ, s]
+  - kind: repeat
+    expected_text: "Have a good weekend."
+    prompt_vi: "Nghe rồi nhắc lại. Câu chiều thứ Sáu."
+    ipa: "/hæv ə ɡʊd ˈwiːkɛnd/"
+    focus_phonemes: [h, v, g, d]
+  - kind: repeat
+    expected_text: "See you tomorrow. Take care."
+    prompt_vi: "Nghe rồi nhắc lại. Câu tạm biệt cuối ngày thường."
+    ipa: "/siː juː təˈmɑroʊ teɪk kɛr/"
+    focus_phonemes: [s, t, k, r]
+  - kind: respond
+    prompt_en: "Good morning! How are you?"
+    prompt_vi: "Đáp lại lời chào, rồi hỏi ngược lại."
+    accept_patterns:
+      - "Good morning"
+      - "I'm fine thanks"
+      - "I'm good, and you"
+
+vietnamese_explanation:
+  why_vi: >
+    “How are you?” trong tiếng Anh công sở **không phải câu hỏi thật**. Nó là một lời chào,
+    và câu trả lời đúng luôn ngắn: “I'm fine, thanks. And you?”. Người Việt hay kể thật —
+    mệt, ngủ ít, đau đầu — và người kia lúng túng vì họ chỉ đang chào.
+  how_vi: >
+    Nhớ hai cặp. Chào theo buổi: morning trước 12 giờ, afternoon sau 12 giờ. Tạm biệt theo
+    lúc gặp lại: mai gặp thì “See you tomorrow”, thứ Sáu thì “Have a good weekend”.
+    Và luôn hỏi ngược lại “And you?” — đó là thứ khiến bạn có vẻ dễ gần.
+  contrast_vi: "“How are you?” = lời chào ↔ “How are you doing with the report?” = câu hỏi thật. Cái đầu trả lời một câu; cái sau mới cần kể."
+
+common_mistakes:
+  - mistake: "Trả lời “How are you?” bằng một đoạn dài về sức khoẻ"
+    why_vi: "Hiểu nó là câu hỏi thật. Trong tiếng Việt “bạn khoẻ không” đúng là hỏi thật."
+    fix_vi: "Trả lời ngắn rồi hỏi lại: “I'm fine, thanks. And you?” Muốn kể thì để dành cho small talk sau."
+    detect: {}
+  - mistake: "Dùng “Good morning” lúc 3 giờ chiều"
+    why_vi: "Tiếng Việt “chào anh” dùng được cả ngày nên không có thói quen đổi theo buổi."
+    fix_vi: "Trước 12 giờ: morning. Từ 12 tới khoảng 18 giờ: afternoon. Sau đó: evening. Không chắc thì “Hi” luôn an toàn."
+    detect: {}
+  - mistake: "Chào xong rồi im, không hỏi lại"
+    why_vi: "Nghĩ mình đã trả lời xong là đủ."
+    fix_vi: "Luôn thêm “And you?”. Hai chữ đó biến một câu đáp thành một cuộc hội thoại."
+    detect: {}
+
+memory_trick_vi: >
+  Chào theo ĐỒNG HỒ (morning / afternoon / evening), tạm biệt theo LỊCH (tomorrow /
+  weekend / Monday). Và luôn có “And you?” ở cuối câu đáp — hai chữ rẻ nhất để trông
+  thân thiện.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "3 giờ chiều, bạn chào thế nào?"
+    choices: ["Good afternoon", "Good morning", "Good night"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Đồng nghiệp hỏi “How are you?”. Đáp thế nào là tự nhiên nhất?"
+    choices: ["I'm fine, thanks. And you?", "I am very tired because I slept only four hours.", "Yes."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chiều thứ Sáu, tạm biệt thế nào?"
+    choices: ["Have a good weekend!", "See you tomorrow!", "Good morning!"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "“Take care” dùng khi nào?"
+    choices: ["Khi tạm biệt", "Khi chào gặp mặt", "Khi cảm ơn"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "Good afternoon, everyone."
+    choices: ["Good afternoon, everyone.", "Good morning, everyone."]
+    answer: 0
+    difficulty: 2
+
+unlock_condition:
+  mastery_threshold: 70
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: S07
