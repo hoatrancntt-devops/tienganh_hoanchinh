@@ -20,3 +20,4 @@ htmlcov/
 # Ghi chú nội bộ (chứa IP VPS) — không đẩy lên repo public
 PROGRESS.md
 docs/BAO-CAO-RA-SOAT.md
+*.egg-info/
