@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: pre_a1
 order_index: 2
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Phát âm được âm cuối /s/ và /z/ trong 6 từ thường dùng, và nghe ra khác nhau giữa work và works."
 objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill có âm cuối /s/ hoặc /z/."
@@ -66,6 +66,45 @@ dialogue:
     - {speaker: You, en: "Nice to meet you. What do you work on?", vi: "Rất vui được gặp anh. Anh làm mảng gì ạ?"}
     - {speaker: Minh, en: "I handle tickets and network issues. You get three tickets today.", vi: "Mình xử lý ticket và các vấn đề mạng. Hôm nay bạn nhận ba ticket."}
     - {speaker: You, en: "Thanks, that helps.", vi: "Cảm ơn anh, vậy là em rõ rồi."}
+
+reading_passage:
+  id: RP-F02
+  kind: chat
+  context_vi: >
+    Một đoạn giới thiệu ngắn về Minh. Mỗi câu đều có âm /s/ hoặc /z/ ở cuối từ — đọc bằng mắt
+    và để ý những chữ “s” đó.
+  text_en: |
+    Minh works in IT. He uses two laptops.
+    He gets many tickets every day.
+    His colleagues help him when he needs it.
+    He always says thanks.
+  text_vi: |
+    Minh làm bên IT. Anh ấy dùng hai cái laptop.
+    Mỗi ngày anh ấy nhận rất nhiều ticket.
+    Đồng nghiệp giúp anh ấy khi anh ấy cần.
+    Anh ấy luôn nói cảm ơn.
+  questions:
+    - q_en: "Where does Minh work?"
+      choices: ["In IT", "In HR", "In accounting"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+    - q_en: "What is the text about?"
+      choices: ["Minh's work day", "Minh's family", "A broken laptop"]
+      answer: 0
+      skill: skim
+      difficulty: 2
+
+writing_task:
+  id: WT-F02
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống. Nhớ chữ “s” ở cuối — thiếu nó là người nghe hiểu sai chủ ngữ."
+  prompt_en: "Minh ___ in IT. He ___ two laptops."
+  blanks:
+    - ["works"]
+    - ["uses"]
+  hint_vi: "Chủ ngữ là “he”, nên động từ phải có “s” ở cuối."
+  sample_en: "Minh works in IT. He uses two laptops."
 
 listening_snippet:
   id: LS-F02
@@ -176,7 +215,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

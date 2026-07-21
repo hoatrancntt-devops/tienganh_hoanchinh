@@ -8,7 +8,7 @@ phase: daily
 topic: social
 cefr_target: a1
 order_index: 2
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Duy trì 4 lượt small talk về cuối tuần, thời tiết, cà phê mà không bị bí."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill hội thoại mở."
@@ -70,6 +70,48 @@ dialogue:
     - {speaker: You, en: "Same here. Any plans for the weekend?", vi: "Em cũng vậy. Cuối tuần chị có kế hoạch gì không?"}
     - {speaker: Priya, en: "Nothing much, just resting at the hotel. And you?", vi: "Cũng không có gì, chỉ nghỉ ở khách sạn thôi. Còn bạn?"}
     - {speaker: You, en: "Same. This machine is slow. Want to grab a coffee downstairs later?", vi: "Em cũng vậy. Cái máy này chậm lắm. Lát nữa xuống dưới làm ly cà phê không chị?"}
+
+reading_passage:
+  id: RP-D02
+  kind: chat
+  context_vi: >
+    Sáu mươi giây ở pantry. Đoạn này ngắn, nhưng nó là toàn bộ công thức small talk công sở.
+  text_en: |
+    Minh: Morning! How's it going?
+    You: Busy week. You?
+    Minh: Same here. Any plans for the weekend?
+    You: Nothing much. Maybe some rest.
+    Minh: Sounds good. Want to grab a coffee later?
+    You: Sure, after the standup.
+  text_vi: |
+    Minh: Chào buổi sáng! Dạo này thế nào?
+    Bạn: Tuần này bận. Còn anh?
+    Minh: Tôi cũng vậy. Cuối tuần có kế hoạch gì không?
+    Bạn: Không có gì nhiều. Chắc nghỉ ngơi thôi.
+    Minh: Nghe hay đấy. Lát nữa đi uống cà phê không?
+    Bạn: Được, sau standup nhé.
+  questions:
+    - q_en: "What does Minh ask about?"
+      choices: ["The weekend", "The report", "The new laptop"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "When will they get coffee?"
+      choices: ["After the standup", "At the weekend", "Tomorrow morning"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-D02
+  kind: reorder
+  prompt_vi: "Sắp ba dòng này thành một đoạn small talk đúng thứ tự."
+  ordered_lines:
+    - "Morning! How's it going?"
+    - "Busy week. You?"
+    - "Same here."
+  hint_vi: "Chào trước, trả lời và hỏi ngược lại, rồi đáp lại."
+  sample_en: "Morning! How's it going? / Busy week. You? / Same here."
 
 listening_snippet:
   id: LS-D02
@@ -183,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

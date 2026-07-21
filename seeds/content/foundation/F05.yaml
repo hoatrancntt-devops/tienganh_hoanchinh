@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a1
 order_index: 5
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đặt đúng trọng âm cho 8 từ công việc thường dùng, và nghe ra trọng âm khi người khác nói."
 objective_observable: "Đạt ≥75 điểm phát âm trên 3/4 câu drill và trả lời đúng 3/4 câu quiz trọng âm."
@@ -70,6 +70,58 @@ dialogue:
     - {speaker: You, en: "Yes. Is it about the deployment?", vi: "Dạ rảnh. Có phải về đợt triển khai không ạ?"}
     - {speaker: Linh, en: "Right. We deploy tonight and the router is still down.", vi: "Đúng. Tối nay triển khai mà router vẫn đang hỏng."}
     - {speaker: You, en: "I'll ask the network engineer.", vi: "Em sẽ hỏi kỹ sư mạng."}
+
+reading_passage:
+  id: RP-F05
+  kind: email
+  context_vi: >
+    Email thông báo triển khai tối nay. Đọc lướt tìm hai thứ: mấy giờ, và ai nhận báo cáo.
+  text_en: |
+    Subject: Deployment tonight
+
+    Hi team,
+
+    The deployment starts at nine tonight.
+    Our network engineer will restart the router first.
+    After that, I will send a short report to the manager.
+    Please do not deploy anything else today.
+
+    Thanks,
+    Linh
+  text_vi: |
+    Tiêu đề: Triển khai tối nay
+
+    Chào cả nhóm,
+
+    Việc triển khai bắt đầu lúc chín giờ tối.
+    Kỹ sư mạng của mình sẽ khởi động lại router trước.
+    Sau đó tôi sẽ gửi một báo cáo ngắn cho quản lý.
+    Hôm nay đừng triển khai thêm thứ gì khác.
+
+    Cảm ơn,
+    Linh
+  questions:
+    - q_en: "What time does the deployment start?"
+      choices: ["Nine tonight", "Nine in the morning", "After the report"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Who gets the report?"
+      choices: ["The manager", "The network engineer", "The whole team"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F05
+  kind: reorder
+  prompt_vi: "Sắp ba dòng này thành một email đúng thứ tự."
+  ordered_lines:
+    - "Hi team,"
+    - "The deployment starts at nine tonight."
+    - "Thanks, Linh"
+  hint_vi: "Email tiếng Anh luôn có ba phần: chào, nội dung, ký tên."
+  sample_en: "Hi team, / The deployment starts at nine tonight. / Thanks, Linh"
 
 listening_snippet:
   id: LS-F05
@@ -176,7 +228,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.45, quiz: 0.35, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

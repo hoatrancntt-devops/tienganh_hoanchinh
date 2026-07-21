@@ -8,7 +8,7 @@ phase: daily
 topic: food
 cefr_target: a1
 order_index: 3
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Gọi món, hỏi giá, nói về dị ứng, và rủ đồng nghiệp đi ăn."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill tình huống quán ăn."
@@ -70,6 +70,48 @@ dialogue:
     - {speaker: You, en: "We'll have two chicken rice, please. No spicy, and no peanuts in one of them.", vi: "Cho hai suất cơm gà nhé. Không cay, và một suất không có đậu phộng."}
     - {speaker: Server, en: "For here or to go?", vi: "Ăn tại chỗ hay mang đi ạ?"}
     - {speaker: Priya, en: "For here, thanks. And could we have the bill together?", vi: "Ăn tại chỗ, cảm ơn. Và tính chung một hoá đơn được không?"}
+
+reading_passage:
+  id: RP-D03
+  kind: chat
+  context_vi: >
+    Rủ nhau đi ăn trưa. Trong đoạn có một thông tin quan trọng về sức khoẻ — tìm nó.
+  text_en: |
+    Nam: Want to grab lunch?
+    You: Sure. I'll have the chicken rice.
+    Nam: For here or to go?
+    You: For here. But I'm allergic to peanuts.
+    Nam: I'll tell them. I'll get the bill this time.
+    You: Thanks! Next one is on me.
+  text_vi: |
+    Nam: Đi ăn trưa không?
+    Bạn: Đi chứ. Tôi lấy cơm gà.
+    Nam: Ăn tại chỗ hay mang đi?
+    Bạn: Ăn tại chỗ. Nhưng tôi bị dị ứng đậu phộng.
+    Nam: Để tôi báo họ. Lần này tôi trả tiền.
+    Bạn: Cảm ơn! Lần sau tôi mời.
+  questions:
+    - q_en: "What can the writer not eat?"
+      choices: ["Peanuts", "Chicken", "Rice"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Who pays today?"
+      choices: ["Nam", "The writer", "They share it"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-D03
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống khi gọi món."
+  prompt_en: "I'll ___ the chicken rice. I'm ___ to peanuts."
+  blanks:
+    - ["have"]
+    - ["allergic"]
+  hint_vi: "Gọi món dùng “I'll have”, không dùng “I want”. Câu sau là cảnh báo dị ứng."
+  sample_en: "I'll have the chicken rice. I'm allergic to peanuts."
 
 listening_snippet:
   id: LS-D03
@@ -186,7 +228,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

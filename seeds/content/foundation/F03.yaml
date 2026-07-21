@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: pre_a1
 order_index: 3
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Phát âm được âm cuối /t/ và /d/ để người nghe biết bạn đang nói về quá khứ."
 objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill ở thì quá khứ."
@@ -66,6 +66,47 @@ dialogue:
     - {speaker: You, en: "I finished the report and checked the logs.", vi: "Em đã xong báo cáo và kiểm tra log."}
     - {speaker: Linh, en: "Did you fix the network issue?", vi: "Bạn sửa xong lỗi mạng chưa?"}
     - {speaker: You, en: "Yes, we fixed it and deployed it last night.", vi: "Rồi ạ, tụi em đã sửa và triển khai tối qua."}
+
+reading_passage:
+  id: RP-F03
+  kind: chat
+  context_vi: >
+    Nhật ký một ngày làm việc. Tất cả động từ đều ở quá khứ — cái đuôi của chúng là âm /t/ hoặc
+    /d/, thứ mà người Việt hay nuốt mất.
+  text_en: |
+    Yesterday I finished the report.
+    Then Linh asked me about the server.
+    I checked it and fixed the problem.
+    We deployed the new version at six.
+    Nobody needed to stay late.
+  text_vi: |
+    Hôm qua tôi đã xong báo cáo.
+    Sau đó Linh hỏi tôi về máy chủ.
+    Tôi kiểm tra và sửa được lỗi.
+    Chúng tôi triển khai bản mới lúc sáu giờ.
+    Không ai phải ở lại muộn.
+  questions:
+    - q_en: "What did the writer finish?"
+      choices: ["The report", "The server", "The meeting"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+    - q_en: "Did anyone stay late?"
+      choices: ["No", "Yes, Linh did", "Yes, everybody did"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F03
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống ở dạng quá khứ. Đuôi “-ed” là thứ phân biệt hôm qua với hôm nay."
+  prompt_en: "Yesterday I ___ the report. Then I ___ the problem."
+  blanks:
+    - ["finished"]
+    - ["fixed"]
+  hint_vi: "Cả hai đều thêm “-ed”. Đọc lên phải nghe rõ âm cuối."
+  sample_en: "Yesterday I finished the report. Then I fixed the problem."
 
 listening_snippet:
   id: LS-F03
@@ -174,7 +215,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

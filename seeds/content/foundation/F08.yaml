@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a1
 order_index: 8
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Nói được 3 cách hỏi lại khi chưa nghe kịp, thay vì gật đầu cho qua."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và trả lời đúng 4/5 câu quiz tình huống."
@@ -69,6 +69,49 @@ dialogue:
     - {speaker: You, en: "Sorry, could you say that more slowly?", vi: "Xin lỗi anh, anh nói chậm lại giúp em được không ạ?"}
     - {speaker: David, en: "Sure. We roll back, then re-run the migration. Tonight.", vi: "Được. Quay lại bản trước, rồi chạy lại migration. Tối nay."}
     - {speaker: You, en: "Got it. So you mean we deploy again tomorrow?", vi: "Em hiểu rồi. Vậy ý anh là mai mình triển khai lại?"}
+
+reading_passage:
+  id: RP-F08
+  kind: chat
+  context_vi: >
+    David nói một thuật ngữ bạn chưa nghe rõ. Đoạn này cho thấy cách hỏi lại mà không ai
+    thấy phiền — đó là kỹ năng giữ bạn ở lại trong cuộc hội thoại.
+  text_en: |
+    David: We need to check the SLA on the Northwind account.
+    You: Sorry, could you say that again more slowly?
+    David: Sure. The S-L-A on the Northwind account.
+    You: I didn't catch the last word. Could you spell that?
+    David: N-O-R-T-H-W-I-N-D.
+    You: Got it. Thanks.
+  text_vi: |
+    David: Mình cần kiểm tra SLA của tài khoản Northwind.
+    Bạn: Xin lỗi, anh nói lại chậm hơn được không?
+    David: Được. SLA của tài khoản Northwind.
+    Bạn: Tôi chưa nghe rõ từ cuối. Anh đánh vần được không?
+    David: N-O-R-T-H-W-I-N-D.
+    Bạn: Rõ rồi. Cảm ơn anh.
+  questions:
+    - q_en: "Why does the writer ask David to spell?"
+      choices: ["They did not catch the last word", "They cannot write", "David speaks too quietly"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "In this chat, \"say that again\" means:"
+      choices: ["repeat it", "write it down", "speak louder"]
+      answer: 0
+      skill: guess_word
+      difficulty: 2
+
+writing_task:
+  id: WT-F08
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống. Đây là hai câu cứu hộ — thuộc lòng thì không bao giờ phải im lặng."
+  prompt_en: "Sorry, could you say that ___? I ___ catch that."
+  blanks:
+    - ["again"]
+    - ["didn't", "did not"]
+  hint_vi: "Câu đầu xin nhắc lại. Câu sau nói rõ là mình chưa nghe kịp."
+  sample_en: "Sorry, could you say that again? I didn't catch that."
 
 listening_snippet:
   id: LS-F08
@@ -182,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

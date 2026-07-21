@@ -8,7 +8,7 @@ phase: daily
 topic: social
 cefr_target: a1
 order_index: 1
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Giới thiệu bản thân và một đồng nghiệp, giữ hội thoại sống bằng câu hỏi ngược lại."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill, có dùng câu hỏi ngược."
@@ -71,6 +71,46 @@ dialogue:
     - {speaker: Priya, en: "I have been with the company for three years. I work in DevOps in Singapore.", vi: "Tôi làm ở công ty được ba năm rồi. Tôi làm mảng DevOps ở Singapore."}
     - {speaker: You, en: "This is Minh, by the way. He works in IT too. We're on the same team.", vi: "À, đây là Minh. Anh ấy cũng làm bên IT. Bọn em cùng team."}
     - {speaker: Minh, en: "Nice to meet you, Priya. Welcome to Vietnam.", vi: "Rất vui được gặp chị Priya. Chào mừng chị đến Việt Nam."}
+
+reading_passage:
+  id: RP-D01
+  kind: chat
+  context_vi: >
+    Hai người làm quen ở hành lang. Đọc để tìm ra Nam vào nhóm nào và bắt đầu từ bao giờ.
+  text_en: |
+    Linh: Hi, I'm Linh. I work on the payments team.
+    Nam: Nice to meet you. I'm Nam, I'm new here.
+    Linh: Welcome! Which team are you on?
+    Nam: The same one, actually. I start on Monday.
+    Linh: Great. My colleague David sits next to you.
+  text_vi: |
+    Linh: Chào, tôi là Linh. Tôi làm nhóm thanh toán.
+    Nam: Rất vui được gặp chị. Tôi là Nam, tôi mới vào.
+    Linh: Chào mừng! Bạn ở nhóm nào?
+    Nam: Cùng nhóm đó luôn. Tôi bắt đầu thứ Hai.
+    Linh: Tuyệt. Đồng nghiệp David của tôi ngồi cạnh bạn.
+  questions:
+    - q_en: "Which team is Nam on?"
+      choices: ["The payments team", "The IT team", "He does not say"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "When does Nam start?"
+      choices: ["On Monday", "Today", "Next month"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+
+writing_task:
+  id: WT-D01
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống trong câu làm quen."
+  prompt_en: "___ to meet you. I'm ___ here."
+  blanks:
+    - ["nice"]
+    - ["new"]
+  hint_vi: "Câu đầu là câu chào khi gặp lần đầu. Câu sau nói bạn vừa vào làm."
+  sample_en: "Nice to meet you. I'm new here."
 
 listening_snippet:
   id: LS-D01
@@ -187,7 +227,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: pre_a1
 order_index: 1
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Phát âm được /θ/ trong think và /ð/ trong this, và phân biệt được chúng với /t/ và /d/ khi nghe."
 objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill có chứa /θ/ hoặc /ð/."
@@ -64,6 +64,44 @@ dialogue:
     - {speaker: Linh, en: "Not yet. Nice to meet you. Thanks for coming in early today.", vi: "Chưa. Rất vui được gặp bạn. Cảm ơn bạn hôm nay đến sớm."}
     - {speaker: Minh, en: "The team sync is at three thirty, right?", vi: "Buổi họp team lúc ba giờ rưỡi đúng không?"}
     - {speaker: Linh, en: "That's right. See you there.", vi: "Đúng rồi. Gặp ở đó nhé."}
+
+reading_passage:
+  id: RP-F01
+  kind: chat
+  context_vi: >
+    Linh nhắn tin báo đổi giờ họp. Ba mươi hay mười ba — đọc kỹ, đây đúng là chỗ dễ nhầm nhất.
+  text_en: |
+    Linh: The sync is at three thirty.
+    You: Three thirty? Not three thirteen?
+    Linh: Three thirty. This is the new time.
+    You: OK, thanks. I think I can make it.
+  text_vi: |
+    Linh: Buổi sync lúc ba giờ ba mươi.
+    Bạn: Ba giờ ba mươi? Không phải ba giờ mười ba à?
+    Linh: Ba giờ ba mươi. Đây là giờ mới.
+    Bạn: OK, cảm ơn. Tôi nghĩ là tôi đến kịp.
+  questions:
+    - q_en: "What time is the sync?"
+      choices: ["Three thirty", "Three thirteen", "Three"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+    - q_en: "What is this chat about?"
+      choices: ["A new meeting time", "A new project", "A thank-you note"]
+      answer: 0
+      skill: skim
+      difficulty: 2
+
+writing_task:
+  id: WT-F01
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống. Cả hai từ đều có âm /th/ vừa học."
+  prompt_en: "I ___ I can make it. ___ for your help."
+  blanks:
+    - ["think"]
+    - ["thanks", "thank you"]
+  hint_vi: "Câu đầu là động từ “nghĩ”. Câu sau là lời cảm ơn."
+  sample_en: "I think I can make it. Thanks for your help."
 
 listening_snippet:
   id: LS-F01
@@ -172,7 +210,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

@@ -223,9 +223,14 @@ def _grade_guided_email(task: dict, ans: str) -> dict:
     min_words = int(task.get("min_words") or 0)
     raw = ans.strip()
     du_dai = len(tu) >= min_words
-    diem_co_hoc = DIEM_CO_HOC * sum([du_dai, raw[:1].isupper(), raw[-1:] in ".!?"]) / 3
+    # Kiểm "có viết thành câu" chứ không phải "ký tự cuối là dấu chấm": email thật kết thúc
+    # bằng tên người ký ("Thanks, Hoa"), đòi dấu chấm ở đó là phạt đúng văn phong chuẩn.
+    co_cham_cau = any(c in raw for c in ".!?")
+    diem_co_hoc = DIEM_CO_HOC * sum([du_dai, raw[:1].isupper(), co_cham_cau]) / 3
     if not du_dai:
         thieu.append(f"độ dài (cần ít nhất {min_words} từ, bạn viết {len(tu)})")
+    if not co_cham_cau:
+        thieu.append("dấu chấm câu — viết thành câu, đừng viết một mạch")
 
     mistakes: list[dict] = task.get("common_mistakes") or []
     dinh = [m for m in mistakes

@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a1
 order_index: 6
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Dùng đúng am/is/are, have/has, do/does trong câu kể và câu hỏi ở công sở."
 objective_observable: "Trả lời đúng 4/5 câu quiz và đạt ≥75 điểm nói trên 3/4 drill."
@@ -65,6 +65,48 @@ dialogue:
     - {speaker: You, en: "I'm on a call. Is it urgent?", vi: "Em đang trong call. Có gấp không anh?"}
     - {speaker: Minh, en: "A little. The VPN doesn't work on my laptop and I don't know why.", vi: "Hơi gấp. VPN không chạy trên máy mình mà mình không biết vì sao."}
     - {speaker: You, en: "The network engineer has access. He's in the server room.", vi: "Kỹ sư mạng có quyền truy cập ạ. Anh ấy đang ở phòng server."}
+
+reading_passage:
+  id: RP-F06
+  kind: chat
+  context_vi: >
+    Nam vừa vào làm, chưa có máy. Cả đoạn chỉ dùng ba động từ lõi: be, have, do.
+  text_en: |
+    Nam: Hi, I'm Nam. I'm new here.
+    Linh: Nice to meet you. Do you have a laptop?
+    Nam: Not yet. I don't have one.
+    Linh: Minh has a spare one. He's in the IT room.
+    Nam: Thanks. I don't know where that is.
+    Linh: I'll show you.
+  text_vi: |
+    Nam: Chào, tôi là Nam. Tôi mới vào làm.
+    Linh: Rất vui được gặp. Bạn có laptop chưa?
+    Nam: Chưa. Tôi chưa có.
+    Linh: Minh có một cái dư. Anh ấy ở phòng IT.
+    Nam: Cảm ơn. Tôi không biết phòng đó ở đâu.
+    Linh: Để tôi dẫn bạn đi.
+  questions:
+    - q_en: "Does Nam have a laptop?"
+      choices: ["No, not yet", "Yes, he has two", "Yes, Minh gave him one"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Who will help Nam find the IT room?"
+      choices: ["Linh", "Minh", "Nobody"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F06
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống bằng động từ lõi đúng dạng."
+  prompt_en: "I ___ have a laptop. Minh ___ a spare one."
+  blanks:
+    - ["don't", "do not"]
+    - ["has"]
+  hint_vi: "“I” đi với don't. “Minh” là ngôi thứ ba số ít, nên dùng has chứ không phải have."
+  sample_en: "I don't have a laptop. Minh has a spare one."
 
 listening_snippet:
   id: LS-F06
@@ -174,7 +216,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.45, quiz: 0.35, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

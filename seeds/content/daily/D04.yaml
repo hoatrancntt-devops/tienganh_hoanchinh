@@ -8,7 +8,7 @@ phase: daily
 topic: transport
 cefr_target: a1
 order_index: 4
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Nói địa chỉ với tài xế, hỏi đường tới toà nhà, và báo mình đang tới muộn."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill tình huống đi lại."
@@ -70,6 +70,46 @@ dialogue:
     - {speaker: You, en: "I'm on my way, about ten minutes. I'll ask the driver to drop us off at the corner.", vi: "Em đang trên đường, khoảng mười phút. Em sẽ nhờ tài xế cho xuống ở góc đường."}
     - {speaker: Priya, en: "Thank you. Which floor is the meeting on?", vi: "Cảm ơn bạn. Cuộc họp ở tầng mấy vậy?"}
     - {speaker: You, en: "Fifth floor. We check in at the reception first.", vi: "Tầng năm ạ. Mình khai báo ở quầy lễ tân trước đã."}
+
+reading_passage:
+  id: RP-D04
+  kind: chat
+  context_vi: >
+    Bạn đang kẹt xe và phải báo cho Linh. Đọc để tìm lý do muộn và tầng mấy.
+  text_en: |
+    You: I'm running late. Bad traffic.
+    Linh: No problem. Are you on your way?
+    You: Yes. The driver will drop me off at the reception.
+    Linh: Which floor do you need?
+    You: The fourth. See you in ten minutes.
+  text_vi: |
+    Bạn: Tôi bị trễ. Kẹt xe quá.
+    Linh: Không sao. Bạn đang trên đường rồi à?
+    Bạn: Rồi. Tài xế sẽ thả tôi ở quầy lễ tân.
+    Linh: Bạn cần lên tầng mấy?
+    Bạn: Tầng bốn. Mười phút nữa gặp.
+  questions:
+    - q_en: "Why is the writer late?"
+      choices: ["Bad traffic", "The driver is lost", "They woke up late"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+    - q_en: "In this chat, \"drop me off\" means:"
+      choices: ["let me out of the car", "give me a discount", "leave without me"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-D04
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống khi báo mình đến muộn."
+  prompt_en: "I'm running ___. I'm on my ___."
+  blanks:
+    - ["late"]
+    - ["way"]
+  hint_vi: "Hai cụm này đi liền nhau: báo muộn, rồi trấn an là đang đến."
+  sample_en: "I'm running late. I'm on my way."
 
 listening_snippet:
   id: LS-D04
@@ -178,7 +218,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

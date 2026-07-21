@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: pre_a1
 order_index: 4
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Nói được các cụm phụ âm cuối như /sks/, /kts/, /ndz/ mà không cắt bớt âm nào."
 objective_observable: "Đạt ≥75 điểm phát âm trên 3/4 câu drill có cụm phụ âm cuối."
@@ -66,6 +66,47 @@ dialogue:
     - {speaker: You, en: "That sounds good. Thanks, that helps.", vi: "Nghe ổn đấy ạ. Cảm ơn anh, vậy đỡ cho em."}
     - {speaker: Minh, en: "I have two projects this month, so mornings are better next week.", vi: "Tháng này mình có hai dự án, nên tuần sau buổi sáng sẽ tiện hơn."}
     - {speaker: You, en: "Understood. Mornings it is.", vi: "Em hiểu rồi. Vậy chốt buổi sáng."}
+
+reading_passage:
+  id: RP-F04
+  kind: chat
+  context_vi: >
+    Đoạn ngắn về Nam. Để ý những từ kết thúc bằng hai ba phụ âm liền nhau — đó là chỗ câu
+    tiếng Anh hay gãy khi nói.
+  text_en: |
+    Nam works on two projects.
+    He asks his manager for help when he is stuck.
+    His manager always helps him.
+    The work sounds hard, but Nam likes it.
+    He has been here for six months.
+  text_vi: |
+    Nam làm hai dự án.
+    Anh ấy hỏi quản lý khi bị kẹt.
+    Quản lý luôn giúp anh ấy.
+    Công việc nghe có vẻ khó, nhưng Nam thích nó.
+    Anh ấy ở đây được sáu tháng rồi.
+  questions:
+    - q_en: "How many projects does Nam work on?"
+      choices: ["Two", "Six", "One"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+    - q_en: "In this text, \"he is stuck\" means he:"
+      choices: ["cannot go on and needs help", "is very busy", "is late for work"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-F04
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống. Cả hai từ đều kết thúc bằng cụm phụ âm."
+  prompt_en: "Nam ___ on two projects. He ___ his manager for help."
+  blanks:
+    - ["works"]
+    - ["asks"]
+  hint_vi: "Đọc to lên: /wɜːrks/ và /æsks/ — đừng nuốt chữ “s” cuối."
+  sample_en: "Nam works on two projects. He asks his manager for help."
 
 listening_snippet:
   id: LS-F04
@@ -177,7 +218,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

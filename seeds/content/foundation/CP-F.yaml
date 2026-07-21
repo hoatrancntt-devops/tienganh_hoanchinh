@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a1
 order_index: 99
-est_minutes: 12
+est_minutes: 16
 is_checkpoint: true
 
 objective_vi: "Chứng minh bạn nghe ra và nói được các âm nền ở tốc độ thật, không tra cứu."
@@ -26,6 +26,53 @@ prerequisites:
   - {lesson: F06, min_mastery: 78, kind: hard}
   - {lesson: F07, min_mastery: 78, kind: hard}
   - {lesson: F08, min_mastery: 78, kind: hard}
+
+reading_passage:
+  id: RP-CPF
+  kind: chat
+  context_vi: >
+    Đoạn chat gồm tất cả những thứ tuần này dạy: số dễ nhầm, động từ quá khứ, và câu hỏi lại.
+    Đọc một lần, trả lời ngay — đây là bài chốt.
+  text_en: |
+    Linh: I finished the migration last night. It took three hours.
+    You: Three or thirteen?
+    Linh: Three. We deployed at ten thirty.
+    You: Sorry, could you say the time again?
+    Linh: Ten thirty. Minh checked it this morning and it works.
+  text_vi: |
+    Linh: Tôi làm xong việc chuyển đổi tối qua. Mất ba tiếng.
+    Bạn: Ba hay mười ba?
+    Linh: Ba. Chúng tôi triển khai lúc mười giờ ba mươi.
+    Bạn: Xin lỗi, chị nói lại giờ được không?
+    Linh: Mười giờ ba mươi. Sáng nay Minh kiểm tra rồi, chạy tốt.
+  questions:
+    - q_en: "How long did the migration take?"
+      choices: ["Three hours", "Thirteen hours", "Ten hours"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Who checked the system this morning?"
+      choices: ["Minh", "Linh", "Nobody"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Why does the writer ask about the time again?"
+      choices: ["They did not hear it clearly", "They think Linh is wrong", "They want to change it"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-CPF
+  kind: reorder
+  prompt_vi: "Sắp bốn dòng này thành một đoạn hỏi đáp đúng thứ tự."
+  ordered_lines:
+    - "Hi Linh, is the migration finished?"
+    - "Yes, we deployed at ten thirty."
+    - "Sorry, ten thirty or ten thirteen?"
+    - "Ten thirty. Minh checked it this morning."
+  hint_vi: "Hỏi → trả lời → hỏi lại cho rõ → xác nhận."
+  sample_en: "Hi Linh, is the migration finished? / Yes, we deployed at ten thirty. / Sorry, ten thirty or ten thirteen? / Ten thirty. Minh checked it this morning."
 
 listening_snippet:
   id: LS-CPF
@@ -115,6 +162,6 @@ memory_trick_vi: >
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.6, listen: 0.4}
+  mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
   min_speaking_attempts: 6
   challenge_threshold: 90

@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a1
 order_index: 7
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đặt được câu hỏi với what, where, when, who, why đúng trật tự từ, và hỏi lịch sự bằng could you."
 objective_observable: "Trả lời đúng 4/5 câu quiz trật tự từ và đạt ≥75 điểm nói trên 3/4 drill."
@@ -67,6 +67,48 @@ dialogue:
     - {speaker: Linh, en: "Ten thirty. Where are you now?", vi: "Mười giờ rưỡi. Bạn đang ở đâu?"}
     - {speaker: You, en: "Still at my desk. Who is handling ticket 402?", vi: "Em vẫn ở bàn ạ. Ai đang phụ trách ticket 402?"}
     - {speaker: Linh, en: "Minh is. Could you send him the logs?", vi: "Minh. Bạn gửi log cho anh ấy được không?"}
+
+reading_passage:
+  id: RP-F07
+  kind: chat
+  context_vi: >
+    Hỏi thông tin về buổi standup. Để ý các từ hỏi đầu câu — chúng quyết định câu trả lời.
+  text_en: |
+    You: What time is the standup?
+    Minh: Nine fifteen.
+    You: Where is it?
+    Minh: Room 302. Could you bring your notes?
+    You: Sure. How long does it take?
+    Minh: About fifteen minutes.
+  text_vi: |
+    Bạn: Mấy giờ họp standup?
+    Minh: Chín giờ mười lăm.
+    Bạn: Họp ở đâu?
+    Minh: Phòng 302. Bạn mang theo ghi chú được không?
+    Bạn: Được. Họp bao lâu?
+    Minh: Khoảng mười lăm phút.
+  questions:
+    - q_en: "Where is the standup?"
+      choices: ["Room 302", "Room 315", "Room 902"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What must you take to the standup?"
+      choices: ["Your notes", "A laptop", "Nothing"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F07
+  kind: reorder
+  prompt_vi: "Sắp ba câu này thành một đoạn hỏi đáp đúng thứ tự."
+  ordered_lines:
+    - "Hi Minh, what time is the standup?"
+    - "It's at nine fifteen in room 302."
+    - "Thanks, see you there."
+  hint_vi: "Hỏi trước, trả lời sau, cảm ơn cuối cùng."
+  sample_en: "Hi Minh, what time is the standup? / It's at nine fifteen in room 302. / Thanks, see you there."
 
 listening_snippet:
   id: LS-F07
@@ -177,7 +219,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.45, quiz: 0.35, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

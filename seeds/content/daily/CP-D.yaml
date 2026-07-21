@@ -8,7 +8,7 @@ phase: daily
 topic: social
 cefr_target: a1
 order_index: 99
-est_minutes: 12
+est_minutes: 16
 is_checkpoint: true
 
 objective_vi: "Xử lý được tình huống đời thường: gặp người mới, small talk, và đáp lại tự nhiên."
@@ -19,6 +19,54 @@ prerequisites:
   - {lesson: D02, min_mastery: 75, kind: hard}
   - {lesson: D03, min_mastery: 75, kind: hard}
   - {lesson: D04, min_mastery: 75, kind: hard}
+
+reading_passage:
+  id: RP-CPD
+  kind: chat
+  context_vi: >
+    Một buổi sáng gồm đủ ba tình huống đã học: chào hỏi, ăn trưa, và đi lại. Bài chốt của chặng này.
+  text_en: |
+    Minh: Morning! How's it going?
+    You: Busy, but fine. I'm running late for the standup.
+    Minh: No problem, it starts at nine fifteen.
+    You: Thanks. Want to grab lunch after?
+    Minh: Sure. Not the noodle place though, I'm allergic to peanuts.
+    You: Got it. The rice place then.
+  text_vi: |
+    Minh: Chào buổi sáng! Dạo này thế nào?
+    Bạn: Bận, nhưng ổn. Tôi đang trễ giờ standup.
+    Minh: Không sao, chín giờ mười lăm mới bắt đầu.
+    Bạn: Cảm ơn. Ăn trưa cùng không?
+    Minh: Được. Nhưng đừng quán mì nhé, tôi dị ứng đậu phộng.
+    Bạn: Rõ rồi. Vậy quán cơm.
+  questions:
+    - q_en: "What time does the standup start?"
+      choices: ["Nine fifteen", "Nine fifty", "Ten fifteen"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Why will they not go to the noodle place?"
+      choices: ["Minh is allergic to peanuts", "It is too far", "It is closed"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "What is this chat mainly about?"
+      choices: ["Morning small talk and lunch plans", "A broken server", "A new project"]
+      answer: 0
+      skill: skim
+      difficulty: 2
+
+writing_task:
+  id: WT-CPD
+  kind: reorder
+  prompt_vi: "Sắp bốn dòng này thành một đoạn hội thoại đúng thứ tự."
+  ordered_lines:
+    - "Morning! How's it going?"
+    - "Busy, but fine. Want to grab lunch later?"
+    - "Sure. Not the noodle place though."
+    - "Got it. See you at twelve."
+  hint_vi: "Chào → rủ đi ăn → đặt điều kiện → chốt giờ."
+  sample_en: "Morning! How's it going? / Busy, but fine. Want to grab lunch later? / Sure. Not the noodle place though. / Got it. See you at twelve."
 
 listening_snippet:
   id: LS-CPD
@@ -95,6 +143,6 @@ memory_trick_vi: >
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {speak: 0.6, listen: 0.4}
+  mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 90
