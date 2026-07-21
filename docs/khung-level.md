@@ -125,15 +125,27 @@ chuẩn gần như nguyên văn.
 Định nghĩa trong `app/services/placement_scoring.py` (`ENTRY_LESSON`). Trước bản này bảng chỉ có 3 mục
 và band A2 vào thẳng `D01` — bỏ qua toàn bộ F09–F17.
 
+## Bài xếp lớp đo gì
+
+26 câu, ~18 phút. **Bốn trục kỹ năng** (Nghe / Nói / Đọc / Viết) cộng một trục phụ từ vựng–ngữ pháp.
+Kết quả ra **một band chung** để chọn điểm vào, kèm biểu đồ bốn trục để học viên thấy mình lệch ở đâu.
+
+Trọng số: nói 0.30 · nghe 0.25 · đọc 0.20 · viết 0.15 · từ vựng–ngữ pháp 0.10.
+Định nghĩa ở `app/services/placement_scoring.py`.
+
 ## Giới hạn đã biết
 
-1. **Đọc và Viết chưa phủ hết.** Bảng đầu ra ở trên ghi *"chưa dạy ở bậc này"* ở đúng chỗ chưa có nội
-   dung. Đây là hiện trạng, không phải thiết kế: kế hoạch phủ đủ 4 kỹ năng mọi bài nằm ở
-   `plans/260721-1114-bon-ky-nang-va-thang-level/`. Không tuyên bố "thuần thục 4 kỹ năng" cho tới khi
-   phase 06 của kế hoạch đó xong.
-2. **11 bài phase `reading` hiện dạy nghe nhiều hơn dạy đọc** — văn bản được đưa vào dưới dạng hội thoại
-   có audio. Xem phase 03 và 06 của kế hoạch trên.
-3. **Nền L1 mỏng.** 4 bài cho người mất gốc hoàn toàn là ít; VUS 60 bài/level, Ms Hoa ~14 buổi/level.
+1. **Đọc và Viết mới phủ 1/62 bài học.** Hạ tầng đã xong (schema, bộ chấm, giao diện, tính vào mastery)
+   và R01 là bài mẫu chạy đủ. 61 bài còn lại chưa có `reading_passage` và `writing_task` — đó là phase 06
+   của `plans/260721-1114-bon-ky-nang-va-thang-level/`. **Không tuyên bố "thuần thục 4 kỹ năng" cho tới
+   khi phase đó xong.** Bảng đầu ra ở trên ghi *"chưa dạy ở bậc này"* ở đúng chỗ chưa có nội dung.
+2. **10 bài phase `reading` còn lại vẫn dạy nghe nhiều hơn dạy đọc** — văn bản đang nằm trong `dialogue`
+   và được sinh audio. R01 đã chuyển, R02–R10 chưa.
+3. **Bộ luyện viết độc lập ở `/learn/write`** (14 bài, 3 bộ) không tính vào mastery và không gắn với
+   level nào. Nó dùng chung bộ chấm với bài viết trong bài học, nhưng vẫn là một hòn đảo cạnh lộ trình.
+4. **Nền L1 mỏng.** 4 bài cho người mất gốc hoàn toàn là ít; VUS 60 bài/level, Ms Hoa ~14 buổi/level.
    Kế hoạch dày nền nằm ở phase 07.
-4. **Số tuần là ước lượng theo số bài × thời lượng**, chưa tính tốc độ học thật của từng người.
+5. **Số tuần là ước lượng theo số bài × thời lượng**, chưa tính tốc độ học thật của từng người.
    Lộ trình động nằm ở phase 08.
+6. **Chưa có bài kiểm tra kết thúc level.** 5 checkpoint hiện có gắn với *phase*, không gắn với *level*.
+   Phase 08.

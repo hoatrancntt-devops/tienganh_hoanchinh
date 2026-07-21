@@ -34,7 +34,7 @@ Mở **http://localhost:9999**
 
 1. **Đăng nhập** với tài khoản demo tại `/login`
 2. **Onboarding** — chọn mục tiêu, thời lượng, kiểm tra micro
-3. **Placement test** — 20 câu, ~13 phút. Kết quả xếp Pre-A1 / A1 / A2 kèm ba trục điểm và giải thích tiếng Việt
+3. **Placement test** — 26 câu, ~18 phút. Đo **bốn kỹ năng** (nghe / nói / đọc / viết) cộng trục phụ từ vựng–ngữ pháp. Kết quả xếp Pre-A1 / A1 / A2 / B1 kèm biểu đồ bốn trục và giải thích tiếng Việt
 4. **Roadmap** tại `/learn` — 5 phase, bài khoá/mở theo DAG tiên quyết, có ô "Học tiếp" giải thích *vì sao* là bài này
 5. **Lesson player** — nghe → nhắc lại → nói (chấm phát âm ngay) → quiz
 6. **Gợi ý bài kế** hiện ngay sau khi xong bài
@@ -120,7 +120,9 @@ make validate     # cổng chất lượng, chạy được ngoài Docker
 
 Cổng này chặn publish nếu: thiếu `vietnamese_explanation`, có dưới 2 `common_mistakes`, `mastery_weights` không cộng đúng 1.0, DAG có chu trình, bài phase nói có dưới 4 drill, hoặc `est_minutes > 12`.
 
-**Đợt 1 hiện có 13 bài** phủ đủ 5 phase (F01–F08, CP-F, D01, CP-D, O01, I01, R01) — đủ chạy end-to-end. Đợt 2 (D02–D04 và các bài mở rộng) sẽ viết sau khi hiệu chỉnh ngưỡng trên học viên thật.
+**Hiện có 62 bài** trải bốn level Pre-A1 → B1. Thang level, tuyên bố đầu ra từng kỹ năng và bảng ánh xạ bài ↔ level nằm ở [`docs/khung-level.md`](docs/khung-level.md).
+
+**Đọc và Viết mới phủ 1/62 bài** (R01 là bài mẫu). Hạ tầng đã xong — schema `reading_passage` + `writing_task`, bộ chấm bằng luật, tính vào mastery — nhưng 61 bài còn lại chưa soạn. Đừng tuyên bố "thuần thục 4 kỹ năng" cho tới khi xong.
 
 Toàn bộ nội dung **tự biên soạn 100%**. CEFR / British Council / BBC / Cambridge / VOA chỉ dùng để định hướng — không sao chép câu, hội thoại hay bài tập nào.
 
@@ -133,7 +135,7 @@ make logs                        # xem log
 make backup                      # dump DB + media vào ./backups, giữ 7 ngày
 make restore f=backups/db-....gz # phục hồi
 make psql                        # mở psql
-make test                        # test (SQLite in-memory, không cần Docker)
+make test                        # 103 test (SQLite in-memory, không cần Docker)
 make dev                         # hot reload
 make clean                       # dọn file rác build/test (không đụng dữ liệu)
 ```

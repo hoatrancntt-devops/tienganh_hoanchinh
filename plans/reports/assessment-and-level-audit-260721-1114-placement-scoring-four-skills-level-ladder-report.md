@@ -1,6 +1,15 @@
 # Rà soát: chấm điểm xếp lớp, phân tách 4 kỹ năng, và phân cấp Level
 
-Ngày: 2026-07-21
+Ngày: 2026-07-21 · **Đã đính chính 2026-07-21** (xem mục 2.3)
+
+> **ĐÍNH CHÍNH.** Bản đầu của báo cáo này viết *"Viết bằng 0 ở mọi tầng"*. **Sai.**
+> Tính năng **Luyện viết đã tồn tại và đang chạy**: 14 bài trong 3 bộ tại `seeds/writing/WR-*.yaml`,
+> chấm bằng luật trong `app/services/writing_service.py`, có route `/learn/write` và **có trong menu
+> chính** (`base.html`). Lỗi do grep từ khoá `writing` trong khi route và menu dùng `write`.
+>
+> Phát biểu đúng: Viết tồn tại như một **bộ luyện tập độc lập**, nhưng **không** nối vào bài học,
+> **không** có trong `mastery_weights`, **không** có trong bài xếp lớp, và **không** có tuyên bố
+> đầu ra theo level. Mục 2.3 và bảng 2.4 bên dưới đã sửa lại.
 Phạm vi: `app/services/placement_service.py`, `seeds/placement/form_{a,b}.yaml`, `seeds/content/**/*.yaml`,
 `app/models/enums.py`, `app/services/learning_path_service.py`, `app/web/templates/placement_result.html`
 Phương pháp: đọc code + chạy lại công thức chấm bằng số thật của hai form đề. Không suy đoán.
@@ -14,11 +23,12 @@ Ba nghi ngờ của bạn đều đúng, và đều nặng hơn dự đoán:
 | Nghi ngờ | Kết luận | Mức độ |
 |---|---|---|
 | Chấm điểm chưa đúng | **8 lỗi**, trong đó 2 lỗi làm xếp sai tới **2 bậc** | Nghiêm trọng |
-| Chưa phân rõ Nghe / Nói / Đọc / Viết | Đọc chỉ là nghe trá hình; **Viết bằng 0 ở mọi tầng** | Nghiêm trọng |
+| Chưa phân rõ Nghe / Nói / Đọc / Viết | Đọc chỉ là nghe trá hình; Viết có nhưng tách rời lộ trình | Nghiêm trọng |
 | Phân cấp Level chưa rõ | **4 hệ phân cấp khác nhau** cùng tồn tại, không khớp nhau | Nghiêm trọng |
 
 Hệ quả gộp lại: bài test **không thể** xếp ai vào B1, dù 24/62 bài học đang nhắm B1. Và lộ trình
-**không thể** hứa "nghe nói đọc viết thuần thục" vì hai trong bốn kỹ năng chưa được đo và một chưa tồn tại.
+**không thể** hứa "nghe nói đọc viết thuần thục" vì hai trong bốn kỹ năng không được đo lúc xếp lớp
+và không tính vào tiến độ.
 
 ---
 
@@ -164,27 +174,29 @@ từ ngữ cảnh, tốc độ đọc, câu hỏi bằng tiếng Anh.
 loại hoạt động nào sinh ra điểm `read`. Cả 11 file reading đặt `mastery_weights: {quiz: 0.7, listen: 0.3}` —
 tức là **điểm "đọc" thực chất là điểm quiz trắc nghiệm tiếng Việt**.
 
-### 2.3 Viết bằng 0 ở mọi tầng
+### 2.3 Viết tồn tại nhưng tách rời khỏi lộ trình *(đã đính chính)*
 
 | Tầng | Trạng thái |
 |---|---|
-| `ActivityKind` (`enums.py:39`) | `LISTEN, SHADOW, SPEAK, VOCAB, READ, QUIZ` — **không có `WRITE`** |
-| Schema bài học | Không có trường bài viết |
-| `mastery_weights` | Chỉ dùng `speak`, `quiz`, `listen` |
-| Bài xếp lớp | Không có section viết |
-| Giao diện | Không có ô nhập văn bản nào |
+| Bộ luyện viết độc lập | ✅ **Có** — 14 bài / 3 bộ, `/learn/write`, có trong menu chính |
+| Bộ chấm | ✅ **Có** — `writing_service.py`, chấm bằng luật, không cần AI |
+| `ActivityKind` (`enums.py:39`) | ❌ `LISTEN, SHADOW, SPEAK, VOCAB, READ, QUIZ` — không có `WRITE` |
+| Schema bài học | ❌ Không có trường bài viết |
+| `mastery_weights` | ❌ Chỉ dùng `speak`, `quiz`, `listen` |
+| Bài xếp lớp | ❌ Không có section viết |
+| Tuyên bố đầu ra theo level | ❌ Không có |
 
-Từ "writing" xuất hiện trong 6 file YAML nhưng chỉ là **từ vựng** (ví dụ O01 dạy từ *write*), không phải
-hoạt động viết.
+Nói cách khác: học viên **luyện viết được**, nhưng việc đó không tính vào tiến độ, không ảnh hưởng
+mở khoá bài, và không được đo lúc xếp lớp. Nó là một hòn đảo cạnh lộ trình, không nằm trong lộ trình.
 
-### 2.4 Bảng tổng kết độ phủ 4 kỹ năng
+### 2.4 Bảng tổng kết độ phủ 4 kỹ năng *(đã đính chính)*
 
-| Kỹ năng | Trong bài test | Trong nội dung | Có chấm điểm |
+| Kỹ năng | Trong bài test | Trong nội dung | Tính vào mastery |
 |---|---|---|---|
 | **Nghe** | ✅ 6 câu | ✅ `listening_snippet` mọi bài | ✅ |
 | **Nói** | ✅ 5 câu (3 dạng) | ✅ `speaking_drills` + chấm phát âm local | ✅ |
 | **Đọc** | ❌ không có | ⚠️ 11 bài nhưng là hội thoại có audio | ⚠️ thực chất là điểm quiz |
-| **Viết** | ❌ không có | ❌ không có | ❌ không có |
+| **Viết** | ❌ không có | ⚠️ 14 bài, nhưng tách rời khỏi bài học | ❌ không |
 
 ---
 
