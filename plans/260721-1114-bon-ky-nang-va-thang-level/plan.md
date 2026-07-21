@@ -1,7 +1,24 @@
 # Bốn kỹ năng và thang Level
 
-**Trạng thái:** Draft — chờ duyệt
-**Ngày:** 2026-07-21
+**Trạng thái:** Phase 01–05 xong và đã deploy · Phase 06 xong đợt 1/3 · Phase 07, 08 chưa làm
+**Ngày:** 2026-07-21 · Cập nhật: 2026-07-21
+
+## Đã xong (đã chạy trên https://eng.hoatranlab.io.vn)
+
+| Phase | Trạng thái |
+|---|---|
+| 01 Thang level | ✅ `docs/khung-level.md`, sửa CP-F, `check_level_order()` |
+| 02 Chấm điểm xếp lớp | ✅ 8 lỗi, thang 4 bậc, không tụt quá 1 bậc |
+| 03 Schema Đọc/Viết | ✅ `reading_passage`, `writing_task`, `ActivityKind.WRITE` |
+| 04 Chấm Viết bằng luật | ✅ mở rộng `writing_service` sẵn có, 6 dạng bài |
+| 05 Đề xếp lớp 4 kỹ năng | ✅ 26 câu, 18 phút, 4 trục |
+| 06 Chuyển đổi 62 bài | 🟡 **Đợt 1/3 xong** — L1+L2 (14 bài) + R01. Còn L3 (24) và L4 (24) |
+| 07 Dày nền mất gốc | ⬜ chưa |
+| 08 Kiểm tra kết thúc level | ⬜ chưa |
+
+Ngoài kế hoạch, ba lỗi hạ tầng phát hiện và đã sửa: migration chưa từng được áp lên DB
+(`env.py` thiếu `begin_transaction`), CI chưa từng xanh (`pip install -e .` hỏng), repo
+chưa từng có test nào. Và `loader` xoá sạch tiến độ học viên mỗi lần seed — đã đổi sang upsert.
 **Căn cứ:** `plans/reports/assessment-and-level-audit-260721-1114-placement-scoring-four-skills-level-ladder-report.md`
 
 ## Mục tiêu
