@@ -1,0 +1,226 @@
+schema_version: 1
+id: S03
+slug: gio-va-thu-trong-tuan
+unit: U-S1
+title_vi: "Giờ và thứ trong tuần — hẹn mà không lỡ"
+title_en: "Telling the time and days of the week"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 3
+est_minutes: 14
+
+objective_vi: "Nói và nghe được giờ, thứ trong tuần, và hẹn được một buổi gặp đơn giản."
+objective_observable: "Nghe đúng 4/5 mốc giờ và thứ trong một đoạn hội thoại ngắn."
+
+prerequisites:
+  - {lesson: S02, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Monday"
+    ipa: "/ˈmʌndeɪ/"
+    meaning_vi: "thứ Hai"
+    chunk: "See you on Monday."
+    tags: [core]
+  - term: "half past"
+    ipa: "/hæf pæst/"
+    meaning_vi: "rưỡi (30 phút)"
+    chunk: "Half past nine."
+    tags: [core]
+  - term: "a quarter to"
+    ipa: "/ə ˈkwɔːrtər tuː/"
+    meaning_vi: "kém mười lăm"
+    chunk: "A quarter to ten."
+    tags: [core]
+  - term: "in the morning"
+    ipa: "/ɪn ðə ˈmɔːrnɪŋ/"
+    meaning_vi: "vào buổi sáng"
+    chunk: "Nine in the morning."
+    tags: [core]
+  - term: "tomorrow"
+    ipa: "/təˈmɑroʊ/"
+    meaning_vi: "ngày mai"
+    chunk: "See you tomorrow."
+    tags: [core]
+  - term: "every"
+    ipa: "/ˈɛvri/"
+    meaning_vi: "mỗi, hằng"
+    chunk: "Every Monday at nine."
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "The {event} is at {time}."
+    meaning_vi: "{event} lúc {time}."
+    slots:
+      event: ["meeting", "call", "standup"]
+      time: ["nine", "half past two", "a quarter to four"]
+  - pattern: "See you on {day}."
+    meaning_vi: "Hẹn gặp {day}."
+    slots:
+      day: ["Monday", "Friday", "Wednesday"]
+
+dialogue:
+  context_vi: >
+    Linh hẹn bạn một buổi nói chuyện đầu tuần. Đoạn này ngắn nhưng có đủ ba thứ hay nhầm:
+    giờ, thứ, và buổi sáng hay chiều.
+  turns:
+    - {speaker: Linh, en: "Are you free on Monday?", vi: "Thứ Hai bạn rảnh không?"}
+    - {speaker: Nam, en: "Yes. What time?", vi: "Rảnh. Mấy giờ ạ?"}
+    - {speaker: Linh, en: "Half past nine, in the morning.", vi: "Chín giờ rưỡi, buổi sáng."}
+    - {speaker: Nam, en: "Nine thirty on Monday. Got it.", vi: "Chín giờ ba mươi thứ Hai. Rõ rồi."}
+    - {speaker: Linh, en: "And we have a standup every day at a quarter to ten.", vi: "Và mình có standup hằng ngày lúc mười giờ kém mười lăm."}
+    - {speaker: Nam, en: "Every day? OK, see you tomorrow then.", vi: "Hằng ngày ạ? Vâng, vậy mai gặp."}
+
+reading_passage:
+  id: RP-S03
+  kind: chat
+  context_vi: >
+    Lịch tuần đầu tiên của bạn. Đọc và tìm xem thứ Sáu có gì khác các ngày còn lại.
+  text_en: |
+    Your first week:
+    Every day: standup at 9:45.
+    Monday: welcome meeting with Linh at 9:30.
+    Wednesday: IT training at half past two.
+    Friday: no standup. Team lunch at 12:00.
+  text_vi: |
+    Tuần đầu của bạn:
+    Hằng ngày: standup lúc 9:45.
+    Thứ Hai: buổi chào mừng với Linh lúc 9:30.
+    Thứ Tư: đào tạo IT lúc hai giờ rưỡi.
+    Thứ Sáu: không có standup. Ăn trưa cùng nhóm lúc 12:00.
+  questions:
+    - q_en: "What time is the IT training?"
+      choices: ["2:30", "3:30", "9:45"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What is different about Friday?"
+      choices: ["There is no standup", "It starts earlier", "There is no lunch"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-S03
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống: “Cuộc họp lúc chín giờ rưỡi thứ Hai.”"
+  prompt_en: "The meeting is at ___ ___ nine on Monday."
+  blanks:
+    - ["half"]
+    - ["past"]
+  hint_vi: "“Rưỡi” trong tiếng Anh là “half past” + giờ, không phải “nine half”."
+  sample_en: "The meeting is at half past nine on Monday."
+
+listening_snippet:
+  id: LS-S03
+  speed: 0.85
+  voice: en_US_female
+  context_vi: >
+    Linh nhắc lại lịch qua tin thoại. Có hai mốc giờ và một thứ — nghe kỹ chỗ “kém mười lăm”.
+  transcript_en: "The standup is at a quarter to ten every day, and our meeting is on Monday at half past nine."
+  transcript_vi: "Standup lúc mười giờ kém mười lăm hằng ngày, còn buổi họp của mình vào thứ Hai lúc chín giờ rưỡi."
+  questions:
+    - q_vi: "Standup lúc mấy giờ?"
+      choices: ["9:45", "10:15", "9:30"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Buổi họp vào thứ mấy?"
+      choices: ["Thứ Hai", "Thứ Ba", "Thứ Sáu"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "The meeting is at half past nine."
+    prompt_vi: "Đọc to. Chú ý âm /f/ trong “half” — nó câm chữ l, đọc là /hæf/."
+    ipa: "/ðə ˈmiːtɪŋ ɪz æt hæf pæst naɪn/"
+    focus_phonemes: [h, f, p]
+  - kind: read_aloud
+    expected_text: "See you on Monday."
+    prompt_vi: "Câu tạm biệt có hẹn. Giữ âm /n/ cuối trong “Monday”."
+    ipa: "/siː juː ɑn ˈmʌndeɪ/"
+    focus_phonemes: [s, n, d]
+  - kind: repeat
+    expected_text: "The standup is at a quarter to ten."
+    prompt_vi: "Nghe rồi nhắc lại. “Quarter to ten” nghĩa là 9:45, không phải 10:15."
+    ipa: "/ðə ˈstændʌp ɪz æt ə ˈkwɔːrtər tuː tɛn/"
+    focus_phonemes: [k, w, r, t]
+  - kind: repeat
+    expected_text: "Are you free tomorrow morning?"
+    prompt_vi: "Nghe rồi nhắc lại. Đây là câu bạn dùng để hẹn ai đó."
+    ipa: "/ɑr juː friː təˈmɑroʊ ˈmɔːrnɪŋ/"
+    focus_phonemes: [f, r, m]
+  - kind: respond
+    prompt_en: "What time do you start work?"
+    prompt_vi: "Trả lời giờ bạn bắt đầu làm việc."
+    accept_patterns:
+      - "I start at {time}"
+      - "At {time}"
+      - "I start work at {time}"
+
+vietnamese_explanation:
+  why_vi: >
+    Tiếng Việt nói giờ theo một chiều: “chín giờ ba mươi”. Tiếng Anh có hai cách nói cùng một
+    mốc — “nine thirty” và “half past nine” — và người bản xứ dùng lẫn lộn cả hai. Ai chỉ học
+    một cách sẽ đứng hình khi nghe cách còn lại. Riêng “a quarter to ten” còn đảo ngược: nó
+    nói tới giờ SẮP tới, không phải giờ vừa qua.
+  how_vi: >
+    Học hai mẫu, mỗi mẫu một dòng: “half past + giờ hiện tại” = giờ rưỡi. “a quarter to +
+    giờ sắp tới” = kém mười lăm. Khi nói, cách an toàn nhất luôn là đọc số: “nine thirty”,
+    “nine forty-five” — không ai hiểu nhầm được.
+  contrast_vi: "“half past nine” = 9:30 (đã qua chín giờ) ↔ “a quarter to ten” = 9:45 (chưa tới mười giờ). Một cái nhìn về sau, một cái nhìn về trước."
+
+common_mistakes:
+  - mistake: "Hiểu “a quarter to ten” là 10:15"
+    why_vi: "Dịch từng chữ: “mười giờ mười lăm”. Nhưng “to” nghĩa là còn thiếu, chưa tới."
+    fix_vi: "“to” = còn thiếu (9:45). “past” = đã qua (10:15 là “a quarter past ten”). Nhớ: to nhìn tới trước, past nhìn về sau."
+    detect: {}
+  - mistake: "Nói “nine hour thirty”"
+    why_vi: "Dịch thẳng từ “chín giờ ba mươi”."
+    fix_vi: "Tiếng Anh không nói “hour” khi đọc giờ. Chỉ cần “nine thirty”."
+    detect: {}
+  - mistake: "Quên giới từ: “See you Monday”"
+    why_vi: "Tiếng Việt không cần từ nối trước thứ."
+    fix_vi: "Thứ trong tuần đi với “on”: “on Monday”. Buổi thì đi với “in”: “in the morning”."
+    detect: {}
+
+memory_trick_vi: >
+  Hai giới từ, hai hướng: PAST là đã đi qua giờ đó, TO là còn phải đi tới giờ đó.
+  Và khi không chắc, cứ đọc số: “nine forty-five” luôn đúng, luôn hiểu được.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“A quarter to ten” là mấy giờ?"
+    choices: ["9:45", "10:15", "10:45"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq
+    prompt_vi: "“Half past nine” là mấy giờ?"
+    choices: ["9:30", "8:30", "9:15"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["See you on Monday.", "See you in Monday.", "See you at Monday."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["The meeting is at nine thirty.", "The meeting is at nine hour thirty."]
+    answer: 0
+    difficulty: 1
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy mấy giờ?"
+    audio_text: "The call is at a quarter past three."
+    choices: ["3:15", "2:45"]
+    answer: 0
+    difficulty: 3
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: S04

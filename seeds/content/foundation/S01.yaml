@@ -1,0 +1,228 @@
+schema_version: 1
+id: S01
+slug: bang-chu-cai-va-danh-van-ten
+unit: U-S1
+title_vi: "Bảng chữ cái và đánh vần tên của bạn"
+title_en: "The alphabet and spelling your name"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 1
+est_minutes: 14
+
+objective_vi: "Đánh vần được tên và email của mình bằng tiếng Anh, và nghe được khi người khác đánh vần."
+objective_observable: "Đánh vần đúng họ tên của mình trên 2/3 lần thử, người nghe ghi lại không sai chữ nào."
+
+prerequisites: []
+
+vocabulary:
+  - term: "spell"
+    ipa: "/spɛl/"
+    meaning_vi: "đánh vần"
+    chunk: "How do you spell it?"
+    tags: [core]
+  - term: "as in"
+    ipa: "/æz ɪn/"
+    meaning_vi: "như trong (dùng để làm rõ chữ cái)"
+    chunk: "N as in November."
+    tags: [core]
+  - term: "double"
+    ipa: "/ˈdʌbəl/"
+    meaning_vi: "hai chữ giống nhau liền nhau"
+    chunk: "Double L, like in Bell."
+    tags: [core]
+  - term: "capital"
+    ipa: "/ˈkæpɪtəl/"
+    meaning_vi: "chữ in hoa"
+    chunk: "Capital T, then r-a-n."
+    tags: [core]
+  - term: "at"
+    ipa: "/æt/"
+    meaning_vi: "ký tự @ trong email"
+    chunk: "nam at vertex dot com"
+    tags: [core]
+  - term: "dot"
+    ipa: "/dɑt/"
+    meaning_vi: "dấu chấm trong email hoặc địa chỉ web"
+    chunk: "vertex dot com"
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "How do you spell {word}?"
+    meaning_vi: "{word} đánh vần thế nào?"
+    slots:
+      word: ["your name", "that", "your last name"]
+  - pattern: "{letter} as in {word}."
+    meaning_vi: "Chữ {letter}, như trong từ {word}."
+    slots:
+      letter: ["N", "M", "B"]
+      word: ["November", "Mike", "Bravo"]
+
+dialogue:
+  context_vi: >
+    Ngày đầu đi làm. Emma cần điền tên bạn vào hệ thống, nhưng cô ấy chưa từng nghe tên Việt bao giờ.
+    Đây là cuộc hội thoại bạn sẽ gặp lại rất nhiều lần — sân bay, khách sạn, ngân hàng, mọi cuộc gọi.
+  turns:
+    - {speaker: Emma, en: "Hi! What's your name?", vi: "Chào bạn! Bạn tên gì?"}
+    - {speaker: Nam, en: "I'm Nam. Nam Tran.", vi: "Tôi là Nam. Nam Trần."}
+    - {speaker: Emma, en: "Sorry, how do you spell that?", vi: "Xin lỗi, tên đó đánh vần thế nào?"}
+    - {speaker: Nam, en: "N-A-M. And Tran: T-R-A-N. N as in November.", vi: "N-A-M. Còn Tran: T-R-A-N. Chữ N như trong November."}
+    - {speaker: Emma, en: "Got it. And your email?", vi: "Rõ rồi. Còn email của bạn?"}
+    - {speaker: Nam, en: "nam dot tran at vertex dot com.", vi: "nam chấm tran a còng vertex chấm com."}
+
+reading_passage:
+  id: RP-S01
+  kind: chat
+  context_vi: >
+    Emma nhắn lại để xác nhận. Đọc kỹ — trong đoạn này có một chỗ cô ấy ghi sai.
+  text_en: |
+    Emma: I have you as Nam Tran, is that right?
+    Nam: Yes, that's right.
+    Emma: And your email is nam.tram at vertex dot com?
+    Nam: Almost. It's tran, not tram. N as in November, not M as in Mike.
+    Emma: Sorry! Fixed it.
+  text_vi: |
+    Emma: Tôi ghi là Nam Tran, đúng không?
+    Nam: Đúng rồi.
+    Emma: Và email của bạn là nam.tram a còng vertex chấm com?
+    Nam: Gần đúng. Là tran, không phải tram. Chữ N như trong November, không phải M như trong Mike.
+    Emma: Xin lỗi! Sửa rồi.
+  questions:
+    - q_en: "What did Emma write wrong?"
+      choices: ["The last letter of the email", "The first name", "The company name"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Why does Nam say \"N as in November\"?"
+      choices: ["To make the letter clear", "To give his address", "To spell November"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-S01
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống khi làm rõ một chữ cái."
+  prompt_en: "It's tran. N ___ ___ November."
+  blanks:
+    - ["as"]
+    - ["in"]
+  hint_vi: "Cụm này dùng để phân biệt hai chữ cái nghe giống nhau: “N as in November”."
+  sample_en: "It's tran. N as in November."
+
+listening_snippet:
+  id: LS-S01
+  speed: 0.85
+  voice: en_US_female
+  context_vi: >
+    Emma đọc lại tên và email của bạn qua điện thoại để xác nhận. Nghe từng chữ cái một —
+    lần đầu chưa quen thì rất khó, nhưng chỉ khó ở lần đầu.
+  transcript_en: "So that's N-A-M, T-R-A-N, and the email is nam dot tran at vertex dot com."
+  transcript_vi: "Vậy là N-A-M, T-R-A-N, và email là nam chấm tran a còng vertex chấm com."
+  questions:
+    - q_vi: "Chữ cái cuối của họ là gì?"
+      choices: ["N", "M", "R"]
+      answer: 0
+      difficulty: 2
+    - q_vi: "Email kết thúc bằng gì?"
+      choices: ["vertex.com", "vertex.vn", "vertex.net"]
+      answer: 0
+      difficulty: 2
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "How do you spell that?"
+    prompt_vi: "Câu hỏi bạn sẽ dùng suốt đời khi nghe một cái tên lạ. Đọc to, giữ âm /l/ cuối trong spell."
+    ipa: "/haʊ duː juː spɛl ðæt/"
+    focus_phonemes: [s, p, l]
+  - kind: read_aloud
+    expected_text: "N as in November."
+    prompt_vi: "Emma đang phân vân giữa N và M. Nói câu này để cô ấy khỏi đoán."
+    ipa: "/ɛn æz ɪn noʊˈvɛmbər/"
+    focus_phonemes: [n, v]
+  - kind: repeat
+    expected_text: "My email is nam dot tran at vertex dot com."
+    prompt_vi: "Nghe rồi nhắc lại. Chú ý: “dot” và “at” đọc rời ra, không nuốt."
+    ipa: "/maɪ ˈiːmeɪl ɪz næm dɑt træn æt ˈvɜːrtɛks dɑt kɑm/"
+    focus_phonemes: [d, t]
+  - kind: repeat
+    expected_text: "Sorry, could you spell your last name?"
+    prompt_vi: "Nghe rồi nhắc lại. Đây là cách hỏi lịch sự khi bạn không bắt được tên."
+    ipa: "/ˈsɑri kʊd juː spɛl jʊr læst neɪm/"
+    focus_phonemes: [s, l]
+  - kind: respond
+    prompt_en: "What's your name, and how do you spell it?"
+    prompt_vi: "Emma hỏi tên bạn. Trả lời và đánh vần họ tên của chính bạn."
+    accept_patterns:
+      - "I'm {name}"
+      - "My name is {name}"
+      - "It's {name}"
+
+vietnamese_explanation:
+  why_vi: >
+    Người Việt học tiếng Anh nhiều năm vẫn bí ở đúng chỗ này: bị hỏi đánh vần tên mình.
+    Lý do là tên tiếng Việt không có trong bất kỳ giáo trình nào, và bảng chữ cái là thứ ai
+    cũng nghĩ mình biết rồi nên không ai luyện. Kết quả là mỗi lần gọi điện cho ngân hàng
+    hay đặt vé, bạn mất năm phút cho một cái tên ba chữ.
+  how_vi: >
+    Học thuộc cách đọc 26 chữ cái, đặc biệt sáu chữ hay nhầm: A/R, E/I, G/J, M/N, U/W, V/B.
+    Rồi chuẩn bị sẵn một câu cho mỗi chữ trong tên bạn theo mẫu “N as in November”. Tập
+    một lần, dùng cả đời.
+  contrast_vi: "Tiếng Việt đọc chữ cái theo âm (bờ, cờ, dờ) ↔ tiếng Anh đọc theo tên chữ (bee, see, dee). Đọc theo kiểu Việt thì người nghe không ra chữ nào."
+
+common_mistakes:
+  - mistake: "Đọc chữ cái theo kiểu tiếng Việt: “tê-rờ-a-nờ” cho T-R-A-N"
+    why_vi: "Thói quen đánh vần tiếng Việt. Nhưng người nghe đang chờ tên chữ cái tiếng Anh nên họ không ghép được."
+    fix_vi: "Đọc tên chữ: “tee - ar - ay - en”. Chậm cũng được, nhưng phải đúng tên chữ."
+    detect: {}
+  - mistake: "Nhầm E và I khi đánh vần"
+    why_vi: "Trong tiếng Anh, chữ E đọc là /iː/ — nghe giống hệt chữ I trong tiếng Việt. Đây là lỗi phổ biến nhất."
+    fix_vi: "E là /iː/ (nghe như “i”), I là /aɪ/ (nghe như “ai”). Nhớ: I trong “I am” chính là tên chữ I."
+    detect: {}
+  - mistake: "Đọc email liền một mạch không nghỉ"
+    why_vi: "Nghĩ rằng nói nhanh nghe tự nhiên hơn."
+    fix_vi: "Ngắt ở mỗi dấu: “nam — dot — tran — at — vertex — dot — com”. Người ghi cần thời gian gõ."
+    detect: {}
+
+memory_trick_vi: >
+  Sáu cặp chữ dễ nhầm, học thuộc là xong: A/R, E/I, G/J, M/N, U/W, V/B.
+  Với tên riêng của bạn, chọn sẵn một từ cho mỗi chữ khó — “N as in November” — rồi không
+  bao giờ phải nghĩ lại nữa.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Chữ “E” trong tiếng Anh đọc gần giống âm nào trong tiếng Việt?"
+    choices: ["i", "ê", "e"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Chữ “I” trong tiếng Anh đọc gần giống âm nào?"
+    choices: ["ai", "i", "y"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Người ta hỏi “How do you spell that?” — họ muốn gì?"
+    choices: ["Bạn đọc từng chữ cái", "Bạn nói to hơn", "Bạn nhắc lại cả câu"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "“nam dot tran at vertex dot com” viết ra là gì?"
+    choices: ["nam.tran@vertex.com", "nam@tran.vertex.com", "namtran@vertex.com"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy chữ cái nào?"
+    audio_text: "The letter is M, as in Mike."
+    choices: ["M", "N"]
+    answer: 0
+    difficulty: 2
+    focus_phonemes: [m]
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: S02

@@ -38,7 +38,7 @@ BANDS: list[tuple[float, Cefr]] = [
 
 # Bài đầu của mỗi level, theo bảng ánh xạ level trong docs/khung-level.md.
 ENTRY_LESSON = {
-    Cefr.PRE_A1: "F01",
+    Cefr.PRE_A1: "S01",
     Cefr.A1: "F05",
     Cefr.A2: "F09",
     Cefr.B1: "F18",

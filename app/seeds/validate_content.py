@@ -198,6 +198,11 @@ def check_level_order(lessons: list[LessonYAML]) -> list[str]:
 
 
 def main() -> int:
+    # Thông báo lỗi viết bằng tiếng Việt, nhưng stdout mặc định của Windows là cp1252 —
+    # không ép UTF-8 thì cổng chất lượng tự chết khi cần báo lỗi, đúng lúc cần nó nhất.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
     lessons, errors = load_all()
     if lessons:
         errors += check_graph(lessons)

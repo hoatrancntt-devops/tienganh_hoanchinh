@@ -13,7 +13,10 @@ est_minutes: 14
 objective_vi: "Phát âm được /θ/ trong think và /ð/ trong this, và phân biệt được chúng với /t/ và /d/ khi nghe."
 objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill có chứa /θ/ hoặc /ð/."
 
-prerequisites: []
+# Soft, không hard: người học cũ đã mở F01 rồi thì không bị khoá lại. Người mới vào
+# bằng S01 sẽ đi qua bốn bài sinh tồn trước, theo recommended_next của S04.
+prerequisites:
+  - {lesson: S04, min_mastery: 70, kind: soft}
 
 vocabulary:
   - term: think

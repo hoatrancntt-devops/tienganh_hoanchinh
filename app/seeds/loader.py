@@ -24,6 +24,9 @@ TOPICS = [
     ("transport", "Đi lại"), ("office", "Công sở"), ("it_english", "Tiếng Anh CNTT"),
 ]
 UNITS = [
+    # Sinh tồn: thứ người mất gốc cần trong ngày đầu — chữ cái, số, giờ, câu cứu hộ.
+    # Đứng trước U-F1 vì bốn bài ngữ âm đầu tiên vẫn còn quá sớm cho người chưa biết gì.
+    ("U-S1", "Sinh tồn: chữ, số, giờ và câu cứu hộ", 0, "core"),
     ("U-F1", "Nền tảng 1: âm tiếng Việt không có", 1, "core"),
     ("U-F2", "Nền tảng 2: âm cuối và cụm phụ âm", 2, "core"),
     ("U-F3", "Nền tảng 3: trọng âm và câu lõi", 3, "core"),

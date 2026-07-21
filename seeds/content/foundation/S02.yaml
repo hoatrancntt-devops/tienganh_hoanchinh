@@ -1,0 +1,230 @@
+schema_version: 1
+id: S02
+slug: so-dem-va-nghe-so
+unit: U-S1
+title_vi: "Số đếm 0–100 — và nghe số mà không nhầm"
+title_en: "Numbers and hearing them right"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 2
+est_minutes: 14
+
+objective_vi: "Nói và nghe được số từ 0 đến 100, đặc biệt phân biệt được cặp -teen và -ty."
+objective_observable: "Nghe đúng 4/5 số trong đó có ít nhất hai cặp dễ nhầm (13/30, 15/50)."
+
+prerequisites:
+  - {lesson: S01, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "thirteen"
+    ipa: "/ˌθɜːrˈtiːn/"
+    meaning_vi: "mười ba — trọng âm ở cuối"
+    chunk: "Room thirteen, not thirty."
+    tags: [core, number]
+  - term: "thirty"
+    ipa: "/ˈθɜːrti/"
+    meaning_vi: "ba mươi — trọng âm ở đầu"
+    chunk: "Thirty minutes."
+    tags: [core, number]
+  - term: "hundred"
+    ipa: "/ˈhʌndrəd/"
+    meaning_vi: "một trăm"
+    chunk: "One hundred people."
+    tags: [core, number]
+  - term: "zero"
+    ipa: "/ˈzɪroʊ/"
+    meaning_vi: "số không"
+    chunk: "Zero four one."
+    tags: [core, number]
+  - term: "extension"
+    ipa: "/ɪkˈstɛnʃən/"
+    meaning_vi: "số máy lẻ"
+    chunk: "My extension is four two."
+    tags: [office, number]
+  - term: "floor"
+    ipa: "/flɔːr/"
+    meaning_vi: "tầng"
+    chunk: "The fourth floor."
+    tags: [office]
+
+sentence_patterns:
+  - pattern: "My {thing} is {number}."
+    meaning_vi: "{thing} của tôi là {number}."
+    slots:
+      thing: ["extension", "room number", "phone number"]
+      number: ["four two", "three one five", "zero nine one"]
+  - pattern: "Sorry, {a} or {b}?"
+    meaning_vi: "Xin lỗi, {a} hay {b}?"
+    slots:
+      a: ["thirteen", "fifteen", "sixteen"]
+      b: ["thirty", "fifty", "sixty"]
+
+dialogue:
+  context_vi: >
+    Bạn cần lên phòng họp. Emma đọc số phòng qua điện thoại — và đây đúng là chỗ một chữ
+    nghe sai làm bạn đi nhầm tầng, muộn mười phút, mở nhầm cửa một cuộc họp khác.
+  turns:
+    - {speaker: Emma, en: "The meeting is in room thirty.", vi: "Cuộc họp ở phòng ba mươi."}
+    - {speaker: Nam, en: "Sorry, thirteen or thirty?", vi: "Xin lỗi, mười ba hay ba mươi?"}
+    - {speaker: Emma, en: "Thirty. Three-zero.", vi: "Ba mươi. Ba - không."}
+    - {speaker: Nam, en: "Got it. Which floor?", vi: "Rõ rồi. Tầng mấy ạ?"}
+    - {speaker: Emma, en: "The third floor. My extension is four two if you get lost.", vi: "Tầng ba. Máy lẻ của tôi là bốn hai nếu bạn bị lạc."}
+
+reading_passage:
+  id: RP-S02
+  kind: chat
+  context_vi: >
+    Emma nhắn lại thông tin để bạn khỏi nhớ nhầm. Đọc và ghi ra ba con số.
+  text_en: |
+    Emma: Meeting room 30 (three-zero), third floor.
+    Emma: Starts at 9:15, not 9:50.
+    Emma: My extension is 42 if you need me.
+    Nam: Thanks! Room 30, floor 3, quarter past nine.
+    Emma: Exactly.
+  text_vi: |
+    Emma: Phòng họp 30 (ba - không), tầng ba.
+    Emma: Bắt đầu lúc 9:15, không phải 9:50.
+    Emma: Máy lẻ của tôi là 42 nếu bạn cần.
+    Nam: Cảm ơn! Phòng 30, tầng 3, chín giờ mười lăm.
+    Emma: Chính xác.
+  questions:
+    - q_en: "Which floor is the meeting on?"
+      choices: ["The third floor", "The thirtieth floor", "The fourth floor"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Why does Emma write \"three-zero\"?"
+      choices:
+        - "So Nam does not hear thirteen"
+        - "Because the room has two names"
+        - "To give her phone number"
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-S02
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống khi hỏi lại một con số nghe không rõ."
+  prompt_en: "Sorry, ___ or ___? (13 / 30)"
+  blanks:
+    - ["thirteen"]
+    - ["thirty"]
+  hint_vi: "Đọc số nhỏ trước, số lớn sau — người nghe dễ chọn hơn."
+  sample_en: "Sorry, thirteen or thirty?"
+
+listening_snippet:
+  id: LS-S02
+  speed: 0.85
+  voice: en_US_male
+  context_vi: >
+    Lễ tân đọc thông tin phòng cho bạn. Nghe chậm, nhưng có ba con số liền nhau — và hai
+    trong số đó thuộc cặp dễ nhầm.
+  transcript_en: "You're in room fifteen on the fourth floor. The code is nine zero three."
+  transcript_vi: "Anh ở phòng mười lăm, tầng bốn. Mã cửa là chín không ba."
+  questions:
+    - q_vi: "Phòng số mấy?"
+      choices: ["15", "50", "45"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Mã cửa là gì?"
+      choices: ["903", "930", "093"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Thirteen, thirty. Fifteen, fifty."
+    prompt_vi: "Bốn từ, hai cặp. Nhấn CUỐI với -teen, nhấn ĐẦU với -ty. Đọc chậm và rõ."
+    ipa: "/ˌθɜːrˈtiːn ˈθɜːrti ˌfɪfˈtiːn ˈfɪfti/"
+    focus_phonemes: [θ, t, n]
+  - kind: read_aloud
+    expected_text: "My extension is four two."
+    prompt_vi: "Đọc số máy lẻ theo từng chữ số, không đọc “bốn mươi hai”."
+    ipa: "/maɪ ɪkˈstɛnʃən ɪz fɔːr tuː/"
+    focus_phonemes: [k, s, n]
+  - kind: repeat
+    expected_text: "Sorry, thirteen or thirty?"
+    prompt_vi: "Nghe rồi nhắc lại. Câu này cứu bạn khỏi đi nhầm tầng."
+    ipa: "/ˈsɑri ˌθɜːrˈtiːn ɔːr ˈθɜːrti/"
+    focus_phonemes: [θ, r]
+  - kind: repeat
+    expected_text: "The meeting is in room thirty, third floor."
+    prompt_vi: "Nghe rồi nhắc lại cả câu, giữ đúng trọng âm của “thirty”."
+    ipa: "/ðə ˈmiːtɪŋ ɪz ɪn ruːm ˈθɜːrti θɜːrd flɔːr/"
+    focus_phonemes: [θ, ð, r]
+  - kind: respond
+    prompt_en: "What's your phone number?"
+    prompt_vi: "Đọc số điện thoại của bạn theo từng chữ số, chậm và rõ."
+    accept_patterns:
+      - "My number is {number}"
+      - "It's {number}"
+
+vietnamese_explanation:
+  why_vi: >
+    Cặp -teen và -ty là lỗi nghe tốn kém nhất trong tiếng Anh công việc: đi nhầm tầng, đặt
+    nhầm giờ, chuyển nhầm tiền. Người Việt hay nhầm vì tiếng Việt không dùng trọng âm để
+    phân biệt nghĩa — “ba mươi” và “mười ba” khác nhau ở từ, không ở chỗ nhấn.
+  how_vi: >
+    Quy tắc chỉ có một dòng: **-teen nhấn ở CUỐI, -ty nhấn ở ĐẦU**. thirTEEN ↔ THIRty.
+    Khi nghe không chắc, đừng đoán — hỏi lại bằng “Sorry, thirteen or thirty?”. Không ai
+    thấy phiền, vì chính người bản xứ cũng hỏi nhau câu đó.
+  contrast_vi: "Số điện thoại và mã số đọc TỪNG CHỮ SỐ (“four two”) ↔ số lượng đọc thành số (“forty-two”). Đọc sai kiểu là người nghe ghi sai."
+
+common_mistakes:
+  - mistake: "Đọc -teen và -ty giống hệt nhau"
+    why_vi: "Tiếng Việt không dùng trọng âm để phân biệt nghĩa, nên tai và miệng đều chưa quen coi nó là thứ quan trọng."
+    fix_vi: "Kéo dài và nhấn mạnh âm cuối của -teen: “thir-TEEN”. Với -ty thì nhấn đầu rồi hạ giọng: “THIR-ty”."
+    detect: {}
+  - mistake: "Đọc số máy lẻ 42 là “forty-two”"
+    why_vi: "Nghĩ rằng số nào cũng đọc như số lượng."
+    fix_vi: "Số máy lẻ, mã cửa, số điện thoại đọc từng chữ số: “four two”. Số lượng mới đọc “forty-two”."
+    detect: {}
+  - mistake: "Nghe không rõ nhưng gật đầu cho qua"
+    why_vi: "Ngại hỏi lại vì sợ bị coi là kém."
+    fix_vi: "“Sorry, thirteen or thirty?” mất hai giây. Đi nhầm tầng mất mười phút và một lời xin lỗi."
+    detect: {}
+
+memory_trick_vi: >
+  TEEN thì nhấn cuối, TY thì nhấn đầu. Nhớ bằng độ dài: -teen dài hơn nên phần nhấn rơi
+  về sau; -ty ngắn cụt nên nhấn ngay đầu rồi tụt xuống. Khi vẫn không chắc: hỏi lại.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "“Thirty” nhấn ở đâu?"
+    choices: ["Âm đầu (THIR-ty)", "Âm cuối (thir-TY)"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Số máy lẻ 42 nên đọc thế nào?"
+    choices: ["four two", "forty-two", "four and two"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Nghe không rõ “fifteen” hay “fifty”, bạn nên làm gì?"
+    choices: ["Hỏi lại: “Fifteen or fifty?”", "Chọn đại một số", "Bỏ qua"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy số nào?"
+    audio_text: "The meeting is at nine fifteen."
+    choices: ["9:15", "9:50"]
+    answer: 0
+    difficulty: 3
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy số nào?"
+    audio_text: "There are thirty people in the room."
+    choices: ["30", "13"]
+    answer: 0
+    difficulty: 3
+    focus_phonemes: [θ]
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: S03

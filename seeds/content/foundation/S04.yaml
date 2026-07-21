@@ -1,0 +1,244 @@
+schema_version: 1
+id: S04
+slug: cau-cuu-ho-khi-chua-hieu
+unit: U-S1
+title_vi: "Ba câu cứu hộ — để không bao giờ phải im lặng"
+title_en: "Three rescue phrases"
+phase: foundation
+topic: core
+cefr_target: pre_a1
+order_index: 4
+est_minutes: 14
+
+objective_vi: "Nói được ba câu giữ mình ở lại trong cuộc hội thoại khi chưa nghe kịp hoặc chưa hiểu."
+objective_observable: "Dùng đúng ba câu cứu hộ trong ba tình huống khác nhau, không im lặng lần nào."
+
+prerequisites:
+  - {lesson: S03, min_mastery: 75, kind: hard}
+
+vocabulary:
+  - term: "Sorry?"
+    ipa: "/ˈsɑri/"
+    meaning_vi: "Xin lỗi? (khi chưa nghe rõ, lên giọng cuối)"
+    chunk: "Sorry? I didn't hear that."
+    tags: [core]
+  - term: "I don't understand"
+    ipa: "/aɪ doʊnt ˌʌndərˈstænd/"
+    meaning_vi: "Tôi không hiểu"
+    chunk: "Sorry, I don't understand."
+    tags: [core]
+  - term: "more slowly"
+    ipa: "/mɔːr ˈsloʊli/"
+    meaning_vi: "chậm hơn"
+    chunk: "Could you say that more slowly?"
+    tags: [core]
+  - term: "one moment"
+    ipa: "/wʌn ˈmoʊmənt/"
+    meaning_vi: "chờ một chút"
+    chunk: "One moment, please."
+    tags: [core]
+  - term: "again"
+    ipa: "/əˈɡɛn/"
+    meaning_vi: "lại, một lần nữa"
+    chunk: "Say that again, please."
+    tags: [core]
+  - term: "no problem"
+    ipa: "/noʊ ˈprɑbləm/"
+    meaning_vi: "không sao đâu"
+    chunk: "No problem, take your time."
+    tags: [core]
+
+sentence_patterns:
+  - pattern: "Could you say that {how}?"
+    meaning_vi: "Anh/chị nói lại {how} được không?"
+    slots:
+      how: ["again", "more slowly", "one more time"]
+  - pattern: "Sorry, I don't {verb}."
+    meaning_vi: "Xin lỗi, tôi không {verb}."
+    slots:
+      verb: ["understand", "know"]
+
+dialogue:
+  context_vi: >
+    David nói nhanh và dùng một từ bạn chưa gặp. Chuyện này sẽ xảy ra mỗi ngày. Điều quyết
+    định không phải là bạn có hiểu hay không — mà là bạn nói gì trong ba giây tiếp theo.
+  turns:
+    - {speaker: David, en: "Can you check the invoice and revert by EOD?", vi: "Bạn kiểm tra hoá đơn rồi phản hồi trước cuối ngày nhé?"}
+    - {speaker: Nam, en: "Sorry? Could you say that more slowly?", vi: "Xin lỗi? Anh nói chậm lại được không?"}
+    - {speaker: David, en: "Sure. Check the invoice, then reply to me before the end of the day.", vi: "Được. Kiểm tra hoá đơn, rồi trả lời tôi trước cuối ngày."}
+    - {speaker: Nam, en: "The invoice — I don't understand that word.", vi: "Invoice — em không hiểu từ đó."}
+    - {speaker: David, en: "The bill. The paper with the money on it.", vi: "Là hoá đơn. Cái giấy ghi số tiền ấy."}
+    - {speaker: Nam, en: "Ah, got it. No problem, I'll do it today.", vi: "À, hiểu rồi. Không vấn đề gì, hôm nay em làm."}
+
+reading_passage:
+  id: RP-S04
+  kind: chat
+  context_vi: >
+    Hai đồng nghiệp mới, hai cách phản ứng khi không hiểu. Đọc và xem ai kết thúc buổi làm
+    việc với thông tin đúng.
+  text_en: |
+    David: Please revert by EOD.
+    Nam: Sorry? Could you say that again?
+    David: Reply to me before the end of today.
+    Nam: Got it, thanks.
+
+    David: Please revert by EOD.
+    Linh: ...Yes. OK.
+    (Linh did nothing. She did not know what EOD meant.)
+  text_vi: |
+    David: Phản hồi giúp tôi trước EOD nhé.
+    Nam: Xin lỗi? Anh nói lại được không?
+    David: Trả lời tôi trước cuối ngày hôm nay.
+    Nam: Rõ rồi, cảm ơn anh.
+
+    David: Phản hồi giúp tôi trước EOD nhé.
+    Linh: ...Vâng. OK.
+    (Linh không làm gì cả. Cô ấy không biết EOD nghĩa là gì.)
+  questions:
+    - q_en: "Who understood the task?"
+      choices: ["Nam", "Linh", "Both of them"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "Why did Linh do nothing?"
+      choices:
+        - "She did not ask what EOD meant"
+        - "She was on holiday"
+        - "David told her not to"
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "In this chat, \"revert\" means:"
+      choices: ["reply", "go back", "check again"]
+      answer: 0
+      skill: guess_word
+      difficulty: 4
+
+writing_task:
+  id: WT-S04
+  kind: fill_blank
+  prompt_vi: "Điền hai chỗ trống vào câu xin nói chậm lại."
+  prompt_en: "Sorry, could you say that ___ ___?"
+  blanks:
+    - ["more"]
+    - ["slowly"]
+  hint_vi: "“Chậm hơn” là “more slowly”, không phải “more slow”."
+  sample_en: "Sorry, could you say that more slowly?"
+
+listening_snippet:
+  id: LS-S04
+  speed: 1.0
+  voice: en_US_male
+  context_vi: >
+    Lần này David nói ở tốc độ thật, không chậm lại vì bạn. Bạn sẽ không hiểu hết — đó là
+    chuyện bình thường. Câu hỏi là bạn bắt được ý nào.
+  transcript_en: "Hey, could you take a look at the invoice and revert by EOD? Thanks."
+  transcript_vi: "Này, bạn xem giúp cái hoá đơn rồi phản hồi trước cuối ngày nhé? Cảm ơn."
+  questions:
+    - q_vi: "David muốn bạn làm gì?"
+      choices: ["Xem hoá đơn và phản hồi", "Gửi hoá đơn mới", "Gọi cho khách"]
+      answer: 0
+      difficulty: 3
+    - q_vi: "Hạn là khi nào?"
+      choices: ["Trước cuối ngày", "Ngày mai", "Không có hạn"]
+      answer: 0
+      difficulty: 3
+
+speaking_drills:
+  - kind: read_aloud
+    expected_text: "Sorry, could you say that again?"
+    prompt_vi: "Câu cứu hộ số một. Đọc to — lên giọng nhẹ ở cuối để nghe như lời hỏi, không như lời trách."
+    ipa: "/ˈsɑri kʊd juː seɪ ðæt əˈɡɛn/"
+    focus_phonemes: [s, k, g]
+  - kind: read_aloud
+    expected_text: "Could you say that more slowly?"
+    prompt_vi: "Câu cứu hộ số hai. Giữ âm /l/ cuối trong “slowly”."
+    ipa: "/kʊd juː seɪ ðæt mɔːr ˈsloʊli/"
+    focus_phonemes: [k, s, l]
+  - kind: read_aloud
+    expected_text: "Sorry, I don't understand."
+    prompt_vi: "Câu cứu hộ số ba. Nói thẳng và bình thản — đây không phải lời thú tội."
+    ipa: "/ˈsɑri aɪ doʊnt ˌʌndərˈstænd/"
+    focus_phonemes: [d, n, t]
+  - kind: repeat
+    expected_text: "One moment, please."
+    prompt_vi: "Nghe rồi nhắc lại. Câu này mua cho bạn ba giây để nghĩ."
+    ipa: "/wʌn ˈmoʊmənt pliːz/"
+    focus_phonemes: [w, m, p, l]
+  - kind: respond
+    prompt_en: "Could you take a look at the invoice and revert by EOD?"
+    prompt_vi: "Bạn không hiểu câu này. Đừng im lặng — dùng một trong ba câu cứu hộ."
+    accept_patterns:
+      - "Sorry, could you say that again"
+      - "Could you say that more slowly"
+      - "Sorry, I don't understand"
+      - "Sorry? What does {word} mean"
+
+vietnamese_explanation:
+  why_vi: >
+    Đây là bài quan trọng nhất trong cả chặng đầu, và nó không dạy từ vựng nào cả. Lý do
+    người Việt mất gốc thấy tiếng Anh khó không phải vì thiếu từ — mà vì khi không hiểu, họ
+    im lặng hoặc gật đầu cho qua. Cuộc hội thoại kết thúc ở đó, và họ về chỗ với một việc
+    làm sai hoặc không làm gì cả.
+  how_vi: >
+    Thuộc lòng ba câu, thuộc tới mức bật ra không cần nghĩ: “Sorry, could you say that
+    again?”, “Could you say that more slowly?”, “Sorry, I don't understand.” Dùng chúng ngay
+    lần đầu chưa nghe rõ, đừng đợi tới lần thứ ba. Người bản xứ hỏi lại nhau suốt ngày.
+  contrast_vi: "Im lặng và gật đầu ↔ hỏi lại một câu. Cái thứ nhất trông có vẻ lịch sự hơn, nhưng nó khiến bạn làm sai việc — và đó mới là thứ gây phiền."
+
+common_mistakes:
+  - mistake: "Gật đầu và nói “yes” khi chưa hiểu"
+    why_vi: "Sợ bị đánh giá là kém, hoặc ngại làm mất thời gian người khác."
+    fix_vi: "Hỏi lại mất hai giây. Làm sai việc mất cả buổi và phải xin lỗi. Người ta phiền vì cái thứ hai, không phải cái thứ nhất."
+    detect: {}
+  - mistake: "Nói “Repeat!” hoặc “Again!”"
+    why_vi: "Dịch thẳng “nhắc lại đi”. Nhưng một từ trơ trong tiếng Anh nghe như ra lệnh."
+    fix_vi: "Thêm “Could you” và “please”: “Could you say that again, please?” Cùng một ý, khác hẳn thái độ."
+    detect: {}
+  - mistake: "Nói “more slow” thay vì “more slowly”"
+    why_vi: "Quên rằng đang mô tả cách nói, nên cần trạng từ chứ không phải tính từ."
+    fix_vi: "Nói chậm = say it slowly. Thêm “-ly” vào cuối."
+    detect: {}
+
+memory_trick_vi: >
+  Ba câu, ba tình huống: chưa NGHE ra thì “say that again”; nghe ra nhưng nhanh quá thì
+  “more slowly”; nghe rõ từng chữ mà vẫn không hiểu thì “I don't understand”.
+  Thuộc ba câu này, bạn không bao giờ phải im lặng nữa.
+
+mini_quiz:
+  - kind: mcq
+    prompt_vi: "Bạn nghe rõ từng chữ nhưng không hiểu nghĩa. Nói gì?"
+    choices: ["Sorry, I don't understand.", "Could you say that more slowly?", "One moment, please."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Người ta nói quá nhanh. Nói gì?"
+    choices: ["Could you say that more slowly?", "Sorry, I don't understand.", "No problem."]
+    answer: 0
+    difficulty: 2
+  - kind: mcq
+    prompt_vi: "Chọn câu lịch sự hơn"
+    choices: ["Could you say that again, please?", "Repeat!"]
+    answer: 0
+    difficulty: 1
+  - kind: mcq
+    prompt_vi: "Chọn câu đúng"
+    choices: ["Could you speak more slowly?", "Could you speak more slow?"]
+    answer: 0
+    difficulty: 2
+  - kind: mcq_listen
+    prompt_vi: "Bạn nghe thấy câu nào?"
+    audio_text: "Sorry, I don't understand."
+    choices: ["Sorry, I don't understand.", "Sorry, I understand."]
+    answer: 0
+    difficulty: 2
+    focus_phonemes: [d, n, t]
+
+unlock_condition:
+  mastery_threshold: 75
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
+  min_speaking_attempts: 4
+  challenge_threshold: 85
+
+recommended_next:
+  default: F01
