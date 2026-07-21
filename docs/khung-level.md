@@ -85,8 +85,8 @@ nhận ticket, hướng dẫn khắc phục.
 |---|---|
 | Nghe | Nghe đủ để xử lý tình huống công việc cụ thể khi người nói nói rõ; bắt được số, ngày, giờ không nhầm. |
 | Nói | Tham gia được hội thoại ngắn có cấu trúc ở công sở (standup, xin nghỉ, báo tiến độ) — người đối thoại có thể phải hỗ trợ đôi chỗ. |
-| Đọc | Đọc được email nội bộ và thông báo lỗi, xác định được ai phải làm gì trước khi nào. |
-| Viết | *(một phần — O08 và I02 chạm tới tin nhắn ngắn)* |
+| Đọc | Đọc được email, chat, ticket và thông báo lỗi (46–62 từ), xác định được ai phải làm gì trước khi nào. |
+| Viết | Sửa được lỗi ngữ pháp thường gặp, và viết được email công việc 3–4 câu: báo sự cố, xin nghỉ, báo tiến độ, hỏi làm rõ. |
 
 **Lên L4 khi:** qua CP-O.
 
@@ -104,8 +104,8 @@ khách hàng. Đọc tài liệu kỹ thuật thật: release notes, README, tic
 |---|---|
 | Nghe | Nghe được thông tin công việc trực tiếp trong họp và call, nắm cả ý chính lẫn chi tiết cụ thể. |
 | Nói | **Giải thích được vì sao một thứ đang hỏng** — trao đổi, kiểm chứng, xác nhận thông tin trong tình huống không theo kịch bản. |
-| Đọc | Đọc được tài liệu kỹ thuật thật (log, API docs, postmortem) và rút ra hành động cần làm. |
-| Viết | Viết được email và thông báo kỹ thuật (I15). |
+| Đọc | Đọc được tài liệu kỹ thuật thật — release notes, README, ticket, log, API docs, security advisory, postmortem — và rút ra hành động cần làm. |
+| Viết | Viết được email và thông báo kỹ thuật 4–6 câu: cập nhật sự cố, bàn giao ca, thông báo bảo trì, tóm tắt postmortem. |
 
 Descriptor B1 "oral interaction" của CEFR Companion Volume 2020 (tr.72) ghi đúng chữ *"explain why
 something is a problem"* — đó chính là nội dung I05 và cụm I05–I15. Đây là chỗ nhãn CEFR của app khớp
@@ -133,20 +133,29 @@ Kết quả ra **một band chung** để chọn điểm vào, kèm biểu đồ
 Trọng số: nói 0.30 · nghe 0.25 · đọc 0.20 · viết 0.15 · từ vựng–ngữ pháp 0.10.
 Định nghĩa ở `app/services/placement_scoring.py`.
 
+## Độ phủ bốn kỹ năng
+
+**62/62 bài** có đủ Nghe · Nói · Đọc · Viết, cả bốn bậc. Tuyên bố đầu ra ở trên là thật và kiểm
+chứng được — cổng `make test` chạy trên chính giáo trình này và bắt lỗi nếu đáp án mẫu không qua nổi
+bộ chấm của nó, hoặc bài đọc dài quá trần của bậc.
+
+| | Bài đọc | Bài viết |
+|---|---|---|
+| Dạng | 30 chat · 11 doc · 9 email · 6 ticket · 4 announcement · 2 log | 34 email/note có khung · 14 sửa lỗi · 9 điền chỗ trống · 5 sắp thứ tự |
+| Trần độ dài | pre-A1 60 từ · A1 90 · A2 130 · B1 200 | — |
+
+Bài đọc **không sinh audio** — có test khoá điều đó ở cả hai đầu (schema và bộ sinh tiếng). Bài đọc
+mà nghe được thì học viên sẽ nghe thay vì đọc, và kỹ năng đọc lặng lẽ biến mất.
+
 ## Giới hạn đã biết
 
-1. **Đọc và Viết mới phủ 15/62 bài học.** Đợt 1 đã xong trọn vẹn **L1 và L2** (14 bài) cộng R01 làm
-   bài mẫu — nên tuyên bố đầu ra của L1 và L2 ở trên là thật, kiểm chứng được. **L3 và L4 thì chưa**:
-   48 bài còn lại chưa có `reading_passage` và `writing_task`, và bảng đầu ra của hai bậc đó vẫn ghi
-   Đọc/Viết theo hiện trạng chứ không theo thiết kế. **Không tuyên bố "thuần thục 4 kỹ năng" cho toàn
-   lộ trình cho tới khi xong đợt 2 và 3** — xem phase 06 của `plans/260721-1114-bon-ky-nang-va-thang-level/`.
-2. **10 bài phase `reading` còn lại vẫn dạy nghe nhiều hơn dạy đọc** — văn bản đang nằm trong `dialogue`
-   và được sinh audio. R01 đã chuyển, R02–R10 chưa.
-3. **Bộ luyện viết độc lập ở `/learn/write`** (14 bài, 3 bộ) không tính vào mastery và không gắn với
-   level nào. Nó dùng chung bộ chấm với bài viết trong bài học, nhưng vẫn là một hòn đảo cạnh lộ trình.
-4. **Nền L1 mỏng.** 4 bài cho người mất gốc hoàn toàn là ít; VUS 60 bài/level, Ms Hoa ~14 buổi/level.
-   Kế hoạch dày nền nằm ở phase 07.
-5. **Số tuần là ước lượng theo số bài × thời lượng**, chưa tính tốc độ học thật của từng người.
-   Lộ trình động nằm ở phase 08.
-6. **Chưa có bài kiểm tra kết thúc level.** 5 checkpoint hiện có gắn với *phase*, không gắn với *level*.
+1. **Nền L1 mỏng.** 4 bài cho người mất gốc hoàn toàn là ít; VUS 60 bài/level, Ms Hoa ~14 buổi/level.
+   Kế hoạch dày nền nằm ở phase 07 của `plans/260721-1114-bon-ky-nang-va-thang-level/`.
+2. **Chưa có bài kiểm tra kết thúc level.** 5 checkpoint hiện có gắn với *phase*, không gắn với
+   *level*, và chưa đặt ngưỡng riêng cho từng kỹ năng. Phase 08.
+3. **Số tuần là ước lượng theo số bài × thời lượng**, chưa tính tốc độ học thật của từng người.
    Phase 08.
+4. **Bộ luyện viết độc lập ở `/learn/write`** (14 bài, 3 bộ) không tính vào mastery và không gắn với
+   level nào. Nó dùng chung bộ chấm với bài viết trong bài học, nhưng vẫn là một hòn đảo cạnh lộ trình.
+5. **Chấm viết bằng luật không đo được mạch lạc và giọng điệu.** Nó đo cấu trúc, ý bắt buộc, và lỗi
+   thường gặp — đừng hứa nhiều hơn thế.

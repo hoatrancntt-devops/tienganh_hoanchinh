@@ -122,7 +122,7 @@ Cổng này chặn publish nếu: thiếu `vietnamese_explanation`, có dưới 
 
 **Hiện có 62 bài** trải bốn level Pre-A1 → B1. Thang level, tuyên bố đầu ra từng kỹ năng và bảng ánh xạ bài ↔ level nằm ở [`docs/khung-level.md`](docs/khung-level.md).
 
-**Đọc và Viết mới phủ 1/62 bài** (R01 là bài mẫu). Hạ tầng đã xong — schema `reading_passage` + `writing_task`, bộ chấm bằng luật, tính vào mastery — nhưng 61 bài còn lại chưa soạn. Đừng tuyên bố "thuần thục 4 kỹ năng" cho tới khi xong.
+**Cả 62 bài đều có đủ bốn kỹ năng** — nghe, nói, đọc, viết. Bài đọc là văn bản liền không sinh audio, câu hỏi bằng tiếng Anh; bài viết chấm bằng luật ngay tại máy chủ, không cần API key.
 
 Toàn bộ nội dung **tự biên soạn 100%**. CEFR / British Council / BBC / Cambridge / VOA chỉ dùng để định hướng — không sao chép câu, hội thoại hay bài tập nào.
 
