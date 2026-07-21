@@ -149,6 +149,39 @@ bộ chấm của nó, hoặc bài đọc dài quá trần của bậc.
 Bài đọc **không sinh audio** — có test khoá điều đó ở cả hai đầu (schema và bộ sinh tiếng). Bài đọc
 mà nghe được thì học viên sẽ nghe thay vì đọc, và kỹ năng đọc lặng lẽ biến mất.
 
+## Đường cong đòi hỏi
+
+Ngưỡng để hoàn thành một bài **tăng dần theo bậc**, không phẳng:
+
+| Bậc | Bài thường | Checkpoint | Vì sao |
+|---|---|---|---|
+| L1 Pre-A1 | 70 | 72 | Người mất gốc cần đà, không cần chuẩn xác |
+| L2 A1 | 73 | 75 | |
+| L3 A2 | 76 | 78 | |
+| L4 B1 | 80 | 82 | Chuẩn bị cho call thật với khách nước ngoài |
+
+Trước bản này đường cong đi **ngược**: F01–F04 (bậc Pre-A1, tuần đầu) có ngưỡng 78 — cao nhất
+giáo trình — còn CP-I và CP-R (checkpoint B1, bài chốt cuối) chỉ 70. Giáo trình đòi hỏi nhiều
+nhất ở người biết ít nhất.
+
+**Căn cứ hạ ngưỡng ở bậc thấp** — CEFR Companion Volume 2020, tr.135, bậc A2:
+
+> *"Systematic mispronunciation of phonemes does not hinder intelligibility, provided the
+> interlocutor makes an effort to understand specific sounds."*
+
+Tới tận A2, chuẩn châu Âu đo bằng **người nghe có hiểu không**, không đo độ giống người bản xứ.
+App từng khắt khe hơn chuẩn ở đúng bậc mà chuẩn bảo hãy khoan dung — và đó là bậc người học dễ
+bỏ cuộc nhất.
+
+**Cái không hạ:** `min_speaking_attempts` giữ nguyên 4 (checkpoint 6). Đó là cổng đòi **nỗ lực**,
+không đòi hoàn hảo — học viên vẫn phải mở miệng đủ số lần và vẫn nhận phản hồi phát âm từng lần.
+Hạ ngưỡng *điểm* mà giữ cổng *số lần* là cách giữ được việc luyện tập mà bỏ được việc chặn đường.
+
+Ngưỡng riêng từng kỹ năng ở checkpoint cũng tăng theo (nói: 62 → 66 → 70). Trục phụ được phép
+thấp hơn: CP-R là checkpoint đọc, nghe chỉ chiếm 10% điểm nên ngưỡng nghe ở đó thấp là đúng.
+
+`make test` khoá cả ba bất biến này.
+
 ## Giới hạn đã biết
 
 1. **Nền L1 vẫn mỏng hơn mục tiêu.** Đã tăng 4 → 8 bài (thêm S01–S04), nhưng kế hoạch nhắm 12 bài;
