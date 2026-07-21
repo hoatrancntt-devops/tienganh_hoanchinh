@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 11
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Nối phụ âm cuối với nguyên âm đầu của từ sau, để nói mượt và NGHE ra khi người khác nối."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nhận ra cụm nối 4/5 câu quiz nghe."
@@ -67,6 +67,46 @@ dialogue:
     - {speaker: David, en: "I can't log in — hold on, let me check it.", vi: "Tôi không đăng nhập được — chờ chút, để tôi kiểm tra."}
     - {speaker: You, en: "It sounds like one long word. I got nothing.", vi: "Nghe như một từ dài. Em không bắt được gì."}
     - {speaker: Minh, en: "He isn't fast. He links. “log in” becomes “lo-gin”, “check it” becomes “che-kit”.", vi: "Anh ấy không nói nhanh. Anh ấy NỐI. “log in” thành “lo-gin”, “check it” thành “che-kit”."}
+
+reading_passage:
+  id: RP-F11
+  kind: chat
+  context_vi: >
+    Đoạn này đầy những cụm mà người bản xứ đọc dính vào nhau: check it, turn it off, log in.
+    Đọc bằng mắt trước — lát nữa nghe sẽ thấy chúng không tách rời như trên giấy.
+  text_en: |
+    Linh: Can you check it now? I sent you an email.
+    You: Hold on, I need to log in first.
+    Linh: No problem. If the app is slow, turn it off and open it again.
+    You: OK. Should I pick up the call from David too?
+    Linh: Yes, please. He is waiting.
+  text_vi: |
+    Linh: Bạn kiểm tra giúp được không? Tôi vừa gửi email.
+    Bạn: Chờ chút, tôi phải đăng nhập đã.
+    Linh: Không sao. Nếu app chậm thì tắt đi rồi mở lại.
+    Bạn: OK. Tôi có nên nghe máy David nữa không?
+    Linh: Có, nghe giúp nhé. Anh ấy đang đợi.
+  questions:
+    - q_en: "What must the writer do first?"
+      choices: ["Log in", "Call David", "Turn off the app"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What should you do if the app is slow?"
+      choices: ["Turn it off and open it again", "Send an email", "Wait for Linh"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F11
+  kind: error_correction
+  prompt_vi: "Câu này thiếu một từ. Viết lại cho đủ."
+  prompt_en: "I need log in first."
+  blanks:
+    - ["i need to log in first"]
+  hint_vi: "Sau “need” phải có “to” rồi mới tới động từ."
+  sample_en: "I need to log in first."
 
 listening_snippet:
   id: LS-F11
@@ -177,7 +217,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 99
-est_minutes: 12
+est_minutes: 16
 is_checkpoint: true
 
 objective_vi: "Xử lý được một ngày công sở bằng tiếng Anh: nhận việc, hỏi làm rõ, báo tiến độ, đặt lịch, xin giúp đỡ và nhắn tin gọn."
@@ -23,6 +23,72 @@ prerequisites:
   - {lesson: O06, min_mastery: 75, kind: hard}
   - {lesson: O07, min_mastery: 75, kind: hard}
   - {lesson: O08, min_mastery: 75, kind: hard}
+
+reading_passage:
+  id: RP-CPO
+  kind: email
+  context_vi: >
+    Một email gom đủ ba thứ chặng này dạy: báo standup, báo tiến độ, và xin nghỉ. Bài chốt —
+    đọc một lần rồi trả lời.
+  text_en: |
+    Subject: Standup notes and Friday plan
+
+    Hi team,
+
+    Yesterday I finished the login page. Today I will start the payment screen.
+    I am blocked by the API key, so I will follow up with David after this.
+    The report is about halfway done and on track for Thursday.
+    I would like to take Friday off — Minh can cover for me.
+
+    Thanks,
+    Nam
+  text_vi: |
+    Tiêu đề: Ghi chú standup và kế hoạch thứ Sáu
+
+    Chào cả nhóm,
+
+    Hôm qua tôi làm xong trang đăng nhập. Hôm nay tôi bắt đầu màn hình thanh toán.
+    Tôi đang bị kẹt vì khoá API, nên sau buổi này tôi sẽ hỏi David.
+    Báo cáo xong khoảng một nửa và vẫn đúng tiến độ cho thứ Năm.
+    Tôi muốn xin nghỉ thứ Sáu — Minh có thể trực thay tôi.
+
+    Cảm ơn,
+    Nam
+  questions:
+    - q_en: "What is Nam blocked by?"
+      choices: ["The API key", "The report", "Minh"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Who will cover for Nam on Friday?"
+      choices: ["Minh", "David", "Nobody"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What is this email mainly about?"
+      choices: ["Nam's progress and his day off", "A system failure", "A new project plan"]
+      answer: 0
+      skill: skim
+      difficulty: 3
+
+writing_task:
+  id: WT-CPO
+  kind: guided_email
+  prompt_vi: >
+    Viết một email gộp: báo standup của bạn, và xin nghỉ một ngày trong tuần tới.
+    Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào cả nhóm"
+    - "Thân: hôm qua làm gì + hôm nay làm gì + có bị chặn không"
+    - "Thân: xin nghỉ ngày nào + ai trực thay"
+    - "Kết: cảm ơn và ký tên"
+  required_chunks:
+    - ["yesterday i"]
+    - ["blocked by", "no blockers", "i'm blocked", "nothing is blocking"]
+    - ["i'd like to take", "i would like to take", "i want to take", "can i take"]
+  min_words: 20
+  hint_vi: "Gộp hai việc vào một email thì phải tách đoạn rõ, đừng viết dính thành một khối."
+  sample_en: "Hi team, yesterday I finished the API tests and today I will start the report. I have no blockers right now. Also, I would like to take next Wednesday off — Minh can cover for me. Thanks, Hoa"
 
 listening_snippet:
   id: LS-CPO
@@ -108,6 +174,6 @@ memory_trick_vi: >
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {speak: 0.6, listen: 0.4}
+  mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 90

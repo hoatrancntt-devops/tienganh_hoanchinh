@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: a2
 order_index: 2
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Tiếp nhận yêu cầu hỗ trợ: chào, xác nhận vấn đề, hứa xử lý và đặt kỳ vọng thời gian."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và có bước xác nhận lại vấn đề."
@@ -70,6 +70,56 @@ dialogue:
     - {speaker: Emma, en: "Yes, exactly. And after a while the page went white.", vi: "Đúng vậy. Và một lúc sau thì trang trắng xoá."}
     - {speaker: You, en: "Thank you, that helps. I've added that to your ticket. I'll look into it and get back to you within an hour. In the meantime, please don't keep trying — it may lock your account.", vi: "Cảm ơn chị, thông tin đó rất hữu ích. Tôi đã ghi vào ticket. Tôi sẽ xem và phản hồi trong một giờ. Trong lúc chờ, chị đừng thử lại nữa — có thể bị khoá tài khoản."}
     - {speaker: Emma, en: "All right. I'll just wait then.", vi: "Được rồi. Vậy tôi chờ."}
+
+reading_passage:
+  id: RP-I02
+  kind: ticket
+  context_vi: >
+    Một lượt tiếp nhận ticket đúng chuẩn. Để ý cách người hỗ trợ nhắc lại vấn đề để xác nhận
+    trước khi hứa bất cứ điều gì.
+  text_en: |
+    User: My VPN stopped working this morning.
+    You: Let me confirm — you cannot connect from home, is that right?
+    User: Yes, exactly.
+    You: I will look into it and get back to you today.
+    In the meantime, please use the web portal.
+    I have created ticket INC-3040 for this.
+  text_vi: |
+    Người dùng: VPN của tôi sáng nay không dùng được.
+    Bạn: Để tôi xác nhận lại — anh không kết nối được từ nhà, đúng không ạ?
+    Người dùng: Đúng rồi.
+    Bạn: Tôi sẽ kiểm tra và phản hồi anh trong hôm nay.
+    Trong lúc chờ, anh dùng tạm cổng web nhé.
+    Tôi đã tạo ticket INC-3040 cho việc này.
+  questions:
+    - q_en: "What is the ticket number?"
+      choices: ["INC-3040", "INC-2291", "There is no ticket"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What should the user do while waiting?"
+      choices: ["Use the web portal", "Restart the VPN", "Nothing"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-I02
+  kind: guided_email
+  prompt_vi: >
+    Trả lời một người dùng báo máy in không in được: xác nhận lại vấn đề, hứa kiểm tra và
+    phản hồi. Viết 3-4 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: nhắc lại vấn đề để xác nhận + hứa kiểm tra"
+    - "Kết: khi nào phản hồi lại"
+  required_chunks:
+    - ["let me confirm", "just to confirm", "to confirm", "so just to check"]
+    - ["i'll look into it", "i will look into it", "i'll check", "i will check"]
+    - ["get back to you"]
+  min_words: 15
+  hint_vi: "Nhắc lại vấn đề bằng lời của mình trước — đó là cách chắc chắn hai bên hiểu giống nhau."
+  sample_en: "Hi Mr Nam, let me confirm — the printer on floor 3 does not print at all. I will look into it this morning and get back to you before lunch. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I02
@@ -177,7 +227,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

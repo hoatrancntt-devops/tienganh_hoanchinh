@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 1
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Báo cáo standup theo ba phần: hôm qua, hôm nay, vướng mắc — trong 30 giây."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đủ ba phần."
@@ -69,6 +69,53 @@ dialogue:
     - {speaker: You, en: "Today I'll start the migration. No blockers on my side.", vi: "Hôm nay tôi sẽ bắt đầu migration. Bên tôi không có vướng mắc gì."}
     - {speaker: David, en: "Good. Are we on track for Friday?", vi: "Tốt. Ta có kịp thứ Sáu không?"}
     - {speaker: You, en: "Yes, on track. I'll follow up with Minh after this.", vi: "Có, đúng tiến độ. Sau đây tôi sẽ trao đổi tiếp với Minh."}
+
+reading_passage:
+  id: RP-O01
+  kind: doc
+  context_vi: >
+    Một bài standup mẫu, đúng công thức ba phần. Đọc để thấy nó ngắn thế nào — hai mươi giây
+    là đủ.
+  text_en: |
+    Yesterday I finished the login page and fixed two bugs.
+    Today I will start the payment screen.
+    I am blocked by the API key — I do not have access yet.
+    I will follow up with David after this meeting.
+    Everything else is on track.
+  text_vi: |
+    Hôm qua tôi làm xong trang đăng nhập và sửa hai lỗi.
+    Hôm nay tôi bắt đầu màn hình thanh toán.
+    Tôi đang bị kẹt vì khoá API — tôi chưa được cấp quyền.
+    Sau buổi họp này tôi sẽ hỏi David.
+    Còn lại vẫn đúng tiến độ.
+  questions:
+    - q_en: "What is blocking the writer?"
+      choices: ["The API key", "The payment screen", "Two bugs"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Who will the writer talk to?"
+      choices: ["David", "The whole team", "Nobody"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-O01
+  kind: guided_email
+  prompt_vi: >
+    Viết bài standup của bạn: hôm qua làm gì, hôm nay làm gì, có gì đang chặn. Viết 3-4 câu.
+  frame_vi:
+    - "Hôm qua: việc đã xong"
+    - "Hôm nay: việc sắp làm"
+    - "Chặn: có hay không, nếu có thì cần ai"
+  required_chunks:
+    - ["yesterday i"]
+    - ["today i", "today i'll", "today i will"]
+    - ["blocked by", "no blockers", "i'm blocked", "nothing is blocking"]
+  min_words: 15
+  hint_vi: "Nói cả phần “đang bị chặn” kể cả khi không có gì — “No blockers” là một câu trả lời đủ."
+  sample_en: "Hi team, yesterday I finished the report and fixed one bug. Today I will start the new API. I am blocked by the test data, so I will ask Linh after this. Thanks, Hoa"
 
 listening_snippet:
   id: LS-O01
@@ -189,7 +236,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

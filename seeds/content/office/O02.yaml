@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 2
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Chào hỏi tự nhiên buổi sáng ở văn phòng và tán gẫu ngắn ở pantry mà không gượng."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill chào hỏi."
@@ -68,6 +68,46 @@ dialogue:
     - {speaker: You, en: "Not bad, thanks. Pretty quiet. You?", vi: "Cũng ổn, cảm ơn. Khá yên bình. Bạn thì sao?"}
     - {speaker: Minh, en: "Same. Coffee's ready if you want some.", vi: "Mình cũng vậy. Cà phê xong rồi đấy, uống không?"}
     - {speaker: You, en: "Thanks! I'm off to the standup. Catch you later.", vi: "Cảm ơn! Mình đi họp standup đây. Gặp lại sau nhé."}
+
+reading_passage:
+  id: RP-O02
+  kind: chat
+  context_vi: >
+    Ba mươi giây ở pantry sáng thứ Hai. Ngắn, nhưng đây là thứ quyết định đồng nghiệp thấy bạn
+    dễ gần hay khó gần.
+  text_en: |
+    Minh: Morning! How was your weekend?
+    You: Not bad. I went to Da Nang with my family.
+    Minh: Nice! The coffee is ready if you want some.
+    You: Perfect, I need it. Long day today.
+    Minh: Same here. Catch you later — have a good one.
+  text_vi: |
+    Minh: Chào buổi sáng! Cuối tuần của bạn thế nào?
+    Bạn: Cũng ổn. Tôi đi Đà Nẵng với gia đình.
+    Minh: Hay quá! Cà phê pha xong rồi đấy, uống thì lấy nhé.
+    Bạn: Tuyệt, đang cần. Hôm nay chắc dài đây.
+    Minh: Tôi cũng vậy. Lát gặp lại — chúc một ngày tốt lành.
+  questions:
+    - q_en: "Where did the writer go at the weekend?"
+      choices: ["Da Nang", "The office", "Nowhere"]
+      answer: 0
+      skill: scan
+      difficulty: 1
+    - q_en: "In this chat, \"Catch you later\" means:"
+      choices: ["See you later", "Call me later", "Wait for me"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-O02
+  kind: error_correction
+  prompt_vi: "Câu này sai thì. Viết lại cho đúng."
+  prompt_en: "I go to Da Nang last weekend."
+  blanks:
+    - ["i went to da nang last weekend"]
+  hint_vi: "Có “last weekend” thì động từ phải ở quá khứ."
+  sample_en: "I went to Da Nang last weekend."
 
 listening_snippet:
   id: LS-O02
@@ -166,7 +206,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

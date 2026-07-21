@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: a2
 order_index: 1
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Mô tả một sự cố theo bốn phần: cái gì hỏng, từ khi nào, ảnh hưởng ai, đã thử gì."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và nêu đủ bốn phần."
@@ -73,6 +73,54 @@ dialogue:
     - {speaker: Linh, en: "What have you tried?", vi: "Em đã thử gì rồi?"}
     - {speaker: You, en: "I've tried logging in myself, and it fails too. The logs show a timeout error.", vi: "Em tự đăng nhập thử, cũng lỗi. Log cho thấy lỗi timeout."}
     - {speaker: Linh, en: "OK. I'll escalate this. We're calling it INC-2291.", vi: "Được. Chị sẽ đẩy lên. Mình đặt mã sự cố là INC-2291."}
+
+reading_passage:
+  id: RP-I01
+  kind: ticket
+  context_vi: >
+    Một bản báo sự cố mẫu. Đọc để thấy thứ tự thông tin: cái gì hỏng, từ khi nào, ảnh hưởng
+    bao nhiêu người, đã thử gì, và bước tiếp theo.
+  text_en: |
+    The payment service is down since 9:15 this morning.
+    About 200 users are affected.
+    I have tried restarting it twice, but it fails again after a minute.
+    The logs show a database timeout.
+    I will escalate this to the database team now.
+  text_vi: |
+    Dịch vụ thanh toán ngừng hoạt động từ 9:15 sáng nay.
+    Khoảng 200 người dùng bị ảnh hưởng.
+    Tôi đã thử khởi động lại hai lần, nhưng được một phút là hỏng tiếp.
+    Log cho thấy cơ sở dữ liệu bị quá thời gian chờ.
+    Tôi sẽ chuyển việc này lên nhóm cơ sở dữ liệu ngay.
+  questions:
+    - q_en: "How many users are affected?"
+      choices: ["About 200", "About 20", "The report does not say"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What will the writer do next?"
+      choices: ["Escalate to the database team", "Restart it a third time", "Wait until tomorrow"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-I01
+  kind: guided_email
+  prompt_vi: >
+    Báo một sự cố cho cả nhóm: dịch vụ đăng nhập hỏng từ 8 giờ, bạn đã thử khởi động lại
+    nhưng không được. Viết 3-4 câu.
+  frame_vi:
+    - "Mở: chào cả nhóm"
+    - "Thân: cái gì hỏng + từ khi nào + đã thử gì"
+    - "Kết: bước tiếp theo và cảm ơn"
+  required_chunks:
+    - ["is down", "is not working", "isn't working", "stopped working"]
+    - ["i have tried", "i've tried", "i tried"]
+    - ["escalate", "pass it to", "hand it to"]
+  min_words: 15
+  hint_vi: "Người đọc cần hành động được ngay: nói rõ cái gì hỏng, từ lúc nào, và bạn đang làm gì."
+  sample_en: "Hi team, the login service is down since 8:00 this morning. I have tried restarting it twice but it fails again. I will escalate this to the platform team now. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I01
@@ -190,7 +238,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

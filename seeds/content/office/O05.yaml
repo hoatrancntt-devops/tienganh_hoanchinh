@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 5
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Báo tiến độ ngắn gọn: đang ở đâu, còn gì, khi nào xong — và báo sớm khi trễ."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill báo tiến độ."
@@ -71,6 +71,64 @@ dialogue:
     - {speaker: Linh, en: "Great. And the migration?", vi: "Tốt. Còn migration thì sao?"}
     - {speaker: You, en: "Just a heads up, I'm running a bit behind. I'll need until tomorrow morning.", vi: "Báo trước để chị biết, em đang hơi trễ. Cần đến sáng mai."}
     - {speaker: Linh, en: "Okay, thanks for letting me know.", vi: "Được, cảm ơn đã báo."}
+
+reading_passage:
+  id: RP-O05
+  kind: email
+  context_vi: >
+    Báo tiến độ khi có rủi ro trễ. Để ý cách người viết nói trước khả năng xấu thay vì im lặng
+    chờ tới hạn.
+  text_en: |
+    Subject: Progress on the report
+
+    Hi David,
+
+    The report is about halfway done. I am on track to finish by end of day Thursday.
+    One part is running behind because I am waiting for the data from Finance.
+    Heads up: if the data comes late, Friday morning is more realistic.
+
+    Thanks,
+    Linh
+  text_vi: |
+    Tiêu đề: Tiến độ báo cáo
+
+    Chào anh David,
+
+    Báo cáo xong khoảng một nửa. Em vẫn đúng tiến độ để hoàn thành trước cuối ngày thứ Năm.
+    Có một phần đang chậm vì em còn chờ dữ liệu từ bộ phận Tài chính.
+    Báo trước với anh: nếu dữ liệu về muộn thì sáng thứ Sáu mới thực tế hơn.
+
+    Cảm ơn anh,
+    Linh
+  questions:
+    - q_en: "How much of the report is done?"
+      choices: ["About half", "Almost all", "It has not started"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What could delay the report?"
+      choices: ["Late data from Finance", "A public holiday", "David's approval"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-O05
+  kind: guided_email
+  prompt_vi: >
+    Báo tiến độ công việc của bạn: gần xong, dự kiến xong cuối ngày mai, nhưng có một rủi ro.
+    Viết 3-4 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: đang ở đâu + dự kiến xong khi nào + rủi ro nếu có"
+    - "Kết: cảm ơn"
+  required_chunks:
+    - ["about halfway", "almost done", "on track", "nearly done"]
+    - ["by end of day", "by eod", "by tomorrow", "by thursday"]
+    - ["heads up", "just so you know", "please note"]
+  min_words: 15
+  hint_vi: "Nói trước rủi ro không phải là thừa nhận thất bại — nó là thứ giúp người khác kịp xoay."
+  sample_en: "Hi David, the migration is almost done. I am on track to finish by end of day tomorrow. Heads up: if the test server is slow, it may take one more day. Thanks, Hoa"
 
 listening_snippet:
   id: LS-O05
@@ -175,7 +233,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

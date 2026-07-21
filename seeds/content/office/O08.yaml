@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 8
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Viết tin nhắn chat công việc ngắn, rõ, đúng mực — chào, nhờ việc, báo bận, cảm ơn."
 objective_observable: "Trả lời đúng 4/5 câu quiz chọn tin nhắn phù hợp và đạt ≥70 điểm nói trên drill."
@@ -68,6 +68,54 @@ dialogue:
     - {speaker: Priya, en: "In a meeting, will reply after. Short answer: yes.", vi: "Đang họp, lát trả lời. Ngắn gọn: rồi."}
     - {speaker: You, en: "Thanks! When you get a chance, could you review my PR? No rush.", vi: "Cảm ơn! Khi nào rảnh review PR giúp mình nhé? Không gấp đâu."}
     - {speaker: Priya, en: "On it after this call. 👍", vi: "Xong call này mình làm ngay. 👍"}
+
+reading_passage:
+  id: RP-O08
+  kind: chat
+  context_vi: >
+    Tin nhắn Teams ngắn. Để ý “No rush” và “When you get a chance” — hai cụm khiến lời nhờ
+    không thành lời giục.
+  text_en: |
+    You: Quick question — where is the new logo file?
+    Emma: In the shared drive, Brand folder.
+    You: Thanks a lot. No rush, but can you check my draft when you get a chance?
+    Emma: On it. I am in a meeting until eleven.
+    You: No problem.
+  text_vi: |
+    Bạn: Hỏi nhanh chút — file logo mới nằm ở đâu vậy?
+    Emma: Trong ổ chung, thư mục Brand.
+    Bạn: Cảm ơn nhiều. Không gấp đâu, nhưng lúc nào rảnh chị xem giúp bản nháp của em nhé?
+    Emma: Để chị xem. Chị đang họp tới mười một giờ.
+    Bạn: Không sao ạ.
+  questions:
+    - q_en: "Where is the logo file?"
+      choices: ["In the Brand folder on the shared drive", "In an email", "Emma has it"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "When can Emma look at the draft?"
+      choices: ["After eleven", "Right now", "Tomorrow"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-O08
+  kind: guided_email
+  prompt_vi: >
+    Nhắn Teams cho đồng nghiệp: hỏi file báo cáo tháng trước ở đâu, và nhờ xem giúp bản nháp
+    khi nào rảnh. Viết 2-3 câu.
+  frame_vi:
+    - "Mở: chào ngắn"
+    - "Thân: hỏi nhanh + lời nhờ không gấp"
+    - "Kết: cảm ơn"
+  required_chunks:
+    - ["quick question", "one quick question", "quick one"]
+    - ["when you get a chance", "no rush", "whenever you can", "when you have time"]
+    - ["thanks", "thank you"]
+  min_words: 12
+  hint_vi: "Tin nhắn công việc nên ngắn, nhưng vẫn phải có lời chào và lời cảm ơn."
+  sample_en: "Hi Emma, quick question — where is last month's report? Also, no rush, but could you look at my draft when you get a chance? Thanks a lot!"
 
 listening_snippet:
   id: LS-O08
@@ -177,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.4, quiz: 0.4, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

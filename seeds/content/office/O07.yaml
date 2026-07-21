@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 7
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Xin giúp đỡ đúng cách: nêu vấn đề gọn, nói đã thử gì, hỏi cụ thể — và cảm ơn."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill xin giúp đỡ."
@@ -69,6 +69,54 @@ dialogue:
     - {speaker: You, en: "It fails with a timeout. I've already tried restarting, but it didn't work.", vi: "Nó lỗi timeout. Mình thử khởi động lại rồi mà không được."}
     - {speaker: Minh, en: "Ah, check the firewall rule. That's usually it.", vi: "À, kiểm tra luật tường lửa xem. Thường là do cái đó."}
     - {speaker: You, en: "That makes sense. Thanks, I owe you one!", vi: "Hợp lý ghê. Cảm ơn, mình nợ bạn một lần!"}
+
+reading_passage:
+  id: RP-O07
+  kind: chat
+  context_vi: >
+    Nhờ giúp đúng cách. Để ý: người hỏi nói luôn mình đã thử gì — đó là lý do David trả lời
+    được ngay thay vì phải hỏi ngược lại năm câu.
+  text_en: |
+    You: Do you have a minute? I am stuck on the deploy script.
+    David: Sure. What have you tried?
+    You: I have already tried clearing the cache and running it again.
+    David: Check the config file — the path is probably wrong.
+    You: That makes sense. Thanks, I owe you one.
+  text_vi: |
+    Bạn: Anh rảnh một phút không? Em đang kẹt ở script triển khai.
+    David: Được. Em thử gì rồi?
+    Bạn: Em đã thử xoá cache rồi chạy lại.
+    David: Kiểm tra file cấu hình xem — chắc đường dẫn sai.
+    Bạn: Nghe hợp lý. Cảm ơn anh, em nợ anh một lần.
+  questions:
+    - q_en: "What is the writer stuck on?"
+      choices: ["The deploy script", "The cache", "The config file"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What does David think the problem is?"
+      choices: ["A wrong path in the config file", "A full cache", "A broken server"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-O07
+  kind: guided_email
+  prompt_vi: >
+    Nhờ đồng nghiệp giúp: bạn kẹt ở phần kết nối cơ sở dữ liệu và đã thử hai cách rồi.
+    Viết 3-4 câu.
+  frame_vi:
+    - "Mở: hỏi người ta có rảnh không"
+    - "Thân: kẹt ở đâu + đã thử gì rồi"
+    - "Kết: cảm ơn"
+  required_chunks:
+    - ["do you have a minute", "could you help me", "can you help me", "have you got a minute"]
+    - ["i'm stuck on", "i am stuck on", "i'm stuck", "i am stuck"]
+    - ["i've already tried", "i have already tried", "i tried", "i've tried"]
+  min_words: 15
+  hint_vi: "Nói mình đã thử gì rồi — nếu không, câu đầu tiên người ta hỏi lại đúng là câu đó."
+  sample_en: "Hi Minh, do you have a minute? I am stuck on the database connection. I have already tried restarting the service and checking the password. Thanks, Hoa"
 
 listening_snippet:
   id: LS-O07
@@ -177,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

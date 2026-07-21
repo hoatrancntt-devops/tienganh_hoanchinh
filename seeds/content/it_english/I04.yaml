@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: a2
 order_index: 4
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Hỏi đúng câu để khoanh vùng lỗi: khi nào bắt đầu, có báo lỗi gì, có gì thay đổi gần đây."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và hỏi ít nhất ba câu chẩn đoán."
@@ -69,6 +69,60 @@ dialogue:
     - {speaker: Emma, en: "There's a little grey box. It says something like… sorry, we can't sign you in right now.", vi: "Có một ô nhỏ màu xám. Nó ghi kiểu như… xin lỗi, hiện chúng tôi không thể đăng nhập cho bạn."}
     - {speaker: You, en: "Thank you. Does it happen every time, or just sometimes?", vi: "Cảm ơn chị. Lần nào cũng vậy, hay chỉ thỉnh thoảng ạ?"}
     - {speaker: Emma, en: "Every single time. And my whole team is stuck too — nobody can get in.", vi: "Lần nào cũng vậy. Và cả phòng tôi cũng kẹt — không ai vào được."}
+
+reading_passage:
+  id: RP-I04
+  kind: ticket
+  context_vi: >
+    Năm câu hỏi chẩn đoán, hỏi đúng thứ tự. Đọc để nhớ bộ câu hỏi này — nó dùng được cho gần
+    như mọi sự cố.
+  text_en: |
+    You: When did it start?
+    User: This morning, after the update.
+    You: Is there any error message? What does it say?
+    User: It says "connection refused".
+    You: Does it happen every time or sometimes?
+    User: Every time.
+    You: Did anything change on your end? New software, new network?
+    User: No, nothing.
+  text_vi: |
+    Bạn: Việc này bắt đầu từ khi nào ạ?
+    Người dùng: Sáng nay, sau khi cập nhật.
+    Bạn: Có thông báo lỗi nào không ạ? Nó ghi gì?
+    Người dùng: Nó ghi "connection refused".
+    Bạn: Lỗi xảy ra mọi lần hay thỉnh thoảng?
+    Người dùng: Lần nào cũng vậy.
+    Bạn: Bên anh có thay đổi gì không? Phần mềm mới, mạng mới?
+    Người dùng: Không, không có gì.
+  questions:
+    - q_en: "What does the error message say?"
+      choices: ["Connection refused", "Permission denied", "Not found"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "When did the problem begin?"
+      choices: ["After the update this morning", "Last night", "After a network change"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-I04
+  kind: guided_email
+  prompt_vi: >
+    Viết thư hỏi thông tin để chẩn đoán: người dùng báo không mở được file chung. Hỏi 3 điều.
+    Viết 3-4 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: hỏi từ khi nào + có thông báo lỗi gì + xảy ra mọi lần hay thỉnh thoảng"
+    - "Kết: cảm ơn"
+  required_chunks:
+    - ["when did it start", "when did this start", "when did the problem start"]
+    - ["error message"]
+    - ["every time", "all the time"]
+  min_words: 15
+  hint_vi: "Hỏi ba thứ này trước là đủ khoanh vùng phần lớn sự cố. Đừng hỏi mười câu một lúc."
+  sample_en: "Hi Ms Lan, when did it start? Is there any error message on the screen? And does it happen every time or only sometimes? Thanks, Hoa"
 
 listening_snippet:
   id: LS-I04
@@ -176,7 +230,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

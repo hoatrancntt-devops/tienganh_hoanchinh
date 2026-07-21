@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 6
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đề xuất giờ họp, hỏi người khác có rảnh không, và dời lịch một cách lịch sự."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill đặt lịch."
@@ -68,6 +68,54 @@ dialogue:
     - {speaker: Priya, en: "Two doesn't work for me — that's three my time. Can we push it back to four?", vi: "Hai giờ mình không tiện — bên mình là ba giờ. Dời lại bốn giờ được không?"}
     - {speaker: You, en: "Four works for me. I'll send an invite.", vi: "Bốn giờ mình tiện. Mình sẽ gửi lời mời họp."}
     - {speaker: Priya, en: "Great, thanks. See you then.", vi: "Tuyệt, cảm ơn. Hẹn gặp lúc đó."}
+
+reading_passage:
+  id: RP-O06
+  kind: chat
+  context_vi: >
+    Chốt lịch họp trong năm lượt. Để ý cách từ chối một giờ mà vẫn đề xuất giờ khác ngay —
+    đó là cách không làm bế tắc cuộc trao đổi.
+  text_en: |
+    Minh: Are you free at three tomorrow?
+    You: I have another call then. Does four work?
+    Minh: Four works for me. I will send an invite.
+    You: Great. Can we push it back to Thursday if the data is late?
+    Minh: Sure, we can reschedule.
+  text_vi: |
+    Minh: Ba giờ chiều mai bạn rảnh không?
+    Bạn: Lúc đó tôi có cuộc gọi khác. Bốn giờ được không?
+    Minh: Bốn giờ được. Tôi gửi lời mời họp nhé.
+    Bạn: Tốt quá. Nếu dữ liệu về muộn thì dời sang thứ Năm được không?
+    Minh: Được chứ, mình dời lịch cũng được.
+  questions:
+    - q_en: "What time did they agree on?"
+      choices: ["Four", "Three", "Thursday"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What might change the meeting day?"
+      choices: ["Late data", "Minh's holiday", "A room problem"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-O06
+  kind: guided_email
+  prompt_vi: >
+    Đề nghị họp với David: hỏi anh ấy rảnh không, đề xuất giờ, và nói bạn sẽ gửi lời mời.
+    Viết 3-4 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: hỏi rảnh không + đề xuất giờ cụ thể"
+    - "Kết: sẽ gửi lời mời + cảm ơn"
+  required_chunks:
+    - ["are you free", "would you be free", "do you have time"]
+    - ["does that work", "works for me", "would that work", "if that works", "that works for you"]
+    - ["send an invite", "i'll send", "i will send"]
+  min_words: 15
+  hint_vi: "Luôn đề xuất một giờ cụ thể. Hỏi “khi nào anh rảnh?” thường nhận lại im lặng."
+  sample_en: "Hi David, are you free at ten tomorrow to talk about the release? If that works for you, I will send an invite this afternoon. Thanks, Hoa"
 
 listening_snippet:
   id: LS-O06
@@ -169,7 +217,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

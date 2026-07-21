@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 10
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Dùng đúng ngữ điệu: câu hỏi yes/no lên giọng cuối, câu hỏi wh- xuống giọng cuối."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng hướng giọng 4/5 câu quiz."
@@ -68,6 +68,46 @@ dialogue:
     - {speaker: Minh, en: "Yes. What do you need? (↘)", vi: "Rảnh. Cần gì đó? (xuống giọng)"}
     - {speaker: You, en: "Did the deploy finish? (↗) David is waiting.", vi: "Deploy xong chưa ạ? David đang đợi. (lên giọng)"}
     - {speaker: Minh, en: "Not yet. Who is handling it? (↘)", vi: "Chưa. Ai đang lo việc đó? (xuống giọng)"}
+
+reading_passage:
+  id: RP-F10
+  kind: chat
+  context_vi: >
+    Đoạn chat toàn câu hỏi. Đọc và để ý: câu hỏi Yes/No khác câu hỏi Wh- ở chỗ nào —
+    đó cũng là chỗ ngữ điệu lên hay xuống.
+  text_en: |
+    Minh: Are you free at four?
+    You: Yes. What is the meeting about?
+    Minh: The router problem. Did it work after the restart?
+    You: No, it did not. Who fixed it last time?
+    Minh: David did. I will ask him to join.
+  text_vi: |
+    Minh: Bốn giờ bạn rảnh không?
+    Bạn: Rảnh. Họp về việc gì vậy?
+    Minh: Vụ router. Khởi động lại rồi có chạy không?
+    Bạn: Không. Lần trước ai sửa nhỉ?
+    Minh: David sửa. Để tôi mời anh ấy vào họp.
+  questions:
+    - q_en: "Who fixed the router last time?"
+      choices: ["David", "Minh", "The writer"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Did the restart solve the problem?"
+      choices: ["No", "Yes", "They did not try"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F10
+  kind: error_correction
+  prompt_vi: "Câu hỏi này sai dạng động từ. Viết lại cho đúng."
+  prompt_en: "Did it worked after the restart?"
+  blanks:
+    - ["did it work after the restart"]
+  hint_vi: "Đã có “did” rồi thì động từ theo sau về nguyên mẫu."
+  sample_en: "Did it work after the restart?"
 
 listening_snippet:
   id: LS-F10
@@ -175,7 +215,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

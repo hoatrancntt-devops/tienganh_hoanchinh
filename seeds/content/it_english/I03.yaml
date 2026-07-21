@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: a2
 order_index: 3
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Hướng dẫn từng bước rõ ràng, chờ xác nhận sau mỗi bước, dùng ngôn ngữ người dùng hiểu."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và có bước chờ xác nhận."
@@ -71,6 +71,56 @@ dialogue:
     - {speaker: Emma, en: "Done. It's cleared. Should I try logging in again?", vi: "Xong rồi. Đã xoá. Tôi thử đăng nhập lại nhé?"}
     - {speaker: You, en: "Yes, please try once. If it still spins, open a different browser and try there. Are you with me?", vi: "Vâng, chị thử một lần thôi. Nếu vẫn quay mãi, chị mở trình duyệt khác và thử ở đó. Chị theo kịp chứ ạ?"}
     - {speaker: Emma, en: "I tried both. Same thing — it just spins.", vi: "Tôi thử cả hai rồi. Vẫn vậy — nó cứ quay."}
+
+reading_passage:
+  id: RP-I03
+  kind: doc
+  context_vi: >
+    Hướng dẫn từng bước cho người không rành kỹ thuật. Để ý các từ nối thứ tự — chúng là thứ
+    giữ cho người nghe không bị lạc.
+  text_en: |
+    First, click on your name at the top right.
+    Then choose Settings and open the Network tab.
+    Are you with me so far?
+    Turn the VPN off, wait ten seconds, and turn it on again.
+    If that does not work, restart your laptop.
+    Let me know when you are done.
+  text_vi: |
+    Đầu tiên, bấm vào tên của anh ở góc trên bên phải.
+    Sau đó chọn Cài đặt và mở tab Mạng.
+    Anh theo kịp em không ạ?
+    Tắt VPN đi, đợi mười giây, rồi bật lại.
+    Nếu vẫn không được thì khởi động lại máy.
+    Xong rồi anh báo em nhé.
+  questions:
+    - q_en: "Where do you click first?"
+      choices: ["On your name at the top right", "On the Network tab", "On the VPN button"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What do you do if the VPN still fails?"
+      choices: ["Restart the laptop", "Wait ten more seconds", "Call the network team"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-I03
+  kind: guided_email
+  prompt_vi: >
+    Viết hướng dẫn ngắn cho người dùng cách xoá cache trình duyệt. Viết 3-4 câu, có từ nối
+    thứ tự.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: bước 1 → bước 2 → bước 3"
+    - "Kết: nhờ báo lại khi xong"
+  required_chunks:
+    - ["first"]
+    - ["then", "after that", "next"]
+    - ["let me know"]
+  min_words: 15
+  hint_vi: "Mỗi câu một bước. Đừng gộp hai thao tác vào một câu — người làm theo sẽ bỏ sót."
+  sample_en: "Hi Mr Nam, first open your browser settings. Then click Privacy and choose Clear browsing data. After that, restart the browser. Let me know when you are done. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I03
@@ -175,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

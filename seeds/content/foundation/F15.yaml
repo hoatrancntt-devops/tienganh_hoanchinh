@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 15
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Phát âm đúng /v/ (răng chạm môi, rung), /f/ (răng chạm môi, không rung), /w/ (chu môi tròn)."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe phân biệt đúng 4/5 câu quiz."
@@ -63,6 +63,46 @@ dialogue:
     - {speaker: You, en: "Version five. We verified it works.", vi: "Bản năm ạ. Bọn em đã kiểm chứng là nó chạy."}
     - {speaker: Linh, en: "Right answer. But you said “wersion”. David will hear another word.", vi: "Trả lời đúng. Nhưng bạn nói “wersion”. David sẽ nghe ra một từ khác."}
     - {speaker: Linh, en: "Teeth on the lip for /v/, round lips for /w/. Say it again before the call.", vi: "Răng chạm môi cho /v/, tròn môi cho /w/. Nói lại lần nữa trước giờ họp."}
+
+reading_passage:
+  id: RP-F15
+  kind: chat
+  context_vi: >
+    Đoạn này đầy /v/, /f/ và /w/: version, file, works, very, we, fix. Đọc xong thử đọc to
+    lại — ba âm này người Việt hay đổi cho nhau.
+  text_en: |
+    You: The file does not open. Can you fix it?
+    Minh: Which version are you using?
+    You: Version four. It works on my laptop but not on the server.
+    Minh: That is very strange. Send me the file and we will check it.
+    You: Thanks. I will send it now.
+  text_vi: |
+    Bạn: File không mở được. Anh sửa giúp được không?
+    Minh: Bạn đang dùng phiên bản nào?
+    Bạn: Phiên bản bốn. Trên laptop của tôi thì chạy, trên máy chủ thì không.
+    Minh: Lạ thật. Gửi file cho tôi, mình cùng kiểm tra.
+    Bạn: Cảm ơn. Tôi gửi ngay.
+  questions:
+    - q_en: "Which version is the writer using?"
+      choices: ["Version four", "Version one", "The server version"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Where does the file work?"
+      choices: ["On the writer's laptop", "On the server", "Nowhere"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F15
+  kind: error_correction
+  prompt_vi: "Câu này thiếu trợ động từ. Viết lại cho đúng."
+  prompt_en: "The file not open."
+  blanks:
+    - ["the file does not open", "the file doesn't open"]
+  hint_vi: "Câu phủ định ở thì hiện tại cần “does not” trước động từ."
+  sample_en: "The file does not open."
 
 listening_snippet:
   id: LS-F15
@@ -173,7 +213,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 9
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đặt trọng âm đúng ở các từ dài hay dùng trong công việc, để người nghe hiểu ngay."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng vị trí trọng âm 4/5 câu quiz."
@@ -64,6 +64,60 @@ dialogue:
     - {speaker: You, en: "Yes, but the configuration has a problem.", vi: "Có ạ, nhưng cấu hình đang có vấn đề."}
     - {speaker: Linh, en: "Who's responsible for it?", vi: "Ai chịu trách nhiệm việc đó?"}
     - {speaker: You, en: "Minh. He made a temporary fix; a full one is available tomorrow.", vi: "Minh ạ. Anh ấy vá tạm; bản đầy đủ có vào ngày mai."}
+
+reading_passage:
+  id: RP-F09
+  kind: email
+  context_vi: >
+    Email báo một thay đổi tạm thời. Toàn bộ từ khó trong bài đều là từ nhiều âm tiết —
+    đọc bằng mắt trước, rồi thử đọc to xem trọng âm rơi đúng chỗ chưa.
+  text_en: |
+    Subject: Temporary configuration change
+
+    Hi team,
+
+    We found a problem in the payment service this morning.
+    The development team is responsible for the fix.
+    For now we have made a temporary configuration change.
+    David is available all day if you have questions.
+    The permanent fix goes out on Friday.
+
+    Thanks,
+    Linh
+  text_vi: |
+    Tiêu đề: Thay đổi cấu hình tạm thời
+
+    Chào cả nhóm,
+
+    Sáng nay chúng tôi phát hiện một lỗi ở dịch vụ thanh toán.
+    Nhóm phát triển chịu trách nhiệm sửa.
+    Trước mắt chúng tôi đã đổi cấu hình tạm thời.
+    David có mặt cả ngày nếu mọi người có thắc mắc.
+    Bản sửa chính thức sẽ ra vào thứ Sáu.
+
+    Cảm ơn,
+    Linh
+  questions:
+    - q_en: "Who is responsible for the fix?"
+      choices: ["The development team", "David", "The payment service"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Is the current change permanent?"
+      choices: ["No, it is temporary", "Yes", "The email does not say"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F09
+  kind: error_correction
+  prompt_vi: "Câu này sai giới từ. Viết lại cho đúng."
+  prompt_en: "Who is responsible of the fix?"
+  blanks:
+    - ["who is responsible for the fix"]
+  hint_vi: "“Responsible” luôn đi với “for”, không đi với “of”."
+  sample_en: "Who is responsible for the fix?"
 
 listening_snippet:
   id: LS-F09
@@ -171,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

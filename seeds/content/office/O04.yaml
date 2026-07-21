@@ -8,7 +8,7 @@ phase: office
 topic: office
 cefr_target: a2
 order_index: 4
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Hỏi lại để làm rõ yêu cầu thay vì đoán mò, và xác nhận đã hiểu đúng."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill hỏi làm rõ."
@@ -71,6 +71,56 @@ dialogue:
     - {speaker: David, en: "Just section two. And send it to me first.", vi: "Chỉ phần hai. Và gửi cho tôi trước."}
     - {speaker: You, en: "Got it. By when do you need it?", vi: "Hiểu rồi. Anh cần trước khi nào?"}
     - {speaker: David, en: "End of day tomorrow.", vi: "Cuối ngày mai."}
+
+reading_passage:
+  id: RP-O04
+  kind: chat
+  context_vi: >
+    Một yêu cầu mơ hồ được làm rõ trong bốn lượt. Đọc để thấy hỏi lại không hề mất mặt —
+    nó tiết kiệm cả ngày làm sai.
+  text_en: |
+    Linh: Please clean up the old records before Friday.
+    You: Just to be clear — do you mean all records, or only the test ones?
+    Linh: Only the test ones.
+    You: Got it. And by when exactly?
+    Linh: By Friday lunchtime. It is high priority.
+    You: So I should finish before Friday noon. Understood.
+  text_vi: |
+    Linh: Bạn dọn giúp các bản ghi cũ trước thứ Sáu nhé.
+    Bạn: Cho em hỏi cho rõ — chị nói tất cả bản ghi hay chỉ bản ghi thử nghiệm ạ?
+    Linh: Chỉ bản ghi thử nghiệm thôi.
+    Bạn: Em rõ rồi. Hạn chính xác là khi nào ạ?
+    Linh: Trước trưa thứ Sáu. Việc này ưu tiên cao.
+    Bạn: Vậy em phải xong trước trưa thứ Sáu. Em hiểu rồi.
+  questions:
+    - q_en: "Which records must be cleaned?"
+      choices: ["Only the test ones", "All of them", "The new ones"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What is the real deadline?"
+      choices: ["Friday lunchtime", "End of Friday", "Next Monday"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-O04
+  kind: guided_email
+  prompt_vi: >
+    Quản lý nhắn “update the docs before the release”. Viết thư hỏi lại cho rõ: tài liệu nào,
+    hạn khi nào. Viết 3-4 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: nhắc lại yêu cầu + hỏi rõ phạm vi + hỏi rõ hạn"
+    - "Kết: cảm ơn"
+  required_chunks:
+    - ["just to be clear", "to be clear", "can i check", "just to check"]
+    - ["do you mean", "did you mean"]
+    - ["by when", "what is the deadline", "what's the deadline"]
+  min_words: 15
+  hint_vi: "Hỏi lại bằng cách đưa ra hai phương án cụ thể — dễ trả lời hơn câu hỏi mở."
+  sample_en: "Hi Linh, just to be clear — do you mean all the docs, or only the API pages? And by when do you need them? Thanks, Hoa"
 
 listening_snippet:
   id: LS-O04
@@ -175,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

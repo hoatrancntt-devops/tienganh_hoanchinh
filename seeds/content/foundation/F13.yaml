@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 13
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Nói và nghe số, giờ, ngày chính xác — phân biệt các cặp dễ nhầm (13 vs 30, 10:13 vs 10:30)."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe đúng số 4/5 câu quiz."
@@ -66,6 +66,58 @@ dialogue:
     - {speaker: Linh, en: "No. Ten thirty. Three-zero. Half past ten.", vi: "Không. Mười giờ ba mươi. Ba-không. Mười giờ rưỡi."}
     - {speaker: You, en: "Got it, half past ten. And what date?", vi: "Rõ rồi, mười giờ rưỡi. Còn ngày nào ạ?"}
     - {speaker: Linh, en: "The third of June. Say dates in words — never “3/6”.", vi: "Ngày mùng 3 tháng 6. Nói ngày bằng chữ — đừng bao giờ nói “3/6”."}
+
+reading_passage:
+  id: RP-F13
+  kind: email
+  context_vi: >
+    Email có bốn con số và hai mốc giờ. Đọc kỹ — đây đúng là loại email mà đọc lướt là đi
+    nhầm giờ.
+  text_en: |
+    Subject: Training on the third
+
+    Hi all,
+
+    The training is on the third of June at half past nine.
+    It runs for thirty minutes, not thirteen.
+    Room 405 is booked from a quarter to nine.
+    Please arrive before nine o'clock.
+
+    Thanks,
+    HR
+  text_vi: |
+    Tiêu đề: Buổi đào tạo ngày mùng ba
+
+    Chào tất cả,
+
+    Buổi đào tạo vào ngày mùng ba tháng Sáu, lúc chín giờ rưỡi.
+    Buổi học kéo dài ba mươi phút, không phải mười ba phút.
+    Phòng 405 đã đặt từ chín giờ kém mười lăm.
+    Mọi người đến trước chín giờ nhé.
+
+    Cảm ơn,
+    Phòng Nhân sự
+  questions:
+    - q_en: "How long does the training run?"
+      choices: ["Thirty minutes", "Thirteen minutes", "One hour"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What time should you arrive?"
+      choices: ["Before nine o'clock", "At half past nine", "At a quarter to ten"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F13
+  kind: error_correction
+  prompt_vi: "Câu này sai giới từ chỉ ngày. Viết lại cho đúng."
+  prompt_en: "The training is in the third of June."
+  blanks:
+    - ["the training is on the third of june"]
+  hint_vi: "Ngày cụ thể dùng “on”. “In” chỉ dùng cho tháng hoặc năm."
+  sample_en: "The training is on the third of June."
 
 listening_snippet:
   id: LS-F13
@@ -173,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

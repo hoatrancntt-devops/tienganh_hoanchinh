@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 12
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc nhẹ các từ chức năng (a, the, to, of, and) thành /ə/, để câu có nhịp tự nhiên."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng từ được đọc nhẹ 4/5 câu quiz."
@@ -64,6 +64,46 @@ dialogue:
     - {speaker: You, en: "I only heard “check logs fix error”. The small words are gone.", vi: "Em chỉ nghe được “check logs fix error”. Mấy từ nhỏ biến mất."}
     - {speaker: Minh, en: "They're not gone. He says them weak: “need-tuh”, “thuh”, “en”.", vi: "Không mất đâu. Anh ấy đọc nhẹ chúng: “need-tuh”, “thuh”, “en”."}
     - {speaker: Minh, en: "There's a lot of work here — “lotta”. Stop waiting for the small words.", vi: "Ở đây nhiều việc lắm — “lotta”. Đừng ngồi chờ nghe rõ mấy từ nhỏ nữa."}
+
+reading_passage:
+  id: RP-F12
+  kind: chat
+  context_vi: >
+    Đếm thử xem trong đoạn này có bao nhiêu chữ “the”, “of”, “to”, “for”. Khi nói, tất cả
+    chúng đều bị đọc lướt thành /ə/ — đó là nhịp của tiếng Anh.
+  text_en: |
+    David: I need a copy of the report for the meeting.
+    You: Sure. Do you want the one from Monday?
+    David: Yes, and the notes from the standup.
+    You: I will send them to you in a minute.
+    David: Thanks. The meeting starts at two.
+  text_vi: |
+    David: Tôi cần một bản báo cáo để họp.
+    Bạn: Được. Anh muốn bản hôm thứ Hai à?
+    David: Ừ, và cả ghi chú buổi standup nữa.
+    Bạn: Tôi gửi anh ngay đây.
+    David: Cảm ơn. Cuộc họp bắt đầu lúc hai giờ.
+  questions:
+    - q_en: "What does David need?"
+      choices: ["A copy of the report", "A new laptop", "The meeting room"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "When will the writer send the files?"
+      choices: ["Very soon", "Tomorrow", "After the meeting"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F12
+  kind: error_correction
+  prompt_vi: "Câu này sai giới từ. Viết lại cho đúng."
+  prompt_en: "I will send them for you in a minute."
+  blanks:
+    - ["i will send them to you in a minute", "i'll send them to you in a minute"]
+  hint_vi: "Gửi cái gì cho ai thì dùng “to”, không dùng “for”."
+  sample_en: "I will send them to you in a minute."
 
 listening_snippet:
   id: LS-F12
@@ -174,7 +214,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

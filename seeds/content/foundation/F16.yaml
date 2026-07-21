@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 16
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Phát âm rõ /l/ và /n/ (nhất là ở cuối từ), và /r/ cong lưỡi kiểu Anh-Mỹ."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe phân biệt đúng 4/5 câu quiz."
@@ -64,6 +64,46 @@ dialogue:
     - {speaker: You, en: "I'll run the script and call you.", vi: "Em sẽ chạy script rồi gọi lại cho anh."}
     - {speaker: Minh, en: "Stop at “call”. You dropped the L — it came out “co”.", vi: "Dừng ở chữ “call”. Bạn nuốt mất âm /l/ — nghe thành “co”."}
     - {speaker: Minh, en: "Tongue behind the top teeth, hold one beat. Again: call.", vi: "Lưỡi chạm sau răng trên, giữ một nhịp. Lại nào: call."}
+
+reading_passage:
+  id: RP-F16
+  kind: chat
+  context_vi: >
+    Router, reload, online, call — đoạn này gom đúng những từ có /l/, /n/, /r/ mà người Việt
+    hay lẫn, nhất là chữ “l” ở cuối từ.
+  text_en: |
+    Linh: The router is offline again. Can you reload the page?
+    You: I did. It still does not run.
+    Linh: Let me call the network team. Are you online now?
+    You: Yes, but only on mobile. I will send you an email with the error.
+    Linh: Perfect. Thanks.
+  text_vi: |
+    Linh: Router lại mất kết nối rồi. Bạn tải lại trang giúp nhé?
+    Bạn: Tôi tải rồi. Vẫn không chạy.
+    Linh: Để tôi gọi nhóm mạng. Bạn có mạng chưa?
+    Bạn: Có, nhưng chỉ trên điện thoại. Tôi gửi email kèm lỗi cho chị.
+    Linh: Tốt quá. Cảm ơn bạn.
+  questions:
+    - q_en: "What is offline?"
+      choices: ["The router", "The email", "The mobile phone"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "How is the writer connected now?"
+      choices: ["On mobile", "Through the router", "Not at all"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F16
+  kind: error_correction
+  prompt_vi: "Câu này sai mạo từ. Viết lại cho đúng."
+  prompt_en: "I will send you a email with the error."
+  blanks:
+    - ["i will send you an email with the error", "i'll send you an email with the error"]
+  hint_vi: "“Email” bắt đầu bằng nguyên âm nên dùng “an”, không dùng “a”."
+  sample_en: "I will send you an email with the error."
 
 listening_snippet:
   id: LS-F16
@@ -173,7 +213,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

@@ -8,7 +8,7 @@ phase: foundation
 topic: it_english
 cefr_target: a2
 order_index: 17
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc to đúng các viết tắt IT: loại đọc từng chữ (API, SQL, URL) và loại đọc như từ (SQL cũng có kiểu, JSON, CAPTCHA)."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng cách đọc 4/5 câu quiz."
@@ -66,6 +66,46 @@ dialogue:
     - {speaker: Minh, en: "API letter by letter — good. But JSON is one word: JAY-sən.", vi: "API đánh vần từng chữ — chuẩn. Nhưng JSON đọc liền như một từ: JAY-sơn."}
     - {speaker: You, en: "The URL returns a cache error. Run an SQL query and clear the queue.", vi: "URL trả về lỗi cache. Chạy truy vấn SQL và xoá hàng đợi."}
     - {speaker: Minh, en: "“kash”, not “ca-chê”. And queue is just “kiu”. Say those two again.", vi: "“kash”, không phải “ca-chê”. Còn queue chỉ là “kiu”. Nói lại hai từ đó đi."}
+
+reading_passage:
+  id: RP-F17
+  kind: doc
+  context_vi: >
+    Ghi chú nội bộ cho người mới. Toàn chữ viết tắt — đọc hiểu là một chuyện, đọc thành tiếng
+    cho đúng lại là chuyện khác.
+  text_en: |
+    The API returns JSON. If the URL is wrong, you get a 404.
+    Check the cache first — old data often comes from there.
+    If the queue is full, new jobs wait.
+    For slow pages, look at the SQL query in the logs.
+    Ask David if you are not sure.
+  text_vi: |
+    API trả về JSON. Nếu URL sai thì bạn nhận lỗi 404.
+    Kiểm tra cache trước — dữ liệu cũ thường đến từ đó.
+    Nếu hàng đợi đầy thì việc mới phải chờ.
+    Trang chậm thì xem câu lệnh SQL trong log.
+    Không chắc thì hỏi David.
+  questions:
+    - q_en: "What does the API return?"
+      choices: ["JSON", "SQL", "A 404"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "What should you check first when you see old data?"
+      choices: ["The cache", "The queue", "The URL"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+
+writing_task:
+  id: WT-F17
+  kind: error_correction
+  prompt_vi: "Câu này thiếu chữ “s”. Viết lại cho đúng."
+  prompt_en: "The API return JSON."
+  blanks:
+    - ["the api returns json"]
+  hint_vi: "“The API” là ngôi thứ ba số ít, nên động từ thêm “s”."
+  sample_en: "The API returns JSON."
 
 listening_snippet:
   id: LS-F17
@@ -170,7 +210,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

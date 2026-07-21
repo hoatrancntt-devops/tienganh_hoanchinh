@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: a2
 order_index: 14
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Phân biệt và phát âm đúng nguyên âm dài /iː/ và ngắn /ɪ/ — cặp âm tiếng Việt gộp làm một."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe phân biệt đúng 4/5 cặp từ."
@@ -65,6 +65,46 @@ dialogue:
     - {speaker: You, en: "Reach. I can't reach the server.", vi: "“Reach”. Em không kết nối tới server được."}
     - {speaker: Minh, en: "Then keep the ee long. Short, and it's a different word.", vi: "Vậy thì giữ âm “i” DÀI. Ngắn là thành từ khác."}
     - {speaker: Minh, en: "Same with leave and live. Tell David you'll leave at five — long ee.", vi: "“leave” với “live” cũng thế. Nói với David là bạn về lúc năm giờ — âm “i” dài."}
+
+reading_passage:
+  id: RP-F14
+  kind: chat
+  context_vi: >
+    Trong đoạn này có “live” và “leave” đứng gần nhau. Đọc bằng mắt thì dễ, nghe mới khó —
+    khác nhau đúng một âm.
+  text_en: |
+    Emma: I live near the office. I can reach it in ten minutes.
+    You: Nice. What time do you leave in the evening?
+    Emma: Around six. I do not like to leave late.
+    You: Same here. It takes me an hour to reach home.
+    Emma: That is a long trip.
+  text_vi: |
+    Emma: Tôi sống gần văn phòng. Đi mười phút là tới.
+    Bạn: Hay quá. Buổi tối chị về lúc mấy giờ?
+    Emma: Khoảng sáu giờ. Tôi không thích về muộn.
+    Bạn: Tôi cũng vậy. Tôi về tới nhà mất một tiếng.
+    Emma: Xa thật đấy.
+  questions:
+    - q_en: "How long does it take Emma to reach the office?"
+      choices: ["Ten minutes", "One hour", "Six minutes"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "In this chat, \"I do not like to leave late\" means Emma prefers to:"
+      choices: ["go home early", "arrive early", "work at home"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-F14
+  kind: error_correction
+  prompt_vi: "Câu này thiếu chữ “s”. Viết lại cho đúng."
+  prompt_en: "She live near the office."
+  blanks:
+    - ["she lives near the office"]
+  hint_vi: "Ngôi thứ ba số ít thì động từ thêm “s”."
+  sample_en: "She lives near the office."
 
 listening_snippet:
   id: LS-F14
@@ -174,7 +214,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

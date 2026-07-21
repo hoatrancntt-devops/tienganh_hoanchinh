@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: a2
 order_index: 2
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc một thông báo lỗi và xác định: cái gì hỏng, ở đâu, và gợi ý cách sửa."
 objective_observable: "Trả lời đúng 4/5 câu hỏi đọc hiểu về nguyên nhân và hướng xử lý."
@@ -55,17 +55,53 @@ sentence_patterns:
       action: ["Connection", "Login", "Upload"]
       reason: ["permission denied", "timed out", "file not found"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R02
+  kind: log
   context_vi: >
-    Emma chụp màn hình gửi kèm ticket. Đây là đúng thứ cô ấy nhìn thấy lúc 2 giờ sáng thứ Sáu,
-    khi Northwind Portal không cho cô ấy vào. Bên dưới câu xin lỗi lịch sự là bốn dòng kỹ thuật —
-    và bốn dòng đó nói thẳng chuyện gì đang xảy ra.
-  turns:
-    - {speaker: "", en: "Northwind Portal — Sign-in failed", vi: "Northwind Portal — Đăng nhập thất bại"}
-    - {speaker: "", en: "We could not sign you in. Please try again later.", vi: "Chúng tôi không đăng nhập được cho bạn. Vui lòng thử lại sau."}
-    - {speaker: "", en: "Error: Failed to read the database password. Permission denied.", vi: "Lỗi: Không đọc được mật khẩu cơ sở dữ liệu. Bị từ chối quyền."}
-    - {speaker: "", en: "Hint: This is not a password problem. Please contact your IT support team.", vi: "Gợi ý: Đây không phải vấn đề mật khẩu của bạn. Vui lòng liên hệ bộ phận IT."}
-    - {speaker: "", en: "Reference: INC-2291 — auth-service, line 118, 02:04", vi: "Mã tham chiếu: INC-2291 — auth-service, dòng 118, lúc 02:04"}
+    Đây đúng là màn hình Emma nhìn thấy lúc 2 giờ sáng. Thông báo lỗi tiếng Anh có cấu trúc
+    cố định: chuyện gì xảy ra, vì sao, và mã tham chiếu. Đọc bằng mắt, tìm ba thứ đó.
+  text_en: |
+    Northwind Portal — Sign-in failed
+
+    We could not sign you in. Please try again later.
+    Error: Failed to read the database password. Permission denied.
+    Hint: This is not a password problem. Please contact your IT support team.
+    Reference: INC-2291 — auth-service, line 118, 02:04
+  text_vi: |
+    Northwind Portal — Đăng nhập thất bại
+
+    Chúng tôi không đăng nhập được cho bạn. Vui lòng thử lại sau.
+    Lỗi: Không đọc được mật khẩu cơ sở dữ liệu. Quyền bị từ chối.
+    Gợi ý: Đây không phải lỗi mật khẩu của bạn. Vui lòng liên hệ bộ phận IT.
+    Tham chiếu: INC-2291 — auth-service, dòng 118, 02:04
+  questions:
+    - q_en: "Which line does the error come from?"
+      choices: ["Line 118", "Line 2291", "Line 204"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Is this the user's own password problem?"
+      choices: ["No", "Yes", "The message does not say"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "In this message, \"Permission denied\" means the service:"
+      choices: ["was not allowed to read something", "typed the wrong password", "was too slow"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-R02
+  kind: error_correction
+  prompt_vi: "Câu này sai dạng động từ sau “to”. Viết lại cho đúng."
+  prompt_en: "The service failed to reading the password."
+  blanks:
+    - ["the service failed to read the password"]
+  hint_vi: "Sau “failed to” là động từ nguyên mẫu, không thêm “-ing”."
+  sample_en: "The service failed to read the password."
 
 listening_snippet:
   id: LS-R02
@@ -147,7 +183,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 
