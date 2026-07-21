@@ -30,3 +30,10 @@ jobs:
       # bộ ký hiệu của g2p, ngưỡng mở khoá làm học viên kẹt giữa hai con số.
       - name: Cổng chất lượng nội dung
         run: python -m app.seeds.validate_content
+
+      # Test chạy SQLite in-memory, không cần Docker. Phủ luật xếp band, bộ chấm viết,
+      # bất biến thứ tự level, và đường ống Đọc/Viết.
+      - name: Test
+        env:
+          SECRET_KEY: ci-secret-key-at-least-32-characters-long
+        run: pytest -q
