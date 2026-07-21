@@ -14,6 +14,7 @@ from app.models.user import User
 from app.services import learning_path_service as path
 from app.services import notification_service as notif
 from app.services import placement_service, prerequisite_service, story_service
+from app.services import roadmap_service
 from app.services.ai import router as ai_router
 
 from app import __version__
@@ -198,6 +199,8 @@ async def dashboard(
         "done": done, "total": total,
         "skill_meta": SKILL_META,
         "is_new_user": done == 0,
+        # Ước lượng từ nhịp học thật, không phải hằng số theo band.
+        "roadmap_eta": await roadmap_service.cho_hoc_vien(db, user.id),
     })
     return templates.TemplateResponse(request, "dashboard.html", ctx)
 

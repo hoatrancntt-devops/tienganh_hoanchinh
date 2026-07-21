@@ -160,7 +160,6 @@ def test_slow_ratio_bo_qua_khi_qua_it_du_lieu():
 def test_moi_band_deu_co_bai_vao_va_so_tuan():
     for _, band in sc.BANDS:
         assert band in sc.ENTRY_LESSON
-        assert band in sc.WEEKS_TO_GOAL
     assert len(sc.BANDS) == len(CEFR_ORDER)
 
 

@@ -44,8 +44,6 @@ ENTRY_LESSON = {
     Cefr.B1: "F18",
 }
 
-WEEKS_TO_GOAL = {Cefr.PRE_A1: 16, Cefr.A1: 12, Cefr.A2: 8, Cefr.B1: 5}
-
 # Nghe lại lần đầu là để làm quen giọng, không phạt. Từ lần thứ hai mới trừ, và có trần.
 REPLAY_FREE = 1
 REPLAY_PENALTY = 0.10

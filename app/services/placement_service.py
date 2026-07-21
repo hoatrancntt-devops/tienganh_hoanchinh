@@ -19,6 +19,7 @@ from app.models.enums import Cefr
 from app.models.user import User
 from app.services import placement_scoring as scoring
 from app.services import prerequisite_service as prereq
+from app.services import roadmap_service as roadmap
 from app.services import writing_service as writing
 
 log = logging.getLogger(__name__)
@@ -250,7 +251,9 @@ async def submit(
         "speaking_detail": {k: avg(v) for k, v in speak_detail.items()},
         "entry_lesson_code": entry_code, "strengths_vi": strengths[:2], "gaps_vi": gaps[:2],
         "explanation_vi": explanation,
-        "estimated_weeks_to_goal": scoring.WEEKS_TO_GOAL[band],
+        # Tính từ số bài còn lại và nhịp học thật, không phải hằng số theo band. Ngay sau khi
+        # xếp lớp thì chưa có nhịp học nào nên nó rơi về mục tiêu học viên tự đặt ở onboarding.
+        "estimated_weeks_to_goal": (await roadmap.cho_hoc_vien(db, test.user_id)).tuan_toi_da,
         "can_challenge": test.can_challenge,
     }
 
