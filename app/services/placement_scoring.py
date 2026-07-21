@@ -8,8 +8,19 @@ from dataclasses import dataclass, field
 from app.models.assessment import CEFR_ORDER
 from app.models.enums import Cefr
 
-# Nói nặng nhất vì đó là mục tiêu sản phẩm. Ba trục phải cộng đúng 1.0.
-WEIGHTS = {"knowledge": 0.30, "listening": 0.30, "speaking": 0.40}
+# Nói nặng nhất vì đó là mục tiêu sản phẩm, nhưng không còn 0.40 như hồi ba trục —
+# trọng số đó cộng với một sự cố micro chính là nguồn gốc của lỗi xếp sai hai bậc.
+# `knowledge` (từ vựng + ngữ pháp) là trục PHỤ: nó không phải một kỹ năng, nên nhẹ nhất
+# và không hiện trên biểu đồ bốn trục.
+WEIGHTS = {
+    "speaking": 0.30,
+    "listening": 0.25,
+    "reading": 0.20,
+    "writing": 0.15,
+    "knowledge": 0.10,
+}
+# Bốn kỹ năng thật, dùng cho biểu đồ kết quả và cho luật lệch kỹ năng.
+SKILL_AXES = ("listening", "speaking", "reading", "writing")
 
 # Mốc cắt trên thang 0-100. Mốc cuối là trần mở để band cao nhất luôn có chỗ.
 #
@@ -147,30 +158,25 @@ class Verdict:
 
 
 def decide(
-    knowledge: float,
-    listening: float,
-    speaking: float,
+    scores: dict[str, float],
     speech_available: bool,
     silent_count: int,
     slow_ratio: float = 0.0,
 ) -> Verdict:
-    """Xếp band từ ba trục điểm.
+    """Xếp band từ các trục điểm. `scores` nhận khoá bất kỳ trong WEIGHTS.
 
     Bất biến quan trọng: band cuối KHÔNG BAO GIỜ thấp hơn `band_raw` quá một bậc.
     Bản cũ có ba nhánh hạ bậc chạy nối tiếp và cộng dồn được, nên người nghe hiểu 90/100
     nhưng yếu nói bị đẩy về Pre-A1 — tức là về bài dạy âm /θ/.
     """
-    if speech_available:
-        overall = (
-            WEIGHTS["knowledge"] * knowledge
-            + WEIGHTS["listening"] * listening
-            + WEIGHTS["speaking"] * speaking
-        )
-    else:
-        # Chuẩn hoá lại trên hai trục còn lại thay vì bịa trọng số mới.
-        w = WEIGHTS["knowledge"] + WEIGHTS["listening"]
-        overall = (WEIGHTS["knowledge"] * knowledge + WEIGHTS["listening"] * listening) / w
-    overall = round(overall, 2)
+    speaking = scores.get("speaking", 0.0)
+    # Thiếu trục nào thì chuẩn hoá lại trên các trục còn lại, không bịa trọng số mới và
+    # không coi trục thiếu là 0 điểm. Giờ có bốn kỹ năng nên mất phần nói vẫn còn đủ dữ liệu.
+    dung = {k: v for k, v in scores.items() if k in WEIGHTS}
+    if not speech_available:
+        dung.pop("speaking", None)
+    tong_w = sum(WEIGHTS[k] for k in dung) or 1.0
+    overall = round(sum(WEIGHTS[k] * v for k, v in dung.items()) / tong_w, 2)
 
     band_raw = band_for(overall)
 
@@ -193,11 +199,13 @@ def decide(
 
     band = _demote(band_raw) if reasons else band_raw
 
-    axes = [knowledge, listening] + ([speaking] if speech_available else [])
+    # Chỉ so bốn kỹ năng thật với nhau. `knowledge` là trục phụ, kéo vào đây sẽ báo lệch
+    # ở những học viên hoàn toàn bình thường.
+    axes = [dung[k] for k in SKILL_AXES if k in dung]
     confidence = "high"
     if not speech_available:
         confidence = "low"
-    elif max(axes) - min(axes) > IMBALANCE_SPREAD:
+    elif len(axes) >= 2 and max(axes) - min(axes) > IMBALANCE_SPREAD:
         confidence = "low"
         reasons.append("Các kỹ năng chênh nhau nhiều nên kết quả chỉ là ước lượng.")
     elif _barely_qualified(overall, band_raw):

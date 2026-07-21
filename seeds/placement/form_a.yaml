@@ -1,27 +1,85 @@
 form: A
-est_minutes: 14
+est_minutes: 18
+# 26 câu, đo bốn kỹ năng + một trục phụ từ vựng/ngữ pháp.
+# vocab 5->3, grammar 4->3, listening 6->5 để bù thời gian cho reading và writing:
+# thêm hai phần mà không cắt gì thì đề lên ~22 phút, và bỏ ngang ở bước đầu tiên là
+# rủi ro lớn nhất của cả thiết kế này.
+# Form A và form B phải TƯƠNG ĐƯƠNG về phân bố difficulty — test_placement_forms khoá lại.
 items:
   - {id: S1, section: self, kind: likert, prompt_vi: "Tôi hiểu khi đồng nghiệp nói tiếng Anh với tôi", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
   - {id: S2, section: self, kind: likert, prompt_vi: "Tôi dám nói dù sai", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
   - {id: S3, section: self, kind: likert, prompt_vi: "Tôi đọc được email tiếng Anh trong công việc", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
 
   - {id: V1, section: vocab, kind: mcq, difficulty: 1, prompt_vi: "“Meeting” nghĩa là gì?", choices: ["Cuộc họp","Bữa ăn","Chuyến đi"], answer: 0}
-  - {id: V2, section: vocab, kind: mcq, difficulty: 2, prompt_vi: "Đồng nghiệp nói “I'm on leave tomorrow.” Nghĩa là?", choices: ["Mai tôi nghỉ phép","Mai tôi đi công tác","Mai tôi họp cả ngày"], answer: 0}
-  - {id: V3, section: vocab, kind: mcq, difficulty: 3, prompt_vi: "“Deadline” trong công việc là?", choices: ["Hạn chót","Đường dây nóng","Danh sách việc"], answer: 0}
-  - {id: V4, section: vocab, kind: mcq, difficulty: 4, prompt_vi: "IT: “The server is down.” Nghĩa là?", choices: ["Máy chủ đang không hoạt động","Máy chủ đang chạy chậm","Máy chủ đặt ở tầng dưới"], answer: 0}
-  - {id: V5, section: vocab, kind: mcq, difficulty: 5, prompt_vi: "IT: “Let's roll back the deployment.” Nghĩa là?", choices: ["Quay lại bản trước","Triển khai thêm một lần nữa","Tạm dừng máy chủ"], answer: 0}
+  - {id: V2, section: vocab, kind: mcq, difficulty: 3, prompt_vi: "“Deadline” trong công việc là?", choices: ["Hạn chót","Đường dây nóng","Danh sách việc"], answer: 0}
+  - {id: V3, section: vocab, kind: mcq, difficulty: 5, prompt_vi: "IT: “Let's roll back the deployment.” Nghĩa là?", choices: ["Quay lại bản trước","Triển khai thêm một lần nữa","Tạm dừng máy chủ"], answer: 0}
 
   - {id: G1, section: grammar, kind: mcq, difficulty: 1, prompt_vi: "Chọn câu đúng", choices: ["I am work in IT.","I work in IT.","I working in IT."], answer: 1}
-  - {id: G2, section: grammar, kind: mcq, difficulty: 2, prompt_vi: "Chọn câu đúng", choices: ["She work in HR.","She works in HR.","She working in HR."], answer: 1}
-  - {id: G3, section: grammar, kind: mcq, difficulty: 3, prompt_vi: "Chọn câu đúng", choices: ["Where you go yesterday?","Where did you go yesterday?","Where you went yesterday?"], answer: 1}
-  - {id: G4, section: grammar, kind: mcq, difficulty: 4, prompt_vi: "Chọn câu đúng", choices: ["I have worked here for three years.","I work here since three years.","I am working here for three years ago."], answer: 0}
+  - {id: G2, section: grammar, kind: mcq, difficulty: 3, prompt_vi: "Chọn câu đúng", choices: ["Where you go yesterday?","Where did you go yesterday?","Where you went yesterday?"], answer: 1}
+  - {id: G3, section: grammar, kind: mcq, difficulty: 4, prompt_vi: "Chọn câu đúng", choices: ["I have worked here for three years.","I work here since three years.","I am working here for three years ago."], answer: 0}
 
   - {id: L1, section: listening, kind: mcq, difficulty: 1, transcript_en: "Good morning. How are you today?", prompt_vi: "Người nói đang làm gì?", choices: ["Chào buổi sáng","Xin nghỉ phép","Hỏi đường"], answer: 0}
   - {id: L2, section: listening, kind: mcq, difficulty: 2, transcript_en: "The meeting starts at ten thirty.", prompt_vi: "Cuộc họp bắt đầu lúc mấy giờ?", choices: ["10:13","10:30","10:00"], answer: 1}
-  - {id: L3, section: listening, kind: mcq, difficulty: 2, transcript_en: "He works in the IT department.", prompt_vi: "Anh ấy làm ở đâu?", choices: ["Phòng IT","Phòng nhân sự","Phòng kế toán"], answer: 0}
-  - {id: L4, section: listening, kind: mcq, difficulty: 3, transcript_en: "Sorry, I can't join. I have another call at three.", prompt_vi: "Người nói muốn nói gì?", choices: ["Không tham gia được vì có cuộc gọi khác","Sẽ tham gia lúc 3 giờ","Muốn dời cuộc họp sang 3 giờ"], answer: 0}
-  - {id: L5, section: listening, kind: mcq, difficulty: 4, transcript_en: "Could you send me the report before you leave today?", prompt_vi: "Người nói yêu cầu gì?", choices: ["Gửi báo cáo trước khi về hôm nay","Ở lại muộn hôm nay","Viết một báo cáo mới"], answer: 0}
-  - {id: L6, section: listening, kind: mcq, difficulty: 5, transcript_en: "The VPN is acting up again, so I can't reach the internal wiki.", prompt_vi: "Vấn đề là gì?", choices: ["VPN lỗi nên không vào được wiki nội bộ","Wiki nội bộ đã bị xoá","Máy tính không có mạng"], answer: 0}
+  - {id: L3, section: listening, kind: mcq, difficulty: 3, transcript_en: "Sorry, I can't join. I have another call at three.", prompt_vi: "Người nói muốn nói gì?", choices: ["Không tham gia được vì có cuộc gọi khác","Sẽ tham gia lúc 3 giờ","Muốn dời cuộc họp sang 3 giờ"], answer: 0}
+  - {id: L4, section: listening, kind: mcq, difficulty: 4, transcript_en: "Could you send me the report before you leave today?", prompt_vi: "Người nói yêu cầu gì?", choices: ["Gửi báo cáo trước khi về hôm nay","Ở lại muộn hôm nay","Viết một báo cáo mới"], answer: 0}
+  - {id: L5, section: listening, kind: mcq, difficulty: 5, transcript_en: "The VPN is acting up again, so I can't reach the internal wiki.", prompt_vi: "Vấn đề là gì?", choices: ["VPN lỗi nên không vào được wiki nội bộ","Wiki nội bộ đã bị xoá","Máy tính không có mạng"], answer: 0}
+
+  # ĐỌC — hai văn bản, mỗi văn bản 2 câu. Câu hỏi bằng tiếng Anh; KHÔNG sinh audio.
+  # Phần này tách được nhóm "đọc được nhưng không nghe được" — rất phổ biến ở học viên
+  # Việt học ngữ pháp ở trường — mà đề ba trục hoàn toàn không thấy.
+  - id: RA1
+    section: reading
+    kind: mcq_read
+    difficulty: 2
+    passage_id: PA1
+    passage_en: |
+      Minh: Hi, are you in the office today?
+      You: Yes, until 5.
+      Minh: Great. Can you print the contract before you go? It's in the shared folder.
+    prompt_vi: "Đọc đoạn chat rồi trả lời"
+    prompt_en: "What does Minh want you to do?"
+    choices: ["Print the contract", "Stay in the office until 5", "Create a shared folder"]
+    answer: 0
+  - {id: RA2, section: reading, kind: mcq_read, difficulty: 2, passage_id: PA1, prompt_en: "Where is the contract?", choices: ["In the shared folder","On Minh's desk","In the printer"], answer: 0}
+  - id: RA3
+    section: reading
+    kind: mcq_read
+    difficulty: 4
+    passage_id: PA2
+    passage_en: |
+      Subject: Server maintenance this Saturday
+
+      Hi all,
+
+      We will upgrade the mail server on Saturday from 8 a.m. to 12 p.m.
+      Email will not work during that time. Please finish anything urgent on Friday.
+      If you need access on Saturday, reply to this email by Thursday so we can
+      arrange a temporary account for you.
+
+      Thanks,
+      IT Team
+    prompt_vi: "Đọc email rồi trả lời"
+    prompt_en: "You must send an important email on Saturday morning. What should you do?"
+    choices: ["Reply to this email by Thursday", "Wait until Monday", "Send it on Saturday anyway"]
+    answer: 0
+  - {id: RA4, section: reading, kind: mcq_read, difficulty: 4, passage_id: PA2, prompt_en: "In this email, \"urgent\" is closest in meaning to:", choices: ["Needing action very soon","Very large","Not important"], answer: 0}
+
+  # VIẾT — ba dạng tăng dần độ tự do, chấm bằng writing_service (không AI).
+  - {id: W1, section: writing, kind: fill_blank, difficulty: 2, prompt_vi: "Điền hai chỗ trống: “Ngày mai tôi nghỉ phép.”", prompt_en: "I'm ___ ___ tomorrow.", blanks: [["on"],["leave"]]}
+  - {id: W2, section: writing, kind: error_correction, difficulty: 3, prompt_vi: "Câu này sai. Viết lại cho đúng.", prompt_en: "She work in HR.", blanks: [["she works in hr"]]}
+  - id: W3
+    section: writing
+    kind: guided_email
+    difficulty: 4
+    prompt_vi: >
+      Trả lời email của IT Team ở phần đọc: bạn cần dùng email sáng thứ Bảy. Viết 2-3 câu.
+    frame_vi: ["Mở: chào", "Thân: nói rõ bạn cần truy cập thứ Bảy + lý do", "Kết: cảm ơn"]
+    required_chunks:
+      - ["i need", "i'll need", "i will need", "could i have", "can i have", "i would like"]
+      - ["saturday"]
+      - ["thanks", "thank you"]
+    min_words: 12
+    sample_en: "Hi IT Team, I need access on Saturday morning because I have to send a report to a client. Could you set up a temporary account for me? Thanks, Hoa"
 
   - {id: P1, section: speaking, kind: read_aloud, expected_text: "He works in IT.", prompt_vi: "Đọc to câu này"}
   - {id: P2, section: speaking, kind: read_aloud, expected_text: "I finished the report yesterday.", prompt_vi: "Đọc to câu này"}

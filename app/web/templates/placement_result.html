@@ -7,16 +7,24 @@
   <h1 style="margin-top:.6rem">{{ band_vi }}</h1>
   {% if test.confidence == 'low' %}<span class="pill pill-warn" style="margin-top:.6rem">Kết quả chưa chắc chắn</span>{% endif %}
 </div>
+{% set s = test.result_scores %}
 <div class="card">
-  <h2 style="font-size:.95rem;margin-bottom:.9rem">Ba trục điểm</h2>
-  {% set s = test.result_scores %}
-  {% for key, label in [('listening','Nghe'),('speaking','Nói'),('knowledge','Từ vựng & ngữ pháp')] %}
+  <h2 style="font-size:.95rem;margin-bottom:.9rem">Bốn kỹ năng</h2>
+  {% for key, label in [('listening','Nghe'),('speaking','Nói'),('reading','Đọc'),('writing','Viết')] %}
   <div style="margin-bottom:.85rem">
     <div class="between" style="margin-bottom:.3rem"><span style="font-size:.85rem">{{ label }}</span><span class="mut-3">{{ s.get(key, 0)|round|int }}/100</span></div>
     <div class="bar {{ 'ok' if s.get(key,0) >= 60 }}"><i style="width:{{ s.get(key,0)|round|int }}%"></i></div>
   </div>
   {% endfor %}
+  {# Từ vựng & ngữ pháp không phải một kỹ năng — để riêng, nhẹ hơn, không nằm trong bốn trục. #}
+  <div class="between mut-3" style="margin-top:1rem;font-size:.82rem;border-top:1px solid var(--line);padding-top:.7rem">
+    <span>Từ vựng &amp; ngữ pháp (trục phụ)</span><span>{{ s.get('knowledge', 0)|round|int }}/100</span>
+  </div>
 </div>
+{% set lech = [s.get('listening',0), s.get('speaking',0), s.get('reading',0), s.get('writing',0)] %}
+{% if lech|max - lech|min > 40 %}
+<div class="alert alert-info">Bốn kỹ năng của bạn chênh nhau khá nhiều. Lộ trình xếp theo mức chung, nên phần bạn đã khá sẽ thấy dễ — dùng nút <b>Thi vượt</b> để bỏ qua.</div>
+{% endif %}
 <div class="card"><h2 style="font-size:.95rem;margin-bottom:.7rem">Nhận xét</h2><p class="mut" style="font-size:.9rem;line-height:1.7;margin:0">{{ test.explanation_vi }}</p></div>
 {% if test.can_challenge %}<div class="alert alert-warn">Kết quả này chưa chắc chắn. Nếu bạn thấy bài đầu quá dễ, dùng nút <b>Thi vượt</b> ở từng bài để bỏ qua — nhưng phải đạt 85%.</div>{% endif %}
 <a class="btn btn-lg btn-full" style="margin-top:1.2rem" href="/learn">Xem lộ trình của tôi</a>

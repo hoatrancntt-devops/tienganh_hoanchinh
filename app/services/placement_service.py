@@ -18,6 +18,7 @@ from app.models.enums import Cefr
 from app.models.user import User
 from app.services import placement_scoring as scoring
 from app.services import prerequisite_service as prereq
+from app.services import writing_service as writing
 
 log = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ ENTRY_LESSON = scoring.ENTRY_LESSON
 BANDS = scoring.BANDS
 WEIGHTS = scoring.WEIGHTS
 
-MCQ_SECTIONS = ("vocab", "grammar", "listening")
+MCQ_SECTIONS = ("vocab", "grammar", "listening", "reading")
 BAND_VI = {
     Cefr.PRE_A1: "chưa có nền (Pre-A1)",
     Cefr.A1: "sơ cấp (A1)",
@@ -75,6 +76,7 @@ async def submit(
     speech_results = speech_results or {}
 
     earned: dict[str, list[float]] = {s: [] for s in MCQ_SECTIONS}
+    write_scores: list[float] = []
     speak_scores: list[float] = []
     speak_detail: dict[str, list[float]] = {"pronunciation": [], "fluency": [], "communication": []}
     self_answers: list[int] = []
@@ -110,6 +112,13 @@ async def submit(
                     speak_detail[key].append(detail[key])
                 if detail["silent"]:
                     silent_count += 1
+        elif section == "writing":
+            # Cùng bộ chấm với bài viết trong bài học — một luật, một chỗ sửa.
+            graded = writing.grade(item, resp.get("texts") or [resp.get("text") or ""])
+            row.score = float(graded["score"])
+            row.is_correct = bool(graded["correct"])
+            row.detail = {"feedback_vi": graded["feedback_vi"]}
+            write_scores.append(row.score)
         elif section in earned:
             choice = resp.get("choice_index")
             correct = choice is not None and choice == item["answer"]
@@ -125,12 +134,15 @@ async def submit(
     knowledge_total = sizes.get("vocab", 0) + sizes.get("grammar", 0)
     knowledge = scoring.section_average(earned["vocab"] + earned["grammar"], knowledge_total)
     listening = scoring.section_average(earned["listening"], sizes.get("listening", 0))
+    reading = scoring.section_average(earned["reading"], sizes.get("reading", 0))
+    writing_score = scoring.section_average(write_scores, sizes.get("writing", 0))
     speech_available = speech_seen > 0
     speaking = scoring.section_average(speak_scores, speech_seen) if speech_available else 0.0
 
+    axes = {"knowledge": knowledge, "listening": listening, "reading": reading,
+            "writing": writing_score, "speaking": speaking}
     verdict = scoring.decide(
-        knowledge=knowledge, listening=listening, speaking=speaking,
-        speech_available=speech_available, silent_count=silent_count,
+        axes, speech_available=speech_available, silent_count=silent_count,
         slow_ratio=scoring.slow_answer_ratio(latencies),
     )
     band, confidence, overall = verdict.band, verdict.confidence, verdict.overall
@@ -140,19 +152,28 @@ async def submit(
         strengths.append("Nghe hiểu câu ngắn khá tốt")
     if speaking >= 60:
         strengths.append("Phát âm rõ, người nghe hiểu được")
+    if reading >= 60:
+        strengths.append("Đọc email công việc lấy được ý chính")
+    if writing_score >= 60:
+        strengths.append("Viết được câu đủ ý, đúng cấu trúc")
     if knowledge >= 60:
         strengths.append("Vốn từ nền đủ dùng")
     if speech_available and speaking < 45:
         gaps.append("Nói còn ngập ngừng và thiếu âm cuối")
     if listening < 45:
         gaps.append("Chưa bắt kịp khi người nói nói ở tốc độ thật")
+    if reading < 45:
+        gaps.append("Đọc email còn phải dịch từng chữ")
+    if writing_score < 45:
+        gaps.append("Viết câu còn thiếu cấu trúc và từ nối")
     if knowledge < 45:
         gaps.append("Thiếu vốn từ công sở cơ bản")
 
     self_avg = sum(self_answers) / len(self_answers) if self_answers else None
     explanation = (
-        f"Bạn đang ở mức {BAND_VI[band]}. Điểm nghe {listening:.0f}, nói {speaking:.0f}, "
-        f"từ vựng và ngữ pháp {knowledge:.0f} trên thang 100. "
+        f"Bạn đang ở mức {BAND_VI[band]}. Nghe {listening:.0f}, nói {speaking:.0f}, "
+        f"đọc {reading:.0f}, viết {writing_score:.0f} trên thang 100 "
+        f"(từ vựng và ngữ pháp {knowledge:.0f}). "
     )
     if self_avg is not None and self_avg <= 2 and speaking >= 55:
         explanation += (
@@ -174,7 +195,8 @@ async def submit(
     test.result_cefr = band
     test.confidence = confidence
     test.result_scores = {"knowledge": knowledge, "listening": listening,
-                          "speaking": speaking, "overall": overall}
+                          "speaking": speaking, "reading": reading,
+                          "writing": writing_score, "overall": overall}
     test.explanation_vi = explanation
     test.entry_lesson_id = entry.id if entry else None
     test.can_challenge = confidence == "low"

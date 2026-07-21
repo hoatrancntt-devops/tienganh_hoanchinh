@@ -1,27 +1,77 @@
 form: B
-est_minutes: 14
+est_minutes: 18
+# Tương đương form A theo phân bố difficulty từng section. Xem chú thích ở form_a.
 items:
   - {id: S1, section: self, kind: likert, prompt_vi: "Tôi hiểu khi đồng nghiệp nói tiếng Anh với tôi", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
   - {id: S2, section: self, kind: likert, prompt_vi: "Tôi dám nói dù sai", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
   - {id: S3, section: self, kind: likert, prompt_vi: "Tôi đọc được email tiếng Anh trong công việc", choices: ["Không bao giờ","Hiếm khi","Đôi khi","Thường xuyên","Luôn luôn"], answer: -1}
 
   - {id: V1, section: vocab, kind: mcq, difficulty: 1, prompt_vi: "“Colleague” nghĩa là gì?", choices: ["Đồng nghiệp","Khách hàng","Cấp trên"], answer: 0}
-  - {id: V2, section: vocab, kind: mcq, difficulty: 2, prompt_vi: "Đồng nghiệp nói “Let's grab lunch.” Nghĩa là?", choices: ["Đi ăn trưa nào","Đóng gói bữa trưa","Bỏ bữa trưa"], answer: 0}
-  - {id: V3, section: vocab, kind: mcq, difficulty: 3, prompt_vi: "“Follow up” trong email nghĩa là?", choices: ["Theo dõi và nhắc lại việc đang dở","Đi theo ai đó","Kết thúc dự án"], answer: 0}
-  - {id: V4, section: vocab, kind: mcq, difficulty: 4, prompt_vi: "IT: “Please restart your machine.” Nghĩa là?", choices: ["Khởi động lại máy","Đổi máy mới","Tắt máy hẳn"], answer: 0}
-  - {id: V5, section: vocab, kind: mcq, difficulty: 5, prompt_vi: "IT: “We need to scale up the cluster.” Nghĩa là?", choices: ["Tăng năng lực xử lý của cụm máy","Đo kích thước cụm máy","Tắt bớt máy trong cụm"], answer: 0}
+  - {id: V2, section: vocab, kind: mcq, difficulty: 3, prompt_vi: "“Follow up” trong email nghĩa là?", choices: ["Theo dõi và nhắc lại việc đang dở","Đi theo ai đó","Kết thúc dự án"], answer: 0}
+  - {id: V3, section: vocab, kind: mcq, difficulty: 5, prompt_vi: "IT: “We need to scale up the cluster.” Nghĩa là?", choices: ["Tăng năng lực xử lý của cụm máy","Đo kích thước cụm máy","Tắt bớt máy trong cụm"], answer: 0}
 
   - {id: G1, section: grammar, kind: mcq, difficulty: 1, prompt_vi: "Chọn câu đúng", choices: ["They is in the meeting.","They are in the meeting.","They be in the meeting."], answer: 1}
-  - {id: G2, section: grammar, kind: mcq, difficulty: 2, prompt_vi: "Chọn câu đúng", choices: ["I don't understand.","I no understand.","I not understand."], answer: 0}
-  - {id: G3, section: grammar, kind: mcq, difficulty: 3, prompt_vi: "Chọn câu đúng", choices: ["What time the meeting start?","What time does the meeting start?","What time is the meeting starts?"], answer: 1}
-  - {id: G4, section: grammar, kind: mcq, difficulty: 4, prompt_vi: "Chọn câu đúng", choices: ["The server has been down since this morning.","The server is down since this morning.","The server was down since this morning."], answer: 0}
+  - {id: G2, section: grammar, kind: mcq, difficulty: 3, prompt_vi: "Chọn câu đúng", choices: ["What time the meeting start?","What time does the meeting start?","What time is the meeting starts?"], answer: 1}
+  - {id: G3, section: grammar, kind: mcq, difficulty: 4, prompt_vi: "Chọn câu đúng", choices: ["The server has been down since this morning.","The server is down since this morning.","The server was down since this morning."], answer: 0}
 
   - {id: L1, section: listening, kind: mcq, difficulty: 1, transcript_en: "Nice to meet you. I'm Nam.", prompt_vi: "Người nói đang làm gì?", choices: ["Tự giới thiệu","Tạm biệt","Xin lỗi"], answer: 0}
   - {id: L2, section: listening, kind: mcq, difficulty: 2, transcript_en: "I'll be back at two fifteen.", prompt_vi: "Người nói quay lại lúc mấy giờ?", choices: ["2:50","2:15","2:05"], answer: 1}
-  - {id: L3, section: listening, kind: mcq, difficulty: 2, transcript_en: "She works in the accounting team.", prompt_vi: "Cô ấy làm ở đâu?", choices: ["Phòng kế toán","Phòng IT","Phòng kinh doanh"], answer: 0}
-  - {id: L4, section: listening, kind: mcq, difficulty: 3, transcript_en: "I'm running late. Can we push it to four?", prompt_vi: "Người nói muốn gì?", choices: ["Dời sang 4 giờ vì đang muộn","Kết thúc lúc 4 giờ","Bắt đầu sớm hơn"], answer: 0}
-  - {id: L5, section: listening, kind: mcq, difficulty: 4, transcript_en: "Did you get a chance to look at my ticket?", prompt_vi: "Người nói hỏi gì?", choices: ["Bạn đã xem ticket của tôi chưa","Bạn có vé chưa","Bạn có thời gian không"], answer: 0}
-  - {id: L6, section: listening, kind: mcq, difficulty: 5, transcript_en: "The deployment failed, so we rolled back to the previous version.", prompt_vi: "Chuyện gì đã xảy ra?", choices: ["Triển khai lỗi nên quay về bản trước","Triển khai thành công","Đang chờ triển khai"], answer: 0}
+  - {id: L3, section: listening, kind: mcq, difficulty: 3, transcript_en: "I'm running late. Can we push it to four?", prompt_vi: "Người nói muốn gì?", choices: ["Dời sang 4 giờ vì đang muộn","Kết thúc lúc 4 giờ","Bắt đầu sớm hơn"], answer: 0}
+  - {id: L4, section: listening, kind: mcq, difficulty: 4, transcript_en: "Did you get a chance to look at my ticket?", prompt_vi: "Người nói hỏi gì?", choices: ["Bạn đã xem ticket của tôi chưa","Bạn có vé chưa","Bạn có thời gian không"], answer: 0}
+  - {id: L5, section: listening, kind: mcq, difficulty: 5, transcript_en: "The deployment failed, so we rolled back to the previous version.", prompt_vi: "Chuyện gì đã xảy ra?", choices: ["Triển khai lỗi nên quay về bản trước","Triển khai thành công","Đang chờ triển khai"], answer: 0}
+
+  - id: RB1
+    section: reading
+    kind: mcq_read
+    difficulty: 2
+    passage_id: PB1
+    passage_en: |
+      Linh: Are you free at 3 today?
+      You: I have a call at 3. Is 4 ok?
+      Linh: 4 works. I'll send an invite. Bring the numbers from last month.
+    prompt_vi: "Đọc đoạn chat rồi trả lời"
+    prompt_en: "What time will the meeting be?"
+    choices: ["4 o'clock", "3 o'clock", "Last month"]
+    answer: 0
+  - {id: RB2, section: reading, kind: mcq_read, difficulty: 2, passage_id: PB1, prompt_en: "What must you bring?", choices: ["Last month's numbers","An invite","A phone"], answer: 0}
+  - id: RB3
+    section: reading
+    kind: mcq_read
+    difficulty: 4
+    passage_id: PB2
+    passage_en: |
+      Subject: New laptop request process
+
+      Hi all,
+
+      From 1 August, laptop requests go through the IT portal, not by email.
+      Requests sent by email after that date will not be processed.
+      Please note that approval from your manager is required before you submit
+      a request. Approval usually takes two working days.
+
+      Thanks,
+      IT Team
+    prompt_vi: "Đọc email rồi trả lời"
+    prompt_en: "You want a new laptop in August. What do you do first?"
+    choices: ["Get approval from your manager", "Send an email to IT", "Wait two working days"]
+    answer: 0
+  - {id: RB4, section: reading, kind: mcq_read, difficulty: 4, passage_id: PB2, prompt_en: "In this email, \"processed\" is closest in meaning to:", choices: ["Dealt with","Deleted","Printed"], answer: 0}
+
+  - {id: W1, section: writing, kind: fill_blank, difficulty: 2, prompt_vi: "Điền hai chỗ trống: “Tôi sẽ gửi báo cáo trước cuối ngày.”", prompt_en: "I'll ___ the report ___ end of day.", blanks: [["send"],["by"]]}
+  - {id: W2, section: writing, kind: error_correction, difficulty: 3, prompt_vi: "Câu này sai. Viết lại cho đúng.", prompt_en: "He don't work here.", blanks: [["he doesn't work here","he does not work here"]]}
+  - id: W3
+    section: writing
+    kind: guided_email
+    difficulty: 4
+    prompt_vi: >
+      Trả lời email của IT Team ở phần đọc: bạn cần laptop mới trong tháng Tám. Viết 2-3 câu.
+    frame_vi: ["Mở: chào", "Thân: nói rõ bạn cần laptop + đã xin duyệt của quản lý chưa", "Kết: cảm ơn"]
+    required_chunks:
+      - ["i need", "i'll need", "i will need", "could i have", "can i have", "i would like"]
+      - ["manager", "my manager"]
+      - ["thanks", "thank you"]
+    min_words: 12
+    sample_en: "Hi IT Team, I need a new laptop in August because mine is very slow. I have already asked my manager for approval. Thanks, Hoa"
 
   - {id: P1, section: speaking, kind: read_aloud, expected_text: "She works in HR.", prompt_vi: "Đọc to câu này"}
   - {id: P2, section: speaking, kind: read_aloud, expected_text: "I asked him about the network issue.", prompt_vi: "Đọc to câu này"}

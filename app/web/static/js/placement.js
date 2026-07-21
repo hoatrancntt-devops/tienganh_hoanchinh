@@ -1,7 +1,7 @@
 /* Placement runner. Đáp án không bao giờ ở phía client — server lột trước khi trả form. */
 const Placement = (() => {
-  let form = null, testId = null, i = 0, answers = [], plays = 0, t0 = 0;
-  const SECTION_VI = { self: 'Tự đánh giá', vocab: 'Từ vựng', grammar: 'Ngữ pháp', listening: 'Nghe', speaking: 'Nói' };
+  let form = null, testId = null, i = 0, answers = [], plays = 0, t0 = 0, lastPassage = '';
+  const SECTION_VI = { self: 'Tự đánh giá', vocab: 'Từ vựng', grammar: 'Ngữ pháp', listening: 'Nghe', reading: 'Đọc', writing: 'Viết', speaking: 'Nói' };
   async function start() {
     const f = await api('/api/v1/placement/form/A');
     if (!f.ok) { toast('Không tải được đề.', 'err'); return; }
@@ -18,14 +18,48 @@ const Placement = (() => {
     const st = document.getElementById('pStage');
     if (it.section === 'self') st.innerHTML = likert(it);
     else if (it.section === 'speaking') st.innerHTML = speak(it);
+    else if (it.section === 'writing') st.innerHTML = write(it);
     else st.innerHTML = mcq(it);
     window.scrollTo(0, 0);
   }
   function likert(it) { return `<div class="card"><p style="font-size:1.02rem;margin-bottom:1.1rem">${esc(it.prompt_vi)}</p><div class="likert">${it.choices.map((c, k) => `<button onclick="Placement.pick(${k})">${esc(c)}</button>`).join('')}</div><p class="hint" style="margin-top:.9rem">Câu này không tính điểm. Trả lời thật giúp hệ thống hiểu bạn hơn.</p></div>`; }
   function mcq(it) {
     const audio = it.section === 'listening';
+    // Phần đọc: văn bản hiện ngay trên câu hỏi, KHÔNG có nút phát. Văn bản chỉ kèm ở câu
+    // đầu của mỗi đoạn (passage_en), các câu sau dùng lại đoạn đang hiện.
+    if (it.section === 'reading' && it.passage_en) lastPassage = it.passage_en;
+    const passage = it.section === 'reading'
+      ? `<div class="passage" style="margin-bottom:1rem">${esc(it.passage_en || lastPassage)}</div>` : '';
+    // Câu hỏi đọc hỏi bằng tiếng Anh — hỏi bằng tiếng Việt là đo hiểu tiếng Việt.
+    const hoi = it.section === 'reading' ? (it.prompt_en || '') : it.prompt_vi;
     return `<div class="card">${audio ? `<div class="center" style="margin-bottom:1.1rem"><button class="playbtn" id="pl" onclick="Placement.playIt('${it.id}')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Nghe</button><div class="mut-3" id="plc" style="margin-top:.5rem">Nghe lại tối đa 2 lần</div></div>` : ''}
-      <p style="font-size:1rem;margin-bottom:1rem">${esc(it.prompt_vi)}</p>${it.choices.map((c, k) => `<button class="choice" onclick="Placement.pick(${k})">${esc(c)}</button>`).join('')}</div>`;
+      ${passage}${it.prompt_vi && it.section === 'reading' ? `<p class="mut-3" style="margin-bottom:.5rem">${esc(it.prompt_vi)}</p>` : ''}
+      <p style="font-size:1rem;margin-bottom:1rem">${esc(hoi)}</p>${it.choices.map((c, k) => `<button class="choice" onclick="Placement.pick(${k})">${esc(c)}</button>`).join('')}</div>`;
+  }
+  function write(it) {
+    const so_o = it.so_o || 0;
+    const frame = (it.frame_vi || []).map(f => `<li>${esc(f)}</li>`).join('');
+    const input = so_o
+      ? Array.from({ length: so_o }, (_, k) => `<input class="winput" id="pw${k}" placeholder="Ô ${k + 1}" autocomplete="off">`).join('')
+      : `<textarea class="winput wbox" id="pw0" rows="5" placeholder="Viết câu trả lời của bạn…"></textarea>`;
+    return `<div class="card">
+      <p style="font-size:1rem;margin-bottom:.8rem">${esc(it.prompt_vi || '')}</p>
+      ${it.prompt_en && so_o ? `<p class="prompt-en" style="font-size:1.05rem;margin-bottom:.9rem">${esc(it.prompt_en)}</p>` : ''}
+      ${frame ? `<div class="card-tight" style="background:var(--card-2);margin-bottom:1rem"><div class="hero-tag">Khung gợi ý</div><ul style="margin:.4rem 0 0 1rem">${frame}</ul></div>` : ''}
+      ${input}
+      ${it.min_words ? `<div class="mut-3" style="margin-top:.4rem">Ít nhất ${it.min_words} từ</div>` : ''}
+      <button class="btn btn-full" style="margin-top:.9rem" onclick="Placement.sendWrite()">Tiếp theo</button>
+      <button class="btn btn-quiet btn-full" style="margin-top:.5rem" onclick="Placement.skip()">Bỏ qua câu này</button></div>`;
+  }
+  function sendWrite() {
+    const it = form.items[i];
+    const so_o = it.so_o || 0;
+    const texts = so_o
+      ? Array.from({ length: so_o }, (_, k) => document.getElementById('pw' + k).value)
+      : [document.getElementById('pw0').value];
+    answers.push({ item_ref: it.id, section: it.section, kind: it.kind, texts,
+                   latency_ms: Date.now() - t0 });
+    advance();
   }
   function speak(it) {
     return `<div class="card center"><p class="prompt-vi" style="margin-bottom:.8rem">${esc(it.prompt_vi)}</p>
@@ -66,5 +100,5 @@ const Placement = (() => {
     location.href = '/placement/result';
   }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-  return { start, pick, skip, mic, playIt };
+  return { start, pick, skip, mic, playIt, sendWrite };
 })();

@@ -15,6 +15,14 @@ from app.services import placement_service
 router = APIRouter(prefix="/api/v1/placement", tags=["placement"])
 
 
+# Trường chứa đáp án hoặc lời giải. Không trường nào trong đây được rời server.
+# `blanks` và `required_chunks` là đáp án của phần viết; `sample_en` là bài mẫu.
+SECRET_FIELDS = frozenset({
+    "answer", "expected_text", "accept_patterns", "transcript_en",
+    "blanks", "required_chunks", "accept", "keywords", "ordered_lines", "sample_en",
+})
+
+
 @router.get("/form/{form}")
 async def get_form(form: str = "A"):
     """Trả form đã lột đáp án — đáp án không bao giờ rời server."""
@@ -22,12 +30,16 @@ async def get_form(form: str = "A"):
         data = placement_service.load_form(form)
     except FileNotFoundError as exc:
         raise HTTPException(status.HTTP_404_NOT_FOUND, str(exc)) from exc
-    items = [
-        {k: v for k, v in item.items()
-         if k not in ("answer", "expected_text", "accept_patterns", "transcript_en")}
-        for item in data["items"]
-    ]
-    return {"form": data["form"], "est_minutes": data.get("est_minutes", 14), "items": items}
+    items = []
+    for item in data["items"]:
+        stripped = {k: v for k, v in item.items() if k not in SECRET_FIELDS}
+        # Client cần biết SỐ ô để dựng giao diện, nhưng không được biết đáp án trong ô.
+        if item.get("blanks"):
+            stripped["so_o"] = len(item["blanks"])
+        if item.get("ordered_lines"):
+            stripped["lines"] = sorted(item["ordered_lines"])  # sắp a-b-c, không phải thứ tự đúng
+        items.append(stripped)
+    return {"form": data["form"], "est_minutes": data.get("est_minutes", 18), "items": items}
 
 
 @router.post("/start")
