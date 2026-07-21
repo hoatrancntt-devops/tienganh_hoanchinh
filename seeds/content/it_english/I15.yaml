@@ -144,7 +144,7 @@ writing_task:
 
 listening_snippet:
   id: LS-I15
-  speed: 1.1
+  speed: 1.3
   voice: en_US_male
   context_vi: >
     Linh đọc lại bản nháp của bạn trước khi gửi và tóm lại nó thành bốn câu. Nghe xem một email

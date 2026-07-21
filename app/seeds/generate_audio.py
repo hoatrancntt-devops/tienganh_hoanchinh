@@ -28,7 +28,14 @@ PLACEMENT_DIR = Path("seeds/placement")
 # cả bài A2 — còn toàn bộ bậc B1 không bao giờ vượt 1.0. Mục tiêu sản phẩm là standup và
 # call với khách nước ngoài, nơi người ta nói nhanh hơn 1.0; học viên thạo hết ở 1.0 vẫn
 # đứng hình trong cuộc gọi thật.
-TOC_DO = {"pre_a1": 0.85, "a1": 0.9, "a2": 1.0, "b1": 1.1}
+#
+# CON SỐ 1.3 KHÔNG PHẢI TUỲ TIỆN. Núm speed của Piper bị giảm chấn mạnh — đo trên cùng
+# một câu 13 từ: 0.85→5.55s · 0.9→5.22s · 1.0→5.04s · 1.1→4.76s · 1.3→4.41s. Nghĩa là
+# 1.1 chỉ nhanh hơn 1.0 đúng 5.6%, gần như không nghe ra khác biệt — đặt 1.1 thì không
+# đạt được chính mục đích của nó. 1.3 cho 12.5% nhanh hơn, tương đương ~177 từ/phút,
+# nằm trong khoảng người bản xứ nói chuyện tự nhiên (140-180). Đổi bảng này thì đo lại,
+# đừng suy ra bằng phép nhân.
+TOC_DO = {"pre_a1": 0.85, "a1": 0.9, "a2": 1.0, "b1": 1.3}
 
 
 def toc_do_theo_bac(cefr: str) -> float:

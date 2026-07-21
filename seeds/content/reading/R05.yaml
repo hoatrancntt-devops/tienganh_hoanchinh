@@ -113,7 +113,7 @@ writing_task:
 
 listening_snippet:
   id: LS-R05
-  speed: 1.1
+  speed: 1.3
   voice: en_US_female
   context_vi: >
     Hệ thống ticket đọc lại nội dung Emma vừa gửi để bạn nghe khi nhận ca lúc 3 giờ sáng.
