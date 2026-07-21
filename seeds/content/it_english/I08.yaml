@@ -14,7 +14,7 @@ objective_vi: "Báo standup chuẩn ba phần: hôm qua làm gì, hôm nay làm 
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và nêu đủ ba phần standup."
 
 prerequisites:
-  - {lesson: I07, min_mastery: 75, kind: hard}
+  - {lesson: I07, min_mastery: 80, kind: hard}
 
 vocabulary:
   - term: "Yesterday I"
@@ -222,7 +222,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 75
+  mastery_threshold: 80
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

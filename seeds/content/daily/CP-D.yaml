@@ -15,10 +15,10 @@ objective_vi: "Xử lý được tình huống đời thường: gặp người 
 objective_observable: "Đạt ≥70 điểm giao tiếp trên toàn bộ bài."
 
 prerequisites:
-  - {lesson: D01, min_mastery: 75, kind: hard}
-  - {lesson: D02, min_mastery: 75, kind: hard}
-  - {lesson: D03, min_mastery: 75, kind: hard}
-  - {lesson: D04, min_mastery: 75, kind: hard}
+  - {lesson: D01, min_mastery: 73, kind: hard}
+  - {lesson: D02, min_mastery: 73, kind: hard}
+  - {lesson: D03, min_mastery: 73, kind: hard}
+  - {lesson: D04, min_mastery: 73, kind: hard}
 
 reading_passage:
   id: RP-CPD
@@ -142,8 +142,8 @@ memory_trick_vi: >
   chào, tán gẫu, đáp lại. Phần còn lại của khoá là chuyên môn hoá.
 
 unlock_condition:
-  mastery_threshold: 70
+  mastery_threshold: 75
   mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
-  min_per_skill: {speak: 65, listen: 60, read: 55, write: 55}
+  min_per_skill: {speak: 62, listen: 60, read: 58, write: 55}
   min_speaking_attempts: 4
   challenge_threshold: 90

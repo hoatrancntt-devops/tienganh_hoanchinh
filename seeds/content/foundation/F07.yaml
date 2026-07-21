@@ -14,7 +14,7 @@ objective_vi: "Đặt được câu hỏi với what, where, when, who, why đú
 objective_observable: "Trả lời đúng 4/5 câu quiz trật tự từ và đạt ≥75 điểm nói trên 3/4 drill."
 
 prerequisites:
-  - {lesson: F06, min_mastery: 78, kind: hard}
+  - {lesson: F06, min_mastery: 73, kind: hard}
 
 vocabulary:
   - term: "what time"
@@ -218,7 +218,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 78
+  mastery_threshold: 73
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

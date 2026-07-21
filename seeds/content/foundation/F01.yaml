@@ -16,7 +16,7 @@ objective_observable: "Đạt ≥80 điểm phát âm trên 3/4 câu drill có c
 # Soft, không hard: người học cũ đã mở F01 rồi thì không bị khoá lại. Người mới vào
 # bằng S01 sẽ đi qua bốn bài sinh tồn trước, theo recommended_next của S04.
 prerequisites:
-  - {lesson: S04, min_mastery: 70, kind: soft}
+  - {lesson: S04, min_mastery: 60, kind: soft}
 
 vocabulary:
   - term: think
@@ -212,7 +212,7 @@ mini_quiz:
     difficulty: 2
 
 unlock_condition:
-  mastery_threshold: 78
+  mastery_threshold: 70
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

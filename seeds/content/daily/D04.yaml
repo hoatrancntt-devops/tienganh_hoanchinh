@@ -15,7 +15,7 @@ objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill tình hu
 
 prerequisites:
   - {lesson: CP-F, min_mastery: 75, kind: hard}
-  - {lesson: D01, min_mastery: 60, kind: soft}
+  - {lesson: D01, min_mastery: 63, kind: soft}
 
 vocabulary:
   - term: "running late"
@@ -217,7 +217,7 @@ mini_quiz:
     difficulty: 2
 
 unlock_condition:
-  mastery_threshold: 75
+  mastery_threshold: 73
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

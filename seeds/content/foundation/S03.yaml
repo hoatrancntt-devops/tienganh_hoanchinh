@@ -14,7 +14,7 @@ objective_vi: "Nói và nghe được giờ, thứ trong tuần, và hẹn đư�
 objective_observable: "Nghe đúng 4/5 mốc giờ và thứ trong một đoạn hội thoại ngắn."
 
 prerequisites:
-  - {lesson: S02, min_mastery: 75, kind: hard}
+  - {lesson: S02, min_mastery: 70, kind: hard}
 
 vocabulary:
   - term: "Monday"
@@ -217,7 +217,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 75
+  mastery_threshold: 70
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

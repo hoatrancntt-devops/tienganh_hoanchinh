@@ -14,7 +14,7 @@ objective_vi: "Đọc mô tả một endpoint API và nắm: phương thức, th
 objective_observable: "Trả lời đúng 4/5 câu hỏi về tham số required và mã trạng thái."
 
 prerequisites:
-  - {lesson: R07, min_mastery: 70, kind: hard}
+  - {lesson: R07, min_mastery: 80, kind: hard}
 
 vocabulary:
   - term: "endpoint"
@@ -193,7 +193,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 70
+  mastery_threshold: 80
   mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85

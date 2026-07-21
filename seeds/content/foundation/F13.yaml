@@ -14,8 +14,8 @@ objective_vi: "Nói và nghe số, giờ, ngày chính xác — phân biệt cá
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe đúng số 4/5 câu quiz."
 
 prerequisites:
-  - {lesson: F12, min_mastery: 78, kind: hard}
-  - {lesson: F03, min_mastery: 70, kind: soft}
+  - {lesson: F12, min_mastery: 76, kind: hard}
+  - {lesson: F03, min_mastery: 60, kind: soft}
 
 vocabulary:
   - term: "thirteen /θɜːrˈtiːn/"
@@ -224,7 +224,7 @@ mini_quiz:
     difficulty: 4
 
 unlock_condition:
-  mastery_threshold: 78
+  mastery_threshold: 76
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

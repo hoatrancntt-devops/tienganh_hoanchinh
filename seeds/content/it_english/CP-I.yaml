@@ -15,21 +15,21 @@ objective_vi: "Xử lý một ngày làm CNTT bằng tiếng Anh: báo sự cố
 objective_observable: "Đạt ≥70 điểm giao tiếp trên toàn bộ bài, báo sự cố đủ bốn phần và chốt được bước tiếp theo."
 
 prerequisites:
-  - {lesson: I01, min_mastery: 75, kind: hard}
-  - {lesson: I02, min_mastery: 75, kind: hard}
-  - {lesson: I03, min_mastery: 75, kind: hard}
-  - {lesson: I04, min_mastery: 75, kind: hard}
-  - {lesson: I05, min_mastery: 75, kind: hard}
-  - {lesson: I06, min_mastery: 75, kind: hard}
-  - {lesson: I07, min_mastery: 75, kind: hard}
-  - {lesson: I08, min_mastery: 75, kind: hard}
-  - {lesson: I09, min_mastery: 75, kind: hard}
-  - {lesson: I10, min_mastery: 75, kind: hard}
-  - {lesson: I11, min_mastery: 75, kind: hard}
-  - {lesson: I12, min_mastery: 75, kind: hard}
-  - {lesson: I13, min_mastery: 75, kind: hard}
-  - {lesson: I14, min_mastery: 75, kind: hard}
-  - {lesson: I15, min_mastery: 75, kind: hard}
+  - {lesson: I01, min_mastery: 76, kind: hard}
+  - {lesson: I02, min_mastery: 76, kind: hard}
+  - {lesson: I03, min_mastery: 76, kind: hard}
+  - {lesson: I04, min_mastery: 76, kind: hard}
+  - {lesson: I05, min_mastery: 80, kind: hard}
+  - {lesson: I06, min_mastery: 80, kind: hard}
+  - {lesson: I07, min_mastery: 80, kind: hard}
+  - {lesson: I08, min_mastery: 80, kind: hard}
+  - {lesson: I09, min_mastery: 80, kind: hard}
+  - {lesson: I10, min_mastery: 80, kind: hard}
+  - {lesson: I11, min_mastery: 80, kind: hard}
+  - {lesson: I12, min_mastery: 80, kind: hard}
+  - {lesson: I13, min_mastery: 80, kind: hard}
+  - {lesson: I14, min_mastery: 80, kind: hard}
+  - {lesson: I15, min_mastery: 80, kind: hard}
 
 reading_passage:
   id: RP-CPI
@@ -197,8 +197,8 @@ memory_trick_vi: >
   giải thích cho sếp, báo standup, chốt với đối tác. Đây là đích chính của khoá — tiếng Anh để LÀM VIỆC.
 
 unlock_condition:
-  mastery_threshold: 70
+  mastery_threshold: 82
   mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
-  min_per_skill: {speak: 60, listen: 60, read: 60, write: 55}
+  min_per_skill: {speak: 70, listen: 68, read: 66, write: 62}
   min_speaking_attempts: 4
   challenge_threshold: 90

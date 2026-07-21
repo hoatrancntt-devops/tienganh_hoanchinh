@@ -18,14 +18,14 @@ objective_observable: "Đạt ≥75 điểm tổng hợp trên toàn bộ bài k
 # nên không nằm sau cổng này — nếu không, bài giao tiếp A1 đầu tiên (D01) bị khoá sau
 # 20 bài, trong đó có cả bài B1.
 prerequisites:
-  - {lesson: F01, min_mastery: 78, kind: hard}
-  - {lesson: F02, min_mastery: 78, kind: hard}
-  - {lesson: F03, min_mastery: 78, kind: hard}
-  - {lesson: F04, min_mastery: 78, kind: hard}
-  - {lesson: F05, min_mastery: 78, kind: hard}
-  - {lesson: F06, min_mastery: 78, kind: hard}
-  - {lesson: F07, min_mastery: 78, kind: hard}
-  - {lesson: F08, min_mastery: 78, kind: hard}
+  - {lesson: F01, min_mastery: 70, kind: hard}
+  - {lesson: F02, min_mastery: 70, kind: hard}
+  - {lesson: F03, min_mastery: 70, kind: hard}
+  - {lesson: F04, min_mastery: 70, kind: hard}
+  - {lesson: F05, min_mastery: 73, kind: hard}
+  - {lesson: F06, min_mastery: 73, kind: hard}
+  - {lesson: F07, min_mastery: 73, kind: hard}
+  - {lesson: F08, min_mastery: 73, kind: hard}
 
 reading_passage:
   id: RP-CPF
@@ -163,6 +163,6 @@ memory_trick_vi: >
 unlock_condition:
   mastery_threshold: 75
   mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
-  min_per_skill: {speak: 65, listen: 60, read: 55, write: 55}
+  min_per_skill: {speak: 62, listen: 60, read: 58, write: 55}
   min_speaking_attempts: 6
   challenge_threshold: 90

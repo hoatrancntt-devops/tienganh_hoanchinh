@@ -14,7 +14,7 @@ objective_vi: "Nói và nghe được số từ 0 đến 100, đặc biệt phâ
 objective_observable: "Nghe đúng 4/5 số trong đó có ít nhất hai cặp dễ nhầm (13/30, 15/50)."
 
 prerequisites:
-  - {lesson: S01, min_mastery: 75, kind: hard}
+  - {lesson: S01, min_mastery: 70, kind: hard}
 
 vocabulary:
   - term: "thirteen"
@@ -221,7 +221,7 @@ mini_quiz:
     focus_phonemes: [θ]
 
 unlock_condition:
-  mastery_threshold: 75
+  mastery_threshold: 70
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

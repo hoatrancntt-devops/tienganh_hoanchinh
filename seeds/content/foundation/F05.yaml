@@ -14,8 +14,8 @@ objective_vi: "Đặt đúng trọng âm cho 8 từ công việc thường dùng
 objective_observable: "Đạt ≥75 điểm phát âm trên 3/4 câu drill và trả lời đúng 3/4 câu quiz trọng âm."
 
 prerequisites:
-  - {lesson: F04, min_mastery: 78, kind: hard}
-  - {lesson: F01, min_mastery: 70, kind: soft}
+  - {lesson: F04, min_mastery: 70, kind: hard}
+  - {lesson: F01, min_mastery: 60, kind: soft}
 
 vocabulary:
   - term: deploy
@@ -227,7 +227,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 78
+  mastery_threshold: 73
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

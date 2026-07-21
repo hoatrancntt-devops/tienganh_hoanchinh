@@ -14,7 +14,7 @@ objective_vi: "Đọc một thông báo lỗi và xác định: cái gì hỏng,
 objective_observable: "Trả lời đúng 4/5 câu hỏi đọc hiểu về nguyên nhân và hướng xử lý."
 
 prerequisites:
-  - {lesson: R01, min_mastery: 70, kind: hard}
+  - {lesson: R01, min_mastery: 76, kind: hard}
 
 vocabulary:
   - term: "failed to"
@@ -182,7 +182,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 70
+  mastery_threshold: 76
   mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85

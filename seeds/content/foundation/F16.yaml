@@ -14,8 +14,8 @@ objective_vi: "Phát âm rõ /l/ và /n/ (nhất là ở cuối từ), và /r/ c
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và nghe phân biệt đúng 4/5 câu quiz."
 
 prerequisites:
-  - {lesson: F15, min_mastery: 78, kind: hard}
-  - {lesson: F02, min_mastery: 70, kind: soft}
+  - {lesson: F15, min_mastery: 76, kind: hard}
+  - {lesson: F02, min_mastery: 60, kind: soft}
 
 vocabulary:
   - term: "email /ˈiːmeɪl/"
@@ -212,7 +212,7 @@ mini_quiz:
     difficulty: 2
 
 unlock_condition:
-  mastery_threshold: 78
+  mastery_threshold: 76
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

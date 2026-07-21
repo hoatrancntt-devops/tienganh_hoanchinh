@@ -14,8 +14,8 @@ objective_vi: "Nói theo CỤM ý nghĩa với chỗ ngắt hợp lý, để câ
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng chỗ ngắt 4/5 câu quiz."
 
 prerequisites:
-  - {lesson: F17, min_mastery: 78, kind: hard}
-  - {lesson: F12, min_mastery: 70, kind: soft}
+  - {lesson: F17, min_mastery: 76, kind: hard}
+  - {lesson: F12, min_mastery: 66, kind: soft}
 
 vocabulary:
   - term: "chunk"
@@ -220,7 +220,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 78
+  mastery_threshold: 80
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

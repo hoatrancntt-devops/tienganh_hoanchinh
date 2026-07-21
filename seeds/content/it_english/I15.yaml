@@ -14,7 +14,7 @@ objective_vi: "Viết email/thông báo kỹ thuật rõ ràng: tiêu đề nói
 objective_observable: "Đạt ≥75 điểm trên 3/4 drill và chọn đúng cấu trúc email (kết luận trước, chi tiết sau)."
 
 prerequisites:
-  - {lesson: I14, min_mastery: 75, kind: hard}
+  - {lesson: I14, min_mastery: 80, kind: hard}
 
 vocabulary:
   - term: "Heads up"
@@ -244,7 +244,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 75
+  mastery_threshold: 80
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

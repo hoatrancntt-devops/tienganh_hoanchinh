@@ -14,7 +14,7 @@ objective_vi: "Đề xuất giờ họp, hỏi người khác có rảnh không,
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill đặt lịch."
 
 prerequisites:
-  - {lesson: O05, min_mastery: 75, kind: hard}
+  - {lesson: O05, min_mastery: 76, kind: hard}
 
 vocabulary:
   - term: "Are you free"
@@ -216,7 +216,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 75
+  mastery_threshold: 76
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

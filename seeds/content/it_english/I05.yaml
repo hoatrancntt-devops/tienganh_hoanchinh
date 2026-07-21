@@ -14,8 +14,8 @@ objective_vi: "Giải thích nguyên nhân và cách khắc phục bằng ngôn 
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill, tránh thuật ngữ hoặc có giải nghĩa kèm."
 
 prerequisites:
-  - {lesson: I04, min_mastery: 75, kind: hard}
-  - {lesson: O04, min_mastery: 60, kind: soft}
+  - {lesson: I04, min_mastery: 76, kind: hard}
+  - {lesson: O04, min_mastery: 66, kind: soft}
 
 vocabulary:
   - term: "Basically"
@@ -239,7 +239,7 @@ mini_quiz:
     difficulty: 2
 
 unlock_condition:
-  mastery_threshold: 75
+  mastery_threshold: 80
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

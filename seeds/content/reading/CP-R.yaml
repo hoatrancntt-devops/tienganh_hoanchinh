@@ -15,16 +15,16 @@ objective_vi: "Đọc nhanh và đúng các loại văn bản công việc CNTT:
 objective_observable: "Đạt ≥70 điểm và trả lời đúng các câu hỏi rút thông tin hành động trên nhiều loại văn bản."
 
 prerequisites:
-  - {lesson: R01, min_mastery: 70, kind: hard}
-  - {lesson: R02, min_mastery: 70, kind: hard}
-  - {lesson: R03, min_mastery: 70, kind: hard}
-  - {lesson: R04, min_mastery: 70, kind: hard}
-  - {lesson: R05, min_mastery: 70, kind: hard}
-  - {lesson: R06, min_mastery: 70, kind: hard}
-  - {lesson: R07, min_mastery: 70, kind: hard}
-  - {lesson: R08, min_mastery: 70, kind: hard}
-  - {lesson: R09, min_mastery: 70, kind: hard}
-  - {lesson: R10, min_mastery: 70, kind: hard}
+  - {lesson: R01, min_mastery: 76, kind: hard}
+  - {lesson: R02, min_mastery: 76, kind: hard}
+  - {lesson: R03, min_mastery: 80, kind: hard}
+  - {lesson: R04, min_mastery: 80, kind: hard}
+  - {lesson: R05, min_mastery: 80, kind: hard}
+  - {lesson: R06, min_mastery: 80, kind: hard}
+  - {lesson: R07, min_mastery: 80, kind: hard}
+  - {lesson: R08, min_mastery: 80, kind: hard}
+  - {lesson: R09, min_mastery: 80, kind: hard}
+  - {lesson: R10, min_mastery: 80, kind: hard}
 
 reading_passage:
   id: RP-CPR
@@ -190,9 +190,9 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 70
+  mastery_threshold: 82
   mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
-  min_per_skill: {read: 65, write: 60, listen: 50}
+  min_per_skill: {read: 70, write: 64, listen: 58}
   min_speaking_attempts: 0
   challenge_threshold: 90
 

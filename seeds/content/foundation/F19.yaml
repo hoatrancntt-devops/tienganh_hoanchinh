@@ -14,8 +14,8 @@ objective_vi: "Dùng giọng mềm và lên nhẹ cuối câu yêu cầu, để 
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng giọng lịch sự 4/5 câu quiz."
 
 prerequisites:
-  - {lesson: F18, min_mastery: 78, kind: hard}
-  - {lesson: F10, min_mastery: 70, kind: soft}
+  - {lesson: F18, min_mastery: 80, kind: hard}
+  - {lesson: F10, min_mastery: 66, kind: soft}
 
 vocabulary:
   - term: "Could you"
@@ -218,7 +218,7 @@ mini_quiz:
     difficulty: 2
 
 unlock_condition:
-  mastery_threshold: 78
+  mastery_threshold: 80
   mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85

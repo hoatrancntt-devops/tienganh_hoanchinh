@@ -14,7 +14,7 @@ objective_vi: "Đọc ghi chú phát hành và xác định: có gì mới, có 
 objective_observable: "Trả lời đúng 4/5 câu hỏi về thay đổi quan trọng và breaking change."
 
 prerequisites:
-  - {lesson: R02, min_mastery: 70, kind: hard}
+  - {lesson: R02, min_mastery: 76, kind: hard}
 
 vocabulary:
   - term: "Added"
@@ -199,7 +199,7 @@ mini_quiz:
     difficulty: 3
 
 unlock_condition:
-  mastery_threshold: 70
+  mastery_threshold: 80
   mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
