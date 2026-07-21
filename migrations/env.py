@@ -38,6 +38,19 @@ def run_offline() -> None:
         context.run_migrations()
 
 
+def _run(connection) -> None:
+    """Chạy migration TRONG một transaction rồi commit.
+
+    Thiếu `context.begin_transaction()` thì `engine.connect()` mở transaction ngầm và
+    rollback lúc đóng kết nối: alembic vẫn in "Running upgrade ..." như thành công nhưng
+    không có gì được ghi — kể cả bảng `alembic_version`. Lỗi im lặng hoàn toàn, và nó có
+    nghĩa là chưa migration nào của repo này từng được áp lên database.
+    """
+    _configure(connection)
+    with context.begin_transaction():
+        context.run_migrations()
+
+
 async def run_online() -> None:
     engine = async_engine_from_config(
         config.get_section(config.config_ini_section, {}),
@@ -45,7 +58,8 @@ async def run_online() -> None:
         poolclass=pool.NullPool,
     )
     async with engine.connect() as conn:
-        await conn.run_sync(lambda c: (_configure(c), context.run_migrations()))
+        await conn.run_sync(_run)
+        await conn.commit()
     await engine.dispose()
 
 

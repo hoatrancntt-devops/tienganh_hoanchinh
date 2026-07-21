@@ -15,13 +15,27 @@ down_revision = "0001"
 branch_labels = None
 depends_on = None
 
+TABLE = "lessons"
+COLUMN = "reading_passage"
+
+
+def _co_cot(bind) -> bool:
+    return COLUMN in {c["name"] for c in sa.inspect(bind).get_columns(TABLE)}
+
 
 def upgrade() -> None:
+    # 0001 dung `Base.metadata.create_all`, tuc la no luon dung metadata MOI NHAT. Tren mot
+    # database trong, 0001 da tao san cot nay roi; tren database co san tu truoc thi chua.
+    # Kiem tra truoc khi them de ca hai duong deu chay duoc.
+    bind = op.get_bind()
+    if _co_cot(bind):
+        return
     op.add_column(
-        "lessons",
-        sa.Column("reading_passage", sa.JSON(), nullable=False, server_default="{}"),
+        TABLE, sa.Column(COLUMN, sa.JSON(), nullable=False, server_default="{}")
     )
 
 
 def downgrade() -> None:
-    op.drop_column("lessons", "reading_passage")
+    bind = op.get_bind()
+    if _co_cot(bind):
+        op.drop_column(TABLE, COLUMN)
