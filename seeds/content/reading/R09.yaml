@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 9
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Đọc một cảnh báo bảo mật và nắm: mức nghiêm trọng, cái gì bị ảnh hưởng, và phải làm gì gấp."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về mức độ và hành động cần làm."
@@ -56,18 +56,64 @@ sentence_patterns:
       versions: ["2.0 to 2.4", "all versions before 3.1"]
       fix: ["version 2.5", "version 3.1"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R09
+  kind: doc
   context_vi: >
-    Advisory này về hộp thư của team chiều thứ Năm. Đọc xong, Linh quyết định deploy ngay trong đêm
-    thay vì chờ tới thứ Hai. Quyết định đó đúng. Đây là mắt xích đầu tiên của cả sự cố — và bạn đọc
-    lại để hiểu vì sao không ai làm sai mà mọi thứ vẫn hỏng.
-  turns:
-    - {speaker: "", en: "Security Advisory CVE-2026-4471 — authentication bypass in AuthKit.", vi: "Cảnh báo bảo mật CVE-2026-4471 — vượt qua xác thực trong AuthKit."}
-    - {speaker: "", en: "Severity: Critical. An attacker can sign in as any user without a password.", vi: "Mức nghiêm trọng: Critical. Kẻ tấn công có thể đăng nhập vào bất kỳ tài khoản nào mà không cần mật khẩu."}
-    - {speaker: "", en: "Affected versions: 5.0.0 to 5.1.1.", vi: "Phiên bản bị ảnh hưởng: 5.0.0 đến 5.1.1."}
-    - {speaker: "", en: "A patch is available in 5.1.2.", vi: "Đã có bản vá ở phiên bản 5.1.2."}
-    - {speaker: "", en: "Action: Upgrade to 5.1.2 as soon as possible.", vi: "Hành động: Nâng lên 5.1.2 càng sớm càng tốt."}
-    - {speaker: "", en: "Mitigation: If you cannot upgrade tonight, block external access to the login endpoint.", vi: "Giảm thiểu: Nếu chưa nâng cấp được trong đêm nay, chặn truy cập từ ngoài vào endpoint đăng nhập."}
+    Advisory này về hộp thư của team chiều thứ Năm. Đọc xong, Linh quyết định deploy ngay trong đêm thay vì chờ tới thứ Hai. Quyết định đó đúng. Đây là mắt xích đầu tiên của cả sự cố — và bạn đọc lại để hiểu vì sao không ai làm sai mà mọi thứ vẫn hỏng.
+  text_en: |
+    Security Advisory CVE-2026-4471 — authentication bypass in AuthKit.
+    Severity: Critical. An attacker can sign in as any user without a password.
+    Affected versions: 5.0.0 to 5.1.1.
+    A patch is available in 5.1.2.
+    Action: Upgrade to 5.1.2 as soon as possible.
+    Mitigation: If you cannot upgrade tonight, block external access to the login endpoint.
+  text_vi: |
+    Cảnh báo bảo mật CVE-2026-4471 — vượt qua xác thực trong AuthKit.
+    Mức nghiêm trọng: Critical. Kẻ tấn công có thể đăng nhập vào bất kỳ tài khoản nào mà không cần mật khẩu.
+    Phiên bản bị ảnh hưởng: 5.0.0 đến 5.1.1.
+    Đã có bản vá ở phiên bản 5.1.2.
+    Hành động: Nâng lên 5.1.2 càng sớm càng tốt.
+    Giảm thiểu: Nếu chưa nâng cấp được trong đêm nay, chặn truy cập từ ngoài vào endpoint đăng nhập.
+  questions:
+    - q_en: "Which versions are affected?"
+      choices: ["5.0.0 to 5.1.1", "5.1.2 and later", "Only 5.0.0"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What can you do if you cannot upgrade tonight?"
+      choices:
+        - "Block external access to the login endpoint"
+        - "Turn off the database"
+        - "Reset every password"
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "\"Severity: Critical\" means the problem is:"
+      choices: ["extremely serious", "hard to reproduce", "already fixed everywhere"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-R09
+  kind: guided_email
+  prompt_vi: >
+    Chuyển cảnh báo bảo mật này cho các nhóm khác: mức độ nghiêm trọng, phải làm gì, và làm gì
+    nếu chưa nâng cấp kịp. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào — nêu ngay mức nghiêm trọng"
+    - "Thân: bản nào bị ảnh hưởng + bản vá là bản nào"
+    - "Thân: phải làm gì và khi nào"
+    - "Kết: phương án tạm nếu chưa kịp"
+  required_chunks:
+    - ["as soon as possible", "asap", "urgently", "immediately"]
+    - ["upgrade", "patch"]
+    - ["if you cannot", "if you can't", "in the meantime", "until then"]
+  min_words: 20
+  hint_vi: "Thư cảnh báo bảo mật phải nói mức nghiêm trọng ở câu đầu tiên, không để ở giữa."
+  sample_en: "Hi all, this is a critical advisory. Versions 5.0.0 to 5.1.1 of AuthKit allow an attacker to sign in as any user. Please upgrade to 5.1.2 as soon as possible. If you cannot upgrade tonight, block external access to the login endpoint. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R09
@@ -153,7 +199,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

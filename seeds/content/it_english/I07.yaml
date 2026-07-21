@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 7
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Bàn giao ca: việc gì đang mở, cái gì cần theo dõi, cái gì đã xong — ngắn gọn và đủ."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và nêu được việc đang mở + việc cần theo dõi."
@@ -73,6 +73,64 @@ dialogue:
     - {speaker: You, en: "Exactly. Second, the backup job is still open — keep an eye on the disk space. It looked odd when I was reading the logs.", vi: "Đúng vậy. Hai, job sao lưu vẫn đang mở — để mắt tới dung lượng ổ đĩa. Lúc đọc log mình thấy nó hơi lạ."}
     - {speaker: Priya, en: "Noted. And David expects an update every thirty minutes, is that correct?", vi: "Mình ghi lại. Và David cần cập nhật mỗi ba mươi phút, đúng không?"}
     - {speaker: You, en: "Correct. Next one is due at six thirty. The notes are in the ticket.", vi: "Đúng. Lần tới là sáu giờ rưỡi. Ghi chú nằm trong ticket."}
+
+reading_passage:
+  id: RP-I07
+  kind: chat
+  context_vi: >
+    Bàn giao ca lúc sáu giờ sáng. Để ý người bàn giao chỉ nói những thứ CHƯA xong — cái đã xong
+    không cần nhắc.
+  text_en: |
+    I am handing over to you at 06:00. Three things.
+
+    One: the sign-in issue is still open. The portal is down and David wants an update every 30 minutes.
+    Two: keep an eye on the error rate. It goes over ten per minute at peak.
+    Three: the backup alert from Tuesday is resolved, no action needed.
+
+    If it happens again, page the platform team directly. All the notes are in this thread.
+  text_vi: |
+    Tôi bàn giao cho bạn lúc 06:00. Ba việc.
+
+    Một: sự cố đăng nhập vẫn chưa xong. Portal đang sập và David muốn cập nhật mỗi 30 phút.
+    Hai: để mắt tới tỉ lệ lỗi. Lúc cao điểm nó vượt mười lỗi một phút.
+    Ba: cảnh báo backup từ thứ Ba đã xử lý xong, không cần làm gì.
+
+    Nếu lặp lại thì gọi thẳng nhóm hạ tầng. Toàn bộ ghi chú nằm trong luồng này.
+  questions:
+    - q_en: "Which item needs no action?"
+      choices: ["The backup alert from Tuesday", "The sign-in issue", "The error rate"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "How often does David want an update?"
+      choices: ["Every 30 minutes", "Every hour", "Only when it is fixed"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What should you do if the problem happens again?"
+      choices: ["Page the platform team directly", "Wait for the next shift", "Restart the portal"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-I07
+  kind: guided_email
+  prompt_vi: >
+    Viết tin bàn giao ca: một sự cố chưa xong, một thứ cần theo dõi, và một việc đã xử lý xong.
+    Viết 4-5 câu.
+  frame_vi:
+    - "Mở: bàn giao cho ai, lúc mấy giờ"
+    - "Thân: việc còn mở"
+    - "Thân: cần để mắt tới cái gì"
+    - "Kết: ghi chú nằm ở đâu"
+  required_chunks:
+    - ["handing over", "i am handing over", "i'm handing over", "handover"]
+    - ["still open", "still not fixed", "still down"]
+    - ["keep an eye on", "watch out for", "please monitor"]
+  min_words: 20
+  hint_vi: "Ba mục là đủ. Bàn giao mười mục thì người nhận không nhớ mục nào."
+  sample_en: "Hi Priya, I am handing over to you at 06:00. The payment issue is still open and the team wants an update every hour. Please keep an eye on the queue length — it grows fast after nine. The backup alert is resolved, no action needed. All the notes are in this thread. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I07
@@ -177,7 +235,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

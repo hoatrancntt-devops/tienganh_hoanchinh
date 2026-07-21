@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 14
-est_minutes: 12
+est_minutes: 16
 
 objective_vi: "Dẫn dắt một cuộc gọi kỹ thuật với bên ngoài: nêu mục tiêu, hỏi/trả lời rõ, chốt bước tiếp theo."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và chốt được bước tiếp theo (action item)."
@@ -73,6 +73,68 @@ dialogue:
     - {speaker: You, en: "So it wasn't a change on your side at all.", vi: "Vậy hoàn toàn không phải thay đổi từ phía các anh."}
     - {speaker: Vendor, en: "No, but we don't warn you when a policy shrinks. I'll raise that internally.", vi: "Không, nhưng chúng tôi cũng không cảnh báo khi một policy bị thu hẹp. Tôi sẽ nêu việc đó nội bộ."}
     - {speaker: You, en: "Thank you. So the action item is on your team, and I'll follow up by email with a summary.", vi: "Cảm ơn anh. Vậy việc cần làm thuộc phía các anh, và tôi sẽ gửi email tóm tắt lại."}
+
+reading_passage:
+  id: RP-I14
+  kind: doc
+  context_vi: >
+    Ghi chú mở đầu và kết thúc một cuộc họp với nhà cung cấp. Để ý: mở đầu nói rõ mục tiêu,
+    kết thúc chốt việc và người chịu trách nhiệm.
+  text_en: |
+    Opening: The goal of this call is to agree on the migration date and who does what.
+    We have 30 minutes.
+
+    On our side, we will prepare the test data and the new IAM roles.
+    On your side, we need the API keys by Friday.
+    Let me share my screen so we can look at the timeline together.
+
+    Closing: Two action items. One, Vertex sends the keys by Friday — owner is David.
+    Two, we confirm the migration date on Monday — owner is Linh.
+    I will follow up by email with these notes today.
+  text_vi: |
+    Mở đầu: Mục tiêu cuộc gọi này là thống nhất ngày chuyển đổi và phân công ai làm gì.
+    Chúng ta có 30 phút.
+
+    Về phía chúng tôi, bên tôi sẽ chuẩn bị dữ liệu thử và các vai trò IAM mới.
+    Về phía các anh chị, bên tôi cần khoá API trước thứ Sáu.
+    Để tôi chia sẻ màn hình cho mọi người cùng xem tiến độ.
+
+    Kết thúc: Hai việc cần làm. Một, Vertex gửi khoá trước thứ Sáu — người phụ trách là David.
+    Hai, chốt ngày chuyển đổi vào thứ Hai — người phụ trách là Linh.
+    Hôm nay tôi sẽ gửi email tổng hợp các ghi chú này.
+  questions:
+    - q_en: "Who is responsible for sending the API keys?"
+      choices: ["David", "Linh", "The whole team"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "Why does the speaker state the goal at the start?"
+      choices:
+        - "So everybody knows what must be decided in 30 minutes"
+        - "To fill the time"
+        - "Because the vendor asked"
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-I14
+  kind: guided_email
+  prompt_vi: >
+    Viết email tổng hợp sau cuộc họp với nhà cung cấp: mục tiêu cuộc họp, phần việc mỗi bên,
+    và các việc cần làm kèm người phụ trách. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: cảm ơn đã họp"
+    - "Thân: nhắc lại mục tiêu và kết luận"
+    - "Thân: bên nào làm gì"
+    - "Kết: các việc cần làm + ai phụ trách"
+  required_chunks:
+    - ["on our side", "from our side"]
+    - ["on your side", "from your side"]
+    - ["action item", "action items", "next steps"]
+  min_words: 20
+  hint_vi: "Việc cần làm mà không ghi tên người phụ trách thì sẽ không ai làm."
+  sample_en: "Hi David, thanks for the call. The goal was to agree the migration date and we settled on 15 August. On our side, we will prepare the test data. On your side, we need the API keys by Friday. Action items: David sends the keys, Linh confirms the date on Monday. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I14
@@ -181,7 +243,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

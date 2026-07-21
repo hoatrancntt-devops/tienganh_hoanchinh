@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 11
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Dùng đúng từ vựng cloud/deploy: server, môi trường, deploy, rollback, downtime — và báo trạng thái một lần deploy."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ deploy."
@@ -72,6 +72,69 @@ dialogue:
     - {speaker: Priya, en: "It worked on staging, and we only expected five minutes of downtime. Production is the first place it failed.", vi: "Nó chạy tốt trên staging, và tụi mình chỉ dự kiến ngừng năm phút. Production là nơi đầu tiên nó hỏng."}
     - {speaker: You, en: "Then something is different between staging and production. Should we roll back to the previous version?", vi: "Vậy có gì đó khác nhau giữa staging và production. Mình có nên quay lại bản trước không?"}
     - {speaker: Priya, en: "Not yet. Rolling back would reopen the security hole. Let me compare the two environments first.", vi: "Chưa nên. Quay lại sẽ mở lại lỗ hổng bảo mật. Để mình so sánh hai môi trường trước đã."}
+
+reading_passage:
+  id: RP-I11
+  kind: announcement
+  context_vi: >
+    Thông báo triển khai gửi trước một ngày. Đọc để thấy thông tin nào bắt buộc phải có trong
+    một thông báo deploy.
+  text_en: |
+    Subject: Deploy to production — Thursday 23:00
+
+    Hi all,
+
+    We will deploy release 4.3.0 to production on Thursday at 23:00.
+    It has been running in staging for a week with no problems.
+    Expected downtime is about five minutes.
+    If the build fails or we see errors, we will roll back to 4.2.0 immediately.
+    No action is needed from you. Please do not deploy anything else on Thursday.
+
+    Thanks,
+    Platform team
+  text_vi: |
+    Tiêu đề: Triển khai lên production — 23:00 thứ Năm
+
+    Chào tất cả,
+
+    Chúng tôi sẽ triển khai bản 4.3.0 lên production vào 23:00 thứ Năm.
+    Bản này đã chạy trên staging một tuần, không có vấn đề gì.
+    Thời gian gián đoạn dự kiến khoảng năm phút.
+    Nếu build lỗi hoặc thấy lỗi phát sinh, chúng tôi sẽ quay về bản 4.2.0 ngay.
+    Mọi người không cần làm gì. Chỉ xin đừng triển khai thứ gì khác vào thứ Năm.
+
+    Cảm ơn,
+    Nhóm hạ tầng
+  questions:
+    - q_en: "What happens if the build fails?"
+      choices: ["They roll back to 4.2.0", "They try again on Friday", "Nothing"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What must readers avoid doing on Thursday?"
+      choices: ["Deploying anything else", "Using the portal", "Sending email"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-I11
+  kind: guided_email
+  prompt_vi: >
+    Viết thông báo triển khai: bản nào, khi nào, gián đoạn bao lâu, và phương án nếu hỏng.
+    Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào — nêu ngay bản nào và khi nào"
+    - "Thân: gián đoạn dự kiến bao lâu"
+    - "Thân: nếu hỏng thì làm gì"
+    - "Kết: người đọc cần làm gì (hoặc không cần làm gì)"
+  required_chunks:
+    - ["deploy", "we will deploy", "we'll deploy", "release"]
+    - ["downtime", "unavailable", "will be down"]
+    - ["roll back", "rollback"]
+  min_words: 20
+  hint_vi: "Luôn nói phương án quay lui. Người đọc yên tâm hơn nhiều khi biết bạn có đường lùi."
+  sample_en: "Hi all, we will deploy release 5.0 to production on Friday at 22:00. Expected downtime is about ten minutes. If the build fails, we will roll back to the current version immediately. No action is needed from you. Thanks, Platform team"
 
 listening_snippet:
   id: LS-I11
@@ -173,7 +236,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

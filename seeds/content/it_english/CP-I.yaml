@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 99
-est_minutes: 12
+est_minutes: 16
 is_checkpoint: true
 
 objective_vi: "Xử lý một ngày làm CNTT bằng tiếng Anh: báo sự cố, hỗ trợ người dùng, standup, giải thích cho người không rành, và chốt việc với bên ngoài."
@@ -30,6 +30,85 @@ prerequisites:
   - {lesson: I13, min_mastery: 75, kind: hard}
   - {lesson: I14, min_mastery: 75, kind: hard}
   - {lesson: I15, min_mastery: 75, kind: hard}
+
+reading_passage:
+  id: RP-CPI
+  kind: announcement
+  context_vi: >
+    Bản cập nhật sự cố gom đủ mọi thứ chặng này dạy: mô tả sự cố, nguyên nhân gốc, cách tạm
+    thời, bàn giao ca, và việc cần làm. Bài chốt — đọc một lần rồi trả lời.
+  text_en: |
+    Status update — 09:15
+
+    We are aware of the sign-in failures on the Portal. About 200 users were affected
+    for seven hours. Basically, last night's release changed a permission, so the service
+    could not read the database password.
+
+    The service is back up and running. Workaround is no longer needed.
+
+    Priya is handing over to the day shift at 10:00. The alert on failed backups is still open —
+    please keep an eye on it.
+
+    Action items: check permissions in staging before every deploy, and page the on-call engineer
+    when sign-in errors go over ten per minute. We will follow up by email with the full postmortem.
+  text_vi: |
+    Cập nhật tình hình — 09:15
+
+    Chúng tôi đã ghi nhận lỗi đăng nhập trên Portal. Khoảng 200 người dùng bị ảnh hưởng
+    trong bảy tiếng. Nói đơn giản, bản phát hành tối qua đổi một quyền, khiến dịch vụ
+    không đọc được mật khẩu cơ sở dữ liệu.
+
+    Dịch vụ đã chạy lại bình thường. Không cần dùng cách tạm thời nữa.
+
+    Priya bàn giao cho ca ngày lúc 10:00. Cảnh báo về sao lưu hỏng vẫn còn mở —
+    mọi người để mắt giúp.
+
+    Việc cần làm: kiểm tra quyền trên staging trước mỗi lần triển khai, và gọi kỹ sư trực
+    khi lỗi đăng nhập vượt mười lỗi một phút. Chúng tôi sẽ gửi email postmortem đầy đủ.
+  questions:
+    - q_en: "What was the root cause?"
+      choices:
+        - "A permission changed by last night's release"
+        - "A failed backup job"
+        - "Too many users at once"
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "Which item is still open?"
+      choices: ["The alert on failed backups", "The sign-in failures", "The workaround"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What is this update mainly about?"
+      choices:
+        - "An incident that is now fixed, and what happens next"
+        - "A planned maintenance window"
+        - "A new software release"
+      answer: 0
+      skill: skim
+      difficulty: 4
+
+writing_task:
+  id: WT-CPI
+  kind: guided_email
+  style: note
+  prompt_vi: >
+    Viết một bản cập nhật sự cố hoàn chỉnh cho sự cố bạn tự nghĩ ra: chuyện gì, nguyên nhân
+    gốc, cách tạm thời, và việc cần làm. Viết 5-6 câu.
+  frame_vi:
+    - "Mở: tiêu đề và giờ cập nhật"
+    - "Thân: đã ghi nhận gì + ảnh hưởng ai"
+    - "Thân: nguyên nhân gốc, nói bằng lời dễ hiểu"
+    - "Thân: cách tạm thời"
+    - "Kết: việc cần làm + bao giờ cập nhật tiếp"
+  required_chunks:
+    - ["we are aware of", "we're aware of", "we have identified", "we've identified"]
+    - ["root cause"]
+    - ["workaround", "in the meantime", "for now"]
+    - ["action items", "next steps", "next update"]
+  min_words: 25
+  hint_vi: "Một bản cập nhật tốt trả lời đúng bốn câu: chuyện gì, vì sao, làm sao xoay, bao giờ hết."
+  sample_en: "Status update at 14:00. We are aware of the slow checkout on the shop and about 500 customers are affected. The root cause is a slow database query added in yesterday's release. As a workaround, please ask customers to retry after one minute. Action items: roll back the query today and add a performance test. Next update at 15:00. Thanks, Hoa"
 
 listening_snippet:
   id: LS-CPI
@@ -119,6 +198,6 @@ memory_trick_vi: >
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {speak: 0.6, listen: 0.4}
+  mastery_weights: {speak: 0.45, listen: 0.20, read: 0.15, write: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 90

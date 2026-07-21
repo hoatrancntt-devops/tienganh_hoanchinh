@@ -151,6 +151,10 @@ class WritingTask(BaseModel):
     kind: str = Field(
         pattern="^(translate|compose|fill_blank|error_correction|reorder|guided_email)$"
     )
+    # Thể loại của bài `guided_email`. `email` cần lời chào và lời kết; `note` thì không —
+    # status update, bài standup và comment review vốn dĩ không có hai thứ đó, đòi chúng là
+    # dạy sai văn phong.
+    style: str = Field(default="email", pattern="^(email|note)$")
     prompt_vi: str = Field(min_length=10)
     prompt_en: str = ""
     hint_vi: str = ""

@@ -204,14 +204,20 @@ def _grade_guided_email(task: dict, ans: str) -> dict:
     tu = _tokens(ans)
     thieu: list[str] = []
 
-    co_chao = any(thuong.startswith(c) for c in CHAO) or any(f" {c} " in f" {thuong} " for c in CHAO)
-    co_ket = any(k in thuong[-70:] for k in KET)
     co_than = len(tu) >= 5
-    diem_cau_truc = DIEM_CAU_TRUC * sum([co_chao, co_than, co_ket]) / 3
-    if not co_chao:
-        thieu.append("lời chào ở đầu (Hi / Hello / Dear + tên)")
-    if not co_ket:
-        thieu.append("lời kết (Thanks / Regards) trước khi ký tên")
+    # `note` (status update, standup, comment review) không có lời chào và lời kết — đòi
+    # chúng là phạt đúng văn phong của thể loại đó.
+    if task.get("style") == "note":
+        diem_cau_truc = DIEM_CAU_TRUC * (1 if co_than else 0)
+    else:
+        co_chao = (any(thuong.startswith(c) for c in CHAO)
+                   or any(f" {c} " in f" {thuong} " for c in CHAO))
+        co_ket = any(k in thuong[-70:] for k in KET)
+        diem_cau_truc = DIEM_CAU_TRUC * sum([co_chao, co_than, co_ket]) / 3
+        if not co_chao:
+            thieu.append("lời chào ở đầu (Hi / Hello / Dear + tên)")
+        if not co_ket:
+            thieu.append("lời kết (Thanks / Regards) trước khi ký tên")
 
     nhom: list[list[str]] = task.get("required_chunks") or []
     dat = [any(_normalize(bt) in thuong for bt in g) for g in nhom]

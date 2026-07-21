@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: b1
 order_index: 20
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Nói rõ khi không thấy mặt: đánh vần bằng bảng chữ cái, đọc email/mã, và xử lý khi âm thanh chập chờn."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng cách xử lý 4/5 câu quiz."
@@ -66,6 +66,48 @@ dialogue:
     - {speaker: David, en: "Sorry, you're breaking up. Spell the last name.", vi: "Xin lỗi, tiếng bạn bị ngắt. Đánh vần cái họ đi."}
     - {speaker: You, en: "Sure. T as in Tango, R, A, N.", vi: "Vâng. T như Tango, R, A, N."}
     - {speaker: David, en: "Got it. Can you hear me okay? See you at four.", vi: "Rõ rồi. Bạn nghe tôi ổn chứ? Bốn giờ gặp nhé."}
+
+reading_passage:
+  id: RP-F20
+  kind: chat
+  context_vi: >
+    Cuộc gọi với khách nước ngoài, đường truyền kém. Đọc để lấy đúng bộ câu xử lý khi người kia
+    nghe không rõ.
+  text_en: |
+    David: Can you hear me? You're breaking up a little.
+    You: Better now. Let me give you the address: it is nam dot tran at vertex dot com.
+    David: Sorry, could you spell the last name?
+    You: T for Tango, R, A, N — as in November for the N.
+    David: Got it. And the ticket number?
+    You: Four four one seven. Four, four, one, seven.
+  text_vi: |
+    David: Anh nghe rõ tôi không? Tiếng anh hơi bị ngắt quãng.
+    Bạn: Giờ tốt hơn rồi. Để tôi đọc địa chỉ: nam chấm tran a còng vertex chấm com.
+    David: Xin lỗi, anh đánh vần họ được không?
+    Bạn: T như trong Tango, R, A, N — N như trong November.
+    David: Rõ rồi. Còn số ticket?
+    Bạn: Bốn bốn một bảy. Bốn, bốn, một, bảy.
+  questions:
+    - q_en: "Why does David ask the writer to spell?"
+      choices: ["He could not hear the name clearly", "He cannot write", "The line is fine"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "How does the writer give the ticket number?"
+      choices: ["Digit by digit, twice", "As one big number", "He spells it"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+
+writing_task:
+  id: WT-F20
+  kind: error_correction
+  prompt_vi: "Câu này sai trật tự từ. Viết lại cho đúng."
+  prompt_en: "Could you spell please the last name?"
+  blanks:
+    - ["could you please spell the last name", "could you spell the last name please"]
+  hint_vi: "“Please” đứng sau chủ ngữ hoặc cuối câu, không chen giữa động từ và tân ngữ."
+  sample_en: "Could you please spell the last name?"
 
 listening_snippet:
   id: LS-F20
@@ -180,7 +222,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

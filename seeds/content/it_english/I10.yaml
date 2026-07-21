@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 10
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Dùng đúng từ vựng mạng để mô tả và chẩn đoán sự cố kết nối: mạng, IP, DNS, tường lửa, VPN."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ mạng."
@@ -71,6 +71,58 @@ dialogue:
     - {speaker: Minh, en: "And DNS? Does the name resolve to the right address?", vi: "Còn DNS? Tên miền phân giải ra đúng địa chỉ chứ?"}
     - {speaker: You, en: "It resolves fine. And the firewall isn't blocking port four four three — I can open the login page, it just never signs anyone in.", vi: "Phân giải bình thường. Và tường lửa không chặn cổng bốn bốn ba — mình mở được trang đăng nhập, chỉ là không ai vào được."}
     - {speaker: Minh, en: "Then it's not the network. The page loads, so the problem is behind it.", vi: "Vậy không phải mạng. Trang tải được, nghĩa là vấn đề nằm phía sau nó."}
+
+reading_passage:
+  id: RP-I10
+  kind: ticket
+  context_vi: >
+    Một lượt chẩn đoán sự cố mạng. Đọc để nhớ thứ tự kiểm tra: từ máy người dùng ra ngoài.
+  text_en: |
+    User: My connection drops every few minutes.
+    You: Can you reach the internal wiki right now?
+    User: No. The page just waits and then fails.
+    You: Let me ping the server from here. It answers, so the server is fine.
+    The problem is between your laptop and us.
+    Please check whether your firewall was updated last night.
+    If that is fine, it may be a DNS problem on your network.
+  text_vi: |
+    Người dùng: Kết nối của tôi cứ vài phút lại rớt.
+    Bạn: Bây giờ anh vào wiki nội bộ được không ạ?
+    Người dùng: Không. Trang cứ quay rồi báo lỗi.
+    Bạn: Để em ping máy chủ từ đây. Nó có trả lời, nghĩa là máy chủ vẫn ổn.
+    Vấn đề nằm giữa laptop của anh và bên em.
+    Anh kiểm tra giúp xem tường lửa có được cập nhật tối qua không.
+    Nếu tường lửa ổn thì có thể là lỗi DNS trên mạng của anh.
+  questions:
+    - q_en: "How does the writer know the server is fine?"
+      choices: ["The ping answers", "The user said so", "The wiki opens"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "What should the user check first?"
+      choices: ["Whether the firewall was updated", "The DNS settings", "The laptop battery"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+
+writing_task:
+  id: WT-I10
+  kind: guided_email
+  prompt_vi: >
+    Viết thư trả lời người dùng báo mạng chập chờn: bạn đã kiểm tra gì, kết luận vấn đề nằm ở
+    đâu, và họ cần kiểm tra gì. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: bạn đã kiểm tra gì và kết quả ra sao"
+    - "Thân: vậy vấn đề nằm ở đâu"
+    - "Kết: nhờ họ kiểm tra gì"
+  required_chunks:
+    - ["can't reach", "cannot reach", "could not reach", "couldn't reach"]
+    - ["firewall", "dns", "network"]
+    - ["could you check", "please check", "can you check"]
+  min_words: 20
+  hint_vi: "Nói rõ bạn đã loại trừ được cái gì — nếu không, người dùng tưởng bạn chưa làm gì cả."
+  sample_en: "Hi Mr Nam, I pinged the server from our side and it answers, so the server is up. You cannot reach it, which means the problem is on the network between us. Could you check whether your firewall was updated last night? If that looks fine, we will look at DNS. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I10
@@ -175,7 +227,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

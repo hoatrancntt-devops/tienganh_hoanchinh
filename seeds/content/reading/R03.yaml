@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 3
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc ghi chú phát hành và xác định: có gì mới, có gì sửa, và có gì ảnh hưởng đến mình (breaking change)."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về thay đổi quan trọng và breaking change."
@@ -55,18 +55,64 @@ sentence_patterns:
       change: ["the config format changed", "the old API was removed"]
       action: ["update your config", "migrate to the new API"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R03
+  kind: doc
   context_vi: >
-    Bạn mở lại changelog của bản deploy lúc 23:40 thứ Năm — bản mà hai tiếng sau làm cả hệ thống
-    nằm im. Dòng "Breaking change" vẫn nằm nguyên đó từ đầu. Nó đã được viết ra. Chỉ là đêm hôm ấy
-    không ai đọc tới dòng thứ tư.
-  turns:
-    - {speaker: "", en: "Northwind Portal — Release 4.2.0 — deployed Thursday 23:40", vi: "Northwind Portal — Bản 4.2.0 — deploy lúc 23:40 thứ Năm"}
-    - {speaker: "", en: "Fixed: upgraded the auth library to 5.1.2 to patch CVE-2026-4471.", vi: "Đã sửa: nâng thư viện xác thực lên 5.1.2 để vá CVE-2026-4471."}
-    - {speaker: "", en: "Added: a new IAM role, portal-auth-role, for the auth service.", vi: "Đã thêm: một IAM role mới tên portal-auth-role cho auth service."}
-    - {speaker: "", en: "Removed: the old shared role, portal-service-role.", vi: "Đã gỡ: role dùng chung cũ, portal-service-role."}
-    - {speaker: "", en: "Breaking change: the auth service now uses the new role. You must check that it can still read secrets.", vi: "Thay đổi phá vỡ tương thích: auth service giờ dùng role mới. Bạn phải kiểm tra nó còn đọc được secret hay không."}
-    - {speaker: "", en: "Deprecated: the old config file will be removed in 4.3.", vi: "Sắp bỏ: file cấu hình cũ sẽ bị gỡ ở bản 4.3."}
+    Bạn mở lại changelog của bản deploy lúc 23:40 thứ Năm — bản mà hai tiếng sau làm cả hệ thống nằm im. Dòng "Breaking change" vẫn nằm nguyên đó từ đầu. Nó đã được viết ra. Chỉ là đêm hôm ấy không ai đọc tới dòng thứ tư.
+  text_en: |
+    Northwind Portal — Release 4.2.0 — deployed Thursday 23:40
+    Fixed: upgraded the auth library to 5.1.2 to patch CVE-2026-4471.
+    Added: a new IAM role, portal-auth-role, for the auth service.
+    Removed: the old shared role, portal-service-role.
+    Breaking change: the auth service now uses the new role. You must check that it can still read secrets.
+    Deprecated: the old config file will be removed in 4.3.
+  text_vi: |
+    Northwind Portal — Bản 4.2.0 — deploy lúc 23:40 thứ Năm
+    Đã sửa: nâng thư viện xác thực lên 5.1.2 để vá CVE-2026-4471.
+    Đã thêm: một IAM role mới tên portal-auth-role cho auth service.
+    Đã gỡ: role dùng chung cũ, portal-service-role.
+    Thay đổi phá vỡ tương thích: auth service giờ dùng role mới. Bạn phải kiểm tra nó còn đọc được secret hay không.
+    Sắp bỏ: file cấu hình cũ sẽ bị gỡ ở bản 4.3.
+  questions:
+    - q_en: "Which library version fixes CVE-2026-4471?"
+      choices: ["5.1.2", "4.2.0", "4.3"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What must you check after this release?"
+      choices:
+        - "That the auth service can still read secrets"
+        - "That the old config file is deleted"
+        - "That the portal is faster"
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "\"Deprecated\" here means the old config file:"
+      choices: ["will be removed in a later release", "is already gone", "is now required"]
+      answer: 0
+      skill: guess_word
+      difficulty: 4
+
+writing_task:
+  id: WT-R03
+  kind: guided_email
+  prompt_vi: >
+    Viết email báo cả nhóm về bản phát hành này: đã triển khai gì, có thay đổi phá vỡ nào,
+    và họ cần kiểm tra gì. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào cả nhóm"
+    - "Thân: đã triển khai bản nào + có breaking change gì"
+    - "Thân: người đọc cần làm gì"
+    - "Kết: liên hệ ai nếu có vấn đề"
+  required_chunks:
+    - ["we deployed", "we have deployed", "we released", "we've released"]
+    - ["breaking change", "please check", "you must check", "you need to check"]
+    - ["let me know", "reach out", "contact me", "get in touch"]
+  min_words: 20
+  hint_vi: "Breaking change phải nằm ở đầu email, không giấu ở cuối — người đọc lướt sẽ bỏ sót."
+  sample_en: "Hi team, we deployed release 4.2.0 last night to patch a critical CVE. There is one breaking change: the auth service now uses a new IAM role, so please check that your services can still read their secrets. Let me know if anything fails. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R03
@@ -154,7 +200,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

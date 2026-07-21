@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 8
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Báo standup chuẩn ba phần: hôm qua làm gì, hôm nay làm gì, có bị chặn ở đâu không."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và nêu đủ ba phần standup."
@@ -73,6 +73,53 @@ dialogue:
     - {speaker: Minh, en: "Four and a half hours. The client will want a written answer for this.", vi: "Bốn tiếng rưỡi. Khách sẽ muốn có câu trả lời bằng văn bản cho vụ này."}
     - {speaker: You, en: "Today I'll start on the customer update. But I'm blocked on the access permissions — I'm waiting on the DevOps team.", vi: "Hôm nay em sẽ bắt đầu bản thông báo cho khách. Nhưng em đang kẹt ở quyền truy cập — đang chờ đội DevOps."}
     - {speaker: Linh, en: "Got it. I'll follow up with them after standup. Then go sleep.", vi: "Rõ. Sau standup chị hối họ. Rồi em đi ngủ đi."}
+
+reading_passage:
+  id: RP-I08
+  kind: chat
+  context_vi: >
+    Ba bài standup của ba người trong cùng một buổi. Đọc và so sánh: bài nào làm người nghe
+    hành động được ngay?
+  text_en: |
+    Nam: Yesterday I wrapped up the login tests. Today I'll start the payment API. No blockers.
+    Linh: Yesterday I worked on stuff. Today I'll continue. It's going okay.
+    Priya: Yesterday I fixed the cache bug. Today I'll review Nam's pull request.
+    I'm blocked on the staging server — it has been down since Monday and I'm waiting on the platform team.
+  text_vi: |
+    Nam: Hôm qua tôi làm xong phần kiểm thử đăng nhập. Hôm nay tôi bắt đầu API thanh toán. Không có gì chặn.
+    Linh: Hôm qua tôi làm mấy việc. Hôm nay tôi làm tiếp. Cũng ổn.
+    Priya: Hôm qua tôi sửa lỗi cache. Hôm nay tôi review pull request của Nam.
+    Tôi đang bị chặn ở máy chủ staging — nó sập từ thứ Hai và tôi đang chờ nhóm hạ tầng.
+  questions:
+    - q_en: "Whose update gives the least useful information?"
+      choices: ["Linh's", "Nam's", "Priya's"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "What is Priya waiting on?"
+      choices: ["The platform team", "Nam's review", "The cache fix"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+
+writing_task:
+  id: WT-I08
+  kind: guided_email
+  style: note
+  prompt_vi: >
+    Viết bài standup của bạn cho hôm nay. Nói rõ việc đã xong, việc sắp làm, và thứ đang chặn
+    bạn (nếu không có thì nói rõ là không có). Viết 3-4 câu.
+  frame_vi:
+    - "Hôm qua: việc đã xong"
+    - "Hôm nay: việc sắp làm"
+    - "Chặn: cụ thể là gì, đang chờ ai"
+  required_chunks:
+    - ["yesterday i"]
+    - ["today i'll", "today i will", "today i"]
+    - ["i'm blocked on", "i am blocked on", "no blockers", "waiting on"]
+  min_words: 18
+  hint_vi: "“Đang làm mấy việc” không phải bài standup. Nói tên việc cụ thể, và nói ai đang chặn bạn."
+  sample_en: "Yesterday I wrapped up the database migration. Today I'll start the report screen. I'm blocked on the test data — I'm waiting on Linh to send the sample file. Thanks."
 
 listening_snippet:
   id: LS-I08
@@ -176,7 +223,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

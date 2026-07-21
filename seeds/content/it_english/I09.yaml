@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 9
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Góp ý code lịch sự và rõ: nêu vấn đề, đề xuất cách sửa, phân biệt bắt buộc với gợi ý — và nhận góp ý đúng mực."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill; góp ý có đề xuất kèm theo, không chỉ chê."
@@ -71,6 +71,57 @@ dialogue:
     - {speaker: Priya, en: "Good catch. That may be exactly the case we are hitting tonight. I will add it.", vi: "Phát hiện hay. Có thể đó đúng là trường hợp tụi mình đang gặp đêm nay. Mình sẽ thêm."}
     - {speaker: You, en: "And a nit: extra blank line on line twelve. Up to you.", vi: "Với một góp ý nhỏ: thừa dòng trống ở dòng 12. Tuỳ bạn."}
     - {speaker: Priya, en: "Fair point, I'll clean it up before I merge.", vi: "Ý hợp lý, mình dọn lại trước khi merge."}
+
+reading_passage:
+  id: RP-I09
+  kind: chat
+  context_vi: >
+    Một luồng review code. Để ý cách người ta không đồng ý mà vẫn không làm mất lòng nhau —
+    và cách phân biệt góp ý bắt buộc với góp ý cho vui.
+  text_en: |
+    Priya: Nit: the variable name could be clearer. Up to you.
+    Nam: Fair point, I'll rename it.
+    Priya: What if we move this check into the helper? It is repeated in three places.
+    Nam: Good catch. I did not see that.
+    Priya: Could we also add a test for the empty case?
+    Nam: Yes, adding it now.
+  text_vi: |
+    Priya: Góp ý nhỏ: tên biến này có thể rõ hơn. Tuỳ bạn thôi.
+    Nam: Ý hay, để tôi đổi tên.
+    Priya: Hay là mình chuyển đoạn kiểm tra này vào hàm dùng chung? Nó lặp ở ba chỗ.
+    Nam: Bạn tinh thật. Tôi không để ý.
+    Priya: Mình thêm một test cho trường hợp rỗng luôn được không?
+    Nam: Được, tôi thêm ngay.
+  questions:
+    - q_en: "Which comment is optional?"
+      choices: ["The one marked \"nit\"", "The repeated check", "The missing test"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "In this review, \"Good catch\" means:"
+      choices: ["you spotted something I missed", "please fix it now", "I disagree"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-I09
+  kind: guided_email
+  style: note
+  prompt_vi: >
+    Viết ba nhận xét review code: một góp ý nhỏ tuỳ chọn, một đề xuất thay đổi, và một lời khen.
+    Viết 3-4 câu.
+  frame_vi:
+    - "Góp ý nhỏ, đánh dấu là tuỳ chọn"
+    - "Đề xuất thay đổi, hỏi chứ không ra lệnh"
+    - "Ghi nhận chỗ người ta làm tốt"
+  required_chunks:
+    - ["nit", "small thing", "minor"]
+    - ["what if we", "could we", "how about we", "should we"]
+    - ["good catch", "nice", "this looks good", "good work"]
+  min_words: 18
+  hint_vi: "Đánh dấu “nit” cho góp ý không bắt buộc — nếu không, người nhận tưởng phải sửa hết."
+  sample_en: "Nit: this variable name could be clearer, but up to you. What if we move this check into a helper? It is repeated three times. Good catch on the null case — I would have missed it."
 
 listening_snippet:
   id: LS-I09
@@ -175,7 +226,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

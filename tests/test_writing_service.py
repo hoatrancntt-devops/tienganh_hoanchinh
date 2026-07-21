@@ -168,3 +168,29 @@ def test_phan_hoi_tieng_viet_khong_rong_ke_ca_khi_dat_100(task, answer):
 def test_dang_bai_la_thi_bao_loi_ro_rang():
     kq = ws.grade({"kind": "khong_ton_tai"}, "abc")
     assert kq["score"] == 0
+
+
+# --- Thể loại `note`: status update / standup / comment review không có lời chào ---
+
+NOTE = {**EMAIL, "style": "note"}
+
+
+def test_note_khong_bi_tru_diem_vi_thieu_loi_chao():
+    """Standup và status update vốn dĩ không mở bằng “Hi X” — đòi nó là dạy sai văn phong."""
+    bai = "I'd like to take next Monday off. Let me know if that works for the team."
+    assert ws.grade(NOTE, bai)["score"] > ws.grade(EMAIL, bai)["score"]
+    assert ws.grade(NOTE, bai)["score"] == 100
+
+
+def test_email_van_bi_doi_loi_chao_va_loi_ket():
+    """Nới cho `note` không được nới luôn cho email thật."""
+    kq = ws.grade(EMAIL, "I'd like to take next Monday off. Let me know if that works.")
+    assert kq["score"] < 100
+    assert "chào" in kq["feedback_vi"]
+
+
+def test_note_van_bi_tru_khi_thieu_y_bat_buoc():
+    """`note` chỉ nới phần cấu trúc, không nới phần nội dung."""
+    kq = ws.grade(NOTE, "Something happened today and I will look at it tomorrow morning.")
+    assert kq["score"] < 70
+    assert "thiếu" in kq["feedback_vi"].lower()

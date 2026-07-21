@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 13
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Dùng đúng từ vựng dữ liệu: database, backup, restore, query chậm, mất dữ liệu — và trấn an khi có sự cố dữ liệu."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ dữ liệu."
@@ -71,6 +71,65 @@ dialogue:
     - {speaker: Linh, en: "So the newest backup we actually have is from Monday night.", vi: "Vậy bản sao lưu mới nhất mình thật sự có là từ tối thứ Hai."}
     - {speaker: You, en: "Yes. We have a backup from Monday night, and we can restore from it. But it is three days old.", vi: "Vâng. Mình có bản sao lưu từ tối thứ Hai, và khôi phục được từ đó. Nhưng nó cũ ba ngày rồi."}
     - {speaker: Linh, en: "Nobody was told. That goes in the postmortem too.", vi: "Không ai được báo cả. Cái đó cũng phải vào postmortem."}
+
+reading_passage:
+  id: RP-I13
+  kind: ticket
+  context_vi: >
+    Hai vấn đề dữ liệu trong một ticket. Đọc để phân biệt cái nào khẩn cấp và cái nào chỉ là
+    khó chịu.
+  text_en: |
+    Two issues from this morning.
+
+    First, the report query is slow. It takes 40 seconds instead of two.
+    Users can still get their data, so this is annoying but not urgent.
+
+    Second, the nightly backup has not run since Tuesday.
+    Nobody was told, because the alert was switched off in March.
+    If the database fails now, we would lose three days of data.
+    I have started a manual backup and it is up to date again.
+    We can restore from Monday if we need to.
+  text_vi: |
+    Sáng nay có hai vấn đề.
+
+    Thứ nhất, truy vấn báo cáo chạy chậm. Mất 40 giây thay vì hai giây.
+    Người dùng vẫn lấy được dữ liệu, nên chuyện này khó chịu chứ chưa khẩn.
+
+    Thứ hai, bản sao lưu hằng đêm không chạy từ thứ Ba.
+    Không ai biết, vì cảnh báo đã bị tắt từ tháng Ba.
+    Nếu cơ sở dữ liệu hỏng lúc này thì mất ba ngày dữ liệu.
+    Tôi đã chạy sao lưu thủ công và giờ đã cập nhật lại.
+    Nếu cần thì khôi phục được từ bản thứ Hai.
+  questions:
+    - q_en: "Which problem is more serious?"
+      choices: ["The failed backup", "The slow query", "They are equal"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "Why did nobody know about the backup problem?"
+      choices: ["The alert was switched off", "It only started today", "It was in the logs"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+
+writing_task:
+  id: WT-I13
+  kind: guided_email
+  prompt_vi: >
+    Báo cáo hai vấn đề dữ liệu: một truy vấn chậm, và một bản sao lưu hỏng. Nói rõ cái nào
+    khẩn hơn và vì sao. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: vấn đề 1 + mức độ"
+    - "Thân: vấn đề 2 + rủi ro nếu không xử lý"
+    - "Kết: bạn đã làm gì rồi"
+  required_chunks:
+    - ["the query is slow", "slow query", "is slow"]
+    - ["backup"]
+    - ["data loss", "we would lose", "we could lose", "risk of losing"]
+  min_words: 20
+  hint_vi: "Nói rõ rủi ro bằng con số: “mất ba ngày dữ liệu” mạnh hơn “có thể nguy hiểm”."
+  sample_en: "Hi team, two data issues today. The report query is slow — 40 seconds instead of two — but users still get their data. More seriously, the backup has not run since Tuesday, so we risk three days of data loss. I have run a manual backup and it is up to date again. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I13
@@ -172,7 +231,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

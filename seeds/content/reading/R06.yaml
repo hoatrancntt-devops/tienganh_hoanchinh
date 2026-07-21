@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 6
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc dòng log và phân biệt mức độ (INFO/WARN/ERROR), tìm đúng dòng gây sự cố."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về mức log và dòng lỗi gốc."
@@ -56,17 +56,61 @@ sentence_patterns:
       message: ["server started", "disk space low", "failed to save file"]
       time: ["10:02", "10:05", "10:07"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R06
+  kind: log
   context_vi: >
-    Log của auth service đêm hôm đó, từ lúc deploy đến lúc Emma không vào được. Toàn bộ câu trả lời
-    nằm gọn trong năm dòng này. Lúc 3 giờ sáng bạn đã cuộn qua nó — nhưng chưa biết dừng ở đâu.
-    Giờ thì biết.
-  turns:
-    - {speaker: "", en: "23:41 INFO: auth-service started. Release 4.2.0.", vi: "23:41 INFO: auth-service khởi động. Bản 4.2.0."}
-    - {speaker: "", en: "01:58 WARNING: Could not refresh database credentials. Using the cached ones.", vi: "01:58 WARNING: Không làm mới được credential của CSDL. Đang dùng bản lưu tạm."}
-    - {speaker: "", en: "02:03 ERROR: AccessDeniedException — not authorized to perform secretsmanager:GetSecretValue.", vi: "02:03 ERROR: AccessDeniedException — không được phép thực hiện secretsmanager:GetSecretValue."}
-    - {speaker: "", en: "02:03 ERROR: Failed to read the database password. Sign-in failed for user e.brooks.", vi: "02:03 ERROR: Không đọc được mật khẩu CSDL. Đăng nhập thất bại cho người dùng e.brooks."}
-    - {speaker: "", en: "02:04 ERROR: Retry 3 of 3 failed. Giving up.", vi: "02:04 ERROR: Thử lại lần 3/3 thất bại. Dừng."}
+    Log của auth service đêm hôm đó, từ lúc deploy đến lúc Emma không vào được. Toàn bộ câu trả lời nằm gọn trong năm dòng này. Lúc 3 giờ sáng bạn đã cuộn qua nó — nhưng chưa biết dừng ở đâu. Giờ thì biết.
+  text_en: |
+    23:41 INFO: auth-service started. Release 4.2.0.
+    01:58 WARNING: Could not refresh database credentials. Using the cached ones.
+    02:03 ERROR: AccessDeniedException — not authorized to perform secretsmanager:GetSecretValue.
+    02:03 ERROR: Failed to read the database password. Sign-in failed for user e.brooks.
+    02:04 ERROR: Retry 3 of 3 failed. Giving up.
+  text_vi: |
+    23:41 INFO: auth-service khởi động. Bản 4.2.0.
+    01:58 WARNING: Không làm mới được credential của CSDL. Đang dùng bản lưu tạm.
+    02:03 ERROR: AccessDeniedException — không được phép thực hiện secretsmanager:GetSecretValue.
+    02:03 ERROR: Không đọc được mật khẩu CSDL. Đăng nhập thất bại cho người dùng e.brooks.
+    02:04 ERROR: Thử lại lần 3/3 thất bại. Dừng.
+  questions:
+    - q_en: "At what time did the first ERROR appear?"
+      choices: ["02:03", "01:58", "23:41"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What was the service not allowed to do?"
+      choices: ["Read a secret value", "Start up", "Write to the database"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "What do these logs describe?"
+      choices:
+        - "A sign-in failure caused by a permission problem"
+        - "A slow database query"
+        - "A successful deployment"
+      answer: 0
+      skill: skim
+      difficulty: 4
+
+writing_task:
+  id: WT-R06
+  kind: guided_email
+  prompt_vi: >
+    Viết email tóm tắt cho nhóm những gì log cho thấy, và bước bạn sẽ làm tiếp. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: log cho thấy gì, lúc mấy giờ"
+    - "Thân: bạn hiểu nguyên nhân là gì"
+    - "Kết: bạn sẽ làm gì tiếp"
+  required_chunks:
+    - ["the logs show", "the log shows", "according to the logs", "the logs say"]
+    - ["error"]
+    - ["i will", "i'll"]
+  min_words: 20
+  hint_vi: "Trích đúng dòng log và giờ của nó. “Có lỗi gì đó” không giúp ai làm được gì."
+  sample_en: "Hi team, the logs show an ERROR at 02:03: the service was not authorized to read the database secret. The warning at 01:58 says it was already using cached credentials. I will check the IAM role of the auth service now. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R06
@@ -151,7 +195,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: b1
 order_index: 18
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Nói theo CỤM ý nghĩa với chỗ ngắt hợp lý, để câu dài vẫn dễ nghe và dễ nói."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng chỗ ngắt 4/5 câu quiz."
@@ -66,6 +66,48 @@ dialogue:
     - {speaker: You, en: "The server is down / since this morning / and users can't log in.", vi: "Server sập / từ sáng nay / và người dùng không đăng nhập được."}
     - {speaker: Linh, en: "That's it. David needs those gaps to follow you.", vi: "Đúng rồi. David cần đúng mấy khoảng nghỉ đó để theo kịp bạn."}
     - {speaker: You, en: "Okay / I'll check the logs / and get back to you.", vi: "Vâng / em sẽ xem log / rồi báo lại chị."}
+
+reading_passage:
+  id: RP-F18
+  kind: doc
+  context_vi: >
+    Ghi chú của một đồng nghiệp từng nói tiếng Anh rất khó nghe, giờ thì không. Đọc để thấy
+    thứ anh ấy đổi không phải là từ vựng.
+  text_en: |
+    I used to speak English word by word, with no pauses.
+    People understood the words but not the message.
+    Now I speak in chunks. I say three or four words, then take a breath.
+    I never try to finish a long sentence in one breath.
+    When something matters, I slow down and stress the key word.
+    Nobody has asked me to repeat myself since.
+  text_vi: |
+    Trước đây tôi nói tiếng Anh từng từ một, không ngắt nghỉ.
+    Người ta nghe được từng chữ nhưng không hiểu ý.
+    Giờ tôi nói theo cụm. Nói ba bốn từ rồi lấy hơi.
+    Tôi không bao giờ cố nói hết một câu dài trong một hơi.
+    Chỗ nào quan trọng thì tôi nói chậm lại và nhấn vào từ khoá.
+    Từ đó tới nay không ai bắt tôi nhắc lại nữa.
+  questions:
+    - q_en: "What did people understand before?"
+      choices: ["The words but not the message", "Nothing at all", "Everything"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What does the writer do when something matters?"
+      choices: ["Slows down and stresses the key word", "Speaks louder", "Repeats the sentence"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-F18
+  kind: error_correction
+  prompt_vi: "Câu này sai cấu trúc “used to”. Viết lại cho đúng."
+  prompt_en: "I used to speaking English word by word."
+  blanks:
+    - ["i used to speak english word by word"]
+  hint_vi: "Sau “used to” là động từ nguyên mẫu, không thêm “-ing”."
+  sample_en: "I used to speak English word by word."
 
 listening_snippet:
   id: LS-F18
@@ -179,7 +221,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

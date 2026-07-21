@@ -8,7 +8,7 @@ phase: foundation
 topic: core
 cefr_target: b1
 order_index: 19
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Dùng giọng mềm và lên nhẹ cuối câu yêu cầu, để lời nhờ vả nghe lịch sự thay vì ra lệnh."
 objective_observable: "Đạt ≥75 điểm nói trên 3/4 drill và chọn đúng giọng lịch sự 4/5 câu quiz."
@@ -65,6 +65,48 @@ dialogue:
     - {speaker: Minh, en: "Of course. When do you need it?", vi: "Được chứ. Khi nào bạn cần?"}
     - {speaker: You, en: "I was wondering if before three works?", vi: "Không biết trước ba giờ có kịp không ạ?"}
     - {speaker: Minh, en: "Before three is fine. And that “could you” sounded right this time.", vi: "Trước ba giờ ổn. Mà câu “could you” lần này nghe đúng rồi đấy."}
+
+reading_passage:
+  id: RP-F19
+  kind: chat
+  context_vi: >
+    Cùng một yêu cầu, hai cách nói. Đọc và để ý những từ nhỏ — “just”, “a bit”, “if that's okay”
+    — chúng không thêm nghĩa, chúng đổi thái độ.
+  text_en: |
+    Direct: Send me the file now.
+    Polite: Could you send me the file when you have a moment?
+    Direct: This is wrong. Fix it.
+    Polite: I was wondering if we could look at this part again.
+    Direct: Move the meeting.
+    Polite: Would you mind moving the meeting a bit later, if that's okay?
+  text_vi: |
+    Thẳng: Gửi tôi cái file ngay.
+    Lịch sự: Lúc nào rảnh bạn gửi tôi file được không?
+    Thẳng: Chỗ này sai. Sửa đi.
+    Lịch sự: Tôi đang nghĩ hay là mình xem lại phần này một chút?
+    Thẳng: Dời cuộc họp đi.
+    Lịch sự: Bạn dời họp muộn hơn một chút được không, nếu tiện?
+  questions:
+    - q_en: "What do the polite sentences add?"
+      choices: ["Softer wording, same request", "New information", "A deadline"]
+      answer: 0
+      skill: skim
+      difficulty: 3
+    - q_en: "In these sentences, \"a bit\" makes the request:"
+      choices: ["sound smaller and easier to accept", "more urgent", "less clear"]
+      answer: 0
+      skill: guess_word
+      difficulty: 4
+
+writing_task:
+  id: WT-F19
+  kind: error_correction
+  prompt_vi: "Câu này sai dạng động từ sau “Would you mind”. Viết lại cho đúng."
+  prompt_en: "Would you mind to move the meeting?"
+  blanks:
+    - ["would you mind moving the meeting"]
+  hint_vi: "Sau “Would you mind” là động từ đuôi “-ing”."
+  sample_en: "Would you mind moving the meeting?"
 
 listening_snippet:
   id: LS-F19
@@ -177,7 +219,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 78
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

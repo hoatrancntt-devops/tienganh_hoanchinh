@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 12
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Xử lý tình huống bảo mật bằng tiếng Anh: cấp/thu quyền, đổi mật khẩu, cảnh báo lừa đảo (phishing)."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và dùng đúng ≥3 thuật ngữ bảo mật."
@@ -72,6 +72,72 @@ dialogue:
     - {speaker: Priya, en: "Correct. I'll grant it access now. And one more thing — check your inbox.", vi: "Chính xác. Mình cấp lại quyền ngay đây. Với một việc nữa — bạn xem hộp thư đi."}
     - {speaker: You, en: "The one about the outage, asking me to log in and verify? That looks suspicious. Don't click the link — it could be phishing.", vi: "Cái email về sự cố, bảo mình đăng nhập để xác minh à? Cái đó trông đáng ngờ. Đừng bấm vào link — có thể là lừa đảo."}
     - {speaker: Priya, en: "That was my thought too. Somebody is using our outage. Forward it to IT security.", vi: "Mình cũng nghĩ vậy. Có kẻ đang lợi dụng sự cố của tụi mình. Chuyển nó cho đội bảo mật."}
+
+reading_passage:
+  id: RP-I12
+  kind: email
+  context_vi: >
+    Thư cảnh báo lừa đảo gửi toàn công ty. Để ý cách nó nói rõ phải làm gì và tuyệt đối không
+    làm gì.
+  text_en: |
+    Subject: Suspicious email — do not click
+
+    Hi all,
+
+    Some of you received an email asking you to reset your password on a new site.
+    That email is not from us. Please do not click the link.
+    If you already clicked it, tell IT immediately and we will reset your password for you.
+    We never ask for your password by email.
+    We are reviewing who has access to the payroll folder and will remove old permissions this week.
+
+    Thanks,
+    IT Security
+  text_vi: |
+    Tiêu đề: Email đáng ngờ — đừng bấm vào
+
+    Chào tất cả,
+
+    Một số người vừa nhận email yêu cầu đặt lại mật khẩu trên một trang lạ.
+    Email đó không phải của công ty. Mọi người đừng bấm vào đường dẫn.
+    Nếu đã lỡ bấm, báo ngay cho IT, bọn mình sẽ đặt lại mật khẩu giúp.
+    Chúng tôi không bao giờ hỏi mật khẩu qua email.
+    Tuần này bọn mình cũng rà lại ai đang có quyền vào thư mục lương và sẽ gỡ các quyền cũ.
+
+    Cảm ơn,
+    An ninh CNTT
+  questions:
+    - q_en: "What should you do if you already clicked the link?"
+      choices: ["Tell IT immediately", "Change nothing", "Reply to the email"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "How can you tell the email was fake?"
+      choices:
+        - "IT never asks for your password by email"
+        - "It had no subject line"
+        - "It arrived at night"
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-I12
+  kind: guided_email
+  prompt_vi: >
+    Viết thư cảnh báo nhân viên về một email lừa đảo giả danh phòng nhân sự. Nói rõ đừng làm gì
+    và phải làm gì. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào — nêu ngay đây là email giả"
+    - "Thân: tuyệt đối đừng làm gì"
+    - "Thân: nếu lỡ rồi thì làm gì"
+    - "Kết: nguyên tắc để nhận ra lần sau"
+  required_chunks:
+    - ["suspicious", "phishing", "not from us", "fake"]
+    - ["do not click", "don't click", "do not open", "don't open"]
+    - ["contact", "tell it", "let us know", "report it"]
+  min_words: 20
+  hint_vi: "Câu “đừng bấm” phải đứng trước mọi giải thích. Người đọc lướt chỉ thấy hai dòng đầu."
+  sample_en: "Hi all, there is a suspicious email that looks like it comes from HR and asks for your bank details. It is not from us. Please do not click the link or reply. If you already did, contact IT immediately. HR never asks for bank details by email. Thanks, IT Security"
 
 listening_snippet:
   id: LS-I12
@@ -176,7 +242,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

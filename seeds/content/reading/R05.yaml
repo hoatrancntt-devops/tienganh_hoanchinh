@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 5
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc một bug report và nắm: các bước tái hiện, kết quả mong đợi vs thực tế, và mức ưu tiên."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về steps to reproduce và mức độ ưu tiên."
@@ -55,18 +55,61 @@ sentence_patterns:
       expected: ["the file saves", "the user logs in"]
       actual: ["it shows an error", "the page is blank"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R05
+  kind: ticket
   context_vi: >
-    Ticket #4417 — nguyên văn tiếng Anh Emma tự gõ lúc 2 giờ sáng, trước khi cô ấy gọi điện.
-    Emma là kế toán, không phải dân kỹ thuật, nhưng cô ấy viết đủ ba trường vàng. Đây là cái
-    bạn đã đọc lúc 3 giờ sáng, khi ca của bạn bắt đầu.
-  turns:
-    - {speaker: "", en: "Ticket #4417 — I can't log in to the Portal", vi: "Ticket #4417 — Tôi không đăng nhập được vào Portal"}
-    - {speaker: "", en: "Reported by: Emma Brooks (Northwind, Accounting) — Friday 02:00", vi: "Người báo: Emma Brooks (Northwind, phòng Kế toán) — 02:00 thứ Sáu"}
-    - {speaker: "", en: "Steps to reproduce: 1. Open the Portal. 2. Enter my email and password. 3. Click Sign in.", vi: "Các bước tái hiện: 1. Mở Portal. 2. Nhập email và mật khẩu của tôi. 3. Bấm Sign in."}
-    - {speaker: "", en: "Expected: I see my invoices. Actual: a red box says sign-in failed.", vi: "Mong đợi: tôi thấy danh sách hoá đơn. Thực tế: một ô đỏ báo đăng nhập thất bại."}
-    - {speaker: "", en: "Priority: high. Reproducible: every time, on two computers. Assigned to: Vertex IT support.", vi: "Ưu tiên: cao. Tái hiện: lần nào cũng bị, trên hai máy khác nhau. Giao cho: IT support của Vertex."}
-    - {speaker: "", en: "Note from reporter: I did not change my password. Three colleagues have the same problem.", vi: "Ghi chú của người báo: Tôi không hề đổi mật khẩu. Ba đồng nghiệp của tôi cũng bị y hệt."}
+    Ticket #4417 — nguyên văn tiếng Anh Emma tự gõ lúc 2 giờ sáng, trước khi cô ấy gọi điện. Emma là kế toán, không phải dân kỹ thuật, nhưng cô ấy viết đủ ba trường vàng. Đây là cái bạn đã đọc lúc 3 giờ sáng, khi ca của bạn bắt đầu.
+  text_en: |
+    Ticket #4417 — I can't log in to the Portal
+    Reported by: Emma Brooks (Northwind, Accounting) — Friday 02:00
+    Steps to reproduce: 1. Open the Portal. 2. Enter my email and password. 3. Click Sign in.
+    Expected: I see my invoices. Actual: a red box says sign-in failed.
+    Priority: high. Reproducible: every time, on two computers. Assigned to: Vertex IT support.
+    Note from reporter: I did not change my password. Three colleagues have the same problem.
+  text_vi: |
+    Ticket #4417 — Tôi không đăng nhập được vào Portal
+    Người báo: Emma Brooks (Northwind, phòng Kế toán) — 02:00 thứ Sáu
+    Các bước tái hiện: 1. Mở Portal. 2. Nhập email và mật khẩu của tôi. 3. Bấm Sign in.
+    Mong đợi: tôi thấy danh sách hoá đơn. Thực tế: một ô đỏ báo đăng nhập thất bại.
+    Ưu tiên: cao. Tái hiện: lần nào cũng bị, trên hai máy khác nhau. Giao cho: IT support của Vertex.
+    Ghi chú của người báo: Tôi không hề đổi mật khẩu. Ba đồng nghiệp của tôi cũng bị y hệt.
+  questions:
+    - q_en: "How many computers did Emma try?"
+      choices: ["Two", "One", "Three"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "Is this only Emma's problem?"
+      choices: ["No, three colleagues have it too", "Yes, only hers", "The ticket does not say"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "\"Reproducible: every time\" means the bug:"
+      choices: ["happens on every attempt", "happened only once", "cannot be tested"]
+      answer: 0
+      skill: guess_word
+      difficulty: 4
+
+writing_task:
+  id: WT-R05
+  kind: guided_email
+  prompt_vi: >
+    Viết một bug report: app tính lương hiển thị sai tổng tiền. Nêu các bước tái hiện, kết quả
+    mong đợi và kết quả thực tế. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: tiêu đề ngắn gọn vấn đề"
+    - "Thân: các bước tái hiện"
+    - "Thân: mong đợi gì / thực tế ra gì"
+    - "Kết: mức ưu tiên"
+  required_chunks:
+    - ["steps to reproduce", "to reproduce", "how to reproduce"]
+    - ["expected"]
+    - ["actual"]
+  min_words: 20
+  hint_vi: "Không có “các bước tái hiện” thì lập trình viên phải đoán — và ticket sẽ nằm im."
+  sample_en: "Hi team, the payroll app shows the wrong total. Steps to reproduce: open the March report, select two employees, and click Sum. Expected: the total of both salaries. Actual: only the first salary is shown. Priority: high. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R05
@@ -152,7 +195,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

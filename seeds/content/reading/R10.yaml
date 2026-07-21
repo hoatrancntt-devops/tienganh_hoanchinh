@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 10
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Đọc báo cáo hậu sự cố và nắm: chuyện gì xảy ra, nguyên nhân gốc, và các việc phòng ngừa."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về root cause và action items."
@@ -55,20 +55,66 @@ sentence_patterns:
       cause: ["a full disk", "an expired certificate", "a bad config change"]
       action: ["add disk alerts", "automate cert renewal", "add a config review step"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R10
+  kind: doc
   context_vi: >
-    Bản postmortem INC-2291, Linh gửi cả team chiều thứ Sáu. Bạn đọc từ đầu tới cuối, và tới dòng
-    thứ ba thì nhận ra: đây là đêm của bạn. Cú deploy 23:40. Ticket của Emma. Ba giờ sáng bạn nhận ca.
-    Sáu giờ bạn bàn giao cho Priya. Toàn bộ chuyện bạn đã sống qua, giờ nằm gọn trong bảy đoạn tiếng Anh —
-    và bạn đọc hiểu hết, không cần dịch câu nào.
-  turns:
-    - {speaker: "", en: "Postmortem INC-2291 — Northwind Portal sign-in outage.", vi: "Postmortem INC-2291 — Sự cố đăng nhập Northwind Portal."}
-    - {speaker: "", en: "Impact: nobody could sign in for 7 hours and 15 minutes. The whole accounting team was blocked.", vi: "Tác động: không ai đăng nhập được suốt 7 giờ 15 phút. Cả phòng kế toán bị chặn việc."}
-    - {speaker: "", en: "Timeline: Thursday 23:40 we deployed release 4.2.0 to patch CVE-2026-4471. Friday 02:00 the first ticket came in from Emma Brooks.", vi: "Diễn biến: 23:40 thứ Năm, deploy bản 4.2.0 để vá CVE-2026-4471. 02:00 thứ Sáu, ticket đầu tiên đến từ Emma Brooks."}
-    - {speaker: "", en: "03:00 IT support started to diagnose. 06:00 the shift was handed over to Priya Nair. 08:30 she found the cause. 09:15 the portal was back.", vi: "03:00 IT support bắt đầu chẩn đoán. 06:00 bàn giao ca cho Priya Nair. 08:30 cô ấy tìm ra nguyên nhân. 09:15 portal hoạt động lại."}
-    - {speaker: "", en: "Root cause: release 4.2.0 changed the IAM role of the auth service. The new role did not have secretsmanager:GetSecretValue, so the service could not read the database password, and every sign-in failed.", vi: "Nguyên nhân gốc: bản 4.2.0 đổi IAM role của auth service. Role mới không có quyền secretsmanager:GetSecretValue, nên dịch vụ không đọc được mật khẩu CSDL, và mọi lần đăng nhập đều thất bại."}
-    - {speaker: "", en: "We also found that the backup job had been failing quietly since Tuesday. Nobody was told. This is a blameless postmortem: the deploy was right, our permission review was not.", vi: "Chúng tôi cũng phát hiện job backup đã thất bại âm thầm từ thứ Ba. Không ai được báo. Đây là postmortem không đổ lỗi: quyết định deploy là đúng, khâu rà soát quyền của chúng tôi thì không."}
-    - {speaker: "", en: "Action items: 1. Check IAM permissions in staging before every deploy. 2. Alert on failed backup jobs. 3. Page the on-call engineer when sign-in errors go over 10 per minute.", vi: "Việc cần làm: 1. Kiểm tra quyền IAM ở staging trước mỗi lần deploy. 2. Cảnh báo khi job backup thất bại. 3. Gọi kỹ sư trực khi lỗi đăng nhập vượt 10 lần mỗi phút."}
+    Bản postmortem INC-2291, Linh gửi cả team chiều thứ Sáu. Bạn đọc từ đầu tới cuối, và tới dòng thứ ba thì nhận ra: đây là đêm của bạn. Cú deploy 23:40. Ticket của Emma. Ba giờ sáng bạn nhận ca. Sáu giờ bạn bàn giao cho Priya. Toàn bộ chuyện bạn đã sống qua, giờ nằm gọn trong bảy đoạn tiếng Anh — và bạn đọc hiểu hết, không cần dịch câu nào.
+  text_en: |
+    Postmortem INC-2291 — Northwind Portal sign-in outage.
+    Impact: nobody could sign in for 7 hours and 15 minutes. The whole accounting team was blocked.
+    Timeline: Thursday 23:40 we deployed release 4.2.0 to patch CVE-2026-4471. Friday 02:00 the first ticket came in from Emma Brooks.
+    03:00 IT support started to diagnose. 06:00 the shift was handed over to Priya Nair. 08:30 she found the cause. 09:15 the portal was back.
+    Root cause: release 4.2.0 changed the IAM role of the auth service. The new role did not have secretsmanager:GetSecretValue, so the service could not read the database password, and every sign-in failed.
+    We also found that the backup job had been failing quietly since Tuesday. Nobody was told. This is a blameless postmortem: the deploy was right, our permission review was not.
+    Action items: 1. Check IAM permissions in staging before every deploy. 2. Alert on failed backup jobs. 3. Page the on-call engineer when sign-in errors go over 10 per minute.
+  text_vi: |
+    Postmortem INC-2291 — Sự cố đăng nhập Northwind Portal.
+    Tác động: không ai đăng nhập được suốt 7 giờ 15 phút. Cả phòng kế toán bị chặn việc.
+    Diễn biến: 23:40 thứ Năm, deploy bản 4.2.0 để vá CVE-2026-4471. 02:00 thứ Sáu, ticket đầu tiên đến từ Emma Brooks.
+    03:00 IT support bắt đầu chẩn đoán. 06:00 bàn giao ca cho Priya Nair. 08:30 cô ấy tìm ra nguyên nhân. 09:15 portal hoạt động lại.
+    Nguyên nhân gốc: bản 4.2.0 đổi IAM role của auth service. Role mới không có quyền secretsmanager:GetSecretValue, nên dịch vụ không đọc được mật khẩu CSDL, và mọi lần đăng nhập đều thất bại.
+    Chúng tôi cũng phát hiện job backup đã thất bại âm thầm từ thứ Ba. Không ai được báo. Đây là postmortem không đổ lỗi: quyết định deploy là đúng, khâu rà soát quyền của chúng tôi thì không.
+    Việc cần làm: 1. Kiểm tra quyền IAM ở staging trước mỗi lần deploy. 2. Cảnh báo khi job backup thất bại. 3. Gọi kỹ sư trực khi lỗi đăng nhập vượt 10 lần mỗi phút.
+  questions:
+    - q_en: "How long was the outage?"
+      choices: ["7 hours and 15 minutes", "2 hours", "One working day"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "What was the root cause?"
+      choices:
+        - "The new IAM role was missing a permission"
+        - "The database was full"
+        - "The backup job failed"
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "In this report, \"blameless\" means it looks at:"
+      choices: ["the process, not at who to blame", "who made the mistake", "the cost of the outage"]
+      answer: 0
+      skill: guess_word
+      difficulty: 4
+
+writing_task:
+  id: WT-R10
+  kind: guided_email
+  prompt_vi: >
+    Viết phần tóm tắt của một postmortem: ảnh hưởng, nguyên nhân gốc, và việc cần làm để không
+    lặp lại. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: sự cố gì, ảnh hưởng ai, bao lâu"
+    - "Thân: nguyên nhân gốc"
+    - "Thân: việc cần làm"
+    - "Kết: không đổ lỗi cho ai"
+  required_chunks:
+    - ["root cause"]
+    - ["action items", "next steps", "action item"]
+    - ["to prevent this", "so this does not happen", "to avoid this", "so it doesn't happen again"]
+  min_words: 20
+  hint_vi: "Nguyên nhân gốc là một câu về HỆ THỐNG, không phải tên một người."
+  sample_en: "Hi team, the portal was down for seven hours and nobody could sign in. The root cause was a missing permission on the new IAM role after the release. Action items: check IAM in staging before every deploy, and alert on failed jobs. To prevent this, we will add a permission test. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R10
@@ -154,7 +200,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

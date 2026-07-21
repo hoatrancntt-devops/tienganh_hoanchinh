@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 6
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Cập nhật sự cố đang xử lý: hiện trạng, nguyên nhân (nếu biết), việc đang làm, và mốc cập nhật tiếp theo."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill và có mốc cập nhật tiếp theo."
@@ -71,6 +71,60 @@ dialogue:
     - {speaker: You, en: "Not yet. We're currently checking last night's deploy. There's no workaround for login at the moment.", vi: "Chưa có. Hiện bên tôi đang kiểm tra bản deploy tối qua. Hiện chưa có cách khắc phục tạm cho việc đăng nhập."}
     - {speaker: David, en: "Okay. Every thirty minutes. Even if nothing's changed.", vi: "Được. Ba mươi phút một lần. Kể cả khi không có gì mới."}
     - {speaker: You, en: "Understood. Next update in thirty minutes.", vi: "Rõ. Cập nhật tiếp trong ba mươi phút."}
+
+reading_passage:
+  id: RP-I06
+  kind: announcement
+  context_vi: >
+    Bản cập nhật sự cố gửi cho toàn công ty. Đây là mẫu chuẩn: biết gì, đang làm gì, tạm thời
+    làm sao, và bao giờ báo tiếp.
+  text_en: |
+    Status update — 08:30
+
+    We are aware of the sign-in problem on the Northwind Portal.
+    Currently about 200 users cannot sign in.
+    We have found the root cause: a permission was lost during last night's release.
+    Workaround: please use the mobile app, which is not affected.
+    Next update at 09:00, or earlier if the service is back up and running.
+  text_vi: |
+    Cập nhật tình hình — 08:30
+
+    Chúng tôi đã ghi nhận sự cố đăng nhập trên Northwind Portal.
+    Hiện có khoảng 200 người dùng không đăng nhập được.
+    Chúng tôi đã tìm ra nguyên nhân gốc: một quyền bị mất trong lần phát hành tối qua.
+    Cách tạm thời: mọi người dùng app di động, phần này không bị ảnh hưởng.
+    Cập nhật tiếp lúc 09:00, hoặc sớm hơn nếu dịch vụ chạy lại được.
+  questions:
+    - q_en: "What should users do while the portal is down?"
+      choices: ["Use the mobile app", "Reset their password", "Wait without doing anything"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "When is the next update?"
+      choices: ["At 09:00 or earlier", "Tomorrow morning", "There will be none"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-I06
+  kind: guided_email
+  style: note
+  prompt_vi: >
+    Viết một bản cập nhật sự cố: hệ thống gửi email nội bộ đang chậm. Nêu tình hình, cách tạm
+    thời, và khi nào báo tiếp. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: tiêu đề và giờ cập nhật"
+    - "Thân: đã biết gì + ảnh hưởng ai"
+    - "Thân: cách tạm thời"
+    - "Kết: bao giờ cập nhật tiếp"
+  required_chunks:
+    - ["we are aware of", "we're aware of", "we have identified", "we've identified"]
+    - ["workaround", "in the meantime", "for now"]
+    - ["next update", "we will update", "we'll update"]
+  min_words: 20
+  hint_vi: "Luôn hẹn giờ cập nhật tiếp. Im lặng khiến người ta hỏi liên tục, tốn thời gian hơn."
+  sample_en: "Status update at 10:00. We are aware of the delay in internal email and about 50 users are affected. As a workaround, please use the chat tool for urgent messages. Next update at 11:00, or earlier if the service is back up and running. Thanks, Hoa"
 
 listening_snippet:
   id: LS-I06
@@ -172,7 +226,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

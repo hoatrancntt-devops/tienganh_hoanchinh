@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 4
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc README và làm theo: yêu cầu cần có, các bước cài, và lệnh cần chạy."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về yêu cầu (prerequisites) và thứ tự các bước."
@@ -55,17 +55,56 @@ sentence_patterns:
       requirement: ["Docker is running", "Node 18 is installed"]
       step: ["run the install", "start the app"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R04
+  kind: doc
   context_vi: >
-    Priya gửi bạn link công cụ cô ấy dùng lúc 8 rưỡi sáng để tìm ra cái quyền bị mất. Lần sau bạn
-    muốn tự chạy được nó, không phải chờ ai. Đây là README của công cụ đó.
-  turns:
-    - {speaker: "", en: "# iam-check — see what a role is really allowed to do", vi: "# iam-check — xem một role thật sự được phép làm gì"}
-    - {speaker: "", en: "## Prerequisites — You need AWS CLI v2 and read access to the account.", vi: "## Yêu cầu — Bạn cần AWS CLI v2 và quyền đọc trên tài khoản."}
-    - {speaker: "", en: "## Installation — First, clone the repo. Then run the following:", vi: "## Cài đặt — Đầu tiên, clone repo. Rồi chạy lệnh sau:"}
-    - {speaker: "", en: "npm install && npm link", vi: "npm install && npm link"}
-    - {speaker: "", en: "## Usage — Make sure you are logged in, then run: iam-check --role portal-auth-role", vi: "## Sử dụng — Đảm bảo bạn đã đăng nhập, rồi chạy: iam-check --role portal-auth-role"}
-    - {speaker: "", en: "Note: this tool only reads. It never changes a role.", vi: "Lưu ý: công cụ này chỉ đọc. Nó không bao giờ sửa role."}
+    Priya gửi bạn link công cụ cô ấy dùng lúc 8 rưỡi sáng để tìm ra cái quyền bị mất. Lần sau bạn muốn tự chạy được nó, không phải chờ ai. Đây là README của công cụ đó.
+  text_en: |
+    # iam-check — see what a role is really allowed to do
+    ## Prerequisites — You need AWS CLI v2 and read access to the account.
+    ## Installation — First, clone the repo. Then run the following:
+    npm install && npm link
+    ## Usage — Make sure you are logged in, then run: iam-check --role portal-auth-role
+    Note: this tool only reads. It never changes a role.
+  text_vi: |
+    # iam-check — xem một role thật sự được phép làm gì
+    ## Yêu cầu — Bạn cần AWS CLI v2 và quyền đọc trên tài khoản.
+    ## Cài đặt — Đầu tiên, clone repo. Rồi chạy lệnh sau:
+    npm install && npm link
+    ## Sử dụng — Đảm bảo bạn đã đăng nhập, rồi chạy: iam-check --role portal-auth-role
+    Lưu ý: công cụ này chỉ đọc. Nó không bao giờ sửa role.
+  questions:
+    - q_en: "What do you need before you install the tool?"
+      choices: ["AWS CLI v2 and read access", "A new IAM role", "Nothing at all"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "Can this tool change a role?"
+      choices: ["No, it only reads", "Yes, always", "Only in production"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-R04
+  kind: guided_email
+  prompt_vi: >
+    Viết hướng dẫn ngắn cho đồng nghiệp mới: cần chuẩn bị gì, cài thế nào, chạy thế nào.
+    Viết 4-5 câu, có từ nối thứ tự.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: cần chuẩn bị gì trước"
+    - "Thân: bước 1 → bước 2"
+    - "Kết: lưu ý quan trọng"
+  required_chunks:
+    - ["first"]
+    - ["then", "after that", "next"]
+    - ["make sure", "note that", "please note"]
+  min_words: 20
+  hint_vi: "Phần “cần chuẩn bị trước” luôn đứng đầu — thiếu nó thì người ta cài tới nửa chừng mới kẹt."
+  sample_en: "Hi Nam, first make sure you have AWS CLI v2 installed and read access to the account. Then clone the repo and run npm install. After that you can run the tool with the role name. Note that it only reads, so it is safe. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R04
@@ -150,7 +189,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

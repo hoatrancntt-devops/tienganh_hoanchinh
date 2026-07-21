@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 15
-est_minutes: 12
+est_minutes: 16
 
 objective_vi: "Viết email/thông báo kỹ thuật rõ ràng: tiêu đề nói thẳng, dòng đầu là kết luận, việc cần làm ở cuối."
 objective_observable: "Đạt ≥75 điểm trên 3/4 drill và chọn đúng cấu trúc email (kết luận trước, chi tiết sau)."
@@ -71,6 +71,76 @@ dialogue:
     - {speaker: You, en: "The cause was a permission error in a security update we deployed last night. No data was lost, and no account was compromised.", vi: "Nguyên nhân là lỗi phân quyền trong bản cập nhật bảo mật chúng tôi triển khai tối qua. Không mất dữ liệu và không tài khoản nào bị xâm nhập."}
     - {speaker: You, en: "What you need to do: save your work and reset your password. If you received an email asking you to verify your login, do not click it — it did not come from us.", vi: "Việc bạn cần làm: lưu công việc và đặt lại mật khẩu. Nếu bạn nhận được email yêu cầu xác minh đăng nhập, đừng bấm vào — nó không phải của chúng tôi."}
     - {speaker: You, en: "A full report will follow on Monday. Reach out to IT if you have questions.", vi: "Báo cáo đầy đủ sẽ gửi vào thứ Hai. Liên hệ IT nếu bạn có thắc mắc."}
+
+reading_passage:
+  id: RP-I15
+  kind: announcement
+  context_vi: >
+    Thông báo bảo trì gửi toàn công ty. Đọc để thấy cấu trúc: chuyện gì, khi nào, ảnh hưởng ai,
+    và bạn cần làm gì.
+  text_en: |
+    Subject: Heads up — scheduled maintenance this Saturday
+
+    Hi all,
+
+    We have scheduled maintenance this Saturday from 08:00 to 12:00.
+    The Portal and the reporting tool will be unavailable during that window.
+    Email and chat are not affected.
+
+    What you need to do: finish anything urgent on Friday, and save your work before you leave.
+    For most people no action is needed.
+
+    If you must work on Saturday morning, reach out to IT by Thursday and we will arrange access.
+
+    Thanks,
+    IT team
+  text_vi: |
+    Tiêu đề: Báo trước — bảo trì theo lịch vào thứ Bảy này
+
+    Chào tất cả,
+
+    Bọn mình đã lên lịch bảo trì thứ Bảy này, từ 08:00 đến 12:00.
+    Portal và công cụ báo cáo sẽ không dùng được trong khoảng đó.
+    Email và chat không bị ảnh hưởng.
+
+    Việc mọi người cần làm: xong các việc gấp trong thứ Sáu, và lưu lại trước khi về.
+    Với phần lớn mọi người thì không cần làm gì thêm.
+
+    Nếu ai bắt buộc phải làm sáng thứ Bảy, liên hệ IT trước thứ Năm để bọn mình sắp xếp quyền truy cập.
+
+    Cảm ơn,
+    Nhóm CNTT
+  questions:
+    - q_en: "Which systems still work during the maintenance?"
+      choices: ["Email and chat", "The Portal", "The reporting tool"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "You must work on Saturday morning. What do you do?"
+      choices: ["Contact IT by Thursday", "Work as usual", "Wait until Monday"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-I15
+  kind: guided_email
+  style: note
+  prompt_vi: >
+    Viết thông báo bảo trì: hệ thống chấm công sẽ ngừng tối thứ Tư từ 20:00 đến 23:00.
+    Nói rõ ai bị ảnh hưởng và cần làm gì. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: báo trước, nêu ngay thời điểm"
+    - "Thân: hệ thống nào ngừng, hệ thống nào vẫn chạy"
+    - "Thân: người đọc cần làm gì"
+    - "Kết: liên hệ ai nếu cần"
+  required_chunks:
+    - ["heads up", "please note", "scheduled maintenance"]
+    - ["will be unavailable", "will be down", "will not be available"]
+    - ["no action needed", "what you need to do", "you need to"]
+  min_words: 20
+  hint_vi: "Nói rõ cái gì KHÔNG bị ảnh hưởng. Thiếu câu đó là hộp thư IT đầy câu hỏi."
+  sample_en: "Heads up — we have scheduled maintenance on Wednesday from 20:00 to 23:00. The timekeeping system will be unavailable during that window, but email and chat are not affected. What you need to do: submit your hours before 19:00. For everyone else, no action is needed. Reach out to IT if you have questions. Thanks"
 
 listening_snippet:
   id: LS-I15
@@ -175,7 +245,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.4, quiz: 0.4, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 

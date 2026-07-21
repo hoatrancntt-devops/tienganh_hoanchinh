@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 99
-est_minutes: 12
+est_minutes: 16
 is_checkpoint: true
 
 objective_vi: "Đọc nhanh và đúng các loại văn bản công việc CNTT: email, lỗi, release notes, README, ticket, log, chat, API, cảnh báo bảo mật, postmortem."
@@ -25,6 +25,78 @@ prerequisites:
   - {lesson: R08, min_mastery: 70, kind: hard}
   - {lesson: R09, min_mastery: 70, kind: hard}
   - {lesson: R10, min_mastery: 70, kind: hard}
+
+reading_passage:
+  id: RP-CPR
+  kind: doc
+  context_vi: >
+    Một trang tổng hợp gom đủ năm loại tài liệu chặng này dạy: release notes, log, ticket,
+    advisory và postmortem. Bài chốt — đọc và rút ra hành động.
+  text_en: |
+    Release 4.2.0 — Fixed: upgraded AuthKit to 5.1.2 to patch CVE-2026-4471.
+    Breaking change: the auth service now uses a new IAM role.
+
+    Log, 02:03 — ERROR: AccessDeniedException, not authorized to perform GetSecretValue.
+
+    Ticket #4417 — Priority: high. Reproducible: every time. Three colleagues affected.
+
+    Advisory CVE-2026-4471 — Severity: Critical. Affected versions 5.0.0 to 5.1.1.
+    Patch available in 5.1.2. Upgrade as soon as possible.
+
+    Postmortem INC-2291 — Root cause: the new role was missing GetSecretValue.
+    Action items: check IAM in staging before every deploy; alert on failed backups.
+  text_vi: |
+    Bản 4.2.0 — Đã sửa: nâng AuthKit lên 5.1.2 để vá CVE-2026-4471.
+    Thay đổi phá vỡ: dịch vụ xác thực giờ dùng vai trò IAM mới.
+
+    Log, 02:03 — ERROR: AccessDeniedException, không có quyền thực hiện GetSecretValue.
+
+    Ticket #4417 — Ưu tiên: cao. Tái hiện: lần nào cũng bị. Ba đồng nghiệp cùng gặp.
+
+    Cảnh báo CVE-2026-4471 — Mức độ: Nghiêm trọng. Bản bị ảnh hưởng 5.0.0 đến 5.1.1.
+    Bản vá có ở 5.1.2. Nâng cấp càng sớm càng tốt.
+
+    Postmortem INC-2291 — Nguyên nhân gốc: vai trò mới thiếu quyền GetSecretValue.
+    Việc cần làm: kiểm tra IAM trên staging trước mỗi lần triển khai; cảnh báo khi sao lưu hỏng.
+  questions:
+    - q_en: "Which permission was missing?"
+      choices: ["GetSecretValue", "AuthKit 5.1.2", "CVE-2026-4471"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "The release fixed one problem and caused another. Which?"
+      choices:
+        - "It patched the CVE but broke the auth service's access"
+        - "It broke the backup job"
+        - "It made the database slow"
+      answer: 0
+      skill: infer
+      difficulty: 5
+    - q_en: "What do all five documents describe?"
+      choices: ["One incident, seen from five angles", "Five separate incidents", "A planned upgrade"]
+      answer: 0
+      skill: skim
+      difficulty: 4
+
+writing_task:
+  id: WT-CPR
+  kind: guided_email
+  prompt_vi: >
+    Bạn vừa đọc cả năm tài liệu trên. Viết email cho quản lý tóm tắt: chuyện gì đã xảy ra,
+    nguyên nhân gốc, và việc cần làm để không lặp lại. Viết 5-6 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: chuyện gì xảy ra, ảnh hưởng ai"
+    - "Thân: nguyên nhân gốc"
+    - "Thân: đã xử lý thế nào"
+    - "Kết: việc cần làm để không lặp lại"
+  required_chunks:
+    - ["root cause"]
+    - ["breaking change", "the new role", "the release", "the upgrade"]
+    - ["action items", "next steps", "to prevent this"]
+  min_words: 25
+  hint_vi: "Quản lý cần ba thứ: ảnh hưởng bao nhiêu, vì sao, và bạn làm gì để không lặp lại."
+  sample_en: "Hi Linh, the Portal sign-in was down for seven hours and about 200 users were affected. The root cause was the release: it patched a critical CVE but the new IAM role was missing one permission. We restored the permission and the service is back up. Action items: check IAM in staging before every deploy, and alert on failed backups. Thanks, Hoa"
 
 listening_snippet:
   id: LS-CPR
@@ -119,7 +191,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 90
 

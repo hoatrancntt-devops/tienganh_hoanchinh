@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 8
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Đọc mô tả một endpoint API và nắm: phương thức, tham số bắt buộc, và ý nghĩa mã trả về."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về tham số required và mã trạng thái."
@@ -56,18 +56,59 @@ sentence_patterns:
       endpoint: ["/api/users", "/api/login"]
       code: ["200", "201"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R08
+  kind: doc
   context_vi: >
-    Tài liệu API của secret manager, phần quyền. Đây là cái mà auth service gọi mỗi lần có người
-    đăng nhập. Dòng "Permission" và dòng 403 ở cuối trang giải thích trọn vẹn bảy tiếng mười lăm
-    phút của đêm hôm đó — bằng đúng hai câu tiếng Anh.
-  turns:
-    - {speaker: "", en: "GET /v1/secrets/{id} — Read the value of one secret.", vi: "GET /v1/secrets/{id} — Đọc giá trị của một secret."}
-    - {speaker: "", en: "Path: id (required). Query: version (optional).", vi: "Đường dẫn: id (bắt buộc). Tham số query: version (không bắt buộc)."}
-    - {speaker: "", en: "Permission: the caller needs secretsmanager:GetSecretValue on this secret.", vi: "Quyền: bên gọi phải có secretsmanager:GetSecretValue trên secret này."}
-    - {speaker: "", en: "Returns 200 with the secret value on success.", vi: "Trả về 200 kèm giá trị secret khi thành công."}
-    - {speaker: "", en: "Returns 400 if the id is missing or malformed.", vi: "Trả về 400 nếu thiếu id hoặc id sai định dạng."}
-    - {speaker: "", en: "Returns 403 if the caller does not have the permission above.", vi: "Trả về 403 nếu bên gọi không có quyền nói trên."}
+    Tài liệu API của secret manager, phần quyền. Đây là cái mà auth service gọi mỗi lần có người đăng nhập. Dòng "Permission" và dòng 403 ở cuối trang giải thích trọn vẹn bảy tiếng mười lăm phút của đêm hôm đó — bằng đúng hai câu tiếng Anh.
+  text_en: |
+    GET /v1/secrets/{id} — Read the value of one secret.
+    Path: id (required). Query: version (optional).
+    Permission: the caller needs secretsmanager:GetSecretValue on this secret.
+    Returns 200 with the secret value on success.
+    Returns 400 if the id is missing or malformed.
+    Returns 403 if the caller does not have the permission above.
+  text_vi: |
+    GET /v1/secrets/{id} — Đọc giá trị của một secret.
+    Đường dẫn: id (bắt buộc). Tham số query: version (không bắt buộc).
+    Quyền: bên gọi phải có secretsmanager:GetSecretValue trên secret này.
+    Trả về 200 kèm giá trị secret khi thành công.
+    Trả về 400 nếu thiếu id hoặc id sai định dạng.
+    Trả về 403 nếu bên gọi không có quyền nói trên.
+  questions:
+    - q_en: "Which parameter is optional?"
+      choices: ["version", "id", "Both are required"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "You call the endpoint and get 403. What is wrong?"
+      choices:
+        - "The caller does not have the permission"
+        - "The id is missing"
+        - "The secret does not exist"
+      answer: 0
+      skill: infer
+      difficulty: 4
+
+writing_task:
+  id: WT-R08
+  kind: guided_email
+  prompt_vi: >
+    Viết email xin cấp quyền gọi endpoint này cho service của bạn: cần quyền gì, để làm gì.
+    Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào nhóm hạ tầng"
+    - "Thân: cần quyền gì trên endpoint nào"
+    - "Thân: để làm gì"
+    - "Kết: cảm ơn"
+  required_chunks:
+    - ["i need access", "could i have access", "please grant", "we need access", "could we have access"]
+    - ["endpoint", "api"]
+    - ["thanks", "thank you"]
+  min_words: 20
+  hint_vi: "Xin quyền phải nói rõ để LÀM GÌ — người duyệt không cấp quyền cho một lý do mơ hồ."
+  sample_en: "Hi infra team, we need access to the GET /v1/secrets endpoint for the reporting service. It needs to read one secret to connect to the database. Could you grant secretsmanager:GetSecretValue on that secret only? Thanks, Hoa"
 
 listening_snippet:
   id: LS-R08
@@ -153,7 +194,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

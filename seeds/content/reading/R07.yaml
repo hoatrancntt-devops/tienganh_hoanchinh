@@ -8,7 +8,7 @@ phase: reading
 topic: it_english
 cefr_target: b1
 order_index: 7
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Theo dõi một luồng chat nhóm và nắm: quyết định cuối cùng, ai làm gì, còn gì chưa chốt."
 objective_observable: "Trả lời đúng 4/5 câu hỏi về quyết định và người phụ trách."
@@ -56,19 +56,63 @@ sentence_patterns:
       person: ["Minh", "I"]
       action: ["take the deploy", "update the doc"]
 
-dialogue:
+
+reading_passage:
+  id: RP-R07
+  kind: chat
   context_vi: >
-    Kênh #inc-2291, từ 4 giờ sáng đến lúc hệ thống lên lại. Bạn có mặt trong luồng này suốt hai
-    tiếng đầu, rồi bàn giao và đi ngủ. Giờ bạn đọc lại cả luồng để viết phần diễn biến cho Linh —
-    kể cả đoạn xảy ra khi bạn đang ngủ.
-  turns:
-    - {speaker: "", en: "04:32 David Carter: Still down. I need an update every 30 minutes.", vi: "04:32 David Carter: Vẫn chưa lên. Tôi cần cập nhật mỗi 30 phút."}
-    - {speaker: "", en: "05:52 You: Handing over to Priya at 06:00. Everything is in this thread.", vi: "05:52 Bạn: Bàn giao cho Priya lúc 06:00. Mọi thứ nằm trong luồng này."}
-    - {speaker: "", en: "06:04 Priya Nair: I have it. Option A: roll back 4.2.0. Option B: check the new IAM role first.", vi: "06:04 Priya Nair: Tôi nhận rồi. Phương án A: roll back bản 4.2.0. Phương án B: kiểm tra IAM role mới trước."}
-    - {speaker: "", en: "06:06 Linh: +1 to option B. A rollback brings the CVE back.", vi: "06:06 Linh: +1 phương án B. Roll back là lỗ hổng CVE quay lại."}
-    - {speaker: "", en: "06:07 Priya Nair: Agreed. Let's go with option B. I'll take it. cc @David for visibility.", vi: "06:07 Priya Nair: Đồng ý. Chốt phương án B. Để tôi nhận. cc @David cho biết."}
-    - {speaker: "", en: "08:31 Priya Nair: Found it. The new role can't read the database secret.", vi: "08:31 Priya Nair: Tìm ra rồi. Role mới không đọc được secret của CSDL."}
-    - {speaker: "", en: "09:15 Priya Nair: Permission restored, the portal is up. Let's circle back on Monday for the postmortem.", vi: "09:15 Priya Nair: Đã cấp lại quyền, portal lên rồi. Thứ Hai bàn lại để làm postmortem."}
+    Kênh #inc-2291, từ 4 giờ sáng đến lúc hệ thống lên lại. Bạn có mặt trong luồng này suốt hai tiếng đầu, rồi bàn giao và đi ngủ. Giờ bạn đọc lại cả luồng để viết phần diễn biến cho Linh — kể cả đoạn xảy ra khi bạn đang ngủ.
+  text_en: |
+    04:32 David Carter: Still down. I need an update every 30 minutes.
+    05:52 You: Handing over to Priya at 06:00. Everything is in this thread.
+    06:04 Priya Nair: I have it. Option A: roll back 4.2.0. Option B: check the new IAM role first.
+    06:06 Linh: +1 to option B. A rollback brings the CVE back.
+    06:07 Priya Nair: Agreed. Let's go with option B. I'll take it. cc @David for visibility.
+    08:31 Priya Nair: Found it. The new role can't read the database secret.
+    09:15 Priya Nair: Permission restored, the portal is up. Let's circle back on Monday for the postmortem.
+  text_vi: |
+    04:32 David Carter: Vẫn chưa lên. Tôi cần cập nhật mỗi 30 phút.
+    05:52 Bạn: Bàn giao cho Priya lúc 06:00. Mọi thứ nằm trong luồng này.
+    06:04 Priya Nair: Tôi nhận rồi. Phương án A: roll back bản 4.2.0. Phương án B: kiểm tra IAM role mới trước.
+    06:06 Linh: +1 phương án B. Roll back là lỗ hổng CVE quay lại.
+    06:07 Priya Nair: Đồng ý. Chốt phương án B. Để tôi nhận. cc @David cho biết.
+    08:31 Priya Nair: Tìm ra rồi. Role mới không đọc được secret của CSDL.
+    09:15 Priya Nair: Đã cấp lại quyền, portal lên rồi. Thứ Hai bàn lại để làm postmortem.
+  questions:
+    - q_en: "Who took over the incident at 06:00?"
+      choices: ["Priya Nair", "David Carter", "Linh"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+    - q_en: "Why did the team not roll back?"
+      choices: ["A rollback would bring the CVE back", "It was too slow", "David said no"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "In this thread, \"circle back\" means:"
+      choices: ["return to it later", "cancel it", "ask someone else"]
+      answer: 0
+      skill: guess_word
+      difficulty: 4
+
+writing_task:
+  id: WT-R07
+  kind: guided_email
+  prompt_vi: >
+    Viết tin nhắn bàn giao ca cho người trực tiếp theo: việc gì còn mở, cần theo dõi gì,
+    ghi chú ở đâu. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào người nhận ca"
+    - "Thân: bàn giao lúc mấy giờ + việc gì còn mở"
+    - "Thân: cần để mắt tới cái gì"
+    - "Kết: ghi chú nằm ở đâu"
+  required_chunks:
+    - ["handing over", "i'm handing over", "handover", "i am handing over"]
+    - ["still open", "still down", "open items", "still not fixed"]
+    - ["the notes are in", "everything is in", "details are in", "notes are in"]
+  min_words: 20
+  hint_vi: "Bàn giao phải nói rõ cái gì CHƯA xong. Người nhận ca không cần nghe lại cái đã xong."
+  sample_en: "Hi Priya, I am handing over to you at 06:00. The sign-in issue is still open and the portal is down. Please keep an eye on the error rate — it goes over ten per minute at peak. All the notes are in this thread. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R07
@@ -154,7 +198,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

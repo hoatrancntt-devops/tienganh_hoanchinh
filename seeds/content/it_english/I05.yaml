@@ -8,7 +8,7 @@ phase: it_english
 topic: it_english
 cefr_target: b1
 order_index: 5
-est_minutes: 11
+est_minutes: 15
 
 objective_vi: "Giải thích nguyên nhân và cách khắc phục bằng ngôn ngữ đời thường, không thuật ngữ, có so sánh dễ hiểu."
 objective_observable: "Đạt ≥75 điểm giao tiếp trên 3/4 drill, tránh thuật ngữ hoặc có giải nghĩa kèm."
@@ -74,6 +74,65 @@ dialogue:
     - {speaker: Emma, en: "Oh. So it's not me. But why is even the error so slow to appear?", vi: "Ồ. Vậy không phải lỗi tôi. Nhưng sao đến cái thông báo lỗi cũng hiện chậm vậy?"}
     - {speaker: You, en: "Because everyone in your office is retrying at the same time. Basically, the server got overloaded. Think of it as a traffic jam.", vi: "Vì cả phòng chị cùng thử lại một lúc. Nói đơn giản, máy chủ bị quá tải. Cứ hình dung như kẹt xe."}
     - {speaker: You, en: "It's not you at all. In other words, we have to fix it on our side. Does that make sense?", vi: "Hoàn toàn không phải lỗi chị. Nói cách khác, bên tôi phải sửa. Vậy có dễ hiểu không ạ?"}
+
+reading_passage:
+  id: RP-I05
+  kind: email
+  context_vi: >
+    Thư giải thích sự cố cho một quản lý không rành kỹ thuật. Để ý: không có từ chuyên môn nào
+    mà vẫn nói đủ chuyện.
+  text_en: |
+    Hi Ms Brooks,
+
+    Basically, our system keeps its passwords in a locked box.
+    Last night we changed the key, and the service could not open the box any more.
+    In other words, the software was fine — it just lost its own key.
+    The good news is that no data was lost and nobody could see your invoices.
+    To prevent this, we will test the key before every release.
+    Does that make sense?
+
+    Hoa
+  text_vi: |
+    Chào chị Brooks,
+
+    Nói đơn giản thì hệ thống của bên em cất mật khẩu trong một cái két khoá.
+    Tối qua bọn em đổi chìa, và dịch vụ không mở được két nữa.
+    Nói cách khác, phần mềm không hỏng — nó chỉ mất chìa của chính nó.
+    Tin tốt là không mất dữ liệu nào và không ai xem được hoá đơn của chị.
+    Để không lặp lại, bọn em sẽ kiểm tra chìa trước mỗi lần phát hành.
+    Chị thấy có dễ hiểu không ạ?
+
+    Hoa
+  questions:
+    - q_en: "What is the \"locked box\" in this email?"
+      choices: ["Where the system keeps passwords", "The customer's computer", "The invoice folder"]
+      answer: 0
+      skill: infer
+      difficulty: 4
+    - q_en: "Was any data lost?"
+      choices: ["No", "Yes, some invoices", "The email does not say"]
+      answer: 0
+      skill: scan
+      difficulty: 3
+
+writing_task:
+  id: WT-I05
+  kind: guided_email
+  prompt_vi: >
+    Giải thích cho một quản lý không rành kỹ thuật: server đầy ổ đĩa nên hệ thống ngừng nhận
+    đơn hàng. Dùng một hình ảnh so sánh, không dùng từ chuyên môn. Viết 4-5 câu.
+  frame_vi:
+    - "Mở: chào"
+    - "Thân: nói đơn giản chuyện gì xảy ra + một hình ảnh so sánh"
+    - "Thân: tin tốt là gì"
+    - "Kết: sẽ làm gì để không lặp lại + hỏi đã rõ chưa"
+  required_chunks:
+    - ["basically", "think of it as", "in other words", "put simply"]
+    - ["the good news is", "good news"]
+    - ["to prevent this", "so this does not happen", "to avoid this", "so it doesn't happen again"]
+  min_words: 20
+  hint_vi: "Một hình ảnh so sánh đáng giá hơn ba câu giải thích kỹ thuật. Và luôn nói tin tốt."
+  sample_en: "Hi Ms Brooks, basically our server ran out of space, like a filing cabinet with no room left for new folders. That is why new orders were not saved. The good news is that no existing order was lost. To prevent this, we will add an alert at 80 percent. Does that make sense? Thanks, Hoa"
 
 listening_snippet:
   id: LS-I05
@@ -181,7 +240,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 75
-  mastery_weights: {speak: 0.5, quiz: 0.3, listen: 0.2}
+  mastery_weights: {speak: 0.35, listen: 0.15, read: 0.15, write: 0.15, quiz: 0.20}
   min_speaking_attempts: 4
   challenge_threshold: 85
 
