@@ -5,13 +5,14 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import current_user
 from app.db.session import get_session
 from app.models.content import Activity, Item, Lesson
-from app.models.enums import LessonState, NotifType
+from app.models.enums import ActivityKind, LessonState, NotifType
 from app.models.progress import ItemAttempt
 from app.models.user import User
 from app.schemas.learning import AttemptResultOut, LessonCardOut, NextUpOut, SubmitAttemptIn
 from app.services import learning_path_service as path
 from app.services import notification_service as notif
 from app.services import prerequisite_service as prereq
+from app.services import writing_service as writing
 from app.services.ai import fallback
 
 router = APIRouter(prefix="/api/v1/learn", tags=["learning"])
@@ -96,7 +97,16 @@ async def submit_attempt(
     lesson = await db.get(Lesson, activity.lesson_id)
 
     # Chấm quiz/vocab bằng so đáp án — không LLM.
-    if item.answer_index is not None:
+    if activity.kind == ActivityKind.WRITE:
+        # Đáp án nằm ở scoring_weights phía server, không bao giờ gửi xuống client.
+        task = dict(item.scoring_weights or {})
+        task["common_mistakes"] = lesson.common_mistakes or []
+        answer = payload.texts or (payload.text or "")
+        graded = writing.grade(task, answer)
+        is_correct, score, feedback = graded["correct"], float(graded["score"]), graded["feedback_vi"]
+        if graded.get("sample"):
+            feedback += f" Câu mẫu: “{graded['sample']}”"
+    elif item.answer_index is not None:
         is_correct = payload.choice_index == item.answer_index
         score = 100.0 if is_correct else 0.0
         feedback = "Chính xác." if is_correct else _wrong_answer_hint(lesson, item)
@@ -110,7 +120,8 @@ async def submit_attempt(
         ItemAttempt(
             user_id=user.id, item_id=item.id, lesson_id=lesson.id,
             activity_kind=activity.kind, is_correct=is_correct, score=score,
-            response={"choice_index": payload.choice_index, "text": payload.text},
+            response={"choice_index": payload.choice_index, "text": payload.text,
+                      "texts": payload.texts},
             latency_ms=payload.latency_ms, is_preview=payload.is_preview,
         )
     )

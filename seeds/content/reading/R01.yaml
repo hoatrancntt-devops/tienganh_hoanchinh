@@ -8,7 +8,7 @@ phase: reading
 topic: office
 cefr_target: a2
 order_index: 1
-est_minutes: 10
+est_minutes: 14
 
 objective_vi: "Đọc một email công việc và xác định được: ai phải làm gì, trước khi nào."
 objective_observable: "Trả lời đúng 4/5 câu hỏi đọc hiểu về hành động và hạn chót."
@@ -55,17 +55,85 @@ sentence_patterns:
       action: ["review the doc", "send the report", "confirm your attendance"]
       deadline: ["EOD Friday", "tomorrow morning", "the end of the week"]
 
-dialogue:
+# Email này trước đây nằm trong `dialogue` với speaker turns và được sinh audio — nghĩa là
+# học viên NGHE email thay vì đọc nó. Giờ nó là văn bản liền, không tiếng, đúng kỹ năng đọc.
+reading_passage:
+  id: RP-R01
+  kind: email
   context_vi: >
     Sáng thứ Hai sau đêm sự cố. Bạn ngủ được bốn tiếng, mở hộp thư, và email đầu tiên là của Linh.
     Nó không dài. Nhưng trong đó có một việc của bạn và một cái hạn.
-  turns:
-    - {speaker: Linh, en: "Subject: Action required — INC-2291 postmortem", vi: "Tiêu đề: Cần xử lý — postmortem sự cố INC-2291"}
-    - {speaker: Linh, en: "Hi team, as discussed on Friday, the Northwind Portal was down for 7 hours and 15 minutes.", vi: "Chào cả nhóm, như đã trao đổi hôm thứ Sáu, Northwind Portal đã sập 7 giờ 15 phút."}
-    - {speaker: Linh, en: "Please send me your notes for the timeline by EOD Wednesday.", vi: "Vui lòng gửi tôi ghi chú của bạn cho phần diễn biến, trước cuối ngày thứ Tư."}
-    - {speaker: Linh, en: "Please note the postmortem meeting with David is on Friday.", vi: "Xin lưu ý buổi họp postmortem với David là vào thứ Sáu."}
-    - {speaker: Linh, en: "FYI, the backup job has been fixed. Nobody needs to look at it.", vi: "Để mọi người biết: job backup đã được sửa. Không ai phải đụng vào nữa."}
-    - {speaker: Linh, en: "Let me know if you can't make the deadline. Thanks, Linh", vi: "Nếu không kịp hạn thì báo tôi. Cảm ơn, Linh"}
+    Đọc bằng mắt, đừng đọc thành tiếng — email công việc là để quét, không phải để ngâm.
+  text_en: |
+    Subject: Action required — INC-2291 postmortem
+
+    Hi team,
+
+    As discussed on Friday, the Northwind Portal was down for 7 hours and 15 minutes.
+    Please send me your notes for the timeline by EOD Wednesday.
+    Please note the postmortem meeting with David is on Friday.
+    FYI, the backup job has been fixed. Nobody needs to look at it.
+
+    Let me know if you can't make the deadline.
+
+    Thanks,
+    Linh
+  text_vi: |
+    Tiêu đề: Cần xử lý — postmortem sự cố INC-2291
+
+    Chào cả nhóm,
+
+    Như đã trao đổi hôm thứ Sáu, Northwind Portal đã sập 7 giờ 15 phút.
+    Vui lòng gửi tôi ghi chú của bạn cho phần diễn biến, trước cuối ngày thứ Tư.
+    Xin lưu ý buổi họp postmortem với David là vào thứ Sáu.
+    Để mọi người biết: job backup đã được sửa. Không ai phải đụng vào nữa.
+
+    Nếu không kịp hạn thì báo tôi.
+
+    Cảm ơn,
+    Linh
+  questions:
+    - q_en: "What do you have to do?"
+      choices:
+        - "Send Linh your notes for the timeline"
+        - "Fix the backup job"
+        - "Book a meeting room for Friday"
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "When is your deadline?"
+      choices: ["End of day Wednesday", "Friday", "Monday morning"]
+      answer: 0
+      skill: scan
+      difficulty: 2
+    - q_en: "Who needs to look at the backup job?"
+      choices: ["Nobody", "The whole team", "You and David"]
+      answer: 0
+      skill: infer
+      difficulty: 3
+    - q_en: "In this email, \"EOD\" means:"
+      choices: ["End of day", "Every other day", "End of deployment"]
+      answer: 0
+      skill: guess_word
+      difficulty: 3
+
+writing_task:
+  id: WT-R01
+  kind: guided_email
+  prompt_vi: >
+    Trả lời email của Linh: bạn sẽ gửi ghi chú, nhưng xin lùi hạn sang thứ Năm vì còn phải
+    lấy log. Viết 2-3 câu.
+  frame_vi:
+    - "Mở: chào Linh"
+    - "Thân: xác nhận sẽ gửi + xin lùi hạn sang thứ Năm + lý do"
+    - "Kết: cảm ơn và ký tên"
+  required_chunks:
+    - ["i'll send", "i will send", "i can send"]
+    - ["thursday"]
+    - ["is that ok", "let me know", "if that works", "would that be ok"]
+  min_words: 15
+  hint_vi: "Xin lùi hạn thì phải nói RÕ ngày mới, không nói “a bit later”."
+  sample_en: "Hi Linh, I'll send my notes, but could I have until Thursday? I still need to pull the logs. Let me know if that works. Thanks, Hoa"
 
 listening_snippet:
   id: LS-R01
@@ -157,7 +225,7 @@ mini_quiz:
 
 unlock_condition:
   mastery_threshold: 70
-  mastery_weights: {quiz: 0.7, listen: 0.3}
+  mastery_weights: {read: 0.45, write: 0.25, quiz: 0.20, listen: 0.10}
   min_speaking_attempts: 0
   challenge_threshold: 85
 

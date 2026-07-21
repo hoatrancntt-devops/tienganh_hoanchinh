@@ -6,7 +6,11 @@ const Player = (() => {
     data.activities.forEach(a => {
       // Đoạn nghe: chèn màn nghe (bối cảnh + audio) TRƯỚC câu hỏi, nếu không người học chỉ đoán.
       if (a.kind === 'listen' && a.audio) flat.push({ __listen: true, act: a.kind, audio: a.audio, config: a.config || {} });
-      a.items.forEach(i => flat.push({ ...i, act: a.kind, listenAudio: a.kind === 'listen' ? a.audio : null }));
+      // Bài đọc: chèn màn đọc TRƯỚC câu hỏi. Cố ý không có nút phát — xem chú thích
+      // cột Lesson.reading_passage: bài đọc mà nghe được thì không còn là bài đọc.
+      if (a.kind === 'read') flat.push({ __read: true, act: a.kind, config: a.config || {} });
+      a.items.forEach(i => flat.push({ ...i, act: a.kind, config: a.config || {},
+        listenAudio: a.kind === 'listen' ? a.audio : null }));
     });
     // Chèn màn "Học từ & hội thoại" làm bước ĐẦU TIÊN nếu bài có nội dung học.
     const s = data.study || {};
@@ -24,11 +28,14 @@ const Player = (() => {
     if (it.__chapter) return { icon: '📕', label: 'Mở chương' };
     if (it.__study) return { icon: '📖', label: 'Học từ & hội thoại' };
     if (it.__listen) return { icon: '🎧', label: 'Nghe đoạn hội thoại' };
+    if (it.__read) return { icon: '📄', label: 'Đọc văn bản' };
+    if (it.act === 'write') return { icon: '✍️', label: 'Viết' };
     if (it.choices && it.choices.length) {
       if (it.audio || it.listenAudio) return { icon: '🎧', label: 'Nghe hiểu' };
-      return L.phase === 'reading'
-        ? { icon: '📖', label: 'Đọc hiểu' }
-        : { icon: '🧠', label: 'Ôn từ & mẫu câu' };
+      // Nhãn theo hoạt động, không theo phase: sau khi mọi bài có đủ 4 kỹ năng thì
+      // phase chỉ còn là chủ đề, không nói được bước này đang luyện gì.
+      if (it.act === 'read') return { icon: '📖', label: 'Đọc hiểu' };
+      return { icon: '🧠', label: 'Ôn từ & mẫu câu' };
     }
     return { icon: '🎙', label: it.act === 'shadow' ? 'Nói — nhắc lại mẫu' : 'Nói' };
   }
@@ -60,6 +67,18 @@ const Player = (() => {
       document.getElementById('stage').innerHTML = listenView(it);
       nb.disabled = false;                       // màn nghe: không chấm
       nb.textContent = 'Trả lời câu hỏi';
+      return;
+    }
+    if (it.__read) {
+      document.getElementById('stage').innerHTML = readView(it);
+      nb.disabled = false;                       // màn đọc: không chấm
+      nb.textContent = 'Trả lời câu hỏi';
+      return;
+    }
+    if (it.act === 'write') {
+      document.getElementById('stage').innerHTML = writeView(it);
+      nb.disabled = true;
+      nb.textContent = idx === flat.length - 1 ? 'Hoàn thành' : 'Tiếp theo';
       return;
     }
     document.getElementById('stage').innerHTML = (it.choices && it.choices.length) ? quizView(it) : speakView(it);
@@ -127,6 +146,77 @@ const Player = (() => {
         <p><b>${esc(c.transcript_en)}</b></p>${c.transcript_vi ? `<p class="mut-3">${esc(c.transcript_vi)}</p>` : ''}</div></details>` : ''}
     </div>`;
   }
+  // Màn đọc: văn bản liền, KHÔNG có nút phát. Bản dịch giấu tới khi trả lời xong —
+  // mở sẵn thì học viên đọc tiếng Việt và phần đọc tiếng Anh thành trang trí.
+  function readView(it) {
+    const c = it.config || {};
+    return `<div class="card">
+      <div class="pill pill-acc" style="margin-bottom:.9rem">📄 Đọc văn bản</div>
+      ${c.context_vi ? `<p class="prompt-vi" style="margin-bottom:1rem">${esc(c.context_vi)}</p>` : ''}
+      <div class="passage">${esc(c.text_en || '')}</div>
+      <p class="hint" style="margin-top:1rem">Đọc bằng mắt, quét tìm thông tin. Chưa cần hiểu từng chữ.</p>
+    </div>`;
+  }
+  // Bản dịch chỉ mở sau khi đã trả lời — gắn vào màn câu hỏi đọc, không gắn vào màn đọc.
+  function readTranslation(it) {
+    const c = it.config || {};
+    if (!c.text_vi) return '';
+    return `<details class="acc" style="margin-top:1rem"><summary>🇻🇳 Xem bản dịch</summary>
+      <div class="acc-body"><div class="passage">${esc(c.text_vi)}</div></div></details>`;
+  }
+  function writeView(it) {
+    const c = it.config || {};
+    const kind = c.kind || it.kind;
+    const frame = (c.frame_vi || []).map(f => `<li>${esc(f)}</li>`).join('');
+    let input;
+    if (kind === 'reorder') {
+      // Xáo ở client từ danh sách server gửi xuống đã KHÔNG kèm thứ tự đúng.
+      const lines = shuffle((c.lines || []).slice());
+      input = `<div id="reorder" class="reorder">${lines.map((l, i) =>
+        `<button class="choice" data-line="${esc(l)}" onclick="Player.pickLine(this)">${esc(l)}</button>`
+      ).join('')}</div><div class="mut-3" id="reorderPicked" style="margin-top:.6rem">Bấm theo đúng thứ tự.</div>`;
+    } else if (c.so_o > 0) {
+      input = Array.from({ length: c.so_o }, (_, i) =>
+        `<input class="winput" id="w${i}" placeholder="Ô ${i + 1}" autocomplete="off">`).join('');
+    } else {
+      input = `<textarea class="winput wbox" id="w0" rows="5" placeholder="Viết câu trả lời của bạn…"></textarea>`;
+    }
+    return `<div class="card">
+      <div class="pill pill-acc" style="margin-bottom:.9rem">✍️ Viết</div>
+      <p class="prompt-vi" style="margin:0 0 1rem;color:var(--fg)">${esc(it.prompt_vi || it.prompt_en)}</p>
+      ${frame ? `<div class="card-tight" style="background:var(--card-2);margin-bottom:1rem"><div class="hero-tag">Khung gợi ý</div><ul style="margin:.4rem 0 0 1rem">${frame}</ul></div>` : ''}
+      ${input}
+      ${c.min_words ? `<div class="mut-3" style="margin-top:.4rem">Ít nhất ${c.min_words} từ</div>` : ''}
+      <button class="btn btn-full" style="margin-top:.9rem" id="wsubmit" onclick="Player.submitWrite()">Nộp bài</button>
+      ${c.hint_vi ? `<details class="acc" style="margin-top:.8rem"><summary>💡 Gợi ý</summary><div class="acc-body">${esc(c.hint_vi)}</div></details>` : ''}
+      <div id="fb" style="margin-top:.9rem"></div></div>`;
+  }
+  function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  let picked = [];
+  function pickLine(btn) {
+    if (btn.disabled) return;
+    btn.disabled = true; btn.classList.add('ok');
+    picked.push(btn.dataset.line);
+    document.getElementById('reorderPicked').textContent = 'Đã chọn: ' + picked.join(' → ');
+  }
+  async function submitWrite() {
+    if (busy) return; busy = true;
+    const it = flat[idx], c = it.config || {};
+    const kind = c.kind || it.kind;
+    let texts;
+    if (kind === 'reorder') texts = picked;
+    else if (c.so_o > 0) texts = Array.from({ length: c.so_o }, (_, i) => document.getElementById('w' + i).value);
+    else texts = [document.getElementById('w0').value];
+    const btn = document.getElementById('wsubmit');
+    btn.disabled = true; btn.textContent = 'Đang chấm…';
+    const r = await api('/api/v1/learn/attempt', { item_id: it.id, texts, latency_ms: 0, is_preview: L.is_preview });
+    busy = false; btn.textContent = 'Nộp lại';  btn.disabled = false;
+    if (!r.ok) { toast(r.data.detail || 'Lỗi khi chấm bài.', 'err'); return; }
+    document.getElementById('fb').innerHTML =
+      `<div class="alert alert-${r.data.is_correct ? 'ok' : 'warn'}">${esc(r.data.feedback_vi)}</div>`;
+    picked = [];
+    done(r.data);
+  }
   function quizView(it) {
     const m = stepMeta(it);
     const listen = it.audio || it.listenAudio;
@@ -135,7 +225,8 @@ const Player = (() => {
       ${listen ? `<button class="playbtn" onclick="Player.play('${listen}')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> ${it.audio ? 'Nghe câu' : 'Nghe lại đoạn'}</button>` : ''}
       <p class="prompt-vi" style="margin:.9rem 0 1rem;font-size:.98rem;color:var(--fg)">${esc(it.prompt_vi || it.prompt_en)}</p>
       <div id="choices">${it.choices.map((c, i) => `<button class="choice" data-i="${i}" onclick="Player.answer(${i})">${esc(c)}</button>`).join('')}</div>
-      <div id="fb" style="margin-top:.9rem"></div></div>`;
+      <div id="fb" style="margin-top:.9rem"></div>
+      ${it.act === 'read' ? readTranslation(it) : ''}</div>`;
   }
   function speakView(it) {
     const m = stepMeta(it);
@@ -218,5 +309,5 @@ const Player = (() => {
     document.querySelector('.player-nav').style.display = 'none';
   }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-  return { init, play, answer, mic, next };
+  return { init, play, answer, mic, next, pickLine, submitWrite };
 })();

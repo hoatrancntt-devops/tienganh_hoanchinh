@@ -100,6 +100,92 @@ class QuizItem(BaseModel):
     focus_phonemes: list[str] = []
 
 
+class ReadQ(BaseModel):
+    """Câu hỏi đọc hiểu. Đề bằng tiếng Anh — hỏi bằng tiếng Việt là đo hiểu tiếng Việt."""
+    model_config = ConfigDict(extra="forbid")
+    q_en: str = Field(min_length=5)
+    choices: list[str] = Field(min_length=2)
+    answer: int
+    # scan: tìm thông tin cụ thể · skim: ý chính · infer: suy luận · guess_word: đoán nghĩa từ ngữ cảnh
+    skill: str = Field(default="scan", pattern="^(scan|skim|infer|guess_word)$")
+    difficulty: int = Field(default=2, ge=1, le=5)
+
+
+class ReadingPassage(BaseModel):
+    """Văn bản liền mạch để ĐỌC.
+
+    Khác `Dialogue` ở hai điểm sống còn: không chia lượt người nói, và KHÔNG SINH AUDIO.
+    Bài đọc mà nghe được thì học viên sẽ nghe thay vì đọc, và kỹ năng đọc lại biến mất —
+    đó đúng là hiện trạng của 11 bài phase `reading` trước bản này.
+    """
+    model_config = ConfigDict(extra="forbid")
+    id: str
+    kind: str = Field(default="email", pattern="^(email|chat|ticket|doc|announcement|log)$")
+    context_vi: str = ""
+    text_en: str = Field(min_length=40)
+    text_vi: str = Field(min_length=20)      # bản dịch, chỉ mở sau khi trả lời
+    questions: list[ReadQ] = Field(min_length=2)
+
+    @model_validator(mode="after")
+    def cau_hoi_phai_da_dang(self):
+        if len({q.skill for q in self.questions}) < 2:
+            raise ValueError(
+                f"{self.id}: cần ≥2 loại câu hỏi đọc khác nhau (scan/skim/infer/guess_word), "
+                f"đang chỉ có một loại"
+            )
+        return self
+
+
+class WritingTask(BaseModel):
+    """Bài viết nhúng trong bài học. Chấm 100% bằng luật qua `writing_service.grade()`.
+
+    Dùng chung từ vựng dạng bài với bộ luyện viết độc lập ở `seeds/writing/*.yaml` —
+    một bộ chấm, một tập tên dạng bài, không dựng hệ song song.
+
+    `guided_email` là dạng duy nhất có đầu ra tự do, nên nó bắt buộc khai `required_chunks`
+    kèm biến thể chấp nhận được. Thiếu biến thể là nguyên nhân số một khiến chấm luật đánh
+    trượt người viết đúng theo cách khác.
+    """
+    model_config = ConfigDict(extra="forbid")
+    id: str
+    kind: str = Field(
+        pattern="^(translate|compose|fill_blank|error_correction|reorder|guided_email)$"
+    )
+    prompt_vi: str = Field(min_length=10)
+    prompt_en: str = ""
+    hint_vi: str = ""
+    sample_en: str = ""
+
+    accept: list[str] = []                   # translate
+    keywords: list[str] = []                 # compose
+    blanks: list[list[str]] = []             # fill_blank / error_correction: mỗi ô một tập đáp án
+    ordered_lines: list[str] = []            # reorder: ĐÚNG thứ tự; UI xáo trước khi hiện
+    frame_vi: list[str] = []                 # guided_email: khung mở/thân/kết hiện cạnh ô nhập
+    required_chunks: list[list[str]] = []    # guided_email: mỗi nhóm = các cách nói cùng một ý
+    min_words: int = Field(default=0, ge=0)
+
+    @model_validator(mode="after")
+    def du_lieu_khop_voi_dang_bai(self):
+        if self.kind == "translate" and not self.accept:
+            raise ValueError(f"{self.id}: dạng 'translate' phải có `accept`")
+        if self.kind == "compose" and not self.keywords:
+            raise ValueError(f"{self.id}: dạng 'compose' phải có `keywords`")
+        if self.kind in ("fill_blank", "error_correction") and not self.blanks:
+            raise ValueError(f"{self.id}: dạng '{self.kind}' phải có `blanks`")
+        if self.kind == "reorder" and len(self.ordered_lines) < 3:
+            raise ValueError(f"{self.id}: dạng 'reorder' cần ≥3 câu trong `ordered_lines`")
+        if self.kind == "guided_email":
+            if len(self.required_chunks) < 3:
+                raise ValueError(f"{self.id}: 'guided_email' cần ≥3 nhóm `required_chunks`")
+            if self.min_words < 5:
+                raise ValueError(f"{self.id}: 'guided_email' cần `min_words` ≥5")
+        if any(not nhom for nhom in self.required_chunks):
+            raise ValueError(f"{self.id}: có nhóm `required_chunks` rỗng")
+        if any(not nhom for nhom in self.blanks):
+            raise ValueError(f"{self.id}: có ô trống không khai đáp án nào")
+        return self
+
+
 class Prereq(BaseModel):
     model_config = ConfigDict(extra="forbid")
     lesson: str
@@ -107,16 +193,28 @@ class Prereq(BaseModel):
     kind: str = Field(default="hard", pattern="^(hard|soft)$")
 
 
+# Khoá hợp lệ của mastery_weights. Gõ sai tên khoá không làm gãy gì — trọng số đó chỉ
+# lặng lẽ không bao giờ khớp điểm nào, và bài nhẹ đi đúng phần đó.
+MASTERY_KINDS = {"speak", "listen", "read", "write", "quiz"}
+
+
 class Unlock(BaseModel):
     model_config = ConfigDict(extra="forbid")
     mastery_threshold: int = Field(default=80, ge=50, le=100)
-    mastery_weights: dict[str, float] = {"speak": 0.5, "quiz": 0.3, "listen": 0.2}
+    mastery_weights: dict[str, float] = {
+        "speak": 0.30, "listen": 0.20, "read": 0.15, "write": 0.15, "quiz": 0.20,
+    }
     min_speaking_attempts: int = Field(default=4, ge=0)
     challenge_threshold: int = Field(default=85, ge=50, le=100)
 
     @field_validator("mastery_weights")
     @classmethod
     def weights_sum_to_one(cls, v: dict[str, float]) -> dict[str, float]:
+        la = set(v) - MASTERY_KINDS
+        if la:
+            raise ValueError(
+                f"mastery_weights có khoá lạ {sorted(la)} — hợp lệ: {sorted(MASTERY_KINDS)}"
+            )
         total = sum(v.values())
         if abs(total - 1.0) > 0.001:
             raise ValueError(f"mastery_weights phải cộng đúng 1.0, đang là {total}")
@@ -135,7 +233,9 @@ class LessonYAML(BaseModel):
     topic: str = Field(pattern="^(core|social|food|transport|office|it_english)$")
     cefr_target: str = Field(default="pre_a1", pattern="^(pre_a1|a1|a2|b1)$")
     order_index: int = Field(ge=0)
-    est_minutes: int = Field(default=10, ge=3, le=12)  # bài dài là bài không được học
+    # Bài dài là bài không được học. Trần nới từ 12 lên 16 khi thêm Đọc + Viết vào mọi bài:
+    # đọc ~2 phút, viết ~3 phút. Player chia hai khối (nghe-nói / đọc-viết) để dừng giữa được.
+    est_minutes: int = Field(default=10, ge=3, le=16)
     is_checkpoint: bool = False
     unit: str
     status: str = Field(default="published", pattern="^(draft|published)$")
@@ -147,6 +247,8 @@ class LessonYAML(BaseModel):
     sentence_patterns: list[Pattern] = []
     dialogue: Dialogue | None = None
     listening_snippet: Listening | None = None
+    reading_passage: ReadingPassage | None = None
+    writing_task: WritingTask | None = None
     speaking_drills: list[Drill] = []
     vietnamese_explanation: Explanation
     common_mistakes: list[Mistake] = Field(min_length=2)

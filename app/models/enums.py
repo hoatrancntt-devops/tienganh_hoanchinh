@@ -43,6 +43,7 @@ class ActivityKind(StrEnum):
     SPEAK = "speak"
     VOCAB = "vocab"
     READ = "read"
+    WRITE = "write"
     QUIZ = "quiz"
 
 

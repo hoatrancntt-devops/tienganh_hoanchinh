@@ -69,6 +69,9 @@ class Lesson(Base, UUIDMixin, TimestampMixin):
     dialogue: Mapped[dict] = mapped_column(sa.JSON, default=dict)
     vocabulary: Mapped[list] = mapped_column(sa.JSON, default=list)
     sentence_patterns: Mapped[list] = mapped_column(sa.JSON, default=list)
+    # Văn bản để ĐỌC. Cố ý không có trường audio: bài đọc phát được tiếng thì học viên
+    # sẽ nghe thay vì đọc, và phần đọc lại thành phần nghe.
+    reading_passage: Mapped[dict] = mapped_column(sa.JSON, default=dict)
 
     mastery_threshold: Mapped[int] = mapped_column(sa.Integer, default=80)
     mastery_weights: Mapped[dict] = mapped_column(

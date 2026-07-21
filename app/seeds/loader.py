@@ -95,6 +95,14 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
     sentence_patterns = [
         {"pattern": p.pattern, "meaning_vi": p.meaning_vi} for p in spec.sentence_patterns
     ]
+    # Không gắn khoá audio nào ở đây — xem chú thích cột Lesson.reading_passage.
+    reading_passage = {}
+    if spec.reading_passage:
+        rp = spec.reading_passage
+        reading_passage = {
+            "id": rp.id, "kind": rp.kind, "context_vi": rp.context_vi,
+            "text_en": rp.text_en, "text_vi": rp.text_vi,
+        }
 
     fields = dict(
         unit_id=unit.id, slug=spec.slug, phase=Phase(spec.phase), topic=spec.topic,
@@ -108,6 +116,7 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
         dialogue=dialogue,
         vocabulary=vocabulary,
         sentence_patterns=sentence_patterns,
+        reading_passage=reading_passage,
         mastery_threshold=spec.unlock_condition.mastery_threshold,
         mastery_weights=spec.unlock_condition.mastery_weights,
         min_speaking_attempts=spec.unlock_condition.min_speaking_attempts,
@@ -162,6 +171,55 @@ async def _upsert_lesson(db: AsyncSession, spec: LessonYAML, unit: Unit) -> Less
                 focus_phonemes=d.focus_phonemes, accept_patterns=d.accept_patterns,
                 scoring_weights={}, difficulty=2, tags=["speak", phase_tag],
             ))
+        order += 1
+
+    if spec.reading_passage:
+        rp = spec.reading_passage
+        act = Activity(lesson_id=lesson.id, kind=ActivityKind.READ, order_index=order,
+                       title_vi="Đọc hiểu",
+                       config={"passage_id": rp.id, "kind": rp.kind,
+                               "context_vi": rp.context_vi,
+                               "text_en": rp.text_en, "text_vi": rp.text_vi})
+        db.add(act)
+        await db.commit()
+        await db.refresh(act)
+        for i, q in enumerate(rp.questions):
+            # expected_text để None: generate_audio chỉ sinh tiếng cho Item có expected_text,
+            # nên đây là chỗ giữ cho bài đọc không bao giờ đọc thành tiếng.
+            db.add(Item(activity_id=act.id, order_index=i, kind="mcq_read",
+                        prompt_en=q.q_en, prompt_vi="", expected_text=None,
+                        choices=q.choices, answer_index=q.answer, difficulty=q.difficulty,
+                        tags=["read", q.skill, rp.id]))
+        order += 1
+
+    if spec.writing_task:
+        wt = spec.writing_task
+        # config là payload cho học viên: KHÔNG chứa đáp án. `ordered_lines` được xáo ở
+        # tầng UI, `blanks`/`accept`/`required_chunks` chỉ nằm ở Item để chấm server-side.
+        act = Activity(lesson_id=lesson.id, kind=ActivityKind.WRITE, order_index=order,
+                       title_vi="Luyện viết",
+                       config={"task_id": wt.id, "kind": wt.kind, "frame_vi": wt.frame_vi,
+                               "min_words": wt.min_words, "hint_vi": wt.hint_vi,
+                               "so_o": len(wt.blanks),
+                               # Sắp theo bảng chữ cái, KHÔNG theo thứ tự đúng — client tự
+                               # xáo để hiện. Gửi đúng thứ tự xuống là gửi luôn đáp án.
+                               "lines": sorted(wt.ordered_lines)})
+        db.add(act)
+        await db.commit()
+        await db.refresh(act)
+        # Một Item cho cả bài viết. expected_text để None: generate_audio chỉ sinh tiếng cho
+        # Item có expected_text, nên bài viết không bao giờ bị đọc thành tiếng.
+        db.add(Item(
+            activity_id=act.id, order_index=0, kind=wt.kind,
+            prompt_en=wt.prompt_en, prompt_vi=wt.prompt_vi, expected_text=None,
+            choices=[], answer_index=None, accept_patterns=wt.accept,
+            scoring_weights={"kind": wt.kind, "min_words": wt.min_words,
+                             "keywords": wt.keywords, "blanks": wt.blanks,
+                             "ordered_lines": wt.ordered_lines,
+                             "required_chunks": wt.required_chunks,
+                             "hint_vi": wt.hint_vi, "sample_en": wt.sample_en},
+            difficulty=2, tags=["write", wt.kind],
+        ))
         order += 1
 
     if spec.mini_quiz:

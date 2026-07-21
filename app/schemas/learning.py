@@ -30,6 +30,9 @@ class SubmitAttemptIn(BaseModel):
     item_id: uuid.UUID
     choice_index: int | None = None
     text: str | None = None
+    # Bài viết nhiều ô (fill_blank, error_correction, reorder). Chặn độ dài ở tầng schema:
+    # ô nhập tự do là chỗ dễ bị nhét văn bản khổng lồ nhất.
+    texts: list[str] = Field(default_factory=list, max_length=20)
     latency_ms: int = Field(default=0, ge=0)
     is_preview: bool = False
 
